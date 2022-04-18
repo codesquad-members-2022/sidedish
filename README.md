@@ -1,9 +1,10 @@
-# SideDish-진솔(JinSol)
+# SideMenu-Team23(진솔)
 
 ## 🐳 Member
 
 | 🍎iOS | [Damagucci-juice](https://github.com/Damagucci-Juice) | [Sol](https://github.com/Hansolkkim) |
 | ---- | ----------------------------------------------------- | ------------------------------------ |
+| MBTI | ESTP - 수완 좋은 사업가 형 | ISFJ - 용감한 수호자, **실용적인 조력가**|
 
 
 
@@ -55,5 +56,4 @@ CodeSquad Repo(Upstream)
 ### UI
 	- 다양한 iPhone 디바이스에 대응하기 위해 `UIScreen.main.bounds` 등 전략 모색
 	- 디바이스 회전에 대응하는 전략 모색
-
 
