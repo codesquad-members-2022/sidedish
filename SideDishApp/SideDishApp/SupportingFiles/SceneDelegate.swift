@@ -1,0 +1,21 @@
+//
+//  SceneDelegate.swift
+//  SideDishApp
+//
+//  Created by 박진섭 on 2022/04/18.
+//
+
+import UIKit
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+    var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        window?.backgroundColor = .red
+        window?.rootViewController = ViewController()
+        window?.makeKeyAndVisible()
+    }
+}
