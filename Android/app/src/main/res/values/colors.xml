@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="Primary1">#4E00BE</color>
+    <color name="Primary2">#6200EE</color>
+    <color name="Primary3">#F2E7FE</color>
+    <color name="Black">#010101</color>
+    <color name="Grey1">#4F4F4F</color>
+    <color name="Grey2">#828282</color>
+    <color name="Grey3">#E0E0E0</color>
+    <color name="Grey4">#F5F5F7</color>
+    <color name="White">#FFFFFF</color>
+
+    <color name="Google_Login">#DD4B39</color>
+
+
 </resources>
