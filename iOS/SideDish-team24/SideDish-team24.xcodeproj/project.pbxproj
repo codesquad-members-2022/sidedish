@@ -13,6 +13,7 @@
 		6CEE0809280D080000D2D401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE0807280D080000D2D401 /* Main.storyboard */; };
 		6CEE080B280D080300D2D401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080A280D080300D2D401 /* Assets.xcassets */; };
 		6CEE080E280D080300D2D401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080C280D080300D2D401 /* LaunchScreen.storyboard */; };
+		6CEE0818280D616E00D2D401 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0817280D616E00D2D401 /* Dish.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6CEE080A280D080300D2D401 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CEE080D280D080300D2D401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CEE080F280D080300D2D401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CEE0817280D616E00D2D401 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +63,19 @@
 				6CEE0805280D080000D2D401 /* ViewController.swift */,
 				6CEE0807280D080000D2D401 /* Main.storyboard */,
 				6CEE080A280D080300D2D401 /* Assets.xcassets */,
+				6CEE0819280D617300D2D401 /* Model */,
 				6CEE080C280D080300D2D401 /* LaunchScreen.storyboard */,
 				6CEE080F280D080300D2D401 /* Info.plist */,
 			);
 			path = "SideDish-team24";
+			sourceTree = "<group>";
+		};
+		6CEE0819280D617300D2D401 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CEE0817280D616E00D2D401 /* Dish.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CEE0806280D080000D2D401 /* ViewController.swift in Sources */,
+				6CEE0818280D616E00D2D401 /* Dish.swift in Sources */,
 				6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */,
 				6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */,
 			);
