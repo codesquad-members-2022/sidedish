@@ -28,7 +28,7 @@ public class SwaggerConfig {
                 .consumes(getConsumeContentTypes())
                 .produces(getProduceContentTypes())
                 .apiInfo(swaggerInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.terria.sidedish.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.terria.sidedish.api"))
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false);
