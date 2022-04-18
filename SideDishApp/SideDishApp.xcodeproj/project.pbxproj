@@ -101,7 +101,6 @@
 				9802E4AF15E23AC2B4659A4A /* Pods-SideDishAppTests.debug.xcconfig */,
 				5B9E737893654D77F4F54DFC /* Pods-SideDishAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -130,13 +129,13 @@
 		BCFE4834280D5AE100F23DCE /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
-				BCFE4835280D5AE100F23DCE /* AppDelegate.swift */,
-				BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */,
-				BCFE4839280D5AE100F23DCE /* ViewController.swift */,
-				BCFE483B280D5AE100F23DCE /* Main.storyboard */,
-				BCFE483E280D5AE200F23DCE /* Assets.xcassets */,
-				BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */,
-				BCFE4843280D5AE200F23DCE /* Info.plist */,
+				BCFE4883280D764400F23DCE /* Resource */,
+				BCFE4880280D756100F23DCE /* View */,
+				BCFE4887280D764400F23DCE /* Model */,
+				BCFE4884280D764400F23DCE /* ViewModel */,
+				BCFE4886280D764400F23DCE /* Networking */,
+				BCFE4885280D764400F23DCE /* Common */,
+				BCFE4881280D75B900F23DCE /* Support */,
 			);
 			path = SideDishApp;
 			sourceTree = "<group>";
@@ -157,6 +156,67 @@
 			);
 			path = SideDishAppUITests;
 			sourceTree = "<group>";
+		};
+		BCFE4880280D756100F23DCE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BCFE4839280D5AE100F23DCE /* ViewController.swift */,
+				BCFE483B280D5AE100F23DCE /* Main.storyboard */,
+				BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BCFE4881280D75B900F23DCE /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				BCFE4835280D5AE100F23DCE /* AppDelegate.swift */,
+				BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */,
+				BCFE4843280D5AE200F23DCE /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		BCFE4883280D764400F23DCE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BCFE483E280D5AE200F23DCE /* Assets.xcassets */,
+			);
+			name = Resource;
+			path = SideDishApp/Resource;
+			sourceTree = SOURCE_ROOT;
+		};
+		BCFE4884280D764400F23DCE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
+			path = SideDishApp/ViewModel;
+			sourceTree = SOURCE_ROOT;
+		};
+		BCFE4885280D764400F23DCE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Common;
+			path = SideDishApp/Common;
+			sourceTree = SOURCE_ROOT;
+		};
+		BCFE4886280D764400F23DCE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Networking;
+			path = SideDishApp/Networking;
+			sourceTree = SOURCE_ROOT;
+		};
+		BCFE4887280D764400F23DCE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = SideDishApp/Model;
+			sourceTree = SOURCE_ROOT;
 		};
 		FBDA7CB3274DBF5844D0339C /* Frameworks */ = {
 			isa = PBXGroup;
@@ -607,7 +667,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6HM92H898;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SideDishApp/Info.plist;
+				INFOPLIST_FILE = SideDishApp/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -636,7 +696,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6HM92H898;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SideDishApp/Info.plist;
+				INFOPLIST_FILE = SideDishApp/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
