@@ -7,7 +7,7 @@ excluded:
   - SideDishApp/SupportingFiles/SceneDelegate.swift
 disabled_rules: 
   - trailing_whitespace 
-  - identifier_name 
-line_length:
-  ignores_comments: true
+  - identifier_name
+  - line_length
+
 
