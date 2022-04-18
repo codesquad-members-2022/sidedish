@@ -1,13 +1,13 @@
-package sidedish.be;
+package sidedish;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BeApplication {
+public class SidedishApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BeApplication.class, args);
+		SpringApplication.run(SidedishApplication.class, args);
 	}
 
 }

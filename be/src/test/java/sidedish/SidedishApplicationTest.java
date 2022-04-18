@@ -1,13 +1,12 @@
-package sidedish.be;
+package sidedish;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BeApplicationTests {
+class SidedishApplicationTest {
 
 	@Test
-	void contextLoads() {
+	void contextLoad() {
 	}
-
 }
