@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B33B9A040F6610AADDF7446 /* Pods_BanchanApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5312E135B08B1F128DD6F3CC /* Pods_BanchanApp.framework */; };
 		E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */; };
 		E4C6B778280CFA7D001C14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */; };
 		E4C6B77A280CFA7D001C14F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B779280CFA7D001C14F7 /* ViewController.swift */; };
@@ -16,7 +17,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E4C6B772280CFA7D001C14F7 /* BanchanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanchanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5312E135B08B1F128DD6F3CC /* Pods_BanchanApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanchanApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5752C8297112F34F435319FF /* Pods-BanchanApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanchanApp.release.xcconfig"; path = "Target Support Files/Pods-BanchanApp/Pods-BanchanApp.release.xcconfig"; sourceTree = "<group>"; };
+		A534D41406FF931B3F59A588 /* Pods-BanchanApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanchanApp.debug.xcconfig"; path = "Target Support Files/Pods-BanchanApp/Pods-BanchanApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E469A945280D136B00C02D97 /* BanchanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanchanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E469A94A280D166700C02D97 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E4C6B779280CFA7D001C14F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,26 +36,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B33B9A040F6610AADDF7446 /* Pods_BanchanApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F83E8AF5116AFA58E89563A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5312E135B08B1F128DD6F3CC /* Pods_BanchanApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDA4B4D1B1C26ED61049E3C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A534D41406FF931B3F59A588 /* Pods-BanchanApp.debug.xcconfig */,
+				5752C8297112F34F435319FF /* Pods-BanchanApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E4C6B769280CFA7D001C14F7 = {
 			isa = PBXGroup;
 			children = (
+				E469A94A280D166700C02D97 /* .swiftlint.yml */,
 				E4C6B774280CFA7D001C14F7 /* BanchanApp */,
-				E4C6B773280CFA7D001C14F7 /* Products */,
+				BDA4B4D1B1C26ED61049E3C2 /* Pods */,
+				7F83E8AF5116AFA58E89563A /* Frameworks */,
+				E469A945280D136B00C02D97 /* BanchanApp.app */,
 			);
-			sourceTree = "<group>";
-		};
-		E4C6B773280CFA7D001C14F7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E4C6B772280CFA7D001C14F7 /* BanchanApp.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E4C6B774280CFA7D001C14F7 /* BanchanApp */ = {
@@ -74,9 +92,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4C6B786280CFA7F001C14F7 /* Build configuration list for PBXNativeTarget "BanchanApp" */;
 			buildPhases = (
+				EB0FE9202C8624646AED0551 /* [CP] Check Pods Manifest.lock */,
+				E469A946280D13D200C02D97 /* ShellScript */,
 				E4C6B76E280CFA7D001C14F7 /* Sources */,
 				E4C6B76F280CFA7D001C14F7 /* Frameworks */,
 				E4C6B770280CFA7D001C14F7 /* Resources */,
+				DE2654B19C919D0B7EF15ABF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -84,7 +105,7 @@
 			);
 			name = BanchanApp;
 			productName = BanchanApp;
-			productReference = E4C6B772280CFA7D001C14F7 /* BanchanApp.app */;
+			productReference = E469A945280D136B00C02D97 /* BanchanApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +132,7 @@
 				Base,
 			);
 			mainGroup = E4C6B769280CFA7D001C14F7;
-			productRefGroup = E4C6B773280CFA7D001C14F7 /* Products */;
+			productRefGroup = E4C6B769280CFA7D001C14F7;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -132,6 +153,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DE2654B19C919D0B7EF15ABF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanchanApp/Pods-BanchanApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanchanApp/Pods-BanchanApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanchanApp/Pods-BanchanApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E469A946280D13D200C02D97 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		EB0FE9202C8624646AED0551 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BanchanApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E4C6B76E280CFA7D001C14F7 /* Sources */ = {
@@ -282,6 +362,7 @@
 		};
 		E4C6B787280CFA7F001C14F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A534D41406FF931B3F59A588 /* Pods-BanchanApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +391,7 @@
 		};
 		E4C6B788280CFA7F001C14F7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5752C8297112F34F435319FF /* Pods-BanchanApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
