@@ -7,103 +7,179 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B7F90AE4280D59370067E4FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90AE3280D59370067E4FE /* AppDelegate.swift */; };
-		B7F90AE6280D59370067E4FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90AE5280D59370067E4FE /* SceneDelegate.swift */; };
-		B7F90AE8280D59370067E4FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90AE7280D59370067E4FE /* ViewController.swift */; };
-		B7F90AEB280D59370067E4FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F90AE9280D59370067E4FE /* Main.storyboard */; };
-		B7F90AED280D59380067E4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7F90AEC280D59380067E4FE /* Assets.xcassets */; };
-		B7F90AF0280D59380067E4FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F90AEE280D59380067E4FE /* LaunchScreen.storyboard */; };
-		F78DF399D2A56B8296CD220C /* Pods_SideDishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2B1655254530254685C226 /* Pods_SideDishApp.framework */; };
+		1FC322910B3CCF973519C0A6 /* Pods_SideDishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF36B9DD68BA77D2288999 /* Pods_SideDishApp.framework */; };
+		6A71AB58AB41CA274817EBA9 /* Pods_SideDishAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7FAB905432DC28979456A3 /* Pods_SideDishAppTests.framework */; };
+		A7E1C7CA161617BB2B7BDFEA /* Pods_SideDishApp_SideDishAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */; };
+		BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4835280D5AE100F23DCE /* AppDelegate.swift */; };
+		BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */; };
+		BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4839280D5AE100F23DCE /* ViewController.swift */; };
+		BCFE483D280D5AE100F23DCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCFE483B280D5AE100F23DCE /* Main.storyboard */; };
+		BCFE483F280D5AE200F23DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFE483E280D5AE200F23DCE /* Assets.xcassets */; };
+		BCFE4842280D5AE200F23DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */; };
+		BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */; };
+		BCFE4857280D5AE200F23DCE /* SideDishAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */; };
+		BCFE4859280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BCFE4849280D5AE200F23DCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCFE482A280D5AE100F23DCE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCFE4831280D5AE100F23DCE;
+			remoteInfo = SideDishApp;
+		};
+		BCFE4853280D5AE200F23DCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCFE482A280D5AE100F23DCE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCFE4831280D5AE100F23DCE;
+			remoteInfo = SideDishApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		1E2B1655254530254685C226 /* Pods_SideDishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		30B7758F5AA5C25B8DB71BC4 /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
-		712EA6A1420440DE5304111E /* Pods-SideDishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.release.xcconfig"; sourceTree = "<group>"; };
-		B7F90AE0280D59370067E4FE /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7F90AE3280D59370067E4FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7F90AE5280D59370067E4FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B7F90AE7280D59370067E4FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B7F90AEA280D59370067E4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B7F90AEC280D59380067E4FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B7F90AEF280D59380067E4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B7F90AF1280D59380067E4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C7FAB905432DC28979456A3 /* Pods_SideDishAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A4D36B25ECA6BDFCCEBA044 /* Pods-SideDishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.release.xcconfig"; sourceTree = "<group>"; };
+		5B9E737893654D77F4F54DFC /* Pods-SideDishAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishAppTests.release.xcconfig"; path = "Target Support Files/Pods-SideDishAppTests/Pods-SideDishAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		77AF36B9DD68BA77D2288999 /* Pods_SideDishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9802E4AF15E23AC2B4659A4A /* Pods-SideDishAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishAppTests.debug.xcconfig"; path = "Target Support Files/Pods-SideDishAppTests/Pods-SideDishAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B98C60A45FBEDB596EF4430A /* Pods-SideDishApp-SideDishAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BCFE4832280D5AE100F23DCE /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCFE4835280D5AE100F23DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BCFE4839280D5AE100F23DCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BCFE483C280D5AE100F23DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BCFE483E280D5AE200F23DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BCFE4841280D5AE200F23DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BCFE4843280D5AE200F23DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCFE4848280D5AE200F23DCE /* SideDishAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideDishAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppTests.swift; sourceTree = "<group>"; };
+		BCFE4852280D5AE200F23DCE /* SideDishAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideDishAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITests.swift; sourceTree = "<group>"; };
+		BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp_SideDishAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B7F90ADD280D59370067E4FE /* Frameworks */ = {
+		BCFE482F280D5AE100F23DCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F78DF399D2A56B8296CD220C /* Pods_SideDishApp.framework in Frameworks */,
+				1FC322910B3CCF973519C0A6 /* Pods_SideDishApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCFE4845280D5AE200F23DCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A71AB58AB41CA274817EBA9 /* Pods_SideDishAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCFE484F280D5AE200F23DCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7E1C7CA161617BB2B7BDFEA /* Pods_SideDishApp_SideDishAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		70A613E1F05A45253B5F09BB /* Frameworks */ = {
+		61E5B53E7C194E5B19609E8D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1E2B1655254530254685C226 /* Pods_SideDishApp.framework */,
+				FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */,
+				4A4D36B25ECA6BDFCCEBA044 /* Pods-SideDishApp.release.xcconfig */,
+				DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */,
+				B98C60A45FBEDB596EF4430A /* Pods-SideDishApp-SideDishAppUITests.release.xcconfig */,
+				9802E4AF15E23AC2B4659A4A /* Pods-SideDishAppTests.debug.xcconfig */,
+				5B9E737893654D77F4F54DFC /* Pods-SideDishAppTests.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		B7F90AD7280D59370067E4FE = {
+		BCFE4829280D5AE100F23DCE = {
 			isa = PBXGroup;
 			children = (
-				B7F90AE2280D59370067E4FE /* SideDishApp */,
-				B7F90AE1280D59370067E4FE /* Products */,
-				BC5B923451D7ACBCF0137883 /* Pods */,
-				70A613E1F05A45253B5F09BB /* Frameworks */,
+				BCFE4834280D5AE100F23DCE /* SideDishApp */,
+				BCFE484B280D5AE200F23DCE /* SideDishAppTests */,
+				BCFE4855280D5AE200F23DCE /* SideDishAppUITests */,
+				BCFE4833280D5AE100F23DCE /* Products */,
+				61E5B53E7C194E5B19609E8D /* Pods */,
+				FBDA7CB3274DBF5844D0339C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		B7F90AE1280D59370067E4FE /* Products */ = {
+		BCFE4833280D5AE100F23DCE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B7F90AE0280D59370067E4FE /* SideDishApp.app */,
+				BCFE4832280D5AE100F23DCE /* SideDishApp.app */,
+				BCFE4848280D5AE200F23DCE /* SideDishAppTests.xctest */,
+				BCFE4852280D5AE200F23DCE /* SideDishAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B7F90AE2280D59370067E4FE /* SideDishApp */ = {
+		BCFE4834280D5AE100F23DCE /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
-				B7F90AE3280D59370067E4FE /* AppDelegate.swift */,
-				B7F90AE5280D59370067E4FE /* SceneDelegate.swift */,
-				B7F90AE7280D59370067E4FE /* ViewController.swift */,
-				B7F90AE9280D59370067E4FE /* Main.storyboard */,
-				B7F90AEC280D59380067E4FE /* Assets.xcassets */,
-				B7F90AEE280D59380067E4FE /* LaunchScreen.storyboard */,
-				B7F90AF1280D59380067E4FE /* Info.plist */,
+				BCFE4835280D5AE100F23DCE /* AppDelegate.swift */,
+				BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */,
+				BCFE4839280D5AE100F23DCE /* ViewController.swift */,
+				BCFE483B280D5AE100F23DCE /* Main.storyboard */,
+				BCFE483E280D5AE200F23DCE /* Assets.xcassets */,
+				BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */,
+				BCFE4843280D5AE200F23DCE /* Info.plist */,
 			);
 			path = SideDishApp;
 			sourceTree = "<group>";
 		};
-		BC5B923451D7ACBCF0137883 /* Pods */ = {
+		BCFE484B280D5AE200F23DCE /* SideDishAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				30B7758F5AA5C25B8DB71BC4 /* Pods-SideDishApp.debug.xcconfig */,
-				712EA6A1420440DE5304111E /* Pods-SideDishApp.release.xcconfig */,
+				BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */,
 			);
-			path = Pods;
+			path = SideDishAppTests;
+			sourceTree = "<group>";
+		};
+		BCFE4855280D5AE200F23DCE /* SideDishAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */,
+				BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */,
+			);
+			path = SideDishAppUITests;
+			sourceTree = "<group>";
+		};
+		FBDA7CB3274DBF5844D0339C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77AF36B9DD68BA77D2288999 /* Pods_SideDishApp.framework */,
+				D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */,
+				3C7FAB905432DC28979456A3 /* Pods_SideDishAppTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B7F90ADF280D59370067E4FE /* SideDishApp */ = {
+		BCFE4831280D5AE100F23DCE /* SideDishApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7F90AF4280D59380067E4FE /* Build configuration list for PBXNativeTarget "SideDishApp" */;
+			buildConfigurationList = BCFE485C280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishApp" */;
 			buildPhases = (
-				3F3525C43EE51A6D4407B9D4 /* [CP] Check Pods Manifest.lock */,
-				B7F90AF7280D59A60067E4FE /* SwiftLint Script */,
-				B7F90ADC280D59370067E4FE /* Sources */,
-				B7F90ADD280D59370067E4FE /* Frameworks */,
-				B7F90ADE280D59370067E4FE /* Resources */,
-				5EC4B87E9F428AD9E5D2BD48 /* [CP] Embed Pods Frameworks */,
+				F55AC386C89A24E0862525ED /* [CP] Check Pods Manifest.lock */,
+				BCFE482E280D5AE100F23DCE /* Sources */,
+				BCFE482F280D5AE100F23DCE /* Frameworks */,
+				BCFE4830280D5AE100F23DCE /* Resources */,
+				8376A3028B5B4DA864DB8BE9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -111,25 +187,73 @@
 			);
 			name = SideDishApp;
 			productName = SideDishApp;
-			productReference = B7F90AE0280D59370067E4FE /* SideDishApp.app */;
+			productReference = BCFE4832280D5AE100F23DCE /* SideDishApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BCFE4847280D5AE200F23DCE /* SideDishAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCFE485F280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishAppTests" */;
+			buildPhases = (
+				472711AD51B353487D0ED903 /* [CP] Check Pods Manifest.lock */,
+				BCFE4844280D5AE200F23DCE /* Sources */,
+				BCFE4845280D5AE200F23DCE /* Frameworks */,
+				BCFE4846280D5AE200F23DCE /* Resources */,
+				BE96EBAE2FF18ACBAF180DF6 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCFE484A280D5AE200F23DCE /* PBXTargetDependency */,
+			);
+			name = SideDishAppTests;
+			productName = SideDishAppTests;
+			productReference = BCFE4848280D5AE200F23DCE /* SideDishAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BCFE4851280D5AE200F23DCE /* SideDishAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCFE4862280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishAppUITests" */;
+			buildPhases = (
+				0AC6B79AC4E0AB454BA34F5D /* [CP] Check Pods Manifest.lock */,
+				BCFE484E280D5AE200F23DCE /* Sources */,
+				BCFE484F280D5AE200F23DCE /* Frameworks */,
+				BCFE4850280D5AE200F23DCE /* Resources */,
+				4AE8F53459D446198D7E82A7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCFE4854280D5AE200F23DCE /* PBXTargetDependency */,
+			);
+			name = SideDishAppUITests;
+			productName = SideDishAppUITests;
+			productReference = BCFE4852280D5AE200F23DCE /* SideDishAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B7F90AD8280D59370067E4FE /* Project object */ = {
+		BCFE482A280D5AE100F23DCE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
-					B7F90ADF280D59370067E4FE = {
+					BCFE4831280D5AE100F23DCE = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					BCFE4847280D5AE200F23DCE = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = BCFE4831280D5AE100F23DCE;
+					};
+					BCFE4851280D5AE200F23DCE = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = BCFE4831280D5AE100F23DCE;
 					};
 				};
 			};
-			buildConfigurationList = B7F90ADB280D59370067E4FE /* Build configuration list for PBXProject "SideDishApp" */;
+			buildConfigurationList = BCFE482D280D5AE100F23DCE /* Build configuration list for PBXProject "SideDishApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -137,31 +261,142 @@
 				en,
 				Base,
 			);
-			mainGroup = B7F90AD7280D59370067E4FE;
-			productRefGroup = B7F90AE1280D59370067E4FE /* Products */;
+			mainGroup = BCFE4829280D5AE100F23DCE;
+			productRefGroup = BCFE4833280D5AE100F23DCE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B7F90ADF280D59370067E4FE /* SideDishApp */,
+				BCFE4831280D5AE100F23DCE /* SideDishApp */,
+				BCFE4847280D5AE200F23DCE /* SideDishAppTests */,
+				BCFE4851280D5AE200F23DCE /* SideDishAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B7F90ADE280D59370067E4FE /* Resources */ = {
+		BCFE4830280D5AE100F23DCE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7F90AF0280D59380067E4FE /* LaunchScreen.storyboard in Resources */,
-				B7F90AED280D59380067E4FE /* Assets.xcassets in Resources */,
-				B7F90AEB280D59370067E4FE /* Main.storyboard in Resources */,
+				BCFE4842280D5AE200F23DCE /* LaunchScreen.storyboard in Resources */,
+				BCFE483F280D5AE200F23DCE /* Assets.xcassets in Resources */,
+				BCFE483D280D5AE100F23DCE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCFE4846280D5AE200F23DCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCFE4850280D5AE200F23DCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F3525C43EE51A6D4407B9D4 /* [CP] Check Pods Manifest.lock */ = {
+		0AC6B79AC4E0AB454BA34F5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SideDishApp-SideDishAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		472711AD51B353487D0ED903 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SideDishAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AE8F53459D446198D7E82A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8376A3028B5B4DA864DB8BE9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE96EBAE2FF18ACBAF180DF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishAppTests/Pods-SideDishAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishAppTests/Pods-SideDishAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishAppTests/Pods-SideDishAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F55AC386C89A24E0862525ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,69 +418,64 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5EC4B87E9F428AD9E5D2BD48 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B7F90AF7280D59A60067E4FE /* SwiftLint Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLint Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint  \n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B7F90ADC280D59370067E4FE /* Sources */ = {
+		BCFE482E280D5AE100F23DCE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7F90AE8280D59370067E4FE /* ViewController.swift in Sources */,
-				B7F90AE4280D59370067E4FE /* AppDelegate.swift in Sources */,
-				B7F90AE6280D59370067E4FE /* SceneDelegate.swift in Sources */,
+				BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */,
+				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
+				BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCFE4844280D5AE200F23DCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCFE484E280D5AE200F23DCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCFE4857280D5AE200F23DCE /* SideDishAppUITests.swift in Sources */,
+				BCFE4859280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BCFE484A280D5AE200F23DCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCFE4831280D5AE100F23DCE /* SideDishApp */;
+			targetProxy = BCFE4849280D5AE200F23DCE /* PBXContainerItemProxy */;
+		};
+		BCFE4854280D5AE200F23DCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCFE4831280D5AE100F23DCE /* SideDishApp */;
+			targetProxy = BCFE4853280D5AE200F23DCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		B7F90AE9280D59370067E4FE /* Main.storyboard */ = {
+		BCFE483B280D5AE100F23DCE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B7F90AEA280D59370067E4FE /* Base */,
+				BCFE483C280D5AE100F23DCE /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		B7F90AEE280D59380067E4FE /* LaunchScreen.storyboard */ = {
+		BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B7F90AEF280D59380067E4FE /* Base */,
+				BCFE4841280D5AE200F23DCE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -253,7 +483,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B7F90AF2280D59380067E4FE /* Debug */ = {
+		BCFE485A280D5AE200F23DCE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -313,7 +543,7 @@
 			};
 			name = Debug;
 		};
-		B7F90AF3280D59380067E4FE /* Release */ = {
+		BCFE485B280D5AE200F23DCE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -367,15 +597,15 @@
 			};
 			name = Release;
 		};
-		B7F90AF5280D59380067E4FE /* Debug */ = {
+		BCFE485D280D5AE200F23DCE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30B7758F5AA5C25B8DB71BC4 /* Pods-SideDishApp.debug.xcconfig */;
+			baseConfigurationReference = FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 57KUPHDJ89;
+				DEVELOPMENT_TEAM = A6HM92H898;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SideDishApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -388,7 +618,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Kai.SideDishApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eddysong.SideDishApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -396,15 +626,15 @@
 			};
 			name = Debug;
 		};
-		B7F90AF6280D59380067E4FE /* Release */ = {
+		BCFE485E280D5AE200F23DCE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 712EA6A1420440DE5304111E /* Pods-SideDishApp.release.xcconfig */;
+			baseConfigurationReference = 4A4D36B25ECA6BDFCCEBA044 /* Pods-SideDishApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 57KUPHDJ89;
+				DEVELOPMENT_TEAM = A6HM92H898;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SideDishApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -417,7 +647,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Kai.SideDishApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eddysong.SideDishApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -425,28 +655,126 @@
 			};
 			name = Release;
 		};
+		BCFE4860280D5AE200F23DCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9802E4AF15E23AC2B4659A4A /* Pods-SideDishAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A6HM92H898;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eddysong.SideDishAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SideDishApp.app/SideDishApp";
+			};
+			name = Debug;
+		};
+		BCFE4861280D5AE200F23DCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B9E737893654D77F4F54DFC /* Pods-SideDishAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A6HM92H898;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eddysong.SideDishAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SideDishApp.app/SideDishApp";
+			};
+			name = Release;
+		};
+		BCFE4863280D5AE200F23DCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A6HM92H898;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eddysong.SideDishAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SideDishApp;
+			};
+			name = Debug;
+		};
+		BCFE4864280D5AE200F23DCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B98C60A45FBEDB596EF4430A /* Pods-SideDishApp-SideDishAppUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A6HM92H898;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eddysong.SideDishAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SideDishApp;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B7F90ADB280D59370067E4FE /* Build configuration list for PBXProject "SideDishApp" */ = {
+		BCFE482D280D5AE100F23DCE /* Build configuration list for PBXProject "SideDishApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B7F90AF2280D59380067E4FE /* Debug */,
-				B7F90AF3280D59380067E4FE /* Release */,
+				BCFE485A280D5AE200F23DCE /* Debug */,
+				BCFE485B280D5AE200F23DCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7F90AF4280D59380067E4FE /* Build configuration list for PBXNativeTarget "SideDishApp" */ = {
+		BCFE485C280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B7F90AF5280D59380067E4FE /* Debug */,
-				B7F90AF6280D59380067E4FE /* Release */,
+				BCFE485D280D5AE200F23DCE /* Debug */,
+				BCFE485E280D5AE200F23DCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCFE485F280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCFE4860280D5AE200F23DCE /* Debug */,
+				BCFE4861280D5AE200F23DCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCFE4862280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCFE4863280D5AE200F23DCE /* Debug */,
+				BCFE4864280D5AE200F23DCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B7F90AD8280D59370067E4FE /* Project object */;
+	rootObject = BCFE482A280D5AE100F23DCE /* Project object */;
 }

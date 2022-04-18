@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  SideDishApp
 //
-//  Created by Kai Kim on 2022/04/18.
+//  Created by Bumgeun Song on 2022/04/18.
 //
 
 import UIKit
