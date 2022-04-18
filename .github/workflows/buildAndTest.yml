@@ -20,6 +20,10 @@ jobs:
         cd SideDishApp
         pod install
     - name: Build
-      run: xcodebuild -workspace SideDishApp.xcworkspace -scheme SideDishApp -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
+      run:
+        cd SideDishApp
+        xcodebuild -workspace SideDishApp.xcworkspace -scheme SideDishApp -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
     - name: Test
-      run: xcodebuild -workspace SideDishApp.xcworkspace -scheme SideDishApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
+      run:
+        cd SideDishApp
+        xcodebuild -workspace SideDishApp.xcworkspace -scheme SideDishApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
