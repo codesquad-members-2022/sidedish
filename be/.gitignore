@@ -171,6 +171,10 @@ Temporary Items
 *.icloud
 
 ### Gradle ###
+HELP.md
+build/
+!gradle/wrapper/gradle-wrapper.jar
+gradlew
 .gradle
 **/build/
 !src/**/build/
