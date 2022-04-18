@@ -2,12 +2,10 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: 기능구현
 assignees: ''
 
 ---
-
-###description...
 
 - [ ] content
 - [ ] content
