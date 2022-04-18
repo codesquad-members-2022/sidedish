@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text_Large_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Text_Medium_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text_Small_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Caption">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text_Large_Bold">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text_Medium_Bold">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text_Small_Bold">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
