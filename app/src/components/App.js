@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Reset } from 'styled-reset';
+import { Reset } from "styled-reset";
 
 const StyleDiv = styled.div`
   .App {
@@ -40,7 +40,7 @@ const StyleDiv = styled.div`
       transform: rotate(360deg);
     }
   }
-`
+`;
 
 function App() {
   return (
