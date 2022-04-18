@@ -1,9 +1,15 @@
 name: Build and Test
 on:
   push:
-    branches: [ dev ]
+    branches: 
+      - dev
+      - feat-eddy
+      - feat-kai
   pull_request:
-    branches: [ dev ]
+    branches: 
+      - dev
+      - feat-eddy
+      - feat-kai
 jobs:
   buildAndTest:
     runs-on: macos-latest
