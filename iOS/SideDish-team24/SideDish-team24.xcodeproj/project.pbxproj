@@ -14,9 +14,11 @@
 		6CEE080B280D080300D2D401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080A280D080300D2D401 /* Assets.xcassets */; };
 		6CEE080E280D080300D2D401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080C280D080300D2D401 /* LaunchScreen.storyboard */; };
 		6CEE0818280D616E00D2D401 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0817280D616E00D2D401 /* Dish.swift */; };
+		C6593D15DB8049FB6831B879 /* Pods_SideDish_team24.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E1077FD4E4F626AAB5120A2 /* Pods-SideDish-team24.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish-team24.release.xcconfig"; path = "Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24.release.xcconfig"; sourceTree = "<group>"; };
 		6CEE07FE280D080000D2D401 /* SideDish-team24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideDish-team24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEE0801280D080000D2D401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEE0803280D080000D2D401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		6CEE080D280D080300D2D401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CEE080F280D080300D2D401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CEE0817280D616E00D2D401 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		E5F547B859D2A20736FC1BCD /* Pods-SideDish-team24.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish-team24.debug.xcconfig"; path = "Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24.debug.xcconfig"; sourceTree = "<group>"; };
+		E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish_team24.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6593D15DB8049FB6831B879 /* Pods_SideDish_team24.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C6587959E1A7871680FA73E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E5F547B859D2A20736FC1BCD /* Pods-SideDish-team24.debug.xcconfig */,
+				4E1077FD4E4F626AAB5120A2 /* Pods-SideDish-team24.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6CEE07F5280D080000D2D401 = {
 			isa = PBXGroup;
 			children = (
 				6CEE0800280D080000D2D401 /* SideDish-team24 */,
 				6CEE07FF280D080000D2D401 /* Products */,
+				0C6587959E1A7871680FA73E /* Pods */,
+				78A24B8C1BA5531D53170259 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +95,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		78A24B8C1BA5531D53170259 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CEE0812280D080300D2D401 /* Build configuration list for PBXNativeTarget "SideDish-team24" */;
 			buildPhases = (
+				0E4427D403005D318C3FE908 /* [CP] Check Pods Manifest.lock */,
 				6CEE07FA280D080000D2D401 /* Sources */,
 				6CEE07FB280D080000D2D401 /* Frameworks */,
 				6CEE07FC280D080000D2D401 /* Resources */,
+				05310DFB430324EBB97C20F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -143,6 +170,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05310DFB430324EBB97C20F4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0E4427D403005D318C3FE908 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SideDish-team24-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6CEE07FA280D080000D2D401 /* Sources */ = {
@@ -294,6 +363,7 @@
 		};
 		6CEE0813280D080300D2D401 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5F547B859D2A20736FC1BCD /* Pods-SideDish-team24.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,6 +392,7 @@
 		};
 		6CEE0814280D080300D2D401 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E1077FD4E4F626AAB5120A2 /* Pods-SideDish-team24.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
