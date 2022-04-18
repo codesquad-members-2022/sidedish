@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
 		E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */; };
 		E0EDD59E280CF94700DBF9C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD59D280CF94700DBF9C6 /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AABCEAD7046DD330E59CB60 /* Pods-sidedish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.release.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.release.xcconfig"; sourceTree = "<group>"; };
+		5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.debug.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.debug.xcconfig"; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6ABD55AE2361196E098F8BC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		82ED81720ACA4CBC0E7FC510 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */,
+				2AABCEAD7046DD330E59CB60 /* Pods-sidedish.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E0EDD58D280CF94700DBF9C6 = {
 			isa = PBXGroup;
 			children = (
 				E0EDD598280CF94700DBF9C6 /* sidedish */,
 				E0EDD597280CF94700DBF9C6 /* Products */,
+				82ED81720ACA4CBC0E7FC510 /* Pods */,
+				6ABD55AE2361196E098F8BC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0EDD5AA280CF94700DBF9C6 /* Build configuration list for PBXNativeTarget "sidedish" */;
 			buildPhases = (
+				9EE110FB36CAB8547AB1007D /* [CP] Check Pods Manifest.lock */,
 				E0EDD592280CF94700DBF9C6 /* Sources */,
 				E0EDD593280CF94700DBF9C6 /* Frameworks */,
 				E0EDD594280CF94700DBF9C6 /* Resources */,
+				E0EDD5AE280D002800DBF9C6 /* swiftLint */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9EE110FB36CAB8547AB1007D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sidedish-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0EDD5AE280D002800DBF9C6 /* swiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E0EDD592280CF94700DBF9C6 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		E0EDD5AB280CF94700DBF9C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +380,7 @@
 		};
 		E0EDD5AC280CF94700DBF9C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AABCEAD7046DD330E59CB60 /* Pods-sidedish.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -1,0 +1,6 @@
+framework module Pods_sidedish {
+  umbrella header "Pods-sidedish-umbrella.h"
+
+  export *
+  module * { export * }
+}
