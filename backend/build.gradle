@@ -32,6 +32,10 @@ dependencies {
     implementation 'org.projectlombok:lombok'
     annotationProcessor "org.projectlombok:lombok"
 
+    /* Springfox */
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
     /* Jackson */
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.2'
 }
