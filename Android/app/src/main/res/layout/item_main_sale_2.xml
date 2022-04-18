@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_v_4.44"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0444" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_v_95.56"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9556" />
+
+    <View
+        android:id="@+id/v_empty_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_food_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_bottom"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/gl_v_4.44"
+        app:layout_constraintTop_toBottomOf="@id/v_empty_top"
+        app:layout_constraintWidth_percent="0.36">
+
+        <ImageView
+            android:id="@+id/iv_food"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E1E1E1"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_food_sample" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:id="@+id/v_empty_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cv_food_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.022" />
+
+    <View
+        android:id="@+id/v_empty_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="360:16" />
+
+    <View
+        android:id="@+id/v_empty_2_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_2"
+        app:layout_constraintDimensionRatio="360:24" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_2"
+        app:layout_constraintStart_toEndOf="@id/v_empty_1"
+        app:layout_constraintTop_toTopOf="@id/v_empty_2_1"
+        app:shapeAppearanceOverlay="@style/tagRadiusShape">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/Primary1">
+
+            <View
+                android:id="@+id/v_tag1_1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_tag"
+                app:layout_constraintDimensionRatio="12:16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_tag" />
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="런칭특가"
+                android:textColor="@color/Primary3"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/v_tag1_4"
+                app:layout_constraintEnd_toStartOf="@id/v_tag1_2"
+                app:layout_constraintHeight_percent="0.66"
+                app:layout_constraintStart_toEndOf="@id/v_tag1_1"
+                app:layout_constraintTop_toBottomOf="@id/v_tag1_3" />
+
+            <View
+                android:id="@+id/v_tag1_2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_tag"
+                app:layout_constraintDimensionRatio="12:16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="tv_tag_launcing"
+                app:layout_constraintTop_toTopOf="@id/tv_tag" />
+
+            <View
+                android:id="@+id/v_tag1_3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="69:4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/v_tag1_4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="69:4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:id="@+id/v_empty_3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/cv_tag"
+        app:layout_constraintDimensionRatio="360:10" />
+
+    <View
+        android:id="@+id/v_empty_3_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_3"
+        app:layout_constraintDimensionRatio="360:24" />
+
+    <TextView
+        android:id="@+id/tv_price_after_sale"
+        style="@style/Text_Small_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:text="12,640원"
+        android:textColor="@color/Black"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_3"
+        app:layout_constraintStart_toEndOf="@id/v_empty_1"
+        app:layout_constraintTop_toTopOf="@id/v_empty_3_1" />
+
+    <View
+        android:id="@+id/v_empty_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_price_after_sale"
+        app:layout_constraintDimensionRatio="4:24"
+        app:layout_constraintStart_toEndOf="@id/tv_price_after_sale"
+        app:layout_constraintTop_toTopOf="@id/tv_price_after_sale" />
+
+    <TextView
+        android:id="@+id/tv_price_before_sale"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:text="15,800원"
+        android:textColor="@color/Grey2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_price_after_sale"
+        app:layout_constraintStart_toEndOf="@id/v_empty_4"
+        app:layout_constraintTop_toTopOf="@id/tv_price_after_sale" />
+
+    <View
+        android:id="@+id/v_empty_5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_price_after_sale"
+        app:layout_constraintDimensionRatio="360:4" />
+
+    <View
+        android:id="@+id/v_empty_5_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_5"
+        app:layout_constraintDimensionRatio="360:24" />
+
+    <TextView
+        android:id="@+id/tv_food_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="탱글한 면발과 맛깔진 고명이 일품인 잡채"
+        android:textColor="@color/Grey2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_5"
+        app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
+        app:layout_constraintStart_toEndOf="@id/v_empty_1"
+        app:layout_constraintTop_toTopOf="@id/v_empty_5_1" />
+
+    <View
+        android:id="@+id/v_empty_6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_food_description"
+        app:layout_constraintDimensionRatio="360:4" />
+
+    <View
+        android:id="@+id/v_empty_6_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_6"
+        app:layout_constraintDimensionRatio="360:24" />
+
+    <TextView
+        android:id="@+id/tv_food_name"
+        style="@style/Text_Small_Bold"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="잡채"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/v_empty_6"
+        app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
+        app:layout_constraintStart_toEndOf="@id/v_empty_1"
+        app:layout_constraintTop_toTopOf="@id/v_empty_6_1" />
+
+
+    <View
+        android:id="@+id/v_empty_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="360:8" />
+</androidx.constraintlayout.widget.ConstraintLayout>
