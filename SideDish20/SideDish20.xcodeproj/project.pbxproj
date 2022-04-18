@@ -126,11 +126,9 @@
 		D08FCDE6280D09AB00176BF9 /* SideDish20 */ = {
 			isa = PBXGroup;
 			children = (
-				D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */,
-				D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */,
+				D08FCE18280D113500176BF9 /* Application */,
 				D08FCDEB280D09AB00176BF9 /* ViewController.swift */,
 				D08FCDED280D09AB00176BF9 /* Main.storyboard */,
-				D08FCDF0280D09AD00176BF9 /* Assets.xcassets */,
 				D08FCDF2280D09AD00176BF9 /* LaunchScreen.storyboard */,
 				D08FCDF5280D09AD00176BF9 /* Info.plist */,
 			);
@@ -154,6 +152,16 @@
 			path = SideDish20UITests;
 			sourceTree = "<group>";
 		};
+		D08FCE18280D113500176BF9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */,
+				D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */,
+				D08FCDF0280D09AD00176BF9 /* Assets.xcassets */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		F0BDB8B687895DB30F1F37D2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +172,6 @@
 				2736D4DB3581F6AA1E7A0869 /* Pods-SideDish20Tests.debug.xcconfig */,
 				940024B1548A4BB066A6B057 /* Pods-SideDish20Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
