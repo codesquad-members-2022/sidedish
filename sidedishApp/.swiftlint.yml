@@ -1,3 +1,9 @@
 disabled_rules:
+- line_length
+
 included:
+- 30DoC/Common/Attribute+.swift
+
 excluded:
+- Pods
+- 30Doc/Common/Attribute+.swift

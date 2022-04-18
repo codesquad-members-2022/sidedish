@@ -13,6 +13,8 @@
 		00680796280D5195003C2808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00680794280D5195003C2808 /* Main.storyboard */; };
 		00680798280D5195003C2808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00680797280D5195003C2808 /* Assets.xcassets */; };
 		0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00680799280D5195003C2808 /* LaunchScreen.storyboard */; };
+		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
+		7868B42895BC4985CF209663 /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761DADD6ABB20B11FEA37018 /* Pods_sidedishApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		00680797280D5195003C2808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0068079A280D5195003C2808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0068079C280D5195003C2808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		761DADD6ABB20B11FEA37018 /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7868B42895BC4985CF209663 /* Pods_sidedishApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +47,11 @@
 		00680782280D5194003C2808 = {
 			isa = PBXGroup;
 			children = (
+				00EA56FD280D564800EA3366 /* .swiftlint.yml */,
 				0068078D280D5195003C2808 /* sidedishApp */,
 				0068078C280D5195003C2808 /* Products */,
+				F305D4E58A043511E6241E04 /* Pods */,
+				033CCDBC48383EE5B0100838 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +77,23 @@
 			path = sidedishApp;
 			sourceTree = "<group>";
 		};
+		033CCDBC48383EE5B0100838 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				761DADD6ABB20B11FEA37018 /* Pods_sidedishApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F305D4E58A043511E6241E04 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */,
+				E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +101,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0068079F280D5195003C2808 /* Build configuration list for PBXNativeTarget "sidedishApp" */;
 			buildPhases = (
+				FC49A5054104846EB95A150E /* [CP] Check Pods Manifest.lock */,
 				00680787280D5195003C2808 /* Sources */,
 				00680788280D5195003C2808 /* Frameworks */,
 				00680789280D5195003C2808 /* Resources */,
@@ -125,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */,
 				0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */,
 				00680798280D5195003C2808 /* Assets.xcassets in Resources */,
 				00680796280D5195003C2808 /* Main.storyboard in Resources */,
@@ -132,6 +161,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FC49A5054104846EB95A150E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sidedishApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00680787280D5195003C2808 /* Sources */ = {
@@ -282,6 +336,7 @@
 		};
 		006807A0280D5195003C2808 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +365,7 @@
 		};
 		006807A1280D5195003C2808 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
