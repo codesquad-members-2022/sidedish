@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export function flex(justify = 'start', align = 'stretch') {
+function flex(justify = 'start', align = 'stretch') {
   return `
     display: flex;
     justify-content: ${justify};
