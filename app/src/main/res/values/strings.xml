@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SideDish</string>
+    <string name="original_price">&lt;strike>%d원&lt;/strike></string>
 </resources>
