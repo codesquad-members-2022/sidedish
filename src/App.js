@@ -1,7 +1,8 @@
 import React from "react";
+import Header from "./Header";
 
-export default function App() {
-  return (
-      <h1>project start</h1>
-  );
-}
+const App = () => {
+  return <Header />;
+};
+
+export default App;
