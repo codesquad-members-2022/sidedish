@@ -49,6 +49,10 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="Text_Medium_Bold.Grey2">
+        <item name="android:textColor">@color/Grey2</item>
+    </style>
+
     <style name="Text_Small_Bold">
         <item name="android:textColor">@color/Black</item>
         <item name="android:textSize">14sp</item>

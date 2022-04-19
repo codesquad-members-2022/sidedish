@@ -1,5 +1,6 @@
 package com.codesquadhan.sidedish.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityMainBinding
+import com.codesquadhan.sidedish.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +41,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setMainRv(){
-        mainAdapter = MainAdapter()
+        mainAdapter = MainAdapter { it ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("id", it)
+            startActivity(intent)
+        }
         binding.rvMain.adapter = mainAdapter
         viewModel.menuMainListLd.observe(this){
             mainAdapter.submitList(it.toList())
@@ -47,7 +53,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSoupRv(){
-        soupAdapter = MainAdapter()
+        soupAdapter = MainAdapter{ it ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("id", it)
+            startActivity(intent)
+        }
         binding.rvSoup.adapter = soupAdapter
         viewModel.menuSoupListLd.observe(this){
             soupAdapter.submitList(it.toList())
@@ -55,7 +65,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSideRv(){
-        sideAdapter = MainAdapter()
+        sideAdapter = MainAdapter{ it ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("id", it)
+            startActivity(intent)
+        }
         binding.rvSide.adapter = sideAdapter
         viewModel.menuSideListLd.observe(this){
             sideAdapter.submitList(it.toList())

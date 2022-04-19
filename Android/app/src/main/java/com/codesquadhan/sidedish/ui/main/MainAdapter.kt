@@ -12,7 +12,7 @@ import com.codesquadhan.sidedish.ui.constant.ViewType.FOOD_VIEW_TYPE
 import com.codesquadhan.sidedish.ui.constant.ViewType.HEADER_VIEW_TYPE
 import java.lang.RuntimeException
 
-class MainAdapter : ListAdapter<MenuData, RecyclerView.ViewHolder>(diffUtil) {
+class MainAdapter(private val itemClick : (id: Int)-> Unit) : ListAdapter<MenuData, RecyclerView.ViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -38,7 +38,7 @@ class MainAdapter : ListAdapter<MenuData, RecyclerView.ViewHolder>(diffUtil) {
 
         when (currentItem.viewType) {
             HEADER_VIEW_TYPE -> (holder as MainHeaderViewHolder).bind(currentItem)
-            FOOD_VIEW_TYPE -> (holder as MainFoodViewHolder).bind(currentItem)
+            FOOD_VIEW_TYPE -> (holder as MainFoodViewHolder).bind(currentItem, itemClick)
         }
 
     }
@@ -53,16 +53,18 @@ class MainAdapter : ListAdapter<MenuData, RecyclerView.ViewHolder>(diffUtil) {
         fun bind(menuData: MenuData) {
             binding.menu = menuData
             binding.tvMainHeader.text = menuData.headerText
-            binding.executePendingBindings()
         }
     }
 
     class MainFoodViewHolder(private val binding: ItemMainFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(menuData: MenuData) {
+        fun bind(menuData: MenuData, itemClick: (id: Int) -> Unit) {
             binding.menu = menuData
-            binding.executePendingBindings()
+
+            binding.root.setOnClickListener {
+                itemClick.invoke(menuData.id)
+            }
         }
     }
 

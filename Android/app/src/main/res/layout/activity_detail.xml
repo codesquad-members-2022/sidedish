@@ -43,6 +43,16 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.0444" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_detail_55"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.55" />
+
+            <!-- guideline end -->
+
+
             <View
                 android:id="@+id/v_detail_empty_1"
                 android:layout_width="match_parent"
@@ -131,6 +141,7 @@
                 android:id="@+id/v_detail_empty_4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_detail_food_price_after_sale"
                 app:layout_constraintDimensionRatio="4:24"
                 app:layout_constraintStart_toEndOf="@+id/tv_detail_food_price_after_sale"
                 app:layout_constraintTop_toTopOf="@+id/tv_detail_food_price_after_sale" />
@@ -155,7 +166,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/v_detail_tv_3" />
 
             <View
-                android:id="@+id/v_detail_tv_4"
+                android:id="@+id/v_detail_empty_5_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="360:24"
@@ -167,8 +178,9 @@
                 android:layout_height="0dp"
                 android:visibility="visible"
                 app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/v_detail_empty_5_1"
                 app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
-                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_4"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_empty_5_1"
                 app:shapeAppearanceOverlay="@style/tagRadiusShape">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -244,8 +256,10 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/Grey4"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_6" />
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_6"
+                app:layout_constraintWidth_percent="0.905" />
 
             <View
                 android:id="@+id/v_detail_empty_7"
@@ -403,8 +417,10 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/Grey4"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_13" />
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_13"
+                app:layout_constraintWidth_percent="0.905" />
 
             <View
                 android:id="@+id/v_detail_empty_14"
@@ -412,6 +428,167 @@
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="360:24"
                 app:layout_constraintTop_toBottomOf="@+id/v_divider2" />
+
+            <ImageView
+                android:id="@+id/iv_count_down"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_down_btn"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@id/gl_detail_55"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_14"
+                app:layout_constraintWidth_percent="0.12" />
+
+            <View
+                android:id="@+id/v_detail_empty_16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:10"
+                app:layout_constraintTop_toTopOf="@id/iv_count_down" />
+
+            <TextView
+                android:id="@+id/tv_item_count"
+                style="@style/Text_Medium_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/v_detail_empty_17"
+                app:layout_constraintEnd_toStartOf="@id/iv_count_up"
+                app:layout_constraintStart_toEndOf="@id/iv_count_down"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_16"
+                tools:text="1" />
+
+            <View
+                android:id="@+id/v_detail_empty_17"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_count_down"
+                app:layout_constraintDimensionRatio="360:10" />
+
+            <ImageView
+                android:id="@+id/iv_count_up"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_up_btn"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@id/gl_detail_95.56"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_14"
+                app:layout_constraintWidth_percent="0.12" />
+
+            <TextView
+                android:id="@+id/tv_detail_item_count"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toTopOf="@id/v_detail_empty_17"
+                app:layout_constraintStart_toEndOf="@id/gl_detail_4.44"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_16"
+                tools:text="수량" />
+
+            <View
+                android:id="@+id/v_detail_empty_15"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/iv_count_down" />
+
+            <View
+                android:id="@+id/v_divider3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/Grey4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_15"
+                app:layout_constraintWidth_percent="0.905" />
+
+            <View
+                android:id="@+id/v_detail_empty_18"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_divider3" />
+
+            <View
+                android:id="@+id/v_empty_19"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:48"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_18" />
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                style="@style/Text_Large_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="@id/v_empty_19"
+                app:layout_constraintEnd_toStartOf="@id/gl_detail_95.56"
+                app:layout_constraintTop_toTopOf="@id/v_empty_19"
+                tools:text="12,640원" />
+
+            <View
+                android:id="@+id/v_empty_20"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_total_price"
+                app:layout_constraintEnd_toStartOf="@id/tv_total_price"
+                app:layout_constraintTop_toTopOf="@id/tv_total_price"
+                app:layout_constraintWidth_percent="0.066" />
+
+            <View
+                android:id="@+id/v_empty_21"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:12"
+                app:layout_constraintTop_toTopOf="@id/v_empty_20" />
+
+            <View
+                android:id="@+id/v_empty_22"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/v_empty_20"
+                app:layout_constraintDimensionRatio="360:12" />
+
+            <TextView
+                android:id="@+id/tv_detail_total_price"
+                style="@style/Text_Medium_Bold.Grey2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="총 주문금액"
+                app:layout_constraintBottom_toTopOf="@id/v_empty_22"
+                app:layout_constraintEnd_toStartOf="@id/v_empty_20"
+                app:layout_constraintTop_toBottomOf="@id/v_empty_21" />
+
+            <View
+                android:id="@+id/v_detail_empty_23"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/v_empty_19"
+                app:layout_constraintDimensionRatio="360:24"/>
+
+            <View
+                android:id="@+id/v_detail_empty_24"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_23"
+                app:layout_constraintDimensionRatio="360:56"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_order"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@id/gl_detail_4.44"
+                app:layout_constraintEnd_toStartOf="@id/gl_detail_95.56"
+                app:layout_constraintTop_toTopOf="@id/v_detail_empty_24"
+                app:layout_constraintBottom_toBottomOf="@id/v_detail_empty_24"
+                android:backgroundTint="@color/Primary2"
+                android:text="주문하기"
+                android:textColor="@color/White"/>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_h_95.56"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9556" />
+
+        <View
+            android:id="@+id/v_empty_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_h_95.56"
+            app:layout_constraintDimensionRatio="360:24" />
+
+        <TextView
+            android:id="@+id/tv_slash"
+            style="@style/Text_Medium_Light_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="/"
+            app:layout_constraintBottom_toBottomOf="@id/v_empty_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/v_empty_1" />
+
+        <TextView
+            android:id="@+id/tv_current_page"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/v_empty_1"
+            app:layout_constraintBottom_toBottomOf="@id/v_empty_1"
+            app:layout_constraintEnd_toStartOf="@id/tv_slash"
+            android:text="1"
+            style="@style/Text_Medium_Light_Regular"
+            android:layout_marginRight="2dp"/>
+
+        <TextView
+            android:id="@+id/tv_total_page"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/v_empty_1"
+            app:layout_constraintBottom_toBottomOf="@id/v_empty_1"
+            app:layout_constraintStart_toEndOf="@id/tv_slash"
+            style="@style/Text_Medium_Light_Regular"
+            android:text="1"
+            android:layout_marginLeft="2dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
