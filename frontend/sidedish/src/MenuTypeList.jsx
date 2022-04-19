@@ -45,17 +45,16 @@ const MenuTypeList = ({ menuTypeTitle, menuTypes }) => {
   const handleMenuHidden = (event) => {
     setMenuHideState(() => !menuHideState);
   };
+  const menuTypeList = menuTypes.map((menuType, ind) => (
+    <MenuType menuHideState={menuHideState} key={ind}>
+      {menuType}
+    </MenuType>
+  ));
 
   return (
     <MenuTypeContainer onMouseLeave={handleMenuHidden} onMouseEnter={handleMenuHidden}>
       <MenuTypeTitle>{menuTypeTitle}</MenuTypeTitle>
-      <MenuTypeListContainer>
-        {menuTypes.map((menuType, ind) => (
-          <MenuType menuHideState={menuHideState} key={ind}>
-            {menuType}
-          </MenuType>
-        ))}
-      </MenuTypeListContainer>
+      <MenuTypeListContainer>{menuTypeList}</MenuTypeListContainer>
     </MenuTypeContainer>
   );
 };
