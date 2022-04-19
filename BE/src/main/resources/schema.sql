@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`menu` (
                                                  `sale_type` INT NOT NULL,
                                                  `fee` INT NOT NULL,
                                                  `free_shipping_min` INT NOT NULL,
-                                                 `delivery_info` VARCHAR(255) NOT NULL,
+                                                 `delivery_info` INT NOT NULL,
                                                  `stock` INT NOT NULL,
                                                  `image_id` INT NOT NULL,
                                                  PRIMARY KEY (`id`))
