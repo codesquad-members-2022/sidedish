@@ -57,13 +57,29 @@ const StyledUl = styled.ul`
 
 function GnbLists(props) {
   const { subMenuFlag, gnbMenus, gnbSubMenus } = props;
+
+  function handleMouseEnterSubMenu(e) {
+    e.target.style.textDecoration = 'underline';
+    e.target.style.color = '#1e88e5';
+  }
+
+  function handleMouseLeaveSubMenu(e) {
+    e.target.style.textDecoration = 'none';
+    e.target.style.color = '#000';
+  }
+
   if (subMenuFlag) {
     return gnbMenus.map((v, i) => (
       <li key={i} className="gnbMenu">
         {v}
         <ul className="gnbSubMenuWrapper">
           {gnbSubMenus[i].map((v, i) => (
-            <li key={i} className="gnbSubMenu">
+            <li
+              key={i}
+              onMouseEnter={handleMouseEnterSubMenu}
+              onMouseLeave={handleMouseLeaveSubMenu}
+              className="gnbSubMenu"
+            >
               {v}
             </li>
           ))}
@@ -71,6 +87,7 @@ function GnbLists(props) {
       </li>
     ));
   }
+
   return gnbMenus.map((v, i) => (
     <li key={i} className="gnbMenu">
       {v}
