@@ -1,4 +1,4 @@
-import Header from './Header.js';
+import Header from './components/Header.js';
 import { Reset } from 'styled-reset';
 
 function App() {
