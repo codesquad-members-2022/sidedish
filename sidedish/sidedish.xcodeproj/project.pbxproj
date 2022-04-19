@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7345C9A4280E4B4100F89135 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9A3280E4B4100F89135 /* MainViewModel.swift */; };
 		73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */; };
 		D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		2AABCEAD7046DD330E59CB60 /* Pods-sidedish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.release.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.release.xcconfig"; sourceTree = "<group>"; };
 		5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7345C9A3280E4B4100F89135 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "sidedish/Sources/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.debug.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.debug.xcconfig"; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */,
+				7345C9A3280E4B4100F89135 /* MainViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				E0EDD5BC280D513700DBF9C6 /* MainViewController.swift in Sources */,
 				E0FAAA39280D881900B36F4D /* MockDatabase.swift in Sources */,
 				E0FAAA43280D883200B36F4D /* NetworkResult.swift in Sources */,
+				7345C9A4280E4B4100F89135 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
