@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sidedish {
+struct Sidedish: Decodable {
     let hash: String
     let image: URL
     let title: String
