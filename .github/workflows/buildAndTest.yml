@@ -1,0 +1,35 @@
+name: Build and Test
+on:
+  push:
+    branches: 
+      - dev
+      - feat-eddy
+      - feat-kai
+  pull_request:
+    branches: 
+      - dev
+      - feat-eddy
+      - feat-kai
+jobs:
+  buildAndTest:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
+    - name: CocoaPod Install
+      run: 
+        cd SideDishApp
+        pod install
+    - name: Build
+      run:
+        cd SideDishApp
+        xcodebuild -workspace SideDishApp.xcworkspace -scheme SideDishApp -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
+    - name: Test
+      run:
+        cd SideDishApp
+        xcodebuild -workspace SideDishApp.xcworkspace -scheme SideDishApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
