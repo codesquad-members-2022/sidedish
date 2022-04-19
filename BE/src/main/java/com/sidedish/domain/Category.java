@@ -1,13 +1,9 @@
 package com.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Category {
 
@@ -19,18 +15,17 @@ public class Category {
         this.type = type;
     }
 
-    @MappedCollection(idColumn = "category_id", keyColumn = "id")
-    private Map<String, Item> items = new ConcurrentHashMap<>();
+    private List<Item> items = new ArrayList<>();
 
     public Long getId() {
         return id;
     }
 
     public List<Item> getItems() {
-        return new ArrayList<>(items.values());
+        return new ArrayList<>(items);
     }
 
     public void saveItem(Item item) {
-        items.put(item.getId(), item);
+        items.add(item);
     }
 }
