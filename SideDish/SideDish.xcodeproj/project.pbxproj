@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		004EA4E0280E541000D365DB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 004EA4DF280E541000D365DB /* .swiftlint.yml */; };
-		029A88A3280E96330069E8B3 /* DishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029A88A1280E96330069E8B3 /* DishCell.xib */; };
 		029A88A2280E96330069E8B3 /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029A88A0280E96330069E8B3 /* DishCell.swift */; };
+		029A88A3280E96330069E8B3 /* DishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029A88A1280E96330069E8B3 /* DishCell.xib */; };
 		2A3B3EC2280E9F78003F21F4 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB0280E9F77003F21F4 /* SF-Pro-Display-Black.otf */; };
 		2A3B3EC3280E9F78003F21F4 /* SF-Pro-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB1280E9F77003F21F4 /* SF-Pro-Display-Heavy.otf */; };
 		2A3B3EC4280E9F78003F21F4 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB2280E9F77003F21F4 /* SF-Pro-Display-Thin.otf */; };
@@ -161,6 +161,8 @@
 		2A3B3ED4280EA540003F21F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				029A88A1280E96330069E8B3 /* DishCell.xib */,
+				029A88A0280E96330069E8B3 /* DishCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -240,8 +242,6 @@
 				2A3B3ED9280EA84F003F21F4 /* Support */,
 				2A3B3ED7280EA5B2003F21F4 /* Model */,
 				2A3B3EDA280EA879003F21F4 /* Extension+Protocol */,
-				029A88A1280E96330069E8B3 /* DishCell.xib */,
-				029A88A0280E96330069E8B3 /* DishCell.swift */,
 			);
 			path = SideDish;
 			sourceTree = "<group>";
@@ -564,7 +564,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				029A88A2280E96330069E8B3 /* DishCell.swift in Sources */,
-				2A50C19E280D55F400AFF2F7 /* ViewController.swift in Sources */,
 				2A50C19A280D55F400AFF2F7 /* AppDelegate.swift in Sources */,
 				2A50C1A4280D55F400AFF2F7 /* SideDish.xcdatamodeld in Sources */,
 				2A50C19C280D55F400AFF2F7 /* SceneDelegate.swift in Sources */,
