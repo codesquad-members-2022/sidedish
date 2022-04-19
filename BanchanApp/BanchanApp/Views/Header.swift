@@ -2,19 +2,19 @@
 //  Header.swift
 //  BanchanApp
 //
-//  Created by 송태환 on 2022/04/19.
+//  Created by Se Eun Lee on 2022/04/19.
 //
 
 import UIKit
 
-class Header: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class Header: UICollectionReusableView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .gray
     }
-    */
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.backgroundColor = .gray
+    }
 }
