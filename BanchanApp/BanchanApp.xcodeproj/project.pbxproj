@@ -114,7 +114,6 @@
 			children = (
 				E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */,
 				E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */,
-				E4D20091280E874F00CC7C0B /* Utility */,
 				E4B7D367280D7048009B2C2A /* Models */,
 				E4B7D368280D704B009B2C2A /* Views */,
 				E4B7D366280D703A009B2C2A /* Controllers */,
@@ -123,13 +122,6 @@
 				E4C6B783280CFA7F001C14F7 /* Info.plist */,
 			);
 			path = BanchanApp;
-			sourceTree = "<group>";
-		};
-		E4D20091280E874F00CC7C0B /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
