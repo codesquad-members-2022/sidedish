@@ -20,7 +20,6 @@ CREATE TABLE DISH(
      main_category_id BIGINT,
      sub_category_id  BIGINT,
      name             VARCHAR(30) not null,
-     description      varchar(100) not null,
      stock            INT not null,
      price            DOUBLE not null,
      point_percent    DOUBLE NOT NULL,
