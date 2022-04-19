@@ -1,10 +1,14 @@
 import MainTheme from './MainTheme/Theme.jsx';
+import HeaderTemplate from './Header/HeaderTemplate';
+import GlobalStyles from './GlobalStyles.jsx';
 
 function App() {
   return (
-    <div className="App">
+    <>
+      <GlobalStyles />
+      <HeaderTemplate></HeaderTemplate>
       <MainTheme></MainTheme>
-    </div>
+    </>
   );
 }
 
