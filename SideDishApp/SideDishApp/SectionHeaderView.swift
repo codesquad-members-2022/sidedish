@@ -36,8 +36,13 @@ final class SectionHeaderView: UICollectionReusableView {
         fatalError("init with coder is unavailable")
     }
     
-    func setTitle(title: String) {
+    func setTitle(title: String?) {
         self.sectionTitleLabel.text = title
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setTitle(title: nil)
     }
     
     private func setGesture() {

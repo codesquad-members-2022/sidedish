@@ -9,9 +9,9 @@ import UIKit
 
 class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var headers: [String] = ["모두가 좋아하는 든든한 메인 요리",
-                                     "정성이 담긴 뜨끈뜨끈 국물 요리",
-                                     "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    private var headers: [String] = [Constant.SectionHeaderTitle.main,
+                                     Constant.SectionHeaderTitle.soup,
+                                     Constant.SectionHeaderTitle.side]
     
     var menus: [Menu] = []
     
@@ -41,7 +41,6 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.Identifier.orderingViewCell, for: indexPath) as? OrderingCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         configure(cell: cell, at: indexPath.item)
         return cell
     }
@@ -56,13 +55,7 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         cell.setDishImage(by: dish.image)
         cell.setMenuTitle(by: dish.title)
         cell.setMenuDescription(by: dish.description)
-        cell.setMenuPrice(origin: dish.n_price, discounted: dish.s_price)
+        cell.setMenuPrice(nPrice: dish.n_price, sPrice: dish.s_price)
         cell.setBadges(by: dish.badge)
-    }
-}
-
-extension OrderingCollectionViewDataSource {
-    enum EventName {
-        static let fetchDidCompleted = NSNotification.Name("FetchDidCompletedNotification")
     }
 }

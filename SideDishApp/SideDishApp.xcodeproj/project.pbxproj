@@ -72,6 +72,7 @@
 		8D49F63A280D537400613CE4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8D49F63B280D594000613CE4 /* SideDishInfo.swift */,
 				8D49F632280D533500613CE4 /* EndPoint.swift */,
 				8D49F634280D534700613CE4 /* NetworkManager.swift */,
 				8D49F636280D535800613CE4 /* NetworkError.swift */,
@@ -101,13 +102,10 @@
 		8D502977280CF9430068CCAC /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
-				1ED9D3F8280D9D7300AEC888 /* mockImage.png */,
-				1EE49024280D8D9A00B6CE60 /* Constant.swift */,
-				8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */,
 				1EE49018280D870E00B6CE60 /* OrderingViewController.swift */,
+				8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */,
 				1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */,
 				1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */,
-				8D49F63B280D594000613CE4 /* SideDishInfo.swift */,
 				8D49F63A280D537400613CE4 /* Network */,
 				8D502986280CF9480068CCAC /* Info.plist */,
 				8D50298C280CF9760068CCAC /* SupportingFiles */,
@@ -118,6 +116,8 @@
 		8D50298C280CF9760068CCAC /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1EE49024280D8D9A00B6CE60 /* Constant.swift */,
+				1ED9D3F8280D9D7300AEC888 /* mockImage.png */,
 				8D502978280CF9430068CCAC /* AppDelegate.swift */,
 				8D50297A280CF9430068CCAC /* SceneDelegate.swift */,
 				8D502981280CF9480068CCAC /* Assets.xcassets */,

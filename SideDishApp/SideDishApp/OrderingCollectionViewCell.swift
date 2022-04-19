@@ -7,9 +7,12 @@
 
 import UIKit
 
-class OrderingCollectionViewCell: UICollectionViewCell {
+final class OrderingCollectionViewCell: UICollectionViewCell {
     
     private let identifier = Constant.Identifier.orderingViewCell
+    private let launchingBadgeBackgrounColor = UIColor(red: 0.0, green: 102/255, blue: 214/255, alpha: 1.0)
+    private let eventBadgeBackgroundColor = UIColor(red: 128/255, green: 188/255, blue: 255/255, alpha: 1.0)
+    private let defaultBadgeBackgroundColor = UIColor(red: 0.0, green: 122/255, blue: 1.0, alpha: 1.0)
     
     private let cellView = UIView()
     
@@ -27,6 +30,7 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
         return stackView
     }()
     
@@ -58,10 +62,11 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let badgeStackView: UIStackView = {
+    private var badgeStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 4
+        stackView.distribution = .fillProportionally
         return stackView
     }()
     
@@ -120,7 +125,13 @@ enum BadgeType {
 
 extension OrderingCollectionViewCell {
     func setDishImage(by imageName: String) {
-        dishImageView.image = UIImage(named: imageName)
+        let url = URL(string: imageName)
+        DispatchQueue.global().async {
+            guard let data = try? Data(contentsOf: url!) else { return }
+            DispatchQueue.main.async {
+                self.dishImageView.image = UIImage(data: data)
+            }
+        }
     }
     
     func setMenuTitle(by text: String) {
@@ -131,17 +142,18 @@ extension OrderingCollectionViewCell {
         descriptionLabel.text = text
     }
     
-    func setMenuPrice(origin: String?, discounted: String?) {
-        guard let origin = origin else { return }
-        let originPriceLabel = UILabel.makePriceLabel(price: origin)
+    func setMenuPrice(nPrice: String?, sPrice: String?) {
+        guard let sPrice = sPrice else { return }
         
-        if let discounted = discounted {
-            let discountdPriceLabel = UILabel.makePriceLabel(price: discounted)
-            convertTextStyleToStrikeThrough(label: originPriceLabel)
-            priceStackView.addArrangedSubview(discountdPriceLabel)
+        if let nPrice = nPrice {
+            let discountedPriceLabel = UILabel.makeCurrentPriceLabel(price: sPrice)
+            let originPriceLabel = UILabel.makePreviousPriceLabel(price: nPrice)
+            priceStackView.addArrangedSubview(discountedPriceLabel)
+            priceStackView.addArrangedSubview(originPriceLabel)
+        } else {
+            let originPriceLabel = UILabel.makeCurrentPriceLabel(price: sPrice)
+            priceStackView.addArrangedSubview(originPriceLabel)
         }
-        
-        priceStackView.addArrangedSubview(originPriceLabel)
     }
     
     private func convertTextStyleToStrikeThrough(label: UILabel) {
@@ -154,23 +166,35 @@ extension OrderingCollectionViewCell {
         label.attributedText = attributeString
     }
     
-    func setBadges(by types: [String]?) {
-        guard let types = types else { return }
-
-        types.forEach { type in
-            switch type {
-            case "런칭특가":
-                let badge = UILabel.makeBadge(title: "런칭특가", backgroundColor: UIColor(red: 0.0, green: 102/255, blue: 214/255, alpha: 1.0))
-                badgeStackView.addArrangedSubview(badge)
-            case "이벤트특가":
-                let badge = UILabel.makeBadge(title: "이벤트특가", backgroundColor: UIColor(red: 128/255, green: 188/255, blue: 255/255, alpha: 1.0))
-                badgeStackView.addArrangedSubview(badge)
-            default:
-                break
-            }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        prepareForReuse(stackView: priceStackView)
+        prepareForReuse(stackView: badgeStackView)
+    }
+    
+    private func prepareForReuse(stackView: UIStackView) {
+        stackView.subviews.forEach {
+            $0.removeFromSuperview()
         }
     }
     
+    func setBadges(by types: [String]?) {
+        guard let types = types else { return }
+        
+        types.forEach { type in
+            switch type {
+            case "런칭특가":
+                let badge = UILabel.makeBadge(title: "런칭특가", backgroundColor: launchingBadgeBackgrounColor)
+                badgeStackView.addArrangedSubview(badge)
+            case "이벤트특가":
+                let badge = UILabel.makeBadge(title: "이벤트특가", backgroundColor: eventBadgeBackgroundColor)
+                badgeStackView.addArrangedSubview(badge)
+            default:
+                let badge = UILabel.makeBadge(title: type, backgroundColor: defaultBadgeBackgroundColor)
+                badgeStackView.addArrangedSubview(badge)
+            }
+        }
+    }
 }
 
 // MARK: - Private Extension
@@ -179,6 +203,8 @@ private extension UILabel {
     static func makeBadge(title: String, backgroundColor: UIColor) -> UILabel {
         let label = PaddingLabel(padding: UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16))
         label.text = title
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.textAlignment = .center
         label.textColor = .white
         label.backgroundColor = backgroundColor
@@ -187,15 +213,26 @@ private extension UILabel {
         return label
     }
     
-    static func makePriceLabel(price text: String) -> UILabel {
+    static func makeCurrentPriceLabel(price text: String) -> UILabel {
         let label = UILabel()
         label.text = text
         label.textColor = .black
         return label
     }
+    
+    static func makePreviousPriceLabel(price text: String) -> UILabel {
+        let label = UILabel()
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
+                                     value: NSUnderlineStyle.single.rawValue,
+                                     range: NSRange(location: 0, length: attributeString.length))
+        label.attributedText = attributeString
+        label.textColor = .systemGray
+        return label
+    }
 }
 
-class PaddingLabel: UILabel {
+final class PaddingLabel: UILabel {
     private var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
     convenience init(padding: UIEdgeInsets) {
