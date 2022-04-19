@@ -1,7 +1,12 @@
+import HeaderTemplate from './Header/HeaderTemplate';
+import GlobalStyles from './GlobalStyles.jsx';
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <GlobalStyles />
+      <HeaderTemplate></HeaderTemplate>
+    </>
   );
 }
 
