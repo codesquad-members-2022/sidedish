@@ -2,13 +2,13 @@ import { Menu } from './Menu';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const StyledMenuList = styled.ul`
+const Root = styled.ul`
   display: flex;
   cursor: pointer;
 `;
 
 export const MenuList = () => {
-  const [menuDatas, setMenuDatas] = useState([
+  const [menuDatas] = useState([
     { mainMenu: '든든한 메인요리', subMenuList: ['육류 요리', '해산물 요리'] },
     { mainMenu: '뜨끈한 국물요리', subMenuList: ['국/탕/찌개'] },
     {
@@ -28,13 +28,13 @@ export const MenuList = () => {
   };
 
   return (
-    <StyledMenuList
+    <Root
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {menuDatas.map((menuData, idx) => (
         <Menu key={idx} menuData={menuData} isMouseEnter={isMouseEnter} />
       ))}
-    </StyledMenuList>
+    </Root>
   );
 };
