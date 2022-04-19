@@ -3,10 +3,12 @@ package codesquad.sidedish.domain.member;
 import codesquad.sidedish.domain.address.District;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
+@Getter
 public class Member {
     private Long memberId;
     private String memberName;
