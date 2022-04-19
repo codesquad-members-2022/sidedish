@@ -29,7 +29,7 @@ public class CategoryController {
                         description = "카테고리 목록 조회 성공",
                         content = {
                             @Content(
-                                    mediaType = "application",
+                                    mediaType = "application/json",
                                     array = @ArraySchema(schema = @Schema(implementation = CategoryResponse.class))
                             )
                         })

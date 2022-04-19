@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Primary
 public class MockCategoryService implements CategoryService {
 
     @Override
