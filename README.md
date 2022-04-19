@@ -46,10 +46,10 @@ CodeSquad Repo(Upstream)
 	
 ### Network
 ```
-	- slack API 끌어와서 쓰는 것을 [1 순위]
-	- Server Mock API [2 순위]
-	- Core Data(인터넷 연결안될때) [2 순위]
-		- 서버와 Core Data 동기화 문제 [3 순위]
+- slack API 끌어와서 쓰는 것을 [1 순위]
+- Server Mock API [2 순위]
+- Core Data(인터넷 연결안될때) [2 순위]
+  - 서버와 Core Data 동기화 문제 [3 순위]
 ```
 * 참조 : [MockServer](https://medium.com/@jamesjunsungkim/how-to-create-a-network-mockup-in-swift-cab5b73da4e1) 
 
