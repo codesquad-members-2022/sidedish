@@ -30,3 +30,9 @@ struct Sidedish: Decodable {
         case salePrice = "n_price"
     }
 }
+
+extension Sidedish {
+    enum `Type` {
+        case main, soup, side
+    }
+}

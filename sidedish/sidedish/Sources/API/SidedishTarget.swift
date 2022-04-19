@@ -8,25 +8,25 @@
 import Foundation
 
 enum SidedishTarget: BaseTarget {
-    case loadMain
-    
+    case loadMenu(_ type: Sidedish.`Type`)
 }
 
 extension SidedishTarget {
     var path: String {
         switch self {
-        case .loadMain: return "/main"
+        case .loadMenu(let type):
+            return "/\(type)"
         }
     }
     
-    var parameter: [String : Any]? {
+    var parameter: [String: Any]? {
         switch self {
-        case .loadMain: return nil
+        case .loadMenu: return nil
         }
     }
     var method: String {
         switch self {
-        case .loadMain: return "GET"
+        case .loadMenu: return "GET"
         }
     }
 }
