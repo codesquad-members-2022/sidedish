@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B56E65C280E45B60074E79F /* .swiftlint.yml */; };
+		1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E664280E82190074E79F /* GetFileURLService.swift */; };
+		1B56E667280E82220074E79F /* SaveFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E666280E82220074E79F /* SaveFileService.swift */; };
+		1B56E669280E823E0074E79F /* ImageURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E668280E823E0074E79F /* ImageURLModel.swift */; };
+		1B56E66B280E82480074E79F /* ImageSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E66A280E82480074E79F /* ImageSaveModel.swift */; };
+		1B56E66F280E83230074E79F /* CacheFileManagerAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E66E280E83230074E79F /* CacheFileManagerAttribute.swift */; };
+		1B56E672280E8E560074E79F /* SideDish20FileManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */; };
 		81F02D81F7E6B09E33564B42 /* Pods_SideDish20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */; };
 		AE464DAF583682884F200E26 /* Pods_SideDish20_SideDish20UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */; };
 		D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A08280E589700997AC5 /* SF-Pro-Display-Regular.otf */; };
@@ -46,6 +52,12 @@
 /* Begin PBXFileReference section */
 		06C0BCF338116564F9F0956A /* Pods-SideDish20-SideDish20UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20-SideDish20UITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20-SideDish20UITests/Pods-SideDish20-SideDish20UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B56E65C280E45B60074E79F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		1B56E664280E82190074E79F /* GetFileURLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileURLService.swift; sourceTree = "<group>"; };
+		1B56E666280E82220074E79F /* SaveFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFileService.swift; sourceTree = "<group>"; };
+		1B56E668280E823E0074E79F /* ImageURLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLModel.swift; sourceTree = "<group>"; };
+		1B56E66A280E82480074E79F /* ImageSaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveModel.swift; sourceTree = "<group>"; };
+		1B56E66E280E83230074E79F /* CacheFileManagerAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFileManagerAttribute.swift; sourceTree = "<group>"; };
+		1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish20FileManagerTest.swift; sourceTree = "<group>"; };
 		2736D4DB3581F6AA1E7A0869 /* Pods-SideDish20Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20Tests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20Tests/Pods-SideDish20Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5791E07D7FB9C708C754F0FB /* Pods-SideDish20-SideDish20UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20-SideDish20UITests.release.xcconfig"; path = "Target Support Files/Pods-SideDish20-SideDish20UITests/Pods-SideDish20-SideDish20UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6CAB2134DB39689073D8101F /* Pods_SideDish20Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +113,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B56E66C280E82590074E79F /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1B56E664280E82190074E79F /* GetFileURLService.swift */,
+				1B56E66E280E83230074E79F /* CacheFileManagerAttribute.swift */,
+				1B56E666280E82220074E79F /* SaveFileService.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		1B56E66D280E82700074E79F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B56E668280E823E0074E79F /* ImageURLModel.swift */,
+				1B56E66A280E82480074E79F /* ImageSaveModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B908357A8CA7709600E7ECD6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +182,8 @@
 				D0007A07280E588300997AC5 /* Fonts */,
 				D08FCE18280D113500176BF9 /* Application */,
 				D08FCDEB280D09AB00176BF9 /* ViewController.swift */,
+				1B56E66D280E82700074E79F /* Model */,
+				1B56E66C280E82590074E79F /* Repository */,
 				D08FCDED280D09AB00176BF9 /* Main.storyboard */,
 				D08FCDF2280D09AD00176BF9 /* LaunchScreen.storyboard */,
 				D08FCDF5280D09AD00176BF9 /* Info.plist */,
@@ -162,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				D08FCDFE280D09AD00176BF9 /* SideDish20Tests.swift */,
+				1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */,
 			);
 			path = SideDish20Tests;
 			sourceTree = "<group>";
@@ -461,8 +495,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */,
+				1B56E669280E823E0074E79F /* ImageURLModel.swift in Sources */,
+				1B56E667280E82220074E79F /* SaveFileService.swift in Sources */,
+				1B56E66B280E82480074E79F /* ImageSaveModel.swift in Sources */,
+				1B56E66F280E83230074E79F /* CacheFileManagerAttribute.swift in Sources */,
 				D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B56E672280E8E560074E79F /* SideDish20FileManagerTest.swift in Sources */,
 				D08FCDFF280D09AD00176BF9 /* SideDish20Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
