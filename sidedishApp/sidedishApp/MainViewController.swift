@@ -10,17 +10,28 @@ import Toaster
 
 class MainViewController: UIViewController {
     
+    private let factory = CardFactory()
+    private var mainCards = [MainCard]()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let sampleMainCard = factory.createMainCard(detailHash: "HBDEF",
+                                                           imageURL: "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+                                                           title: "오리 주물럭_반조리",
+                                                           description: "감칠맛 나는 매콤한 양념",
+                                                           normalPrice: "15,800원",
+                                                           salePrice: "12,640원",
+                                                           tagList: [Tag.launchingPrice])
+        mainCards.append(sampleMainCard)
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(MainViewCardCell.self, forCellWithReuseIdentifier: MainViewCardCell.identifier)
         self.collectionView.register(MainViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewHeader.identifier)
     }
-    
 }
 
 extension MainViewController: UICollectionViewDelegate {
@@ -29,13 +40,16 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return mainCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCardCell.identifier, for: indexPath) as? MainViewCardCell else {
             return UICollectionViewCell()
         }
+        
+        let card = mainCards[indexPath.item]
+        cell.setPropertiesValue(image: card.imageURL, cardTitle: card.title, cardBody: card.description, normalPrice: card.normalPrice, salePrice: card.salePrice, tagList: card.tagList)
         cell.backgroundColor = .systemGray3
         return cell
     }

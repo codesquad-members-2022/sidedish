@@ -21,32 +21,27 @@ class MainViewCardCell: UICollectionViewCell {
     private lazy var cardTitleLabel: UILabel = {
         var label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
-        label.text = "오리 주물럭_반조리"
         return label
     }()
     
     private lazy var cardBodyLabel: UILabel = {
         var label = UILabel()
-        label.text = "감칠맛 나는 매콤한 양념"
         return label
     }()
     
-    private lazy var priceLabel: UILabel = {
+    private lazy var normalPriceLabel: UILabel = {
         var label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
-        label.text = "15,800원"
         return label
     }()
     
-    private lazy var discountedPriceLabel: UILabel = {
+    private lazy var salePriceLabel: UILabel = {
         var label = UILabel()
-        label.text = "12,640원"
         return label
     }()
     
     private lazy var eventTagLabel: UILabel = {
         var label = UILabel()
-        label.text = "이벤트특가"
         label.textColor = .white
         label.backgroundColor = UIColor(red: 127 / 255, green: 188 / 255, blue: 255 / 255, alpha: 1)
         return label
@@ -54,7 +49,6 @@ class MainViewCardCell: UICollectionViewCell {
     
     private lazy var launchingTagLabel: UILabel = {
         var label = UILabel()
-        label.text = "런칭특가"
         label.textColor = .white
         label.backgroundColor = UIColor(red: 1 / 255, green: 102 / 255, blue: 214 / 255, alpha: 1)
         return label
@@ -70,12 +64,30 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
+    func setPropertiesValue(image: String, cardTitle: String, cardBody: String, normalPrice: String, salePrice: String?, tagList: [Tag]?) {
+        cardTitleLabel.text = cardTitle
+        cardBodyLabel.text = cardBody
+        normalPriceLabel.text = normalPrice
+        if let salePrice = salePrice {
+            salePriceLabel.text = salePrice
+        }
+        // MARK: 뱃지가 상황에 따라 표시되도록 해야 함
+        if let tagList = tagList {
+            if tagList.contains(.eventPrice) {
+                setEventTagLabelConstraint()
+            }
+            if tagList.contains(.launchingPrice) {
+                setLaunchingTagLabelConstraint()
+            }
+        }
+    }
+    
     private func setUI() {
         self.addSubview(cardImageView)
         self.addSubview(cardTitleLabel)
         self.addSubview(cardBodyLabel)
-        self.addSubview(priceLabel)
-        self.addSubview(discountedPriceLabel)
+        self.addSubview(normalPriceLabel)
+        self.addSubview(salePriceLabel)
         self.addSubview(eventTagLabel)
         self.addSubview(launchingTagLabel)
         setUIConstraints()
@@ -87,8 +99,6 @@ class MainViewCardCell: UICollectionViewCell {
         setCardBodyLabelConstraint()
         setPriceLabelConstraint()
         setDiscountedPriceLabelConstraint()
-        setEventTagLabelConstraint()
-        setLaunchingTagLabelConstraint()
     }
     
     private func setCardImageViewConstraint() {
@@ -112,28 +122,28 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     private func setPriceLabelConstraint() {
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
-        priceLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        normalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        normalPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
+        normalPriceLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setDiscountedPriceLabelConstraint() {
-        discountedPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        discountedPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
-        discountedPriceLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 5).isActive = true
+        salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        salePriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
+        salePriceLabel.leadingAnchor.constraint(equalTo: normalPriceLabel.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setEventTagLabelConstraint() {
         eventTagLabel.layer.cornerRadius = 5
         
         eventTagLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventTagLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5).isActive = true
+        eventTagLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
         eventTagLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
     private func setLaunchingTagLabelConstraint() {
         launchingTagLabel.translatesAutoresizingMaskIntoConstraints = false
-        launchingTagLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5).isActive = true
+        launchingTagLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
         launchingTagLabel.leadingAnchor.constraint(equalTo: eventTagLabel.trailingAnchor, constant: 5).isActive = true
     }
     
