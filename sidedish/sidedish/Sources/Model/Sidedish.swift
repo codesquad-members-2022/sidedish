@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Food {
+struct Sidedish {
     let hash: String
     let image: URL
     let title: String

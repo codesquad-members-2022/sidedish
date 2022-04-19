@@ -14,7 +14,7 @@
 		E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EDD5A2280CF94700DBF9C6 /* Assets.xcassets */; };
 		E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */; };
 		E0EDD5BC280D513700DBF9C6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */; };
-		E0EDD5BE280D541800DBF9C6 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BD280D541800DBF9C6 /* Food.swift */; };
+		E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */; };
 		E0FAAA35280D881900B36F4D /* MockLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA27280D881900B36F4D /* MockLog.swift */; };
 		E0FAAA36280D881900B36F4D /* RequestParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA28280D881900B36F4D /* RequestParser.swift */; };
 		E0FAAA37280D881900B36F4D /* MockCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA29280D881900B36F4D /* MockCard.swift */; };
@@ -28,6 +28,8 @@
 		E0FAAA3F280D881900B36F4D /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA34280D881900B36F4D /* URLSessionProvider.swift */; };
 		E0FAAA42280D883200B36F4D /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA40280D883200B36F4D /* BaseTarget.swift */; };
 		E0FAAA43280D883200B36F4D /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA41280D883200B36F4D /* NetworkResult.swift */; };
+		E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA45280D903600B36F4D /* MenuDetailViewController.swift */; };
+		E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA47280D91D600B36F4D /* MenuDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +44,7 @@
 		E0EDD5A7280CF94700DBF9C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		E0EDD5BD280D541800DBF9C6 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidedish.swift; sourceTree = "<group>"; };
 		E0FAAA27280D881900B36F4D /* MockLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLog.swift; sourceTree = "<group>"; };
 		E0FAAA28280D881900B36F4D /* RequestParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestParser.swift; sourceTree = "<group>"; };
 		E0FAAA29280D881900B36F4D /* MockCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCard.swift; sourceTree = "<group>"; };
@@ -56,6 +58,8 @@
 		E0FAAA34280D881900B36F4D /* URLSessionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
 		E0FAAA40280D883200B36F4D /* BaseTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
 		E0FAAA41280D883200B36F4D /* NetworkResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		E0FAAA45280D903600B36F4D /* MenuDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
+		E0FAAA47280D91D600B36F4D /* MenuDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 		E0EDD5B2280D183100DBF9C6 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				E0FAAA44280D900B00B36F4D /* MenuDetail */,
 				E0EDD5B8280D510D00DBF9C6 /* Login */,
 				E0EDD5B7280D186B00DBF9C6 /* Main */,
 			);
@@ -159,7 +164,7 @@
 		E0EDD5B3280D183A00DBF9C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E0EDD5BD280D541800DBF9C6 /* Food.swift */,
+				E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +256,15 @@
 				E0FAAA34280D881900B36F4D /* URLSessionProvider.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		E0FAAA44280D900B00B36F4D /* MenuDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E0FAAA45280D903600B36F4D /* MenuDetailViewController.swift */,
+				E0FAAA47280D91D600B36F4D /* MenuDetailViewModel.swift */,
+			);
+			path = MenuDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,8 +385,10 @@
 				E0FAAA3C280D881900B36F4D /* NetworkRepository.swift in Sources */,
 				73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */,
 				E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */,
+				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
+				E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */,
 				E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */,
-				E0EDD5BE280D541800DBF9C6 /* Food.swift in Sources */,
+				E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */,
 				E0FAAA36280D881900B36F4D /* RequestParser.swift in Sources */,
 				E0FAAA37280D881900B36F4D /* MockCard.swift in Sources */,
 				E0FAAA3A280D881900B36F4D /* ClientColumn.swift in Sources */,
