@@ -48,6 +48,13 @@
                                             <segue destination="iGG-Gn-fRw" kind="embed" id="fCt-5H-DgY"/>
                                         </connections>
                                     </containerView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ds-sl-mPb">
+                                        <rect key="frame" x="8" y="471" width="374" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <connections>
+                                            <segue destination="ZOK-MW-p1m" kind="embed" id="PXj-YL-Y33"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="bVR-jC-23e"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="hXv-FU-T15"/>
@@ -57,9 +64,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="detailView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
+                        <outlet property="firstSectionView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
                         <outlet property="fullSizeScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
                         <outlet property="imageScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
+                        <outlet property="secondSectionView" destination="3ds-sl-mPb" id="zbJ-jH-g8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjd-Qo-xaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -79,6 +87,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KpI-LF-ctb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1577" y="-78"/>
+        </scene>
+        <!--Second Section View Controller-->
+        <scene sceneID="aPo-O7-E8E">
+            <objects>
+                <viewController id="ZOK-MW-p1m" customClass="SecondSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2WA-cZ-wEq">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yau-fD-E4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1669" y="104"/>
         </scene>
     </scenes>
     <resources>

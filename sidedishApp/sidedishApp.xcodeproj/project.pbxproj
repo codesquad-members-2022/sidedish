@@ -17,6 +17,7 @@
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
 		D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF61E280E7A0100507878 /* DetailViewController.swift */; };
 		D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF622280E887F00507878 /* FirstSectionViewController.swift */; };
+		D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D2ADF61E280E7A0100507878 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D2ADF622280E887F00507878 /* FirstSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionViewController.swift; sourceTree = "<group>"; };
+		D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionViewController.swift; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 				00680792280D5195003C2808 /* ViewController.swift */,
 				D2ADF61E280E7A0100507878 /* DetailViewController.swift */,
 				D2ADF622280E887F00507878 /* FirstSectionViewController.swift */,
+				D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */,
 				00680794280D5195003C2808 /* Main.storyboard */,
 				00680797280D5195003C2808 /* Assets.xcassets */,
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */,
 				00680793280D5195003C2808 /* ViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
 				D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */,
