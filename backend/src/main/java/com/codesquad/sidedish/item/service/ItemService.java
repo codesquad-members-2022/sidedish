@@ -5,7 +5,7 @@ import com.codesquad.sidedish.item.dto.DetailItemDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ViewService {
+public class ItemService {
 
     public CategoryItemsDto findAll() {
         return null;
