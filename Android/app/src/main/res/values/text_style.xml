@@ -38,4 +38,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text_Food_Content">
+        <item name="android:textColor">@color/Grey2</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

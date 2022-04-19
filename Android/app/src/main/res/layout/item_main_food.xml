@@ -77,7 +77,8 @@
         app:layout_constraintBottom_toTopOf="@id/v_empty_2"
         app:layout_constraintStart_toEndOf="@id/v_empty_1"
         app:layout_constraintTop_toTopOf="@id/v_empty_2_1"
-        app:shapeAppearanceOverlay="@style/tagRadiusShape">
+        app:shapeAppearanceOverlay="@style/tagRadiusShape"
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_tag"
@@ -100,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="런칭특가"
+                android:text="@string/text_tag_launching"
                 android:textColor="@color/Primary3"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/v_tag1_4"
@@ -162,7 +163,6 @@
         android:layout_height="0dp"
         android:gravity="center_vertical"
         android:text="12,640원"
-        android:textColor="@color/Black"
         app:layout_constraintBottom_toTopOf="@id/v_empty_3"
         app:layout_constraintStart_toEndOf="@id/v_empty_1"
         app:layout_constraintTop_toTopOf="@id/v_empty_3_1" />
@@ -204,14 +204,13 @@
 
     <TextView
         android:id="@+id/tv_food_description"
+        style="@style/Text_Food_Content"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:text="탱글한 면발과 맛깔진 고명이 일품인 잡채"
-        android:textColor="@color/Grey2"
-        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/v_empty_5"
         app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
         app:layout_constraintStart_toEndOf="@id/v_empty_1"
@@ -240,7 +239,6 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:text="잡채"
-        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/v_empty_6"
         app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
         app:layout_constraintStart_toEndOf="@id/v_empty_1"
