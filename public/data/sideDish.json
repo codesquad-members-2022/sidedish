@@ -1,0 +1,76 @@
+{
+  "sideDish": [
+    {
+      "id": "HBBCC",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg",
+      "title": "새콤달콤 오징어무침",
+      "description": "국내산 오징어를 새콤달콤하게",
+      "price": "7,500원",
+      "discountedPrice": "6,000원",
+      "badge": ["런칭특가"]
+    },
+    {
+      "id": "H1939",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg",
+      "title": "호두 멸치볶음",
+      "description": "잔멸치와 호두가 만나 짭쪼름하지만 고소하게!",
+      "price": "5,800원",
+      "discountedPrice": "5,220원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H8EA5",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/26_ZIP_P_4001_T.jpg",
+      "title": "한돈 매콤 안심장조림",
+      "description": "부드러운 한돈 안심살의 매콤함",
+      "price": "6,900원",
+      "discountedPrice": "6,210원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H602F",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg",
+      "title": "야채 어묵볶음",
+      "description": "첨가물 없는 순수어묵과 야채의 만남",
+      "price": "4,900원",
+      "discountedPrice": "4,410원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H9F0B",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/147_ZIP_P_7010_T.jpg",
+      "title": "오이소박이",
+      "description": "깔끔하고 개운한 여름 김치",
+      "price": "7,300원",
+      "discountedPrice": "6,570원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H0FC6",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_T.jpg",
+      "title": "두부조림",
+      "description": "각종 영양이 가득 담긴",
+      "price": "13,800원",
+
+      "discountedPrice": "6,900원"
+    },
+    {
+      "id": "HCCFE",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/682_ZIP_P_5055_T.jpg",
+      "title": "미나리무침",
+      "description": "향긋하고 고소한 봄나물",
+      "price": "8,600원",
+
+      "discountedPrice": "4,300원"
+    },
+    {
+      "id": "HB9C1",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/736_ZIP_P_5067_T.jpg",
+      "title": "참외오이무침",
+      "description": "시원하고 아삭한 여름 생채 무침",
+      "price": "8,600원",
+
+      "discountedPrice": "4,300원"
+    }
+  ]
+}
