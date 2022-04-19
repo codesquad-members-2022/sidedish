@@ -26,4 +26,21 @@ class SidedishRepositoryImpl: NetworkRepository<SidedishTarget>, SidedishReposit
             }
             .eraseToAnyPublisher()
     }
+    
+    func loadDetail(_ hash: String) -> AnyPublisher<ApiResult<MenuDetail, SessionError>, Never> {
+        request(.loadDetail(hash))
+            .map { $0.decode(MenuDetailApi.self) }
+            .map { result -> ApiResult<MenuDetail, SessionError> in
+                if let error = result.error {
+                    return ApiResult(value: nil, error: error)
+                }
+                
+                if let result = result.value {
+                    return ApiResult(value: result.data, error: nil)
+                } else {
+                    return ApiResult(value: nil, error: .statusCodeError)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 }

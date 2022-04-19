@@ -1,17 +1,12 @@
 //
-//  APIResult.swift
-//  TodoList
+//  NetworkResult.swift
+//  sidedish
 //
-//  Created by seongha shin on 2022/04/08.
+//  Created by seongha shin on 2022/04/19.
 //
 
 import Combine
 import Foundation
-
-struct ApiResult<T, Error: Swift.Error> {
-    public private(set) var value: T?
-    public private(set) var error: Error?
-}
 
 struct NetworkResult {
     private let data: Data?
