@@ -1,5 +1,6 @@
-package com.example.be.controller.dish;
+package com.example.be.repository.dish;
 
+import com.example.be.controller.dish.dto.PlanningDataRequest;
 import com.example.be.domain.Badge;
 import com.example.be.domain.DeliveryType;
 import com.example.be.domain.DishStatus;

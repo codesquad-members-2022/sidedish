@@ -1,4 +1,4 @@
-package com.example.be.controller.dish;
+package com.example.be.controller.dish.dto;
 
 import com.example.be.domain.Badge;
 import com.example.be.domain.DeliveryType;
