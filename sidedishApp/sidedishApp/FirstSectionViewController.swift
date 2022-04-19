@@ -36,6 +36,7 @@ private extension FirstSectionViewController{
     
     func configureTitle(){
         titleLabel = UILabel()
+        titleLabel.frame = CGRect(x: 0, y: 0, width: 343, height: 48)
         titleLabel.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
         titleLabel.font = UIFont(name: "SFProDisplay-Regular", size: 32)
         setTextAttribute(label: titleLabel, text: "오리 주물럭_반조리")

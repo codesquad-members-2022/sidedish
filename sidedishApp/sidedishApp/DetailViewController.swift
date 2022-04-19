@@ -29,20 +29,20 @@ private extension DetailViewController{
     }
     
     func addSubViews(){
+        self.view.addSubview(fullSizeScrollView)
         self.productInfoView.addSubview(imageScrollView)
         self.productInfoView.addSubview(firstSectionView)
         self.productInfoView.addSubview(secondSectionView)
         self.productInfoView.addSubview(thirdSectionView)
         self.fullSizeScrollView.addSubview(productInfoView)
-        self.view.addSubview(fullSizeScrollView)
     }
     
     func configureLayout(){
         fullSizeScrollView.translatesAutoresizingMaskIntoConstraints = false
         fullSizeScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        fullSizeScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         fullSizeScrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        fullSizeScrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        fullSizeScrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        fullSizeScrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         productInfoView.translatesAutoresizingMaskIntoConstraints = false
         productInfoView.leadingAnchor.constraint(equalTo: self.fullSizeScrollView.leadingAnchor).isActive = true
