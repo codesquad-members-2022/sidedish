@@ -12,17 +12,21 @@ final class GetFileURLService: CacheFileManagerAttribute {
         super.init()
     }
     
-    func fetchFile(as name: String) -> URL? {
+    func fetchFile(as name: String) -> FileDTO? {
         guard var cacheDir = getCacheDirPath() else {
             return nil
         }
         
-        cacheDir.appendPathComponent(name, isDirectory: false)
-        
         do {
-            let contentNames = try manager.contentsOfDirectory(atPath: cacheDir.path)
-            if let fileName = contentNames.first {
-                return cacheDir.appendingPathComponent(fileName)
+            
+            cacheDir.appendPathComponent(name, isDirectory: false)
+            
+            let contentName = try manager.contentsOfDirectory(atPath: cacheDir.path)
+            
+            if let fileName = contentName.first {
+                let url = cacheDir.appendingPathComponent(fileName)
+                let data = try Data(contentsOf: url)
+                return FileDTO(name: url.lastPathComponent, data: data)
             } else {
                 return nil
             }
@@ -35,22 +39,24 @@ final class GetFileURLService: CacheFileManagerAttribute {
         
         var result = [FileDTO]()
         
-        guard var cacheDir = getCacheDirPath() else {
-            return result
-        }
+        guard let cacheDir = getCacheDirPath() else { return result }
         
         do {
-            let cacheContents = try manager.contentsOfDirectory(atPath: cacheDir.path)
             
-            for cachedFileName in cacheContents {
-                
-                cacheDir.appendPathComponent(cachedFileName)
-                
-                if let data = try? Data(contentsOf: cacheDir) {
-                    result.append(FileDTO(name: cachedFileName, data: data))
+            let cacheContents = try manager.contentsOfDirectory(
+                at: cacheDir,
+                includingPropertiesForKeys: nil,
+                options: .skipsHiddenFiles
+            )
+            
+            for url in cacheContents {
+                do {
+                    let filePath = url.appendingPathComponent(url.lastPathComponent, isDirectory: false)
+                    let data = try Data(contentsOf: filePath)
+                    result.append(FileDTO(name: url.lastPathComponent, data: data))
+                } catch {
+                    continue
                 }
-                
-                cacheDir.deleteLastPathComponent()
             }
             
         } catch {

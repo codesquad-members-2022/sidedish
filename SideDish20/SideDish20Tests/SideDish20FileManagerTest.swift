@@ -33,8 +33,6 @@ class SideDish20FileManagerTest: XCTestCase {
     func test_getFileURL() throws {
         let imageURL = getFileURLService.fetchFile(as: imageName)
         XCTAssertNotNil(imageURL)
-        let data = try? Data(contentsOf: imageURL!)
-        XCTAssertNotNil(data)
     }
     
     func test_getAllCached() throws {
