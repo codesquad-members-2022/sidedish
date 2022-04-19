@@ -94,7 +94,7 @@ class MenuAmountView: UIView {
         addSubview(amountLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             
             stepper.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),

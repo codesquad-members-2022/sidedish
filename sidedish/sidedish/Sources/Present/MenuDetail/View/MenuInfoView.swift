@@ -115,6 +115,7 @@ class MenuInfoView: UIView {
             salePriceLabel.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor),
             
             badgeView.heightAnchor.constraint(equalToConstant: 24),
+            
             badgeStackView.topAnchor.constraint(equalTo: badgeView.topAnchor),
             badgeStackView.bottomAnchor.constraint(equalTo: badgeView.bottomAnchor),
             badgeStackView.leadingAnchor.constraint(equalTo: badgeView.leadingAnchor),
