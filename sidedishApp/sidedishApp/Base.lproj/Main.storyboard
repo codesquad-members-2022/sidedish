@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z7x-CL-Yid">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z7x-CL-Yid">
                                 <rect key="frame" x="16" y="88" width="358" height="722"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qUs-iX-Ipc">
                                     <size key="itemSize" width="128" height="128"/>
@@ -45,6 +44,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Z7x-CL-Yid" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4mc-2v-fCQ"/>
+                            <constraint firstItem="Z7x-CL-Yid" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="IVd-u9-8io"/>
+                            <constraint firstItem="Z7x-CL-Yid" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dVW-Sg-9vE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Z7x-CL-Yid" secondAttribute="trailing" constant="16" id="kxa-qB-i13"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gNc-Co-6nV"/>
                     <connections>
