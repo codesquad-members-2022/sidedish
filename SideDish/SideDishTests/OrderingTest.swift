@@ -28,4 +28,13 @@ class OrderingTests: XCTestCase {
         ordering.selectFood(foodHash: "hash")
         XCTAssertNotNil(ordering.selectedMenu)
     }
+    
+    func testReturningSum(){
+        ordering.addFood(food: food)
+        XCTAssertLessThan(ordering.sum, 0)
+
+        ordering.selectFood(foodHash: "hash")
+        XCTAssertGreaterThan(ordering.sum, 0)
+
+    }
 }
