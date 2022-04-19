@@ -14,6 +14,9 @@
 		D0007A0B280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0A280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf */; };
 		D0007A0D280E590600997AC5 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */; };
 		D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */; };
+		D0007A15280E819000997AC5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0007A14280E819000997AC5 /* Home.storyboard */; };
+		D0007A17280E878000997AC5 /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0007A16280E878000997AC5 /* HomeHeaderView.xib */; };
+		D0007A19280E9A8400997AC5 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */; };
 		D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */; };
 		D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */; };
 		D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDEB280D09AB00176BF9 /* ViewController.swift */; };
@@ -57,6 +60,9 @@
 		D0007A0A280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		D0007A14280E819000997AC5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		D0007A16280E878000997AC5 /* HomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
+		D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D08FCDE4280D09AB00176BF9 /* SideDish20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +128,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		D0007A13280E817E00997AC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D0007A14280E819000997AC5 /* Home.storyboard */,
+				D0007A16280E878000997AC5 /* HomeHeaderView.xib */,
+				D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D08FCDDB280D09AB00176BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +164,7 @@
 		D08FCDE6280D09AB00176BF9 /* SideDish20 */ = {
 			isa = PBXGroup;
 			children = (
+				D0007A13280E817E00997AC5 /* View */,
 				D0007A07280E588300997AC5 /* Fonts */,
 				D08FCE18280D113500176BF9 /* Application */,
 				D08FCDEB280D09AB00176BF9 /* ViewController.swift */,
@@ -311,8 +328,10 @@
 				D0007A0B280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf in Resources */,
 				1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */,
 				D08FCDF4280D09AD00176BF9 /* LaunchScreen.storyboard in Resources */,
+				D0007A15280E819000997AC5 /* Home.storyboard in Resources */,
 				D08FCDF1280D09AD00176BF9 /* Assets.xcassets in Resources */,
 				D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */,
+				D0007A17280E878000997AC5 /* HomeHeaderView.xib in Resources */,
 				D08FCDEF280D09AB00176BF9 /* Main.storyboard in Resources */,
 				D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */,
 				D0007A0D280E590600997AC5 /* SF-Pro-Display-Medium.otf in Resources */,
@@ -461,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0007A19280E9A8400997AC5 /* HomeHeaderView.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */,
 				D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */,
