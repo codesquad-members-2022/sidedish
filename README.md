@@ -35,6 +35,13 @@ CodeSquad Repo(Upstream)
 - 참조 : [Semantic Commit Convention](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
 
+* 커밋 예시
+
+```bash
+    ^     ^
+[#1] feat: Navigation Controller 도입
+```
+
 ## 🙋‍♂️ 이번 프로젝트에서 도입하고 싶은 분야
 
 ###  동시성 
