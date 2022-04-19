@@ -27,10 +27,20 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let menuStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.alignment = .leading
+        stackView.backgroundColor = .cyan
+        return stackView
+    }()
+    
     private let menuInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .leading
+        stackView.backgroundColor = .orange
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -77,7 +87,7 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.textColor = .white
         label.backgroundColor = .systemBlue
-        label.layer.cornerRadius = 13
+        label.layer.cornerRadius = 11
         label.layer.masksToBounds = true
         return label
     }()
@@ -97,19 +107,20 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(cellView)
         
         cellView.addSubview(dishImageView)
-        cellView.addSubview(menuInfoStackView)
+        cellView.addSubview(menuStackView)
         
-        layoutCellView()
-        layoutMenuInfoStackView()
-        
+        menuStackView.addArrangedSubview(menuInfoStackView)
         menuInfoStackView.addArrangedSubview(titleLabel)
         menuInfoStackView.addArrangedSubview(descriptionLabel)
         menuInfoStackView.addArrangedSubview(priceStackView)
-        
         priceStackView.addArrangedSubview(discountedPriceLabel)
         priceStackView.addArrangedSubview(originPriceLabel)
         
-        cellView.addSubview(badgeLabel)
+        menuStackView.addArrangedSubview(badgeLabel)
+        
+        layoutCellView()
+        layoutMenuStackView()
+        layoutMenuInfoStackView()
         layoutBadgeLabel()
     }
     
@@ -125,19 +136,21 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         cellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
     }
     
+    private func layoutMenuStackView() {
+        menuStackView.translatesAutoresizingMaskIntoConstraints = false
+        menuStackView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+        menuStackView.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor, constant: 8).isActive = true
+        menuStackView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
+    }
+    
     private func layoutMenuInfoStackView() {
         menuInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        menuInfoStackView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        menuInfoStackView.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor, constant: 8).isActive = true
-        menuInfoStackView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
-        menuInfoStackView.heightAnchor.constraint(equalToConstant: 72).isActive = true
+        menuInfoStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 72).isActive = true
     }
     
     private func layoutBadgeLabel() {
         badgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        badgeLabel.topAnchor.constraint(equalTo: menuInfoStackView.bottomAnchor, constant: 8).isActive = true
-        badgeLabel.leadingAnchor.constraint(equalTo: menuInfoStackView.leadingAnchor).isActive = true
         badgeLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        badgeLabel.widthAnchor.constraint(equalToConstant: 89).isActive = true
+        badgeLabel.widthAnchor.constraint(equalToConstant: 77).isActive = true
     }
 }
