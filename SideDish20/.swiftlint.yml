@@ -1,0 +1,6 @@
+opt_in_rules:
+- yoda_condition
+excluded: # File or Directory Lint should exclude.
+- Pods
+- SideDish20/Application
+- SideDish20/Cache

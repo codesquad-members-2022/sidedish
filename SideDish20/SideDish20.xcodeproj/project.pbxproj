@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B56E65C280E45B60074E79F /* .swiftlint.yml */; };
 		81F02D81F7E6B09E33564B42 /* Pods_SideDish20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */; };
 		AE464DAF583682884F200E26 /* Pods_SideDish20_SideDish20UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */; };
 		D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A08280E589700997AC5 /* SF-Pro-Display-Regular.otf */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		06C0BCF338116564F9F0956A /* Pods-SideDish20-SideDish20UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20-SideDish20UITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20-SideDish20UITests/Pods-SideDish20-SideDish20UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1B56E65C280E45B60074E79F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2736D4DB3581F6AA1E7A0869 /* Pods-SideDish20Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20Tests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20Tests/Pods-SideDish20Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5791E07D7FB9C708C754F0FB /* Pods-SideDish20-SideDish20UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20-SideDish20UITests.release.xcconfig"; path = "Target Support Files/Pods-SideDish20-SideDish20UITests/Pods-SideDish20-SideDish20UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6CAB2134DB39689073D8101F /* Pods_SideDish20Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 		D08FCDDB280D09AB00176BF9 = {
 			isa = PBXGroup;
 			children = (
+				1B56E65C280E45B60074E79F /* .swiftlint.yml */,
 				D08FCDE6280D09AB00176BF9 /* SideDish20 */,
 				D08FCDFD280D09AD00176BF9 /* SideDish20Tests */,
 				D08FCE07280D09AD00176BF9 /* SideDish20UITests */,
@@ -203,6 +206,7 @@
 			buildConfigurationList = D08FCE0E280D09AD00176BF9 /* Build configuration list for PBXNativeTarget "SideDish20" */;
 			buildPhases = (
 				B88344F96982F25861FCC27E /* [CP] Check Pods Manifest.lock */,
+				1B56E65B280E444B0074E79F /* SwiftLint Script */,
 				D08FCDE0280D09AB00176BF9 /* Sources */,
 				D08FCDE1280D09AB00176BF9 /* Frameworks */,
 				D08FCDE2280D09AB00176BF9 /* Resources */,
@@ -305,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0007A0B280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf in Resources */,
+				1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */,
 				D08FCDF4280D09AD00176BF9 /* LaunchScreen.storyboard in Resources */,
 				D08FCDF1280D09AD00176BF9 /* Assets.xcassets in Resources */,
 				D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */,
@@ -331,6 +336,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1B56E65B280E444B0074E79F /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		71CAAB0BE2B8FE24B16FC67F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
