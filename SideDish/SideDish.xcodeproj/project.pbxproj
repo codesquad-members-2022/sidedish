@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		376A6B99280EA78B0016F0CE /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
+		376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
 		B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C30280E9A1500A49273 /* AppDelegate.swift */; };
 		B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C32280E9A1500A49273 /* SceneDelegate.swift */; };
 		B50A0C35280E9A1500A49273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C34280E9A1500A49273 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		376A6B98280EA78B0016F0CE /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		376A6B9A280EA8040016F0CE /* Ordering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordering.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C30280E9A1500A49273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B50A0C32280E9A1500A49273 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				376A6B98280EA78B0016F0CE /* Food.swift */,
+				376A6B9A280EA8040016F0CE /* Ordering.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				B50A0C35280E9A1500A49273 /* ViewController.swift in Sources */,
 				376A6B99280EA78B0016F0CE /* Food.swift in Sources */,
+				376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */,
 				B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */,
 				B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */,
 			);
