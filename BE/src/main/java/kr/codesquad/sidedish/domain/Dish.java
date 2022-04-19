@@ -8,15 +8,18 @@ public class Dish {
     private final Long id;
     private final Long categoryId;
     private final String name;
+    private final String description;
     private final int stock;
     private final int price;
     private final DeliveryType deliveryType;
     private final DiscountPolicy discountPolicy;
 
-    public Dish(Long id, Long categoryId, String name, int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy) {
+    public Dish(Long id, Long categoryId, String name, String description,
+                int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy) {
         this.id = id;
         this.categoryId = categoryId;
         this.name = name;
+        this.description = description;
         this.stock = stock;
         this.price = price;
         this.deliveryType = deliveryType;
@@ -34,6 +37,8 @@ public class Dish {
     public String getName() {
         return name;
     }
+
+    public String getDescription() { return description;}
 
     public int getStock() {
         return stock;
