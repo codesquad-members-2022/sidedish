@@ -121,3 +121,29 @@ export const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
 `;
+export const Ordering = css`
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 50px;
+  color: #1B1B1B;
+`
+export const Logo = css`
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: -0.004em;
+  color: #1B1B1B;
+`
+export const Typography = css`
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: -0.004em;
+  color: #1B1B1B;
+`;
