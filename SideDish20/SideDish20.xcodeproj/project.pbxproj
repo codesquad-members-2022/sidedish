@@ -17,6 +17,7 @@
 		D0007A15280E819000997AC5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0007A14280E819000997AC5 /* Home.storyboard */; };
 		D0007A17280E878000997AC5 /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0007A16280E878000997AC5 /* HomeHeaderView.xib */; };
 		D0007A19280E9A8400997AC5 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */; };
+		D0007A1F280EA14200997AC5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0007A1E280EA14200997AC5 /* HomeViewController.swift */; };
 		D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */; };
 		D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */; };
 		D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDEB280D09AB00176BF9 /* ViewController.swift */; };
@@ -63,6 +64,7 @@
 		D0007A14280E819000997AC5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		D0007A16280E878000997AC5 /* HomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		D0007A1E280EA14200997AC5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D08FCDE4280D09AB00176BF9 /* SideDish20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D0007A1D280EA13C00997AC5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0007A1E280EA14200997AC5 /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		D08FCDDB280D09AB00176BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 		D08FCDE6280D09AB00176BF9 /* SideDish20 */ = {
 			isa = PBXGroup;
 			children = (
+				D0007A1D280EA13C00997AC5 /* ViewController */,
 				D0007A13280E817E00997AC5 /* View */,
 				D0007A07280E588300997AC5 /* Fonts */,
 				D08FCE18280D113500176BF9 /* Application */,
@@ -480,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0007A1F280EA14200997AC5 /* HomeViewController.swift in Sources */,
 				D0007A19280E9A8400997AC5 /* HomeHeaderView.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */,
