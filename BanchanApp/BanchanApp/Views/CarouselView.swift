@@ -7,14 +7,18 @@
 
 import UIKit
 
-protocol CarouselViewDelegate: AnyObject {
+protocol CarouselViewDataSource: AnyObject {
+    // Item View
     func carouselView(_ carouselView: CarouselView) -> UIView
+
+    // Item 개수
     func carouselView(_ carouselView: CarouselView, numberOfItems: Int) -> Int
 }
 
 class CarouselView: UIView {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+
         scrollView.isPagingEnabled = true
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = false
@@ -32,14 +36,21 @@ class CarouselView: UIView {
 
     private lazy var pageControl: UIPageControl = {
         let rect = CGRect(x: 0, y: 0, width: 120, height: 25)
-        let control = UIPageControl(frame: rect, primaryAction: UIAction(handler: self.handleOnSwipeItem))
+        let control = UIPageControl(frame: rect, primaryAction: UIAction(handler: self.handleOnChangePageIndex))
+
         control.hidesForSinglePage = true
+        control.pageIndicatorTintColor = .systemGray5
+        control.currentPageIndicatorTintColor = UIColor.tintColor
         return control
     }()
 
     private var itemView = UIView.self
 
-    var delegate: CarouselViewDelegate?
+    var delegate: CarouselViewDataSource? {
+        didSet {
+            self.reloadData()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,18 +63,19 @@ class CarouselView: UIView {
     }
 
     private func configureUI() {
+        self.scrollView.delegate = self
+
+        self.addSubview(self.scrollView)
         self.scrollView.addSubview(self.contentView)
         self.contentView.addSubview(self.stackView)
         self.contentView.addSubview(self.pageControl)
 
         self.scrollView.fill(inView: self)
         self.contentView.fill(inView: self.scrollView.contentLayoutGuide)
-        self.contentView.setHeight(toAnchor: self.scrollView.frameLayoutGuide.widthAnchor)
+        self.contentView.setHeight(toAnchor: self.scrollView.frameLayoutGuide.heightAnchor)
         self.stackView.fill(inView: self.contentView)
         self.pageControl.anchor(bottom: self.contentView.bottomAnchor, paddingBottom: 10)
         self.pageControl.centerX(inLayoutGuide: self.scrollView.frameLayoutGuide)
-
-        self.reloadData()
     }
 
     private func reloadData() {
@@ -76,10 +88,12 @@ class CarouselView: UIView {
 
         for _ in 1...count {
             let item = self.delegate?.carouselView(self) ?? itemView.init()
+            self.stackView.addArrangedSubview(item)
             item.setWidth(toAnchor: self.scrollView.frameLayoutGuide.widthAnchor)
             item.setHeight(toAnchor: self.scrollView.frameLayoutGuide.heightAnchor)
-            self.stackView.addArrangedSubview(item)
         }
+
+        self.pageControl.numberOfPages = count
     }
 
     private func resetItems() {
@@ -89,9 +103,27 @@ class CarouselView: UIView {
         }
     }
 
-    private func handleOnSwipeItem(_ action: UIAction) {}
+    private func handleOnChangePageIndex(_ action: UIAction) {
+        var frame = self.scrollView.frameLayoutGuide.layoutFrame
+        let pageNumber = self.pageControl.currentPage
+        let offsetX = frame.width * CGFloat(pageNumber)
+
+        frame.origin.x = offsetX
+
+        self.scrollView.scrollRectToVisible(frame, animated: true)
+    }
 
     func register(item: UIView.Type) {
         self.itemView = item
+    }
+}
+
+extension CarouselView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetX = self.scrollView.contentOffset.x
+        let width = self.scrollView.frameLayoutGuide.layoutFrame.width
+        let pageIndex = round(offsetX / width)
+
+        self.pageControl.currentPage = Int(pageIndex)
     }
 }

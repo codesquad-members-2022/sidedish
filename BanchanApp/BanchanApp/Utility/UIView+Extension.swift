@@ -95,7 +95,7 @@ extension UIView {
         }
 
         if let bottom = bottom {
-            let constraint = self.bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom)
+            let constraint = bottom.constraint(equalTo: self.bottomAnchor, constant: paddingBottom)
             constraints.append(constraint)
         }
 
@@ -105,7 +105,7 @@ extension UIView {
         }
 
         if let trailing = trailing {
-            let constraint = self.trailingAnchor.constraint(equalTo: trailing, constant: paddingRight)
+            let constraint = trailing.constraint(equalTo: self.trailingAnchor, constant: paddingRight)
             constraints.append(constraint)
         }
 

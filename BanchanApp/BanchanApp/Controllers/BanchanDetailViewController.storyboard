@@ -223,6 +223,9 @@
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" title="주문하기"/>
+                                                                <connections>
+                                                                    <segue destination="gxR-Wr-5f7" kind="show" id="mnx-j6-Ycr"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 주문금액 12,640원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Gd-Yyi">
                                                                 <rect key="frame" x="0.0" y="374.66666666666663" width="358" height="38.333333333333314"/>
@@ -308,6 +311,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-63" y="55"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="v0l-Sw-JqW">
+            <objects>
+                <viewController id="gxR-Wr-5f7" customClass="ViewController" customModule="BanchanApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FbH-W5-P5H">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UQW-49-adp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xcl-58-Zeh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOf-FS-o3g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="720" y="55"/>
         </scene>
     </scenes>
     <resources>
