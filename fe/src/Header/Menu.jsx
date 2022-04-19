@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledMenu = styled.li`
+const Root = styled.li`
   margin-right: 24px;
 `;
 
@@ -23,7 +23,7 @@ const SubMenuList = styled.ul`
 
 export const Menu = ({ menuData: { mainMenu, subMenuList }, isMouseEnter }) => {
   return (
-    <StyledMenu>
+    <Root>
       <span>{mainMenu}</span>
       {isMouseEnter ? (
         <SubMenuList>
@@ -32,6 +32,6 @@ export const Menu = ({ menuData: { mainMenu, subMenuList }, isMouseEnter }) => {
           ))}
         </SubMenuList>
       ) : null}
-    </StyledMenu>
+    </Root>
   );
 };
