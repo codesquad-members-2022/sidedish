@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailTextViewController: UIViewController{
+class FirstSectionViewController: UIViewController{
     private var firstSection = UIView(frame: CGRect(x: 0, y: 0, width: 343, height: 176))
     private var titleLabel: UILabel!
     private var subLabel: UILabel!
@@ -20,10 +20,20 @@ class DetailTextViewController: UIViewController{
         super.viewDidLoad()
         self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 176)
         self.view.addSubview(firstSection)
+        setAllProperties()
     }
 }
 
-private extension DetailTextViewController{
+private extension FirstSectionViewController{
+    func setAllProperties(){
+        configureTitle()
+        configureSubLabel()
+        configureSalePrice()
+        configureRawPrice()
+        configureEventLabel()
+        configureSectionBottom()
+    }
+    
     func configureTitle(){
         titleLabel = UILabel()
         titleLabel.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
@@ -38,7 +48,7 @@ private extension DetailTextViewController{
         titleLabel.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
-    func configureSubText(){
+    func configureSubLabel(){
         subLabel = UILabel()
         subLabel.frame = CGRect(x: 0, y: 0, width: 177, height: 24)
         subLabel.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
