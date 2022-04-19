@@ -108,13 +108,12 @@
 
                 <TextView
                     android:id="@+id/tv_tag"
+                    style="@style/Text_Badge_launching"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@string/text_tag_launching"
-                    android:textColor="@color/Primary3"
-                    android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@id/v_tag1_4"
                     app:layout_constraintEnd_toStartOf="@id/v_tag1_2"
                     app:layout_constraintHeight_percent="0.66"
@@ -177,7 +176,7 @@
             app:layout_constraintBottom_toTopOf="@id/v_empty_3"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
             app:layout_constraintTop_toTopOf="@id/v_empty_3_1"
-            tools:text="12,600원"/>
+            tools:text="12,600원" />
 
         <View
             android:id="@+id/v_empty_4"

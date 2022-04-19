@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="menu"
+            type="com.codesquadhan.sidedish.data.MenuData" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_detail"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_detail_95.56"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9556" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_detail_4.44"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.0444" />
+
+            <View
+                android:id="@+id/v_detail_empty_1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/vp_detail" />
+
+            <View
+                android:id="@+id/v_detail_tv_1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:48"
+                app:layout_constraintTop_toBottomOf="@id/v_detail_empty_1" />
+
+            <TextView
+                android:id="@+id/tv_detail_food_name"
+                style="@style/Text_Large_Regular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{menu.name}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_1"
+                app:layout_constraintEnd_toStartOf="@+id/gl_detail_95.56"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_1"
+                tools:text="잡채" />
+
+            <View
+                android:id="@+id/v_detail_empty_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:8"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_name" />
+
+            <View
+                android:id="@+id/v_detail_tv_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_2" />
+
+            <TextView
+                android:id="@+id/tv_detail_food_description"
+                style="@style/Text_Medium_Regular.Grey2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{menu.description}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_2"
+                app:layout_constraintEnd_toStartOf="@+id/gl_detail_95.56"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_2"
+                tools:text="감칠맛 나는 매콤한 양념" />
+
+            <View
+                android:id="@+id/v_detail_empty_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:8"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_food_description" />
+
+            <View
+                android:id="@+id/v_detail_tv_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_3" />
+
+            <TextView
+                android:id="@+id/tv_detail_food_price_after_sale"
+                style="@style/Text_Medium_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/currency(menu.price)}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_3"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_3"
+                tools:text="12,600원" />
+
+            <View
+                android:id="@+id/v_detail_empty_4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="4:24"
+                app:layout_constraintStart_toEndOf="@+id/tv_detail_food_price_after_sale"
+                app:layout_constraintTop_toTopOf="@+id/tv_detail_food_price_after_sale" />
+
+            <TextView
+                android:id="@+id/tv_detail_food_price_before_sale"
+                style="@style/Text_Medium_Light_Regular.Grey2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/currency(menu.price)}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_3"
+                app:layout_constraintStart_toEndOf="@+id/v_detail_empty_4"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_3"
+                tools:text="15,000원" />
+
+            <View
+                android:id="@+id/v_detail_empty_5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:16"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_tv_3" />
+
+            <View
+                android:id="@+id/v_detail_tv_4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_5" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_detail_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="visible"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_4"
+                app:shapeAppearanceOverlay="@style/tagRadiusShape">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/Primary1">
+
+                    <View
+                        android:id="@+id/v_detail_tag_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_detail_tag"
+                        app:layout_constraintDimensionRatio="12:16"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_detail_tag" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_tag"
+                        style="@style/Text_Badge_launching"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/text_tag_launching"
+                        app:layout_constraintBottom_toTopOf="@id/v_detail_tag_4"
+                        app:layout_constraintEnd_toStartOf="@id/v_detail_tag_2"
+                        app:layout_constraintHeight_percent="0.66"
+                        app:layout_constraintStart_toEndOf="@id/v_detail_tag_1"
+                        app:layout_constraintTop_toBottomOf="@id/v_detail_tag_3" />
+
+                    <View
+                        android:id="@+id/v_detail_tag_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_detail_tag"
+                        app:layout_constraintDimensionRatio="12:16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_detail_tag"
+                        app:layout_constraintTop_toTopOf="@id/tv_detail_tag" />
+
+                    <View
+                        android:id="@+id/v_detail_tag_3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="69:4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v_detail_tag_4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="69:4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/v_detail_empty_6"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/cv_detail_tag" />
+
+            <View
+                android:id="@+id/v_divider1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/Grey4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_6" />
+
+            <View
+                android:id="@+id/v_detail_empty_7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_divider1" />
+
+            <View
+                android:id="@+id/v_detail_tv_5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_7" />
+
+            <TextView
+                android:id="@+id/tv_detail_point"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@string/detail_point"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_5"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_5"
+                app:layout_constraintWidth_percent="0.166"
+                tools:text="적립금" />
+
+            <View
+                android:id="@+id/v_detail_empty_8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_detail_point"
+                app:layout_constraintDimensionRatio="16:24"
+                app:layout_constraintStart_toEndOf="@+id/tv_detail_point"
+                app:layout_constraintTop_toTopOf="@+id/tv_detail_point" />
+
+            <TextView
+                android:id="@+id/tv_detail_point_value"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/currency(menu.price)}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_5"
+                app:layout_constraintStart_toEndOf="@+id/v_detail_empty_8"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_5"
+                tools:text="126원" />
+
+            <View
+                android:id="@+id/v_detail_empty_9"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:16"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_tv_5" />
+
+            <View
+                android:id="@+id/v_detail_tv_6"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_9" />
+
+            <TextView
+                android:id="@+id/tv_detail_delivery_info"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@string/detail_delivery_info"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_6"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_6"
+                app:layout_constraintWidth_percent="0.166"
+                tools:text="배송정보" />
+
+            <View
+                android:id="@+id/v_detail_empty_10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_detail_delivery_info"
+                app:layout_constraintDimensionRatio="16:24"
+                app:layout_constraintStart_toEndOf="@+id/tv_detail_delivery_info"
+                app:layout_constraintTop_toTopOf="@+id/tv_detail_delivery_info" />
+
+            <TextView
+                android:id="@+id/tv_detail_delivery_info_value"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/currency(menu.price)}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_6"
+                app:layout_constraintStart_toEndOf="@+id/v_detail_empty_10"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_6"
+                tools:text="서울 경기 새벽 배송, 전국 택배 배송" />
+
+            <View
+                android:id="@+id/v_detail_empty_11"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:16"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_tv_6" />
+
+            <View
+                android:id="@+id/v_detail_tv_7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_11" />
+
+            <TextView
+                android:id="@+id/tv_detail_delivery_fee"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@string/detail_delivery_info"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_7"
+                app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_7"
+                app:layout_constraintWidth_percent="0.166"
+                tools:text="배송비" />
+
+            <View
+                android:id="@+id/v_detail_empty_12"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_detail_delivery_info"
+                app:layout_constraintDimensionRatio="16:24"
+                app:layout_constraintStart_toEndOf="@+id/tv_detail_delivery_info"
+                app:layout_constraintTop_toTopOf="@+id/tv_detail_delivery_info" />
+
+            <TextView
+                android:id="@+id/tv_detail_delivery_fee_value"
+                style="@style/Text_Small_Regular.Grey2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/currency(menu.price)}"
+                app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_7"
+                app:layout_constraintStart_toEndOf="@+id/v_detail_empty_12"
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_7"
+                tools:text="2,500원 (40,000원 이상 구매 시 무료)" />
+
+            <View
+                android:id="@+id/v_detail_empty_13"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_tv_7" />
+
+            <View
+                android:id="@+id/v_divider2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/Grey4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_detail_empty_13" />
+
+            <View
+                android:id="@+id/v_detail_empty_14"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:24"
+                app:layout_constraintTop_toBottomOf="@+id/v_divider2" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>
