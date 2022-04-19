@@ -8,5 +8,4 @@ public class SidedishApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SidedishApplication.class, args);
 	}
-
 }
