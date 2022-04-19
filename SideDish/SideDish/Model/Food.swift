@@ -17,7 +17,7 @@ struct Food{
     private (set) var foodDescription: String
     private let category: String
     private (set) var normalPrice: Int
-    private let specialPrice: Int
+    private (set) var specialPrice: Int
     private let deliveryInformation: String
     private let deliveryCharge: Int
     private let amount:Int
