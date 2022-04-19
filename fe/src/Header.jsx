@@ -1,17 +1,22 @@
-import { MenuList } from './MenuList';
+import { MenuList } from './Header/MenuList';
+import { UserButtons } from './Header/UserButtons';
 import styled from 'styled-components';
 
-const StyledHeader = styled.div`
-  width: 100%;
+const Root = styled.header`
+  width: 1440px;
+  padding: 16px 80px;
+  border-bottom: 1px solid #000;
+  margin: 0 auto;
   display: flex;
   align-items: flex-start;
 `;
 
 const Logo = styled.h1`
   margin-right: 40px;
+  cursor: pointer;
 `;
 
-const TopBarUI = styled.div`
+const HeaderUI = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -19,34 +24,14 @@ const TopBarUI = styled.div`
   padding-top: 12px;
 `;
 
-const UserButtons = styled.div`
-  button:not(:last-child) {
-    margin-right: 16px;
-  }
-`;
-
-const searchIcon = '/Search.svg';
-const mypage = '/Mypage.svg';
-const cart = '/Shopping-cart.svg';
-
 export const Header = () => {
   return (
-    <StyledHeader>
+    <Root>
       <Logo>Ordering</Logo>
-      <TopBarUI>
+      <HeaderUI>
         <MenuList />
-        <UserButtons>
-          <button>
-            <img src={searchIcon} alt={""} />
-          </button>
-          <button>
-            <img src={mypage} alt={""} />
-          </button>
-          <button>
-            <img src={cart} alt={""} />
-          </button>
-        </UserButtons>
-      </TopBarUI>
-    </StyledHeader>
+        <UserButtons />
+      </HeaderUI>
+    </Root>
   );
 };
