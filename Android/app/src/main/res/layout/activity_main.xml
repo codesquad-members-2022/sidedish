@@ -78,7 +78,7 @@
                 android:id="@+id/nsv_product"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+               >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -89,21 +89,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:background="@color/White"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_soup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_main" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_main"
+                        android:background="@color/Grey4"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_side"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_soup" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_soup"
+                        android:background="@color/White"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,6 @@
 package com.codesquadhan.sidedish.data
 
-data class Menu(
+data class MenuData(
     val id: Int,
     val name: String,
     val description: String,
@@ -12,5 +12,6 @@ data class Menu(
     val deliveryInfo: String = "",
     val inventory: Int = 1,
     val imageId: Int = 1,
-    val viewType: Int = 2
+    val viewType: Int = 2,
+    val headerText: String = ""
 )

@@ -3,32 +3,28 @@ package com.codesquadhan.sidedish.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.codesquadhan.sidedish.R
-import com.codesquadhan.sidedish.data.Menu
 import com.codesquadhan.sidedish.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var mainAdapter: MainAdapter
+    private lateinit var soupAdapter: MainAdapter
+    private lateinit var sideAdapter: MainAdapter
+
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val menu = listOf<Menu>(
-            Menu(6, "", "", 0, viewType = 1),
-            Menu(1, "잡채", "맛있어요", 15000),
-            Menu(2, "오리 주물럭 반조리", "감질맛 나는 매콤한 양념", 12460),
-            Menu(3, "소갈비찜", "촉촉하게 벤 양념이 일품", 26100),
-            Menu(4, "간장 코다리 찜", "쫀득한 코다리를 국내산 간장소스를 활용", 14900),
-            Menu(5, "꼬막 비빔밥", "매콤하게 입맛 돋우는", 10900),
-        )
-
-        val mainAdapter = MainAdapter()
-        binding.rvMain.adapter = mainAdapter
-        mainAdapter.submitList(menu)
-
+        setMainRv()
+        setSoupRv()
+        setSideRv()
         setBtnGitHub()
     }
 
@@ -36,6 +32,39 @@ class MainActivity : AppCompatActivity() {
         binding.btnGithub.setOnClickListener {
             binding.clLogin.visibility = View.GONE
             binding.clMain.visibility = View.VISIBLE
+
+            // 로그인 후 가정
+            rvTest()
         }
+    }
+
+    private fun setMainRv(){
+        mainAdapter = MainAdapter()
+        binding.rvMain.adapter = mainAdapter
+        viewModel.menuMainListLd.observe(this){
+            mainAdapter.submitList(it.toList())
+        }
+    }
+
+    private fun setSoupRv(){
+        soupAdapter = MainAdapter()
+        binding.rvSoup.adapter = soupAdapter
+        viewModel.menuSoupListLd.observe(this){
+            soupAdapter.submitList(it.toList())
+        }
+    }
+
+    private fun setSideRv(){
+        sideAdapter = MainAdapter()
+        binding.rvSide.adapter = sideAdapter
+        viewModel.menuSideListLd.observe(this){
+            sideAdapter.submitList(it.toList())
+        }
+    }
+
+    private fun rvTest(){
+        viewModel.addMainListTest()
+        viewModel.addSoupListTest()
+        viewModel.addSideListTest()
     }
 }

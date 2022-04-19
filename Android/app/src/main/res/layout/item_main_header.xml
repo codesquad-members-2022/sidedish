@@ -6,7 +6,7 @@
     <data>
         <variable
             name="menu"
-            type="com.codesquadhan.sidedish.data.Menu" />
+            type="com.codesquadhan.sidedish.data.MenuData" />
 
     </data>
 
