@@ -35,10 +35,22 @@ extension NetworkResult {
         }
         
         guard let data = data,
-              let decodableData = try? JSONDecoder().decode(T.self, from: data) else {
+              let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+              let statusCode = json["statusCode"] as? Int else {
             return ApiResult(value: nil, error: .pasingError)
         }
-        return ApiResult(value: decodableData, error: nil)
+    
+        if !(200..<300).contains(statusCode) {
+            return ApiResult(value: nil, error: .statusCodeError)
+        }
+        
+        guard let body = json["body"],
+              let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .init()),
+              let dto = try? JSONDecoder().decode(T.self, from: bodyData) else {
+            return ApiResult(value: nil, error: .pasingError)
+        }
+        
+        return ApiResult(value: dto, error: nil)
     }
     
     func mapVoid() -> ApiResult<Void, SessionError> {
