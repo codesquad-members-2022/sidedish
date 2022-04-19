@@ -88,12 +88,6 @@ class OrderingCollectionViewCell: UICollectionViewCell {
         layoutCellView()
         layoutMenuStackView()
         layoutMenuInfoStackView()
-        
-        setDishImage(by: "mockImage.png")
-        setMenuTitle(by: "보노보노 주물럭 요리")
-        setMenuDescription(by: "감질맛 나는 매콤한 보노보노")
-        setMenuPrice(origin: "15,800원", discounted: "12,640원")
-        setBadges(by: [.launchingPrice, .eventPrice])
     }
     
     private func layoutCellView() {
@@ -160,15 +154,19 @@ extension OrderingCollectionViewCell {
         label.attributedText = attributeString
     }
     
-    func setBadges(by types: [BadgeType]) {
+    func setBadges(by types: [String]?) {
+        guard let types = types else { return }
+
         types.forEach { type in
             switch type {
-            case .eventPrice:
+            case "런칭특가":
                 let badge = UILabel.makeBadge(title: "런칭특가", backgroundColor: UIColor(red: 0.0, green: 102/255, blue: 214/255, alpha: 1.0))
                 badgeStackView.addArrangedSubview(badge)
-            case .launchingPrice:
+            case "이벤트특가":
                 let badge = UILabel.makeBadge(title: "이벤트특가", backgroundColor: UIColor(red: 128/255, green: 188/255, blue: 255/255, alpha: 1.0))
                 badgeStackView.addArrangedSubview(badge)
+            default:
+                break
             }
         }
     }

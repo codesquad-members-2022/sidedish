@@ -9,10 +9,14 @@ import UIKit
 
 class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var dishes: [String] = ["모두가 좋아하는 든든한 메인 요리", "b", "c"]
+    private var headers: [String] = ["모두가 좋아하는 든든한 메인 요리",
+                                     "정성이 담긴 뜨끈뜨끈 국물 요리",
+                                     "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    
+    var menus: [Menu] = []
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return headers.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -25,12 +29,12 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             for: indexPath
         ) as? SectionHeaderView else { return UICollectionReusableView() }
         
-        supplementaryView.setTitle(title: dishes[indexPath.section])
+        supplementaryView.setTitle(title: headers[indexPath.section])
         return supplementaryView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dishes.count
+        return menus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,10 +42,27 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        //        cell.setImage(url:) 등등 cell에 대한 설정
-        //        cell.backgroundColor = .blue
-        //        cell.setLabel(text: dishes[indexPath.item])
+        configure(cell: cell, at: indexPath.item)
         return cell
     }
     
+    func fetch(dishes: [Menu]) {
+        self.menus = dishes
+    }
+    
+    func configure(cell: OrderingCollectionViewCell, at index: Int) {
+        let dish = menus[index]
+        
+        cell.setDishImage(by: dish.image)
+        cell.setMenuTitle(by: dish.title)
+        cell.setMenuDescription(by: dish.description)
+        cell.setMenuPrice(origin: dish.n_price, discounted: dish.s_price)
+        cell.setBadges(by: dish.badge)
+    }
+}
+
+extension OrderingCollectionViewDataSource {
+    enum EventName {
+        static let fetchDidCompleted = NSNotification.Name("FetchDidCompletedNotification")
+    }
 }

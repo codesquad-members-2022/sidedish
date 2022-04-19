@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import OSLog
 
 class OrderingViewController: UIViewController {
     
     private var orderingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
+    private let networkManger = NetworkManager(session: .shared)
     
     private var collectionViewLayout: UICollectionViewLayout {
         let itemHeight: CGFloat = 130.0
@@ -26,6 +28,20 @@ class OrderingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        
+        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { (result: Result<SideDishInfo?, NetworkError>) in
+            switch result {
+            case .success(let success):
+                guard let menus = success?.body else { return }
+                self.collectionViewDataSource.fetch(dishes: menus)
+                DispatchQueue.main.async {
+                    self.orderingCollectionView.reloadData()
+                }
+            case .failure(let failure):
+                os_log(.error, "\(failure.localizedDescription)")
+                
+            }
+        }
     }
     
     private func setUpView() {
@@ -50,7 +66,7 @@ class OrderingViewController: UIViewController {
         orderingCollectionView.dataSource = collectionViewDataSource
         
         orderingCollectionView.collectionViewLayout = collectionViewLayout
-        orderingCollectionView.backgroundColor = .gray
+        orderingCollectionView.backgroundColor = .systemBackground
     }
 }
 
