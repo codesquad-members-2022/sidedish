@@ -40,23 +40,6 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="109.82142857142857"/>
         </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="n2R-b8-QnW">
-            <objects>
-                <viewController id="Ht0-bO-JdW" customClass="DetailViewController" customModule="SideDish_team24" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="F4M-Zv-WAj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="XSQ-eN-4fL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nf2-dQ-i3O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1910" y="110"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="VZO-P6-z9T">
             <objects>
