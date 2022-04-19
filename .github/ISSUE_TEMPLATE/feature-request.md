@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Suggest new Feature Request for this project
-title: '[TYPE] {ISSUE_TITLE}'
+title: "[TYPE] {ISSUE_TITLE}"
 ---
 
 ## 🤷‍♂️ Description
