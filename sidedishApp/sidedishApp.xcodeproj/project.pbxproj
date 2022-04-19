@@ -18,6 +18,7 @@
 		D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF61E280E7A0100507878 /* DetailViewController.swift */; };
 		D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF622280E887F00507878 /* FirstSectionViewController.swift */; };
 		D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */; };
+		D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		D2ADF61E280E7A0100507878 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D2ADF622280E887F00507878 /* FirstSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionViewController.swift; sourceTree = "<group>"; };
 		D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionViewController.swift; sourceTree = "<group>"; };
+		D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionViewController.swift; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				D2ADF61E280E7A0100507878 /* DetailViewController.swift */,
 				D2ADF622280E887F00507878 /* FirstSectionViewController.swift */,
 				D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */,
+				D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */,
 				00680794280D5195003C2808 /* Main.storyboard */,
 				00680797280D5195003C2808 /* Assets.xcassets */,
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
@@ -224,6 +227,7 @@
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
 				D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */,
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
+				D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */,
 				D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

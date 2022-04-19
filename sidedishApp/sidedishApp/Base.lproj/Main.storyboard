@@ -48,6 +48,13 @@
                                             <segue destination="iGG-Gn-fRw" kind="embed" id="fCt-5H-DgY"/>
                                         </connections>
                                     </containerView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugP-ya-KTg">
+                                        <rect key="frame" x="8" y="553" width="374" height="104"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <connections>
+                                            <segue destination="mKr-iP-6LT" kind="embed" id="fYQ-rt-Io0"/>
+                                        </connections>
+                                    </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ds-sl-mPb">
                                         <rect key="frame" x="8" y="471" width="374" height="74"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -101,6 +108,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yau-fD-E4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1669" y="104"/>
+        </scene>
+        <!--Third Section View Controller-->
+        <scene sceneID="MsT-ek-Yhu">
+            <objects>
+                <viewController id="mKr-iP-6LT" customClass="ThirdSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eXG-Fu-2Vh">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="104"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="USq-uW-3WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668" y="269"/>
         </scene>
     </scenes>
     <resources>

@@ -17,7 +17,7 @@ class SecondSectionViewController: UIViewController{
     private var chargeText: UILabel!
     private var sectionBottom: UILabel!
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 152)
         setAllProperties()

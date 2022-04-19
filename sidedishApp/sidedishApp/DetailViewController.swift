@@ -14,7 +14,7 @@ class DetailViewController: UIViewController{
     @IBOutlet weak var secondSectionView: UIView!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         setViews()
     }
