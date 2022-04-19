@@ -14,7 +14,6 @@
 		00680798280D5195003C2808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00680797280D5195003C2808 /* Assets.xcassets */; };
 		0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00680799280D5195003C2808 /* LaunchScreen.storyboard */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
-		7868B42895BC4985CF209663 /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761DADD6ABB20B11FEA37018 /* Pods_sidedishApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		0068079A280D5195003C2808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0068079C280D5195003C2808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		761DADD6ABB20B11FEA37018 /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,7 +35,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7868B42895BC4985CF209663 /* Pods_sidedishApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +48,6 @@
 				0068078D280D5195003C2808 /* sidedishApp */,
 				0068078C280D5195003C2808 /* Products */,
 				F305D4E58A043511E6241E04 /* Pods */,
-				033CCDBC48383EE5B0100838 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,14 +71,6 @@
 				0068079C280D5195003C2808 /* Info.plist */,
 			);
 			path = sidedishApp;
-			sourceTree = "<group>";
-		};
-		033CCDBC48383EE5B0100838 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				761DADD6ABB20B11FEA37018 /* Pods_sidedishApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F305D4E58A043511E6241E04 /* Pods */ = {
