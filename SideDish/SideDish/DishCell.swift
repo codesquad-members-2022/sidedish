@@ -1,6 +1,8 @@
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class DishCell: UICollectionViewCell {
+
+    static let identifier = "DishCell"
 
     @IBOutlet weak var thumbNailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,6 +20,7 @@ class CollectionViewCell: UICollectionViewCell {
         titleLabel.text = title
         descriptionLabel.text = description
         finalPriceLabel.text = "\(finalPrice)원"
+        normalPriceLabel.text = ""
 
         if let normalPrice = normalPrice {
             let attributedStyle = NSUnderlineStyle.single
