@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		376A6B99280EA78B0016F0CE /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
 		B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C30280E9A1500A49273 /* AppDelegate.swift */; };
 		B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C32280E9A1500A49273 /* SceneDelegate.swift */; };
 		B50A0C35280E9A1500A49273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C34280E9A1500A49273 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		376A6B98280EA78B0016F0CE /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C30280E9A1500A49273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B50A0C32280E9A1500A49273 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		376A6B97280EA77E0016F0CE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				376A6B98280EA78B0016F0CE /* Food.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B50A0C24280E9A1500A49273 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		B50A0C2F280E9A1500A49273 /* SideDish */ = {
 			isa = PBXGroup;
 			children = (
+				376A6B97280EA77E0016F0CE /* Model */,
 				B50A0C30280E9A1500A49273 /* AppDelegate.swift */,
 				B50A0C32280E9A1500A49273 /* SceneDelegate.swift */,
 				B50A0C34280E9A1500A49273 /* ViewController.swift */,
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B50A0C35280E9A1500A49273 /* ViewController.swift in Sources */,
+				376A6B99280EA78B0016F0CE /* Food.swift in Sources */,
 				B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */,
 				B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */,
 			);
