@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		12F7B19F8BB88D58D2789E19 /* Pods_SideDishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4985BD619BB097A2B4FA5F5 /* Pods_SideDishApp.framework */; };
+		1ED9D3F9280D9D7300AEC888 /* mockImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ED9D3F8280D9D7300AEC888 /* mockImage.png */; };
+		1EE49019280D870E00B6CE60 /* OrderingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE49018280D870E00B6CE60 /* OrderingViewController.swift */; };
+		1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */; };
+		1EE4901F280D8A0600B6CE60 /* OrderingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */; };
+		1EE49025280D8D9A00B6CE60 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE49024280D8D9A00B6CE60 /* Constant.swift */; };
 		8D49F633280D533500613CE4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F632280D533500613CE4 /* EndPoint.swift */; };
 		8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F634280D534700613CE4 /* NetworkManager.swift */; };
 		8D49F637280D535800613CE4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F636280D535800613CE4 /* NetworkError.swift */; };
@@ -21,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1ED9D3F8280D9D7300AEC888 /* mockImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mockImage.png; sourceTree = "<group>"; };
+		1EE49018280D870E00B6CE60 /* OrderingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingViewController.swift; sourceTree = "<group>"; };
+		1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingCollectionViewCell.swift; sourceTree = "<group>"; };
+		1EE49024280D8D9A00B6CE60 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8D49F632280D533500613CE4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		8D49F634280D534700613CE4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8D49F636280D535800613CE4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -91,7 +101,12 @@
 		8D502977280CF9430068CCAC /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
+				1ED9D3F8280D9D7300AEC888 /* mockImage.png */,
+				1EE49024280D8D9A00B6CE60 /* Constant.swift */,
 				8D50297C280CF9430068CCAC /* ViewController.swift */,
+				1EE49018280D870E00B6CE60 /* OrderingViewController.swift */,
+				1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */,
+				1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */,
 				8D49F63B280D594000613CE4 /* SideDishInfo.swift */,
 				8D49F63A280D537400613CE4 /* Network */,
 				8D502986280CF9480068CCAC /* Info.plist */,
@@ -180,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED9D3F9280D9D7300AEC888 /* mockImage.png in Resources */,
 				8D502985280CF9480068CCAC /* LaunchScreen.storyboard in Resources */,
 				8D502982280CF9480068CCAC /* Assets.xcassets in Resources */,
 			);
@@ -255,7 +271,11 @@
 				8D49F63C280D594000613CE4 /* SideDishInfo.swift in Sources */,
 				8D502979280CF9430068CCAC /* AppDelegate.swift in Sources */,
 				8D49F639280D536800613CE4 /* HTTPMethod.swift in Sources */,
+				1EE4901F280D8A0600B6CE60 /* OrderingCollectionViewCell.swift in Sources */,
 				8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */,
+				1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */,
+				1EE49019280D870E00B6CE60 /* OrderingViewController.swift in Sources */,
+				1EE49025280D8D9A00B6CE60 /* Constant.swift in Sources */,
 				8D49F637280D535800613CE4 /* NetworkError.swift in Sources */,
 				8D49F633280D533500613CE4 /* EndPoint.swift in Sources */,
 				8D50297B280CF9430068CCAC /* SceneDelegate.swift in Sources */,
