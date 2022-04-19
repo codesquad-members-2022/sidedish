@@ -23,7 +23,7 @@ class BriefBanchanViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishGrey
+        label.textColor = UIColor.dishLightGrey
         label.text = "감질맛 나는 요리 설명"
         return label
     }()
@@ -41,7 +41,7 @@ class BriefBanchanViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishGrey
+        label.textColor = UIColor.dishLightGrey
         label.text = "15,800원"
         return label
     }()

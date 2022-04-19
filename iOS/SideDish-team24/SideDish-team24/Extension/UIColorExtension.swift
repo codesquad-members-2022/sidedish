@@ -3,8 +3,8 @@ import UIKit
 
 extension UIColor {
     static let dishBlack = UIColor(rgb: 0x010101)
-    static let dishGrey = UIColor(rgb: 0x828282)
-    static let dishLightGrey = UIColor(rgb: 0x4F4F4F)
+    static let dishLightGrey = UIColor(rgb: 0x828282)
+    static let dishGrey = UIColor(rgb: 0x4F4F4F)
     static let dishWhite = UIColor(rgb: 0xFFFFFF)
     static let dishBlue = UIColor(rgb: 0x0066D6)
     static let dishSkyBlue = UIColor(rgb: 0x80BCFF)

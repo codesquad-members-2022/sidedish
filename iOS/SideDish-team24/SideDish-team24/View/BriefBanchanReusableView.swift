@@ -8,7 +8,7 @@ class BriefBanchanReusableView: UICollectionReusableView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 32, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
+        label.textColor = UIColor.dishGrey
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2
         label.text = "모두가 좋아하는 \n든든한 요리 타이틀"
