@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Main from "./Main";
 import { Reset } from "styled-reset";
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <Reset />
       <Header></Header>
+      <Main></Main>
     </>
   );
 };
