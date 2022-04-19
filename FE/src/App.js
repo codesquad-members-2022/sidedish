@@ -1,16 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { GlobalStyles, colors } from "./globalStyles";
+import React from 'react';
 
-const Title = styled.span`
-  color: ${(props) => props.fontColor};
-`;
+import { GlobalStyles } from './globalStyles';
 
 function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      <Title fontColor={colors.fontWhite}>Hello</Title>
+      <h1>Hello</h1>
     </div>
   );
 }

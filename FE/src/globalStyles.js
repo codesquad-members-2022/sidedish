@@ -1,9 +1,9 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const colors = {
-  bgColor: "#F7F9FA",
-  fontWhite: "red",
+  bgColor: '#F7F9FA',
+  fontWhite: 'red',
 };
 
 export const GlobalStyles = createGlobalStyle`

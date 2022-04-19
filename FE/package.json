@@ -22,8 +22,27 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "airbnb-base"
+    ],
+    "rules": {
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal",
+            "index"
+          ],
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          },
+          "newlines-between": "always"
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -36,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "prettier": "^2.6.2"
   }
 }
