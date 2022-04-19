@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SidedishResult: Decodable {
+struct SidedishAPIResult: Decodable {
     let statusCode: Int
     let body: [Sidedish]
 }
