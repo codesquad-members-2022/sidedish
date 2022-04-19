@@ -63,18 +63,18 @@ class BriefBanchanViewCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
     private var breifStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     private var blank: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,6 @@ class BriefBanchanViewCell: UICollectionViewCell {
     }
     
     private func layout() {
-        let defaultInset: CGFloat = 8
         self.addSubview(self.dishImage)
         self.addSubview(self.breifStackView)
         self.addSubview(self.specialPrice)
@@ -102,12 +101,12 @@ class BriefBanchanViewCell: UICollectionViewCell {
             self.dishImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
             
-            self.breifStackView.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: defaultInset),
-            self.breifStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -defaultInset),
-            self.breifStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: defaultInset),
-            self.breifStackView.bottomAnchor.constraint(equalTo: self.specialPrice.topAnchor, constant: -defaultInset),
-
-            self.specialPrice.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: defaultInset),
+            self.breifStackView.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
+            self.breifStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -CGFloat.defaultInset),
+            self.breifStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset),
+            self.breifStackView.bottomAnchor.constraint(equalTo: self.specialPrice.topAnchor, constant: -CGFloat.defaultInset),
+            
+            self.specialPrice.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
             self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
             self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
             self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
