@@ -28,7 +28,6 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BriefBanchanViewCell.cellId, for: indexPath) as? BriefBanchanViewCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .red
         return cell
     }
     
