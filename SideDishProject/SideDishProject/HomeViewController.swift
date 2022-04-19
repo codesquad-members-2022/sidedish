@@ -8,7 +8,7 @@
 import UIKit
 import Toaster
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
