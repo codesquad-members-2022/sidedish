@@ -9,10 +9,14 @@ import UIKit
 
 class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var dishes: [String] = ["모두가 좋아하는 든든한 메인 요리", "b", "c"]
+    private var headers: [String] = [Constant.SectionHeaderTitle.main,
+                                     Constant.SectionHeaderTitle.soup,
+                                     Constant.SectionHeaderTitle.side]
+    
+    var menus: [Menu] = []
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return headers.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -25,23 +29,33 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             for: indexPath
         ) as? SectionHeaderView else { return UICollectionReusableView() }
         
-        supplementaryView.setTitle(title: dishes[indexPath.section])
+        supplementaryView.setTitle(title: headers[indexPath.section])
         return supplementaryView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dishes.count
+        return menus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.Identifier.orderingViewCell, for: indexPath) as? OrderingCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        //        cell.setImage(url:) 등등 cell에 대한 설정
-        //        cell.backgroundColor = .blue
-        //        cell.setLabel(text: dishes[indexPath.item])
+        configure(cell: cell, at: indexPath.item)
         return cell
     }
     
+    func fetch(dishes: [Menu]) {
+        self.menus = dishes
+    }
+    
+    func configure(cell: OrderingCollectionViewCell, at index: Int) {
+        let dish = menus[index]
+        
+        cell.setDishImage(by: dish.image)
+        cell.setMenuTitle(by: dish.title)
+        cell.setMenuDescription(by: dish.description)
+        cell.setMenuPrice(nPrice: dish.n_price, sPrice: dish.s_price)
+        cell.setBadges(by: dish.badge)
+    }
 }
