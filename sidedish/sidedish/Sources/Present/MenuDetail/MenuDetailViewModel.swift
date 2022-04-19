@@ -10,13 +10,15 @@ import Foundation
 
 struct MenuDetailViewModelAction {
     let loadMenuDetail = PassthroughSubject<Void, Never>()
-    let plusAmount = PassthroughSubject<Void, Never>()
-    let minusAmount = PassthroughSubject<Void, Never>()
+    let tappedPlusButton = PassthroughSubject<Void, Never>()
+    let tappedMinusButton = PassthroughSubject<Void, Never>()
+    let tappedOrderButton = PassthroughSubject<Void, Never>()
 }
 
 struct MenuDetailViewModelState {
     let loadedDetail = PassthroughSubject<(Sidedish, MenuDetail), Never>()
     let showError = PassthroughSubject<SessionError, Never>()
+    let ordered = PassthroughSubject<Void, Never>()
     let amount = CurrentValueSubject<Int, Never>(1)
 }
 
@@ -49,15 +51,10 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
             }
             .store(in: &cancellables)
         
-        requestDetail
-            .compactMap { $0.error }
-            .sink(receiveValue: state.showError.send(_:))
-            .store(in: &cancellables)
-        
         Publishers
             .Merge(
-                action.plusAmount.map { 1 },
-                action.minusAmount.map { -1 }
+                action.tappedPlusButton.map { 1 },
+                action.tappedMinusButton.map { -1 }
             )
             .map {
                 var amount = self.state.amount.value + $0
@@ -65,6 +62,15 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
                 return amount
             }
             .sink(receiveValue: state.amount.send(_:))
+            .store(in: &cancellables)
+        
+        action.tappedOrderButton
+            .sink(receiveValue: state.ordered.send(_:))
+            .store(in: &cancellables)
+        
+        requestDetail
+            .compactMap { $0.error }
+            .sink(receiveValue: state.showError.send(_:))
             .store(in: &cancellables)
     }
 }

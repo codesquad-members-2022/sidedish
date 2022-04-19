@@ -30,13 +30,21 @@ class MenuDetailViewController: UIViewController {
         return thumbnailView
     }()
     
-    private let menuInfoView: MenuInfoView = {
+    private let infoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 24
+        return stackView
+    }()
+    
+    private let infoView: MenuInfoView = {
         let infoView = MenuInfoView()
         infoView.translatesAutoresizingMaskIntoConstraints = false
         return infoView
     }()
     
-    private let menuSubInfoView: MenuSubInfoView = {
+    private let subInfoView: MenuSubInfoView = {
         let subInfoView = MenuSubInfoView()
         subInfoView.translatesAutoresizingMaskIntoConstraints = false
         return subInfoView
@@ -46,6 +54,12 @@ class MenuDetailViewController: UIViewController {
         let amountView = MenuAmountView()
         amountView.translatesAutoresizingMaskIntoConstraints = false
         return amountView
+    }()
+    
+    private let orderView: MenuOrderView = {
+        let orderView = MenuOrderView()
+        orderView.translatesAutoresizingMaskIntoConstraints = false
+        return orderView
     }()
     
     private var cancellables = Set<AnyCancellable>()
@@ -75,21 +89,21 @@ class MenuDetailViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { menu, detail in
                 self.title = detail.description
-                self.menuInfoView.setData(menu)
-                self.menuSubInfoView.setData(detail)
+                self.infoView.setData(menu)
+                self.subInfoView.setData(detail)
             }.store(in: &cancellables)
         
         model.state.showError
-            .sink {
-                print($0)
+            .sink { _ in
+                //TODO: 에러 처리
             }.store(in: &cancellables)
         
         amountView.plusPublisher
-            .sink(receiveValue: model.action.plusAmount.send(_:))
+            .sink(receiveValue: model.action.tappedPlusButton.send(_:))
             .store(in: &cancellables)
         
         amountView.minusPublisher
-            .sink(receiveValue: model.action.minusAmount.send(_:))
+            .sink(receiveValue: model.action.tappedMinusButton.send(_:))
             .store(in: &cancellables)
         
         model.state.amount
@@ -97,6 +111,15 @@ class MenuDetailViewController: UIViewController {
                 self.amountView.amount = $0
             }
             .store(in: &cancellables)
+        
+        orderView.orderPublisher
+            .sink(receiveValue: model.action.tappedOrderButton.send(_:))
+            .store(in: &cancellables)
+        
+        model.state.ordered
+            .sink {
+                // TODO: 주문완료 처리
+            }.store(in: &cancellables)
     }
     
     private func attribute() {
@@ -107,9 +130,12 @@ class MenuDetailViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(thumbnailImageView)
-        contentView.addSubview(menuInfoView)
-        contentView.addSubview(menuSubInfoView)
-        contentView.addSubview(amountView)
+        contentView.addSubview(infoStackView)
+        
+        let infoViews = [infoView, subInfoView, amountView, orderView]
+        infoViews.forEach {
+            infoStackView.addArrangedSubview($0)
+        }
         
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -131,19 +157,12 @@ class MenuDetailViewController: UIViewController {
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             thumbnailImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
             
-            menuInfoView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            menuInfoView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            menuInfoView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 24),
+            infoStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            infoStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            infoStackView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 24),
+            infoStackView.bottomAnchor.constraint(equalTo: infoViews[infoViews.count - 1].bottomAnchor),
             
-            menuSubInfoView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            menuSubInfoView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            menuSubInfoView.topAnchor.constraint(equalTo: menuInfoView.bottomAnchor, constant: 24),
-            
-            amountView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            amountView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            amountView.topAnchor.constraint(equalTo: menuSubInfoView.bottomAnchor, constant: 26),
-                        
-            contentView.bottomAnchor.constraint(equalTo: amountView.bottomAnchor),
+            contentView.bottomAnchor.constraint(equalTo: infoStackView.bottomAnchor),
             scrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: contentView.heightAnchor)
         ])
     }

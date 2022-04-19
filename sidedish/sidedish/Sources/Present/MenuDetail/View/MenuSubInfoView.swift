@@ -8,6 +8,15 @@
 import UIKit
 
 class MenuSubInfoView: UIView {
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
+    }()
+    
     private let pointLabel: KeyValueView = {
         let keyValueView = KeyValueView()
         keyValueView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,30 +56,24 @@ class MenuSubInfoView: UIView {
     }
     
     private func layout() {
-        addSubview(pointLabel)
-        addSubview(deliveryInfoLabel)
-        addSubview(deliveryPriceLabel)
-        addSubview(bottomBar)
+        addSubview(stackView)
+        stackView.addArrangedSubview(pointLabel)
+        stackView.addArrangedSubview(deliveryInfoLabel)
+        stackView.addArrangedSubview(deliveryPriceLabel)
+        stackView.addArrangedSubview(bottomBar)
+        
+        stackView.setCustomSpacing(24, after: deliveryPriceLabel)
         
         NSLayoutConstraint.activate([
-            pointLabel.topAnchor.constraint(equalTo: topAnchor),
-            pointLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            pointLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            deliveryInfoLabel.topAnchor.constraint(equalTo: pointLabel.bottomAnchor, constant: 16),
-            deliveryInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            deliveryInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            deliveryPriceLabel.topAnchor.constraint(equalTo: deliveryInfoLabel.bottomAnchor, constant: 16),
-            deliveryPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            deliveryPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            bottomBar.topAnchor.constraint(equalTo: deliveryPriceLabel.bottomAnchor, constant: 24),
-            bottomBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bottomBar.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomBar.heightAnchor.constraint(equalToConstant: 1),
             
-            bottomAnchor.constraint(equalTo: bottomBar.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: bottomBar.bottomAnchor),
+            
+            bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
         ])
     }
     

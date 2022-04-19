@@ -42,6 +42,7 @@
 		E0FAAA58280EE2AC00B36F4D /* MenuSubInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA57280EE2AC00B36F4D /* MenuSubInfoView.swift */; };
 		E0FAAA5A280EEC9500B36F4D /* MenuAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA59280EEC9500B36F4D /* MenuAmountView.swift */; };
 		E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA5B280EF52400B36F4D /* UIConrtol+Extension.swift */; };
+		E0FAAA5E280F120900B36F4D /* MenuOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA5D280F120900B36F4D /* MenuOrderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		E0FAAA57280EE2AC00B36F4D /* MenuSubInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSubInfoView.swift; sourceTree = "<group>"; };
 		E0FAAA59280EEC9500B36F4D /* MenuAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAmountView.swift; sourceTree = "<group>"; };
 		E0FAAA5B280EF52400B36F4D /* UIConrtol+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIConrtol+Extension.swift"; sourceTree = "<group>"; };
+		E0FAAA5D280F120900B36F4D /* MenuOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +325,7 @@
 				E0FAAA53280ECA3400B36F4D /* MenuInfoView.swift */,
 				E0FAAA57280EE2AC00B36F4D /* MenuSubInfoView.swift */,
 				E0FAAA59280EEC9500B36F4D /* MenuAmountView.swift */,
+				E0FAAA5D280F120900B36F4D /* MenuOrderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */,
 				E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */,
 				E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */,
+				E0FAAA5E280F120900B36F4D /* MenuOrderView.swift in Sources */,
 				E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */,
 				7345C9A9280E53AE00F89135 /* SidedishRepository.swift in Sources */,
 				E0FAAA36280D881900B36F4D /* RequestParser.swift in Sources */,
