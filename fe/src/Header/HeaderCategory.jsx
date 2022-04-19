@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
 const TitleWrapper = styled.ul`
+  height: 20px;
   color: #1b1b1b;
   font-weight: 400;
-  margin: 0 24px 16px 0;
+  margin-right: 24px;
   cursor: pointer;
 `;
 
 const SubTitle = styled.li`
-  margin: 8px 0;
+  padding: 8px 0;
+  &:first-child {
+    padding-top: 16px;
+  }
 `;
 
 export default function HeaderCategory({ open, category }) {

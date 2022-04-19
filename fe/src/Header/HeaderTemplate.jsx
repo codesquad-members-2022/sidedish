@@ -11,29 +11,25 @@ const HeaderTemplate = styled.header`
   display: flex;
   padding: 16px 80px;
   border-bottom: #1b1b1b 1px solid;
-  transition: height 0.15s ease-out;
+  transition: height 0.25s ease-out;
   height: ${(props) => (props.open ? '190px' : '83px')};
 `;
 
 const HeaderInnerTemplate = styled.div`
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const CategoryTemplate = styled.div`
   display: flex;
-  height: 83px;
-  transition: height 0.15s ease-out;
-  &:hover {
-    height: 190px;
-    transition: height 0.25s ease-in;
-  }
+  align-items: center;
 `;
 
 const IconTemplate = styled.div`
   display: flex;
-  align-items: center;
 `;
 
 export default function Template() {
