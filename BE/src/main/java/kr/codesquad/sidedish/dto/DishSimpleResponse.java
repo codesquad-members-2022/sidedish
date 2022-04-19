@@ -27,7 +27,7 @@ public class DishSimpleResponse {
         this.discountPolicy = discountPolicy;
     }
     public static DishSimpleResponse of(Dish dish, List<String> images) {
-        return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(), images,
+        return new DishSimpleResponse(dish.getId(), dish.getName(), "description", images,
                 dish.getStock(), dish.getPrice(), dish.getDiscountPolicy());
     }
 
