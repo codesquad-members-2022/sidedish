@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS items;
 
 CREATE TABLE items
 (
-    id            BIGINT,
+    id            VARCHAR(64),
     title         VARCHAR(64)  NOT NULL,
     description   VARCHAR(255) NOT NULL,
     price         DECIMAL      NOT NULL,
