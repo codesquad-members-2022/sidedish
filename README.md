@@ -19,6 +19,14 @@
 - team-02 : 메인 배포 브랜치
 - dev-BE : BE 브랜치
 - dev-FE : FE 브랜치
+- `feat-fe/{feature_issue_number}`: 프론트엔드 기능별 브랜치
+- `feat-be/{feature_issue_number}`: 백엔드 기능별 브랜치
+  - feature branch를 통한 개발이 끝나면 PR을 통해 develop branch에 merge한다.
+  - PR merge 후 해당 브랜치는 삭제한다.
+  - PR merge
+    - feature->develop은 클래스 별로 리뷰/확인했다는 comment(LGTM) 남겨주고 서로 merge
+    - develop->main은 이번 배포 주기에 대한 기능을 PR하고 동작 확인 후 merge
+    - 주차별 개발 목표 설정 후, 개발이 완료된 기능에 대해 배포 진행
 
 ## 🔥 그라운드 롤
 - 10:00 ~ 10:30 데일리 스크럼 진행
@@ -39,3 +47,4 @@
 + docs : 문서 수정
 + chore : 빌드 업무 수정, 패키지 매니저 수정
 + design : CSS 등 사용자 UI 디자인 변경
++ rename: 디렉토리 및 파일명 변경 
