@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SideDish</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="event_price">이벤트 특가</string>
+    <string name="limited_price">한정 특가</string>
+
+    <string name="reserves">적립금</string>
+    <string name="delivery_info">배송 정보</string>
+    <string name="delivery_price">배송비</string>
+    <string name="count">수량</string>
+    <string name="total_price">총 주문 금액</string>
+    <string name="order">주문하기</string>
+
+
 </resources>
