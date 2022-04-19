@@ -7,4 +7,5 @@
 
     <string name="text_tag_launching">런칭특가</string>
     <string name="text_tag_event">이벤트특가</string>
+    <string name="currency">%s원</string>
 </resources>
