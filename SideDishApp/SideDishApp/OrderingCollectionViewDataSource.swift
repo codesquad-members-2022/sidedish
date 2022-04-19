@@ -9,7 +9,25 @@ import UIKit
 
 class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var dishes: [String] = ["a", "b", "c"]
+    private var dishes: [String] = ["모두가 좋아하는 든든한 메인 요리", "b", "c"]
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: Constant.Identifier.sectionHeaderView,
+            for: indexPath
+        ) as? SectionHeaderView else { return UICollectionReusableView() }
+        
+        supplementaryView.setTitle(title: dishes[indexPath.section])
+        return supplementaryView
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dishes.count
@@ -20,9 +38,9 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-//        cell.setImage(url:) 등등 cell에 대한 설정
-//        cell.backgroundColor = .blue
-//        cell.setLabel(text: dishes[indexPath.item])
+        //        cell.setImage(url:) 등등 cell에 대한 설정
+        //        cell.backgroundColor = .blue
+        //        cell.setLabel(text: dishes[indexPath.item])
         return cell
     }
     

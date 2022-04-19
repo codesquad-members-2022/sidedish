@@ -10,5 +10,6 @@ import Foundation
 enum Constant {
     enum Identifier {
         static let orderingViewCell = "OrderingViewCellIdentifier"
+        static let sectionHeaderView = "sectionHeaderViewIdentifier"
     }
 }
