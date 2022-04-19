@@ -1,10 +1,11 @@
+import Header from "./Header";
 import { Reset } from "styled-reset";
 
 const App = () => {
   return (
     <>
       <Reset />
-      <div>hello world!</div>
+      <Header></Header>
     </>
   );
 };
