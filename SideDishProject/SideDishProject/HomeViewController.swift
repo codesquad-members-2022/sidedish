@@ -11,10 +11,12 @@ import Toaster
 class HomeViewController: UIViewController {
 
     private var productRepository: ProductRepository?
+    private lazy var homeView = HomeView(frame: view.frame)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        self.navigationItem.title = "order"
+        view = homeView
     }
 
     static func create(with repository: ProductRepository) -> HomeViewController {
