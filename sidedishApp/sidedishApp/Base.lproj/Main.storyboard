@@ -35,6 +35,11 @@
                                 <rect key="frame" x="0.0" y="44" width="390" height="800"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bc9-Gl-VrZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="657"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-kk-e7n">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="375"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -74,7 +79,9 @@
                         <outlet property="firstSectionView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
                         <outlet property="fullSizeScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
                         <outlet property="imageScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
+                        <outlet property="productInfoView" destination="bc9-Gl-VrZ" id="xQc-Lk-24W"/>
                         <outlet property="secondSectionView" destination="3ds-sl-mPb" id="zbJ-jH-g8h"/>
+                        <outlet property="thirdSectionView" destination="ugP-ya-KTg" id="OLG-Pf-RrC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjd-Qo-xaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,10 +9,12 @@ import UIKit
 
 class DetailViewController: UIViewController{
     @IBOutlet weak var fullSizeScrollView: UIScrollView!
+    
+    @IBOutlet weak var productInfoView: UIView!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var firstSectionView: UIView!
     @IBOutlet weak var secondSectionView: UIView!
-    
+    @IBOutlet weak var thirdSectionView: UIView!
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -27,9 +29,11 @@ private extension DetailViewController{
     }
     
     func addSubViews(){
-        self.fullSizeScrollView.addSubview(imageScrollView)
-        self.fullSizeScrollView.addSubview(firstSectionView)
-        self.fullSizeScrollView.addSubview(secondSectionView)
+        self.productInfoView.addSubview(imageScrollView)
+        self.productInfoView.addSubview(firstSectionView)
+        self.productInfoView.addSubview(secondSectionView)
+        self.productInfoView.addSubview(thirdSectionView)
+        self.fullSizeScrollView.addSubview(productInfoView)
         self.view.addSubview(fullSizeScrollView)
     }
     
@@ -40,22 +44,34 @@ private extension DetailViewController{
         fullSizeScrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         fullSizeScrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
         
+        productInfoView.translatesAutoresizingMaskIntoConstraints = false
+        productInfoView.leadingAnchor.constraint(equalTo: self.fullSizeScrollView.leadingAnchor).isActive = true
+        productInfoView.trailingAnchor.constraint(equalTo: self.fullSizeScrollView.trailingAnchor).isActive = true
+        productInfoView.topAnchor.constraint(equalTo: self.fullSizeScrollView.topAnchor).isActive = true
+        productInfoView.heightAnchor.constraint(equalToConstant: 977).isActive = true
+        
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
-        imageScrollView.leadingAnchor.constraint(equalTo: self.fullSizeScrollView.leadingAnchor).isActive = true
-        imageScrollView.topAnchor.constraint(equalTo: self.fullSizeScrollView.topAnchor).isActive = true
-        imageScrollView.widthAnchor.constraint(equalTo: self.fullSizeScrollView.widthAnchor).isActive = true
+        imageScrollView.leadingAnchor.constraint(equalTo: self.productInfoView.leadingAnchor).isActive = true
+        imageScrollView.topAnchor.constraint(equalTo: self.productInfoView.topAnchor).isActive = true
+        imageScrollView.widthAnchor.constraint(equalTo: self.productInfoView.widthAnchor).isActive = true
         imageScrollView.heightAnchor.constraint(equalToConstant: 376).isActive = true
         
         firstSectionView.translatesAutoresizingMaskIntoConstraints = false
         firstSectionView.topAnchor.constraint(equalTo: self.imageScrollView.bottomAnchor, constant: 24).isActive = true
-        firstSectionView.leadingAnchor.constraint(equalTo: self.fullSizeScrollView.leadingAnchor, constant: 16).isActive = true
-        firstSectionView.trailingAnchor.constraint(equalTo: self.fullSizeScrollView.trailingAnchor, constant: -16).isActive = true
+        firstSectionView.leadingAnchor.constraint(equalTo: self.productInfoView.leadingAnchor, constant: 16).isActive = true
+        firstSectionView.trailingAnchor.constraint(equalTo: self.productInfoView.trailingAnchor, constant: -16).isActive = true
         firstSectionView.heightAnchor.constraint(equalToConstant: 176).isActive = true
         
         secondSectionView.translatesAutoresizingMaskIntoConstraints = false
         secondSectionView.topAnchor.constraint(equalTo: self.firstSectionView.bottomAnchor).isActive = true
-        secondSectionView.leadingAnchor.constraint(equalTo: self.fullSizeScrollView.leadingAnchor, constant: 16).isActive = true
-        secondSectionView.trailingAnchor.constraint(equalTo: self.fullSizeScrollView.trailingAnchor, constant: -16).isActive = true
+        secondSectionView.leadingAnchor.constraint(equalTo: self.productInfoView.leadingAnchor, constant: 16).isActive = true
+        secondSectionView.trailingAnchor.constraint(equalTo: self.productInfoView.trailingAnchor, constant: -16).isActive = true
         secondSectionView.heightAnchor.constraint(equalToConstant: 152).isActive = true
+        
+        secondSectionView.translatesAutoresizingMaskIntoConstraints = false
+        secondSectionView.topAnchor.constraint(equalTo: self.secondSectionView.bottomAnchor).isActive = true
+        secondSectionView.bottomAnchor.constraint(equalTo: self.productInfoView.bottomAnchor).isActive = true
+        secondSectionView.leadingAnchor.constraint(equalTo: self.productInfoView.leadingAnchor, constant: 16).isActive = true
+        secondSectionView.trailingAnchor.constraint(equalTo: self.productInfoView.trailingAnchor, constant: -16).isActive = true
     }
 }
