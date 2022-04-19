@@ -1,0 +1,4 @@
+.card-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
