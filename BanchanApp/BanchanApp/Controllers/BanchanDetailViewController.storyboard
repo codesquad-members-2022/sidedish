@@ -140,7 +140,7 @@
                                                                     </stackView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPF-bZ-XNA">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPF-bZ-XNA" userLabel="Quantity">
                                                                 <rect key="frame" x="0.0" y="270.66666666666663" width="358" height="80"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="k9Y-79-znj" userLabel="QuantityStackView">
@@ -256,6 +256,11 @@
                             <constraint firstItem="7Ul-dQ-7FK" firstAttribute="height" secondItem="vDu-zF-Fre" secondAttribute="width" id="zDb-w6-6UB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="orderButton" destination="mqX-ek-pwf" id="HEB-74-U8t"/>
+                        <outlet property="quantityLabel" destination="Ige-b1-xVt" id="hBH-MF-rVG"/>
+                        <outlet property="quantityStepper" destination="7lS-o8-ebZ" id="eRn-xC-R3s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

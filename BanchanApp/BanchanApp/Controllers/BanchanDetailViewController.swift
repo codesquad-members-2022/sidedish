@@ -8,10 +8,16 @@
 import UIKit
 
 class BanchanDetailViewController: UIViewController {
+    @IBOutlet weak var orderButton: UIButton!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var quantityStepper: UIStepper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureUI()
+    }
 
-        // Do any additional setup after loading the view.
+    private func configureUI() {
+        
     }
 }
