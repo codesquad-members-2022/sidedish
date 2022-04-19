@@ -35,7 +35,7 @@ public class ProductController {
             }
     )
     @GetMapping("/products")
-    public ProductListResponse hello(@RequestParam("categoryId") Long categoryId) {
+    public ProductListResponse hello(@RequestParam Long categoryId) {
         return mockProductService.findProductList(categoryId);
     }
 }
