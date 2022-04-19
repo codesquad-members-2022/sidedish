@@ -3,27 +3,36 @@ import "./Tab.css";
 import React, { useState } from "react";
 
 const Tab = () => {
-  const arr = [
-    { id: 1, title: "풍성한 고기반찬" },
-    { id: 2, title: "편리한 반찬세트" },
-    { id: 3, title: "맛있는 제철요리" },
-    { id: 4, title: "우리 아이 영향 반찬" },
-  ];
-  const [isClicked, setIsClicked] = useState(false);
-  const [clickedId, setClickedId] = useState(1);
-  const onClickHandler = () => {
-    setIsClicked(true);
+  const [infor, setInfor] = useState([
+    { id: 1, title: "풍성한 고기반찬", active: true },
+    { id: 2, title: "편리한 반찬세트", active: false },
+    { id: 3, title: "맛있는 제철요리", active: false },
+    { id: 4, title: "우리 아이 영향 반찬", active: false },
+  ]);
+
+  const onChangeInfor = (clickedId) => {
+    const newInfor = infor.map((v) => {
+      return Object.assign(v, { active: false });
+    });
+    const newnew = newInfor.map((v) =>
+      v.id.toString() === clickedId
+        ? (v = Object.assign(v, { active: true }))
+        : v
+    );
+    setInfor(newnew);
   };
+
   return (
     <div>
       <ul className="tab-list">
-        {arr.map((v) => {
+        {infor.map((v) => {
           return (
             <List
               title={v.title}
               key={v.id}
               id={v.id}
-              onClick={onClickHandler}
+              className={v.active ? "active" : ""}
+              onSaveClickedID={onChangeInfor}
             />
           );
         })}
