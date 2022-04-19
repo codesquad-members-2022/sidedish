@@ -10,10 +10,16 @@ import Toaster
 
 class HomeViewController: UIViewController {
 
+    private var productRepository: ProductRepository?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         view.backgroundColor = .yellow
     }
 
+    static func create(with repository: ProductRepository) -> HomeViewController {
+        let viewController = HomeViewController()
+        viewController.productRepository = repository
+        return viewController
+    }
 }

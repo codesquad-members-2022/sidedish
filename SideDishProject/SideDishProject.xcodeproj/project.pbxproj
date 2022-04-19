@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4955D9DB5F283663061A4436 /* Pods_SideDishProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374E71EB8263F8F76D8FC434 /* Pods_SideDishProjectTests.framework */; };
 		6763F64C32FC04181C72137C /* Pods_SideDishProject_SideDishProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35015B93C0674ADEC6754E9C /* Pods_SideDishProject_SideDishProjectUITests.framework */; };
+		6FE405B8280E967800FD218C /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE405B7280E967800FD218C /* ProductRepository.swift */; };
 		729E885E280D8F700042ECC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E885D280D8F700042ECC9 /* AppDelegate.swift */; };
 		729E8860280D8F700042ECC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E885F280D8F700042ECC9 /* SceneDelegate.swift */; };
 		729E8862280D8F700042ECC9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E8861280D8F700042ECC9 /* HomeViewController.swift */; };
@@ -47,6 +48,7 @@
 		374E71EB8263F8F76D8FC434 /* Pods_SideDishProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E145105A2198454DA1D9B65 /* Pods-SideDishProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishProjectTests.release.xcconfig"; path = "Target Support Files/Pods-SideDishProjectTests/Pods-SideDishProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DDF0E8D53B04C80FFD11E5C /* Pods-SideDishProject-SideDishProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishProject-SideDishProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6FE405B7280E967800FD218C /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 		729E885A280D8F700042ECC9 /* SideDishProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E885D280D8F700042ECC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E885F280D8F700042ECC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				729E8868280D8F720042ECC9 /* LaunchScreen.storyboard */,
 				729E886B280D8F720042ECC9 /* Info.plist */,
 				72F9D2FE280E8D5B00EFA22F /* RootNavigationController.swift */,
+				6FE405B7280E967800FD218C /* ProductRepository.swift */,
 			);
 			path = SideDishProject;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			files = (
 				729E8862280D8F700042ECC9 /* HomeViewController.swift in Sources */,
 				72F9D2FF280E8D5B00EFA22F /* RootNavigationController.swift in Sources */,
+				6FE405B8280E967800FD218C /* ProductRepository.swift in Sources */,
 				729E885E280D8F700042ECC9 /* AppDelegate.swift in Sources */,
 				729E8860280D8F700042ECC9 /* SceneDelegate.swift in Sources */,
 			);
