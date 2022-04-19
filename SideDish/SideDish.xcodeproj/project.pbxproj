@@ -20,6 +20,7 @@
 		B50A0C4A280EEE4900A49273 /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C47280EEE4900A49273 /* soup.json */; };
 		B50A0C52280EEEB000A49273 /* FoodTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C51280EEEB000A49273 /* FoodTest.swift */; };
 		B50A0C59280EF19B00A49273 /* OrderingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
+		B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B50A0C4F280EEEB000A49273 /* SideDishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideDishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C51280EEEB000A49273 /* FoodTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTest.swift; sourceTree = "<group>"; };
 		B50A0C58280EF19B00A49273 /* OrderingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTest.swift; sourceTree = "<group>"; };
+		B50A0C5B280EF78E00A49273 /* JSONHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		B50A0C2F280E9A1500A49273 /* SideDish */ = {
 			isa = PBXGroup;
 			children = (
+				B50A0C5A280EF77E00A49273 /* Commmon */,
 				B50A0C44280EEE2F00A49273 /* Resources */,
 				376A6B97280EA77E0016F0CE /* Model */,
 				B50A0C30280E9A1500A49273 /* AppDelegate.swift */,
@@ -129,6 +132,14 @@
 				B50A0C58280EF19B00A49273 /* OrderingTest.swift */,
 			);
 			path = SideDishTests;
+			sourceTree = "<group>";
+		};
+		B50A0C5A280EF77E00A49273 /* Commmon */ = {
+			isa = PBXGroup;
+			children = (
+				B50A0C5B280EF78E00A49273 /* JSONHandler.swift */,
+			);
+			path = Commmon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +250,7 @@
 				376A6B99280EA78B0016F0CE /* Food.swift in Sources */,
 				376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */,
 				B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */,
+				B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */,
 				B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
