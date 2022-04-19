@@ -5,6 +5,7 @@
 //  Created by seongha shin on 2022/04/19.
 //
 
+import Combine
 import UIKit
 
 class MenuAmountView: UIView {
@@ -59,6 +60,20 @@ class MenuAmountView: UIView {
         view.backgroundColor = .grey3
         return view
     }()
+    
+    var plusPublisher: AnyPublisher<Void, Never> {
+        plusButton.publisher(for: .touchUpInside)
+    }
+    
+    var minusPublisher: AnyPublisher<Void, Never> {
+        minusButton.publisher(for: .touchUpInside)
+    }
+    
+    var amount: Int = 1 {
+        didSet {
+            amountLabel.text = "\(amount)"
+        }
+    }
     
     init() {
         super.init(frame: .zero)

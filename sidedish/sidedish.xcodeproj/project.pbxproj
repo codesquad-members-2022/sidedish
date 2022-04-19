@@ -41,6 +41,7 @@
 		E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA55280ED0C400B36F4D /* PaddingLabel.swift */; };
 		E0FAAA58280EE2AC00B36F4D /* MenuSubInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA57280EE2AC00B36F4D /* MenuSubInfoView.swift */; };
 		E0FAAA5A280EEC9500B36F4D /* MenuAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA59280EEC9500B36F4D /* MenuAmountView.swift */; };
+		E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA5B280EF52400B36F4D /* UIConrtol+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		E0FAAA55280ED0C400B36F4D /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		E0FAAA57280EE2AC00B36F4D /* MenuSubInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSubInfoView.swift; sourceTree = "<group>"; };
 		E0FAAA59280EEC9500B36F4D /* MenuAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAmountView.swift; sourceTree = "<group>"; };
+		E0FAAA5B280EF52400B36F4D /* UIConrtol+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIConrtol+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		E0EDD5B5280D184B00DBF9C6 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E0FAAA5B280EF52400B36F4D /* UIConrtol+Extension.swift */,
 				73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */,
 			);
 			path = Extension;
@@ -443,6 +446,7 @@
 				E0FAAA54280ECA3400B36F4D /* MenuInfoView.swift in Sources */,
 				73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */,
 				E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */,
+				E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */,
 				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
 				E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */,
 				E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */,
