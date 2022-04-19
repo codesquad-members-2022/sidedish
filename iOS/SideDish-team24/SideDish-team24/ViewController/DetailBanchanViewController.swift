@@ -2,6 +2,8 @@ import UIKit
 
 class DetailBanchanViewController: UIViewController {
     
+    static let identifier = "detailBanchanViewController"
+    
     private let scrollView = UIScrollView()
     private let innerView = UIView()
     
@@ -33,6 +35,8 @@ class DetailBanchanViewController: UIViewController {
             self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
             self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height)
         ])
+        
+        self.innerView.backgroundColor = .yellow
     }
     
     

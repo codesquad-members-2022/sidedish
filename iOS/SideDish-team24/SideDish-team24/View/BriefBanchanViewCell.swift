@@ -54,7 +54,7 @@ class BriefBanchanViewCell: UICollectionViewCell {
         label.textColor = UIColor.dishWhite
         label.backgroundColor = UIColor.dishBlue
         label.text = "특가 정보"
-        label.layer.cornerRadius = 13
+        label.layer.cornerRadius = 10
         label.clipsToBounds = true
         return label
     }()
