@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SaveFileService: CacheFileManagerAttribute {
+final class SaveFileService: CacheFileManagerAttribute {
     
     var locationCacheDir: URL {
         manager.urls(for: .libraryDirectory, in: .userDomainMask)[0] // get Dir urlPath.
