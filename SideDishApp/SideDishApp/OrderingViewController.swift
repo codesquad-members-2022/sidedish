@@ -13,8 +13,12 @@ class OrderingViewController: UIViewController {
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
     
     private var collectionViewLayout: UICollectionViewLayout {
+        let itemHeight: CGFloat = 130.0
+        let headerHeigth: CGFloat = 140.0
+        
         let layout = UICollectionViewFlowLayout()
-        let itemSize = CGSize(width: view.frame.width, height: 130)
+        let itemSize = CGSize(width: view.frame.width, height: itemHeight)
+        layout.headerReferenceSize = CGSize(width: view.frame.width, height: headerHeigth)
         layout.itemSize = itemSize
         return layout
     }
@@ -38,7 +42,11 @@ class OrderingViewController: UIViewController {
     }
     
     private func configureOrderingCollectionView() {
-        orderingCollectionView.register(OrderingCollectionViewCell.self, forCellWithReuseIdentifier: Constant.Identifier.orderingViewCell) //classForCoder가 무엇?
+        orderingCollectionView.register(OrderingCollectionViewCell.self, forCellWithReuseIdentifier: Constant.Identifier.orderingViewCell)
+        orderingCollectionView.register(SectionHeaderView.self,
+                                        forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                        withReuseIdentifier: Constant.Identifier.sectionHeaderView )
+        
         orderingCollectionView.dataSource = collectionViewDataSource
         
         orderingCollectionView.collectionViewLayout = collectionViewLayout

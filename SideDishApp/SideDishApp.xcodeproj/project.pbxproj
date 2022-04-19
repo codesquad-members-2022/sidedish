@@ -23,6 +23,7 @@
 		8D50297D280CF9430068CCAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D50297C280CF9430068CCAC /* ViewController.swift */; };
 		8D502982280CF9480068CCAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D502981280CF9480068CCAC /* Assets.xcassets */; };
 		8D502985280CF9480068CCAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D502983280CF9480068CCAC /* LaunchScreen.storyboard */; };
+		8DF7E1B9280E7FBA00C4A5AC /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		8D502981280CF9480068CCAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D502984280CF9480068CCAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D502986280CF9480068CCAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		AAF8D359193F5E92064E42DF /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B4ED30054AF0A15FA7CEB424 /* Pods-SideDishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.release.xcconfig"; sourceTree = "<group>"; };
 		F4985BD619BB097A2B4FA5F5 /* Pods_SideDishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 				1ED9D3F8280D9D7300AEC888 /* mockImage.png */,
 				1EE49024280D8D9A00B6CE60 /* Constant.swift */,
 				8D50297C280CF9430068CCAC /* ViewController.swift */,
+				8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */,
 				1EE49018280D870E00B6CE60 /* OrderingViewController.swift */,
 				1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */,
 				1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */,
@@ -279,6 +282,7 @@
 				8D49F637280D535800613CE4 /* NetworkError.swift in Sources */,
 				8D49F633280D533500613CE4 /* EndPoint.swift in Sources */,
 				8D50297B280CF9430068CCAC /* SceneDelegate.swift in Sources */,
+				8DF7E1B9280E7FBA00C4A5AC /* SectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
