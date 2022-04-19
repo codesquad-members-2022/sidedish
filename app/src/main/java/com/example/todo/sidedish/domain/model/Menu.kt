@@ -1,4 +1,4 @@
-package com.example.todo.sidedish.model
+package com.example.todo.sidedish.domain.model
 
 data class Menu(
     val detailHash: String,

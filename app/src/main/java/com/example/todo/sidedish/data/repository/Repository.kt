@@ -1,7 +1,7 @@
 package com.example.todo.sidedish.data.repository
 
 import com.example.todo.sidedish.common.Result
-import com.example.todo.sidedish.model.Menu
+import com.example.todo.sidedish.domain.model.Menu
 
 interface Repository {
 

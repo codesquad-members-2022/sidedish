@@ -1,7 +1,7 @@
 package com.example.todo.sidedish.data.dto
 
 
-import com.example.todo.sidedish.model.Menu
+import com.example.todo.sidedish.domain.model.Menu
 import com.google.gson.annotations.SerializedName
 
 data class MenuDto(

@@ -4,7 +4,7 @@ import com.example.todo.sidedish.common.Constants.NETWORK_ERROR_MESSAGE
 import com.example.todo.sidedish.common.Constants.STATUS_CODE_GET_SUCCESS
 import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.data.dto.toMenu
-import com.example.todo.sidedish.model.Menu
+import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.data.remote.DataSource
 import javax.inject.Inject
 
