@@ -7,7 +7,15 @@
 
 import UIKit
 
-class MenuInfoView: UIView {    
+class MenuInfoView: UIView {
+    private let infoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        return stackView
+    }()
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -26,13 +34,10 @@ class MenuInfoView: UIView {
         return label
     }()
     
-    private let priceStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .bottom
-        stackView.spacing = 8
-        return stackView
+    private let priceView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private let priceLabel: UILabel = {
@@ -51,6 +56,12 @@ class MenuInfoView: UIView {
         label.textAlignment = .left
         label.textColor = .grey2
         return label
+    }()
+    
+    private let badgeView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private let badgeStackView: UIStackView = {
@@ -79,35 +90,35 @@ class MenuInfoView: UIView {
     }
     
     private func layout() {
-        addSubview(nameLabel)
-        addSubview(descriptionLabel)
-        addSubview(priceStackView)
-        priceStackView.addArrangedSubview(priceLabel)
-        priceStackView.addArrangedSubview(salePriceLabel)
-        addSubview(badgeStackView)
-        addSubview(bottomBar)
+        addSubview(infoStackView)
+        infoStackView.addArrangedSubview(nameLabel)
+        infoStackView.addArrangedSubview(descriptionLabel)
+        infoStackView.addArrangedSubview(priceView)
+        infoStackView.addArrangedSubview(badgeView)
+        infoStackView.addArrangedSubview(bottomBar)
+        
+        priceView.addSubview(priceLabel)
+        priceView.addSubview(salePriceLabel)
+        
+        badgeView.addSubview(badgeStackView)
+        
+        infoStackView.setCustomSpacing(16, after: priceView)
+        infoStackView.setCustomSpacing(24, after: badgeView)
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            infoStackView.topAnchor.constraint(equalTo: topAnchor),
+            infoStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            infoStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            priceView.heightAnchor.constraint(equalTo: priceLabel.heightAnchor),
+            salePriceLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 8),
+            salePriceLabel.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor),
             
-            priceStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-            priceStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            priceStackView.trailingAnchor.constraint(equalTo: salePriceLabel.trailingAnchor),
-            priceStackView.heightAnchor.constraint(equalTo: priceLabel.heightAnchor),
+            badgeView.heightAnchor.constraint(equalToConstant: 24),
+            badgeStackView.topAnchor.constraint(equalTo: badgeView.topAnchor),
+            badgeStackView.bottomAnchor.constraint(equalTo: badgeView.bottomAnchor),
+            badgeStackView.leadingAnchor.constraint(equalTo: badgeView.leadingAnchor),
             
-            badgeStackView.topAnchor.constraint(equalTo: priceStackView.bottomAnchor, constant: 16),
-            badgeStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            badgeStackView.heightAnchor.constraint(equalToConstant: 24),
-            
-            bottomBar.topAnchor.constraint(equalTo: badgeStackView.bottomAnchor, constant: 24),
-            bottomBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bottomBar.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomBar.heightAnchor.constraint(equalToConstant: 1),
             
             bottomAnchor.constraint(equalTo: bottomBar.bottomAnchor)
@@ -117,8 +128,13 @@ class MenuInfoView: UIView {
     func setData(_ data: Sidedish) {
         nameLabel.text = data.title
         descriptionLabel.text = data.description
-        priceLabel.text = data.price
-        if let salePrice = data.salePrice {
+        setPrice(data.price, sale: data.salePrice)
+        setBadge(data.badge)
+    }
+    
+    private func setPrice(_ price: String, sale: String?) {
+        priceLabel.text = price
+        if let salePrice = sale {
             let attributeString = NSMutableAttributedString(string: salePrice)
             attributeString.addAttribute(.strikethroughStyle,
                                          value: NSUnderlineStyle.single.rawValue,
@@ -127,8 +143,10 @@ class MenuInfoView: UIView {
         } else {
             salePriceLabel.text = ""
         }
-        
-        data.badge?.forEach { badge in
+    }
+    
+    private func setBadge(_ badges: [String]?) {
+        badges?.forEach { badge in
             let paddingLabel = makeBadge()
             paddingLabel.text = badge
             switch badge {

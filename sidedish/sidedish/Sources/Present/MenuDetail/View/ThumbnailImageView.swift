@@ -8,8 +8,6 @@
 import UIKit
 
 class ThumbnailImageView: UIView {
-    
-    
     private let detailScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false

@@ -83,6 +83,20 @@ class MenuDetailViewController: UIViewController {
             .sink {
                 print($0)
             }.store(in: &cancellables)
+        
+        amountView.plusPublisher
+            .sink(receiveValue: model.action.plusAmount.send(_:))
+            .store(in: &cancellables)
+        
+        amountView.minusPublisher
+            .sink(receiveValue: model.action.minusAmount.send(_:))
+            .store(in: &cancellables)
+        
+        model.state.amount
+            .sink {
+                self.amountView.amount = $0
+            }
+            .store(in: &cancellables)
     }
     
     private func attribute() {

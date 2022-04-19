@@ -10,11 +10,14 @@ import Foundation
 
 struct MenuDetailViewModelAction {
     let loadMenuDetail = PassthroughSubject<Void, Never>()
+    let plusAmount = PassthroughSubject<Void, Never>()
+    let minusAmount = PassthroughSubject<Void, Never>()
 }
 
 struct MenuDetailViewModelState {
     let loadedDetail = PassthroughSubject<(Sidedish, MenuDetail), Never>()
     let showError = PassthroughSubject<SessionError, Never>()
+    let amount = CurrentValueSubject<Int, Never>(1)
 }
 
 protocol MenuDetailViewModelBinding {
@@ -49,6 +52,19 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
         requestDetail
             .compactMap { $0.error }
             .sink(receiveValue: state.showError.send(_:))
+            .store(in: &cancellables)
+        
+        Publishers
+            .Merge(
+                action.plusAmount.map { 1 },
+                action.minusAmount.map { -1 }
+            )
+            .map {
+                var amount = self.state.amount.value + $0
+                amount = amount < 0 ? 0 : amount
+                return amount
+            }
+            .sink(receiveValue: state.amount.send(_:))
             .store(in: &cancellables)
     }
 }
