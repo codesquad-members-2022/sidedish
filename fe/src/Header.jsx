@@ -1,7 +1,7 @@
 import { MenuList } from './MenuList';
 import styled from 'styled-components';
 
-const TopBar = styled.div`
+const StyledHeader = styled.div`
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -31,22 +31,22 @@ const cart = '/Shopping-cart.svg';
 
 export const Header = () => {
   return (
-    <TopBar>
+    <StyledHeader>
       <Logo>Ordering</Logo>
       <TopBarUI>
         <MenuList />
         <UserButtons>
           <button>
-            <img src={searchIcon} alt={} />
+            <img src={searchIcon} alt={""} />
           </button>
           <button>
-            <img src={mypage} alt={} />
+            <img src={mypage} alt={""} />
           </button>
           <button>
-            <img src={cart} alt={} />
+            <img src={cart} alt={""} />
           </button>
         </UserButtons>
       </TopBarUI>
-    </TopBar>
+    </StyledHeader>
   );
 };
