@@ -35,4 +35,7 @@ extension Sidedish {
     enum `Type` {
         case main, soup, side
     }
+    
+        // swiftlint:disable force_unwrapping
+    static let dummy = Sidedish(hash: "HBDEF", image: URL(string: "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg")!, title: "오리 주물럭_반조리", deliveryType: ["새벽배송", "전국택배"], description: "감칠맛 나는 매콤한 양념", price: "15,800원", salePrice: "12,640원", badge: ["런칭특가"])
 }

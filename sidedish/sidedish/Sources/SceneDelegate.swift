@@ -16,8 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         window?.overrideUserInterfaceStyle = .light
-        
-        let rootViewController = MainViewController()
+    
+        let rootViewController = MenuDetailViewController(model: MenuDetailViewModel(menu: Sidedish.dummy))
         let navigationViewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
