@@ -14,6 +14,7 @@
 		00680798280D5195003C2808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00680797280D5195003C2808 /* Assets.xcassets */; };
 		0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00680799280D5195003C2808 /* LaunchScreen.storyboard */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
+		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0068079A280D5195003C2808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0068079C280D5195003C2808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +51,7 @@
 				0068078D280D5195003C2808 /* sidedishApp */,
 				0068078C280D5195003C2808 /* Products */,
 				F305D4E58A043511E6241E04 /* Pods */,
+				54BAD4B7B23BC78239E4E567 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +77,14 @@
 			path = sidedishApp;
 			sourceTree = "<group>";
 		};
+		54BAD4B7B23BC78239E4E567 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F305D4E58A043511E6241E04 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 				00680787280D5195003C2808 /* Sources */,
 				00680788280D5195003C2808 /* Frameworks */,
 				00680789280D5195003C2808 /* Resources */,
+				BE16E58F819B29CBC2DE95B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +164,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		BE16E58F819B29CBC2DE95B3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sidedishApp/Pods-sidedishApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sidedishApp/Pods-sidedishApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sidedishApp/Pods-sidedishApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FC49A5054104846EB95A150E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

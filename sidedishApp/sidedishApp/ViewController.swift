@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toaster
 
 class ViewController: UIViewController {
     // origin용 주석처리
