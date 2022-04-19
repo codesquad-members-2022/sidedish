@@ -8,10 +8,10 @@ const fontSize = {
 };
 
 const fontWeight = {
-  logo: "90rem",
-  display: "70rem",
-  bold: "50rem",
-  regular: "40rem",
+  logo: "900",
+  display: "700",
+  bold: "500",
+  regular: "400",
 };
 
 const color = {
@@ -25,3 +25,11 @@ const color = {
   green: "#6DD028",
   orange: "#FF8E14",
 };
+
+const theme = {
+  fontSize,
+  fontWeight,
+  color,
+};
+
+export default theme;
