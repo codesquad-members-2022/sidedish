@@ -10,6 +10,10 @@
 		1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B56E65C280E45B60074E79F /* .swiftlint.yml */; };
 		81F02D81F7E6B09E33564B42 /* Pods_SideDish20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */; };
 		AE464DAF583682884F200E26 /* Pods_SideDish20_SideDish20UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */; };
+		D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A08280E589700997AC5 /* SF-Pro-Display-Regular.otf */; };
+		D0007A0B280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0A280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf */; };
+		D0007A0D280E590600997AC5 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */; };
+		D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */; };
 		D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */; };
 		D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */; };
 		D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDEB280D09AB00176BF9 /* ViewController.swift */; };
@@ -49,6 +53,10 @@
 		73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		940024B1548A4BB066A6B057 /* Pods-SideDish20Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20Tests.release.xcconfig"; path = "Target Support Files/Pods-SideDish20Tests/Pods-SideDish20Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C22EEDCDA8D87E486E49B31C /* Pods-SideDish20.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20.release.xcconfig"; path = "Target Support Files/Pods-SideDish20/Pods-SideDish20.release.xcconfig"; sourceTree = "<group>"; };
+		D0007A08280E589700997AC5 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		D0007A0A280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		D08FCDE4280D09AB00176BF9 /* SideDish20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +111,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D0007A07280E588300997AC5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */,
+				D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */,
+				D0007A0A280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf */,
+				D0007A08280E589700997AC5 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		D08FCDDB280D09AB00176BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +148,7 @@
 		D08FCDE6280D09AB00176BF9 /* SideDish20 */ = {
 			isa = PBXGroup;
 			children = (
+				D0007A07280E588300997AC5 /* Fonts */,
 				D08FCE18280D113500176BF9 /* Application */,
 				D08FCDEB280D09AB00176BF9 /* ViewController.swift */,
 				D08FCDED280D09AB00176BF9 /* Main.storyboard */,
@@ -288,10 +308,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0007A0B280E58BE00997AC5 /* SF-Pro-Display-Semibold.otf in Resources */,
 				1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */,
 				D08FCDF4280D09AD00176BF9 /* LaunchScreen.storyboard in Resources */,
 				D08FCDF1280D09AD00176BF9 /* Assets.xcassets in Resources */,
+				D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */,
 				D08FCDEF280D09AB00176BF9 /* Main.storyboard in Resources */,
+				D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */,
+				D0007A0D280E590600997AC5 /* SF-Pro-Display-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
