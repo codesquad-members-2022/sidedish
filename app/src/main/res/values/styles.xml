@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextLarge" parent="TextAppearance.MaterialComponents.Headline4" />
+
+    <style name="TextLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium" parent="TextAppearance.MaterialComponents.Headline5" />
+
+    <style name="TextMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmallBold" parent="TextAppearance.MaterialComponents.Subtitle2" />
+
+    <style name="TextSmallRegular" parent="TextAppearance.MaterialComponents.Body2" />
+
+    <style name="Caption" parent="TextAppearance.MaterialComponents.Caption" />
+
+</resources>
