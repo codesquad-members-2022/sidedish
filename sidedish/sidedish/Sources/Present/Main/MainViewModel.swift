@@ -30,7 +30,7 @@ class MainViewModel: MainViewModelBinding {
     
     init() {
         action.loadData
-            .map { self.sidedishRepository.loadMain() }
+            .map { self.sidedishRepository.loadMenu(.soup) }
             .switchToLatest()
             .sink { result in
                 print(result.error)
@@ -38,7 +38,6 @@ class MainViewModel: MainViewModelBinding {
                     return
                 }
                 print(sidedish)
-//                self.state.loadedData.send(1)
             }.store(in: &cancellables)
     }
 }
