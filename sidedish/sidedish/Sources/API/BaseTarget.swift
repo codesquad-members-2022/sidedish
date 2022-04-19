@@ -15,6 +15,6 @@ protocol BaseTarget {
 
 extension BaseTarget {
     var baseURL: URL? {
-        URL(string: "http://13.209.145.70:8080")
+        URL(string: "https://api.codesquad.kr/onban")
     }
 }

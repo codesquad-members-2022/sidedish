@@ -26,10 +26,19 @@ class MainViewModel: MainViewModelBinding {
     let state = MainViewModelState()
     private var cancellables = Set<AnyCancellable>()
     
+    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
+    
     init() {
         action.loadData
-            .sink {
-                self.state.loadedData.send(1)
+            .map { self.sidedishRepository.loadMain() }
+            .switchToLatest()
+            .sink { result in
+                print(result.error)
+                guard let sidedish = result.value else {
+                    return
+                }
+                print(sidedish)
+//                self.state.loadedData.send(1)
             }.store(in: &cancellables)
     }
 }
