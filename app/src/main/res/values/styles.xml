@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:includeFontPadding">false</item>
         <item name="android:fontFamily">@font/font_family</item>
     </style>
 
@@ -11,4 +13,39 @@
     <style name="customButtonFontStyle" parent="@android:style/Widget.DeviceDefault.Button">
         <item name="android:fontFamily">@font/font_family</item>
     </style>
+
+    <style name="TextLarge" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/font_family</item>
+    </style>
+
+    <style name="TextLarge.Bold" parent="TextLarge">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="fontFamily">@font/font_family</item>
+    </style>
+
+    <style name="TextMedium.Bold" parent="TextMedium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmall" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="fontFamily">@font/font_family</item>
+    </style>
+
+    <style name="TextSmall.Bold" parent="TextSmall">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="fontFamily">@font/font_family</item>
+    </style>
+
 </resources>
