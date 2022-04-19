@@ -9,9 +9,9 @@ import Combine
 import Foundation
 
 class SidedishRepositoryImpl: NetworkRepository<SidedishTarget>, SidedishRepository {
-    func loadMain() -> AnyPublisher<ApiResult<Sidedish, SessionError>, Never> {
+    func loadMain() -> AnyPublisher<ApiResult<[Sidedish], SessionError>, Never> {
         request(.loadMain)
-            .map { $0.decode(Sidedish.self) }
+            .map { $0.decode([Sidedish].self) }
             .eraseToAnyPublisher()
     }
 }
