@@ -1,0 +1,43 @@
+header {
+    display: flex;
+}
+
+.header__title {
+    width: 174px;
+    height: 50px;
+
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 50px;
+
+    color: #1b1b1b;
+}
+
+.header__nav {
+    display: flex;
+}
+
+.header__nav-list {
+    display: flex;
+}
+
+.header__food-title {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: -0.008em;
+    color: #1b1b1b;
+}
+
+.header__icons {
+    display: flex;
+}
+
+.header__icon-item {
+    width: 24px;
+    height: 24px;
+}
