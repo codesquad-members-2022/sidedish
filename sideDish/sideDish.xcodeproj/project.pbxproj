@@ -79,6 +79,7 @@
 		5BD52B51280D5DDD002099B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5BD52B55280E7F4C002099B7 /* FoodCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -87,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				5BD52B41280D5DD5002099B7 /* MainViewController.swift */,
-				5BD52B55280E7F4C002099B7 /* FoodCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
