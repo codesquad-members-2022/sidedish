@@ -7,13 +7,26 @@
 
 import Foundation
 
+typealias UniqueID = UUID
+
 struct Product{
+    let id: UniqueID
     let name: String
     let price: Int
-    let discription: String
+    let description: String
     let stock: Int
     let category: DishCategory
     let event: [ProductEvent]
+    
+    init(name: String, price: Int, description: String, stock: Int, category: DishCategory, event: [ProductEvent]) {
+        self.id = UUID()
+        self.name = name
+        self.price = price
+        self.description = description
+        self.stock = stock
+        self.category = category
+        self.event = event
+    }
 }
 
 enum DishCategory: CaseIterable, CustomStringConvertible{
