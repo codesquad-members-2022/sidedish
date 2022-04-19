@@ -4,7 +4,6 @@ import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.dto.DishSimpleResponse;
 import kr.codesquad.sidedish.repository.JdbcCategoryRepository;
 import kr.codesquad.sidedish.repository.JdbcDishRepository;
-import kr.codesquad.sidedish.repository.JdbcImageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
