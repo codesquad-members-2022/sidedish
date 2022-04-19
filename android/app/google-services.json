@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "532200461840-tebln6u1mdaitaqr96jog8pst0fgqavh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sidedish",
+            "certificate_hash": "02f5d21dda8de125c6195a1aa18d896f3129eee2"
+          }
+        },
+        {
           "client_id": "532200461840-37ht1tu682o0ekg1p8m61ig1gfhla9f0.apps.googleusercontent.com",
           "client_type": 3
         }
