@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		004EA4E0280E541000D365DB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 004EA4DF280E541000D365DB /* .swiftlint.yml */; };
+		029A88A2280E96330069E8B3 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029A88A0280E96330069E8B3 /* CollectionViewCell.swift */; };
+		029A88A3280E96330069E8B3 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029A88A1280E96330069E8B3 /* CollectionViewCell.xib */; };
 		2A3B3EC2280E9F78003F21F4 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB0280E9F77003F21F4 /* SF-Pro-Display-Black.otf */; };
 		2A3B3EC3280E9F78003F21F4 /* SF-Pro-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB1280E9F77003F21F4 /* SF-Pro-Display-Heavy.otf */; };
 		2A3B3EC4280E9F78003F21F4 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB2280E9F77003F21F4 /* SF-Pro-Display-Thin.otf */; };
@@ -59,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		004EA4DF280E541000D365DB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		029A88A0280E96330069E8B3 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		029A88A1280E96330069E8B3 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		05CA88970920716FAF533DFC /* Pods_SideDish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0610F82D47EF6C51A3403E55 /* Pods-SideDish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish.debug.xcconfig"; path = "Target Support Files/Pods-SideDish/Pods-SideDish.debug.xcconfig"; sourceTree = "<group>"; };
 		08B6432E83B949F7C197B7D3 /* Pods-SideDish-SideDishUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish-SideDishUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDish-SideDishUITests/Pods-SideDish-SideDishUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				2A3B3ED7280EA5B2003F21F4 /* Model */,
 				2A3B3ED5280EA57B003F21F4 /* ViewModel */,
 				2A3B3ED4280EA540003F21F4 /* View */,
+				029A88A1280E96330069E8B3 /* CollectionViewCell.xib */,
+				029A88A0280E96330069E8B3 /* CollectionViewCell.swift */,
 			);
 			path = SideDish;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 				2A50C1A6280D55F500AFF2F7 /* Assets.xcassets in Resources */,
 				2A3B3EC8280E9F78003F21F4 /* SF-Pro-Display-Medium.otf in Resources */,
 				2A50C1A1280D55F400AFF2F7 /* Main.storyboard in Resources */,
+				029A88A3280E96330069E8B3 /* CollectionViewCell.xib in Resources */,
 				2A3B3ECB280E9F78003F21F4 /* SF-Pro-Display-Semibold.otf in Resources */,
 				2A3B3EC3280E9F78003F21F4 /* SF-Pro-Display-Heavy.otf in Resources */,
 				2A3B3EC6280E9F78003F21F4 /* SF-Pro-Display-RegularItalic.otf in Resources */,
@@ -556,6 +563,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				029A88A2280E96330069E8B3 /* CollectionViewCell.swift in Sources */,
+				2A50C19E280D55F400AFF2F7 /* ViewController.swift in Sources */,
 				2A50C19A280D55F400AFF2F7 /* AppDelegate.swift in Sources */,
 				2A50C1A4280D55F400AFF2F7 /* SideDish.xcdatamodeld in Sources */,
 				2A50C19C280D55F400AFF2F7 /* SceneDelegate.swift in Sources */,
