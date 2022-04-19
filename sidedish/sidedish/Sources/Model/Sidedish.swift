@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct SidedishResult: Decodable {
+    let statusCode: Int
+    let body: [Sidedish]
+}
+
 struct Sidedish: Decodable {
     let hash: String
     let image: URL
