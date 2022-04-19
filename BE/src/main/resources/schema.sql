@@ -13,6 +13,8 @@ CREATE TABLE SUB_CATEGORY(
      FOREIGN KEY (main_category_id) references MAIN_CATEGORY(id)
 );
 
+
+drop table if exists DISH;
 CREATE TABLE DISH(
      id               BIGINT PRIMARY KEY AUTO_INCREMENT,
      main_category_id BIGINT,
@@ -29,6 +31,7 @@ CREATE TABLE DISH(
      foreign key (sub_category_id) references SUB_CATEGORY(id)
 );
 
+drop table if exists IMAGE;
 CREATE TABLE IMAGE(
       id      BIGINT PRIMARY KEY AUTO_INCREMENT,
       name    VARCHAR(50) not null,
