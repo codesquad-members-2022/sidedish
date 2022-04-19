@@ -1,4 +1,5 @@
 import UIKit
+import Toaster
 
 class ViewController: UIViewController {
 
