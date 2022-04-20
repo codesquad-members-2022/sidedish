@@ -1,1 +1,5 @@
 node_modules/
+<<<<<<< HEAD
+=======
+dist/
+>>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
