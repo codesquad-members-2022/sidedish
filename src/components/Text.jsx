@@ -22,7 +22,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   size: SIZE.BASE,
-  weight: WEIGHT.MEDIUM,
+  weight: WEIGHT.REGULAR,
   color: COLOR.BLACK,
   value: "",
 };
