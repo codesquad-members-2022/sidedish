@@ -10,6 +10,7 @@ const App = () => {
   const [soupData, setSoupData] = useState([]);
 
   useEffect(() => {
+    console.log(1);
     const mainCardUrl = 'data/mainCard.json';
     const mainDishUrl = 'data/mainDish.json';
     const sideDishUrl = 'data/sideDish.json';
@@ -24,7 +25,7 @@ const App = () => {
     getData(mainDishUrl, setMainDishData);
     getData(sideDishUrl, setSideDishData);
     getData(soupUrl, setSoupData);
-  }, [setMainCardData, setMainDishData, setSideDishData, setSoupData]);
+  }, [mainCardData, mainDishData, sideDishData, soupData]);
 
   return (
     <>
