@@ -16,12 +16,9 @@ const HeaderLogo = styled.span`
   ${Logo};
 `;
 const GNB = styled.div`
-  ${({theme}) =>
-          theme.custom_flex(`row`, `flex-start`, `center`) + theme.custom_absolute(28, null, null, 294) + theme.width_height_bypx(352)}
+  ${({theme}) => theme.custom_flex(`row`, `flex-start`, `center`) + theme.custom_absolute(28, null, null, 294) + theme.width_height_bypx(352)}
   padding: 0px;
   height: auto;
-  
-
 }
 `;
 const Icon = styled.div`
@@ -49,6 +46,7 @@ export const Header = () => {
         fetchCat();
     }, []);
     return (
+
         <HeaderWrap>
             <HeaderLogo>Ordering</HeaderLogo>
             <GNB onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>

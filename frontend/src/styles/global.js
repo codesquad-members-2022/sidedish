@@ -1,12 +1,13 @@
 import {createGlobalStyle, css} from "styled-components";
 import styled from "styled-components";
+
 export const Search = styled.svg`
   position: absolute;
   left: 12.5%;
   right: 14.62%;
   top: 12.5%;
   bottom: 14.62%;
-  color: ${({ theme }) => theme.colors.Black};
+  color: ${({theme}) => theme.colors.Black};
 `;
 export const MyPage = styled.svg`
   position: absolute;
@@ -24,23 +25,23 @@ export const ShoppingCart = styled.svg`
   bottom: 8.33%;
   color: ${(props) => props.theme.colors.Black};
 `;
-export const Left=styled.svg`
+export const Left = styled.svg`
   position: absolute;
   left: 37.5%;
   right: 37.5%;
   top: 25%;
   bottom: 25%;
-  border: 2px solid ${props=>props.color}
-  
+  border: 2px solid ${props => props.color}
+
 `;
 
-export const Right= styled.svg`
+export const Right = styled.svg`
   position: absolute;
   left: 37.5%;
   right: 37.5%;
   top: 25%;
   bottom: 25%;
-  border:2px solid ${props=>props.color};
+  border: 2px solid ${props => props.color};
 `
 export const Minus = styled.svg`
   position: absolute;
@@ -48,7 +49,7 @@ export const Minus = styled.svg`
   right: 28.12%;
   top: 50%;
   bottom: 50%;
-  border:2px solid ${props=>props.color};
+  border: 2px solid ${props => props.color};
 `
 export const Plushorizontal = styled.svg`
   position: absolute;
@@ -56,7 +57,7 @@ export const Plushorizontal = styled.svg`
   right: 28.12%;
   top: 50%;
   bottom: 50%;
-  border: 2px solid ${props=>props.color};
+  border: 2px solid ${props => props.color};
 `
 export const Plusvertical = styled.svg`
   position: absolute;
@@ -64,7 +65,7 @@ export const Plusvertical = styled.svg`
   right: 50%;
   top: 28.12%;
   bottom: 28.12%;
-  border: 2px solid ${props=>props.color};
+  border: 2px solid ${props => props.color};
 `
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -96,10 +97,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1;
-   position: relative;
-   width: 1440px;
-   height: 2844px;
-   background: #FFFFFF;
+    position: relative;
+    width: 1440px;
+    height: 2844px;
+    background: #FFFFFF;
   }
 
   ol, ul {
@@ -147,3 +148,4 @@ export const Typography = css`
   letter-spacing: -0.004em;
   color: #1B1B1B;
 `;
+
