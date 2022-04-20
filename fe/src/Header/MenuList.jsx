@@ -17,14 +17,14 @@ export const MenuList = () => {
     },
   ]);
 
-  const [isMouseEnter, setIsMouseEnter] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsMouseEnter(true);
+    setSubMenuOpen(true);
   };
 
   const handleMouseLeave = () => {
-    setIsMouseEnter(false);
+    setSubMenuOpen(false);
   };
 
   return (
@@ -33,7 +33,7 @@ export const MenuList = () => {
       onMouseLeave={handleMouseLeave}
     >
       {menuDatas.map((menuData, idx) => (
-        <Menu key={idx} menuData={menuData} isMouseEnter={isMouseEnter} />
+        <Menu key={idx} menuData={menuData} subMenuOpen={subMenuOpen} />
       ))}
     </Root>
   );

@@ -21,11 +21,11 @@ const SubMenuList = styled.ul`
   }
 `;
 
-export const Menu = ({ menuData: { mainMenu, subMenuList }, isMouseEnter }) => {
+export const Menu = ({ menuData: { mainMenu, subMenuList }, subMenuOpen }) => {
   return (
     <Root>
       <span>{mainMenu}</span>
-      {isMouseEnter ? (
+      {subMenuOpen ? (
         <SubMenuList>
           {subMenuList.map((subMenu, idx) => (
             <li key={idx}>{subMenu}</li>
