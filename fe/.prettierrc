@@ -4,5 +4,6 @@
   "useTabs": false,
   "tabWidth": 2,
   "printWidth": 80,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "endOfLine": "auto"
 }
