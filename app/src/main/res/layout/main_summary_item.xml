@@ -28,12 +28,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/summary_item_imageview_radius"
+            android:contentDescription="@string/food_image_desc_string"
             android:elevation="@dimen/elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            custom:image="@{foodInfo.image}"
-            android:contentDescription="@string/food_image_desc_string" />
+            custom:image="@{foodInfo.image}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_summary_layout"
@@ -116,16 +116,18 @@
                 android:id="@+id/event_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryLight"
-                android:text="@string/event_string" />
+                android:background="@drawable/curve_corner_light_purple"
+                android:text="@string/event_price"
+                android:textColor="@color/primary" />
 
             <TextView
                 android:id="@+id/launch_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:background="@color/grey4"
-                android:text="@string/launch_string" />
+                android:background="@drawable/curve_corner_purple"
+                android:text="@string/launch_price"
+                android:textColor="@color/primaryLight" />
 
         </LinearLayout>
 
