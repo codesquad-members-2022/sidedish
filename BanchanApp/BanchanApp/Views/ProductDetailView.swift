@@ -11,7 +11,7 @@ class ProductDetailView: UIView {
     
     private let title: UILabel = UILabel()
     private let menuDescription: UILabel = UILabel()
-    private let nomalPrice: UILabel? = UILabel()
+    private let normalPrice: UILabel? = UILabel()
     private let salePrice: UILabel = UILabel()
     private let badges: UIStackView = UIStackView()
     private let badgeList: [String] = ["런칭특가", "이벤트특가"]
@@ -29,7 +29,7 @@ class ProductDetailView: UIView {
     private func setup() {
         title.text = "오리 주물럭_반조리"
         menuDescription.text = "감칠맛 나는 매콤한 양념"
-        nomalPrice?.text = "12,640원"
+        normalPrice?.text = "12,640원"
         salePrice.text = "15,800원"
         badgeList.forEach {
             let badge = BadgeLabel(color: .systemBlue)
@@ -46,15 +46,16 @@ class ProductDetailView: UIView {
         menuDescription.font = .systemFont(ofSize: 14)
         menuDescription.textColor = .systemGray2
         salePrice.font = .systemFont(ofSize: 14, weight: .semibold)
-        nomalPrice?.font = .systemFont(ofSize: 14)
-        nomalPrice?.textColor = .systemGray2
-        nomalPrice?.applyStrikethoroughStyle()
+        normalPrice?.font = .systemFont(ofSize: 14)
+        normalPrice?.textColor = .systemGray2
+        normalPrice?.applyStrikethoroughStyle()
         
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
-        if let nomalPrice = nomalPrice {
-            priceStackView.addArrangedSubview(nomalPrice)
+        if let normalPrice = normalPrice {
+            priceStackView.addArrangedSubview(normalPrice)
         }
         priceStackView.axis = .horizontal
+        priceStackView.distribution = .fillProportionally
         
         let stackView: UIStackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
         stackView.axis = .vertical
@@ -70,15 +71,7 @@ class ProductDetailView: UIView {
             stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -13)
         ])
     }
-    
-    private func translateViews(_ views: [UIView?]) {
-        views.forEach {
-            if let view = $0 {
-                view.translatesAutoresizingMaskIntoConstraints = false
-            }
-        }
-    }
-    
+
 }
 
 extension UILabel {
@@ -96,7 +89,7 @@ extension UILabel {
 class BadgeLabel: UILabel {
     
     private var padding = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-
+    
     convenience init(color: UIColor) {
         self.init()
         setupStyle(with: color)
