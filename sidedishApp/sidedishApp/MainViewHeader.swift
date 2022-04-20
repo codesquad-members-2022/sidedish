@@ -46,18 +46,18 @@ class MainViewHeader: UICollectionReusableView {
     }
     
     private func setConstraints() {
-        setTitleLabelConstraint()
-        setCaptionLabelConstraint()
+        configureTitleLabelConstraint()
+        configureCaptionLabelConstraint()
     }
     
-    private func setTitleLabelConstraint() {
+    private func configureTitleLabelConstraint() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
     }
     
-    private func setCaptionLabelConstraint() {
+    private func configureCaptionLabelConstraint() {
         captionLabel.translatesAutoresizingMaskIntoConstraints = false
         captionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
         captionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true

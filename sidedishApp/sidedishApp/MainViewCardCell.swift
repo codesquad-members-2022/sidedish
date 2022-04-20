@@ -74,10 +74,10 @@ class MainViewCardCell: UICollectionViewCell {
         // MARK: 뱃지가 상황에 따라 표시되도록 해야 함
         if let badgeList = badgeList {
             if badgeList.contains(.eventPrice) {
-                setEventBadgeLabelConstraint()
+                configureEventBadgeLabelConstraint()
             }
             if badgeList.contains(.launchingPrice) {
-                setLaunchingBadgeLabelConstraint()
+                configureLaunchingBadgeLabelConstraint()
             }
         }
     }
@@ -94,14 +94,14 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     private func setUIConstraints() {
-        setCardImageViewConstraint()
-        setCardTitleLabelConstraint()
-        setCardBodyLabelConstraint()
-        setPriceLabelConstraint()
-        setDiscountedPriceLabelConstraint()
+        congifureCardImageViewConstraint()
+        configureCardTitleLabelConstraint()
+        configureCardBodyLabelConstraint()
+        configurePriceLabelConstraint()
+        configureDiscountedPriceLabelConstraint()
     }
     
-    private func setCardImageViewConstraint() {
+    private func congifureCardImageViewConstraint() {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
         cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
         cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
@@ -109,31 +109,31 @@ class MainViewCardCell: UICollectionViewCell {
         cardImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
     }
     
-    private func setCardTitleLabelConstraint() {
+    private func configureCardTitleLabelConstraint() {
         cardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardTitleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
         cardTitleLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setCardBodyLabelConstraint() {
+    private func configureCardBodyLabelConstraint() {
         cardBodyLabel.translatesAutoresizingMaskIntoConstraints = false
         cardBodyLabel.topAnchor.constraint(equalTo: cardTitleLabel.bottomAnchor, constant: 5).isActive = true
         cardBodyLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setPriceLabelConstraint() {
+    private func configurePriceLabelConstraint() {
         normalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         normalPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
         normalPriceLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setDiscountedPriceLabelConstraint() {
+    private func configureDiscountedPriceLabelConstraint() {
         salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
         salePriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
         salePriceLabel.leadingAnchor.constraint(equalTo: normalPriceLabel.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setEventBadgeLabelConstraint() {
+    private func configureEventBadgeLabelConstraint() {
         eventBadgeLabel.layer.cornerRadius = 5
         
         eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -141,7 +141,7 @@ class MainViewCardCell: UICollectionViewCell {
         eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setLaunchingBadgeLabelConstraint() {
+    private func configureLaunchingBadgeLabelConstraint() {
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
         launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5).isActive = true
