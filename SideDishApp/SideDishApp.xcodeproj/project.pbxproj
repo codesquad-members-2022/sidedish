@@ -29,6 +29,9 @@
 		BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */; };
 		BCFE4857280D5AE200F23DCE /* SideDishAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */; };
 		BCFE4859280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */; };
+		BCFE4894280F9C1F00F23DCE /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4893280F9C1F00F23DCE /* NetworkingManager.swift */; };
+		BCFE4895280F9C1F00F23DCE /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4893280F9C1F00F23DCE /* NetworkingManager.swift */; };
+		BCFE489A280F9C5700F23DCE /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4899280F9C5700F23DCE /* NetworkManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,8 @@
 		BCFE4852280D5AE200F23DCE /* SideDishAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideDishAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITests.swift; sourceTree = "<group>"; };
 		BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BCFE4893280F9C1F00F23DCE /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkingManager.swift; path = SideDishAppTests/NetworkingManager.swift; sourceTree = SOURCE_ROOT; };
+		BCFE4899280F9C5700F23DCE /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp_SideDishAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +190,7 @@
 			children = (
 				B7F90B2D280E86BD0067E4FE /* resources */,
 				B7F90B2B280E86200067E4FE /* DecordingTests.swift */,
+				BCFE4899280F9C5700F23DCE /* NetworkManagerTests.swift */,
 				BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */,
 			);
 			path = SideDishAppTests;
@@ -248,6 +254,7 @@
 		BCFE4886280D764400F23DCE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BCFE4893280F9C1F00F23DCE /* NetworkingManager.swift */,
 			);
 			name = Networking;
 			path = SideDishApp/Networking;
@@ -529,6 +536,7 @@
 				B7F90B24280E7C2A0067E4FE /* Product.swift in Sources */,
 				B7F90B37280EEA1F0067E4FE /* Extension.swift in Sources */,
 				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
+				BCFE4894280F9C1F00F23DCE /* NetworkingManager.swift in Sources */,
 				BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */,
 				B7F90B26280E7FE10067E4FE /* Delivery.swift in Sources */,
 				B7F90B33280EA7850067E4FE /* Category.swift in Sources */,
@@ -539,6 +547,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCFE489A280F9C5700F23DCE /* NetworkManagerTests.swift in Sources */,
+				BCFE4895280F9C1F00F23DCE /* NetworkingManager.swift in Sources */,
 				BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */,
 				B7F90B2C280E86200067E4FE /* DecordingTests.swift in Sources */,
 			);
