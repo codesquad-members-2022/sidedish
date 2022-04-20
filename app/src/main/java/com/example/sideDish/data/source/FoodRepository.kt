@@ -1,4 +1,7 @@
-package com.example.sideDish
+package com.example.sideDish.data.source
+
+import com.example.sideDish.data.FoodCategory
+import com.example.sideDish.data.Item
 
 class FoodRepository {
     fun getMainItems(): List<Item> {

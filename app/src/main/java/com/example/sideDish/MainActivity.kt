@@ -1,7 +1,8 @@
 package com.example.sideDish
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.sideDish.ui.foodlist.FoodListFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.container, CardListFragment())
+        transaction.add(R.id.container, FoodListFragment())
         transaction.commit()
     }
 }

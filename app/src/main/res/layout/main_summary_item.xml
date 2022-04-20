@@ -12,11 +12,11 @@
 
         <variable
             name="foodInfo"
-            type="com.example.sideDish.Item.FoodInfo" />
+            type="com.example.sideDish.data.Item.FoodInfo" />
 
         <variable
             name="viewmodel"
-            type="com.example.sideDish.MainViewModel" />
+            type="com.example.sideDish.ui.foodlist.FoodListViewModel" />
         
     </data>
 

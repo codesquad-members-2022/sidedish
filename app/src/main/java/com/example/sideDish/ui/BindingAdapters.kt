@@ -1,4 +1,4 @@
-package com.example.sideDish
+package com.example.sideDish.ui
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -12,4 +12,3 @@ fun setImage(view: ImageView, url: String?) {
             .into(view)
     }
 }
-

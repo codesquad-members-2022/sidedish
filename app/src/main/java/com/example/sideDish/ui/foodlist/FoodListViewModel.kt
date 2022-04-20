@@ -1,10 +1,13 @@
-package com.example.sideDish
+package com.example.sideDish.ui.foodlist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.sideDish.common.Event
+import com.example.sideDish.data.Item
+import com.example.sideDish.data.source.FoodRepository
 
-class MainViewModel(private val repository: FoodRepository) : ViewModel() {
+class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {
     private val _mainItems = MutableLiveData<List<Item>>()
     val mainItems: LiveData<List<Item>> = _mainItems
 

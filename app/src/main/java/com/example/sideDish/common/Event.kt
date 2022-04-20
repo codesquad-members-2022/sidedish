@@ -1,4 +1,4 @@
-package com.example.sideDish
+package com.example.sideDish.common
 
 import androidx.lifecycle.Observer
 

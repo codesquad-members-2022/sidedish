@@ -1,17 +1,19 @@
-package com.example.sideDish
+package com.example.sideDish.ui.foodlist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sideDish.R
+import com.example.sideDish.data.FoodCategory
+import com.example.sideDish.data.Item
 import com.example.sideDish.databinding.MainSummaryItemBinding
 import com.example.sideDish.databinding.SectionBinding
 
 private const val VIEW_TYPE_SECTION = 1
 private const val VIEW_TYPE_CONTENT = 2
 
-class FoodListAdapter(private val viewModel: MainViewModel) :
+class FoodListAdapter(private val viewModel: FoodListViewModel) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = mutableListOf<Item>()
 

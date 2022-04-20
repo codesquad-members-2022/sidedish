@@ -1,5 +1,4 @@
-package com.example.sideDish
-
+package com.example.sideDish.data
 
 sealed class Item {
 

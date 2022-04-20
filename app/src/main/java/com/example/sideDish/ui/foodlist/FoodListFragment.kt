@@ -1,33 +1,36 @@
-package com.example.sideDish
+package com.example.sideDish.ui.foodlist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sideDish.common.EventObserver
+import com.example.sideDish.R
+import com.example.sideDish.common.ViewModelFactory
+import com.example.sideDish.data.FoodCategory
+import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.ui.productdetail.ProductDetailFragment
 
-class CardListFragment : Fragment() {
+class FoodListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: MainViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var viewModel: FoodListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val layout = inflater.inflate(R.layout.fragment_card_list, container, false)
+        val layout = inflater.inflate(R.layout.fragment_food_list, container, false)
         recyclerView = layout.findViewById(R.id.recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(
             this,
             ViewModelFactory(FoodRepository())
-        ).get(MainViewModel::class.java)
+        ).get(FoodListViewModel::class.java)
 
         val adapter = FoodListAdapter(viewModel)
         recyclerView.adapter = adapter
