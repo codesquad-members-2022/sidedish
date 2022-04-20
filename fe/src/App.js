@@ -1,5 +1,5 @@
-import Reset from "./Reset";
-import Normalize from "./Normalize";
+import Reset from "./Styles/Reset";
+import Normalize from "./Styles/Normalize";
 import Header from "./Component/Header/Header";
 import Main from "./Component/Main/Main";
 
