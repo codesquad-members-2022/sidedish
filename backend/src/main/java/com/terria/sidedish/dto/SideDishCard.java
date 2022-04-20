@@ -17,11 +17,13 @@ public class SideDishCard {
     private String imageUrl;
     private String name;
     private String description;
-    private double disCountPrice;
+    private int disCountPrice;
     private int price;
-    private List<String> discountEvents;
+    private List<EventResponse> discountEvents;
 
-    public static SideDishCard of(SideDish sideDish, SideDishImage sideDishImage, List<DiscountEvent> discountEvents) {
+    public static SideDishCard from(SideDish sideDish,
+                                  SideDishImage sideDishImage,
+                                  List<DiscountEvent> discountEvents) {
 
         double totalDiscountRate = discountEvents.stream()
                 .mapToDouble(DiscountEvent::getDiscountRate)
@@ -32,9 +34,20 @@ public class SideDishCard {
                 sideDishImage.getImageUrl(),
                 sideDish.getName(),
                 sideDish.getDescription(),
-                sideDish.getPrice() * (1.0 - totalDiscountRate),
+                (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 100 * 100,
                 sideDish.getPrice(),
-                discountEvents.stream().map(DiscountEvent::getTitle).collect(Collectors.toList())
+                discountEvents.stream().map(EventResponse::from).collect(Collectors.toList())
         );
+    }
+
+    @AllArgsConstructor
+    static class EventResponse {
+
+        private long id;
+        private String title;
+
+        public static EventResponse from(DiscountEvent discountEvent) {
+            return new EventResponse(discountEvent.getId(), discountEvent.getTitle());
+        }
     }
 }
