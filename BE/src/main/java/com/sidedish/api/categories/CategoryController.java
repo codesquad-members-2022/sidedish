@@ -1,6 +1,9 @@
 package com.sidedish.api.categories;
 
 import com.sidedish.api.categories.dto.ItemResource;
+import com.sidedish.api.categories.dto.ResponseCategoryTypeDto;
+import com.sidedish.api.categories.dto.ResponseItems;
+import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
 import com.sidedish.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +38,14 @@ public class CategoryController {
         responseMainType.add(linkTo(methodOn(CategoryController.class).getMain(pageId+1)).withRel("next-page"));
 
         return responseMainType;
+    }
+
+    @GetMapping("/sidedish/{pageId}")
+    public ResponseItems getSideDish(@PathVariable Long pageId) {
+        List<Item> items = categoryService.findItemsByPageId(pageId);
+
+        List<ResponseCategoryTypeDto> responseSidedishType = items.stream().map(ResponseCategoryTypeDto::new).collect(Collectors.toList());
+
+        return new ResponseItems(CategoryType.SIDE, responseSidedishType);
     }
 }

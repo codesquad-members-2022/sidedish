@@ -4,9 +4,11 @@ import com.sidedish.domain.Badge;
 import com.sidedish.domain.Item;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class ResponseMainDto {
+import lombok.Getter;
+
+@Getter
+public class ResponseCategoryTypeDto {
 
     private String title;
     private String description;
@@ -14,7 +16,7 @@ public class ResponseMainDto {
     private Badge badge;
     private BigDecimal discountPrice;
 
-    public ResponseMainDto(Item item) {
+    public ResponseCategoryTypeDto(Item item) {
         this.title = item.getTitle();
         this.description = item.getDescription();
         this.price = item.getPrice();

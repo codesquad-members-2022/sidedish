@@ -34,6 +34,7 @@ public class initDB {
 
         public void init(){
             Category mainCategory = new Category(CategoryType.MAIN);
+            Category sidedishCategory = new Category(CategoryType.SIDE);
 
             Item newItem1 = new Item("고기1", "맛있는 고기1", BigDecimal.valueOf(10000),
                     10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
@@ -48,7 +49,21 @@ public class initDB {
             mainCategory.saveItem(newItem2);
             mainCategory.saveItem(newItem3);
 
+            Item newItem4 = new Item("콩나물1", "맛있는 콩나물1", BigDecimal.valueOf(10000),
+                    10.0, Badge.EVENT, "풍성한 콩나물 반찬", 10, BigDecimal.valueOf(100), "html");
+
+            Item newItem5 = new Item("콩나물2", "맛있는 콩나물2", BigDecimal.valueOf(10000),
+                    10.0, Badge.EVENT, "풍성한 콩나물 반찬", 10, BigDecimal.valueOf(100), "html");
+
+            Item newItem6 = new Item("콩나물3", "맛있는 콩나물3", BigDecimal.valueOf(10000),
+                    10.0, Badge.EVENT, "풍성한 콩나물 반찬", 10, BigDecimal.valueOf(100), "html");
+
+            sidedishCategory.saveItem(newItem4);
+            sidedishCategory.saveItem(newItem5);
+            sidedishCategory.saveItem(newItem6);
+
             categoryRepository.save(mainCategory);
+            categoryRepository.save(sidedishCategory);
         }
     }
 }
