@@ -30,7 +30,7 @@ const ItemInfo = styled.div`
     ${({ theme }) => theme.fontStyles.smallRegular};
   }
 
-  .item__sale-price {
+  .item__default-price {
     margin-right: 8px;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fontStyles.mediumBold};
@@ -70,11 +70,19 @@ const ThemeTabList = ({ items }) => {
           <p className="item__title">{item.title}</p>
           <p className="item__desc">{item.desc}</p>
           {item.salePrice ? (
-            <span className="item__sale-price">{Number(item.salePrice).toLocaleString()}원</span>
+            <>
+              <span className="item__default-price">
+                {Number(item.salePrice).toLocaleString()}원
+              </span>
+              <span className="item__normal-price">
+                {Number(item.normalPrice).toLocaleString()}원
+              </span>
+            </>
           ) : (
-            ''
+            <span className="item__default-price">
+              {Number(item.normalPrice).toLocaleString()}원
+            </span>
           )}
-          <span className="item__normal-price">{Number(item.normalPrice).toLocaleString()}원</span>
         </ItemInfo>
         {item.tag ? <ItemTag tag={item.tag}>{item.tag}</ItemTag> : ''}
       </TabItem>

@@ -14,6 +14,10 @@ const SubTitle = styled.li`
   &:first-child {
     padding-top: 16px;
   }
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default function HeaderCategory({ open, category }) {

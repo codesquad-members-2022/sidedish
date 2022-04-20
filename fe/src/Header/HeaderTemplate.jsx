@@ -45,7 +45,7 @@ export default function Template() {
   const [open, setOpen] = useState(false);
   const categoryTexts = [
     {
-      main: '든든한메인요리',
+      main: '든든한 메인요리',
       sub: ['육류 요리', '해산물 요리'],
     },
     { main: '뜨끈한 국물요리', sub: ['국/탕/찌개'] },
