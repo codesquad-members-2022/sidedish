@@ -61,7 +61,6 @@ class FoodCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-
     }
     
 }
