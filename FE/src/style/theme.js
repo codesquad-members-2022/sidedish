@@ -7,7 +7,6 @@ const fontSize = {
 };
 
 const fontWeight = {
-  logo: 900,
   display: 700,
   bold: 500,
   regular: 400,
@@ -15,7 +14,6 @@ const fontWeight = {
 
 const fontFamily = {
   default: 'Noto Sans KR',
-  logo: 'Outfit',
 };
 
 const colors = {
