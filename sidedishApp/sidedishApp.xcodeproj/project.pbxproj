@@ -24,6 +24,7 @@
 		D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF622280E887F00507878 /* FirstSectionViewController.swift */; };
 		D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */; };
 		D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */; };
+		D2DC5844280FE9A700AC6281 /* SFProDisplay-Regular.OTF in Resources */ = {isa = PBXBuildFile; fileRef = D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		D2ADF622280E887F00507878 /* FirstSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionViewController.swift; sourceTree = "<group>"; };
 		D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionViewController.swift; sourceTree = "<group>"; };
 		D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionViewController.swift; sourceTree = "<group>"; };
+		D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.OTF"; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +88,6 @@
 			children = (
 				0068078E280D5195003C2808 /* AppDelegate.swift */,
 				00680790280D5195003C2808 /* SceneDelegate.swift */,
-				00680792280D5195003C2808 /* ViewController.swift */,
 				D2ADF61E280E7A0100507878 /* DetailViewController.swift */,
 				D2ADF622280E887F00507878 /* FirstSectionViewController.swift */,
 				D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */,
@@ -100,6 +101,7 @@
 				00680797280D5195003C2808 /* Assets.xcassets */,
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
 				0068079C280D5195003C2808 /* Info.plist */,
+				D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */,
 			);
 			path = sidedishApp;
 			sourceTree = "<group>";
@@ -193,6 +195,7 @@
 				00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */,
 				0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */,
 				00680798280D5195003C2808 /* Assets.xcassets in Resources */,
+				D2DC5844280FE9A700AC6281 /* SFProDisplay-Regular.OTF in Resources */,
 				00680796280D5195003C2808 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,7 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */,
-				00680793280D5195003C2808 /* ViewController.swift in Sources */,
+				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
 				D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */,
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
