@@ -57,6 +57,7 @@ struct Endpoint: Endpointable {
 
 enum EndPointCase {
     case get(category: Category)
+    case getDetail(hash: String)
     
     var endpoint: Endpointable {
         switch self {
@@ -65,8 +66,14 @@ enum EndPointCase {
                             baseURL: .main,
                             path: .get(category: category),
                             headers: ["Content-Type": "application/json"],
-                            body: nil
-            )
+                            body: nil)
+            
+        case .getDetail(let hash):
+            return Endpoint(httpMethod: .get,
+                            baseURL: .main,
+                            path: .getDetail(hash: hash),
+                            headers: ["Content-Type": "application/json"],
+                            body: nil)
         }
     }
 }
@@ -84,12 +91,15 @@ enum BaseURL {
 
 enum Path {
     case get(category: Category)
+    case getDetail(hash: String)
     case post
     
     var pathString: String {
         switch self {
         case .get(let category):
             return "\(category)"
+        case .getDetail(let hash):
+            return "detail/\(hash)"
         case .post:
             return "main"
         }
