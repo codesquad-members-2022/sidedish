@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 import sidedish.jbc.domain.MenuType;
 import sidedish.jbc.dto.ResponseMenu;
 import sidedish.jbc.service.MenuService;
@@ -32,7 +31,7 @@ public class MenuController {
 	@GetMapping("/main")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<ResponseMenu> main() {
+	public List<ResponseMenu> find() {
 		return menuService.findMenu(MenuType.MAIN);
 	}
 
@@ -49,5 +48,4 @@ public class MenuController {
 	public List<ResponseMenu> side() {
 		return menuService.findMenu(MenuType.SIDE);
 	}
-
 }
