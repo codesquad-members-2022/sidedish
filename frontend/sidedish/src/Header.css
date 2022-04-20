@@ -1,7 +1,10 @@
 header {
-    display: flex;
-    padding: 25px;
     border-bottom: 1px solid black;
+}
+.header {
+    display: flex;
+    margin: 25px auto;
+    width: 1280px;
 }
 .header__title {
     font-family: "Outfit";

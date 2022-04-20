@@ -12,21 +12,25 @@ function SidedischCard() {
                     />
                 </div>
                 <div className="big-sidedish__card-item">
-                    <h3 className="big-sidedish__card-name">
-                        오리 주물럭_반조리
-                    </h3>
-                    <p className="big-sidedish__card-description">
-                        감칠맛 나는 매콤한 양념
-                    </p>
-                    <div className="big-sidedish__card-prices">
-                        <span className="big-sidedish__card-price">
-                            12,640원
-                        </span>
-                        <span className="big-sidedish__card-price">
-                            15,800원
-                        </span>
+                    <div className="big-sidedish__card-item--text">
+                        <h3 className="big-sidedish__card-name">
+                            오리 주물럭_반조리
+                        </h3>
+                        <p className="big-sidedish__card-description">
+                            감칠맛 나는 매콤한 양념
+                        </p>
+                        <div className="big-sidedish__card-prices">
+                            <span className="big-sidedish__card-price--default">
+                                12,640원
+                            </span>
+                            <span className="big-sidedish__card-price--option">
+                                15,800원
+                            </span>
+                        </div>
                     </div>
-                    <p className="big-sidedish__card-tag">런칭특가</p>
+                    <span className="big-sidedish__card-tag--launch">
+                        런칭특가
+                    </span>
                 </div>
             </li>
         </ul>
