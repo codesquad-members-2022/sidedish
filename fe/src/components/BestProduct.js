@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { applyFlex } from '../helper/utils';
+import { TapList } from './BestProduct/TapList.js';
+import { TapMenu } from './BestProduct/TapMenu.js';
 
 const CategoryBadge = styled.div`
   font-family: 'Noto Sans KR';
@@ -40,7 +42,7 @@ const Title = styled.h1`
   line-height: 58px;
 `;
 
-const TabBar = styled.ul`
+const TapBar = styled.ul`
   ${props => applyFlex(props)};
   margin-top: 24px;
   li {
@@ -58,28 +60,50 @@ const TabBar = styled.ul`
   }
 `;
 
-function TabMenu(props) {
-  if (!props.menus) {
-    return ``;
-  }
-  return props.menus.map(menu => menu.title).map((menu, idx) => <li key={idx}>{menu}</li>);
-}
-
 export function BestProduct() {
-  const [bestProductTab, setBestProductTab] = useState(null);
+  const [bestProductTap, setBestProductTap] = useState(null);
+  const [tapList, setTapList] = useState(null);
   useEffect(() => {
-    const tabMenus = [
-      { title: '풍성한 고기반찬', api: 'http:??' },
-      { title: '편리한 반찬 세트', api: 'http:??' },
-      { title: '맛있는 제철 요리', api: 'http:??' },
-      { title: '우리 아이 영양 반찬', api: 'http:??' },
+    const tapMenus = [
+      { title: '풍성한 고기반찬', id: 0 },
+      { title: '편리한 반찬 세트', id: 1 },
+      { title: '맛있는 제철 요리', id: 2 },
+      { title: '우리 아이 영양 반찬', id: 3 },
     ];
-    setBestProductTab(tabMenus);
+    setBestProductTap(tapMenus);
   }, []);
 
   useEffect(() => {
-    console.log(document.querySelectorAll('li'));
-  }, [bestProductTab]);
+    if (!bestProductTap) return;
+    const targetId = bestProductTap[0].id;
+    // http://rumka.com/bestproduct/id
+    const duck = {
+      src: '/img' + '/' + targetId + '/오리주물럭.png',
+      title: '오리주물럭',
+      content: '감칠맛 나는 매콤한 양념',
+      price: '15,800원',
+      cutPrice: '12,640원',
+      discount: ['런칭특가'],
+    };
+    const cow = {
+      src: '/img' + '/' + targetId + '/소갈비찜.png',
+      title: '소갈비찜',
+      content: '촉촉하게 벤 양념이 일품',
+      price: '28,900원',
+      cutPrice: '26,010원',
+      discount: ['이벤트특가'],
+    };
+    const pig = {
+      src: '/img' + '/' + targetId + '/쭈꾸 한돈 제육볶음.png',
+      title: '쭈꾸미 한돈 제육볶음_반조리',
+      content: '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품',
+      price: '16,900원',
+      cutPrice: '16,900원',
+      discount: null,
+    };
+    const srcArr = [duck, cow, pig];
+    setTapList(srcArr);
+  }, [bestProductTap]);
 
   return (
     <StyledBestProduct>
@@ -89,12 +113,11 @@ export function BestProduct() {
           <Title>한 번 주문하면 두 번 반하는 반찬</Title>
         </TitleWrapper>
 
-        <TabBar flex>
-          <TabMenu menus={bestProductTab}></TabMenu>
-        </TabBar>
+        <TapBar flex>
+          <TapMenu menus={bestProductTap}></TapMenu>
+        </TapBar>
       </BestProductHeader>
+      <TapList tapList={tapList}></TapList>
     </StyledBestProduct>
   );
 }
-
-// bestProductTab : {"title":"풍성한 고기반찬", "api":"http:bangdler.com/"}
