@@ -15,11 +15,14 @@ header {
     display: flex;
     width: 100%;
     margin-left: 40px;
+    cursor: pointer;
 }
 .header__nav-list {
     display: flex;
     gap: 24px;
-    align-items: flex-end;
+    margin-top: 23px;
+    align-items: flex-start;
+    padding-bottom: 10px;
 }
 .header__food-title {
     font-family: "Noto Sans KR";
@@ -38,9 +41,10 @@ header {
 }
 .header__icons {
     display: flex;
-    margin-left: auto;
     gap: 25px;
-    align-items: center;
+    margin-top: 23px;
+    margin-left: auto;
+    align-items: flex-start;
 }
 .header__icon-item {
     width: 24px;
@@ -53,6 +57,10 @@ header {
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.008em;
+}
+.header__food-item:hover {
+    color: #777;
+    text-decoration: underline;
 }
 .hidden {
     display: none;
