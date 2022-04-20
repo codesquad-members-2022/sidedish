@@ -1,4 +1,4 @@
-package com.example.sidedish;
+package com.sidedish;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
