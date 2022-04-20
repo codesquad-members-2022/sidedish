@@ -79,6 +79,18 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         fatalError("init with coder is unavailable")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        prepareForReuse(stackView: priceStackView)
+        prepareForReuse(stackView: badgeStackView)
+    }
+    
+    private func prepareForReuse(stackView: UIStackView) {
+        stackView.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
+    
     private func setUpView() {
         contentView.addSubview(cellView)
         cellView.addSubview(dishImageView)
@@ -117,11 +129,6 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Providing Function
-
-enum BadgeType {
-    case launchingPrice
-    case eventPrice
-}
 
 extension OrderingCollectionViewCell {
     func setDishImage(by imageName: String) {
@@ -164,18 +171,6 @@ extension OrderingCollectionViewCell {
                                      range: NSRange(location: 0, length: attributeString.length))
         label.textColor = .systemGray
         label.attributedText = attributeString
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        prepareForReuse(stackView: priceStackView)
-        prepareForReuse(stackView: badgeStackView)
-    }
-    
-    private func prepareForReuse(stackView: UIStackView) {
-        stackView.subviews.forEach {
-            $0.removeFromSuperview()
-        }
     }
     
     func setBadges(by types: [String]?) {
