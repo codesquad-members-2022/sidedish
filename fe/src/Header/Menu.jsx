@@ -5,7 +5,7 @@ const Root = styled.li`
 `;
 
 const SubMenuList = styled.ul`
-  margin-top: 16px;
+  margin: 16px 0;
 
   li {
     font-size: 14px;
@@ -26,7 +26,7 @@ export const Menu = ({ menuData: { mainMenu, subMenuList }, subMenuOpen }) => {
     <Root>
       <span>{mainMenu}</span>
       {subMenuOpen ? (
-        <SubMenuList>
+        <SubMenuList className={"fonts-sm"}>
           {subMenuList.map((subMenu, idx) => (
             <li key={idx}>{subMenu}</li>
           ))}
