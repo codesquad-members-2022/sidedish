@@ -1,26 +1,24 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import TabList from './ThemeTabList';
+import RecommendTabList from './RecommendTabList';
 
-const TabBar = styled.ul`
+const RecommendTabBar = styled.ul`
   display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0 0 0 80px;
+  padding-left: 80px;
 `;
 
-const TabBarItem = styled.li`
+const RecommendTabBarItem = styled.li`
   margin-right: 32px;
-  font-size: 20px;
-  line-height: 30px;
+  padding-bottom: 17px;
   text-align: center;
   cursor: pointer;
-
   ${(props) =>
     props.focus === props.id &&
     css`
       border-bottom: 2px solid #1b1b1b;
     `}
+  ${({ theme }) => theme.fontStyles.largeBold};
 `;
 
 const items = [
@@ -158,7 +156,7 @@ const items = [
   },
 ];
 
-const ThemeTab = () => {
+const RecommendTab = () => {
   const [focus, setFocus] = useState(1);
   const onClick = (e) => {
     const id = e.currentTarget.id;
@@ -166,18 +164,18 @@ const ThemeTab = () => {
   };
   const tabBarList = items.map((item) => {
     return (
-      <TabBarItem key={item.id} id={item.id} onClick={onClick} focus={focus}>
+      <RecommendTabBarItem key={item.id} id={item.id} onClick={onClick} focus={focus}>
         <p>{item.title}</p>
-      </TabBarItem>
+      </RecommendTabBarItem>
     );
   });
 
   return (
     <>
-      <TabBar>{tabBarList}</TabBar>
-      <TabList items={items[focus - 1]}></TabList>
+      <RecommendTabBar>{tabBarList}</RecommendTabBar>
+      <RecommendTabList items={items[focus - 1]}></RecommendTabList>
     </>
   );
 };
 
-export default ThemeTab;
+export default RecommendTab;
