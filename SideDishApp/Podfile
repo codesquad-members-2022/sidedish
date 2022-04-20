@@ -6,6 +6,7 @@ target 'SideDishApp' do
   use_frameworks!
   pod 'SwiftLint'
   pod 'Toast-Swift', '~> 5.0.0'
+  pod 'Alamofire'
 
   # Pods for SideDishApp
 
@@ -14,12 +15,14 @@ target 'SideDishApp' do
     # Pods for testing
     pod 'SwiftLint'
     pod 'Toast-Swift', '~> 5.0.0'
+    pod 'Alamofire'
   end
 
   target 'SideDishAppUITests' do
     # Pods for testing
     pod 'SwiftLint'
     pod 'Toast-Swift', '~> 5.0.0'
+    pod 'Alamofire'
   end
 
 end
