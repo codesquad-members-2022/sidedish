@@ -1,5 +1,4 @@
 import Header from './components/Header';
-
 import GlobalStyles from './GlobalStyles';
 
 const categories = [
