@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RoundedBig">
+        <item name="cornerSize">5dp</item>
+    </style>
+
+    <style name="TextLarge" parent="TextAppearance.MaterialComponents.Headline4" />
+
+    <style name="TextLarge.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium" parent="TextAppearance.MaterialComponents.Headline5" />
+
+    <style name="TextMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmallBold" parent="TextAppearance.MaterialComponents.Subtitle2" />
+
+    <style name="TextSmallBold.Grey2">
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
+    <style name="TextSmallRegular" parent="TextAppearance.MaterialComponents.Body2" />
+
+    <style name="TextSmallRegular.Grey2">
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
+    <style name="Caption" parent="TextAppearance.MaterialComponents.Caption" />
+
+    <style name="Caption.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Caption.Purple2">
+        <item name="android:textColor">@color/purple2</item>
+    </style>
+</resources>
