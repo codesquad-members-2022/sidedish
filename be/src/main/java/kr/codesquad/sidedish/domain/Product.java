@@ -4,18 +4,19 @@ import kr.codesquad.sidedish.dto.ResponseProduct;
 
 public class Product {
 
-	private int code;
-	private String name;
-	private String content;
-	private int price;
-	private int quantity;
-	private String dishType;
-	private String sideDishType;
-	private String applyEvent;
-	private String imgUrl;
+	private final int id;
+	private final String name;
+	private final String content;
+	private final int price;
+	private final int quantity;
+	private final String dishType;
+	private final String sideDishType;
+	private final String applyEvent;
+	private final String imgUrl;
 
-	public Product(String name, String content, int price, int quantity, String dishType,
+	public Product(int id, String name, String content, int price, int quantity, String dishType,
 		String sideDishType, String applyEvent, String imgUrl) {
+		this.id = id;
 		this.name = name;
 		this.content = content;
 		this.price = price;
@@ -27,13 +28,14 @@ public class Product {
 	}
 
 	public static Product updateQuantity(Product product, int quantity) {
-		return new Product(product.getName(), product.getContent(), product.getPrice(), quantity,
+		return new Product(product.getId(), product.getName(), product.getContent(),
+			product.getPrice(), quantity,
 			product.getDishType(), product.getSideDishType(), product.getApplyEvent(),
 			product.getImgUrl());
 	}
 
-	public int getCode() {
-		return code;
+	public int getId() {
+		return id;
 	}
 
 	public String getName() {
@@ -69,7 +71,7 @@ public class Product {
 	}
 
 	public ResponseProduct createResponseProduct() {
-		return new ResponseProduct(code, name, content, price, quantity, dishType, sideDishType,
+		return new ResponseProduct(id, name, content, price, quantity, dishType, sideDishType,
 			applyEvent, imgUrl);
 	}
 
