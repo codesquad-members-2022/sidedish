@@ -59,7 +59,12 @@
 =======
 		BCFE48B0280FDBB700F23DCE /* 1155_ZIP_P_0081_T.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCFE48AF280FDBB700F23DCE /* 1155_ZIP_P_0081_T.jpg */; };
 		BCFE48B1280FDBB700F23DCE /* 1155_ZIP_P_0081_T.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCFE48AF280FDBB700F23DCE /* 1155_ZIP_P_0081_T.jpg */; };
+<<<<<<< HEAD
 >>>>>>> e97ca8d ([#7] Feat: Add ImageFetch to NetworkManager & add test case)
+=======
+		BCFE48B3280FE61F00F23DCE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE48B2280FE61F00F23DCE /* NetworkError.swift */; };
+		BCFE48B4280FE61F00F23DCE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE48B2280FE61F00F23DCE /* NetworkError.swift */; };
+>>>>>>> d36a00f ([#7] Refactor: extract URL construction logic as makeCategoryURL())
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +131,11 @@
 >>>>>>> ac4b5e3 ([#7] Feat: Add fetch Category to CategoryManager)
 =======
 		BCFE48AF280FDBB700F23DCE /* 1155_ZIP_P_0081_T.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1155_ZIP_P_0081_T.jpg; sourceTree = "<group>"; };
+<<<<<<< HEAD
 >>>>>>> e97ca8d ([#7] Feat: Add ImageFetch to NetworkManager & add test case)
+=======
+		BCFE48B2280FE61F00F23DCE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+>>>>>>> d36a00f ([#7] Refactor: extract URL construction logic as makeCategoryURL())
 		D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp_SideDishAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -312,7 +321,12 @@
 		BCFE4886280D764400F23DCE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				B7F90B4B280FE10C0067E4FE /* NetworkManager.swift */,
+=======
+				BCFE4893280F9C1F00F23DCE /* NetworkManager.swift */,
+				BCFE48B2280FE61F00F23DCE /* NetworkError.swift */,
+>>>>>>> d36a00f ([#7] Refactor: extract URL construction logic as makeCategoryURL())
 			);
 			name = Networking;
 			path = SideDishApp/Networking;
@@ -606,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7F90B2A280E7FF30067E4FE /* Badge.swift in Sources */,
+				BCFE48B3280FE61F00F23DCE /* NetworkError.swift in Sources */,
 				B7F90B28280E7FEC0067E4FE /* Money.swift in Sources */,
 				B7F90B35280EE1C20067E4FE /* ProductType.swift in Sources */,
 				B7F90B4C280FE10C0067E4FE /* NetworkManager.swift in Sources */,
@@ -642,6 +657,7 @@
 				BCFE48A8280FD61500F23DCE /* CategoryManager.swift in Sources */,
 				B7F90B2C280E86200067E4FE /* DecordingTests.swift in Sources */,
 				BCFE489D280FA8CC00F23DCE /* ProductType.swift in Sources */,
+				BCFE48B4280FE61F00F23DCE /* NetworkError.swift in Sources */,
 				BCFE48AE280FD98300F23DCE /* Extension.swift in Sources */,
 				BCFE489F280FA8D900F23DCE /* Money.swift in Sources */,
 				BCFE48A0280FA8DC00F23DCE /* Badge.swift in Sources */,
