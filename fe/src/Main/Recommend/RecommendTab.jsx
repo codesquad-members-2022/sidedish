@@ -5,7 +5,6 @@ import RecommendTabList from './RecommendTabList';
 const RecommendTabBar = styled.ul`
   display: flex;
   list-style: none;
-  padding-left: 80px;
 `;
 
 const RecommendTabBarItem = styled.li`

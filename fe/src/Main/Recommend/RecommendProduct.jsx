@@ -6,7 +6,6 @@ const RecommendWrapper = styled.div`
 `;
 
 const RecommendInner = styled.div`
-  padding: 0 80px;
   margin-bottom: 24px;
   display: flex;
   align-items: flex-start;

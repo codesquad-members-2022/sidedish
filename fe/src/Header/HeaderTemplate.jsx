@@ -17,12 +17,18 @@ const HeaderIcon = styled.img`
   margin: 0 12px;
 `;
 
-const HeaderTemplate = styled.header`
+const HeaderWrapper = styled.div`
   display: flex;
-  padding: 16px 80px;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 80px;
+`;
+
+const HeaderTemplate = styled.header`
+  padding: 16px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.black};
   transition: height 0.25s ease-out;
-  height: ${(props) => (props.open ? '190px' : '50px')};
+  height: ${(props) => (props.open ? '190px' : '80px')};
 `;
 
 const HeaderInnerTemplate = styled.div`
@@ -71,13 +77,15 @@ export default function Template() {
 
   return (
     <HeaderTemplate open={open}>
-      <HeaderLogo>Ordering</HeaderLogo>
-      <HeaderInnerTemplate>
-        <CategoryTemplate onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-          {categoryList}
-        </CategoryTemplate>
-        <IconTemplate>{iconList}</IconTemplate>
-      </HeaderInnerTemplate>
+      <HeaderWrapper>
+        <HeaderLogo>Ordering</HeaderLogo>
+        <HeaderInnerTemplate>
+          <CategoryTemplate onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+            {categoryList}
+          </CategoryTemplate>
+          <IconTemplate>{iconList}</IconTemplate>
+        </HeaderInnerTemplate>
+      </HeaderWrapper>
     </HeaderTemplate>
   );
 }

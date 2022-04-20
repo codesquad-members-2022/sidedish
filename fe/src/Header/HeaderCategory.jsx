@@ -5,7 +5,9 @@ const TitleWrapper = styled.ul`
   margin-right: 24px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.black};
-  ${({ theme }) => theme.fontStyles.xSmallRegular};
+  font-weight: 400;
+  lien-height: 18px;
+  font-size: 16px;
 `;
 
 const SubTitle = styled.li`
