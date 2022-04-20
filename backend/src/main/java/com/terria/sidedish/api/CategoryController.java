@@ -39,8 +39,8 @@ public class CategoryController {
                     message = "서버 에러"
             )
     })
-    @GetMapping("/divisions/{divisionId}")
-    public ResponseEntity<List<Category>> getGroupByDivisionId(@PathVariable long divisionId) {
+    @GetMapping("/exhibitions/{exhibitionId}")
+    public ResponseEntity<List<Category>> getGroupByDivisionId(@PathVariable long exhibitionId) {
         return ResponseEntity.ok().build();
     }
 }
