@@ -1,0 +1,111 @@
+[
+ [
+    {
+        "detail_hash":"HBDEF",
+        "image":"tempFood",
+        "alt":"오리 주물럭_반조리",
+        "delivery_type":[
+           "새벽배송",
+           "전국택배"
+        ],
+        "title":"오리 주물럭_반조리",
+        "description":"감칠맛 나는 매콤한 양념",
+        "n_price":"15,800원",
+        "s_price":"12,640원",
+        "badge":[
+           "런칭특가"
+        ]
+     },
+     {
+        "detail_hash":"HDF73",
+        "image":"tempFood",
+        "alt":"잡채",
+        "delivery_type":[
+           "새벽배송",
+           "전국택배"
+        ],
+        "title":"잡채",
+        "description":"탱글한 면발과 맛깔진 고명이 가득",
+        "n_price":"12,900원",
+        "s_price":"11,610원",
+        "badge":[
+           "이벤트특가"
+        ]
+    }
+ ],
+ 
+ 
+ 
+ 
+ 
+ [
+     {
+         "detail_hash":"HBDEF",
+         "image":"tempFood",
+         "alt":"한돈 돼지 김치찌개",
+         "delivery_type":[
+            "새벽배송",
+            "전국택배"
+         ],
+         "title":"한돈 돼지 김치찌개",
+         "description":"김치찌개에는 역시 돼지고기",
+         "n_price":"15,800원",
+         "s_price":"12,640원",
+         "badge":[
+            "런칭특가"
+         ]
+      },
+      {
+         "detail_hash":"HDF73",
+         "image":"tempFood",
+         "alt":"미역오이냉국",
+         "delivery_type":[
+            "새벽배송",
+            "전국택배"
+         ],
+         "title":"미역오이냉국",
+         "description":"탱글한 면발과 맛깔진 고명이 가득",
+         "n_price":"12,900원",
+         "s_price":"11,610원",
+         "badge":[
+            "이벤트특가"
+         ]
+     }
+ ],
+ 
+ [
+     {
+         "detail_hash":"HBDEF",
+         "image":"tempFood",
+         "alt":"새콤달콤 오징어무침",
+         "delivery_type":[
+            "새벽배송",
+            "전국택배"
+         ],
+         "title":"새콤달콤 오징어무침",
+         "description":"김치찌개에는 역시 돼지고기",
+         "n_price":"15,800원",
+         "s_price":"12,640원",
+         "badge":[
+            "런칭특가"
+         ]
+      },
+      {
+         "detail_hash":"HDF73",
+         "image":"tempFood",
+         "alt":"야채 어묵볶음",
+         "delivery_type":[
+            "새벽배송",
+            "전국택배"
+         ],
+         "title":"야채 어묵볶음",
+         "description":"탱글한 면발과 맛깔진 고명이 가득",
+         "n_price":"12,900원",
+         "s_price":"11,610원",
+         "badge":[
+            "이벤트특가"
+         ]
+     }
+ ]
+ 
+ ]
