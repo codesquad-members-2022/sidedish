@@ -11,7 +11,7 @@ public class Dish {
     private int stock;
     private int deliveryFee;
     private Integer freeShippingAmount;
-    private double mileage_ratio;
+    private double mileageRatio;
     private boolean earlyDeliverable;
     private List<Category> categories;
     private List<DishImage> images;
