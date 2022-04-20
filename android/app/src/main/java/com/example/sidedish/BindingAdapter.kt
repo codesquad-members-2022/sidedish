@@ -1,10 +1,9 @@
-
+package com.example.sidedish
 import android.graphics.Paint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.sidedish.GlideApp
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, imageUrl: String) {

@@ -7,7 +7,7 @@
 
         <variable
             name="menu_xml"
-            type="com.example.sidedish.home.data.MenuList" />
+            type="com.example.sidedish.MenuList" />
     </data>
 
     <ScrollView

@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory(private val context: Context): ViewModelProvider.Factory {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ProductDetailViewModel::class.java)) {
             val repository = ProductDetailRepository(ProductDetailImageDataSource(AssetLoader(context)))
             return ProductDetailViewModel(repository) as T
@@ -15,4 +14,5 @@ class ViewModelFactory(private val context: Context): ViewModelProvider.Factory 
             throw IllegalArgumentException(modelClass.name)
         }
     }
+
 }
