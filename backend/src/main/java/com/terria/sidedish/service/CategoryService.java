@@ -13,7 +13,7 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public List<Category> findAll() {
-        return categoryRepository.findAll();
+    public List<Category> findByExhibitionId(long exhibitionId) {
+        return categoryRepository.findByExhibitionId(exhibitionId);
     }
 }

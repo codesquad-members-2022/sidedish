@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @AllArgsConstructor
-public class Division {
+public class Exhibition {
 
     @Id
     private long id;

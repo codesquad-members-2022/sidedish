@@ -1,25 +1,27 @@
 package com.terria.sidedish.repository;
 
 import com.terria.sidedish.domain.Category;
+import com.terria.sidedish.domain.Exhibition;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
-import java.util.List;
+import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class CategoryRepositoryTest {
+public class ExhibitionRepositoryTest {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    ExhibitionRepository exhibitionRepository;
 
     @Test
     void findByExhibitionId() {
-        List<Category> categories = categoryRepository.findByExhibitionId(1L);
-        assertThat(categories).isNotNull();
+        Optional<Exhibition> exhibition = exhibitionRepository.findByExhibitionId(1L);
+        assertThat(exhibition).isNotEmpty();
     }
 }
