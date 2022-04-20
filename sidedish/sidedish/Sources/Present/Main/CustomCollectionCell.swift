@@ -14,7 +14,11 @@ class CustomCollectionCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .grey2
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        imageView.layer.shadowOpacity = 0.1
+        imageView.layer.shadowRadius = 3
+        imageView.layer.shadowColor = UIColor.black.cgColor
         return imageView
     }()
     
@@ -25,7 +29,6 @@ class CustomCollectionCell: UICollectionViewCell {
         stackView.alignment = .leading
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .grey3
         return stackView
     }()
     
@@ -39,7 +42,7 @@ class CustomCollectionCell: UICollectionViewCell {
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .black
+        label.textColor = .grey2
         label.numberOfLines = 3
         return label
     }()
@@ -47,7 +50,7 @@ class CustomCollectionCell: UICollectionViewCell {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .bold)
-        label.textColor = .lightGray
+        label.textColor = .black
         return label
     }()
     
@@ -73,7 +76,7 @@ class CustomCollectionCell: UICollectionViewCell {
     }
     
     private func attritbute() {
-        contentView.backgroundColor = .grey3
+
     }
     
     private func layout() {
@@ -92,6 +95,10 @@ class CustomCollectionCell: UICollectionViewCell {
 }
 
 extension CustomCollectionCell {
+    func changeImage(name: String) {
+        imageView.image = UIImage(named: "\(name)")
+    }
+    
     func changeTitleLabel(text: String) {
         titleLabel.text = text
     }
