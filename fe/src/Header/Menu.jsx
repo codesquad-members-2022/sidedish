@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledMenu = styled.li`
+const Root = styled.li`
   margin-right: 24px;
 `;
 
@@ -21,17 +21,17 @@ const SubMenuList = styled.ul`
   }
 `;
 
-export const Menu = ({ menuData: { mainMenu, subMenuList }, isMouseEnter }) => {
+export const Menu = ({ menuData: { mainMenu, subMenuList }, subMenuOpen }) => {
   return (
-    <StyledMenu>
+    <Root>
       <span>{mainMenu}</span>
-      {isMouseEnter ? (
+      {subMenuOpen ? (
         <SubMenuList>
           {subMenuList.map((subMenu, idx) => (
             <li key={idx}>{subMenu}</li>
           ))}
         </SubMenuList>
       ) : null}
-    </StyledMenu>
+    </Root>
   );
 };

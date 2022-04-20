@@ -1,18 +1,9 @@
-import { Header } from './Header';
-import styled from 'styled-components';
-
-const HeaderWrapper = styled.header`
-  width: 1440px;
-  padding: 16px 80px;
-  border-bottom: 1px solid #000;
-`;
+import { Header } from './Header/Header';
 
 function App() {
   return (
     <>
-      <HeaderWrapper>
-        <Header />
-      </HeaderWrapper>
+      <Header />
     </>
   );
 }
