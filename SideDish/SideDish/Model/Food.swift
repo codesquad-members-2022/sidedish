@@ -11,28 +11,43 @@ import Foundation
    - 특가정보
  */
 
-struct Food{
+struct Food {
+    
     private (set) var detailHash: String
     private (set) var alt: String
     private (set) var foodDescription: String
-    private let category: String
-    private (set) var normalPrice: Int
-    private (set) var specialPrice: Int
-    private let deliveryInformation: String
-    private let deliveryCharge: Int
-    private let amount:Int
+    private (set) var normalPrice: String
+    private (set) var specialPrice: String
+    private let deliveryInformation: [String]
+    private let title: String
+    private let imageUrl: String
     private let badges: [String]
+}
+
+extension Food: Codable {
     
-    init(detailHash: String, alt: String, foodDescription: String, category: String, normalPrice: Int, specialPrice: Int, deliveryInformation: String, deliveryCharge: Int, amount: Int, badges: [String]){
-        self.detailHash = detailHash
-        self.alt = alt
-        self.foodDescription = foodDescription
-        self.category = category
-        self.normalPrice = normalPrice
-        self.specialPrice = specialPrice
-        self.deliveryInformation = deliveryInformation
-        self.deliveryCharge = deliveryCharge
-        self.amount = amount
-        self.badges = badges
+    enum CodingKeys: String, CodingKey {
+        case detailHash = "detail_hash"
+        case alt = "alt"
+        case foodDescription = "description"
+        case title = "title"
+        case normalPrice = "n_price"
+        case specialPrice = "s_price"
+        case deliveryInformation = "delivery_type"
+        case badges = "badge"
+        case imageUrl = "image"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        detailHash = try container.decode(String.self, forKey: .detailHash)
+        alt = try container.decode(String.self, forKey: .alt)
+        title = try container.decode(String.self, forKey: .title)
+        foodDescription = try container.decode(String.self, forKey: .foodDescription)
+        specialPrice = try container.decode(String.self, forKey: .specialPrice)
+        normalPrice = (try? container.decode(String.self, forKey: .normalPrice)) ?? "0원"
+        deliveryInformation = try container.decode([String].self, forKey: .deliveryInformation)
+        badges = (try? container.decode([String].self, forKey: .badges)) ?? []
+        imageUrl = try container.decode(String.self, forKey: .imageUrl)
     }
 }
