@@ -1,18 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
-*{
-  box-sizing: border-box;
-}
-  body {
+  ${reset},
+  * {
     margin: 0;
-    padding: 0;
+    padding: 0;  
   }
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  body {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
   }
 `;
 
