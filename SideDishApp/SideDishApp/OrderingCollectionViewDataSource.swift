@@ -7,13 +7,13 @@
 
 import UIKit
 
-class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private var headers: [String] = [Constant.SectionHeaderTitle.main,
                                      Constant.SectionHeaderTitle.soup,
                                      Constant.SectionHeaderTitle.side]
     
-    var menus: [Menu] = []
+    private var menus: [Menu] = []
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return headers.count
@@ -41,15 +41,10 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.Identifier.orderingViewCell, for: indexPath) as? OrderingCollectionViewCell else {
             return UICollectionViewCell()
         }
-        configure(cell: cell, at: indexPath.item)
-        return cell
+        return configure(cell: cell, at: indexPath.item)
     }
     
-    func fetch(dishes: [Menu]) {
-        self.menus = dishes
-    }
-    
-    func configure(cell: OrderingCollectionViewCell, at index: Int) {
+    private func configure(cell: OrderingCollectionViewCell, at index: Int) -> OrderingCollectionViewCell {
         let dish = menus[index]
         
         cell.setDishImage(by: dish.image)
@@ -57,5 +52,14 @@ class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         cell.setMenuDescription(by: dish.description)
         cell.setMenuPrice(nPrice: dish.n_price, sPrice: dish.s_price)
         cell.setBadges(by: dish.badge)
+        return cell
+    }
+    
+    func fetch(dishes: [Menu]) {
+        menus = dishes
+    }
+    
+    func getSelectedItem(at index: Int) -> Menu {
+        return menus[index]
     }
 }
