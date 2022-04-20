@@ -10,9 +10,9 @@ drop table if exists category;
 
 create table category
 (
-    id          bigint primary key auto_increment,
-    title       varchar(100) not null comment '카테고리 이름',
-    parent      bigint default 0 comment '상위 카테고리',
+    id            bigint primary key auto_increment,
+    title         varchar(100) not null comment '카테고리 이름',
+    parent        bigint default 0 comment '상위 카테고리',
     exhibition_id bigint default 0 comment '기획전 아이디'
 );
 

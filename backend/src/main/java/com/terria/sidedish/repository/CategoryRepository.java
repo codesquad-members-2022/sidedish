@@ -14,6 +14,5 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
     @Query("select id, title, parent, exhibition_id" +
             " from category" +
             " where exhibition_id = :exhibitionId")
-
     List<Category> findByExhibitionId(@Param("exhibitionId") long exhibitionId);
 }
