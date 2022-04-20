@@ -143,6 +143,7 @@
 		1B56E66D280E82700074E79F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D01CBC1A280F6D9100F806C9 /* HomeModel.swift */,
 				1B56E668280E823E0074E79F /* CacheImageRequestMiddleWare.swift */,
 				1B56E66A280E82480074E79F /* CacheImageMiddleWare.swift */,
 			);
@@ -208,14 +209,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		D01CBC19280F6D8000F806C9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D01CBC1A280F6D9100F806C9 /* HomeModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		D08FCDDB280D09AB00176BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +235,6 @@
 		D08FCDE6280D09AB00176BF9 /* SideDish20 */ = {
 			isa = PBXGroup;
 			children = (
-				D01CBC19280F6D8000F806C9 /* Models */,
 				D0007A1D280EA13C00997AC5 /* ViewController */,
 				D0007A13280E817E00997AC5 /* View */,
 				D0007A07280E588300997AC5 /* Fonts */,

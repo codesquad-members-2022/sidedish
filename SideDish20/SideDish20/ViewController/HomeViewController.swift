@@ -37,11 +37,7 @@ class HomeViewController: UIViewController {
     private func registerXib() {
         let nibName = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: homeCollectionViewCellId)
-
-//        let headerNibName = UINib(nibName: "HomeHeaderCollectionViewCell", bundle: nil)
         collectionView.register(HomeHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "homeHeaderView")
-        
-//        collectionView.headerRe
     }
 }
 
@@ -89,7 +85,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: "homeHeaderView",
                                                                          for: indexPath)
-            print("aaaa")
             return header
         } else {
             return UICollectionReusableView()
@@ -97,7 +92,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        print("aaaaaa")
         return CGSize(width: 300, height: 120)
     }
 }
