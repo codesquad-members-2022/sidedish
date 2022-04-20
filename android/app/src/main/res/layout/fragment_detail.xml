@@ -24,10 +24,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/pager_detail_image"
                 android:layout_width="match_parent"
-                android:layout_height="360dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -266,27 +263,27 @@
                     style="@style/normal_style"
                     android:layout_width="87dp"
                     android:layout_height="24dp"
+                    android:layout_gravity="right|center"
                     android:layout_marginEnd="24dp"
                     android:padding="4dp"
-                    android:layout_gravity="right|center"
                     android:text="총 주문금액" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_total_amount"
                     style="@style/normal_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
+                    android:text="@{(foodDetail.prices[1] == null) ? foodDetail.prices[0] : foodDetail.prices[1]}"
                     android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="right|center"
-                    android:text="0원" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -305,21 +302,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="48dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/iv_detail2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/iv_detail3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitXY" />
 
         </LinearLayout>
 
