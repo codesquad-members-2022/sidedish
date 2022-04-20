@@ -11,6 +11,8 @@
 		7345C9A6280E522D00F89135 /* SidedishTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9A5280E522D00F89135 /* SidedishTarget.swift */; };
 		7345C9A9280E53AE00F89135 /* SidedishRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9A8280E53AE00F89135 /* SidedishRepository.swift */; };
 		7345C9AB280E543200F89135 /* SidedishRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9AA280E543200F89135 /* SidedishRepositoryImpl.swift */; };
+		7345C9B1280EA0CA00F89135 /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9B0280EA0CA00F89135 /* CustomCollectionCell.swift */; };
+		7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */; };
 		73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */; };
 		D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
@@ -52,6 +54,8 @@
 		7345C9A5280E522D00F89135 /* SidedishTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidedishTarget.swift; sourceTree = "<group>"; };
 		7345C9A8280E53AE00F89135 /* SidedishRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidedishRepository.swift; sourceTree = "<group>"; };
 		7345C9AA280E543200F89135 /* SidedishRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidedishRepositoryImpl.swift; sourceTree = "<group>"; };
+		7345C9B0280EA0CA00F89135 /* CustomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
+		7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
 		73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "sidedish/Sources/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.debug.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.debug.xcconfig"; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */,
+				7345C9B0280EA0CA00F89135 /* CustomCollectionCell.swift */,
+				7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */,
 				7345C9A3280E4B4100F89135 /* MainViewModel.swift */,
 			);
 			path = Main;
@@ -448,6 +454,7 @@
 				E0FAAA3C280D881900B36F4D /* NetworkRepository.swift in Sources */,
 				E0FAAA54280ECA3400B36F4D /* MenuInfoView.swift in Sources */,
 				73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */,
+				7345C9B1280EA0CA00F89135 /* CustomCollectionCell.swift in Sources */,
 				E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */,
 				E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */,
 				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
@@ -459,6 +466,7 @@
 				7345C9A9280E53AE00F89135 /* SidedishRepository.swift in Sources */,
 				E0FAAA36280D881900B36F4D /* RequestParser.swift in Sources */,
 				7345C9A6280E522D00F89135 /* SidedishTarget.swift in Sources */,
+				7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */,
 				E0FAAA37280D881900B36F4D /* MockCard.swift in Sources */,
 				E0FAAA4F280E867900B36F4D /* MenuDetail.swift in Sources */,
 				E0FAAA3A280D881900B36F4D /* ClientColumn.swift in Sources */,
