@@ -10,6 +10,8 @@
 		0049FA52280EE98300470FCD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049FA51280EE98300470FCD /* HomeViewController.swift */; };
 		0049FA54280EF2EB00470FCD /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049FA53280EF2EB00470FCD /* SectionHeader.swift */; };
 		004EA4E0280E541000D365DB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 004EA4DF280E541000D365DB /* .swiftlint.yml */; };
+		0279B33F280FDB9E00DDBA6E /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0279B33D280FDB9E00DDBA6E /* DishCell.swift */; };
+		0279B340280FDB9E00DDBA6E /* DishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0279B33E280FDB9E00DDBA6E /* DishCell.xib */; };
 		2A3B3EC2280E9F78003F21F4 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB0280E9F77003F21F4 /* SF-Pro-Display-Black.otf */; };
 		2A3B3EC3280E9F78003F21F4 /* SF-Pro-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB1280E9F77003F21F4 /* SF-Pro-Display-Heavy.otf */; };
 		2A3B3EC4280E9F78003F21F4 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3B3EB2280E9F77003F21F4 /* SF-Pro-Display-Thin.otf */; };
@@ -63,6 +65,8 @@
 		0049FA51280EE98300470FCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0049FA53280EF2EB00470FCD /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		004EA4DF280E541000D365DB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		0279B33D280FDB9E00DDBA6E /* DishCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishCell.swift; sourceTree = "<group>"; };
+		0279B33E280FDB9E00DDBA6E /* DishCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DishCell.xib; sourceTree = "<group>"; };
 		05CA88970920716FAF533DFC /* Pods_SideDish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0610F82D47EF6C51A3403E55 /* Pods-SideDish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish.debug.xcconfig"; path = "Target Support Files/Pods-SideDish/Pods-SideDish.debug.xcconfig"; sourceTree = "<group>"; };
 		08B6432E83B949F7C197B7D3 /* Pods-SideDish-SideDishUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish-SideDishUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDish-SideDishUITests/Pods-SideDish-SideDishUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				2A50C19B280D55F400AFF2F7 /* SceneDelegate.swift */,
 				0049FA51280EE98300470FCD /* HomeViewController.swift */,
 				0049FA53280EF2EB00470FCD /* SectionHeader.swift */,
+				0279B33D280FDB9E00DDBA6E /* DishCell.swift */,
+				0279B33E280FDB9E00DDBA6E /* DishCell.xib */,
 				2A50C19F280D55F400AFF2F7 /* Main.storyboard */,
 				2A50C1A5280D55F500AFF2F7 /* Assets.xcassets */,
 				2A50C1A7280D55F500AFF2F7 /* LaunchScreen.storyboard */,
@@ -353,6 +359,7 @@
 				2A3B3ECF280E9F78003F21F4 /* SF-Pro-Display-Bold.otf in Resources */,
 				004EA4E0280E541000D365DB /* .swiftlint.yml in Resources */,
 				2A50C1A9280D55F500AFF2F7 /* LaunchScreen.storyboard in Resources */,
+				0279B340280FDB9E00DDBA6E /* DishCell.xib in Resources */,
 				2A3B3ECC280E9F78003F21F4 /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				2A3B3ED0280E9F78003F21F4 /* SF-Pro-Display-SemiboldItalic.otf in Resources */,
 				2A3B3ED2280E9F78003F21F4 /* SF-Pro-Display-Light.otf in Resources */,
@@ -517,6 +524,7 @@
 				2A50C19A280D55F400AFF2F7 /* AppDelegate.swift in Sources */,
 				2A50C1A4280D55F400AFF2F7 /* SideDish.xcdatamodeld in Sources */,
 				0049FA54280EF2EB00470FCD /* SectionHeader.swift in Sources */,
+				0279B33F280FDB9E00DDBA6E /* DishCell.swift in Sources */,
 				2A50C19C280D55F400AFF2F7 /* SceneDelegate.swift in Sources */,
 				0049FA52280EE98300470FCD /* HomeViewController.swift in Sources */,
 			);
