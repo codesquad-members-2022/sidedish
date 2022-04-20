@@ -137,6 +137,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0279B34B280FDED100DDBA6E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2A50C199280D55F400AFF2F7 /* AppDelegate.swift */,
+				2A50C19B280D55F400AFF2F7 /* SceneDelegate.swift */,
+				2A50C19F280D55F400AFF2F7 /* Main.storyboard */,
+				2A50C1A5280D55F500AFF2F7 /* Assets.xcassets */,
+				2A50C1A7280D55F500AFF2F7 /* LaunchScreen.storyboard */,
+				2A50C1A2280D55F400AFF2F7 /* SideDish.xcdatamodeld */,
+				2A50C1AA280D55F500AFF2F7 /* Info.plist */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0279B34C280FDFAD00DDBA6E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0279B34D280FDFDF00DDBA6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0049FA51280EE98300470FCD /* HomeViewController.swift */,
+				0049FA53280EF2EB00470FCD /* SectionHeader.swift */,
+				0279B33D280FDB9E00DDBA6E /* DishCell.swift */,
+				0279B33E280FDB9E00DDBA6E /* DishCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0279B34E280FDFE700DDBA6E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2A3B3EAF280E9EE8003F21F4 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,17 +228,10 @@
 		2A50C198280D55F400AFF2F7 /* SideDish */ = {
 			isa = PBXGroup;
 			children = (
-				2A50C199280D55F400AFF2F7 /* AppDelegate.swift */,
-				2A50C19B280D55F400AFF2F7 /* SceneDelegate.swift */,
-				0049FA51280EE98300470FCD /* HomeViewController.swift */,
-				0049FA53280EF2EB00470FCD /* SectionHeader.swift */,
-				0279B33D280FDB9E00DDBA6E /* DishCell.swift */,
-				0279B33E280FDB9E00DDBA6E /* DishCell.xib */,
-				2A50C19F280D55F400AFF2F7 /* Main.storyboard */,
-				2A50C1A5280D55F500AFF2F7 /* Assets.xcassets */,
-				2A50C1A7280D55F500AFF2F7 /* LaunchScreen.storyboard */,
-				2A50C1AA280D55F500AFF2F7 /* Info.plist */,
-				2A50C1A2280D55F400AFF2F7 /* SideDish.xcdatamodeld */,
+				0279B34C280FDFAD00DDBA6E /* Model */,
+				0279B34D280FDFDF00DDBA6E /* View */,
+				0279B34E280FDFE700DDBA6E /* ViewModel */,
+				0279B34B280FDED100DDBA6E /* Base */,
 			);
 			path = SideDish;
 			sourceTree = "<group>";
@@ -708,7 +740,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SideDish/Info.plist;
+				INFOPLIST_FILE = SideDish/Base/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -737,7 +769,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SideDish/Info.plist;
+				INFOPLIST_FILE = SideDish/Base/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
