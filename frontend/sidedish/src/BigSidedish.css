@@ -1,0 +1,38 @@
+.big-sidedish {
+    display: flex;
+    flex-direction: column;
+    margin: 56px 80px;
+}
+.big-sidedish__title {
+    font-family: Noto Sans KR;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 58px;
+    letter-spacing: -0.004em;
+    text-align: left;
+}
+.big-sidedish__tab-menu {
+    display: flex;
+}
+.big-sidedish__menu-item {
+    font-family: Noto Sans KR;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: -0.008em;
+    text-align: center;
+    margin: 10px;
+}
+.big-sidedish__cards {
+    display: flex;
+}
+.big-sidedish__card {
+    position: static;
+    width: 302px;
+    height: 302px;
+    left: 0px;
+    top: 0px;
+}
+.current-tab {
+    border-bottom: solid 1px black;
+}

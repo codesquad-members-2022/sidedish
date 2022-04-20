@@ -1,0 +1,9 @@
+{
+    "name": "오리 주물럭",
+    "description": "감칠맛 나는 매콤한 양념",
+    "price": {
+        "sale-price": "12,640원",
+        "origin-price": "15,800원"
+    },
+    "tag": "런칭특가"
+}
