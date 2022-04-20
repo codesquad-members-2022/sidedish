@@ -17,18 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A3A-1R-dGD">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A3A-1R-dGD">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hec-9K-dSd">
                                     <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wBW-at-aXA">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="50" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="K9k-sm-QQz">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -36,6 +37,10 @@
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Sm1-wO-ldf">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="jfZ-di-fPg"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="Ofl-HG-NB6"/>
@@ -44,12 +49,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="A3A-1R-dGD" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Ian-zA-cAS"/>
-                            <constraint firstItem="A3A-1R-dGD" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="St2-M7-Ef0"/>
-                            <constraint firstItem="A3A-1R-dGD" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="aml-eg-aFG"/>
-                            <constraint firstAttribute="bottom" secondItem="A3A-1R-dGD" secondAttribute="bottom" id="rjn-Ik-Nme"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="A3A-1R-dGD" id="DgA-2F-RZi"/>

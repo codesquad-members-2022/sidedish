@@ -15,12 +15,12 @@
 		D0007A0D280E590600997AC5 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */; };
 		D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */; };
 		D0007A15280E819000997AC5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0007A14280E819000997AC5 /* Home.storyboard */; };
-		D0007A17280E878000997AC5 /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0007A16280E878000997AC5 /* HomeHeaderView.xib */; };
-		D0007A19280E9A8400997AC5 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */; };
 		D0007A1F280EA14200997AC5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0007A1E280EA14200997AC5 /* HomeViewController.swift */; };
 		D01CBC17280F673000F806C9 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01CBC15280F673000F806C9 /* HomeCollectionViewCell.swift */; };
 		D01CBC18280F673000F806C9 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01CBC16280F673000F806C9 /* HomeCollectionViewCell.xib */; };
 		D01CBC1B280F6D9100F806C9 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01CBC1A280F6D9100F806C9 /* HomeModel.swift */; };
+		D01CBC9E280F8B9900F806C9 /* HomeHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01CBC9C280F8B9900F806C9 /* HomeHeaderCollectionReusableView.swift */; };
+		D01CBC9F280F8B9900F806C9 /* HomeHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01CBC9D280F8B9900F806C9 /* HomeHeaderCollectionReusableView.xib */; };
 		D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */; };
 		D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */; };
 		D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDEB280D09AB00176BF9 /* ViewController.swift */; };
@@ -65,12 +65,12 @@
 		D0007A0C280E590600997AC5 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		D0007A0E280E593300997AC5 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		D0007A14280E819000997AC5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		D0007A16280E878000997AC5 /* HomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
-		D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D0007A1E280EA14200997AC5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D01CBC15280F673000F806C9 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		D01CBC16280F673000F806C9 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		D01CBC1A280F6D9100F806C9 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		D01CBC9C280F8B9900F806C9 /* HomeHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		D01CBC9D280F8B9900F806C9 /* HomeHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		D08FCDE4280D09AB00176BF9 /* SideDish20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,10 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				D0007A14280E819000997AC5 /* Home.storyboard */,
-				D0007A16280E878000997AC5 /* HomeHeaderView.xib */,
-				D0007A18280E9A8400997AC5 /* HomeHeaderView.swift */,
-				D01CBC16280F673000F806C9 /* HomeCollectionViewCell.xib */,
 				D01CBC15280F673000F806C9 /* HomeCollectionViewCell.swift */,
+				D01CBC16280F673000F806C9 /* HomeCollectionViewCell.xib */,
+				D01CBC9C280F8B9900F806C9 /* HomeHeaderCollectionReusableView.swift */,
+				D01CBC9D280F8B9900F806C9 /* HomeHeaderCollectionReusableView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -358,8 +358,8 @@
 				D08FCDF4280D09AD00176BF9 /* LaunchScreen.storyboard in Resources */,
 				D0007A15280E819000997AC5 /* Home.storyboard in Resources */,
 				D08FCDF1280D09AD00176BF9 /* Assets.xcassets in Resources */,
+				D01CBC9F280F8B9900F806C9 /* HomeHeaderCollectionReusableView.xib in Resources */,
 				D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */,
-				D0007A17280E878000997AC5 /* HomeHeaderView.xib in Resources */,
 				D01CBC18280F673000F806C9 /* HomeCollectionViewCell.xib in Resources */,
 				D08FCDEF280D09AB00176BF9 /* Main.storyboard in Resources */,
 				D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */,
@@ -511,9 +511,9 @@
 			files = (
 				D01CBC17280F673000F806C9 /* HomeCollectionViewCell.swift in Sources */,
 				D0007A1F280EA14200997AC5 /* HomeViewController.swift in Sources */,
-				D0007A19280E9A8400997AC5 /* HomeHeaderView.swift in Sources */,
 				D01CBC1B280F6D9100F806C9 /* HomeModel.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
+				D01CBC9E280F8B9900F806C9 /* HomeHeaderCollectionReusableView.swift in Sources */,
 				D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */,
 				D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */,
 			);
