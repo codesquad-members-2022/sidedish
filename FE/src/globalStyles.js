@@ -1,14 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-export const colors = {
-  bgColor: '#F7F9FA',
-  fontWhite: 'red',
-};
-
-export const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
     ${reset}
-    body{
-        background-color: lightcyan;
+    * {
+      box-sizing: border-box;
+    }
+    button{
+      border:none;
+    }
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      letter-spacing: -0.008em;
     }
 `;
+
+export default GlobalStyles;
