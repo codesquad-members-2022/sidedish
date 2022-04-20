@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Header } from "@/components/templates/Header/Header";
 import { Promotion } from "@/components/templates/Promotion/Promotion";
 import "./App.scss";
@@ -25,4 +26,13 @@ const App = () => {
   );
 };
 >>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
+=======
+import { Header } from "./components/Header/Header";
+import "./App.scss";
+
+function App() {
+  return <Header />;
+}
+
+>>>>>>> fd015ab ([#8] Feat: Header 구현)
 export default App;
