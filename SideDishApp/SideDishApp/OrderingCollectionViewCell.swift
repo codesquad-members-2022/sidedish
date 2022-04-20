@@ -14,9 +14,9 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
     private let eventBadgeBackgroundColor = UIColor(red: 128/255, green: 188/255, blue: 255/255, alpha: 1.0)
     private let defaultBadgeBackgroundColor = UIColor(red: 0.0, green: 122/255, blue: 1.0, alpha: 1.0)
     
-    private let cellView = UIView()
+    private lazy var cellView = UIView()
     
-    private let dishImageView: UIImageView = {
+    private lazy var dishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.frame.size = CGSize(width: 130, height: 130)
@@ -25,7 +25,7 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let menuStackView: UIStackView = {
+    private lazy var menuStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 8
@@ -34,7 +34,7 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let menuInfoStackView: UIStackView = {
+    private lazy var menuInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -42,19 +42,19 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
     }()
     
-    private let descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .systemGray
         return label
     }()
     
-    private let priceStackView: UIStackView = {
+    private lazy var priceStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 4
@@ -62,7 +62,7 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    private var badgeStackView: UIStackView = {
+    private lazy var badgeStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 4

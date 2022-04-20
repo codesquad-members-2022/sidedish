@@ -8,10 +8,11 @@
 import UIKit
 import OSLog
 
-class OrderingViewController: UIViewController {
+final class OrderingViewController: UIViewController {
     
     private var orderingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
+    private var collectionViewDelegate = OrderingCollectionViewDelegate()
     private let networkManger = NetworkManager(session: .shared)
     
     private var collectionViewLayout: UICollectionViewLayout {
@@ -28,24 +29,12 @@ class OrderingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        
-        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { (result: Result<SideDishInfo?, NetworkError>) in
-            switch result {
-            case .success(let success):
-                guard let menus = success?.body else { return }
-                self.collectionViewDataSource.fetch(dishes: menus)
-                DispatchQueue.main.async {
-                    self.orderingCollectionView.reloadData()
-                }
-            case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")
-                
-            }
-        }
+        getSideDishInfo()
     }
     
     private func setUpView() {
         configureView()
+        collectionViewDelegate.delegate = self
         
         view.addSubview(orderingCollectionView)
         configureOrderingCollectionView()
@@ -64,9 +53,25 @@ class OrderingViewController: UIViewController {
                                         withReuseIdentifier: Constant.Identifier.sectionHeaderView )
         
         orderingCollectionView.dataSource = collectionViewDataSource
+        orderingCollectionView.delegate = collectionViewDelegate
         
         orderingCollectionView.collectionViewLayout = collectionViewLayout
         orderingCollectionView.backgroundColor = .systemBackground
+    }
+    
+    private func getSideDishInfo() {
+        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { (result: Result<SideDishInfo?, NetworkError>) in
+            switch result {
+            case .success(let success):
+                guard let menus = success?.body else { return }
+                self.collectionViewDataSource.fetch(dishes: menus)
+                DispatchQueue.main.async {
+                    self.orderingCollectionView.reloadData()
+                }
+            case .failure(let failure):
+                os_log(.error, "\(failure.localizedDescription)")    
+            }
+        }
     }
 }
 
@@ -79,5 +84,12 @@ extension OrderingViewController {
         orderingCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         orderingCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         orderingCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+    }
+}
+
+extension OrderingViewController: CollectionViewSelectionDetectable {
+    func didSelectItem(item: Menu) {
+        let detailVC = DetailViewController(menu: item)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -66,14 +66,12 @@ final class SectionHeaderView: UICollectionReusableView {
         NSLayoutConstraint.activate([
             self.sectionTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: sectionInset + 8.0),
             self.sectionTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sectionInset),
-            self.sectionTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: sectionInset),
+            self.sectionTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sectionInset),
             
             self.sectionCountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sectionInset),
             self.sectionCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -sectionInset),
             self.sectionCountLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: sectionInset)
         ])
-        
         sectionCountLabel.isHidden = true
-        
     }
 }
