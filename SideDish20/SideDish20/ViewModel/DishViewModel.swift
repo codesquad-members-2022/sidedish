@@ -11,15 +11,15 @@ import UIKit
 class DishViewModel {
     private let fetchOnComplete: ([UIImage]?) -> Void
     
-    private let fetchCachingImages = FetchCachingImages()
-    private let cacheImageDataMiddleWare = CacheImageDataMiddleWare()
+    private let cacheImageRequestMiddleWare = CacheImageRequestMiddleWare()
+    private let cacheImageMiddleWare = CacheImageMiddleWare()
     
     init(fetchOnComplete: @escaping ([UIImage]?) -> Void) {
         self.fetchOnComplete = fetchOnComplete
     }
     
-    func fetchAllCachedImage() {
-        fetchCachingImages.fetchCacheImage { result in
+    func getAllImageCached() {
+        cacheImageRequestMiddleWare.getAllImageDataCached { result in
             guard let result = result else {
                 self.fetchOnComplete(nil)
                 return
@@ -36,8 +36,12 @@ class DishViewModel {
         }
     }
     
-    func fetchCachedImage(as name: String, fetchImageHandler: @escaping (UIImage?) -> Void) {
-        fetchCachingImages.fetchCacheImage(as: name) { result in
+    func getImageCached(
+        as name: String,
+        fetchImageHandler: @escaping (UIImage?) -> Void
+    ) {
+        
+        cacheImageRequestMiddleWare.getImageDataCached(as: name) { result in
             guard let result = result else {
                 fetchImageHandler(nil)
                 return
@@ -47,19 +51,32 @@ class DishViewModel {
         }
     }
     
-    func cacheImage(as name: String, contentsOf image: UIImage) {
-        guard let data = image.jpegData(compressionQuality: 1.0) else { return }
-        cacheImageDataMiddleWare.cacheImage(as: name, contentsOf: data)
+    func cacheImage(
+        as name: String,
+        contentsOf image: UIImage
+    ) {
+        
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            return
+        }
+        cacheImageMiddleWare.cacheImage(as: name, contentsOf: data)
         fetchOnComplete([image])
     }
     
-    func getImage(from urlString: String, getImageHandler: @escaping (UIImage?) -> Void) {
+    func getImage(
+        from urlString: String,
+        getImageHandler: @escaping (UIImage?) -> Void
+    ) {
+        
+        // 캐시한 이미지는 url의 lastPathComponent로 저장하는 것에 의미가 있기 때문에 전달되는 urlString은 URL로 구성되어야 한다.
         guard let url = URL(string: urlString) else {
             getImageHandler(nil)
             return
         }
         
-        fetchCachedImage(as: url.lastPathComponent) { image in
+        let cacheName = url.lastPathComponent
+        
+        getImageCached(as: cacheName) { image in
             if let image = image {
                 getImageHandler(image)
                 return
@@ -75,7 +92,7 @@ class DishViewModel {
                 getImageHandler(image)
                 
                 if let image = image {
-                    self.cacheImage(as: url.lastPathComponent, contentsOf: image)
+                    self.cacheImage(as: cacheName, contentsOf: image)
                 }
                 
             }.resume()

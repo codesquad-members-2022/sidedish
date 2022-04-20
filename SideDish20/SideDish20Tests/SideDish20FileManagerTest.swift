@@ -69,7 +69,7 @@ class SideDish20FileManagerTest: XCTestCase {
             }
         }
         
-        viewModel.fetchAllCachedImage()
+        viewModel.getAllImageCached()
         wait(for: [expectation], timeout: 3.0)
     }
     
