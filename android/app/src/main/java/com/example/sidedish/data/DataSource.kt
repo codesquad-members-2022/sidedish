@@ -9,5 +9,5 @@ interface DataSource {
 
     suspend fun getSideFoodList(): Response<Food>
 
-    suspend fun getFoodDetail(hashId: String): Response<Body>
+    suspend fun getFoodDetail(hashId: String): Response<FoodDetail>
 }

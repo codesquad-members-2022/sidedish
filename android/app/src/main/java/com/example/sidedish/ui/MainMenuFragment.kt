@@ -1,6 +1,7 @@
 package com.example.sidedish.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class MainMenuFragment : Fragment() {
         val mainFoodAdapter = MenuListAdapter(Header.MAIN)
         mainFoodAdapter.itemClickCallback = { key: String ->
             viewModel.loadFoodDetail(key)
+            Log.d("MainMenuFragment", "${viewModel.selectedFoodDetail.value}")
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
 

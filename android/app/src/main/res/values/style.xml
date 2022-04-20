@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="title_style">
+        <item name="android:textSize">32sp</item>
+        <item name="android:color">@color/android_black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="title_body">
+        <item name="android:textSize">18sp</item>
+        <item name="android:color">@color/grey2</item>
+    </style>
+
+    <style name="title_style.price">
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="event_style">
+        <item name="android:textSize">12sp</item>
+        <item name="android:color">@color/primary2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="event_style.launching_price">
+        <item name="android:color">@color/primary3</item>
+    </style>
+
+    <style name="normal_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
+</resources>

@@ -17,22 +17,25 @@ import com.example.sidedish.databinding.ItemMenuListBinding
 private const val HEADER = 0
 private const val ITEM = 1
 
-class MenuListAdapter(private val header: Header): ListAdapter<Body, RecyclerView.ViewHolder>(DiffUtil) {
+class MenuListAdapter(private val header: Header) :
+    ListAdapter<Body, RecyclerView.ViewHolder>(DiffUtil) {
 
     lateinit var itemClickCallback: ((key: String) -> Unit)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val listBinding = ItemMenuListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val headerBinding = ItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return when(viewType) {
+        val listBinding =
+            ItemMenuListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val headerBinding =
+            ItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return when (viewType) {
             HEADER -> MenuListHeaderViewHolder(headerBinding)
             else -> MenuListViewHolder(listBinding)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder) {
+        when (holder) {
             is MenuListHeaderViewHolder -> {
                 holder.bind(header)
             }
@@ -44,7 +47,7 @@ class MenuListAdapter(private val header: Header): ListAdapter<Body, RecyclerVie
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when(position) {
+        return when (position) {
             0 -> HEADER
             else -> ITEM
         }
@@ -62,19 +65,24 @@ class MenuListAdapter(private val header: Header): ListAdapter<Body, RecyclerVie
 
     }
 
-    class MenuListHeaderViewHolder(private val binding: ItemHeaderBinding): RecyclerView.ViewHolder(binding.root) {
+    class MenuListHeaderViewHolder(private val binding: ItemHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(header: Header) {
-            when(header) {
-                Header.MAIN -> binding.tvMenuListLabel.text = binding.root.context.getString(R.string.main_header)
-                Header.SOUP -> binding.tvMenuListLabel.text = binding.root.context.getString(R.string.soup_header)
-                Header.SIDE -> binding.tvMenuListLabel.text = binding.root.context.getString(R.string.side_header)
+            when (header) {
+                Header.MAIN -> binding.tvMenuListLabel.text =
+                    binding.root.context.getString(R.string.main_header)
+                Header.SOUP -> binding.tvMenuListLabel.text =
+                    binding.root.context.getString(R.string.soup_header)
+                Header.SIDE -> binding.tvMenuListLabel.text =
+                    binding.root.context.getString(R.string.side_header)
             }
         }
 
     }
 
-    inner class MenuListViewHolder(private val binding: ItemMenuListBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class MenuListViewHolder(private val binding: ItemMenuListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(menu: Body) {
             with(binding) {
@@ -82,7 +90,7 @@ class MenuListAdapter(private val header: Header): ListAdapter<Body, RecyclerVie
                 tvMenuLabel.text = menu.alt
                 tvMenuInfo.text = menu.description
                 tvAfterCost.text = menu.sPrice
-                if(menu.nPrice != null) {
+                if (menu.nPrice != null) {
                     setSale(menu)
                 }
             }
@@ -102,7 +110,7 @@ class MenuListAdapter(private val header: Header): ListAdapter<Body, RecyclerVie
         }
 
         private fun setBadge(sale: String) {
-            when(sale) {
+            when (sale) {
                 "런칭특가" -> {
                     binding.tvLaunchingCostBadge.visibility = View.VISIBLE
                 }
