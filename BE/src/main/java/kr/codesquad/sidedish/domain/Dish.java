@@ -2,11 +2,14 @@ package kr.codesquad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
 
+
+
 public class Dish {
 
     @Id
     private final Long id;
-    private final Long categoryId;
+    private final Long mainCategoryId;
+    private final Long subCategoryId;
     private final String name;
     private final String description;
     private final int stock;
@@ -14,10 +17,10 @@ public class Dish {
     private final DeliveryType deliveryType;
     private final DiscountPolicy discountPolicy;
 
-    public Dish(Long id, Long categoryId, String name, String description,
-                int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy) {
+    public Dish(Long id, Long mainCategoryId, Long subCategoryId, String name, String description, int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy) {
         this.id = id;
-        this.categoryId = categoryId;
+        this.mainCategoryId = mainCategoryId;
+        this.subCategoryId = subCategoryId;
         this.name = name;
         this.description = description;
         this.stock = stock;
@@ -30,12 +33,20 @@ public class Dish {
         return id;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getMainCategoryId() {
+        return mainCategoryId;
+    }
+
+    public Long getSubCategoryId() {
+        return subCategoryId;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getStock() {
