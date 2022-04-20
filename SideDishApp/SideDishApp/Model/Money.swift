@@ -15,6 +15,10 @@ struct Money {
         return NSDecimalNumber(string: priceString)
     }
     
+    var won : String {
+        return value.wonFormat
+    }
+    
     init (_ inputString : String){
         self.inputString = inputString
     }

@@ -11,8 +11,6 @@ extension NSDecimalNumber {
     var wonFormat : String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-//        numberFormatter.locale = Locale.current
-
         return numberFormatter.string(from: self)! + "원"
     }
 

@@ -46,8 +46,13 @@ class ProductTest: XCTestCase {
         XCTAssertEqual(products[0].badge!.first!.rawValue, "런칭특가")
     }
     
+    func testPriceMatch() throws {
+        XCTAssertEqual(products[0].salePrice.won, "12,640원")
+    }
+    
     func testArithmetic() throws {
         let add = products[0].salePrice.value.adding(products[1].salePrice.value).adding(products[1].salePrice.value)
+        print(products[0].salePrice.won)
         let subtract = products[0].salePrice.value.subtracting(products[1].salePrice.value)
         XCTAssertEqual(add.wonFormat, "35,860원")
         XCTAssertEqual(subtract.wonFormat, "1,030원")
