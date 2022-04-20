@@ -13,8 +13,10 @@ repositories {
 }
 
 dependencies {
+    // TODO 데이터 베이스 적용 후에 설정 예정인 라이브러리
 //	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 //	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
