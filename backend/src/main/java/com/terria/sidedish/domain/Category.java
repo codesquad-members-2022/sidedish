@@ -12,7 +12,7 @@ public class Category {
     private long id;
     private String title;
     private long parent;
-
+    private long exhibitionId;
 
     @Override
     public String toString() {
@@ -20,6 +20,7 @@ public class Category {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", parent=" + parent +
+                ", exhibitionId=" + exhibitionId +
                 '}';
     }
 }

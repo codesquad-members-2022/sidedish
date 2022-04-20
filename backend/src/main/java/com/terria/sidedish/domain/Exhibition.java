@@ -11,4 +11,12 @@ public class Exhibition {
     @Id
     private long id;
     private String title;
+
+    @Override
+    public String toString() {
+        return "Exhibition{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

@@ -1,7 +1,6 @@
 package com.terria.sidedish.api;
 
 import com.terria.sidedish.domain.Category;
-import com.terria.sidedish.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -20,8 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/categories")
 public class CategoryController {
-
-    private final CategoryService categoryService;
 
     @ApiOperation(
             value = "특정 기획전에 속한 카테고리 조회",

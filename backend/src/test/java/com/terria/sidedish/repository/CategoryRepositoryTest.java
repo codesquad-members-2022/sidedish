@@ -19,7 +19,7 @@ class CategoryRepositoryTest {
 
     @Test
     void findByExhibitionId() {
-        List<Category> categories = categoryRepository.findByExhibitionId(1L);
+        List<Category> categories = categoryRepository.findCategoriesByExhibitionId(1L);
         assertThat(categories).isNotNull();
     }
 }
