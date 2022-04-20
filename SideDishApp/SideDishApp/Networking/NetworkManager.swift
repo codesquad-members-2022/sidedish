@@ -51,8 +51,14 @@ struct NetworkManager {
             }
     }
     
-    func fetchImageData(urls: [URL], completion: @escaping ([URL: Data]) -> Void) {
+    func fetchImageData(url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         
+        AF.request(url).validate().responseData { response in
+            guard let data = response.data else {
+                return completion(.failure(.noData))
+            }
+            completion(.success(data))
+        }
         
     }
 }
