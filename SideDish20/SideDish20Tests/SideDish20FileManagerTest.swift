@@ -36,8 +36,11 @@ class SideDish20FileManagerTest: XCTestCase {
     }
     
     func test_getAllCached() throws {
-        let allFiles = getFileURLService.fetchCachedFiles()
-        XCTAssertGreaterThan(allFiles.count, 0)
+        let allFiles = try? getFileURLService.fetchCachedFiles().get()
+        let count = allFiles?.count
+        
+        XCTAssertNotNil(count)
+        XCTAssertGreaterThan(count!, 0)
     }
     
     func test_viewModel_cacheImage() throws {
@@ -76,14 +79,13 @@ class SideDish20FileManagerTest: XCTestCase {
     func test_viewModel_cachedData() throws {
         
         let expectation = XCTestExpectation()
+        let viewModel = DishViewModel.init(fetchOnComplete: {_ in })
         
-        let viewModel = DishViewModel { result in
-            if result != nil {
+        viewModel.getImage(from: imageName) { image in
+            if image != nil {
                 expectation.fulfill()
             }
         }
-        
-        viewModel.fetchCachedImage(as: imageName)
         wait(for: [expectation], timeout: 3.0)
     }
 }

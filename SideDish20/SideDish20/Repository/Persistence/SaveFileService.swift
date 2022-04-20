@@ -14,9 +14,9 @@ final class SaveFileService: CacheFileManagerAttribute {
     }
     
     @discardableResult
-    func saveFile(as name: String, contentsOf file: Data) -> URL? {
+    func saveFile(as name: String, contentsOf file: Data) -> Result<URL, CacheError> {
         guard var targetURL = getCacheDirPath() else {
-            return nil
+            return .failure(.cacheDirectoryError("Can not find Cache Directory."))
         }
         
         targetURL.appendPathComponent(name, isDirectory: false)
@@ -24,21 +24,20 @@ final class SaveFileService: CacheFileManagerAttribute {
             do {
                 try manager.createDirectory(at: targetURL, withIntermediateDirectories: false)
             } catch {
-                return nil
+                return .failure(.cacheDirectoryError("Create Cache Directory Failed"))
             }
         }
         
         targetURL.appendPathComponent(name, isDirectory: false)
         if manager.fileExists(atPath: targetURL.path) {
-            return targetURL
+            return .success(targetURL)
         } else {
             do {
                 try file.write(to: targetURL)
+                return .success(targetURL)
             } catch {
-                return nil
+                return .failure(.fileAlreadyExistError("File Already Exist at \(targetURL.absoluteString)"))
             }
         }
-        
-        return targetURL
     }
 }

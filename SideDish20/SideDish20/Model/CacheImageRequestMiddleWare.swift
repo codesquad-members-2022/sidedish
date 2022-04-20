@@ -9,24 +9,24 @@ import Foundation
 
 class CacheImageRequestMiddleWare {
     func getAllImageDataCached(completionHandler: @escaping ([FileDTO]?) -> Void) {
-        RepositoryCommons.shared.getAllFilesCached { result in
-            guard let result = result else {
-                completionHandler(nil)
-                return
-            }
-            
-            completionHandler(result)
+        let result = RepositoryCommons.shared.getAllFilesCached()
+        
+        do {
+            let dtoArray = try result.get()
+            completionHandler(dtoArray)
+        } catch {
+            completionHandler(nil)
         }
     }
     
     func getImageDataCached(as name: String, completionHandler: @escaping (FileDTO?) -> Void) {
-        RepositoryCommons.shared.getFileCached(as: name) { result in
-            guard let result = result else {
-                completionHandler(nil)
-                return
-            }
-            
-            completionHandler(result)
+        let result = RepositoryCommons.shared.getFileCached(as: name)
+        
+        do {
+            let dto = try result.get()
+            completionHandler(dto)
+        } catch {
+            completionHandler(nil)
         }
     }
 }

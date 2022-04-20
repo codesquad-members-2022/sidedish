@@ -45,3 +45,10 @@ class CacheFileManagerAttribute {
         return cacheFolderPath
     }
 }
+
+enum CacheError: Error {
+    case fileNotExistError(String)
+    case urlError(String)
+    case fileAlreadyExistError(String)
+    case cacheDirectoryError(String)
+}

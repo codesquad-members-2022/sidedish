@@ -24,28 +24,21 @@ class RepositoryCommons {
         }
     }
     
-    func getAllFilesCached(completionHandler: @escaping ([FileDTO]?) -> Void) {
-        let allDTO = self.getFileService.fetchCachedFiles()
-        
-        guard allDTO.count > 0 else {
-            completionHandler(nil)
-            return
-        }
-        
-        completionHandler(allDTO)
+    func getAllFilesCached() -> Result<[FileDTO], CacheError> {
+        return self.getFileService.fetchCachedFiles()
     }
     
-    func getFileCached(as name: String, completionHandler: @escaping (FileDTO?) -> Void) {
-        guard let dto = self.getFileService.fetchFile(as: name) else {
-            completionHandler(nil)
-            return
-        }
-        
-        completionHandler(dto)
+    func getFileCached(as name: String) -> Result<FileDTO, CacheError> {
+        return self.getFileService.fetchFile(as: name)
     }
 }
 
 struct FileDTO {
     let name: String
     let data: Data
+}
+
+enum RepositoryErrorCommons: Error {
+    case getFileCachedError(String)
+    case cacheFileError(String)
 }
