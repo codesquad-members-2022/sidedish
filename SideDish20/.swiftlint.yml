@@ -1,3 +1,5 @@
+disabled_rules:
+- trailing_whitespace
 opt_in_rules:
 - yoda_condition
 excluded: # File or Directory Lint should exclude.
