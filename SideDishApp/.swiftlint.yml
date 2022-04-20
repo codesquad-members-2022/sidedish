@@ -1,0 +1,13 @@
+
+excluded:
+  - Pods 
+  - SideDishAppTests 
+  - SideDishAppUITests 
+  - SideDishApp/SupportingFiles/AppDelegate.swift
+  - SideDishApp/SupportingFiles/SceneDelegate.swift
+disabled_rules: 
+  - trailing_whitespace 
+  - identifier_name
+  - line_length
+
+
