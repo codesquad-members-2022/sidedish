@@ -1,5 +1,5 @@
 import { icons } from '../helper/constants.js';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useState } from 'react';
 import { applyFlex } from '../helper/utils.js';
 
