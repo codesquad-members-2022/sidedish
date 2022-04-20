@@ -1,27 +1,38 @@
+import { useState } from "react";
 import "./Header.css";
 
 function Header() {
+    const [isVisible, setVisibility] = useState(false);
+    const showMenu = () => setVisibility(true);
+    const hideMenu = () => setVisibility(false);
+    const foodListClassName =
+        "header__food-list" + (isVisible ? "" : " hidden");
+
     return (
         <header>
             <h1 className="header__title">Ordering</h1>
             <nav className="header__nav">
-                <ul className="header__nav-list">
+                <ul
+                    className="header__nav-list"
+                    onMouseOver={showMenu}
+                    onMouseOut={hideMenu}
+                >
                     <li className="header__food">
                         <p className="header__food-title">든든한 메인요리</p>
-                        <ul className="header__food-list hidden">
+                        <ul className={foodListClassName}>
                             <li className="header__food-item">육류 요리</li>
                             <li className="header__food-item">해산물 요리</li>
                         </ul>
                     </li>
                     <li className="header__food">
                         <p className="header__food-title">뜨끈한 국물요리</p>
-                        <ul className="header__food-list hidden">
+                        <ul className={foodListClassName}>
                             <li className="header__food-item">국/탕/찌개</li>
                         </ul>
                     </li>
                     <li className="header__food">
                         <p className="header__food-title">정갈한 밑반찬</p>
-                        <ul className="header__food-list hidden">
+                        <ul className={foodListClassName}>
                             <li className="header__food-item">나물/무침</li>
                             <li className="header__food-item">조림/볶음</li>
                             <li className="header__food-item">절임/장아찌</li>
