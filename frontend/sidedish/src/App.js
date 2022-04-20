@@ -1,6 +1,7 @@
 import "./App.css";
+import Header from "./Header";
 
-function App() {
+function BigSidedish() {
     return (
         <div class="big-sidedish">
             <div class="big-sidedish__header">
@@ -34,6 +35,10 @@ function App() {
             </ul>
         </div>
     );
+}
+
+function App() {
+    return <Header />;
 }
 
 export default App;
