@@ -1,10 +1,12 @@
 package com.terria.sidedish.api;
 
 import com.terria.sidedish.domain.Category;
+import com.terria.sidedish.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +17,11 @@ import java.util.List;
 
 @Api(tags = "CategoryController")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/categories")
 public class CategoryController {
+
+    private final CategoryService categoryService;
 
     @ApiOperation(
             value = "특정 기획전에 속한 카테고리 조회",
