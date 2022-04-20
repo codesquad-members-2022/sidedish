@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { flexCenter, flexBetween } from "./css/mixins";
+import React from 'react';
+import styled from 'styled-components';
+import { flexCenter, flexBetween } from './css/mixins';
 
 const Header = () => {
   return (
@@ -34,9 +34,9 @@ const Header = () => {
         </HeaderGnb>
       </FlexBetween>
       <HeaderMenu>
-        <HeaderMenuIcon src='assets/search.png' alt='search'></HeaderMenuIcon>
-        <HeaderMenuIcon src='assets/user.png' alt='user'></HeaderMenuIcon>
-        <HeaderMenuIcon src='assets/basket.png' alt='basket'></HeaderMenuIcon>
+        <HeaderMenuIcon src="assets/search.png" alt="search"></HeaderMenuIcon>
+        <HeaderMenuIcon src="assets/user.png" alt="user"></HeaderMenuIcon>
+        <HeaderMenuIcon src="assets/basket.png" alt="basket"></HeaderMenuIcon>
       </HeaderMenu>
     </StyledHeader>
   );
