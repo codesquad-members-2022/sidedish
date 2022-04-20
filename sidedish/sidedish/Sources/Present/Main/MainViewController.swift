@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     private var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 8, right: 16)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         flowLayout.itemSize = CGSize(width: 400, height: 130)
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -54,8 +54,8 @@ class MainViewController: UIViewController {
     private func layout() {
         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16).isActive = true
     }
 }
 
@@ -68,9 +68,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.identifier, for: indexPath) as? CustomCollectionCell else {
             return UICollectionViewCell()
         }
-        cell.changeTitleLabel(text: "테스트")
-        cell.changeContentLabel(text: "djdjdjd")
-        cell.changePriceLabel(text: "21514531")
+        cell.changeImage(name: "testimage") // 임시데이터)
+        cell.changeTitleLabel(text: "오리 주물럭_반조리")
+        cell.changeContentLabel(text: "감질맛 나는 매콤한 양념")
+        cell.changePriceLabel(text: "12,640원")
         return cell
     }
 }
