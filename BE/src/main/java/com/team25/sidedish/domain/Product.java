@@ -1,10 +1,5 @@
 package com.team25.sidedish.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-
-@Getter
-@Builder
 public class Product {
 
     private Long id;
