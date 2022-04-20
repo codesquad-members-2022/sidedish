@@ -23,7 +23,6 @@ const MenuTypeListContainer = styled.ul`
   flex-direction: column;
   padding: 4px;
 `;
-
 const MenuType = styled.li`
   display: ${(props) => (props.menuHideState ? "none" : "block")};
   font-family: "Noto Sans KR";
@@ -35,7 +34,7 @@ const MenuType = styled.li`
   padding: 4px;
 
   &:hover {
-    color: red;
+    color: green;
     text-decoration: underline;
     cursor: pointer;
   }
@@ -43,20 +42,19 @@ const MenuType = styled.li`
 
 const MenuTypeList = ({ menuTypeTitle, menuTypes }) => {
   const [menuHideState, setMenuHideState] = useState(true);
-  const handleMenuHidden = (event) => {
+  const handleMenuHidden = () => {
     setMenuHideState(() => !menuHideState);
   };
+  const menuTypeList = menuTypes.map((menuType, ind) => (
+    <MenuType menuHideState={menuHideState} key={ind}>
+      {menuType}
+    </MenuType>
+  ));
 
   return (
     <MenuTypeContainer onMouseLeave={handleMenuHidden} onMouseEnter={handleMenuHidden}>
       <MenuTypeTitle>{menuTypeTitle}</MenuTypeTitle>
-      <MenuTypeListContainer>
-        {menuTypes.map((menuType, ind) => (
-          <MenuType menuHideState={menuHideState} key={ind}>
-            {menuType}
-          </MenuType>
-        ))}
-      </MenuTypeListContainer>
+      <MenuTypeListContainer>{menuTypeList}</MenuTypeListContainer>
     </MenuTypeContainer>
   );
 };
