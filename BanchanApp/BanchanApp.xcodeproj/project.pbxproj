@@ -14,6 +14,8 @@
 		E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A35B280E94B4001598D4 /* CarouselView.swift */; };
 		E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A35E280E9750001598D4 /* UIView+Extension.swift */; };
 		E439A361280EB1CD001598D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A360280EB1CD001598D4 /* ViewController.swift */; };
+		E445CF7E280FEF280087D5EB /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445CF7D280FEF280087D5EB /* OrderView.swift */; };
+		E445CF80280FF0200087D5EB /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445CF7F280FF0200087D5EB /* ProductDetailView.swift */; };
 		E4A41E53280E45300044CEB3 /* BanchanDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */; };
 		E4A41E55280E46780044CEB3 /* BanchanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A41E54280E46780044CEB3 /* BanchanDetailViewController.swift */; };
 		E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */; };
@@ -34,6 +36,8 @@
 		E439A35B280E94B4001598D4 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		E439A35E280E9750001598D4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E439A360280EB1CD001598D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E445CF7D280FEF280087D5EB /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		E445CF7F280FF0200087D5EB /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		E469A945280D136B00C02D97 /* BanchanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanchanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E469A94A280D166700C02D97 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		E445CF7B280FE6AB0087D5EB /* BanchanDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E445CF7D280FEF280087D5EB /* OrderView.swift */,
+				E445CF7F280FF0200087D5EB /* ProductDetailView.swift */,
+			);
+			path = BanchanDetailViewController;
+			sourceTree = "<group>";
+		};
 		E4B7D366280D703A009B2C2A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +105,7 @@
 				E4A41E54280E46780044CEB3 /* BanchanDetailViewController.swift */,
 				E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */,
 				E439A360280EB1CD001598D4 /* ViewController.swift */,
+				E445CF7B280FE6AB0087D5EB /* BanchanDetailViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -279,6 +293,7 @@
 				6FCDA43A280E552000EB8DF6 /* Header.swift in Sources */,
 				6FCDA43E280E954500EB8DF6 /* ProductDetailView.swift in Sources */,
 				E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */,
+				E445CF7E280FEF280087D5EB /* OrderView.swift in Sources */,
 				E4A41E55280E46780044CEB3 /* BanchanDetailViewController.swift in Sources */,
 				E4C6B77A280CFA7D001C14F7 /* BanchanListViewController.swift in Sources */,
 				E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */,
@@ -286,6 +301,7 @@
 				E4C6B778280CFA7D001C14F7 /* SceneDelegate.swift in Sources */,
 				6FCDA440280E964900EB8DF6 /* ProductDetailCell.swift in Sources */,
 				E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */,
+				E445CF80280FF0200087D5EB /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

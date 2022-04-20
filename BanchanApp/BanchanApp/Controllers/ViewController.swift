@@ -9,13 +9,11 @@ import UIKit
 
 // MARK: - 스토리 보드로 작업된 BanchanDetailViewController 코드로 옮기는 작업
 class ViewController: UIViewController {
-    private lazy var verticalScrollView: UIScrollView = {
+    private lazy var containerScrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.showsHorizontalScrollIndicator = false
         return scroll
     }()
-
-    private lazy var carouselView = CarouselView()
 
     private lazy var productDescriptionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,86 +22,65 @@ class ViewController: UIViewController {
         return imageView
     }()
 
+    private lazy var carouselView = CarouselView()
+    private lazy var containerContentView = UIView()
+    private lazy var orderView = OrderView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
         self.carouselView.delegate = self
+        self.orderView.delegate = self
+    }
+
+    private func configureContainerScrollView() {
+        self.view.addSubview(self.containerScrollView)
+        self.containerScrollView.addSubview(self.containerContentView)
+        self.containerScrollView.fill(inView: self.view.safeAreaLayoutGuide)
+        self.containerContentView.fill(inView: self.containerScrollView.contentLayoutGuide)
+        self.containerContentView.setWidth(self.containerScrollView.frameLayoutGuide.layoutFrame.width)
+    }
+
+    private func configureCarouselView() {
+        self.containerContentView.addSubview(self.carouselView)
+        self.carouselView.anchor(
+            top: self.containerContentView.topAnchor,
+            leading: self.containerContentView.leadingAnchor,
+            trailing: self.containerContentView.trailingAnchor,
+            height: self.containerScrollView.frameLayoutGuide.layoutFrame.width
+        )
+    }
+
+    private func configureOrderView() {
+        self.containerContentView.addSubview(self.orderView)
+        self.orderView.anchor(
+            top: self.carouselView.bottomAnchor,
+            leading: self.containerContentView.leadingAnchor,
+            trailing: self.containerContentView.trailingAnchor,
+            paddingTop: 24,
+            paddingLeft: 16,
+            paddingRight: 16
+        )
+    }
+
+    private func configureProductDescriptionImageView() {
+        self.containerContentView.addSubview(self.productDescriptionImageView)
+        self.productDescriptionImageView.anchor(
+            top: self.orderView.bottomAnchor,
+            bottom: self.containerContentView.bottomAnchor,
+            leading: self.containerContentView.leadingAnchor,
+            trailing: self.containerContentView.trailingAnchor,
+            paddingTop: 48,
+            paddingLeft: 16,
+            paddingRight: 16
+        )
     }
 
     private func configureUI() {
-        self.view.addSubview(self.verticalScrollView)
-
-        // MARK: - ContentScrollView
-        let verticalScrollContentView = UIView()
-
-        self.verticalScrollView.fill(inView: self.view.safeAreaLayoutGuide)
-        self.verticalScrollView.addSubview(verticalScrollContentView)
-
-        verticalScrollContentView.fill(inView: self.verticalScrollView.contentLayoutGuide)
-        verticalScrollContentView.setWidth(self.verticalScrollView.frameLayoutGuide.layoutFrame.width)
-
-        // MARK: - CarouselView
-        verticalScrollContentView.addSubview(self.carouselView)
-
-        self.carouselView.anchor(top: verticalScrollContentView.topAnchor, leading: verticalScrollContentView.leadingAnchor, trailing: verticalScrollContentView.trailingAnchor, height: self.verticalScrollView.frameLayoutGuide.layoutFrame.width)
-
-        // MARK: - SectionContainerView
-        let sectionContainerView = UIView()
-        verticalScrollContentView.addSubview(sectionContainerView)
-        sectionContainerView.anchor(top: self.carouselView.bottomAnchor, bottom: verticalScrollContentView.bottomAnchor, leading: verticalScrollContentView.leadingAnchor, trailing: verticalScrollContentView.trailingAnchor, paddingTop: 24, paddingLeft: 16, paddingRight: 16)
-
-        // MARK: - DescriptionContainerView
-        let descriptionContainerView = UIView()
-        sectionContainerView.addSubview(descriptionContainerView)
-        descriptionContainerView.anchor(top: sectionContainerView.topAnchor, leading: sectionContainerView.leadingAnchor, trailing: sectionContainerView.trailingAnchor)
-
-        // MARK: - DescriptionStack
-        let descriptionStack = UIStackView()
-        descriptionStack.axis = .vertical
-        descriptionContainerView.addSubview(descriptionStack)
-        descriptionStack.anchor(top: descriptionContainerView.topAnchor, leading: descriptionContainerView.leadingAnchor, trailing: descriptionContainerView.trailingAnchor)
-        let productTitleLabel = UILabel()
-        productTitleLabel.frame.size = productTitleLabel.intrinsicContentSize
-        productTitleLabel.text = "오리 주물럭 반조리"
-
-        let productSubtitleLabel = UILabel()
-        productSubtitleLabel.frame.size = productSubtitleLabel.intrinsicContentSize
-        productSubtitleLabel.text = "감칠맛 나는 매콤한 양념"
-
-        let productPriceLabel = UILabel()
-        productPriceLabel.frame.size = productPriceLabel.intrinsicContentSize
-        productPriceLabel.text = "12,640원 15,800원"
-
-        descriptionStack.addSubview(productTitleLabel)
-        descriptionStack.addSubview(productSubtitleLabel)
-        descriptionStack.addSubview(productPriceLabel)
-
-        // MARK: - DeliveryInformationView
-        let deliveryInformationStack = UIStackView()
-        deliveryInformationStack.axis = .horizontal
-        descriptionContainerView.addSubview(deliveryInformationStack)
-        deliveryInformationStack.anchor(top: descriptionStack.bottomAnchor, leading: descriptionContainerView.leadingAnchor, trailing: descriptionContainerView.trailingAnchor, paddingTop: 24)
-
-        let quantityView = UIView()
-        descriptionContainerView.addSubview(quantityView)
-        quantityView.anchor(top: deliveryInformationStack.bottomAnchor, leading: descriptionContainerView.leadingAnchor, trailing: descriptionContainerView.trailingAnchor, paddingTop: 24)
-
-        let totalPriceLabel = UILabel()
-        totalPriceLabel.text = "총 주문금액 12,640원"
-        totalPriceLabel.textAlignment = .right
-        descriptionContainerView.addSubview(totalPriceLabel)
-        totalPriceLabel.anchor(top: quantityView.bottomAnchor, leading: descriptionContainerView.leadingAnchor, trailing: descriptionContainerView.trailingAnchor, paddingTop: 24)
-
-        let orderButton = UIButton(type: .system)
-        orderButton.setTitle("주문하기", for: .normal)
-        descriptionContainerView.addSubview(orderButton)
-        orderButton.setHeight(50)
-        orderButton.anchor(top: totalPriceLabel.bottomAnchor, bottom: descriptionContainerView.bottomAnchor, leading: descriptionContainerView.leadingAnchor, trailing: descriptionContainerView.trailingAnchor, paddingTop: 24)
-
-        // MARK: - ProductDescriptionImageView
-        sectionContainerView.addSubview(self.productDescriptionImageView)
-        self.productDescriptionImageView.anchor(top: descriptionContainerView.bottomAnchor, bottom: sectionContainerView.bottomAnchor, leading: sectionContainerView.leadingAnchor, trailing: sectionContainerView.trailingAnchor, paddingTop: 48)
-
+        self.configureContainerScrollView()
+        self.configureCarouselView()
+        self.configureOrderView()
+        self.configureProductDescriptionImageView()
     }
 }
 
@@ -118,4 +95,8 @@ extension ViewController: CarouselViewDataSource {
     func carouselView(_ carouselView: CarouselView, numberOfItems: Int) -> Int {
         return 4
     }
+}
+
+extension ViewController: OrderViewDelegate {
+    func orderViewDidTapOrderButton() {}
 }
