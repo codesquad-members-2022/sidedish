@@ -81,7 +81,7 @@ private extension FirstSectionViewController{
         rawPrice.frame = CGRect(x: 0, y: 0, width: 64, height: 24)
         rawPrice.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         rawPrice.font = UIFont(name: "SFProDisplay-Regular", size: 16)
-        setRawPriceAttribute(label: rawPrice, text: "12,640원")
+        setRawPriceAttribute(label: rawPrice, text: "15,800원")
         self.view.addSubview(rawPrice)
         
         rawPrice.translatesAutoresizingMaskIntoConstraints = false
