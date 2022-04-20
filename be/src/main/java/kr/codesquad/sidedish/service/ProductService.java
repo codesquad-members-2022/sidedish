@@ -6,16 +6,14 @@ import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.dto.RequestProduct;
 import kr.codesquad.sidedish.dto.ResponseProduct;
 import kr.codesquad.sidedish.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
 	private final ProductRepository productRepository;
-
-	public ProductService(ProductRepository productRepository) {
-		this.productRepository = productRepository;
-	}
 
 	public List<ResponseProduct> findAll() {
 		return productRepository.findAll()
