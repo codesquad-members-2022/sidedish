@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		0068078F280D5195003C2808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068078E280D5195003C2808 /* AppDelegate.swift */; };
 		00680791280D5195003C2808 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680790280D5195003C2808 /* SceneDelegate.swift */; };
-		00680793280D5195003C2808 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680792280D5195003C2808 /* ViewController.swift */; };
+		00680793280D5195003C2808 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680792280D5195003C2808 /* MainViewController.swift */; };
 		00680796280D5195003C2808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00680794280D5195003C2808 /* Main.storyboard */; };
 		00680798280D5195003C2808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00680797280D5195003C2808 /* Assets.xcassets */; };
 		0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00680799280D5195003C2808 /* LaunchScreen.storyboard */; };
+		009361E0280E637C00D0FF1A /* MainViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361DF280E637C00D0FF1A /* MainViewCardCell.swift */; };
+		009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */; };
+		009361E5280EE47400D0FF1A /* MainCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E4280EE47400D0FF1A /* MainCard.swift */; };
+		009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E6280EE4FB00D0FF1A /* Badge.swift */; };
+		009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E8280EEDC900D0FF1A /* CardFactory.swift */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
 		D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF61E280E7A0100507878 /* DetailViewController.swift */; };
@@ -25,11 +30,16 @@
 		0068078B280D5195003C2808 /* sidedishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0068078E280D5195003C2808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00680790280D5195003C2808 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		00680792280D5195003C2808 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		00680792280D5195003C2808 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		00680795280D5195003C2808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00680797280D5195003C2808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0068079A280D5195003C2808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0068079C280D5195003C2808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		009361DF280E637C00D0FF1A /* MainViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCardCell.swift; sourceTree = "<group>"; };
+		009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
+		009361E4280EE47400D0FF1A /* MainCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCard.swift; sourceTree = "<group>"; };
+		009361E6280EE4FB00D0FF1A /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		009361E8280EEDC900D0FF1A /* CardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,12 +91,26 @@
 				D2ADF622280E887F00507878 /* FirstSectionViewController.swift */,
 				D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */,
 				D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */,
+				00680792280D5195003C2808 /* MainViewController.swift */,
 				00680794280D5195003C2808 /* Main.storyboard */,
+				009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */,
+				009361DF280E637C00D0FF1A /* MainViewCardCell.swift */,
+				009361E3280EE40F00D0FF1A /* model */,
+				009361E8280EEDC900D0FF1A /* CardFactory.swift */,
 				00680797280D5195003C2808 /* Assets.xcassets */,
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
 				0068079C280D5195003C2808 /* Info.plist */,
 			);
 			path = sidedishApp;
+			sourceTree = "<group>";
+		};
+		009361E3280EE40F00D0FF1A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				009361E4280EE47400D0FF1A /* MainCard.swift */,
+				009361E6280EE4FB00D0FF1A /* Badge.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		54BAD4B7B23BC78239E4E567 /* Frameworks */ = {
@@ -229,6 +253,14 @@
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
 				D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */,
 				D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */,
+				009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */,
+				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
+				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
+				009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */,
+				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
+				009361E5280EE47400D0FF1A /* MainCard.swift in Sources */,
+				009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */,
+				009361E0280E637C00D0FF1A /* MainViewCardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
