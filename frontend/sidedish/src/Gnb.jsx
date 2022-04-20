@@ -21,13 +21,11 @@ const Gnb = () => {
       menuTypes: ["나물/무침", "조림/볶음", "절임/장아찌"],
     },
   ];
-  return (
-    <GnbContainer>
-      {data.map(({ menuTypeTitle, menuTypes }, index) => {
-        return <MenuTypeList menuTypeTitle={menuTypeTitle} menuTypes={menuTypes} key={index}></MenuTypeList>;
-      })}
-    </GnbContainer>
-  );
+  const menuTypeList = data.map(({ menuTypeTitle, menuTypes }, index) => {
+    return <MenuTypeList menuTypeTitle={menuTypeTitle} menuTypes={menuTypes} key={index} />;
+  });
+
+  return <GnbContainer>{menuTypeList}</GnbContainer>;
 };
 
 export default Gnb;

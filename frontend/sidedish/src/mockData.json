@@ -1,0 +1,108 @@
+{
+  "lnb": ["풍성한 고기 반찬", "편리한 반찬 세트", "맛있는 제철 요리", "우리 아이 영양 반찬"],
+  "data": [
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+      "title": "오리 주물럭_반조리",
+      "description": "감칠맛 나는 매콤한 양념",
+      "n_price": "15,800원",
+      "s_price": "12,640원",
+      "badge": ["런칭특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+      "title": "오리 주물럭_반조리",
+      "description": "감칠맛 나는 매콤한 양념",
+      "n_price": "15,800원",
+      "s_price": "12,640원",
+      "badge": ["런칭특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+      "title": "오리 주물럭_반조리",
+      "description": "감칠맛 나는 매콤한 양념",
+      "n_price": "15,800원",
+      "s_price": "12,640원",
+      "badge": ["런칭특가"]
+    }
+  ],
+  "data2": [
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
+      "delivery_type": ["새벽배송", "전국택배"],
+      "title": "잡채",
+      "description": "탱글한 면발과 맛깔진 고명이 가득",
+      "n_price": "12,900원",
+      "s_price": "11,610원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
+      "delivery_type": ["새벽배송", "전국택배"],
+      "title": "잡채",
+      "description": "탱글한 면발과 맛깔진 고명이 가득",
+      "n_price": "12,900원",
+      "s_price": "11,610원",
+      "badge": ["이벤트특가"]
+    },
+
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
+      "delivery_type": ["새벽배송", "전국택배"],
+      "title": "잡채",
+      "description": "탱글한 면발과 맛깔진 고명이 가득",
+      "n_price": "12,900원",
+      "s_price": "11,610원",
+      "badge": ["이벤트특가"]
+    }
+  ],
+  "data3": [
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg",
+      "title": "소갈비찜",
+      "description": "촉촉하게 밴 양념이 일품",
+      "n_price": "28,900원",
+      "s_price": "26,010원",
+      "badge": ["이벤트특가", "런칭특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg",
+      "title": "소갈비찜",
+      "description": "촉촉하게 밴 양념이 일품",
+      "n_price": "28,900원",
+      "s_price": "26,010원",
+      "badge": ["이벤트특가", "런칭특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg",
+      "title": "소갈비찜",
+      "description": "촉촉하게 밴 양념이 일품",
+      "n_price": "28,900원",
+      "s_price": "26,010원",
+      "badge": ["이벤트특가", "런칭특가"]
+    }
+  ],
+  "data4": [
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_T.jpg",
+      "title": "꼬막비빔밥",
+      "description": "매콤하게 입맛 돋우는",
+      "s_price": "10,900원",
+      "badge": ["런칭특가", "이벤트특가", "메인특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_T.jpg",
+      "title": "꼬막비빔밥",
+      "description": "매콤하게 입맛 돋우는",
+      "s_price": "10,900원",
+      "badge": ["런칭특가", "이벤트특가", "메인특가"]
+    },
+    {
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_T.jpg",
+      "title": "꼬막비빔밥",
+      "description": "매콤하게 입맛 돋우는",
+      "s_price": "10,900원",
+      "badge": ["런칭특가", "이벤트특가", "메인특가"]
+    }
+  ]
+}

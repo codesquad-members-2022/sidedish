@@ -42,7 +42,7 @@ const MenuType = styled.li`
 
 const MenuTypeList = ({ menuTypeTitle, menuTypes }) => {
   const [menuHideState, setMenuHideState] = useState(true);
-  const handleMenuHidden = (event) => {
+  const handleMenuHidden = () => {
     setMenuHideState(() => !menuHideState);
   };
   const menuTypeList = menuTypes.map((menuType, ind) => (

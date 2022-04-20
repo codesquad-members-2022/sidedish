@@ -6,8 +6,8 @@ const App = () => {
   return (
     <>
       <Reset />
-      <Header></Header>
-      <Main></Main>
+      <Header />
+      <Main />
     </>
   );
 };
