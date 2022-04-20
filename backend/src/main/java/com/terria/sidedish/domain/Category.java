@@ -12,4 +12,14 @@ public class Category {
     private long id;
     private String title;
     private long parent;
+
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", parent=" + parent +
+                '}';
+    }
 }

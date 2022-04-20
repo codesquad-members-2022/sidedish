@@ -3,16 +3,17 @@ drop table if exists exhibition;
 create table exhibition
 (
     id    bigint primary key auto_increment,
-    title varchar(100) not null comment '전시회 이름'
+    title varchar(100) not null comment '기획전 이름'
 );
 
 drop table if exists category;
 
 create table category
 (
-    id     bigint primary key auto_increment,
-    title  varchar(100) not null comment '카테고리 이름',
-    parent bigint default 0 comment '대분류 카테고리'
+    id          bigint primary key auto_increment,
+    title       varchar(100) not null comment '카테고리 이름',
+    parent      bigint default 0 comment '상위 카테고리',
+    division_id bigint default 0 comment '기획전 아이디'
 );
 
 drop table if exists side_dish;
