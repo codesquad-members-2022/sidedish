@@ -1,0 +1,11 @@
+## Tany MySQL Setting
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://13.209.41.236:3306/sidedish?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: Wjsqudwns1!
+
+    sql:
+      init:
+        mode: never
