@@ -29,7 +29,7 @@ class CardListFragment : Fragment() {
             ViewModelFactory(FoodRepository())
         ).get(MainViewModel::class.java)
 
-        val adapter = FoodListAdapter()
+        val adapter = FoodListAdapter(viewModel)
         recyclerView.adapter = adapter
 
         viewModel.mainItems.observe(viewLifecycleOwner) {
@@ -48,10 +48,17 @@ class CardListFragment : Fragment() {
         viewModel.getSoupItems()
         viewModel.getSideItems()
 
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, ProductDetailFragment())
-        transaction.commit()
+        viewModel.openDetail.observe(viewLifecycleOwner, EventObserver {
+            openDetail()
+        })
 
         return layout
+    }
+
+    private fun openDetail() {
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, ProductDetailFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

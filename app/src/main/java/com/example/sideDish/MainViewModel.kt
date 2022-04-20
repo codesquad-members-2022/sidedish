@@ -14,6 +14,9 @@ class MainViewModel(private val repository: FoodRepository) : ViewModel() {
     private val _sideItems = MutableLiveData<List<Item>>()
     val sideItems: LiveData<List<Item>> = _sideItems
 
+    private val _openDetail = MutableLiveData<Event<Boolean>>()
+    val openDetail: LiveData<Event<Boolean>> = _openDetail
+
     fun getMainItems() {
         _mainItems.value = repository.getMainItems()
     }
@@ -24,5 +27,9 @@ class MainViewModel(private val repository: FoodRepository) : ViewModel() {
 
     fun getSideItems() {
         _sideItems.value = repository.getSideItems()
+    }
+
+    fun openDetail() {
+        _openDetail.value = Event(true)
     }
 }

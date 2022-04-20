@@ -11,7 +11,8 @@ import com.example.sideDish.databinding.SectionBinding
 private const val VIEW_TYPE_SECTION = 1
 private const val VIEW_TYPE_CONTENT = 2
 
-class FoodListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FoodListAdapter(private val viewModel: MainViewModel) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = mutableListOf<Item>()
 
     inner class SectionViewHolder(private val binding: SectionBinding) :
@@ -29,6 +30,7 @@ class FoodListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(foodInfo: Item.FoodInfo) = with(binding) {
             binding.foodInfo = foodInfo
+            binding.viewmodel = viewModel
             executePendingBindings()
         }
     }

@@ -14,11 +14,16 @@
             name="foodInfo"
             type="com.example.sideDish.Item.FoodInfo" />
 
+        <variable
+            name="viewmodel"
+            type="com.example.sideDish.MainViewModel" />
+        
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewmodel.openDetail()}" >
 
         <ImageView
             android:id="@+id/food_image"
