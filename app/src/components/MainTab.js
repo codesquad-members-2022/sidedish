@@ -1,0 +1,103 @@
+import { useEffect, useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import theme from "../styles/theme.js";
+import CardList from "./CardList.js";
+import dishData from "../store/store.js";
+
+const Header = styled.div`
+  display: flex;
+  gap: 1.6rem;
+  padding-top: 5.6rem;
+  padding-left: 8rem;
+`;
+
+const Badge = styled.div`
+  box-sizing: border-box;
+  width: 7.6rem;
+  height: 4.2rem;
+  text-align: center;
+  line-height: 3.6rem;
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  border: 0.2rem solid ${({ theme }) => theme.color.black};
+  border-radius: 99.9rem;
+`;
+
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.fontSize.display};
+  font-weight: ${({ theme }) => theme.fontWeight.display};
+`;
+
+const Main = styled.div`
+  .tab {
+    display: flex;
+    margin-top: 2.4rem;
+    gap: 3.2rem;
+    font-size: ${({ theme }) => theme.fontSize.large};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    line-height: 3rem;
+    padding-left: 8rem;
+  }
+
+  .tab-item {
+    padding-bottom: 1.6rem;
+    cursor: pointer;
+  }
+
+  .active {
+    border-bottom: 1px solid ${({ theme }) => theme.color.black};
+  }
+`;
+
+const MainTab = () => {
+  const tabTexts = [
+    "풍성한 고기 반찬",
+    "편리한 반찬 세트",
+    "맛있는 제철 요리",
+    "우리 아이 영양 반찬",
+  ];
+
+  const [tabNumber, setTabNumber] = useState(0);
+  let mainDish;
+  const handleTabClick = (index) => {
+    setTabNumber(index);
+    console.log(mainDish);
+  };
+
+  useEffect(() => {
+    async function asd() {
+      const data = await dishData;
+      mainDish = [...data().main.body];
+    }
+    asd();
+  }, []);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Header>
+        <Badge>
+          <strong>기획전</strong>
+        </Badge>
+        <Title>한 번 주문하면 두 번 반하는 반찬</Title>
+      </Header>
+      <Main>
+        <ul className="tab">
+          {tabTexts.map((text, index) => {
+            return (
+              <li
+                key={index}
+                className={`tab-item ${tabNumber === index ? "active" : null}`}
+                onClick={() => handleTabClick(index)}
+              >
+                {text}
+              </li>
+            );
+          })}
+        </ul>
+        <CardList />
+      </Main>
+    </ThemeProvider>
+  );
+};
+
+export default MainTab;

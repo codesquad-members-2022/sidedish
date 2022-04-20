@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
 
-const Logo = styled.div`
+const Logo = styled.h1`
   font-family: "Outfit";
   font-size: ${({ theme }) => theme.fontSize.display};
   font-weight: ${({ theme }) => theme.fontWeight.logo};
