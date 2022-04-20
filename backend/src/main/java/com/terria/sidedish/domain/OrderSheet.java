@@ -17,5 +17,4 @@ public class OrderSheet {
     // FK
     private long sideDishId;
     private long memberId;
-    private long shippingId;
 }

@@ -9,6 +9,4 @@ public class Shipping {
     @Id
     private long id;
     private String type;
-    private int fee;
-    private int exemptionCondition;
 }

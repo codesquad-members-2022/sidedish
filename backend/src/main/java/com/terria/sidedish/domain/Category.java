@@ -10,7 +10,4 @@ public class Category {
     private long id;
     private String title;
     private long parent;
-
-    // FK;
-    private long divisionId;
 }

@@ -12,7 +12,6 @@ public class SideDish {
     private String description;
     private int price;
     private double accrualRate;
-
-    // FK
-    private long categoryId;
+    private int fee;
+    private int exemptionCondition;
 }
