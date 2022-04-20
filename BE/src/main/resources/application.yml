@@ -26,6 +26,7 @@ spring:
       platform: h2
       mode: always
       schema-locations: classpath:ddl.sql
+      data-locations: classpath:dml.sql
   h2:
     console:
       enabled: true
