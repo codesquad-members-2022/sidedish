@@ -1,11 +1,13 @@
 package com.terria.sidedish.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor
 public class OrderSheet {
 
     @Id
