@@ -38,7 +38,12 @@ function BigSidedish() {
 }
 
 function App() {
-    return <Header />;
+    return (
+        <>
+            <Header />
+            <BigSidedish />
+        </>
+    );
 }
 
 export default App;
