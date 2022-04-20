@@ -32,8 +32,8 @@ public class DishController {
         return OK(new DishDetail(dishService.getDishDetail(id)));
     }
 
-//    @GetMapping("/{id}")
-    public ApiResult<List<PlanningDataRequest>> getDishesByCategory() {
-        return OK(dishService.getPlanningData());
+    @GetMapping("/test")
+    public ApiResult<PlanningDataRequestByCategory> getDishesByCategory() {
+        return OK(new PlanningDataRequestByCategory(dishService.getPlanningData()));
     }
 }
