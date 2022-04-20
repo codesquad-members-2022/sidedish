@@ -7,19 +7,29 @@
 
 import Foundation
 struct Money {
+       
+    var value : Decimal
     
-    private let inputString : String
-    
-    var value : NSDecimalNumber {
-        let priceString = inputString.components(separatedBy: [",","원"]).joined()
-        return NSDecimalNumber(string: priceString)
+    var kwrFormat : String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSDecimalNumber(decimal: value))! + "원"
     }
     
-    var won : String {
-        return value.wonFormat
+    init (_ priceInput : String){
+        self.value = Decimal(string: priceInput.components(separatedBy: [",","원"]).joined()) ?? 0.0
     }
     
-    init (_ inputString : String){
-        self.inputString = inputString
+    init (_ value : Decimal) {
+        self.value = value
     }
+     
+    static func + (lhs: Money, rhs: Money) -> Money {
+        return Money(lhs.value + rhs.value)
+    }
+    
+    static func - (lhs: Money, rhs: Money) -> Money {
+        return Money(lhs.value - rhs.value)
+    }
+
 }

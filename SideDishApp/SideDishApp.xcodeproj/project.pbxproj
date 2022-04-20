@@ -25,6 +25,9 @@
 		B7F90B43280FCD710067E4FE /* DetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B42280FCD710067E4FE /* DetailData.swift */; };
 		B7F90B45280FD65D0067E4FE /* ProductDetailDecordingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B44280FD65D0067E4FE /* ProductDetailDecordingTest.swift */; };
 		B7F90B46280FD69A0067E4FE /* mockProductDetailData.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F90B3E280FCC340067E4FE /* mockProductDetailData.json */; };
+		B7F90B4C280FE10C0067E4FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B4B280FE10C0067E4FE /* NetworkManager.swift */; };
+		B7F90B4E280FE1940067E4FE /* SystemLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B4D280FE1940067E4FE /* SystemLog.swift */; };
+		B7F90B50280FE29C0067E4FE /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B4F280FE29B0067E4FE /* NetworkManagerTests.swift */; };
 		BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4835280D5AE100F23DCE /* AppDelegate.swift */; };
 		BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */; };
 		BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4839280D5AE100F23DCE /* ViewController.swift */; };
@@ -72,6 +75,9 @@
 		B7F90B3E280FCC340067E4FE /* mockProductDetailData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockProductDetailData.json; sourceTree = "<group>"; };
 		B7F90B42280FCD710067E4FE /* DetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailData.swift; sourceTree = "<group>"; };
 		B7F90B44280FD65D0067E4FE /* ProductDetailDecordingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailDecordingTest.swift; sourceTree = "<group>"; };
+		B7F90B4B280FE10C0067E4FE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B7F90B4D280FE1940067E4FE /* SystemLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLog.swift; sourceTree = "<group>"; };
+		B7F90B4F280FE29B0067E4FE /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		B98C60A45FBEDB596EF4430A /* Pods-SideDishApp-SideDishAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCFE4832280D5AE100F23DCE /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE4835280D5AE100F23DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 		BCFE484B280D5AE200F23DCE /* SideDishAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				B7F90B4F280FE29B0067E4FE /* NetworkManagerTests.swift */,
 				B7F90B44280FD65D0067E4FE /* ProductDetailDecordingTest.swift */,
 				B7F90B2B280E86200067E4FE /* ProductDecordingTests.swift */,
 				BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */,
@@ -252,6 +259,7 @@
 		BCFE4885280D764400F23DCE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B7F90B4D280FE1940067E4FE /* SystemLog.swift */,
 				B7F90B36280EEA1F0067E4FE /* Extension.swift */,
 			);
 			name = Common;
@@ -261,6 +269,7 @@
 		BCFE4886280D764400F23DCE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B7F90B4B280FE10C0067E4FE /* NetworkManager.swift */,
 			);
 			name = Networking;
 			path = SideDishApp/Networking;
@@ -540,7 +549,9 @@
 				B7F90B2A280E7FF30067E4FE /* Badge.swift in Sources */,
 				B7F90B28280E7FEC0067E4FE /* Money.swift in Sources */,
 				B7F90B35280EE1C20067E4FE /* ProductType.swift in Sources */,
+				B7F90B4C280FE10C0067E4FE /* NetworkManager.swift in Sources */,
 				BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */,
+				B7F90B4E280FE1940067E4FE /* SystemLog.swift in Sources */,
 				B7F90B24280E7C2A0067E4FE /* Product.swift in Sources */,
 				B7F90B37280EEA1F0067E4FE /* Extension.swift in Sources */,
 				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
@@ -556,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7F90B50280FE29C0067E4FE /* NetworkManagerTests.swift in Sources */,
 				BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */,
 				B7F90B45280FD65D0067E4FE /* ProductDetailDecordingTest.swift in Sources */,
 				B7F90B2C280E86200067E4FE /* ProductDecordingTests.swift in Sources */,

@@ -38,7 +38,11 @@ class ProductDetailDecordingTest: XCTestCase {
         
     }
     
-
+    func testURL() throws {
+        let URL = URL(string: "http://public.codesquad.kr/jk/storeapp/data/main/675_ZIP_P_0057_T.jpg")
+        XCTAssertEqual(prodcutDetail.data.topImageURL,URL)
+    }
+    
     func testImageURLCount()  throws {
         let thumbImageURLCount = 2
         let detailSectionImageURLCount = 4
@@ -51,9 +55,9 @@ class ProductDetailDecordingTest: XCTestCase {
         let point = "78원"
         let priceCount = 1
         let priceValue = "7,800원"
-        XCTAssertEqual(prodcutDetail.data.point.won, point)
+        XCTAssertEqual(prodcutDetail.data.point.kwrFormat, point)
         XCTAssertEqual(prodcutDetail.data.prices.count, priceCount)
-        XCTAssertEqual(prodcutDetail.data.prices.first!.won, priceValue)
+        XCTAssertEqual(prodcutDetail.data.prices.first!.kwrFormat, priceValue)
     }
 
     
