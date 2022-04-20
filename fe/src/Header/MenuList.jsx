@@ -28,7 +28,7 @@ export const MenuList = () => {
   };
 
   return (
-    <Root
+    <Root className={"fonts-md"}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
