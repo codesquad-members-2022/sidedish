@@ -216,6 +216,12 @@
                                                                     <constraint firstAttribute="trailing" secondItem="k9Y-79-znj" secondAttribute="trailing" id="ruc-hB-xOy"/>
                                                                 </constraints>
                                                             </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 주문금액 12,640원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Gd-Yyi">
+                                                                <rect key="frame" x="0.0" y="374.66666666666663" width="358" height="38.333333333333314"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqX-ek-pwf">
                                                                 <rect key="frame" x="0.0" y="437" width="358" height="50"/>
                                                                 <constraints>
@@ -227,12 +233,6 @@
                                                                     <segue destination="gxR-Wr-5f7" kind="show" id="mnx-j6-Ycr"/>
                                                                 </connections>
                                                             </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 주문금액 12,640원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Gd-Yyi">
-                                                                <rect key="frame" x="0.0" y="374.66666666666663" width="358" height="38.333333333333314"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
