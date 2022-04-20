@@ -19,22 +19,28 @@ public class ProductController {
 
 	private final ProductService productService;
 
+	/**
+	 * 상품 카테고리별 목록 불러오기
+	 */
 	@GetMapping("/{dishType}/{sideDishType}")
 	public List<ResponseProduct> loadListByType(@PathVariable String dishType,
 		@PathVariable String sideDishType) {
-		// 상품 카테고리별 목록 불러오기
 		return productService.loadListByType(dishType, sideDishType);
 	}
 
+	/**
+	 * 상품 세부 정보 불러오기
+	 */
 	@GetMapping("/{id}")
 	public ResponseProduct loadDetails(@PathVariable int id) {
-		// 상품 세부 정보 불러오기
 		return productService.findById(id);
 	}
 
+	/**
+	 * 주문 넣기
+	 */
 	@PatchMapping("/purchase")
 	public void ordered(@RequestBody RequestProduct requestProduct) {
-		// 주문 넣기
 		productService.ordered(requestProduct);
 	}
 }
