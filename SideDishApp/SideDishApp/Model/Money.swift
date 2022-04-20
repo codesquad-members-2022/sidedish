@@ -10,7 +10,7 @@ struct Money {
        
     var value : Decimal
     
-    var kwrFormat : String {
+    var krwFormat : String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         return numberFormatter.string(from: NSDecimalNumber(decimal: value))! + "원"
