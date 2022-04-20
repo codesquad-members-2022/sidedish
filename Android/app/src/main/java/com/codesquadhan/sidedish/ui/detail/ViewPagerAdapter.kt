@@ -24,21 +24,19 @@ class ViewPagerAdapter(imageUrlList: ArrayList<String>) :
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         Log.d("AppTest", "viewpagerAdapter onBindViewHolder")
-        holder.bind(item[position], position, item.size)
+        holder.bind(item[position])
     }
 
     class PagerViewHolder(private val binding: ItemViewpagerImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(imageUrl: String, position: Int, totalSize: Int) {
+        fun bind(imageUrl: String) {
             Log.d("AppTest", "imageUrl : $imageUrl")
                 // Glide 써주기
                 Glide.with(binding.root)
                     .load(imageUrl)
                     .into(binding.ivDetail)
 
-            binding.tvTotalPage.text = totalSize.toString()
-            binding.tvCurrentPage.text = (position+1).toString()
         }
     }
 
