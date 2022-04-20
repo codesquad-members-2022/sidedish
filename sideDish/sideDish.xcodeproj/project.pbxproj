@@ -13,11 +13,8 @@
 		5BD52B45280D5DD5002099B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD52B43280D5DD5002099B7 /* Main.storyboard */; };
 		5BD52B47280D5DD8002099B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BD52B46280D5DD8002099B7 /* Assets.xcassets */; };
 		5BD52B4A280D5DD8002099B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD52B48280D5DD8002099B7 /* LaunchScreen.storyboard */; };
-
-		B3618E0B280E81020049C1A5 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3618E0A280E81020049C1A5 /* CollectionHeaderView.swift */; };
-		B3618E0E280E94100049C1A5 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3618E0D280E94100049C1A5 /* TestCell.swift */; };
 		5BD52B56280E7F4C002099B7 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD52B55280E7F4C002099B7 /* FoodCell.swift */; };
-
+		B3618E0B280E81020049C1A5 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3618E0A280E81020049C1A5 /* CollectionHeaderView.swift */; };
 		C1DEAF7C17CD8B6AF52FDFA4 /* Pods_sideDish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15621E10DC80D838BE16F7A0 /* Pods_sideDish.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +33,6 @@
 		9CEA27B30E68EDF4122627E5 /* Pods-sideDish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sideDish.release.xcconfig"; path = "Target Support Files/Pods-sideDish/Pods-sideDish.release.xcconfig"; sourceTree = "<group>"; };
 		B3618E0A280E81020049C1A5 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionHeaderView.swift; path = sideDish/CollectionHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		B3618E0C280E83470049C1A5 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
-		B3618E0D280E94100049C1A5 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestCell.swift; path = sideDish/TestCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +83,8 @@
 		5BD52B51280D5DDD002099B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-
 				B3618E0A280E81020049C1A5 /* CollectionHeaderView.swift */,
-				B3618E0D280E94100049C1A5 /* TestCell.swift */,
-
 				5BD52B55280E7F4C002099B7 /* FoodCell.swift */,
-
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,12 +247,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD52B42280D5DD5002099B7 /* MainViewController.swift in Sources */,
-
 				B3618E0B280E81020049C1A5 /* CollectionHeaderView.swift in Sources */,
-				B3618E0E280E94100049C1A5 /* TestCell.swift in Sources */,
-
 				5BD52B56280E7F4C002099B7 /* FoodCell.swift in Sources */,
-
 				5BD52B3E280D5DD5002099B7 /* AppDelegate.swift in Sources */,
 				5BD52B40280D5DD5002099B7 /* SceneDelegate.swift in Sources */,
 			);

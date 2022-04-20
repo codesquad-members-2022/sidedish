@@ -33,12 +33,13 @@ class MainViewController: UIViewController {
     
     func configureLayout() {
         let flowLayout = UICollectionViewFlowLayout()
-        // jason
+        // Jason
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 1
         flowLayout.minimumInteritemSpacing = 1
         flowLayout.itemSize = CGSize(width: self.view.frame.width, height: (view.frame.size.height/4)-3)
-      //
+      
+        // Chez
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 96)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 500, height: 500), collectionViewLayout: flowLayout)
         self.view.addSubview(self.collectionView)
@@ -63,11 +64,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
       // jason
+        let cellId = String(describing: FoodCell.self)
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCell.identifier, for: indexPath) as! FoodCell
-        cell.configure(firLabel: "런팅특가", secLabel: "12,640 15,800", thiLabel: "감칠맛나는양념", fouLabel: "오리주물럭")
+        cell.configure()
         return cell
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
