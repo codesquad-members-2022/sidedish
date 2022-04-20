@@ -21,6 +21,7 @@
 		B50A0C52280EEEB000A49273 /* FoodTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C51280EEEB000A49273 /* FoodTest.swift */; };
 		B50A0C59280EF19B00A49273 /* OrderingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
 		B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
+		B50A0C5E280FF1E700A49273 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* Response.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B50A0C51280EEEB000A49273 /* FoodTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTest.swift; sourceTree = "<group>"; };
 		B50A0C58280EF19B00A49273 /* OrderingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTest.swift; sourceTree = "<group>"; };
 		B50A0C5B280EF78E00A49273 /* JSONHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
+		B50A0C5D280FF1E700A49273 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				376A6B98280EA78B0016F0CE /* Food.swift */,
 				376A6B9A280EA8040016F0CE /* Ordering.swift */,
+				B50A0C5D280FF1E700A49273 /* Response.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */,
 				B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */,
 				B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */,
+				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
