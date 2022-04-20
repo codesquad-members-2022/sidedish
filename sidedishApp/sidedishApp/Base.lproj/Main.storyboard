@@ -31,42 +31,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-qc-yYr">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-qc-yYr">
                                 <rect key="frame" x="0.0" y="44" width="390" height="800"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bc9-Gl-VrZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="657"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-kk-e7n">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="375"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <viewLayoutGuide key="contentLayoutGuide" id="vWt-15-7nW"/>
-                                        <viewLayoutGuide key="frameLayoutGuide" id="jvo-SI-dpA"/>
-                                    </scrollView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-sP-7BI">
-                                        <rect key="frame" x="8" y="383" width="374" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <connections>
-                                            <segue destination="iGG-Gn-fRw" kind="embed" id="fCt-5H-DgY"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugP-ya-KTg">
-                                        <rect key="frame" x="8" y="553" width="374" height="104"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <connections>
-                                            <segue destination="mKr-iP-6LT" kind="embed" id="fYQ-rt-Io0"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ds-sl-mPb">
-                                        <rect key="frame" x="8" y="471" width="374" height="74"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <connections>
-                                            <segue destination="ZOK-MW-p1m" kind="embed" id="PXj-YL-Y33"/>
-                                        </connections>
-                                    </containerView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="B1F-sX-Dun">
+                                        <rect key="frame" x="0.0" y="52" width="390" height="633"/>
+                                        <subviews>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-kk-e7n">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="375"/>
+                                                <viewLayoutGuide key="contentLayoutGuide" id="vWt-15-7nW"/>
+                                                <viewLayoutGuide key="frameLayoutGuide" id="jvo-SI-dpA"/>
+                                            </scrollView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-sP-7BI">
+                                                <rect key="frame" x="0.0" y="375" width="390" height="80"/>
+                                                <connections>
+                                                    <segue destination="iGG-Gn-fRw" kind="embed" identifier="firstSection" id="fCt-5H-DgY"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ds-sl-mPb">
+                                                <rect key="frame" x="0.0" y="455" width="390" height="74"/>
+                                                <connections>
+                                                    <segue destination="ZOK-MW-p1m" kind="embed" id="PXj-YL-Y33"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugP-ya-KTg">
+                                                <rect key="frame" x="0.0" y="529" width="390" height="104"/>
+                                                <connections>
+                                                    <segue destination="mKr-iP-6LT" kind="embed" id="fYQ-rt-Io0"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="bVR-jC-23e"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="hXv-FU-T15"/>
@@ -79,8 +75,8 @@
                         <outlet property="firstSectionView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
                         <outlet property="fullSizeScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
                         <outlet property="imageScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
-                        <outlet property="productInfoView" destination="bc9-Gl-VrZ" id="xQc-Lk-24W"/>
                         <outlet property="secondSectionView" destination="3ds-sl-mPb" id="zbJ-jH-g8h"/>
+                        <outlet property="stackView" destination="B1F-sX-Dun" id="XFG-t1-5DK"/>
                         <outlet property="thirdSectionView" destination="ugP-ya-KTg" id="OLG-Pf-RrC"/>
                     </connections>
                 </viewController>
@@ -93,8 +89,9 @@
             <objects>
                 <viewController id="iGG-Gn-fRw" customClass="DetailTextViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eWS-yL-8vB">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Klw-Ak-tQg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
@@ -107,8 +104,9 @@
             <objects>
                 <viewController id="ZOK-MW-p1m" customClass="SecondSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2WA-cZ-wEq">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="74"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HzU-YQ-8FJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
@@ -121,14 +119,15 @@
             <objects>
                 <viewController id="mKr-iP-6LT" customClass="ThirdSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eXG-Fu-2Vh">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="104"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="h1g-PC-FRt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USq-uW-3WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="269"/>
+            <point key="canvasLocation" x="1667.6923076923076" y="268.72037914691941"/>
         </scene>
     </scenes>
     <resources>

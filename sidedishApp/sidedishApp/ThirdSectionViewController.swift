@@ -17,8 +17,8 @@ class ThirdSectionViewController: UIViewController{
     override func viewDidLoad(){
         super.viewDidLoad()
         self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 176)
-        //setAllProperties()
         self.view.addSubview(thirdSection)
+        //setAllProperties()
     }
 }
 

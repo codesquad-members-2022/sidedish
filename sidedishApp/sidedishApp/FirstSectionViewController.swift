@@ -8,7 +8,6 @@
 import UIKit
 
 class FirstSectionViewController: UIViewController{
-    private var firstSection = UIView(frame: CGRect(x: 0, y: 0, width: 343, height: 176))
     private var titleLabel: UILabel!
     private var subLabel: UILabel!
     private var salePrice: UILabel!
@@ -18,9 +17,7 @@ class FirstSectionViewController: UIViewController{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 176)
         setAllProperties()
-        self.view.addSubview(firstSection)
     }
 }
 
@@ -40,12 +37,12 @@ private extension FirstSectionViewController{
         titleLabel.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
         titleLabel.font = UIFont(name: "SFProDisplay-Regular", size: 32)
         setTextAttribute(label: titleLabel, text: "오리 주물럭_반조리")
-        self.firstSection.addSubview(titleLabel)
+        self.view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: self.firstSection.topAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: self.firstSection.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: self.firstSection.trailingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
@@ -55,11 +52,11 @@ private extension FirstSectionViewController{
         subLabel.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         subLabel.font = UIFont(name: "SFProDisplay-Regular", size: 18)
         setTextAttribute(label: subLabel, text: "감칠맛 나는 매콤한 양념")
-        self.firstSection.addSubview(subLabel)
+        self.view.addSubview(subLabel)
         
         subLabel.translatesAutoresizingMaskIntoConstraints = false
         subLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8).isActive = true
-        subLabel.leadingAnchor.constraint(equalTo: self.firstSection.leadingAnchor).isActive = true
+        subLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         subLabel.widthAnchor.constraint(equalToConstant: 177).isActive = true
         subLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
@@ -70,11 +67,11 @@ private extension FirstSectionViewController{
         salePrice.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
         salePrice.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
         setTextAttribute(label: salePrice, text: "12,640원")
-        self.firstSection.addSubview(salePrice)
+        self.view.addSubview(salePrice)
         
         salePrice.translatesAutoresizingMaskIntoConstraints = false
         salePrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8).isActive = true
-        salePrice.leadingAnchor.constraint(equalTo: self.firstSection.leadingAnchor).isActive = true
+        salePrice.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         salePrice.widthAnchor.constraint(equalToConstant: 74).isActive = true
         salePrice.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
@@ -85,7 +82,7 @@ private extension FirstSectionViewController{
         rawPrice.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         rawPrice.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         setRawPriceAttribute(label: rawPrice, text: "12,640원")
-        self.firstSection.addSubview(rawPrice)
+        self.view.addSubview(rawPrice)
         
         rawPrice.translatesAutoresizingMaskIntoConstraints = false
         rawPrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8).isActive = true
@@ -103,11 +100,11 @@ private extension FirstSectionViewController{
         eventLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         eventLabel.textAlignment = .center
         setEventLabelAttribute(label: eventLabel, text: "런칭특가")
-        self.firstSection.addSubview(eventLabel)
+        self.view.addSubview(eventLabel)
         
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
         eventLabel.topAnchor.constraint(equalTo: self.salePrice.bottomAnchor, constant: 16).isActive = true
-        eventLabel.leadingAnchor.constraint(equalTo: self.firstSection.leadingAnchor).isActive = true
+        eventLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         eventLabel.widthAnchor.constraint(equalToConstant: 77).isActive = true
         eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
@@ -116,13 +113,13 @@ private extension FirstSectionViewController{
         sectionBottom = UILabel()
         sectionBottom.frame = CGRect(x: 0, y: 0, width: 343, height: 1)
         sectionBottom.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
-        self.firstSection.addSubview(sectionBottom)
+        self.view.addSubview(sectionBottom)
         
         sectionBottom.translatesAutoresizingMaskIntoConstraints = false
         sectionBottom.topAnchor.constraint(equalTo: self.eventLabel.bottomAnchor, constant: 24).isActive = true
-        sectionBottom.leadingAnchor.constraint(equalTo: self.firstSection.leadingAnchor).isActive = true
-        sectionBottom.trailingAnchor.constraint(equalTo: self.firstSection.trailingAnchor).isActive = true
-        sectionBottom.bottomAnchor.constraint(equalTo: self.firstSection.bottomAnchor).isActive = true
+        sectionBottom.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        sectionBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     func setTextAttribute(label: UILabel, text: String){
