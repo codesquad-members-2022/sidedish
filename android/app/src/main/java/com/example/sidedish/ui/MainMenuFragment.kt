@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sidedish.R
+import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.FragmentMainBinding
 import com.example.sidedish.ui.adapter.MenuListAdapter
 
@@ -29,7 +30,7 @@ class MainMenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainFoodAdapter = MenuListAdapter()
+        val mainFoodAdapter = MenuListAdapter(Header.MAIN)
         mainFoodAdapter.itemClickCallback = { key: String ->
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
@@ -42,5 +43,6 @@ class MainMenuFragment : Fragment() {
         viewModel.mainFoodList.observe(viewLifecycleOwner) {
             mainFoodAdapter.submitList(it)
         }
+
     }
 }

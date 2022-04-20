@@ -6,4 +6,7 @@
     <string name="menu_image">메뉴사진</string>
     <string name="event_label">이벤트특가</string>
     <string name="limited_label">한정특가</string>
+    <string name="main_header">모두가 좋아하는 \n든든한 국물 요리</string>
+    <string name="soup_header">정성이 담긴 \n뜨끈뜨끈 국물 요리</string>
+    <string name="side_header">식탁을 풍성하게 하는 \n정갈한 밑반찬</string>
 </resources>
