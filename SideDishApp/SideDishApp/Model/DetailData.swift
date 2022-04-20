@@ -8,22 +8,22 @@
 import Foundation
 
 struct DetailData : Codable {
-    let topImage : URL
-    let thumbImages : [URL]
+    let topImageURL : URL
+    let thumbImagesURL : [URL]
     let productDescription : String
     let deliveryInfo : String
     let deliveryFee : String
-    let detailSection : [URL]
+    let detailSectionURL : [URL]
     private let unCastedPrices : [String]
     private let unCastedPoint : String
      
     enum CodingKeys: String, CodingKey {
-           case topImage = "top_image"
-           case thumbImages = "thumb_images"
+           case topImageURL = "top_image"
+           case thumbImagesURL = "thumb_images"
            case productDescription = "product_description"
            case deliveryInfo = "delivery_info"
            case deliveryFee = "delivery_fee"
-           case detailSection = "detail_section"
+           case detailSectionURL = "detail_section"
            case unCastedPrices = "prices"
            case unCastedPoint = "point"
     }
