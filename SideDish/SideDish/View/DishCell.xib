@@ -40,7 +40,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xSH-MG-SjM">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xSH-MG-SjM">
                                 <rect key="frame" x="138" y="29" width="205" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqf-Ku-PoY" userLabel="Title">
@@ -75,6 +75,33 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <view hidden="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="205" placeholderIntrinsicHeight="32" translatesAutoresizingMaskIntoConstraints="NO" id="dYU-xp-9B4">
+                                        <rect key="frame" x="0.0" y="72" width="205" height="32"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-Mj-oUm" userLabel="BadgeLabel">
+                                                <rect key="frame" x="0.0" y="8" width="32" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="iwD-Ly-dTM"/>
+                                                    <constraint firstAttribute="height" constant="24" id="mlB-m4-I29"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="100"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="L2i-Mj-oUm" firstAttribute="top" secondItem="dYU-xp-9B4" secondAttribute="top" constant="8" id="5tr-OV-eho"/>
+                                            <constraint firstAttribute="bottom" secondItem="L2i-Mj-oUm" secondAttribute="bottom" id="MYJ-hY-f5y"/>
+                                            <constraint firstItem="L2i-Mj-oUm" firstAttribute="leading" secondItem="dYU-xp-9B4" secondAttribute="leading" id="Oxi-4g-cxN"/>
+                                            <constraint firstAttribute="height" constant="32" id="kLA-nl-yA2"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="mvw-cG-Dft" firstAttribute="height" secondItem="Jqf-Ku-PoY" secondAttribute="height" id="7Mm-gN-6vA"/>
@@ -102,10 +129,10 @@
             </constraints>
             <size key="customSize" width="718" height="212"/>
             <connections>
+                <outlet property="badgeView" destination="dYU-xp-9B4" id="wIH-kj-RWT"/>
                 <outlet property="descriptionLabel" destination="mvw-cG-Dft" id="pTU-ep-qaR"/>
                 <outlet property="finalPriceLabel" destination="dO6-Pv-XTR" id="uE9-js-TPe"/>
                 <outlet property="normalPriceLabel" destination="Vq3-Th-6fp" id="wUc-L0-NFS"/>
-                <outlet property="productInfoStackView" destination="xSH-MG-SjM" id="aKn-0k-63n"/>
                 <outlet property="thumbNailImageView" destination="kdg-E1-T7e" id="Sww-Uv-0wt"/>
                 <outlet property="titleLabel" destination="Jqf-Ku-PoY" id="c56-aa-H3I"/>
             </connections>
