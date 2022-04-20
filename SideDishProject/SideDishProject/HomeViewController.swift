@@ -24,4 +24,11 @@ class HomeViewController: UIViewController {
         viewController.productRepository = repository
         return viewController
     }
+    
+    private func presentDetailViewController(){
+        guard let repository = productRepository else { return }
+        let detailViewController = ProductSceneContainer.makeDetail(repository: reppository)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
 }

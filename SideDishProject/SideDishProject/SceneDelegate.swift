@@ -23,7 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 final class ProductSceneContainer {
     static func makeRoot(repository: ProductRepository) -> UIViewController {
-        let view = HomeViewController.create(with: repository)
-        return RootNavigationController(rootViewController: view)
+        let viewController = HomeViewController.create(with: repository)
+        return RootNavigationController(rootViewController: viewController)
     }
+    
+    static func makeDetail(repository: ProductRepository) -> UIViewController {
+        return DetailViewController.create(with: repository)
+    }
+    
 }
