@@ -10,7 +10,7 @@ public class SideDishImage {
 
     @Id
     private long id;
-    private String imageURL;
+    private String imageUrl;
     private int imageSeq;
 
     // FK

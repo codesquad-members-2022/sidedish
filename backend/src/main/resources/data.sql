@@ -33,6 +33,7 @@ values ('조림/볶음', 3, 0);
 insert into category (title, parent, exhibition_id)
 values ('절임/장아찌', 3, 0);
 
+/* 기획전에 속하는 카테고리 */
 insert into category (title, parent, exhibition_id)
 values ('풍성한 고기 반찬', 0, 1);
 

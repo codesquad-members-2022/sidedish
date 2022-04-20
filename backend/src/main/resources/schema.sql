@@ -22,7 +22,7 @@ create table side_dish
 (
     id           bigint primary key auto_increment,
     name         varchar(100) not null comment '반찬 이름',
-    description  int comment '반찬 설명',
+    description  varchar(100) comment '반찬 설명',
     price        int comment '정상가격',
     accrual_rate decimal comment '적립율'
 );
