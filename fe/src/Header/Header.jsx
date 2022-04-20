@@ -1,5 +1,5 @@
-import { MenuList } from './Header/MenuList';
-import { UserButtons } from './Header/UserButtons';
+import { MenuList } from './MenuList';
+import { UserButtons } from './UserButtons';
 import styled from 'styled-components';
 
 const Root = styled.header`
