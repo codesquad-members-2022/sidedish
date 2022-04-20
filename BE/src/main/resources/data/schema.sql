@@ -14,8 +14,8 @@ DROP TABLE IF EXISTS items;
 CREATE TABLE items
 (
     id            BIGINT AUTO_INCREMENT,
-    category      BIGINT references category (id),
-    category_key  BIGINT,
+    category      BIGINT , ## 이게 왜 필요한거지?
+    category_key  BIGINT references category (id),
     title         VARCHAR(64)  NOT NULL,
     description   VARCHAR(255) NOT NULL,
     price         DECIMAL      NOT NULL,
@@ -27,5 +27,24 @@ CREATE TABLE items
     image         VARCHAR(64)  NOT NULL,
     PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders
+(
+    id            BIGINT primary key AUTO_INCREMENT,
+    shipping_fee  DECIMAL,
+    shipping_info VARCHAR(64)
+);
+
+DROP TABLE IF EXISTS item_order;
+
+CREATE TABLE item_order
+(
+    item BIGINT,
+    orders BIGINT,
+    primary key (item, orders)
+);
+
 
 SET FOREIGN_KEY_CHECKS = 1;
