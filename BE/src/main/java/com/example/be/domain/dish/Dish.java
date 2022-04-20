@@ -1,8 +1,12 @@
-package com.example.be.domain;
+package com.example.be.domain.dish;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
-
+@Table("dish")
 public class Dish {
+    @Id
     private Long dishId;
     private String name;
     private String description;
@@ -65,5 +69,21 @@ public class Dish {
 
     public Long getCategoryId() {
         return categoryId;
+    }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "dishId=" + dishId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", normalPrice=" + normalPrice +
+                ", salePrice=" + salePrice +
+                ", badge=" + badge +
+                ", deliveryType=" + deliveryType +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", dishStatus=" + dishStatus +
+                ", categoryId=" + categoryId +
+                '}';
     }
 }

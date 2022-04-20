@@ -34,3 +34,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 운영/로컬 분리 ###
+src/main/resources/application-dev.yml

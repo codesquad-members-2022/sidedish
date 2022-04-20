@@ -1,16 +1,6 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-    open-in-view: false
-    show-sql: true
-
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test22
+    url:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
+    username: ${{ACCESS_ID}}
+    password: ${{ACCESS_PASSWORD}}

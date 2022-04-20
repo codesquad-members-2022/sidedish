@@ -1,8 +1,8 @@
 package com.example.be.controller.dish.dto;
 
-import com.example.be.domain.Badge;
-import com.example.be.domain.DeliveryType;
-import com.example.be.domain.DishStatus;
+import com.example.be.domain.dish.Badge;
+import com.example.be.domain.dish.DeliveryType;
+import com.example.be.domain.dish.DishStatus;
 
 import java.math.BigDecimal;
 

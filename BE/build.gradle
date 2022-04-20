@@ -13,12 +13,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter:2.5.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.4'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jdbc', version: '2.6.4'
+
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
-
+    runtimeOnly 'com.h2database:h2:1.4.199'
 }
 
 tasks.named('test') {
