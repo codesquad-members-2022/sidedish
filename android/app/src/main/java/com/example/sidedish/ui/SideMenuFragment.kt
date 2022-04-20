@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.FragmentMainBinding
 import com.example.sidedish.ui.adapter.MenuListAdapter
 
@@ -27,7 +28,7 @@ class SideMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sideMenuAdapter = MenuListAdapter()
+        val sideMenuAdapter = MenuListAdapter(Header.SIDE)
 
         with(binding) {
             rvMain.adapter = sideMenuAdapter

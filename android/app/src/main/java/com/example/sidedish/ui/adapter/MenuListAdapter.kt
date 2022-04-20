@@ -8,20 +8,46 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.sidedish.R
 import com.example.sidedish.data.Body
-import com.example.sidedish.databinding.ItemFoodListBinding
+import com.example.sidedish.data.Header
+import com.example.sidedish.databinding.ItemHeaderBinding
+import com.example.sidedish.databinding.ItemMenuListBinding
 
-class MenuListAdapter: ListAdapter<Body, MenuListAdapter.FoodListViewHolder>(DiffUtil) {
+private const val HEADER = 0
+private const val ITEM = 1
+
+class MenuListAdapter(private val header: Header): ListAdapter<Body, RecyclerView.ViewHolder>(DiffUtil) {
 
     lateinit var itemClickCallback: ((key: String) -> Unit)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodListViewHolder {
-        val binding = ItemFoodListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FoodListViewHolder(binding)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val listBinding = ItemMenuListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val headerBinding = ItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return when(viewType) {
+            HEADER -> MenuListHeaderViewHolder(headerBinding)
+            else -> MenuListViewHolder(listBinding)
+        }
     }
 
-    override fun onBindViewHolder(holder: FoodListViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is MenuListHeaderViewHolder -> {
+                holder.bind(header)
+            }
+
+            is MenuListViewHolder -> {
+                holder.bind(getItem(position))
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when(position) {
+            0 -> HEADER
+            else -> ITEM
+        }
     }
 
     object DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Body>() {
@@ -36,7 +62,19 @@ class MenuListAdapter: ListAdapter<Body, MenuListAdapter.FoodListViewHolder>(Dif
 
     }
 
-    inner class FoodListViewHolder(private val binding: ItemFoodListBinding): RecyclerView.ViewHolder(binding.root) {
+    class MenuListHeaderViewHolder(private val binding: ItemHeaderBinding): RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(header: Header) {
+            when(header) {
+                Header.MAIN -> binding.tvMenuListLabel.text = binding.root.context.getString(R.string.main_header)
+                Header.SOUP -> binding.tvMenuListLabel.text = binding.root.context.getString(R.string.soup_header)
+                Header.SIDE -> binding.tvMenuListLabel.text = binding.root.context.getString(R.string.side_header)
+            }
+        }
+
+    }
+
+    inner class MenuListViewHolder(private val binding: ItemMenuListBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(menu: Body) {
             with(binding) {

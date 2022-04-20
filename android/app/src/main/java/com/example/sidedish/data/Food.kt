@@ -11,6 +11,7 @@ data class Food(
 )
 
 data class Body(
+    val header: Header,
     @SerializedName("alt")
     val alt: String?,
     @SerializedName("badge")

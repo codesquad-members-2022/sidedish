@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sidedish.databinding.FragmentHomeBinding
@@ -24,6 +27,8 @@ class HomeFragment : Fragment() {
     private val viewPager: ViewPager2 by lazy {
         binding.pager
     }
+
+    private val viewModel: MenuListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +51,7 @@ class HomeFragment : Fragment() {
             }
 
         viewPager.setPageTransformer(ZoomOutPageTransformer())
+
     }
 
     private inner class ScreenSlidePagerAdapter(
