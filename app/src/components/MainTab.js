@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
 import CardList from "./CardList.js";
-import dishData from "../store/store.js";
 
 const Header = styled.div`
   display: flex;
@@ -49,7 +48,7 @@ const Main = styled.div`
   }
 `;
 
-const MainTab = () => {
+const MainTab = ({ dish }) => {
   const tabTexts = [
     "풍성한 고기 반찬",
     "편리한 반찬 세트",
@@ -58,19 +57,34 @@ const MainTab = () => {
   ];
 
   const [tabNumber, setTabNumber] = useState(0);
-  let mainDish;
-  const handleTabClick = (index) => {
-    setTabNumber(index);
-    console.log(mainDish);
-  };
+  const [tabCards, setTabCards] = useState({});
 
   useEffect(() => {
-    async function asd() {
-      const data = await dishData;
-      mainDish = [...data().main.body];
+    if (dish.length === 0) return;
+
+    const shuffle = selectDish();
+    const shuffleCards = setShuffleCards(shuffle);
+    setTabCards(shuffleCards);
+  }, [dish]);
+
+  const selectDish = () => {
+    const seletedDish = [...dish].sort(() => Math.random() - 0.5);
+    return seletedDish;
+  };
+
+  const setShuffleCards = (shuffle) => {
+    const tabCards = {};
+    for (let i = 0, count = 0; i < tabTexts.length; i++) {
+      tabCards[i] = shuffle.slice(count, count + 3);
+      count += 3;
     }
-    asd();
-  }, []);
+
+    return tabCards;
+  };
+
+  const handleTabClick = (index) => {
+    setTabNumber(index);
+  };
 
   return (
     <ThemeProvider theme={theme}>
