@@ -17,7 +17,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     /* Spring-Data-JDBC */
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.6.6'
 
     /* Mysql */
