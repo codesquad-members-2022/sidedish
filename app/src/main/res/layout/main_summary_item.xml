@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="foodInfo"
+            type="com.example.sideDish.Item.FoodInfo" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +31,9 @@
             android:elevation="@dimen/elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            custom:image="@{foodInfo.image}"
+            android:contentDescription="@string/food_image_desc_string" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_summary_layout"
@@ -35,6 +50,7 @@
                 android:id="@+id/title_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@{foodInfo.title}"
                 android:textAppearance="@style/TextSmall.Bold"
                 app:layout_constraintBottom_toTopOf="@id/content_text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +65,7 @@
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{foodInfo.description}"
                 android:textAppearance="@style/TextSmall"
                 android:textColor="@color/grey2"
                 app:layout_constraintBottom_toTopOf="@id/sell_price"
@@ -62,6 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:text="@{foodInfo.SPrice}"
                 android:textAppearance="@style/TextSmall.Bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,12 +90,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:text="@{Html.fromHtml(String.format(@string/original_price, foodInfo.NPrice))}"
                 android:textAppearance="@style/TextSmall"
                 android:textColor="@color/grey2"
                 app:layout_constraintBottom_toBottomOf="@id/sell_price"
                 app:layout_constraintStart_toEndOf="@id/sell_price"
                 app:layout_constraintTop_toTopOf="@id/sell_price"
-                tools:text="@{@string/original_price(12900)" />
+                tools:text="12,900원" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,6 +108,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
+            android:visibility="@{foodInfo.badge.isEmpty() ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/food_image"
             app:layout_constraintStart_toEndOf="@id/food_image">
 
@@ -97,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryLight"
-                tools:text="이벤트특가" />
+                android:text="@string/event_string" />
 
             <TextView
                 android:id="@+id/launch_text"
@@ -105,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:background="@color/grey4"
-                tools:text="런칭특가" />
+                android:text="@string/launch_string" />
 
         </LinearLayout>
 

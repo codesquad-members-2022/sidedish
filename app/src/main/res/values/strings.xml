@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">SideDish</string>
-    <string name="original_price">&lt;strike>%d원&lt;/strike></string>
+    <string name="app_name">Ordering</string>
+    <string name="original_price">&lt;strike>%s&lt;/strike></string>
+    <string name="header_items_count">"%d개의 상품이 등록되어 있습니다."</string>
+    <string name="event_string">이벤트특가</string>
+    <string name="launch_string">런칭특가</string>
+    <string name="food_image_desc_string">Food Image</string>
 </resources>
