@@ -18,9 +18,6 @@ class JdbcDishRepositoryTest {
     @BeforeEach
     void setUp() {
 
-//        dish = new Dish(null,1L,"짱찬", 10, 10000,
-//                "새벽배송", "정액할인");
-//        Dish saved = jdbcDishRepository.save(dish);
     }
 
     @Test
