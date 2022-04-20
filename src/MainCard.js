@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MainCard = ({ mainCardData, mainDishData }) => {
+const MainCard = ({ mainCardData }) => {
   return <div></div>;
 };
 
