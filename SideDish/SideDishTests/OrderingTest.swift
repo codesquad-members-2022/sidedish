@@ -29,12 +29,19 @@ class OrderingTests: XCTestCase {
         XCTAssertNotNil(ordering.selectedMenu)
     }
     
+    func testIncresingCount(){
+        ordering.addFood(food: food)
+        ordering.selectFood(foodHash: "hash")
+        ordering.increaseCount(foodHash: "hash")
+        XCTAssertEqual(ordering.sum, 100)
+    }
+    
     func testReturningSum(){
         ordering.addFood(food: food)
         XCTAssertLessThan(ordering.sum, 0)
 
         ordering.selectFood(foodHash: "hash")
+        ordering.increaseCount(foodHash: "hash")
         XCTAssertGreaterThan(ordering.sum, 0)
-
     }
 }

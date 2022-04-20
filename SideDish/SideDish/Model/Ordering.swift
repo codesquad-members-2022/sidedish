@@ -3,7 +3,7 @@ import Foundation
 class Ordering{
     private (set) var foodList: [String:Food] = [:]
     private (set) var selectedMenu: Food?
-    var count: Int = 0
+    private var count: Int = 0
     var deliveryMoney: Int = 2500
     
     var sum: Int{
@@ -12,6 +12,12 @@ class Ordering{
             return (count * price) + deliveryMoney
         } else {
             return count * price
+        }
+    }
+    
+    func increaseCount(foodHash: String){
+        if foodList[foodHash] != nil {
+            count += 1
         }
     }
     
