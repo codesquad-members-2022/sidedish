@@ -2,17 +2,15 @@ package com.team34.sidedish.dto;
 
 import java.util.List;
 
-public class ItemDetailResponse {
+public class DishResponse {
 
+    private Long id;
     private int originPrice;
     private int discountPrice;
-    private int deliveryFee;
-    private double mileageRatio;
     private boolean earlyDeliverable;
-    private Integer freeShippingAmount;
+    private String mainImagePath;
     private String title;
     private String content;
-    private List<String> images;
     private List<String> badges;
-    private List<ItemResponse> recommendedItems;
- }
+    private List<String> categories;
+}
