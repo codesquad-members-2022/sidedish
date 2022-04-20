@@ -53,12 +53,21 @@ struct NetworkManager {
     
     func fetchImageData(url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         
+        guard let url = changeSchemeToHTTPS(url) else { return }
+        
         AF.request(url).validate().responseData { response in
             guard let data = response.data else {
                 return completion(.failure(.noData))
             }
             completion(.success(data))
         }
+    }
+    
+    private func changeSchemeToHTTPS(_ url: URL) -> URL? {
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         
+        components.scheme = "https"
+        
+        return components.url
     }
 }

@@ -8,9 +8,10 @@
 import XCTest
 
 class CategoryManagerTests: XCTestCase {
+
+    let categoryManager = CategoryManager()
     
     func testFetchCategory() throws {
-        let categoryManager = CategoryManager()
         
         let promise = XCTestExpectation(description: "Fetch Category Success")
         
@@ -21,6 +22,39 @@ class CategoryManagerTests: XCTestCase {
         }
         
         wait(for: [promise], timeout: 1)
+    }
+    
+    func testFetchImage() {
+        
+        // Prepare Product to test fetch Image
+        var testProduct: Product? = nil
+        
+        let fetchProductPromise = XCTestExpectation(description: "Fetch Product Success")
+        
+        categoryManager.fetchCategory(of: .main) { category in
+            testProduct = category.product[0]
+            fetchProductPromise.fulfill()
+        }
+        
+        wait(for: [fetchProductPromise], timeout: 1)
+        guard let testProduct = testProduct else { return XCTFail() }
+        
+        // Prepare Stub
+        let fileName = "1155_ZIP_P_0081_T"
+        let fileExtension = "jpg"
+        guard let localImageURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension), let localImageData = try? Data(contentsOf: localImageURL) else {
+            return
+        }
+        
+        // Test Fetch method
+        let fetchImagePromise = XCTestExpectation(description: "Fetch Image Success")
+        
+        categoryManager.fetchImageData(of: testProduct) { data in
+            XCTAssertEqual(localImageData, data)
+            fetchImagePromise.fulfill()
+        }
+        
+        wait(for: [fetchImagePromise], timeout: 1)
     }
 
 }
