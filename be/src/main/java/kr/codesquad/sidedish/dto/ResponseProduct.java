@@ -7,11 +7,11 @@ import lombok.Getter;
 @Getter
 public class ResponseProduct {
 
-	private int code;
+	private Integer id;
 	private String name;
 	private String content;
 	private int price;
-	private int quantity;
+	private Integer quantity;
 	private String dishType;
 	private String sideDishType;
 	private String applyEvent;

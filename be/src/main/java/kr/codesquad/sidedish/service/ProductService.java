@@ -28,7 +28,7 @@ public class ProductService {
 			.collect(Collectors.toList());
 	}
 
-	public ResponseProduct findById(int id) {
+	public ResponseProduct findById(Integer id) {
 		return productRepository.findById(id).createResponseProduct();
 	}
 

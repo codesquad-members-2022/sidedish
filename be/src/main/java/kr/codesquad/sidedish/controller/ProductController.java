@@ -32,7 +32,7 @@ public class ProductController {
 	 * 상품 세부 정보 불러오기
 	 */
 	@GetMapping("/{id}")
-	public ResponseProduct loadDetails(@PathVariable int id) {
+	public ResponseProduct loadDetails(@PathVariable Integer id) {
 		return productService.findById(id);
 	}
 
