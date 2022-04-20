@@ -1,0 +1,112 @@
+{
+  "data": [
+    {
+      "id": "HBDEF",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+      "title": "오리 주물럭_반조리",
+      "description": "감칠맛 나는 매콤한 양념",
+      "price": "15,800원",
+      "salesPrice": "12,640원",
+      "badge": ["런칭특가"]
+    },
+    {
+      "id": "HDF73",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
+      "title": "잡채",
+      "description": "탱글한 면발과 맛깔진 고명이 가득",
+      "price": "12,900원",
+      "discountedPrice": "11,610원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "HF778",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg",
+      "title": "소갈비찜",
+      "description": "촉촉하게 밴 양념이 일품",
+      "price": "28,900원",
+      "discountedPrice": "26,010원",
+      "badge": ["이벤트특가", "메인특가"]
+    },
+    {
+      "id": "HBBCC",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg",
+      "title": "새콤달콤 오징어무침",
+      "description": "국내산 오징어를 새콤달콤하게",
+      "price": "7,500원",
+      "discountedPrice": "6,000원",
+      "badge": ["런칭특가"]
+    },
+    {
+      "id": "H1939",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg",
+      "title": "호두 멸치볶음",
+      "description": "잔멸치와 호두가 만나 짭쪼름하지만 고소하게!",
+      "price": "5,800원",
+      "discountedPrice": "5,220원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H8EA5",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/26_ZIP_P_4001_T.jpg",
+      "title": "한돈 매콤 안심장조림",
+      "description": "부드러운 한돈 안심살의 매콤함",
+      "price": "6,900원",
+      "discountedPrice": "6,210원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H602F",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg",
+      "title": "야채 어묵볶음",
+      "description": "첨가물 없는 순수어묵과 야채의 만남",
+      "price": "4,900원",
+      "discountedPrice": "4,410원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H9F0B",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/147_ZIP_P_7010_T.jpg",
+      "title": "오이소박이",
+      "description": "깔끔하고 개운한 여름 김치",
+      "price": "7,300원",
+      "discountedPrice": "6,570원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H0FC6",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_T.jpg",
+      "title": "두부조림",
+      "description": "각종 영양이 가득 담긴",
+      "price": "13,800원",
+
+      "discountedPrice": "6,900원"
+    },
+    {
+      "id": "H72C3",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
+      "title": "한돈 돼지 김치찌개",
+      "description": "김치찌개에는 역시 돼지고기",
+      "price": "9,300원",
+      "discountedPrice": "8,370원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "HA6EE",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_T.jpg",
+      "title": "된장찌개",
+      "description": "특별하지 않아서 더 좋은 우리맛",
+      "price": "8,800원",
+      "discountedPrice": "7,920원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H8CD0",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/213_ZIP_P_1008_T.jpg",
+      "title": "미역오이냉국",
+      "description": "여름엔 시원한 냉국이 최고",
+      "price": "7,800원",
+      "discountedPrice": "7,020원",
+      "badge": ["이벤트특가"]
+    }
+  ]
+}

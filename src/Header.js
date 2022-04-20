@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { flexCenter, flexBetween } from "./css/mixins";
+import React from 'react';
+import styled from 'styled-components';
+import { flexCenter, flexBetween } from './css/mixins';
 
 const Header = () => {
   return (
@@ -35,9 +35,9 @@ const Header = () => {
       </FlexBetween>
 
       <Menu>
-        <MenuIcon src='assets/search.png' alt='search'></MenuIcon>
-        <MenuIcon src='assets/user.png' alt='user'></MenuIcon>
-        <MenuIcon src='assets/basket.png' alt='basket'></MenuIcon>
+        <MenuIcon src="assets/search.png" alt="search"></MenuIcon>
+        <MenuIcon src="assets/user.png" alt="user"></MenuIcon>
+        <MenuIcon src="assets/basket.png" alt="basket"></MenuIcon>
       </Menu>
     </StyledHeader>
   );
@@ -68,7 +68,6 @@ const GnbTap = styled.div`
     height: 90px;
     ul {
       display: block;
-
       position: absolute;
       margin-top: 10px;
     }
