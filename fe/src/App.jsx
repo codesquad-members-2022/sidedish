@@ -1,13 +1,17 @@
-import MainTheme from './MainTheme/Theme.jsx';
+import { ThemeProvider } from 'styled-components';
+import RecommendProduct from './Main/Recommend/RecommendProduct.jsx';
 import HeaderTemplate from './Header/HeaderTemplate';
 import GlobalStyles from './GlobalStyles.jsx';
+import theme from './theme';
 
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <HeaderTemplate></HeaderTemplate>
-      <MainTheme></MainTheme>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <HeaderTemplate></HeaderTemplate>
+        <RecommendProduct></RecommendProduct>
+      </ThemeProvider>
     </>
   );
 }

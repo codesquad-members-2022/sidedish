@@ -1,18 +1,28 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import HeaderCategory from './HeaderCategory';
-import HeaderLogo from './HeaderLogo';
-import HeaderIcon from './HeaderIcon';
 import CartImage from '../image/cart.svg';
 import PersonImage from '../image/person.svg';
 import SearchImage from '../image/search.svg';
 
+const HeaderLogo = styled.div`
+  ${({ theme }) => theme.fontStyles.logo};
+  margin-right: 40px;
+  cursor: pointer;
+`;
+
+const HeaderIcon = styled.img`
+  width: 100%;
+  cursor: pointer;
+  margin: 0 12px;
+`;
+
 const HeaderTemplate = styled.header`
   display: flex;
   padding: 16px 80px;
-  border-bottom: #1b1b1b 1px solid;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
   transition: height 0.25s ease-out;
-  height: ${(props) => (props.open ? '190px' : '83px')};
+  height: ${(props) => (props.open ? '190px' : '50px')};
 `;
 
 const HeaderInnerTemplate = styled.div`
@@ -25,7 +35,6 @@ const HeaderInnerTemplate = styled.div`
 
 const CategoryTemplate = styled.div`
   display: flex;
-  align-items: center;
 `;
 
 const IconTemplate = styled.div`
@@ -57,12 +66,12 @@ export default function Template() {
   });
 
   const iconList = iconsPaths.map((path, index) => {
-    return <HeaderIcon key={index} path={path}></HeaderIcon>;
+    return <HeaderIcon key={index} src={path} />;
   });
 
   return (
     <HeaderTemplate open={open}>
-      <HeaderLogo text={'Ordering'}></HeaderLogo>
+      <HeaderLogo>Ordering</HeaderLogo>
       <HeaderInnerTemplate>
         <CategoryTemplate onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
           {categoryList}
