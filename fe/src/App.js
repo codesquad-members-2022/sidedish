@@ -1,8 +1,8 @@
 import "./App.css";
 import "./reset.css";
-import Card from "./component/Card";
+import Card from "./component/UI/Card";
 import Header from "./component/Header/Header";
-import Tab from "./component/Tab";
+import Tab from "./component/Tab/Tab";
 
 function App() {
   return (

@@ -58,9 +58,9 @@ const Header = () => {
           </span>
         </div>
         <div className="header-right">
-          <div className="a"></div>
-          <div className="b"></div>
-          <div className="c"></div>
+          <div className="search-icon"></div>
+          <div className="mypage-icon"></div>
+          <div className="cart-icon"></div>
         </div>
       </header>
     </div>

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 const List = (props) => {
   const onClickHandler = (event) => {
     props.onSaveClickedID(event.target.id);
   };
-  //   console.log(props);
   return (
     <li
       id={props.id}
