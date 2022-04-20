@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group 'org.example'
+version '2.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    /* Spring-Boot*/
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    /* Spring-Data-JDBC */
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.6.6'
+
+    /* Mysql */
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    /* AssertJ */
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+
+    /* Lombok */
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor "org.projectlombok:lombok"
+
+    /* Springfox */
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+    /* Jackson */
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.2'
+}
+
+test {
+    useJUnitPlatform()
+}
