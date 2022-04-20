@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductDetailFragment">
-    <!-- 임시 툴바 -->
-    <View
-        android:id="@+id/toolbar_detail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/primaryLight"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -19,7 +12,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_detail">
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:id="@+id/constraint_layout_primary_detail"
             android:layout_width="match_parent"
@@ -43,12 +37,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/text_view_image_index"
                     style="@style/TextMedium.Bold"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:gravity="center"
                     android:text="temp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -43,6 +43,7 @@
         <item name="android:textColor">@color/primary</item>
         <item name="fontFamily">@font/font_family</item>
     </style>
+
     <style name="TextSmall.gray" parent="TextSmall">
         <item name="android:textColor">@color/grey2</item>
         <item name="fontFamily">@font/font_family</item>
