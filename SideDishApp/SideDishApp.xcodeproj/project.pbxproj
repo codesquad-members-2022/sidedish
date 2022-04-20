@@ -38,6 +38,8 @@
 		BCFE489F280FA8D900F23DCE /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B27280E7FEC0067E4FE /* Money.swift */; };
 		BCFE48A0280FA8DC00F23DCE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B29280E7FF30067E4FE /* Badge.swift */; };
 		BCFE48A2280FA8E000F23DCE /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B25280E7FE10067E4FE /* Delivery.swift */; };
+		BCFE48A4280FAABA00F23DCE /* SystemLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE48A3280FAABA00F23DCE /* SystemLog.swift */; };
+		BCFE48A5280FAABA00F23DCE /* SystemLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE48A3280FAABA00F23DCE /* SystemLog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,7 @@
 		BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BCFE4893280F9C1F00F23DCE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = SideDishApp/Networking/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		BCFE4899280F9C5700F23DCE /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		BCFE48A3280FAABA00F23DCE /* SystemLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLog.swift; sourceTree = "<group>"; };
 		D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp_SideDishAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F90B36280EEA1F0067E4FE /* Extension.swift */,
+				BCFE48A3280FAABA00F23DCE /* SystemLog.swift */,
 			);
 			name = Common;
 			path = SideDishApp/Common;
@@ -550,6 +554,7 @@
 				B7F90B24280E7C2A0067E4FE /* Product.swift in Sources */,
 				B7F90B37280EEA1F0067E4FE /* Extension.swift in Sources */,
 				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
+				BCFE48A4280FAABA00F23DCE /* SystemLog.swift in Sources */,
 				BCFE4894280F9C1F00F23DCE /* NetworkManager.swift in Sources */,
 				BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */,
 				B7F90B26280E7FE10067E4FE /* Delivery.swift in Sources */,
@@ -562,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCFE489A280F9C5700F23DCE /* NetworkManagerTests.swift in Sources */,
+				BCFE48A5280FAABA00F23DCE /* SystemLog.swift in Sources */,
 				BCFE489C280FA8C900F23DCE /* Category.swift in Sources */,
 				BCFE4895280F9C1F00F23DCE /* NetworkManager.swift in Sources */,
 				BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */,

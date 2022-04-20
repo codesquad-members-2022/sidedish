@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import OSLog
 @testable import SideDishApp
 
 class NetworkManagerTests: XCTestCase {
@@ -23,10 +22,10 @@ class NetworkManagerTests: XCTestCase {
         networkManager.fetchProducts { result in
             switch result {
             case .success(let products):
-                debugPrint(products)
+                SystemLog.info(products.debugDescription)
                 promise.fulfill()
             case .failure(let error):
-                print(error.localizedDescription)
+                SystemLog.fault(error.localizedDescription)
             }
         }
         
