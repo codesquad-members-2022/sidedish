@@ -23,7 +23,12 @@ class BanchanListViewController: UICollectionViewController {
     private func setCollectionLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let width = view.frame.width
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 24, right: 16)
             layout.headerReferenceSize = CGSize(width: width, height: 144)
+            layout.minimumLineSpacing = 8
+            layout.estimatedItemSize = .zero
+            let cellPadding = layout.sectionInset.left + layout.sectionInset.right
+            layout.itemSize = CGSize(width: width - cellPadding, height: (width - cellPadding) * 0.38)
         }
     }
     
