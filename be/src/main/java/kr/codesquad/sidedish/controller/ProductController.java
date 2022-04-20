@@ -21,12 +21,6 @@ public class ProductController {
 		this.productService = productService;
 	}
 
-	@GetMapping
-	public List<ResponseProduct> home() {
-		// DTO 다 불러오는 메소드 (애당초 필요 없을 수도 있음)
-		return productService.findAll();
-	}
-
 	@GetMapping("/{dishType}/{sideDishType}")
 	public List<ResponseProduct> loadListByType(@PathVariable String dishType,
 		@PathVariable String sideDishType) {
