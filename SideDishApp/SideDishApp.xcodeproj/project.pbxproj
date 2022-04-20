@@ -37,6 +37,7 @@
 		BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE484C280D5AE200F23DCE /* SideDishAppTests.swift */; };
 		BCFE4857280D5AE200F23DCE /* SideDishAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */; };
 		BCFE4859280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */; };
+		BCFE48B6281003BE00F23DCE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE48B5281003BE00F23DCE /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		BCFE4852280D5AE200F23DCE /* SideDishAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideDishAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE4856280D5AE200F23DCE /* SideDishAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITests.swift; sourceTree = "<group>"; };
 		BCFE4858280D5AE200F23DCE /* SideDishAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BCFE48B5281003BE00F23DCE /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D85136A4CA64966FEAA85A98 /* Pods_SideDishApp_SideDishAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishApp_SideDishAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6DBA4B98AF5C0B3C243368 /* Pods-SideDishApp-SideDishAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FFCD83E86001780BAE0622FC /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		BCFE4886280D764400F23DCE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BCFE48B5281003BE00F23DCE /* NetworkError.swift */,
 				B7F90B4B280FE10C0067E4FE /* NetworkManager.swift */,
 			);
 			name = Networking;
@@ -555,6 +558,7 @@
 				B7F90B24280E7C2A0067E4FE /* Product.swift in Sources */,
 				B7F90B37280EEA1F0067E4FE /* Extension.swift in Sources */,
 				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
+				BCFE48B6281003BE00F23DCE /* NetworkError.swift in Sources */,
 				BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */,
 				B7F90B43280FCD710067E4FE /* DetailData.swift in Sources */,
 				B7F90B26280E7FE10067E4FE /* Delivery.swift in Sources */,
