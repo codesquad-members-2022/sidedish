@@ -3,7 +3,6 @@ header {
     padding: 25px;
     border-bottom: 1px solid black;
 }
-
 .header__title {
     font-family: "Outfit";
     font-style: normal;
@@ -12,19 +11,19 @@ header {
     line-height: 50px;
     color: #1b1b1b;
 }
-
 .header__nav {
     display: flex;
     width: 100%;
     margin-left: 40px;
+    cursor: pointer;
 }
-
 .header__nav-list {
     display: flex;
     gap: 24px;
-    align-items: flex-end;
+    margin-top: 23px;
+    align-items: flex-start;
+    padding-bottom: 10px;
 }
-
 .header__food-title {
     font-family: "Noto Sans KR";
     font-style: normal;
@@ -35,25 +34,22 @@ header {
     color: #1b1b1b;
     margin-bottom: 8px;
 }
-
 .header__food-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-
 .header__icons {
     display: flex;
-    margin-left: auto;
     gap: 25px;
-    align-items: center;
+    margin-top: 23px;
+    margin-left: auto;
+    align-items: flex-start;
 }
-
 .header__icon-item {
     width: 24px;
     height: 24px;
 }
-
 .header__food-item {
     font-family: "Noto Sans KR";
     font-style: normal;
@@ -61,4 +57,11 @@ header {
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.008em;
+}
+.header__food-item:hover {
+    color: #777;
+    text-decoration: underline;
+}
+.hidden {
+    display: none;
 }
