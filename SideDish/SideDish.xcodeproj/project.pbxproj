@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0049FA52280EE98300470FCD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049FA51280EE98300470FCD /* HomeViewController.swift */; };
+		0049FA54280EF2EB00470FCD /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049FA53280EF2EB00470FCD /* SectionHeader.swift */; };
 		004EA4E0280E541000D365DB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 004EA4DF280E541000D365DB /* .swiftlint.yml */; };
 		029A88A2280E96330069E8B3 /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029A88A0280E96330069E8B3 /* DishCell.swift */; };
 		029A88A3280E96330069E8B3 /* DishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029A88A1280E96330069E8B3 /* DishCell.xib */; };
@@ -60,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0049FA51280EE98300470FCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0049FA53280EF2EB00470FCD /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		004EA4DF280E541000D365DB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		029A88A0280E96330069E8B3 /* DishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCell.swift; sourceTree = "<group>"; };
 		029A88A1280E96330069E8B3 /* DishCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishCell.xib; sourceTree = "<group>"; };
@@ -237,11 +241,15 @@
 		2A50C198280D55F400AFF2F7 /* SideDish */ = {
 			isa = PBXGroup;
 			children = (
-				2A3B3ED4280EA540003F21F4 /* View */,
-				2A3B3ED5280EA57B003F21F4 /* ViewModel */,
-				2A3B3ED9280EA84F003F21F4 /* Support */,
-				2A3B3ED7280EA5B2003F21F4 /* Model */,
-				2A3B3EDA280EA879003F21F4 /* Extension+Protocol */,
+				2A50C199280D55F400AFF2F7 /* AppDelegate.swift */,
+				2A50C19B280D55F400AFF2F7 /* SceneDelegate.swift */,
+				0049FA51280EE98300470FCD /* HomeViewController.swift */,
+				0049FA53280EF2EB00470FCD /* SectionHeader.swift */,
+				2A50C19F280D55F400AFF2F7 /* Main.storyboard */,
+				2A50C1A5280D55F500AFF2F7 /* Assets.xcassets */,
+				2A50C1A7280D55F500AFF2F7 /* LaunchScreen.storyboard */,
+				2A50C1AA280D55F500AFF2F7 /* Info.plist */,
+				2A50C1A2280D55F400AFF2F7 /* SideDish.xcdatamodeld */,
 			);
 			path = SideDish;
 			sourceTree = "<group>";
@@ -566,7 +574,9 @@
 				029A88A2280E96330069E8B3 /* DishCell.swift in Sources */,
 				2A50C19A280D55F400AFF2F7 /* AppDelegate.swift in Sources */,
 				2A50C1A4280D55F400AFF2F7 /* SideDish.xcdatamodeld in Sources */,
+				0049FA54280EF2EB00470FCD /* SectionHeader.swift in Sources */,
 				2A50C19C280D55F400AFF2F7 /* SceneDelegate.swift in Sources */,
+				0049FA52280EE98300470FCD /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
