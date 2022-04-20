@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
                                                            description: "감칠맛 나는 매콤한 양념",
                                                            normalPrice: "15,800원",
                                                            salePrice: "12,640원",
-                                                           tagList: [Tag.launchingPrice])
+                                                           bagdeList: [Badge.launchingPrice])
         mainCards.append(sampleMainCard)
         
         self.collectionView.delegate = self
@@ -49,7 +49,7 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         let card = mainCards[indexPath.item]
-        cell.setPropertiesValue(image: card.imageURL, cardTitle: card.title, cardBody: card.description, normalPrice: card.normalPrice, salePrice: card.salePrice, tagList: card.tagList)
+        cell.setPropertiesValue(image: card.imageURL, cardTitle: card.title, cardBody: card.description, normalPrice: card.normalPrice, salePrice: card.salePrice, badgeList: card.badgeList)
         cell.backgroundColor = .systemGray3
         return cell
     }

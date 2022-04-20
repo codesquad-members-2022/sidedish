@@ -40,14 +40,14 @@ class MainViewCardCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var eventTagLabel: UILabel = {
+    private lazy var eventBadgeLabel: UILabel = {
         var label = UILabel()
         label.textColor = .white
         label.backgroundColor = UIColor(red: 127 / 255, green: 188 / 255, blue: 255 / 255, alpha: 1)
         return label
     }()
     
-    private lazy var launchingTagLabel: UILabel = {
+    private lazy var launchingBadgeLabel: UILabel = {
         var label = UILabel()
         label.textColor = .white
         label.backgroundColor = UIColor(red: 1 / 255, green: 102 / 255, blue: 214 / 255, alpha: 1)
@@ -64,7 +64,7 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
-    func setPropertiesValue(image: String, cardTitle: String, cardBody: String, normalPrice: String, salePrice: String?, tagList: [Tag]?) {
+    func setPropertiesValue(image: String, cardTitle: String, cardBody: String, normalPrice: String, salePrice: String?, badgeList: [Badge]?) {
         cardTitleLabel.text = cardTitle
         cardBodyLabel.text = cardBody
         normalPriceLabel.text = normalPrice
@@ -72,12 +72,12 @@ class MainViewCardCell: UICollectionViewCell {
             salePriceLabel.text = salePrice
         }
         // MARK: 뱃지가 상황에 따라 표시되도록 해야 함
-        if let tagList = tagList {
-            if tagList.contains(.eventPrice) {
-                setEventTagLabelConstraint()
+        if let badgeList = badgeList {
+            if badgeList.contains(.eventPrice) {
+                setEventBadgeLabelConstraint()
             }
-            if tagList.contains(.launchingPrice) {
-                setLaunchingTagLabelConstraint()
+            if badgeList.contains(.launchingPrice) {
+                setLaunchingBadgeLabelConstraint()
             }
         }
     }
@@ -88,8 +88,8 @@ class MainViewCardCell: UICollectionViewCell {
         self.addSubview(cardBodyLabel)
         self.addSubview(normalPriceLabel)
         self.addSubview(salePriceLabel)
-        self.addSubview(eventTagLabel)
-        self.addSubview(launchingTagLabel)
+        self.addSubview(eventBadgeLabel)
+        self.addSubview(launchingBadgeLabel)
         setUIConstraints()
     }
     
@@ -133,18 +133,18 @@ class MainViewCardCell: UICollectionViewCell {
         salePriceLabel.leadingAnchor.constraint(equalTo: normalPriceLabel.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setEventTagLabelConstraint() {
-        eventTagLabel.layer.cornerRadius = 5
+    private func setEventBadgeLabelConstraint() {
+        eventBadgeLabel.layer.cornerRadius = 5
         
-        eventTagLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventTagLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
-        eventTagLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
+        eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
-    private func setLaunchingTagLabelConstraint() {
-        launchingTagLabel.translatesAutoresizingMaskIntoConstraints = false
-        launchingTagLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
-        launchingTagLabel.leadingAnchor.constraint(equalTo: eventTagLabel.trailingAnchor, constant: 5).isActive = true
+    private func setLaunchingBadgeLabelConstraint() {
+        launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
+        launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
+        launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5).isActive = true
     }
     
 }

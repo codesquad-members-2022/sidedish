@@ -14,15 +14,15 @@ struct MainCard {
     private(set) var description: String
     private(set) var normalPrice: String
     private(set) var salePrice: String?
-    private(set) var tagList: [Tag]?
+    private(set) var badgeList: [Badge]?
     
-    init(detailHash: String, imageURL: String, title: String, description: String, normalPrice: String, salePrice: String?, tagList: [Tag]?) {
+    init(detailHash: String, imageURL: String, title: String, description: String, normalPrice: String, salePrice: String?, badgeList: [Badge]?) {
         self.detailHash = detailHash
         self.imageURL = imageURL
         self.title = title
         self.description = description
         self.normalPrice = normalPrice
         self.salePrice = salePrice
-        self.tagList = tagList
+        self.badgeList = badgeList
     }
 }

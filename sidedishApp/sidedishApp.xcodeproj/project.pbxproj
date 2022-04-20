@@ -16,7 +16,7 @@
 		009361E0280E637C00D0FF1A /* MainViewCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361DF280E637C00D0FF1A /* MainViewCardCell.swift */; };
 		009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */; };
 		009361E5280EE47400D0FF1A /* MainCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E4280EE47400D0FF1A /* MainCard.swift */; };
-		009361E7280EE4FB00D0FF1A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E6280EE4FB00D0FF1A /* Tag.swift */; };
+		009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E6280EE4FB00D0FF1A /* Badge.swift */; };
 		009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E8280EEDC900D0FF1A /* CardFactory.swift */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
@@ -34,7 +34,7 @@
 		009361DF280E637C00D0FF1A /* MainViewCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCardCell.swift; sourceTree = "<group>"; };
 		009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		009361E4280EE47400D0FF1A /* MainCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCard.swift; sourceTree = "<group>"; };
-		009361E6280EE4FB00D0FF1A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		009361E6280EE4FB00D0FF1A /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		009361E8280EEDC900D0FF1A /* CardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				009361E4280EE47400D0FF1A /* MainCard.swift */,
-				009361E6280EE4FB00D0FF1A /* Tag.swift */,
+				009361E6280EE4FB00D0FF1A /* Badge.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -236,7 +236,7 @@
 				009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
-				009361E7280EE4FB00D0FF1A /* Tag.swift in Sources */,
+				009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */,
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
 				009361E5280EE47400D0FF1A /* MainCard.swift in Sources */,
 				009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  Tag.swift
+//  Badge.swift
 //  sidedishApp
 //
 //  Created by Bibi on 2022/04/19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Tag {
+enum Badge {
     case eventPrice
     case launchingPrice
     
