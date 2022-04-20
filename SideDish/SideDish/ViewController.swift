@@ -1,12 +1,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    private let ordering = Ordering()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
