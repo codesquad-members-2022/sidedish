@@ -10,12 +10,36 @@ import Alamofire
 
 enum NetworkError: Error {
     case noData
+    case wrongBaseEndPoint
+    case wrongEndPoint
+}
+
+extension NetworkError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .noData: return NSLocalizedString("\(self)", comment: "No Data")
+        case .wrongBaseEndPoint: return NSLocalizedString("\(self)", comment: "Wrong Base Endpoint")
+        case .wrongEndPoint: return NSLocalizedString("\(self)", comment: "Wrong EndPoint")
+        }
+    }
 }
 
 struct NetworkManager {
-    func fetchProducts(completion: @escaping (Result<[Product], NetworkError>) -> Void) {
+    let baseEndPoint = "https://api.codesquad.kr/onban"
+    
+    func fetchProducts(of type: ProductType, completion: @escaping (Result<[Product], NetworkError>) -> Void) {
         
-        AF.request("https://api.codesquad.kr/onban/main")
+        guard var component = URLComponents(string: baseEndPoint) else {
+            return completion(.failure(.wrongBaseEndPoint))
+        }
+        
+        component.path += "/\(type)"
+        
+        guard let url = component.url else {
+            return completion(.failure(.wrongEndPoint))
+        }
+        
+        AF.request(url)
             .validate()
             .responseDecodable(of: Response.self) { AFResponse in
                 
@@ -28,6 +52,7 @@ struct NetworkManager {
     }
     
     func fetchImageData(urls: [URL], completion: @escaping ([URL: Data]) -> Void) {
+        
         
     }
 }

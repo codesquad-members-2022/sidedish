@@ -19,7 +19,7 @@ class NetworkManagerTests: XCTestCase {
         let promise = XCTestExpectation(description: "Fetch products success")
         
         let networkManager = NetworkManager()
-        networkManager.fetchProducts { result in
+        networkManager.fetchProducts(of: ProductType.main) { result in
             switch result {
             case .success(let products):
                 SystemLog.info(products.debugDescription)
