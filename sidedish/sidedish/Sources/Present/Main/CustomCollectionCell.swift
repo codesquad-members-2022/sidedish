@@ -25,9 +25,7 @@ class CustomCollectionCell: UICollectionViewCell {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.alignment = .leading
-        stackView.distribution = .equalSpacing
+        stackView.spacing = 4
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -39,7 +37,7 @@ class CustomCollectionCell: UICollectionViewCell {
         return label
     }()
     
-    private let contentLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .grey2
@@ -49,37 +47,61 @@ class CustomCollectionCell: UICollectionViewCell {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textAlignment = .left
         label.textColor = .black
         return label
     }()
     
+    private let salePriceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14)
+        label.textAlignment = .left
+        label.textColor = .grey2
+        return label
+    }()
+    
+    private let badgeView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        return view
+    }()
+
+    private let badgeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .primary
+        button.setTitle("런칭특가", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
+        button.layer.cornerRadius = 12
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        bind()
-        attritbute()
+    
         layout()
     }
 
     @available(*, unavailable) required init?(coder: NSCoder) {
         fatalError("Init with coder is unavailable")
     }
-    
-    private func bind() {
+
+    private func layout() {
         contentView.addSubview(imageView)
         contentView.addSubview(stackView)
         
         stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(contentLabel)
+        stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(priceLabel)
-    }
-    
-    private func attritbute() {
-
-    }
-    
-    private func layout() {
+        stackView.addArrangedSubview(salePriceLabel)
+        stackView.addArrangedSubview(badgeView)
+        
+        badgeView.addSubview(badgeButton)
+        
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -88,8 +110,11 @@ class CustomCollectionCell: UICollectionViewCell {
             imageView.heightAnchor.constraint(equalToConstant: imageSize),
             
             stackView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            stackView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                        
+            badgeButton.widthAnchor.constraint(equalToConstant: 77),
+            badgeButton.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
 }
@@ -103,8 +128,8 @@ extension CustomCollectionCell {
         titleLabel.text = text
     }
     
-    func changeContentLabel(text: String) {
-        contentLabel.text = text
+    func changeDescriptionLabel(text: String) {
+        descriptionLabel.text = text
     }
     
     func changePriceLabel(text: String) {
