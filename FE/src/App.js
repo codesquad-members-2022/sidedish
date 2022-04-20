@@ -1,10 +1,8 @@
-import React from "react";
+import { Header } from "./components/Header/Header";
+import "./App.scss";
 
-const App = () => {
-  return (
-    <div className="App">
-      <h1>Hello React World!</h1>
-    </div>
-  );
-};
+function App() {
+  return <Header />;
+}
+
 export default App;
