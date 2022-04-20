@@ -1,7 +1,9 @@
 package kr.codesquad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
+import java.util.List;
 
 
 public class Dish {
@@ -16,8 +18,11 @@ public class Dish {
     private final int price;
     private final DeliveryType deliveryType;
     private final DiscountPolicy discountPolicy;
+    @MappedCollection(idColumn = "DISH_ID")
+    private final List<Image> images;
 
-    public Dish(Long id, Long mainCategoryId, Long subCategoryId, String name, String description, int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy) {
+    public Dish(Long id, Long mainCategoryId, Long subCategoryId, String name, String description,
+                int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy, List<Image> images) {
         this.id = id;
         this.mainCategoryId = mainCategoryId;
         this.subCategoryId = subCategoryId;
@@ -27,6 +32,7 @@ public class Dish {
         this.price = price;
         this.deliveryType = deliveryType;
         this.discountPolicy = discountPolicy;
+        this.images = images;
     }
 
     public Long getId() {
@@ -63,5 +69,25 @@ public class Dish {
 
     public DiscountPolicy getDiscountPolicy() {
         return discountPolicy;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "id=" + id +
+                ", mainCategoryId=" + mainCategoryId +
+                ", subCategoryId=" + subCategoryId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", stock=" + stock +
+                ", price=" + price +
+                ", deliveryType=" + deliveryType +
+                ", discountPolicy=" + discountPolicy +
+                ", images=" + images +
+                '}';
     }
 }

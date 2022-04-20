@@ -24,28 +24,28 @@ public class MainService {
         this.jdbcCategoryRepository = jdbcCategoryRepository;
     }
 
-    public Map<Long, List<DishSimpleResponse>> getAllDishes() {
-        MultiValueMap<Long, DishSimpleResponse> dishes = new LinkedMultiValueMap<>();
-
-        List<Dish> all = new ArrayList<>();
-        jdbcDishRepository.findAll().forEach(all::add);
-        MultiValueMap<Long, String> images = new LinkedMultiValueMap<>();
-        jdbcImageRepository.findAll().forEach(element -> images.add(element.getDishId(), element.getName()));
-
-        Map<Long, List<DishSimpleResponse>> map = new HashMap<>();
-
-        for (Dish dish : all) {
-            dishes.add(dish.getMainCategoryId(),
-                    DishSimpleResponse.of(dish, images.get(dish.getId())));
-        }
-        Set<Long> longs = dishes.keySet();
-
-        for (Long aLong : longs) {
-            map.put(aLong, dishes.get(aLong));
-        }
-
-        return map;
-    }
+//    public Map<Long, List<DishSimpleResponse>> getAllDishes() {
+//        MultiValueMap<Long, DishSimpleResponse> dishes = new LinkedMultiValueMap<>();
+//
+//        List<Dish> all = new ArrayList<>();
+//        jdbcDishRepository.findAll().forEach(all::add);
+//        MultiValueMap<Long, String> images = new LinkedMultiValueMap<>();
+//        jdbcImageRepository.findAll().forEach(element -> images.add(element.getDishId(), element.getName()));
+//
+//        Map<Long, List<DishSimpleResponse>> map = new HashMap<>();
+//
+//        for (Dish dish : all) {
+//            dishes.add(dish.getMainCategoryId(),
+//                    DishSimpleResponse.of(dish, images.get(dish.getId())));
+//        }
+//        Set<Long> longs = dishes.keySet();
+//
+//        for (Long aLong : longs) {
+//            map.put(aLong, dishes.get(aLong));
+//        }
+//
+//        return map;
+//    }
 
     public List<Dish> findAll() {
         List<Dish> dishes = new ArrayList<>();

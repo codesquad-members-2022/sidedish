@@ -23,4 +23,5 @@ public interface JdbcDishRepository extends CrudRepository<Dish, Long> {
             "where d.category_id = :categoryId")
     public List<DishSimpleResponse> findAllByCategoryId(Long categoryId);
 
+    public List<Dish> findDishesByMainCategoryId(Long categoryId);
 }

@@ -35,6 +35,7 @@ CREATE TABLE IMAGE(
       id      BIGINT PRIMARY KEY AUTO_INCREMENT,
       name    VARCHAR(50) not null,
       dish_id BIGINT,
+      dish_key INT,
       foreign key (dish_id) references DISH(id)
 );
 
@@ -44,16 +45,16 @@ CREATE TABLE USER(
     address varchar(100) NOT NULL
 );
 
--- 장바구니 안됨
-CREATE TABLE ORDER(
-    id BIGINT PRIMARY KEY,
-    user_id BIGINT,
-    dish_id BIGINT,
-    shipping_address varchar(100) NOT NULL,
-    quantity BIGINT NOT NULL,
-    delivery_fee BIGINT NOT NULL,
-    total_price BIGINT NOT NULL,
-    order_datetime datetime NOT NULL,
-    foreign key (user_id) references USER(id),
-    foreign key (dish_id) references DISH(id)
-);
+-- -- 장바구니 안됨
+-- CREATE TABLE ORDER(
+--     id BIGINT PRIMARY KEY,
+--     user_id BIGINT,
+--     dish_id BIGINT,
+--     shipping_address varchar(100) NOT NULL,
+--     quantity BIGINT NOT NULL,
+--     delivery_fee BIGINT NOT NULL,
+--     total_price BIGINT NOT NULL,
+--     order_datetime datetime NOT NULL,
+--     foreign key (user_id) references USER(id),
+--     foreign key (dish_id) references DISH(id)
+-- );

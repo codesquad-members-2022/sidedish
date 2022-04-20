@@ -4,12 +4,10 @@ public class Image {
 
     private final Long id;
     private final String name;
-    private final Long dishId;
 
-    public Image(Long id, String name, Long dishId) {
+    public Image(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.dishId = dishId;
     }
 
     public Long getId() {
@@ -20,7 +18,11 @@ public class Image {
         return name;
     }
 
-    public Long getDishId() {
-        return dishId;
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
