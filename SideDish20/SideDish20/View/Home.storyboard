@@ -12,7 +12,7 @@
         <!--Home View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="SideDish20" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeSB" id="Y6W-OH-hqX" customClass="HomeViewController" customModule="SideDish20" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,8 +37,8 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="BdL-6S-aK8"/>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="XJ2-BU-YF6"/>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="jfZ-di-fPg"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="Ofl-HG-NB6"/>
                                 </connections>
                             </collectionView>
                         </subviews>
