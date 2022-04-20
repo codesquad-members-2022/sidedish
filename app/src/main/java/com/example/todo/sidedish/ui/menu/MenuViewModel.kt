@@ -9,7 +9,7 @@ import com.example.todo.sidedish.common.Constants.SIDE_DISH
 import com.example.todo.sidedish.common.Constants.SOUP_DISH
 import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.domain.model.Menu
-import com.example.todo.sidedish.data.repository.Repository
+import com.example.todo.sidedish.domain.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

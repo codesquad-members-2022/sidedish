@@ -5,19 +5,27 @@
 
     <data>
 
+        <variable
+            name="header"
+            type="com.example.todo.sidedish.domain.model.Header" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="16dp">
+        android:paddingStart="16dp"
+        android:paddingTop="40dp"
+        android:layout_marginTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/tv_header"
             style="@style/TextLarge.Black"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{header.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

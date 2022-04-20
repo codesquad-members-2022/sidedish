@@ -1,4 +1,4 @@
-package com.example.todo.sidedish.data.repository
+package com.example.todo.sidedish.domain
 
 import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.domain.model.Menu

@@ -10,4 +10,4 @@ data class Menu(
     val nPrice: String?,
     val sPrice: String,
     val badge: List<String>?,
-)
+) : MenuItem()

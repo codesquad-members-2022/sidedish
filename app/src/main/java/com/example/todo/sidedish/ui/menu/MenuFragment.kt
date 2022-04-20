@@ -27,11 +27,12 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adapter = MenuAdapter()
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.rvMenu.adapter = adapter
         viewModel.menus.observe(viewLifecycleOwner) { menus ->
-            menus.entries.forEach {
-                Log.d("test", "key: ${it.key}")
-                Log.d("test", "value: ${it.value}")
-            }
+            adapter.submitHeaderAndItemList(menus)
         }
     }
 }
