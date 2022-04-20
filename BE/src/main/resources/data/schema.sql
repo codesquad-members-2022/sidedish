@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS items;
 CREATE TABLE items
 (
     id            BIGINT AUTO_INCREMENT,
-    category      BIGINT , ## 이게 왜 필요한거지?
+    category      BIGINT ,
     category_key  BIGINT references category (id),
     title         VARCHAR(64)  NOT NULL,
     description   VARCHAR(255) NOT NULL,

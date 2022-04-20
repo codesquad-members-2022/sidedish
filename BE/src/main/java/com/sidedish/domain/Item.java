@@ -48,12 +48,44 @@ public class Item {
                 .collect(Collectors.toSet());
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }
 
-    public Long getId() {
-        return id;
+    public String getDescription() {
+        return description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public double getDiscountRate() {
+        return discountRate;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public String getDetailType() {
+        return detailType;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public BigDecimal getRewardPoint() {
+        return rewardPoint;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     @Override

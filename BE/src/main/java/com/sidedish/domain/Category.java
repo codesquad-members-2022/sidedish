@@ -21,6 +21,10 @@ public class Category {
         return id;
     }
 
+    public CategoryType getType() {
+        return type;
+    }
+
     public List<Item> getItems() {
         return new ArrayList<>(items);
     }
