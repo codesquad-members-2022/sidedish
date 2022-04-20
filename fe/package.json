@@ -23,8 +23,17 @@
     "extends": [
       "react-app",
       "react-app/jest",
-      "prettier"
-    ]
+      "prettier",
+      "airbnb"
+    ],
+    "rules":{
+      "quotes":0,
+      "react/function-component-definition":[1,{
+        "namedComponents": "arrow-function"}],
+      "arrow-body-style":0,
+      "react/react-in-jsx-scope":0,
+      "comma-dangle":0
+    }
   },
   "browserslist": {
     "production": [
@@ -39,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.6.2"
   }
