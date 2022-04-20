@@ -7,5 +7,7 @@ interface DataSource {
 
     suspend fun getSoupFoodList(): Response<Food>
 
-    suspend fun getSideFoodList():Response<Food>
+    suspend fun getSideFoodList(): Response<Food>
+
+    suspend fun getFoodDetail(hashId: String): Response<Body>
 }
