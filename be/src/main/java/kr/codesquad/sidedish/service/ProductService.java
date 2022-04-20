@@ -34,9 +34,9 @@ public class ProductService {
 		return productRepository.findById(id).createResponseProduct();
 	}
 
-	public void ordered(int id, RequestProduct requestProduct) {
-		Product originProduct = productRepository.findById(id);
+	public void ordered(RequestProduct requestProduct) {
+		Product originProduct = productRepository.findById(requestProduct.getId());
 		Product updateProduct = Product.updateQuantity(originProduct, requestProduct.getQuantity());
-		productRepository.updateQuantity(id, updateProduct);
+		productRepository.updateQuantity(requestProduct.getId(), updateProduct);
 	}
 }

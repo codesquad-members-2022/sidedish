@@ -34,9 +34,9 @@ public class ProductController {
 		return productService.findById(id);
 	}
 
-	@PatchMapping("/order/{id}")
-	public void ordered(@PathVariable int id, @RequestBody RequestProduct requestProduct) {
+	@PatchMapping("/purchase")
+	public void ordered(@RequestBody RequestProduct requestProduct) {
 		// 주문 넣기
-		productService.ordered(id, requestProduct);
+		productService.ordered(requestProduct);
 	}
 }
