@@ -1,0 +1,57 @@
+body {
+  margin: 0 auto;
+}
+
+.header {
+  height: 83px;
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid;
+}
+
+.isOpen {
+  height: 191px;
+}
+
+.brandHeader {
+  margin: 16px 40px 17px 80px;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.categoryList {
+  display: flex;
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  width: 362px;
+}
+
+.categoryList:hover {
+  cursor: pointer;
+}
+
+.mainCategory {
+  font-size: 16px;
+  margin-right: 24px;
+}
+
+.subCategory {
+  font-size: 14px;
+  margin: 8px 0px;
+}
+
+.subCategory:hover {
+  text-decoration: underline;
+  color: #ff8e14;
+}
+
+.navRightBar {
+  display: flex;
+  justify-content: space-around;
+  width: 128px;
+  height: 32px;
+  margin-left: 589px;
+}
