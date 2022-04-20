@@ -6,24 +6,24 @@ export const Search = styled.svg`
   right: 14.62%;
   top: 12.5%;
   bottom: 14.62%;
-  color: ${({theme})=>theme.Colors.Black};
+  color: ${({ theme }) => theme.colors.Black};
 `;
-export const MyPage  = styled.svg`
+export const MyPage = styled.svg`
   position: absolute;
   left: 16.67%;
   right: 16.67%;
   top: 16.67%;
   bottom: 16.67%;
-  color:${props=>props.color};
+  color: ${(props) => props.color};
 `;
-export const Shopping_cart =styled.svg`
+export const ShoppingCart = styled.svg`
   position: absolute;
   left: 4.17%;
   right: 12.5%;
   top: 8.33%;
   bottom: 8.33%;
-  color:${(props)=>props.theme.Colors.Black};
-`
+  color: ${(props) => props.theme.colors.Black};
+`;
 export const Left=styled.svg`
   position: absolute;
   left: 37.5%;
