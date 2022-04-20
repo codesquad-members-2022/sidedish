@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import iconMenus from "../../data/iconMenus";
+import IconMenu from "./IconMenu";
 
 const Menus = () => {
   return (
@@ -9,12 +10,7 @@ const Menus = () => {
       </Link>
       <ul className="header__icon-menus">
         {iconMenus.map(({ name, className }, index) => (
-          <li
-            key={index}
-            className={`header__icon-menu header__icon-menu--${className}`}
-          >
-            {name}
-          </li>
+          <IconMenu name={name} className={className} key={index} />
         ))}
       </ul>
     </div>
