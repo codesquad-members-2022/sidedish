@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sidedish.databinding.HomeListBinding
 
-class MainHomeAdapter : ListAdapter<MenuList, MainHomeAdapter.MainHomeHolder>(diffUtil) {
+class MainHomeAdapter : ListAdapter<MenuData, MainHomeAdapter.MainHomeHolder>(diffUtil) {
     inner class MainHomeHolder(private val binding: HomeListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(menuList: MenuList) {
-            binding.menuXml = menuList
+        fun bind(menuList: MenuData) {
+            binding.menuData = menuList
         }
     }
 
@@ -24,7 +24,7 @@ class MainHomeAdapter : ListAdapter<MenuList, MainHomeAdapter.MainHomeHolder>(di
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataBindingUtil.inflate<HomeListBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.home_list,
+            R.layout.item_menu_data,
             parent,
             false
         ).let {
@@ -32,12 +32,12 @@ class MainHomeAdapter : ListAdapter<MenuList, MainHomeAdapter.MainHomeHolder>(di
         }
 }
 
-private val diffUtil = object : DiffUtil.ItemCallback<MenuList>() {
-    override fun areItemsTheSame(oldItem: MenuList, newItem: MenuList): Boolean {
+private val diffUtil = object : DiffUtil.ItemCallback<MenuData>() {
+    override fun areItemsTheSame(oldItem: MenuData, newItem: MenuData): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: MenuList, newItem: MenuList): Boolean {
+    override fun areContentsTheSame(oldItem: MenuData, newItem: MenuData): Boolean {
         return oldItem == newItem
     }
 }

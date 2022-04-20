@@ -1,6 +1,6 @@
 package com.example.sidedish
 
-data class MenuList(
+data class MenuData(
     val id: Int,
     val category: String,
     val image: String,
@@ -11,8 +11,8 @@ data class MenuList(
     val eventCategory: String?
 )
 
-fun mainPut(): List<MenuList> {
-    val str1 = MenuList(
+fun mainPut(): List<MenuData> {
+    val str1 = MenuData(
         1, "main",
         "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
         "오리주물럭",
@@ -22,7 +22,7 @@ fun mainPut(): List<MenuList> {
         "런칭특가"
     )
 
-    val str2 = MenuList(
+    val str2 = MenuData(
         2, "main",
         "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
         "잡채",
@@ -32,7 +32,7 @@ fun mainPut(): List<MenuList> {
         "이벤트특가"
     )
 
-    val str3 = MenuList(
+    val str3 = MenuData(
         3, "main",
         "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg",
         "소갈비찜",
@@ -44,8 +44,8 @@ fun mainPut(): List<MenuList> {
     return listOf(str1, str2, str3)
 }
 
-fun soupPut(): List<MenuList> {
-    val str1 = MenuList(
+fun soupPut(): List<MenuData> {
+    val str1 = MenuData(
         1, "soup",
         "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
         "돼지 김치찌개",
@@ -57,8 +57,8 @@ fun soupPut(): List<MenuList> {
     return listOf(str1)
 }
 
-fun sidePut(): List<MenuList> {
-    val str1 = MenuList(
+fun sidePut(): List<MenuData> {
+    val str1 = MenuData(
         1, "side",
         "http://public.codesquad.kr/jk/storeapp/data/side/682_ZIP_P_5055_T.jpg",
         "미나리 무침",

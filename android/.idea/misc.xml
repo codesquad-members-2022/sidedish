@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/selecor_viewpager_indicator.xml" value="0.3745" />
-        <entry key="app/src/main/res/drawable/selected_drawable_indicator.xml" value="0.3745" />
-        <entry key="app/src/main/res/drawable/unselected_drawable_indicator.xml" value="0.3745" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24614329790881043" />
-        <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/home_list.xml" value="0.37395833333333334" />
-        <entry key="app/src/main/res/layout/item_porduct_detail_image.xml" value="0.37395833333333334" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/drawable/edge.xml" value="0.183" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/drawable/edge2.xml" value="0.183" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout-land/activity_main.xml" value="0.32432432432432434" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.140625" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout-sw600dp/home_list.xml" value="0.140625" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout/activity_main.xml" value="0.19630872483221476" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout/activity_product_detail.xml" value="0.16510416666666666" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout/home_list.xml" value="0.21798941798941798" />
+        <entry key="..\:/Users/User/Desktop/Project/sidedish/android/app/src/main/res/layout/item_porduct_detail_image.xml" value="0.2640625" />
       </map>
     </option>
   </component>

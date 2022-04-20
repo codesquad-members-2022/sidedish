@@ -17,42 +17,42 @@ class MainActivity : AppCompatActivity() {
         val soupAdapter = MainHomeAdapter()
         val sideAdapter = MainHomeAdapter()
 
-        binding.recyclerviewMainlist.adapter = mainAdapter
-        binding.recyclerviewSouplist.adapter = soupAdapter
-        binding.recyclerviewSidelist.adapter = sideAdapter
+        binding.rvMainlist.adapter = mainAdapter
+        binding.rvSidelist.adapter = soupAdapter
+        binding.rvSouplist.adapter = sideAdapter
 
         mainAdapter.submitList(mainPut())
         soupAdapter.submitList(soupPut())
         sideAdapter.submitList(sidePut())
 
         val count1 = mainAdapter.itemCount.toString()
-        binding.headerSub1.text = "${count1}개 상품이 등록되어 있습니다."
+        binding.tvHeaderSub1.text = "${count1}개 상품이 등록되어 있습니다."
 
         val count2 = soupAdapter.itemCount.toString()
-        binding.headerSub2.text = "${count2}개 상품이 등록되어 있습니다."
+        binding.tvHeaderSub2.text = "${count2}개 상품이 등록되어 있습니다."
 
         val count3 = sideAdapter.itemCount.toString()
-        binding.headerSub3.text = "${count3}개 상품이 등록되어 있습니다."
+        binding.tvHeaderSub3.text = "${count3}개 상품이 등록되어 있습니다."
 
-        binding.headerTitle1.setOnClickListener {
-            if (binding.headerSub1.visibility == View.GONE) {
-                binding.headerSub1.visibility = View.VISIBLE
+        binding.tvHeaderTitle1.setOnClickListener {
+            if (binding.tvHeaderSub1.visibility == View.GONE) {
+                binding.tvHeaderSub1.visibility = View.VISIBLE
             } else
-                binding.headerSub1.visibility = View.GONE
+                binding.tvHeaderSub1.visibility = View.GONE
         }
 
-        binding.headerTitle2.setOnClickListener {
-            if (binding.headerSub2.visibility == View.GONE) {
-                binding.headerSub2.visibility = View.VISIBLE
+        binding.tvHeaderTitle2.setOnClickListener {
+            if (binding.tvHeaderSub2.visibility == View.GONE) {
+                binding.tvHeaderSub2.visibility = View.VISIBLE
             } else
-                binding.headerSub2.visibility = View.GONE
+                binding.tvHeaderSub2.visibility = View.GONE
         }
 
-        binding.headerTitle3.setOnClickListener {
-            if (binding.headerSub3.visibility == View.GONE) {
-                binding.headerSub3.visibility = View.VISIBLE
+        binding.tvHeaderTitle3.setOnClickListener {
+            if (binding.tvHeaderSub3.visibility == View.GONE) {
+                binding.tvHeaderSub3.visibility = View.VISIBLE
             } else
-                binding.headerSub3.visibility = View.GONE
+                binding.tvHeaderSub3.visibility = View.GONE
         }
     }
 }
