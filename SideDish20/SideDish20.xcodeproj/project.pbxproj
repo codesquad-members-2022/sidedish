@@ -10,8 +10,8 @@
 		1B56E65D280E45B60074E79F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B56E65C280E45B60074E79F /* .swiftlint.yml */; };
 		1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E664280E82190074E79F /* GetFileURLService.swift */; };
 		1B56E667280E82220074E79F /* SaveFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E666280E82220074E79F /* SaveFileService.swift */; };
-		1B56E669280E823E0074E79F /* FetchCachingImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E668280E823E0074E79F /* FetchCachingImages.swift */; };
-		1B56E66B280E82480074E79F /* CacheImageDataMiddleWare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E66A280E82480074E79F /* CacheImageDataMiddleWare.swift */; };
+		1B56E669280E823E0074E79F /* CacheImageRequestMiddleWare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E668280E823E0074E79F /* CacheImageRequestMiddleWare.swift */; };
+		1B56E66B280E82480074E79F /* CacheImageMiddleWare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E66A280E82480074E79F /* CacheImageMiddleWare.swift */; };
 		1B56E66F280E83230074E79F /* CacheFileManagerAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E66E280E83230074E79F /* CacheFileManagerAttribute.swift */; };
 		1B56E672280E8E560074E79F /* SideDish20FileManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */; };
 		1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */; };
@@ -56,8 +56,8 @@
 		1B56E65C280E45B60074E79F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		1B56E664280E82190074E79F /* GetFileURLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileURLService.swift; sourceTree = "<group>"; };
 		1B56E666280E82220074E79F /* SaveFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFileService.swift; sourceTree = "<group>"; };
-		1B56E668280E823E0074E79F /* FetchCachingImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCachingImages.swift; sourceTree = "<group>"; };
-		1B56E66A280E82480074E79F /* CacheImageDataMiddleWare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageDataMiddleWare.swift; sourceTree = "<group>"; };
+		1B56E668280E823E0074E79F /* CacheImageRequestMiddleWare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageRequestMiddleWare.swift; sourceTree = "<group>"; };
+		1B56E66A280E82480074E79F /* CacheImageMiddleWare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageMiddleWare.swift; sourceTree = "<group>"; };
 		1B56E66E280E83230074E79F /* CacheFileManagerAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFileManagerAttribute.swift; sourceTree = "<group>"; };
 		1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish20FileManagerTest.swift; sourceTree = "<group>"; };
 		1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCommons.swift; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		1B56E66D280E82700074E79F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1B56E668280E823E0074E79F /* FetchCachingImages.swift */,
-				1B56E66A280E82480074E79F /* CacheImageDataMiddleWare.swift */,
+				1B56E668280E823E0074E79F /* CacheImageRequestMiddleWare.swift */,
+				1B56E66A280E82480074E79F /* CacheImageMiddleWare.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -521,9 +521,9 @@
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */,
 				D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */,
-				1B56E669280E823E0074E79F /* FetchCachingImages.swift in Sources */,
+				1B56E669280E823E0074E79F /* CacheImageRequestMiddleWare.swift in Sources */,
 				1B56E667280E82220074E79F /* SaveFileService.swift in Sources */,
-				1B56E66B280E82480074E79F /* CacheImageDataMiddleWare.swift in Sources */,
+				1B56E66B280E82480074E79F /* CacheImageMiddleWare.swift in Sources */,
 				1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */,
 				1B56E66F280E83230074E79F /* CacheFileManagerAttribute.swift in Sources */,
 				D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */,
