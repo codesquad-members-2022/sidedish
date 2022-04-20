@@ -48,14 +48,18 @@ class ProductDetailView: UIView {
         salePrice.font = .systemFont(ofSize: 14, weight: .semibold)
         normalPrice?.font = .systemFont(ofSize: 14)
         normalPrice?.textColor = .systemGray2
+        
         normalPrice?.applyStrikethoroughStyle()
         
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
         if let normalPrice = normalPrice {
             priceStackView.addArrangedSubview(normalPrice)
         }
+
+        salePrice.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         priceStackView.axis = .horizontal
-        priceStackView.distribution = .fillProportionally
+        priceStackView.spacing = 5
+        priceStackView.distribution = .fill
         
         let stackView: UIStackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
         stackView.axis = .vertical
