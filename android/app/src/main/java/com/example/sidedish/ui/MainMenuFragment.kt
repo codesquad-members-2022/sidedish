@@ -32,6 +32,7 @@ class MainMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mainFoodAdapter = MenuListAdapter(Header.MAIN)
         mainFoodAdapter.itemClickCallback = { key: String ->
+            viewModel.loadFoodDetail(key)
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
 

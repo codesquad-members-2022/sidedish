@@ -23,6 +23,9 @@ class MenuListViewModel: ViewModel() {
     private val _sideFoodList = MutableLiveData<List<Body>>()
     val sideFoodList: LiveData<List<Body>> = _sideFoodList
 
+    private val _selectedFoodDetail = MutableLiveData<Body>()
+    val selectedFoodDetail: LiveData<Body> = _selectedFoodDetail
+
     init {
         viewModelScope.launch {
             load()
@@ -33,6 +36,12 @@ class MenuListViewModel: ViewModel() {
         _mainFoodList.value = foodListRepository.getMainFoodList()
         _soupFoodList.value = foodListRepository.getSoupFoodList()
         _sideFoodList.value = foodListRepository.getSideFoodList()
+    }
+
+    fun loadFoodDetail(key: String) {
+        viewModelScope.launch {
+            _selectedFoodDetail.postValue(foodListRepository.getSelectedFoodDetail(key))
+        }
     }
 
 }

@@ -27,4 +27,12 @@ class MenuListRepository(private val dataSource: DataSource) {
         }
     }
 
+    suspend fun getSelectedFoodDetail(hashId: String): Body? {
+        val data = dataSource.getFoodDetail(hashId)
+        return when(data.isSuccessful) {
+            true -> data.body()
+            false -> throw RuntimeException("network fail")
+        }
+    }
+
 }
