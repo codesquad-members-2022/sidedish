@@ -15,7 +15,6 @@ class CollectionViewHeader: UICollectionReusableView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 32)
         label.textColor = .black
-        label.text = "ddddddddd"
         label.numberOfLines = 2
         return label
     }()

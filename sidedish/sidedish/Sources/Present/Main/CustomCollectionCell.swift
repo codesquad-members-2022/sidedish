@@ -15,6 +15,8 @@ class CustomCollectionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
         imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
         imageView.layer.shadowOpacity = 0.1
         imageView.layer.shadowRadius = 3
@@ -66,14 +68,13 @@ class CustomCollectionCell: UICollectionViewCell {
     private let badgeView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
         return view
     }()
 
     private let badgeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .primary
+        button.backgroundColor = .primary1
         button.setTitle("런칭특가", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
         button.layer.cornerRadius = 12
@@ -110,9 +111,12 @@ class CustomCollectionCell: UICollectionViewCell {
             imageView.heightAnchor.constraint(equalToConstant: imageSize),
             
             stackView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            stackView.bottomAnchor.constraint(equalTo: badgeView.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                        
+            
+            badgeView.heightAnchor.constraint(equalTo: badgeButton.heightAnchor),
+            
             badgeButton.widthAnchor.constraint(equalToConstant: 77),
             badgeButton.heightAnchor.constraint(equalToConstant: 24)
         ])
