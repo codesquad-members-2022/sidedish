@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">sidedish</string>
+    <string name="ordering">Ordering</string>
+    <string name="login_label">소셜 로그인</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_image">메뉴사진</string>
+    <string name="event_label">이벤트특가</string>
+    <string name="limited_label">한정특가</string>
 </resources>

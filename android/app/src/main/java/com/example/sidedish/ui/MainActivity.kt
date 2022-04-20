@@ -1,11 +1,14 @@
-package com.example.sidedish
+package com.example.sidedish.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sidedish.R
 import com.example.sidedish.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -63,9 +66,8 @@ class MainActivity : AppCompatActivity() {
                         it.signInAccount?.let { account ->
                             firebaseLogin(account)
                         }
-                        // 기타 등등
                     } else {
-                        Log.e("Value", "error")
+                        Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
                         // 에러 처리
                     }
                 }
@@ -78,13 +80,16 @@ class MainActivity : AppCompatActivity() {
 
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                it.result?.user?.displayName //사용자 이름
-                Log.e("Value", it.result?.user?.displayName.toString())
+                //사용자 이름
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                intent.putExtra("massage", "로그인 성공! ${it.result?.user?.displayName}님 환영합니다!")
+                startActivity(intent)
             } else {
-                //error 처리
+                Toast.makeText(this, "인증에 실패하였습니다.", Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener {
             //error 처리
+            Toast.makeText(this, "인증에 실패하였습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 }
