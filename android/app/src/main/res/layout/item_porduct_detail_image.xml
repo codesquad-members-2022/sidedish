@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="product_detail_image"
-            type="com.example.sidedish.ProductDetailImage" />
+            name="image"
+            type="com.example.sidedish.ProductDetailImageList" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,11 +15,23 @@
 
         <ImageView
             android:id="@+id/iv_product_detail_image"
-            android:layout_width="360dp"
-            android:layout_height="360dp"
+            android:layout_width="0dp"
+            android:layout_height="400dp"
+            imageUrl="@{image.productDetailImageURL}"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/label_iv_product_detail_image" />
+        
+        <TextView
+            android:id="@+id/tv_product_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_product_detail_image"
+            tools:text="오리 주물럭_반조리" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

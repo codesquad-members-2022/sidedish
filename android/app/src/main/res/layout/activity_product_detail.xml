@@ -22,11 +22,12 @@
 
             <TextView
                 android:id="@+id/tv_product_detail_title"
-                style="@style/Subtitle1.black.17"
+                style="@style/Subtitle1.black.20.bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:text="오리 주물럭_반조리"
                 tools:text="오리 주물럭_반조리" />
         </androidx.appcompat.widget.Toolbar>
 
@@ -57,7 +58,7 @@
                     android:layout_height="45dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewpager_product_detail"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewpager_product_detail"
                     app:tabBackground="@drawable/selector_viewpager_indicator"
                     app:tabGravity="center"
                     app:tabIndicatorHeight="0dp" />

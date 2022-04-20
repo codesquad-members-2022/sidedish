@@ -2,15 +2,15 @@ package com.example.sidedish
 
 import android.content.Context
 
-class AssetLoader {
+class AssetLoader(private val context: Context) {
 
-    fun getJsonString(context: Context, fileName: String): String? {
+    fun getJsonString(fileName: String): String? {
         return kotlin.runCatching {
-            loadAsset(context, fileName)
+            loadAsset(fileName)
         }.getOrNull()
     }
 
-    private fun loadAsset(context: Context, fileName: String): String {
+    private fun loadAsset(fileName: String): String {
         return context.assets.open(fileName).use { inputStream ->
             val size = inputStream.available()
             val bytes = ByteArray(size)
