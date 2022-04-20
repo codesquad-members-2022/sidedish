@@ -36,12 +36,12 @@ const fontFamily = {
 };
 
 export const theme = {
-    fontSizes,
-    colors,
-    fontWeights,
-    heights,
-    fontFamily,
-    custom_font: (family = 'Noto Sans KR', size, weight, height) => `
+  fontSizes,
+  colors,
+  fontWeights,
+  heights,
+  fontFamily,
+  custom_font: (family = "Noto Sans KR", size, weight, height) => `
         font-family:${family};
         font-size:${size}px;
         font-style: normal;
@@ -49,36 +49,38 @@ export const theme = {
         font-size: ${size}px;
         line-height: ${height}px;
     `,
-    custom_absolute: (top = null, right = null, bottom = null, left = null) => `
+  custom_absolute: (top = null, right = null, bottom = null, left = null) => `
         position:absolute;
-        top:${top}px;
-        left:${left}px;
-        right:${right}px;
-        bottom:${bottom}px
+        ${top ? `top:${top}px` : ""};
+        ${left ? `left:${left}px` : ""};
+        ${right ? `right:${right}px` : ""};
+        ${bottom ? `bottom:${bottom}px` : ""};
     `,
-    custom_static: (top = null, right = null, bottom = null, left = null) => `
-        ${this.custom_absolute(top, right, bottom, left)}
+  custom_static: (top = null, right = null, bottom = null, left = null) => {
+    return `
+        ${theme.custom_absolute(top, right, bottom, left)}
         position:static;    
-   `,
-    custom_relative: (top = null, right = null, bottom = null, left = null) => `
-        ${this.custom_absolute(top, right, bottom, left)};
+   `;
+  },
+  custom_relative: (top = null, right = null, bottom = null, left = null) => `
+        ${theme.custom_absolute(top, right, bottom, left)};
         position:relative;
     `,
-    flex_none: (order, mx, my) => `
+  flex_none: (order, mx, my) => `
         flex: none;
         flex-grow: 0;
         order: ${order};
         margin:${mx}px ${my}px;
     `,
-    width_height_bypx: (width, height) => `
-        width:${width}px;
-        height:${height}px;
+  width_height_bypx: (width = null, height = null) => `
+        ${width ? `width: ${width}px` : ""};
+        ${height ? `height: ${height}px` : ""};
     `,
-    custom_flex: (dir = 'column', align = null, justify = null) => `
+  custom_flex: (dir = "column", align = null, justify = null) => `
         display: flex;
-        flex-direction: ${dir};
-        align-items: ${align};
-        justify-content: ${justify};
-    `,
-}
+        ${dir ? `flex-direction: ${dir}` : ""};
+        ${align ? `align-items: ${align}` : ""};
+        ${justify ? `justify-content: ${justify}` : ""};
+    `
+};
 
