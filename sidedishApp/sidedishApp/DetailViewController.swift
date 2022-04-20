@@ -16,14 +16,14 @@ class DetailViewController: UIViewController{
     @IBOutlet weak var secondSectionView: UIView!
     @IBOutlet weak var thirdSectionView: UIView!
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
     }
 }
 
 private extension DetailViewController{
-    func setViews(){
+    func setViews() {
         configureFullSizeScrollView()
         configureStackView()
         configureImageScrollView()
@@ -32,7 +32,7 @@ private extension DetailViewController{
         configureThirdSectionView()
     }
     
-    func configureFullSizeScrollView(){
+    func configureFullSizeScrollView() {
         fullSizeScrollView.backgroundColor = .yellow
         
         fullSizeScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ private extension DetailViewController{
         fullSizeScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
     }
     
-    func configureStackView(){
+    func configureStackView() {
         stackView.backgroundColor = .brown
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +59,7 @@ private extension DetailViewController{
         stackView.heightAnchor.constraint(equalToConstant: 977).isActive = true
     }
     
-    func configureImageScrollView(){
+    func configureImageScrollView() {
         imageScrollView.backgroundColor = .blue
         
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +70,7 @@ private extension DetailViewController{
         imageScrollView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor).isActive = true
     }
     
-    func configureFirstSectionView(){
+    func configureFirstSectionView() {
         firstSectionView.translatesAutoresizingMaskIntoConstraints = false
         firstSectionView.topAnchor.constraint(equalTo: self.imageScrollView.bottomAnchor, constant: 24).isActive = true
         firstSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
@@ -78,7 +78,7 @@ private extension DetailViewController{
         firstSectionView.heightAnchor.constraint(equalToConstant: 176).isActive = true
     }
     
-    func configureSecondSectionView(){
+    func configureSecondSectionView() {
         secondSectionView.translatesAutoresizingMaskIntoConstraints = false
         secondSectionView.topAnchor.constraint(equalTo: self.firstSectionView.bottomAnchor).isActive = true
         secondSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
@@ -86,7 +86,7 @@ private extension DetailViewController{
         secondSectionView.heightAnchor.constraint(equalToConstant: 152).isActive = true
     }
     
-    func configureThirdSectionView(){
+    func configureThirdSectionView() {
         thirdSectionView.translatesAutoresizingMaskIntoConstraints = false
         thirdSectionView.topAnchor.constraint(equalTo: self.secondSectionView.bottomAnchor).isActive = true
         thirdSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true

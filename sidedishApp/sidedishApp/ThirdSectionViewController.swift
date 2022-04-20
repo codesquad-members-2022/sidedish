@@ -13,7 +13,7 @@ class ThirdSectionViewController: UIViewController{
     private var countStepper: UIStepper!
     private var sectionBottom: UILabel!
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 176)
         setAllProperties()
@@ -21,7 +21,7 @@ class ThirdSectionViewController: UIViewController{
 }
 
 private extension ThirdSectionViewController{
-    func setAllProperties(){
+    func setAllProperties() {
         configureCountLabel()
         configureCountText()
         configureCountStepper()
@@ -29,7 +29,7 @@ private extension ThirdSectionViewController{
         // 총주문금액, 주문하기 구현 필요
     }
     
-    func configureCountLabel(){
+    func configureCountLabel() {
         countLabel = UILabel()
         countLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 24)
         countLabel.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
@@ -44,7 +44,7 @@ private extension ThirdSectionViewController{
         countLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureCountText(){
+    func configureCountText() {
         countText = UILabel()
         countText.frame = CGRect(x: 0, y: 0, width: 9, height: 24)
         countText.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
@@ -59,7 +59,7 @@ private extension ThirdSectionViewController{
         countText.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureCountStepper(){
+    func configureCountStepper() {
         countStepper = UIStepper()
         countStepper.frame = CGRect(x: 0, y: 0, width: 100, height: 28)
         countStepper.layer.backgroundColor = UIColor(red: 0.961, green: 0.961, blue: 0.969, alpha: 1).cgColor
@@ -73,7 +73,7 @@ private extension ThirdSectionViewController{
         countStepper.heightAnchor.constraint(equalToConstant: 28).isActive = true
     }
     
-    func configureSectionBottom(){
+    func configureSectionBottom() {
         sectionBottom = UILabel()
         sectionBottom.frame = CGRect(x: 0, y: 0, width: 343, height: 1)
         sectionBottom.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
@@ -86,7 +86,7 @@ private extension ThirdSectionViewController{
         sectionBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
-    func setTextAttribute(label: UILabel, text: String){
+    func setTextAttribute(label: UILabel, text: String) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.44
         

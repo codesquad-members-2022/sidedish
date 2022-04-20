@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstSectionViewController: UIViewController{
+class FirstSectionViewController: UIViewController {
     private var titleLabel: UILabel!
     private var subLabel: UILabel!
     private var salePrice: UILabel!
@@ -15,14 +15,14 @@ class FirstSectionViewController: UIViewController{
     private var eventLabel: UILabel!
     private var sectionBottom: UILabel!
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         setAllProperties()
     }
 }
 
-private extension FirstSectionViewController{
-    func setAllProperties(){
+private extension FirstSectionViewController {
+    func setAllProperties() {
         configureTitle()
         configureSubLabel()
         configureSalePrice()
@@ -31,7 +31,7 @@ private extension FirstSectionViewController{
         configureSectionBottom()
     }
     
-    func configureTitle(){
+    func configureTitle() {
         titleLabel = UILabel()
         titleLabel.frame = CGRect(x: 0, y: 0, width: 343, height: 48)
         titleLabel.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
@@ -46,7 +46,7 @@ private extension FirstSectionViewController{
         titleLabel.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
-    func configureSubLabel(){
+    func configureSubLabel() {
         subLabel = UILabel()
         subLabel.frame = CGRect(x: 0, y: 0, width: 177, height: 24)
         subLabel.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
@@ -61,7 +61,7 @@ private extension FirstSectionViewController{
         subLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureSalePrice(){
+    func configureSalePrice() {
         salePrice = UILabel()
         salePrice.frame = CGRect(x: 0, y: 0, width: 74, height: 24)
         salePrice.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
@@ -76,7 +76,7 @@ private extension FirstSectionViewController{
         salePrice.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureRawPrice(){
+    func configureRawPrice() {
         rawPrice = UILabel()
         rawPrice.frame = CGRect(x: 0, y: 0, width: 64, height: 24)
         rawPrice.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
@@ -91,7 +91,7 @@ private extension FirstSectionViewController{
         rawPrice.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureEventLabel(){
+    func configureEventLabel() {
         eventLabel = UILabel()
         eventLabel.frame = CGRect(x: 0, y: 0, width: 77, height: 24)
         eventLabel.layer.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.839, alpha: 1).cgColor
@@ -109,7 +109,7 @@ private extension FirstSectionViewController{
         eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureSectionBottom(){
+    func configureSectionBottom() {
         sectionBottom = UILabel()
         sectionBottom.frame = CGRect(x: 0, y: 0, width: 343, height: 1)
         sectionBottom.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
@@ -122,21 +122,21 @@ private extension FirstSectionViewController{
         sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
-    func setTextAttribute(label: UILabel, text: String){
+    func setTextAttribute(label: UILabel, text: String) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.26
         
         label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     
-    func setRawPriceAttribute(label: UILabel, text: String){
+    func setRawPriceAttribute(label: UILabel, text: String) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.26
         
         label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     
-    func setEventLabelAttribute(label: UILabel, text: String){
+    func setEventLabelAttribute(label: UILabel, text: String) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.12
         

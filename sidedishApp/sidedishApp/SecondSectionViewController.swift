@@ -16,7 +16,7 @@ class SecondSectionViewController: UIViewController{
     private var chargeText: UILabel!
     private var sectionBottom: UILabel!
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 152)
         setAllProperties()
@@ -24,7 +24,7 @@ class SecondSectionViewController: UIViewController{
 }
 
 private extension SecondSectionViewController{
-    func setAllProperties(){
+    func setAllProperties() {
         configurePointLabel()
         configurePointText()
         configureDeliveryLabel()
@@ -34,7 +34,7 @@ private extension SecondSectionViewController{
         configureSectionBottom()
     }
     
-    func configurePointLabel(){
+    func configurePointLabel() {
         pointLabel = UILabel()
         setLabelAttribute(label: pointLabel, text: "적립금")
         self.view.addSubview(pointLabel)
@@ -46,7 +46,7 @@ private extension SecondSectionViewController{
         pointLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configurePointText(){
+    func configurePointText() {
         pointText = UILabel()
         setTextAttribute(label: pointText, text: "126원")
         self.view.addSubview(pointText)
@@ -58,7 +58,7 @@ private extension SecondSectionViewController{
         pointText.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureDeliveryLabel(){
+    func configureDeliveryLabel() {
         deliveryLabel = UILabel()
         setLabelAttribute(label: deliveryLabel, text: "배송정보")
         self.view.addSubview(deliveryLabel)
@@ -70,7 +70,7 @@ private extension SecondSectionViewController{
         deliveryLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureDeliveryText(){
+    func configureDeliveryText() {
         deliveryText = UILabel()
         setTextAttribute(label: deliveryText, text: "서울 경기 새벽 배송, 전국 택배 배송")
         self.view.addSubview(deliveryText)
@@ -82,7 +82,7 @@ private extension SecondSectionViewController{
         deliveryText.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureChargeLabel(){
+    func configureChargeLabel() {
         chargeLabel = UILabel()
         setLabelAttribute(label: chargeLabel, text: "배송비")
         self.view.addSubview(chargeLabel)
@@ -94,7 +94,7 @@ private extension SecondSectionViewController{
         chargeLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureChargeText(){
+    func configureChargeText() {
         chargeText = UILabel()
         setTextAttribute(label: chargeText, text: "2,500원 (40,000원 이상 구매 시 무료)")
         self.view.addSubview(chargeText)
@@ -106,7 +106,7 @@ private extension SecondSectionViewController{
         chargeText.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureSectionBottom(){
+    func configureSectionBottom() {
         sectionBottom = UILabel()
         sectionBottom.frame = CGRect(x: 0, y: 0, width: 343, height: 1)
         sectionBottom.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
@@ -119,7 +119,7 @@ private extension SecondSectionViewController{
         sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
-    func setLabelAttribute(label: UILabel, text: String){
+    func setLabelAttribute(label: UILabel, text: String) {
         label.frame = CGRect(x: 0, y: 0, width: 60, height: 24)
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
@@ -129,7 +129,7 @@ private extension SecondSectionViewController{
         label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     
-    func setTextAttribute(label: UILabel, text: String){
+    func setTextAttribute(label: UILabel, text: String) {
         label.frame = CGRect(x: 0, y: 0, width: 267, height: 24)
         label.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
