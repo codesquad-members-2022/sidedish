@@ -12,7 +12,7 @@ class MainViewHeader: UICollectionReusableView {
     
     static let identifier = "MainViewHeader"
     
-    private lazy var titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         var label = UILabel()
         label.font = .systemFont(ofSize: 40)
         label.numberOfLines = 0
@@ -21,7 +21,7 @@ class MainViewHeader: UICollectionReusableView {
         return label
     }()
     
-    private lazy var captionLabel: UILabel = {
+    private let captionLabel: UILabel = {
         var label = UILabel()
         label.text = "n개의 상품이 등록되어 있습니다."
         label.font = .systemFont(ofSize: 15)

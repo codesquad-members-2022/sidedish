@@ -12,42 +12,42 @@ class MainViewCardCell: UICollectionViewCell {
     
     static let identifier = "MainViewCardCell"
     
-    private lazy var cardImageView: UIImageView = {
+    private let cardImageView: UIImageView = {
         var image = UIImageView()
         image.backgroundColor = .systemGray5
         return image
     }()
     
-    private lazy var cardTitleLabel: UILabel = {
+    private let cardTitleLabel: UILabel = {
         var label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     
-    private lazy var cardBodyLabel: UILabel = {
+    private let cardBodyLabel: UILabel = {
         var label = UILabel()
         return label
     }()
     
-    private lazy var normalPriceLabel: UILabel = {
+    private let normalPriceLabel: UILabel = {
         var label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
     
-    private lazy var salePriceLabel: UILabel = {
+    private let salePriceLabel: UILabel = {
         var label = UILabel()
         return label
     }()
     
-    private lazy var eventBadgeLabel: UILabel = {
+    private let eventBadgeLabel: UILabel = {
         var label = UILabel()
         label.textColor = .white
         label.backgroundColor = UIColor(red: 127 / 255, green: 188 / 255, blue: 255 / 255, alpha: 1)
         return label
     }()
     
-    private lazy var launchingBadgeLabel: UILabel = {
+    private let launchingBadgeLabel: UILabel = {
         var label = UILabel()
         label.textColor = .white
         label.backgroundColor = UIColor(red: 1 / 255, green: 102 / 255, blue: 214 / 255, alpha: 1)
