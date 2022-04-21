@@ -41,7 +41,6 @@ class ProductsAcceptanceTest {
 	}
 
 
-	// 프로튼엔드가 특정 음식 타입 조회를 하게 해주세요
 	@Test
 	void 만약_meal_type이_soup인_경우_soup음식_타입_조회_성공() {
 		given()
@@ -57,7 +56,7 @@ class ProductsAcceptanceTest {
 			.body("[0].image", containsString("s3"))
 			.body("[0].productName", equalTo("한돈 돼지 김치찌개"))
 			.body("[0].description", equalTo("김치찌개에는 역시 돼지고기"))
-			.body("[0].fixedPrice", equalTo(8370))
+			.body("[0].fixedPrice", equalTo(7440))
 			.body("[0].originalPrice", equalTo(9300))
 			.body("[0].event", equalTo("이벤트특가"));
 	}
