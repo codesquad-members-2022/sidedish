@@ -1,7 +1,5 @@
-const layout = {
-  /** 
-    // TODO flex Layout 공통 컴포넌트 분리
-  */
+const flexLayout = {
+  default: { display: 'flex' },
 };
 
 const colors = {
@@ -14,15 +12,6 @@ const colors = {
   white: '#FFFFFF',
   green: '#6DD028',
   orange: '#FF8E14',
-};
-
-const fontSizes = {
-  font40: '40px',
-  font24: '24px',
-  font20: '20px',
-  font16: '16px',
-  font14: '14px',
-  font12: '12px',
 };
 
 const fontStyles = {
@@ -87,6 +76,6 @@ const cardSize = {
   small: { width: '160px', height: '160px' },
 };
 
-const theme = { layout, colors, fontSizes, cardSize, fontStyles };
+const theme = { flexLayout, colors, cardSize, fontStyles };
 
 export default theme;

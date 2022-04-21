@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import RecommendTab from './RecommendTab';
+import RecommendTab from 'Main/Recommend/RecommendTab';
 
 const RecommendWrapper = styled.div`
   margin-top: 56px;
@@ -7,17 +7,17 @@ const RecommendWrapper = styled.div`
 
 const RecommendInner = styled.div`
   margin-bottom: 24px;
-  display: flex;
+  ${({ theme }) => theme.flexLayout.default};
   align-items: flex-start;
 
-  p {
+  span {
     margin-right: 16px;
     padding: 8px 16px;
     border: 2px solid ${({ theme }) => theme.colors.black};
     border-radius: 999px;
-    ${({ theme }) => theme.fontStyles.mediumBold};
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.offWhite};
+    ${({ theme }) => theme.fontStyles.mediumBold};
   }
 
   h1 {
@@ -30,7 +30,7 @@ const RecommendProduct = () => {
   return (
     <RecommendWrapper>
       <RecommendInner>
-        <p>기획전</p>
+        <span>기획전</span>
         <h1>한 번 주문하면 두 번 반하는 반찬</h1>
       </RecommendInner>
       <RecommendTab></RecommendTab>
