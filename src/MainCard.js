@@ -25,21 +25,17 @@ const MainCard = ({ mainCardData }) => {
 
   return (
     <CardContainer cardInfos={mainDatas}>
-      <div>
-        <StyledTap>
-          <CategoryTitle title={title} banner={banner} />
-        </StyledTap>
-        <Tab onClick={handleClickTab} />
-      </div>
+      <StyledTap>
+        <CategoryTitle title={title} banner={banner} />
+      </StyledTap>
+      <Tab onClick={handleClickTab} />
     </CardContainer>
   );
 };
 
-const StyledTap = styled.ul`
+const StyledTap = styled.div`
   display: flex;
-  padding: 20px;
   li {
-    margin-left: 10px;
   }
 `;
 

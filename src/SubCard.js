@@ -9,7 +9,7 @@ const SubCard = ({ mainCardData }) => {
   const title = '식탁을 풍성하게 하는 정갈한 밑반찬';
 
   return (
-    <CardContainer cardInfos={mainDatas}>
+    <CardContainer cardInfos={mainDatas} hasButton={true}>
       <CategoryTitle title={title} />
     </CardContainer>
   );
