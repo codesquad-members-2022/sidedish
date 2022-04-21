@@ -2,17 +2,23 @@ package sidedish.com.domain;
 
 import java.time.LocalDateTime;
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
-public class DisCountPolicy {
+@Setter
+@Table("DISCOUNT_POLICY")
+public class DiscountPolicy {
 
+	@Id
 	private Long id;
 	private String policyName;
 	private float discountRate;
 	private LocalDateTime startAt;
 	private LocalDateTime endAt;
 
-	public DisCountPolicy(String policyName) {
+	public DiscountPolicy(String policyName) {
 		this.policyName = policyName;
 	}
 }

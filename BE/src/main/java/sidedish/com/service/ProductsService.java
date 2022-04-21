@@ -18,6 +18,7 @@ public class ProductsService {
 
 	public List<ProductMealTypeResponse> findByMealType(String meal) {
 		List<Product> products = productsRepository.findByMealType(meal);
+
 		return ProductsDtoMapper.toProductsMealTypeResponseFromDomain(products);
 	}
 }

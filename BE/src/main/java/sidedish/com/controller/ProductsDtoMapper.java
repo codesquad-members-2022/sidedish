@@ -21,12 +21,13 @@ public class ProductsDtoMapper {
 	private static ProductMealTypeResponse toProductMealTypeResponseFromDomain(Product product) {
 		return new ProductMealTypeResponse(
 			product.getId(),
-			product.getImage().get(0).getImage(),
+			product.getImage().get(0).getImageUrl(),
 			product.getProductName(),
 			product.getDescription(),
-			product.getFixedPrice(),
+			product.getOriginalPrice(), //TODO : fixed 구현
 			product.getOriginalPrice(),
-			product.getDisCountPolicy().getPolicyName());
+			"a"); // TODO event 구현
+//			product.getDisCountPolicy().getPolicyName());
 	}
 
 }
