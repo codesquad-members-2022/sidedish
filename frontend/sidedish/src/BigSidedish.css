@@ -94,25 +94,19 @@
     text-decoration-line: line-through;
     color: #bcbcbc;
 }
-.big-sidedish__card-tag--launch {
+.big-sidedish__card-tag {
     font-weight: 500;
     font-size: 1.2rem;
     line-height: 18px;
     letter-spacing: -0.008em;
     color: #fff;
-    background-color: #ff8e14;
     padding: 6px 8px;
     border-radius: 25px;
     margin-top: 22px;
 }
-.big-sidedish__card-tag--event {
-    font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 18px;
-    letter-spacing: -0.008em;
-    color: #fff;
+.launch {
+    background-color: #ff8e14;
+}
+.event {
     background-color: #6dd028;
-    padding: 6px 8px;
-    border-radius: 25px;
-    margin-top: 22px;
 }

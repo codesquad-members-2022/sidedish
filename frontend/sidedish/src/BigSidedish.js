@@ -3,7 +3,35 @@ import "./BigSidedish.css";
 
 function SidedishCard(props) {
     const dishData = props.dishData;
-    const event = dishData.event_badge;
+    const eventBadge = dishData.event_badge;
+    let defaultPrice = "";
+    let optionPrice = "";
+    let eventTag = "";
+
+    if (Object.keys(eventBadge).length) {
+        const saled = (dishData.price * (100 - eventBadge.discount)) / 100;
+        defaultPrice = (
+            <span className="big-sidedish__card-price--default">{saled}원</span>
+        );
+        optionPrice = (
+            <span className="big-sidedish__card-price--option">
+                {dishData.price}원
+            </span>
+        );
+
+        const eventTagClassName =
+            "big-sidedish__card-tag " +
+            (eventBadge.event_name === "런칭특가" ? "launch" : "event");
+        eventTag = (
+            <span className={eventTagClassName}>{eventBadge.event_name}</span>
+        );
+    } else {
+        defaultPrice = (
+            <span className="big-sidedish__card-price--default">
+                {dishData.price}원
+            </span>
+        );
+    }
 
     return (
         <li className="big-sidedish__card" key={dishData.dish_id}>
@@ -22,15 +50,13 @@ function SidedishCard(props) {
                         {dishData.description}
                     </p>
                     <div className="big-sidedish__card-prices">
-                        <span className="big-sidedish__card-price--default">
-                            12,640원
-                        </span>
-                        <span className="big-sidedish__card-price--option">
-                            15,800원
-                        </span>
+                        <>
+                            {defaultPrice}
+                            {optionPrice}
+                        </>
                     </div>
                 </div>
-                <span className="big-sidedish__card-tag--launch">런칭특가</span>
+                {eventTag}
             </div>
         </li>
     );
