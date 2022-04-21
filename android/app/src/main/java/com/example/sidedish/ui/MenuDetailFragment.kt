@@ -31,17 +31,18 @@ class MenuDetailFragment : Fragment() {
         val imageList = mutableListOf<FoodImage>()
 
         viewModel.selectedFoodDetail.observe(viewLifecycleOwner) { detail ->
-            binding.foodDetail = detail
-            Glide.with(this).load(detail.detailSection[0]).into(binding.ivDetail1)
-            Glide.with(this).load(detail.detailSection[1]).into(binding.ivDetail2)
-            Glide.with(this).load(detail.detailSection[2]).into(binding.ivDetail3)
-            imageList.add(FoodImage(detail.thumbImage[0]))
-            imageList.add(FoodImage(detail.thumbImage[1]))
-            val adapter = ImageViewPagerAdapter().apply {
-                submitList(imageList)
+            with(binding) {
+                foodDetail = detail
+                Glide.with(this@MenuDetailFragment).load(detail.detailSection[0]).into(ivDetail1)
+                Glide.with(this@MenuDetailFragment).load(detail.detailSection[1]).into(ivDetail2)
+                Glide.with(this@MenuDetailFragment).load(detail.detailSection[2]).into(ivDetail3)
+                imageList.add(FoodImage(detail.thumbImage[0]))
+                imageList.add(FoodImage(detail.thumbImage[1]))
+                val adapter = ImageViewPagerAdapter().apply {
+                    submitList(imageList)
+                }
+                pagerDetailImage.adapter = adapter
             }
-            binding.pagerDetailImage.adapter = adapter
         }
     }
-
 }

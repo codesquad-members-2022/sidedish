@@ -217,7 +217,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="122dp"
                     android:backgroundTint="@color/white"
-                    android:elevation="2dp"
+                    android:elevation="0dp"
                     android:src="@drawable/ic_minus_vector"
                     app:backgroundTint="@color/white" />
 
@@ -237,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/white"
-                    android:elevation="2dp"
+                    android:elevation="0dp"
                     android:src="@drawable/ic_baseline_add_24"
                     app:backgroundTint="@color/white" />
 
