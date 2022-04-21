@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.sidedish.R
 import com.example.sidedish.databinding.FragmentHomeBinding
 import com.example.sidedish.ui.animation.ZoomOutPageTransformer
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val NUM_PAGES = 3
 
@@ -27,8 +28,6 @@ class HomeFragment : Fragment() {
     private val viewPager: ViewPager2 by lazy {
         binding.pager
     }
-
-    private val viewModel: MenuListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
