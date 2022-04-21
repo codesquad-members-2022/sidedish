@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.menu.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

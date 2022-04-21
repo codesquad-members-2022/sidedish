@@ -1,4 +1,4 @@
-package com.example.sidedish.ui
+package com.example.sidedish.ui.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -52,11 +52,11 @@ class HomeFragment : Fragment() {
     private inner class ScreenSlidePagerAdapter(
         fm: FragmentManager,
         lifecycle: Lifecycle,
-        private val list: List<Fragment>
+        private val list: List<MenuFragment>
     ) : FragmentStateAdapter(fm, lifecycle) {
         override fun getItemCount(): Int = NUM_PAGES
 
-        override fun createFragment(position: Int): Fragment {
+        override fun createFragment(position: Int): MenuFragment {
             return list[position]
         }
     }

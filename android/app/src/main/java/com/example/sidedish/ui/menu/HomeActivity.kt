@@ -1,4 +1,4 @@
-package com.example.sidedish.ui
+package com.example.sidedish.ui.menu
 
 import android.os.Bundle
 import androidx.activity.viewModels

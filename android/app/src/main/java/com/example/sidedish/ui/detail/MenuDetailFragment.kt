@@ -1,7 +1,6 @@
-package com.example.sidedish.ui
+package com.example.sidedish.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import com.example.sidedish.R
 import com.example.sidedish.data.FoodImage
 import com.example.sidedish.databinding.FragmentDetailBinding
 import com.example.sidedish.ui.adapter.ImageViewPagerAdapter
+import com.example.sidedish.ui.viewmodel.MenuListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
