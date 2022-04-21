@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">sidedish</string>
     <string name="label_iv_product_detail_image">iv_product_detail_image</string>
+    <string name="label_minus_button">minusButton</string>
+    <string name="label_order">주문하기</string>
 </resources>

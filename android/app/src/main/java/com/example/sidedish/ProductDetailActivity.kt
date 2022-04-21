@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sidedish.databinding.ActivityProductDetailBinding
-import com.google.android.material.tabs.TabLayoutMediator
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -19,7 +18,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         with(binding.viewpagerProductDetail) {
             adapter = ProductDetailImageAdapter().apply {
-                viewModel.imageImageList.observe(this@ProductDetailActivity) { image ->
+                viewModel.imageTitleImageList.observe(this@ProductDetailActivity) { image ->
                     submitList(image)
                 }
             }

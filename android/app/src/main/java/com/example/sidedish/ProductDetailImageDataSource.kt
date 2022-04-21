@@ -6,9 +6,9 @@ class ProductDetailImageDataSource(private val assetLoader: AssetLoader) : Produ
 
     private val gson = Gson()
 
-    override fun loadProductDetailImage(): ProductDetailImage? {
+    override fun loadProductDetailImage(): ProductDetailTitleImage? {
         return assetLoader.getJsonString("product_detail.json")?.let { jsonString ->
-            gson.fromJson(jsonString, ProductDetailImage::class.java)
+            gson.fromJson(jsonString, ProductDetailTitleImage::class.java)
         }
     }
 }

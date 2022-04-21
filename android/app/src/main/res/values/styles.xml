@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Headline" parent="TextAppearance.MaterialComponents.Headline4"/>
+
+    <style name="Headline.black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Headline.black.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Headline.black.500">
+        <item name="android:textFontWeight" tools:ignore="NewApi">500</item>
+    </style>
+
     <style name="Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" />
+
+    <style name="Subtitle1.grey">
+        <item name="android:textColor">@color/grey_2</item>
+    </style>
+
+    <style name="Subtitle1.grey.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="Subtitle1.black">
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Subtitle1.black.32">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Subtitle1.black.30.bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Subtitle1.black.20">
@@ -11,6 +41,24 @@
     </style>
 
     <style name="Subtitle1.black.20.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"/>
+
+    <style name="Subtitle2.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Subtitle2.white.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Subtitle2.white.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Subtitle2.white.12.bold">
         <item name="android:textStyle">bold</item>
     </style>
 </resources>
