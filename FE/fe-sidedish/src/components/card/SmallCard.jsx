@@ -1,18 +1,24 @@
 import { formatPrice } from '../../utils';
+import {
+  Container,
+  Image,
+  Price,
+  Prices,
+  MainPrice,
+  Title
+} from './Card.style';
 
 const SmallCard = ({ name, image, price, discountedPrice }) => {
 
-  const priceClassName = discountedPrice => `card__price ${discountedPrice ? '' : 'card__price-main'}`;
-
   return (
-    <div className="card card--small">
-      <img src={image} alt={name} className="card__image" />
-      <h3 className="card__title">{name}</h3>
-      <div className="card__prices">
-        {discountedPrice && <span className="card__discounted-price card__price-main">{formatPrice(discountedPrice)}원</span>}
-        <span className={priceClassName(discountedPrice)}>{formatPrice(price)}원</span>
-      </div>
-    </div>
+    <Container>
+      <Image src={image} alt={name} size="small" />
+      <Title size="small">{name}</Title>
+      <Prices>
+        {discountedPrice && <MainPrice>{formatPrice(discountedPrice)}원</MainPrice>}
+        {discountedPrice ? <Price>{formatPrice(price)}원</Price> : <MainPrice>{formatPrice(price)}원</MainPrice>}
+      </Prices>
+    </Container>
   );
 };
 

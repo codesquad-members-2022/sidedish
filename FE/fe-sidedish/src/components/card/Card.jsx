@@ -1,40 +1,46 @@
-import '../../styles/components/card.scss';
 import { formatPrice } from '../../utils';
+import {
+  Container,
+  Image,
+  Description,
+  ImageBadge,
+  ImageContainer,
+  Price,
+  Prices,
+  MainPrice,
+  Title,
+  Badges,
+  Badge,
+  ImageBackground
+} from './Card.style';
 
 const Card = ({ size, dish }) => {
 
   const { name, description, image, price, discountedPrice, badges } = dish;
 
-  const EVENT = "이벤트특가";
-  const LARGE = "large";
-
-  const cardClassName = size => `card ${size === LARGE ? 'card--large' : ''}`;
-  const badgeClassName = badge => `card__badge ${badge === EVENT ? 'card__badge-event' : 'card__badge-launch'}`;
-  const priceClassName = discountedPrice => `card__price ${discountedPrice ? '' : 'card__price-main'}`;
-
   return (
-    <div className={cardClassName(size)}>
-      <div className="card__image-container">
-        <img src={image} alt={name} className="card__image" />
-        <div className="card__image-background">
-          <div className="card__image-badge">
+    <Container>
+      <ImageContainer>
+        <Image src={image} alt={name} size={`${size}`} />
+        <ImageBackground size={`${size}`}>
+          <ImageBadge>
             <p>새벽 배송</p>
             <p>전국 택배</p>
-          </div>
-        </div>
-      </div>
-      <h3 className="card__title">{name}</h3>
-      <p className="card__description">{description}</p>
-      <div className="card__prices">
-        {discountedPrice && <span className="card__discounted-price card__price-main">{formatPrice(discountedPrice)}원</span>}
-        <span className={priceClassName(discountedPrice)}>{formatPrice(price)}원</span>
-      </div>
+          </ImageBadge>
+        </ImageBackground>
+      </ImageContainer>
+      <Title>{name}</Title>
+      <Description>{description}</Description>
+      <Prices>
+        {discountedPrice && <MainPrice>{formatPrice(discountedPrice)}원</MainPrice>}
+        {discountedPrice ? <Price>{formatPrice(price)}원</Price> : <MainPrice>{formatPrice(price)}원</MainPrice>}
+      </Prices>
       {badges?.length && (
-        <div className="card__badges">
-          {badges.map((badge, index) => <span className={badgeClassName(badge)} key={index}>{badge}</span>)}
-        </div>
+        <Badges>
+          {badges.map((badge, index) => <Badge key={index} type={`${badge}`}>{badge}</Badge>)}
+        </Badges>
       )}
-    </div>
+    </Container>
   );
 };
 

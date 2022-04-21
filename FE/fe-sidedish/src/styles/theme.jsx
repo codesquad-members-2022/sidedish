@@ -21,7 +21,7 @@ const fontSize = {
 const fontWeight = {
   heavy: "900",
   bold: "700",
-  mediumBold: "500",
+  medium: "500",
   regular: "400",
 };
 
