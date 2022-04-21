@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { slideBtn } from '../css/variables';
+import { color, slideBtn } from '../css/variables';
 
 const Tab = ({ onClick }) => {
   const tabs = [
@@ -30,7 +30,10 @@ const StyledTab = styled.ul`
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
-    margin-right: 20px;
+    margin-right: 50px;
+    padding: 20px;
+    border: 1px solid ${color.orange};
+    border-radius: 5px;
   }
 `;
 
