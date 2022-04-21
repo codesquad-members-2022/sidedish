@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,7 +32,7 @@ public class ProductController {
 	/**
 	 * 상품 세부 정보 불러오기
 	 */
-	@GetMapping("/{id}")
+	@GetMapping("/details/{id}")
 	public ResponseProduct loadDetails(@PathVariable Integer id) {
 		return productService.findById(id);
 	}
@@ -39,7 +40,7 @@ public class ProductController {
 	/**
 	 * 주문 넣기
 	 */
-	@PatchMapping("/purchase")
+	@PostMapping("/orders")
 	public void ordered(@RequestBody RequestProduct requestProduct) {
 		productService.ordered(requestProduct);
 	}
