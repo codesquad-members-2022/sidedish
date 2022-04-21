@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { SIZE, WEIGHT } from '../variable/font';
 import COLOR from '../variable/color';
 
-function Text(props) {
+export default function Text(props) {
   const { size, weight, color, value } = props;
   return (
     <SPAN size={size} weight={weight} color={color}>
@@ -24,5 +24,3 @@ const SPAN = styled.span({
   'font-weight': (props) => WEIGHT[props.weight],
   color: (props) => COLOR[props.color],
 });
-
-export default Text;

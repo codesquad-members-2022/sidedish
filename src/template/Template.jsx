@@ -18,7 +18,7 @@ const TemplateSubTitle = styled.span({
   color: '#777',
 });
 
-function Template() {
+export default function Template() {
   return (
     <div className="Template">
       <TemplateTitle>LOGOTYPE</TemplateTitle>
@@ -72,5 +72,3 @@ function Template() {
     </div>
   );
 }
-
-export default Template;
