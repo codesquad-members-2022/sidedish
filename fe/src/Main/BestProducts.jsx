@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import COLOR from '../Constants/Colors';
+import Colors from '../Constants/Colors';
 import { ProductCard } from './ProductCard';
 import { CategoryBadge } from '../Badge/CategoryBadge';
 
 const BestProductWrapper = styled.div`
   display: flex;
-  margin: 56px 0 0;
+  padding: 56px 80px;
+  margin: 0 -80px;
+  border-bottom: 1px solid ${Colors.LIGHT_GREY};
   flex-direction: column;
 `;
 
 const TabList = styled.ul`
   display: flex;
 
-  border-bottom: 0.5px solid ${COLOR.LIGHT_GREY};
+  border-bottom: 0.5px solid ${Colors.LIGHT_GREY};
   margin: 0 -80px;
   padding: 0 80px;
 
@@ -24,11 +26,11 @@ const TabList = styled.ul`
   }
 
   li.selected {
-    border-color: ${COLOR.BLACK};
+    border-color: ${Colors.BLACK};
   }
 
   li:hover {
-    border-color: ${COLOR.BLACK};
+    border-color: ${Colors.BLACK};
   }
 `;
 
@@ -38,7 +40,7 @@ const Header = styled.div`
   margin-bottom: 8px;
 `;
 
-const Main = styled.ul`
+const ProductCardList = styled.ul`
   display: flex;
   margin-top: 34px;
 `;
@@ -103,11 +105,11 @@ export const BestProducts = () => {
           </li>
         ))}
       </TabList>
-      <Main>
+      <ProductCardList>
         {cardData.map(data => (
           <ProductCard size={''} data={data} key={data.id} />
         ))}
-      </Main>
+      </ProductCardList>
     </BestProductWrapper>
   );
 };
