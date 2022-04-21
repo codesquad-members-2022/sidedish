@@ -59,7 +59,7 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
                     )
                 )
             }
-            else -> throw Exception("View Type을 찾을 수 없습니다.")
+            else -> error("View Type을 찾을 수 없습니다.")
         }
     }
 
