@@ -19,10 +19,13 @@ class DetailBanchanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout()
+        self.layout()
     }
     
-    private func layout() {
+}
+
+private extension DetailBanchanViewController {
+    func layout() {
         let safeArea = self.view.safeAreaLayoutGuide
         self.view.addSubview(scrollView)
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +51,5 @@ class DetailBanchanViewController: UIViewController {
             self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height),
         ])
     }
-    
     
 }
