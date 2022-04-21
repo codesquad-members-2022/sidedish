@@ -6,8 +6,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeSB") as! HomeViewController
-        self.window?.rootViewController = vc
+        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeSB") as? HomeViewController else {
+            return
+        }
+        
+        self.window?.rootViewController = homeViewController
     }
 }
 
