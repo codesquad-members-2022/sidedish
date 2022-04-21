@@ -144,10 +144,10 @@
 		8D502977280CF9430068CCAC /* SideDishApp */ = {
 			isa = PBXGroup;
 			children = (
+				1ED9D3FD280FEC2000AEC888 /* Controller */,
 				1ED9D53C2811392C00AEC888 /* Model */,
 				1ED9D53B2811390300AEC888 /* Network */,
 				1ED9D3FC280FEC1C00AEC888 /* View */,
-				1ED9D3FD280FEC2000AEC888 /* Controller */,
 				8D502986280CF9480068CCAC /* Info.plist */,
 				8D50298C280CF9760068CCAC /* SupportingFiles */,
 			);
