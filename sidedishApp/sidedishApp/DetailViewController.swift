@@ -34,57 +34,69 @@ private extension DetailViewController{
     
     func configureFullSizeScrollView() {
         fullSizeVerticalScrollView.translatesAutoresizingMaskIntoConstraints = false
-        fullSizeVerticalScrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        fullSizeVerticalScrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        fullSizeVerticalScrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        fullSizeVerticalScrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-        fullSizeVerticalScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        fullSizeVerticalScrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        fullSizeVerticalScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        fullSizeVerticalScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            fullSizeVerticalScrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            fullSizeVerticalScrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            fullSizeVerticalScrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            fullSizeVerticalScrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            fullSizeVerticalScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fullSizeVerticalScrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            fullSizeVerticalScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            fullSizeVerticalScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: stackView.heightAnchor)
+        ])
     }
     
     func configureStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.leadingAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.trailingAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.bottomAnchor).isActive = true
-        stackView.widthAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.widthAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 977).isActive = true
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.contentLayoutGuide.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: self.fullSizeVerticalScrollView.widthAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 977)
+        ])
     }
     
     func configureImageScrollView() {
         imageHorizontalScrollView.translatesAutoresizingMaskIntoConstraints = false
-        imageHorizontalScrollView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor).isActive = true
-        imageHorizontalScrollView.topAnchor.constraint(equalTo: self.stackView.topAnchor).isActive = true
-        imageHorizontalScrollView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor).isActive = true
-        imageHorizontalScrollView.heightAnchor.constraint(equalToConstant: 376).isActive = true
-        imageHorizontalScrollView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            imageHorizontalScrollView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor),
+            imageHorizontalScrollView.topAnchor.constraint(equalTo: self.stackView.topAnchor),
+            imageHorizontalScrollView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor),
+            imageHorizontalScrollView.heightAnchor.constraint(equalToConstant: 376),
+            imageHorizontalScrollView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor)
+        ])
     }
     
     func configureFirstSectionView() {
         firstSectionView.translatesAutoresizingMaskIntoConstraints = false
-        firstSectionView.topAnchor.constraint(equalTo: self.imageHorizontalScrollView.bottomAnchor, constant: 24).isActive = true
-        firstSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
-        firstSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16).isActive = true
-        firstSectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        NSLayoutConstraint.activate([
+            firstSectionView.topAnchor.constraint(equalTo: self.imageHorizontalScrollView.bottomAnchor, constant: 24),
+            firstSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16),
+            firstSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16),
+            firstSectionView.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     func configureSecondSectionView() {
         secondSectionView.translatesAutoresizingMaskIntoConstraints = false
-        secondSectionView.topAnchor.constraint(equalTo: self.firstSectionView.bottomAnchor).isActive = true
-        secondSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
-        secondSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16).isActive = true
-        secondSectionView.heightAnchor.constraint(equalToConstant: 152).isActive = true
+        NSLayoutConstraint.activate([
+            secondSectionView.topAnchor.constraint(equalTo: self.firstSectionView.bottomAnchor),
+            secondSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16),
+            secondSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16),
+            secondSectionView.heightAnchor.constraint(equalToConstant: 152)
+        ])
     }
     
     func configureThirdSectionView() {
         thirdSectionView.translatesAutoresizingMaskIntoConstraints = false
-        thirdSectionView.topAnchor.constraint(equalTo: self.secondSectionView.bottomAnchor).isActive = true
-        thirdSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
-        thirdSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16).isActive = true
-        thirdSectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        NSLayoutConstraint.activate([
+            thirdSectionView.topAnchor.constraint(equalTo: self.secondSectionView.bottomAnchor),
+            thirdSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16),
+            thirdSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16),
+            thirdSectionView.heightAnchor.constraint(equalToConstant: 250)
+        ])
     }
 }
