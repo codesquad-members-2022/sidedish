@@ -1,5 +1,5 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 import { ProductCard } from "./ProductCard";
 
 const CategoryTitle = styled.span`
@@ -16,7 +16,7 @@ const CategoryTitle = styled.span`
       font-size: 24px;
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.size === "small" &&
     css`
       line-height: 30px;
@@ -39,7 +39,7 @@ const ProductCardWrapper = styled.div`
       height: 479px;
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.size === "small" &&
     css`
       width: 864px;
@@ -49,20 +49,28 @@ const ProductCardWrapper = styled.div`
 
 const SlideButtons = styled.div``;
 
-export const Category = ({ categoryID, categoryName, size }) => {
+export const Category = ({
+  id,
+  name,
+  size,
+  theme = false,
+  subcategories = undefined,
+}) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchpProducts = async () => {
-      await (await fetch(`/api/products/${categoryID}`)).json();
-      setProducts(products.data);
+    const fetchProducts = async () => {
+      let query;
+      query = theme ? `api/products/theme_id?=${id}` : `products.json`;
+      const res = await (await fetch(query)).json();
+      setProducts(res.data);
     };
-    fetchpProducts();
+    fetchProducts().then(() => console.log(products));
   }, []);
 
   return (
     <>
-      <CategoryTitle size={size}>{categoryName}</CategoryTitle>
+      <CategoryTitle size={size}>{name}</CategoryTitle>
       <ProductCardWrapper size={size}>
         $
         {products.map((productData) => (
