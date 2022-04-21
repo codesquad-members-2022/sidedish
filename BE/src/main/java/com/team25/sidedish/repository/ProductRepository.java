@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-    @Query("SELECT ID, NAME, PRICE, DISCRIPTION, STOCK "
+    @Query("SELECT ID, NAME, PRICE, DESCRIPTION, STOCK "
         + " FROM PRODUCT "
         + " WHERE CATEGORY_ID = :categoryId")
     Optional<List<Product>> findProductsByCategoryId(@Param("categoryId") Long categoryId);

@@ -16,7 +16,7 @@ class ProductRepositoryTest {
     private static final int CATEGORY_PRODUCT_COUNT = 1;
     private static final String PRODUCT_NAME = "아이템6";
     private static final int PRODUCT_PRICE = 21800;
-    private static final String PRODUCT_DISCRIPTION = "설명1";
+    private static final String PRODUCT_DESCRIPTION = "설명1";
     private static final int PRODUCT_STOCK = 600;
 
 
@@ -35,7 +35,7 @@ class ProductRepositoryTest {
         assertThat(result.get()).hasSize(CATEGORY_PRODUCT_COUNT);
         assertThat(result.get().get(0).getName()).isEqualTo(PRODUCT_NAME);
         assertThat(result.get().get(0).getPrice()).isEqualTo(PRODUCT_PRICE);
-        assertThat(result.get().get(0).getDiscription()).isEqualTo(PRODUCT_DISCRIPTION);
+        assertThat(result.get().get(0).getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
         assertThat(result.get().get(0).getStock()).isEqualTo(PRODUCT_STOCK);
     }
 }
