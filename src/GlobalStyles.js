@@ -1,16 +1,15 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
-import COLOR from "./variable/color";
-import { SIZE } from "./variable/font";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import COLOR from './variable/color';
+import { SIZE, WEIGHT, FAMILY } from './variable/font';
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
-  html {
-    font: 400 14px/1.4 "Noto Sans KR", sans-serif;
-  }
+
   .App {
     font: inherit;
   }
+
   html,
   body,
   div,
@@ -100,7 +99,11 @@ const GlobalStyles = createGlobalStyle`
     font-weight: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
+    :focus-visible{
+      outline: none;
+    }
   }
+
   article,
   aside,
   details,
@@ -114,21 +117,27 @@ const GlobalStyles = createGlobalStyle`
   section {
     display: block;
   }
+
+  html {
+    font: ${WEIGHT.REGULAR} ${SIZE.BASE}/1.4 ${FAMILY.BASE};
+  }
+
   body {
     width: 100%;
-    font-size: ${SIZE.BASE};
-    line-height: 1.15;
     color: ${COLOR.BLACK};
     letter-spacing: -0.4px;
   }
+
   ol,
   ul {
     list-style: none;
   }
+
   blockquote,
   q {
     quotes: none;
   }
+
   blockquote:before,
   blockquote:after,
   q:before,
@@ -136,6 +145,7 @@ const GlobalStyles = createGlobalStyle`
     content: '';
     content: none;
   }
+
   input,
   select,
   button,
@@ -157,38 +167,47 @@ const GlobalStyles = createGlobalStyle`
     appearance: none;
     box-sizing: border-box;
   }
+
   input,
   select,
   textarea {
     display: block;
   }
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
+
   img {
     display: block;
     max-width: 100%;
     border: 0;
   }
+
   button {
+    display: block;
     border: 0;
     outline: none;
     cursor: pointer;
   }
+
   i,
   em,
   address {
     font-style: normal;
   }
+
   u {
     text-decoration: none;
   }
+
   a {
     font: inherit;
     color: inherit;
     text-decoration: none;
   }
+  
   a:hover {
     text-decoration: none;
   }
