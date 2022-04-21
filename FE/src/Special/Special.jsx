@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Card from '../components/Card';
+import { fetchData } from '../utils/utils';
 import {
   SpecialContainer,
   SpecialBadge,
@@ -7,9 +9,20 @@ import {
   SpecialTabBar,
   SpecialHeader,
   SpecialTab,
+  CardContainer,
 } from './Special.style';
 
 const Special = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const TEST_URL = 'http://3.39.42.204/api/dishes';
+    (async () => {
+      const data = await fetchData(TEST_URL);
+      setData(data.response.slice(0, 3));
+    })();
+  }, []);
+
   return (
     <SpecialContainer>
       <SpecialHeader>
@@ -24,6 +37,11 @@ const Special = () => {
           <SpecialTab>우리 아이 영양 반찬</SpecialTab>
         </SpecialTabBar>
       </SpecialHeader>
+      <CardContainer>
+        {data.map((v, i) => (
+          <Card key={i} data={v} />
+        ))}
+      </CardContainer>
     </SpecialContainer>
   );
 };
