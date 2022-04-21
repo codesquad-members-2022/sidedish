@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import BestMealCard from "./BestMealCard";
-import Loader from "./Loader";
+import BestMealCard from "components/BestMealCard";
+import Loader from "components/Loader";
 
-const MOCK_SERVER_URL = `https://c8611651-19e0-4ab7-9b27-51a7c3fe2fa6.mock.pstmn.io`;
+import { MOCK_SERVER_URL } from "constant";
+
 const BEST_TITLE = "한 번 주문하면 두 번 반하는 반찬";
 const BEST_SUBTITLE = ["풍성한 고기 반찬", "편리한 반찬 세트", "맛있는 제철 요리", "우리 아이 영양 반찬"];
 

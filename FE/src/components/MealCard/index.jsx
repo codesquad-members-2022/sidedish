@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { setDefaultMealImage } from "util";
 
 // TODO: style.js로 분리하기
 const MealCardStyled = styled.li`
@@ -15,7 +16,7 @@ function MealCard({ mealInfo }) {
   const { productName, description, event, fixedPrice, image, originalPrice } = mealInfo;
   return (
     <MealCardStyled>
-      <img src={image || "default image url"} alt="food" />
+      <img src={setDefaultMealImage(image)} alt="food" />
       <h4>{productName}</h4>
       <p>{description}</p>
       <div>

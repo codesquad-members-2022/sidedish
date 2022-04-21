@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Loader from "./Loader";
-import MealCard from "./MealCard";
+import Loader from "components/Loader";
+import MealCard from "components/MealCard";
 
 // TODO: style.js로 분리하기
 const MealContainerStyled = styled.div``;

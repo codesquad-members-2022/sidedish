@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { setDefaultMealImage } from "util";
 
 const BestMealCardStyled = styled.div`
   display: flex;
@@ -13,10 +14,9 @@ const CardImage = styled.img`
 
 function BestMealCard({ meal }) {
   const { image, productName, description, fixedPrice, originalPrice, event } = meal;
-
   return (
     <BestMealCardStyled>
-      <CardImage src={image || `빈 이미지`} alt={productName} />
+      <CardImage src={setDefaultMealImage(image)} alt={productName} />
       <h3>{productName}</h3>
       <span>{description}</span>
       <div>
