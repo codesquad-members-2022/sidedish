@@ -74,7 +74,6 @@ export const BestProducts = () => {
       .then(body => body.json())
       .then(data => {
         setCardData(data.content);
-        console.log(data.content);
       });
   }, [selectedTabId]);
 
