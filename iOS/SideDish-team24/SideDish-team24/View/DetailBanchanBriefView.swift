@@ -104,15 +104,15 @@ class DetailBanchanBriefView: UIView {
             self.dishImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.dishImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
             
-            self.breifStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.defaultInset),
-            self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -CGFloat.defaultInset),
-            self.breifStackView.topAnchor.constraint(equalTo: self.dishImage.bottomAnchor, constant: CGFloat.defaultInset),
-            self.breifStackView.bottomAnchor.constraint(equalTo: self.specialPrice.topAnchor, constant: -CGFloat.defaultInset),
+            self.breifStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.breifStackView.topAnchor.constraint(equalTo: self.dishImage.bottomAnchor),
+            self.breifStackView.bottomAnchor.constraint(equalTo: self.specialPrice.topAnchor),
             
-            self.specialPrice.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.defaultInset),
+            self.specialPrice.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
             self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
-            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
         
     }
