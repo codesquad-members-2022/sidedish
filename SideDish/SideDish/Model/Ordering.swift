@@ -7,7 +7,7 @@ enum Category: CaseIterable {
 }
 
 class Ordering{
-    private (set) var foodMap: [Category:[String:Food]] = [:]
+    private var foodMap: [Category:[String:Food]] = [:]
     private (set) var selectedMenu: Food?
     private var orderingCount: Int = 0
     var foodCount: Int{
@@ -66,6 +66,10 @@ class Ordering{
                 foodMap[category]?[food.detailHash] = food
             }
         }
+    }
+    
+    func getFoodCount(category: Category)-> Int{
+       return foodMap[category]?.count ?? 0
     }
     
     subscript(index: Int = 0 , category: Category)->Food?{
