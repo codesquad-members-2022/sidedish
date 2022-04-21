@@ -1,35 +1,104 @@
 import React, { useState } from 'react';
-import ListItem from './ListItem';
 import styled from 'styled-components';
+import { F_basic, Color } from '../../Assets/CommonStyle';
+import List from '../List';
 
-const GnbList = styled.ul`
-  display: flex;
-  margin-left: 40px;
-`;
+const GNB_style = styled.nav`
+  margin: 0 40px;
 
-function Gnb() {
-  const categoryList = {
-    '든든한 메인요리': ['육류 요리', '해산물 요리'],
-    '뜨끈한 국물요리': ['국,탕,찌개'],
-    '정갈한 밑반찬': ['나물/무침', '조림/볶음', '절임/장아찌'],
-  };
-  const [category, setCategory] = useState(categoryList);
-  const template = [];
+  > ul {
+    ${F_basic}
 
-  for (let key in category) {
-    template.push(
-      <li key={key}>
-        <span>{key}</span>
-        {ListItem(category[key])}
-      </li>
-    );
+    > li {
+      position: relative;
+      padding: 0 12px;
+
+      &:hover > a {
+        font-weight: 500;
+        color: ${Color.orange};
+      }
+
+      ul {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 16px 12px;
+
+        > li {
+          margin-bottom: 8px;
+
+          &:hover {
+            color: ${Color.orange};
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 
-  return (
-    <nav>
-      <GnbList>{template}</GnbList>
-    </nav>
-  );
-}
+  &:hover > ul ul {
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+  }
 
-export default Gnb;
+  a {
+    display: block;
+  }
+`;
+
+const mouseHandler = ({ target }) => {
+  const header = target.closest('header');
+  header.classList.toggle('active');
+};
+
+const GNB_LIST = [
+  {
+    title: '든든한 메인요리',
+    menu: [
+      {
+        title: '육류 요리',
+      },
+      {
+        title: '해산물 요리',
+      },
+    ],
+  },
+  {
+    title: '뜨끈한 국물요리',
+    menu: [
+      {
+        title: '국,탕,찌개',
+      },
+    ],
+  },
+  {
+    title: '정갈한 밑반찬',
+    menu: [
+      {
+        title: '나물/무침',
+      },
+      {
+        title: '조림/볶음',
+      },
+      {
+        title: '절임/장아찌',
+      },
+    ],
+  },
+];
+
+const GNB = () => {
+  const [GNB_MENU, setGNB_MENU] = useState(GNB_LIST);
+
+  return (
+    <GNB_style onMouseEnter={mouseHandler} onMouseLeave={mouseHandler}>
+      <List menu={GNB_MENU} />
+    </GNB_style>
+  );
+};
+
+export default GNB;
