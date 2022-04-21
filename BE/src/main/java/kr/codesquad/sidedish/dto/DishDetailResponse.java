@@ -1,8 +1,10 @@
 package kr.codesquad.sidedish.dto;
 
 
+import kr.codesquad.sidedish.domain.DeliveryType;
 import kr.codesquad.sidedish.domain.DiscountPolicy;
 import kr.codesquad.sidedish.domain.Dish;
+import kr.codesquad.sidedish.domain.Image;
 
 import java.util.List;
 
@@ -11,24 +13,31 @@ public class DishDetailResponse {
     private final Long id;
     private final String name;
     private final String description;
-    private final List<String> images;
-    private final int stock;
-    private final int price;
+    private final int normalPrice;
+    private final int discountPrice;
+    private final int point;
     private final DiscountPolicy discountPolicy;
+    private final DeliveryType deliveryType;
+    private final List<Image> images;
 
-    public DishDetailResponse(Long id, String name, String description, List<String> images,
-                              int stock, int price, DiscountPolicy discountPolicy) {
+
+    public DishDetailResponse(Long id, String name, String description, int normalPrice, int discountPrice, int point,
+                              DiscountPolicy discountPolicy, DeliveryType deliveryType, List<Image> images) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.images = images;
-        this.stock = stock;
-        this.price = price;
+        this.normalPrice = normalPrice;
+        this.discountPrice = discountPrice;
+        this.point = point;
         this.discountPolicy = discountPolicy;
+        this.deliveryType = deliveryType;
+        this.images = images;
     }
-    public static DishDetailResponse of(Dish dish, List<String> images) {
-        return new DishDetailResponse(dish.getId(), dish.getName(), dish.getDescription(), images,
-                dish.getStock(), dish.getPrice(), dish.getDiscountPolicy());
+
+    public static DishDetailResponse from(Dish dish) {
+        return new DishDetailResponse(dish.getId(), dish.getName(), dish.getDescription(), dish.getPrice(),
+                dish.getDiscountPrice(),  dish.getPoint(), dish.getDiscountPolicy(),
+                dish.getDeliveryType(), dish.getImages());
     }
 
     public Long getId() {
@@ -43,19 +52,27 @@ public class DishDetailResponse {
         return description;
     }
 
-    public List<String> getImages() {
-        return images;
+    public int getNormalPrice() {
+        return normalPrice;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public int getPrice() {
-        return price;
+    public int getDiscountPrice() {
+        return discountPrice;
     }
 
     public DiscountPolicy getDiscountPolicy() {
         return discountPolicy;
+    }
+
+    public DeliveryType getDeliveryType() {
+        return deliveryType;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public int getPoint() {
+        return point;
     }
 }

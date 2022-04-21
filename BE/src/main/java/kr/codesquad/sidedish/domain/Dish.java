@@ -20,10 +20,11 @@ public class Dish {
     private final DiscountPolicy discountPolicy;
     @MappedCollection(idColumn = "DISH_ID", keyColumn = "ID")
     private final List<Image> images;
+    private final double pointPercent;
 
     public Dish(Long id, Long categoryId, Long eventId, String name, String description, int stock,
         int price, DeliveryType deliveryType,
-        DiscountPolicy discountPolicy, List<Image> images) {
+        DiscountPolicy discountPolicy, List<Image> images, double pointPercent) {
         this.id = id;
         this.categoryId = categoryId;
         this.eventId = eventId;
@@ -34,6 +35,7 @@ public class Dish {
         this.deliveryType = deliveryType;
         this.discountPolicy = discountPolicy;
         this.images = images;
+        this.pointPercent = pointPercent;
     }
 
     public Long getId() {
@@ -84,20 +86,28 @@ public class Dish {
         return this.images.get(imageIndex).getName();
     }
 
+    public double getPointPercent() {
+        return pointPercent;
+    }
+
+    public int getPoint() {
+        return (int) (getDiscountPrice() * this.pointPercent);
+    }
 
     @Override
     public String toString() {
         return "Dish{" +
-            "id=" + id +
-            ", categoryId=" + categoryId +
-            ", eventId=" + eventId +
-            ", name='" + name + '\'' +
-            ", description='" + description + '\'' +
-            ", stock=" + stock +
-            ", price=" + price +
-            ", deliveryType=" + deliveryType +
-            ", discountPolicy=" + discountPolicy +
-            ", images=" + images +
-            '}';
+                "id=" + id +
+                ", categoryId=" + categoryId +
+                ", eventId=" + eventId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", stock=" + stock +
+                ", price=" + price +
+                ", deliveryType=" + deliveryType +
+                ", discountPolicy=" + discountPolicy +
+                ", images=" + images +
+                ", pointPercent=" + pointPercent +
+                '}';
     }
 }

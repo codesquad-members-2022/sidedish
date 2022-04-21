@@ -21,7 +21,7 @@ public class EventService {
         jdbcEventRepository.findAll().forEach(events::add);
 
 
-        return new SpecialEdition(events.subList(0, 1));
+        return new SpecialEdition(events.subList(0, 4));
     }
 
 }
