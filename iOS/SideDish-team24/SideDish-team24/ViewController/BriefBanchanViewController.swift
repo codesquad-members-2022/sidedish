@@ -17,8 +17,8 @@ class BriefBanchanViewController: UIViewController, UIGestureRecognizerDelegate 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapCell(_:)))
         self.briefBanchanList.addGestureRecognizer(tapGesture)
         
-        self.briefBanchanList!.register(BriefBanchanViewCell.self, forCellWithReuseIdentifier: BriefBanchanViewCell.cellId)
-        self.briefBanchanList!.register(BriefBanchanReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BriefBanchanReusableView.identifier)
+        self.briefBanchanList?.register(BriefBanchanViewCell.self, forCellWithReuseIdentifier: BriefBanchanViewCell.cellId)
+        self.briefBanchanList?.register(BriefBanchanReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BriefBanchanReusableView.identifier)
     }
     
     @objc private func tapCell(_ recognizer: UITapGestureRecognizer) {
