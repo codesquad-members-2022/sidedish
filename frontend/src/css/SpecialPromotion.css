@@ -1,0 +1,75 @@
+.specialPromotion {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+}
+
+.innerSpecialPromotion{
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.tab {
+  width: 692px; 
+}
+
+.theme,
+.tab ul {
+  display: flex;
+  align-items: center;
+}
+
+.tab li:hover{
+  cursor: pointer;
+}
+
+.theme {
+  width: 615px;
+  padding: 56px 0px 24px 0px;
+}
+
+.theme p {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.specialPromotionIcon {
+  margin-right: 16px;
+}
+
+.bestSideDishContainer::after, .bestSideDishContainer::before{
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #EBEBEB;
+}
+
+.bestSideDishContainer::before{
+  margin-top: -34px;
+}
+
+.bestSideDishContainer::after{
+  margin-top: 56px;
+}
+
+.tab li {
+  margin-right: 32px;
+  padding-bottom: 16px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.selected {
+  border-bottom: 1px solid;
+}
+
+.bestSideDishContainer {
+  padding: 34px 0px 56px 0px;
+}
+
+.bestSideDishList {
+  display: flex; 
+  justify-content: flex-start;
+}

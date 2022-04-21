@@ -1,0 +1,55 @@
+.goodsBlock {
+     margin-right: 24px;
+ }
+ 
+.goodsThumb{
+    width: 411px;
+    height: 411px;
+}
+
+.goodsPrice {
+    display: flex;
+}
+
+.discountedPrice, .eventLabel {
+    margin-right: 8px;
+}
+
+.goodsInfo {
+    margin: 16px 0px;
+}
+
+.goodsName, .goodsDescription, .goodsPrice {
+    margin: 8px 0px;
+}
+
+.goodsName {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px; 
+    letter-spacing: -0.008em;
+}
+
+.goodsDescription {
+    font-weight: 400;
+    font-size: 14px;
+    color: #777;
+    line-height: 24px;
+    letter-spacing: -0.008em;
+}
+
+.discountedPrice {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.regularPrice {
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration-line: line-through;
+    color: #BCBCBC;
+    line-height: 26px;
+}
+
+ 
