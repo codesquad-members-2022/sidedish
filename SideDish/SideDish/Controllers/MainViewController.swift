@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Ordering"
+        ordering.getSampleFoodList()
         foodCollectionView.delegate = self
         foodCollectionView.dataSource = self
         view.addSubview(foodCollectionView)
@@ -28,17 +29,28 @@ class MainViewController: UIViewController {
             foodCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             foodCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        
     }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return Category.allCases.count
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50000
+        let category = Category.allCases[section]
+        return ordering.foodMap[category]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
+        cell.backgroundColor = .red
+        let category = Category.allCases[indexPath.section]
+        let index = indexPath.row
+        if let food = ordering[index, category] {
+            print(food) // 모델 잘 가져오는 것 - 확인하기 위해 작성함.
+        }
         return cell
     }
-    
 }
