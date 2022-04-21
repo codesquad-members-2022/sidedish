@@ -1,8 +1,12 @@
 package com.sidedish.service;
 
+import com.sidedish.domain.SideDish;
+import com.sidedish.dto.SideDishDto;
 import com.sidedish.dto.SideDishListDto;
 import com.sidedish.mapper.SideDishMapper;
 import com.sidedish.repository.SideDishRepository;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,11 +19,12 @@ public class SideDishService {
 
     public SideDishListDto getSideDishList(Integer eventCategoryId) {
         SideDishMapper mapper = new SideDishMapper();
-        return new SideDishListDto(
-            sideDishRepository.findAllByEventCategoryId(eventCategoryId)
-            .stream()
+        List<SideDish> sideDishes = sideDishRepository.findAllByEventCategoryId(eventCategoryId);
+        Collections.shuffle(sideDishes);
+
+        return new SideDishListDto(sideDishes.stream()
+            .limit(3)
             .map(mapper::convertToDto)
-            .collect(Collectors.toList())
-        );
+            .collect(Collectors.toList()));
     }
 }
