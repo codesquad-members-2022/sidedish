@@ -62,14 +62,13 @@ private extension ThirdSectionViewController{
     func configureCountStepper() {
         countStepper = UIStepper()
         countStepper.frame = CGRect(x: 0, y: 0, width: 100, height: 28)
-        countStepper.layer.backgroundColor = UIColor(red: 0.961, green: 0.961, blue: 0.969, alpha: 1).cgColor
         countStepper.layer.cornerRadius = 7.92
         self.view.addSubview(countStepper)
         
         countStepper.translatesAutoresizingMaskIntoConstraints = false
         countStepper.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 26).isActive = true
-        countStepper.leadingAnchor.constraint(equalTo: self.countText.trailingAnchor, constant: 24).isActive = true
         countStepper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        countStepper.widthAnchor.constraint(equalToConstant: 100).isActive = true
         countStepper.heightAnchor.constraint(equalToConstant: 28).isActive = true
     }
     

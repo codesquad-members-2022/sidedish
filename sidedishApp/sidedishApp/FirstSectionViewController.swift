@@ -94,12 +94,13 @@ private extension FirstSectionViewController {
     func configureEventLabel() {
         eventLabel = UILabel()
         eventLabel.frame = CGRect(x: 0, y: 0, width: 77, height: 24)
-        eventLabel.layer.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.839, alpha: 1).cgColor
-        eventLabel.layer.cornerRadius = 100
+        eventLabel.clipsToBounds = true
+        eventLabel.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.839, alpha: 1)
+        eventLabel.layer.cornerRadius = 10
         eventLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         eventLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         eventLabel.textAlignment = .center
-        setEventLabelAttribute(label: eventLabel, text: "런칭특가")
+        eventLabel.text = "런칭특가"
         self.view.addSubview(eventLabel)
         
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +120,7 @@ private extension FirstSectionViewController {
         sectionBottom.topAnchor.constraint(equalTo: self.eventLabel.bottomAnchor, constant: 24).isActive = true
         sectionBottom.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         sectionBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        sectionBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
         sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
@@ -134,12 +136,5 @@ private extension FirstSectionViewController {
         paragraphStyle.lineHeightMultiple = 1.26
         
         label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.paragraphStyle: paragraphStyle])
-    }
-    
-    func setEventLabelAttribute(label: UILabel, text: String) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.12
-        
-        label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 }
