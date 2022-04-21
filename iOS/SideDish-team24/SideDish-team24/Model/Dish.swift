@@ -1,6 +1,6 @@
 import Foundation
 
-class Dish {
+final class Dish {
     private let id: String
     private let name: String
     private let price : Int

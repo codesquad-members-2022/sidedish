@@ -1,6 +1,6 @@
 import Foundation
 
-class Dishes {
+final class Dishes {
     private var dishes: [Dish] = []
     private let type: String
     
