@@ -1,0 +1,30 @@
+package com.terria.sidedish.domain.entity.aggregate;
+
+import com.terria.sidedish.domain.entity.reference.Category;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Exhibition {
+
+    @Id
+    private long id;
+    private String title;
+
+    @MappedCollection(idColumn = "exhibition_id", keyColumn = "id")
+    private List<Category> categories;
+
+    @Override
+    public String toString() {
+        return "Exhibition{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", categories=" + categories +
+                '}';
+    }
+}

@@ -1,4 +1,4 @@
-package com.terria.sidedish.domain;
+package com.terria.sidedish.domain.entity.reference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,21 +6,19 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @AllArgsConstructor
-public class Category {
+public class DiscountEvent {
 
     @Id
     private long id;
     private String title;
-    private long parent;
-    private long exhibitionId;
+    private double discountRate;
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "DiscountEvent{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", parent=" + parent +
-                ", exhibitionId=" + exhibitionId +
+                ", discountRate=" + discountRate +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.domain.Category;
+import com.terria.sidedish.dto.response.ExhibitionResponse;
+import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -12,13 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@Api(tags = "CategoryController")
+@Api(tags = "ExhibitionController")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/exhibitions")
+public class ExhibitionController {
+
+    private final ExhibitionService exhibitionService;
 
     @ApiOperation(
             value = "특정 기획전에 속한 카테고리 조회",
@@ -36,8 +37,8 @@ public class CategoryController {
                     message = "서버 에러"
             )
     })
-    @GetMapping("/exhibitions/{exhibitionId}")
-    public ResponseEntity<List<Category>> getGroupByDivisionId(@PathVariable long exhibitionId) {
-        return ResponseEntity.ok().build();
+    @GetMapping("/{exhibitionId}")
+    public ResponseEntity<ExhibitionResponse> getByExhibitionId(@PathVariable long exhibitionId) {
+        return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
     }
 }
