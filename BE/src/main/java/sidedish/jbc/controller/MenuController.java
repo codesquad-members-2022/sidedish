@@ -1,9 +1,11 @@
 package sidedish.jbc.controller;
 
 import java.util.List;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -28,24 +30,10 @@ public class MenuController {
 		return menuService.findAll();
 	}
 
-	@GetMapping("/main")
+	@GetMapping("/{type}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<ResponseMenu> find() {
-		return menuService.findMenu(MenuType.MAIN);
-	}
-
-	@GetMapping("/soup")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public List<ResponseMenu> soup() {
-		return menuService.findMenu(MenuType.SOUP);
-	}
-
-	@GetMapping("/side")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public List<ResponseMenu> side() {
-		return menuService.findMenu(MenuType.SIDE);
+	public List<ResponseMenu> find(@PathVariable("type") String type) {
+		return menuService.findMenu(MenuType.getInstance(type));
 	}
 }
