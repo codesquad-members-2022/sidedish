@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import styled from "styled-components";
 import Text from "../components/Text";
 import MoreButton from "../components/MoreButton";
