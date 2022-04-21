@@ -15,8 +15,8 @@ const CardWrapper = styled.li`
     return size === 'md'
       ? css`
           .image {
-            width: 310px;
-            height: 310px;
+            width: 302px;
+            height: 302px;
           }
         `
       : size === 'sm'
