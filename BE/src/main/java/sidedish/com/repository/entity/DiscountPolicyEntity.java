@@ -1,26 +1,27 @@
 package sidedish.com.repository.entity;
 
-import java.time.LocalDateTime;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
-@Setter
 @Table("DISCOUNT_POLICY")
 public class DiscountPolicyEntity {
 
 	@Id
-	private Long id;
-	private String policyName;
-	private float discountRate;
+	private final Long id;
+	private final String policyName;
+	private final float discountRate;
 
-	public DiscountPolicyEntity(String policyName) {
+	@PersistenceConstructor
+	public DiscountPolicyEntity(Long id, String policyName, float discountRate) {
+		this.id = id;
 		this.policyName = policyName;
+		this.discountRate = discountRate;
 	}
 
 	public boolean isEqualsId(Long id) {
-		return this.id == id;
+		return this.id.equals(id);
 	}
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("ProductTest 클래스")
+@DisplayName("Product 클래스")
 class ProductTest {
 
 

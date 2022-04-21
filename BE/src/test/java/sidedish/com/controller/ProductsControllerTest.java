@@ -22,7 +22,7 @@ import sidedish.com.domain.Product;
 import sidedish.com.service.ProductsService;
 
 @WebMvcTest(ProductsController.class)
-@DisplayName("ProductsControllerTest 클래스")
+@DisplayName("ProductsController 클래스")
 class ProductsControllerTest {
 
 	@Autowired

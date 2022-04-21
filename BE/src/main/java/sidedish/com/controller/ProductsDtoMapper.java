@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.Product;
-import sidedish.com.repository.entity.ProductEntity;
 
 @Component
 public class ProductsDtoMapper {
@@ -16,7 +15,6 @@ public class ProductsDtoMapper {
 			.map(this::toProductMealTypeResponseFromDomain)
 			.collect(Collectors.toList());
 	}
-
 
 	private ProductMealTypeResponse toProductMealTypeResponseFromDomain(
 		Product product) {

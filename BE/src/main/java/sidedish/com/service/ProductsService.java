@@ -1,16 +1,13 @@
 package sidedish.com.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 import sidedish.com.controller.ProductsDtoMapper;
 import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.Product;
-import sidedish.com.repository.DomainEntityMapper;
-import sidedish.com.repository.entity.DiscountPolicyEntity;
-import sidedish.com.repository.entity.ProductEntity;
+import sidedish.com.exception.NoSuchProductsException;
 import sidedish.com.repository.DiscountPolicyRepository;
+import sidedish.com.repository.DomainEntityMapper;
 import sidedish.com.repository.ProductsRepository;
 
 @Service
@@ -35,6 +32,15 @@ public class ProductsService {
 		List<Product> products = domainEntityMapper.toDomainFromProductsEntity(
 			productsRepository.findByMealType(meal),
 			discountPolicyRepository.findAll());
+
+		validProducts(products);
+
 		return productsDtoMapper.toProductsMealTypeResponseFromDomain(products);
+	}
+
+	private void validProducts(List<Product> products) {
+		if (products.isEmpty()) {
+			throw new NoSuchProductsException();
+		}
 	}
 }

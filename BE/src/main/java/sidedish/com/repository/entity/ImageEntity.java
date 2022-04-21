@@ -1,20 +1,21 @@
 package sidedish.com.repository.entity;
 
 import lombok.Getter;
-import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Table("PRODUCT_IMAGE")
-@ToString
 public class ImageEntity {
 
 	@Id
-	private Long id;
-	private String imageUrl;
+	private final Long id;
+	private final String imageUrl;
 
-	public ImageEntity(String imageUrl) {
+	@PersistenceConstructor
+	public ImageEntity(Long id, String imageUrl) {
+		this.id = id;
 		this.imageUrl = imageUrl;
 	}
 }

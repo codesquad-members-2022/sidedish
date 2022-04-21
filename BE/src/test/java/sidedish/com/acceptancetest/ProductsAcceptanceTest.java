@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -30,6 +31,7 @@ import org.springframework.http.MediaType;
  */
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@DisplayName("Product 인수테스트")
 class ProductsAcceptanceTest {
 
 	@LocalServerPort
@@ -59,5 +61,17 @@ class ProductsAcceptanceTest {
 			.body("[0].fixedPrice", equalTo(7440))
 			.body("[0].originalPrice", equalTo(9300))
 			.body("[0].event", equalTo("이벤트특가"));
+	}
+
+	@Test
+	void 만약_meal_type이_유효하지_않은_경우_음식_타입_조회_실패() {
+		given()
+			.accept(MediaType.APPLICATION_JSON_VALUE)
+
+		.when()
+			.get("/api/products?meal=WrongType")
+
+		.then()
+			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
 }
