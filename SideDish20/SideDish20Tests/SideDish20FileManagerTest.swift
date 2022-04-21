@@ -40,7 +40,7 @@ class SideDish20FileManagerTest: XCTestCase {
         let count = allFiles?.count
         
         XCTAssertNotNil(count)
-        XCTAssertGreaterThan(count!, 0)
+        XCTAssertGreaterThanOrEqual(count!, 0)
     }
     
     func test_viewModel_cacheImage() throws {

@@ -9,23 +9,17 @@ import Foundation
 
 final class SaveFileService: CacheFileManagerAttribute {
     
-    @discardableResult
-    func saveFile(as name: String, contentsOf file: Data) -> Result<URL, CacheError> {
+    func saveFile(as name: String, contentsOf file: Data) {
         guard var targetURL = createDirectoryInCache(as: name) else { // Application Support/Cache
-            return .failure(.cacheDirectoryError("Can not find Cache Directory."))
+            return
         }
         
         targetURL.appendPathComponent(name, isDirectory: false) // Application Support/Cache/img01/img01
         
         if isFileExists(at: targetURL) {
-            return .success(targetURL)
+            return
         } else {
-            do {
-                try file.write(to: targetURL)
-                return .success(targetURL)
-            } catch {
-                return .failure(.fileAlreadyExistError("File Already Exist at \(targetURL.absoluteString)"))
-            }
+            try? file.write(to: targetURL)
         }
     }
 }
