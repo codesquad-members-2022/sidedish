@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+  <property name="consolePattern"	value="%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}] - %m%n"/>
+
+  <!-- Log Appender Module -->
+  <springProfile name="console-log">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <pattern>${consolePattern}</pattern>
+      </encoder>
+    </appender>
+  </springProfile>
+
+  <!-- Log Level Module -->
+  <springProfile name="high-level-log">
+    <logger name="root" level="error" />
+    <logger name="com.team25.sidedish" level="error"/>
+    <logger name="org.springframework.web.servlet.DispatcherServlet" level="warn"/>
+  </springProfile>
+
+  <springProfile name="low-level-log">
+    <logger name="root" level="info" />
+    <logger name="com.team25.sidedish" level="debug"/>
+    <logger name="org.springframework.web.servlet.DispatcherServlet" level="debug"/>
+  </springProfile>
+
+  <root level="info">
+    <springProfile name="console-log">
+      <appender-ref ref="console" />
+    </springProfile>
+  </root>
+
+</configuration>

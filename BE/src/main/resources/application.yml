@@ -1,0 +1,39 @@
+# active profile
+spring:
+  profiles:
+    active: local-h2
+
+---
+# profile group
+spring:
+  profiles:
+    group:
+      local-h2: "local-mem-h2, local-log"
+
+---
+# local-mem-h2
+spring:
+  config:
+    activate:
+      on-profile: local-mem-h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sidedish;mode=MYSQL;
+    username: sa
+    password:
+  sql:
+    init:
+      platform: h2
+      mode: always
+      schema-locations: classpath:ddl.sql
+      data-locations: classpath:dml.sql
+  h2:
+    console:
+      enabled: true
+
+---
+# log-group
+spring:
+  profiles:
+    group:
+      local-log: "console-log, low-level-log"
