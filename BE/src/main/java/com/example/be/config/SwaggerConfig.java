@@ -32,7 +32,7 @@ public class SwaggerConfig {
 			"코드스쿼드 2주차 팀 프로젝트 API 명세서입니다.",
 			"0.0.1",
 			"http://3.39.42.204/api/dishes/",
-			new Contact("Contact Me", "https://codesquad-members.slack.com/archives/C03BU6F4F5H", "devdonggilee@gmail.com"),
+			new Contact("Contact Me", "https://github.com/donggi-lee-bit", "devdonggilee@gmail.com"),
 			"codesquad Licenses",
 			"https://codesquad-members.slack.com/archives/C03BU6F4F5H",
 			new ArrayList<>()
