@@ -44,7 +44,7 @@ const SpecialTab = styled.div`
   cursor: pointer;
 
   :hover {
-    border-bottom: 1px solid ${props => props.theme.colors.black};
+    box-shadow: 0 1px ${props => props.theme.colors.black};
   }
 `;
 
