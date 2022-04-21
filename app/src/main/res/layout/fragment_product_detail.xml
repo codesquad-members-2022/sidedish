@@ -250,10 +250,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                 <com.example.sideDish.ui.Stepper
-                    android:layout_marginTop="16dp"
                     android:id="@+id/stepper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -276,17 +276,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="temp:12,640원"
+                    app:layout_constraintBottom_toTopOf="@id/button_order"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view3"
-                    app:layout_constraintBottom_toTopOf="@id/button_order"/>
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 
                 <TextView
-                    android:layout_marginTop="34dp"
                     android:id="@+id/text_view_total_cost"
                     style="@style/TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="34dp"
                     android:layout_marginEnd="24dp"
                     android:paddingEnd="16dp"
                     android:text="@string/total_price"
@@ -303,6 +303,24 @@
                     android:padding="16dp"
                     android:text="@string/order"
                     app:layout_constraintTop_toBottomOf="@id/text_view_total_cost" />
+
+                <ImageView
+                    android:id="@+id/image_view_detail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/button_order" />
+
+                <ImageView
+                    android:id="@+id/image_view_detail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/image_view_detail1" />
+
+                <ImageView
+                    android:id="@+id/image_view_detail3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/image_view_detail2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
