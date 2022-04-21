@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Colors from '../Constants/Colors';
 =======
 import COLOR from '../Constants/Constants';
 import FONT from '../test/test';
 >>>>>>> 4ebb429 (feat: 카드 컴포넌트 구현)
+=======
+import COLOR from '../Constants/Colors';
+>>>>>>> aef6423 (fix: 컴포넌트 img태그 수정)
 
 const MenuWrapper = styled.li`
   margin-right: 24px;
@@ -21,11 +25,11 @@ const SubMenuList = styled.ul`
 
   flex-direction: column;
 
-  span:not(:last-child) {
+  li:not(:last-child) {
     margin-bottom: 8px;
   }
 
-  span:hover {
+  li:hover {
     text-decoration: underline;
 <<<<<<< HEAD
     color: ${Colors.GREY};
@@ -42,9 +46,9 @@ export const Menu = ({ menuData: { mainMenu, subMenuList }, subMenuOpen }) => {
       {subMenuOpen ? (
         <SubMenuList className={'fonts-sm'}>
           {subMenuList.map((subMenu, idx) => (
-            <FONT size={'xlNormal'} key={idx}>
+            <li size={'xlNormal'} key={idx}>
               {subMenu}
-            </FONT>
+            </li>
           ))}
         </SubMenuList>
       ) : null}

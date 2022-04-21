@@ -2,10 +2,14 @@ import { MenuList } from './MenuList';
 import { UserButtons } from './UserButtons';
 import styled from 'styled-components';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Colors from '../Constants/Colors';
 =======
 import COLOR from '../Constants/Constants';
 >>>>>>> 4ebb429 (feat: 카드 컴포넌트 구현)
+=======
+import COLOR from '../Constants/Colors';
+>>>>>>> aef6423 (fix: 컴포넌트 img태그 수정)
 
 const HeaderWrapper = styled.header`
   width: 1440px;

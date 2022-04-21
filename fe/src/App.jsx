@@ -1,11 +1,11 @@
 import { Header } from './Header/Header';
-import { BestProduct } from './Recommand/BestProduct';
+import { BestProducts } from './Recommand/BestProduct';
 
 function App() {
   return (
     <>
       <Header />
-      <BestProduct />
+      <BestProducts />
     </>
   );
 }

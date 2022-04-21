@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import COLOR from '../Constants/Constants';
+import COLOR from '../Constants/Colors';
 import { ProductCard } from './ProductCard';
 
 const Root = styled.div`
@@ -38,26 +38,25 @@ const Title = styled.span`
   }
 `;
 
-export const BestProduct = () => {
-  const tabItem = useState([
-    '풍성한 고기 반찬',
-    '편리한 반찬 세트',
-    '맛있는 제철 요리',
-    '우리 아이 영양 반찬',
-  ]);
+const tabItem = [
+  '풍성한 고기 반찬',
+  '편리한 반찬 세트',
+  '맛있는 제철 요리',
+  '우리 아이 영양 반찬',
+];
 
+export const BestProducts = () => {
   // 추후 상태값 props.cardData로 변경??
   const [cardData, setCardData] = useState([
     {
       title: '오리 주물럭',
       image:
-        'http://img.danawa.com/prod_img/500000/869/844/img/2844869_1.jpg?shrink=330:330&_v=20210325103140',
+        'https://www.chuksannews.co.kr/data/photos/20210937/art_16316674227272_0aee8d.jpg',
       description: '감칠맛 나는 매운 양념',
       price: 12500,
       size: 'big',
     },
   ]);
-
   return (
     <Root>
       <BP__top>
@@ -70,8 +69,8 @@ export const BestProduct = () => {
         ))}
       </BP__tab>
       <BP__main>
-        {cardData.map(data => (
-          <ProductCard data={data} />
+        {cardData.map((data, idx) => (
+          <ProductCard data={data} key={idx} />
         ))}
       </BP__main>
     </Root>

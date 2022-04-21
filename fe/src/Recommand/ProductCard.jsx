@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Root = styled.div`
   display: flex;
@@ -7,11 +7,6 @@ const Root = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: ${image.image};
-  background-size: contain;
-  background-repeat: no-repeat;
-  bakcground-position: center;
-
   ${({ size }) => {
     return size === 'big'
       ? css`
@@ -46,10 +41,15 @@ export const ProductCard = ({
   size,
   isSale,
 }) => {
-  console.log();
   return (
     <Root>
-      <Image imageurl={image} size={size}></Image>
+      <Image size={size}>
+        <img
+          src={
+            'https://www.chuksannews.co.kr/data/photos/20210937/art_16316674227272_0aee8d.jpg'
+          }
+        />
+      </Image>
       <Title>{title}</Title>
       <Description>{description}</Description>
       <Price>{price}</Price>
