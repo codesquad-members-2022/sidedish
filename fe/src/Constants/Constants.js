@@ -1,0 +1,11 @@
+export default {
+  DARK_GREY: '#3F3F3F',
+  GREY: '#777777',
+  LIGHT_GREY: '#BCBCBC',
+  PALE_GREY: '#EBEBEB',
+  OFF_WHITE: '#F8F7F7',
+  GREEN: '#6DD028',
+  ORANGE: '#FF8E14',
+  BLACK: '#1B1B1B',
+  WHITE: '#FFFFFF',
+};
