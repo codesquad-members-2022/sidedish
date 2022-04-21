@@ -53,18 +53,15 @@ function TabMenu(props) {
         return (
             <li
                 className={tabMenuClassName}
-                index={idx}
                 key={idx}
-                onClick={() => {
-                    props.onChangeCurrTab(idx);
-                }}
+                onClick={() => props.onChangeTab(idx)}
             >
                 {menuName}
             </li>
         );
     });
 
-    return tabMenuTemplate;
+    return <ul className="big-sidedish__tab-menu">{tabMenuTemplate}</ul>;
 }
 
 function BigSidedish() {
@@ -79,9 +76,7 @@ function BigSidedish() {
                 <h2 className="big-sidedish__title">
                     한 번 주문하면 두 번 반하는 반찬
                 </h2>
-                <ul className="big-sidedish__tab-menu">
-                    <TabMenu currTab={currTab} onChangeCurrTab={changeTab} />
-                </ul>
+                <TabMenu currTab={currTab} onChangeTab={changeTab} />
             </div>
             <SidedischCard currTab={currTab} />
         </div>
