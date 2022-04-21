@@ -1,62 +1,63 @@
 import { MyPage, Search, ShoppingCart } from "../styles/global";
 import styled, { css } from "styled-components";
-import { Logo } from "../styles/global";
 import { useEffect, useState } from "react";
 import { GnbMenu } from "./GnbMenu";
 
-const HeaderWrap = styled.header`
-  ${({ theme }) =>
-    theme.custom_absolute(20, null, null, 20) + theme.width_height_bypx(1440)}
-  height: auto;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.Black};
+const HeaderWrapper = styled.header`
+  width: 1440px;
+  padding-top: 16px;
   background: ${({ theme }) => theme.colors.White};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.Black};
+  display: flex;
 `;
 
 const HeaderLogo = styled.span`
-  ${({ theme }) =>
-    theme.custom_absolute(16, null, null, 80) +
-    theme.width_height_bypx(174, 50)}
-  ${Logo};
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 50px;
+  margin-left: 80px;
+  color: ${({ theme }) => theme.colors.Black};
 `;
+
 const GNB = styled.div`
-  ${({ theme }) =>
-    theme.custom_flex(`row`, `flex-start`, `center`) +
-    theme.custom_absolute(28, null, null, 294) +
-    theme.width_height_bypx(352)}
-  padding: 0px;
-  height: auto;
+  margin: 0px 28px;
+  ${({ theme }) => theme.custom_flex(`row`, `flex-start`, `center`)}
+  ${(props) => props.extended && `margin-bottom: 40px;`}
 }
+
 `;
+
+const IconWrapper = styled.div`
+  ${({ theme }) =>
+    theme.custom_flex("row", "center", "space-between") +
+    theme.custom_absolute(25, 80, null, null) +
+    theme.width_height_bypx(128)}
+`;
+
 const Icon = styled.div`
   ${({ theme }) =>
-    theme.custom_flex("row", "flex-start") +
-    theme.custom_absolute(25, null, null, 1231) +
-    theme.width_height_bypx(128, 32)}
+    theme.custom_relative(0, 0) + theme.width_height_bypx(32, 32)}
 `;
 
-const IconBox = styled.div`
-  ${({ theme, index }) =>
-    theme.custom_relative(0, 0) +
-    theme.width_height_bypx(32, 32) +
-    theme.flex_none(index, 0, 16) +
-    `left:${index * 48}`}
-`;
 export const Header = ({ cats }) => {
-  const [show, setShow] = useState(false);
+  const [extended, setExtended] = useState(false);
 
   return (
-    <HeaderWrap>
+    <HeaderWrapper>
       <HeaderLogo>Ordering</HeaderLogo>
       <GNB
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
+        onMouseEnter={() => setExtended(true)}
+        onMouseLeave={() => setExtended(false)}
+        extended={extended}
       >
         {cats.map((cat, index) => (
-          <GnbMenu key={index} index={index} {...cat} show={show}></GnbMenu>
+          <GnbMenu key={index} {...cat} extended={extended}></GnbMenu>
         ))}
       </GNB>
-      <Icon>
-        <IconBox index={0}>
+      <IconWrapper>
+        <Icon>
           <Search
             width="24"
             height="24"
@@ -69,8 +70,8 @@ export const Header = ({ cats }) => {
               fill="#1B1B1B"
             />
           </Search>
-        </IconBox>
-        <IconBox index={1}>
+        </Icon>
+        <Icon>
           <MyPage
             width="22"
             height="22"
@@ -83,8 +84,8 @@ export const Header = ({ cats }) => {
               fill="#1B1B1B"
             />
           </MyPage>
-        </IconBox>
-        <IconBox index={2}>
+        </Icon>
+        <Icon>
           <ShoppingCart
             width="27"
             height="28"
@@ -97,8 +98,8 @@ export const Header = ({ cats }) => {
               fill="#1B1B1B"
             />
           </ShoppingCart>
-        </IconBox>
-      </Icon>
-    </HeaderWrap>
+        </Icon>
+      </IconWrapper>
+    </HeaderWrapper>
   );
 };
