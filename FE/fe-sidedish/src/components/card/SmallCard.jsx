@@ -1,23 +1,19 @@
-import { formatPrice } from '../../utils';
 import {
   Container,
   Image,
-  Price,
-  Prices,
-  MainPrice,
   Title
 } from './Card.style';
+import Prices from './Prices';
 
 const SmallCard = ({ name, image, price, discountedPrice }) => {
 
+  const SMALL = 'small';
+
   return (
     <Container>
-      <Image src={image} alt={name} size="small" />
-      <Title size="small">{name}</Title>
-      <Prices>
-        {discountedPrice && <MainPrice>{formatPrice(discountedPrice)}원</MainPrice>}
-        {discountedPrice ? <Price>{formatPrice(price)}원</Price> : <MainPrice>{formatPrice(price)}원</MainPrice>}
-      </Prices>
+      <Image src={image} alt={name} cardSize="small" />
+      <Title cardSize={SMALL}>{name}</Title>
+      <Prices discountedPrice={discountedPrice} price={price} />
     </Container>
   );
 };

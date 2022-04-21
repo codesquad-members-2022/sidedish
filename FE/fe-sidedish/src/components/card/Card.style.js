@@ -7,6 +7,7 @@ const SMALL = 'small';
 const Container = styled.div`
   display: block;
   width: fit-content;
+
   &:hover {
     cursor: pointer;
   }
@@ -19,27 +20,28 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   display: block;
-  width: ${({ size }) => 
-          size === LARGE ? '411px' : 
-          size === SMALL ? '160px' : '302px'};
-  ${({ size }) => size === SMALL && 'margin-bottom: 8px'};
+  width: ${({ cardSize }) =>
+          cardSize === LARGE ? '411px' :
+                  cardSize === SMALL ? '160px' : '302px'};
+  ${({ cardSize }) => cardSize === SMALL && 'margin-bottom: 8px'};
 `;
 
-const ImageBackground = styled.div`
+const RoundBadgeBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   display: none;
-  width: ${({ size }) => size === LARGE ? '411px' : '302px'};
-  height: ${({ size }) => size === LARGE ? '411px' : '302px'};
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 20px;
+
   ${Container}:hover & {
     display: block;
   }
 `;
 
-const ImageBadge = styled.div`
+const RoundBadge = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +56,7 @@ const ImageBadge = styled.div`
   p {
     padding: 8px 0;
     color: ${({ theme }) => theme.color.black};
-    
+
     &:first-of-type {
       border-bottom: 1px solid ${({ theme }) => theme.color.black};
     }
@@ -63,7 +65,7 @@ const ImageBadge = styled.div`
 
 const Title = styled.h3`
   color: ${({ theme }) => theme.color.grey1};
-  ${({ theme, size }) => size === SMALL && `font-size: ${theme.fontSize.small}`};
+  ${({ theme, cardSize }) => cardSize === SMALL && `font-size: ${theme.fontSize.small}`};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   letter-spacing: -0.008em;
   margin-bottom: 8px;
@@ -76,14 +78,14 @@ const Description = styled.p`
   margin-bottom: 8px;
 `;
 
-const Prices = styled.div`
+const PriceContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
 `;
 
-const Price = styled.span`
+const SubPrice = styled.span`
   color: ${({ theme }) => theme.color.grey3};
   font-size: ${({ theme }) => theme.fontSize.small};
   letter-spacing: -0.008em;
@@ -98,7 +100,7 @@ const MainPrice = styled.span`
   text-decoration: none;
 `;
 
-const Badges = styled.div`
+const BadgeContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -119,15 +121,15 @@ const Badge = styled.span`
 
 export {
   Container,
+  ImageContainer,
   Image,
   Description,
-  ImageBadge,
-  ImageContainer,
-  Price,
-  Prices,
+  RoundBadgeBackground,
+  RoundBadge,
+  PriceContainer,
+  SubPrice,
   MainPrice,
   Title,
-  Badges,
+  BadgeContainer,
   Badge,
-  ImageBackground
 };
