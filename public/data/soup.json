@@ -1,0 +1,77 @@
+{
+  "data": [
+    {
+      "id": "H72C3",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
+      "title": "한돈 돼지 김치찌개",
+      "description": "김치찌개에는 역시 돼지고기",
+      "price": "9,300원",
+      "discountedPrice": "8,370원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "HA6EE",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_T.jpg",
+      "title": "된장찌개",
+      "description": "특별하지 않아서 더 좋은 우리맛",
+      "price": "8,800원",
+      "discountedPrice": "7,920원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "H8CD0",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/213_ZIP_P_1008_T.jpg",
+      "title": "미역오이냉국",
+      "description": "여름엔 시원한 냉국이 최고",
+      "price": "7,800원",
+      "discountedPrice": "7,020원",
+      "badge": ["이벤트특가"]
+    },
+    {
+      "id": "HE2E9",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/266_ZIP_P_1011_T.jpg",
+      "title": "동태찌개",
+      "description": "겨울철 보양식으로 안성맞춤",
+      "price": "21,800원",
+
+      "discountedPrice": "10,900원"
+    },
+    {
+      "id": "HAA47",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/484_ZIP_P_1022_T.jpg",
+
+      "title": "감자국",
+      "description": "국내산 감자라 더 고소한",
+      "price": "13,800원",
+
+      "discountedPrice": "6,900원"
+    },
+    {
+      "id": "H3254",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/659_ZIP_P_1029_T.jpg",
+      "title": "우리콩 강된장찌개",
+      "description": "우리콩으로 만들어 안심",
+      "price": "11,600원",
+
+      "discountedPrice": "5,800원"
+    },
+    {
+      "id": "H26C7",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/818_ZIP_P_1033_T.jpg",
+      "title": "순한 오징어무국",
+      "description": "부드럽고 담백한 국물",
+      "price": "23,800원",
+
+      "discountedPrice": "11,900원"
+    },
+    {
+      "id": "HFFF9",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/842_ZIP_P_1035_T.jpg",
+      "title": "맑은 동태국",
+      "description": "시원함과 감칠맛은 그대로 담은 맑은 국",
+      "price": "17,000원",
+
+      "discountedPrice": "8,500원"
+    }
+  ]
+}
