@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import CardDeliveryInfo from 'Main/CardDeliveryInfo';
 
 const CardItem = styled.div`
   margin-right: 24px;
+  cursor: pointer;
 `;
 
 const CardImgWrapper = styled.div`
@@ -81,21 +83,18 @@ const CardItemTag = styled.p`
 `;
 
 const Card = ({ item, imageSize }) => {
+  const [hover, setHover] = useState(false);
   const setPrice = (price) => Number(price).toLocaleString();
 
-  const onMouseOver = () => {
-    return;
-  };
+  const onMouseOver = () => setHover(true);
 
-  const onMouseOut = () => {
-    return;
-  };
+  const onMouseOut = () => setHover(false);
 
   return (
     <CardItem>
       <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
         <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
-        <CardDeliveryInfo infos={item.deliveryType}></CardDeliveryInfo>
+        <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
       </CardImgWrapper>
       <CardItemInfo>
         <p className="item__title">{item.title}</p>
