@@ -5,13 +5,13 @@ const Navbar = styled.div`
   justify-content: space-between;
   padding: 16px 80px;
   width: 100%;
-  height: 170px;
+  height: auto;
   border-bottom: 1px solid black;
 `;
 
 const Menu = styled.div`
   display: flex;
-  width: 900px;
+  width: 75%;
   justify-content: flex-start;
 `;
 
@@ -19,7 +19,7 @@ const Icons = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100px;
-  padding: 10px 0;
+  padding-top: 15px;
 `;
 
 const MenuBox = styled.div`
