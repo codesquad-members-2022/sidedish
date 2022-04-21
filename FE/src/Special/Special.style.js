@@ -41,11 +41,8 @@ const SpecialTab = styled.div`
   color: ${props => props.theme.colors.black};
   margin-right: 32px;
   padding-bottom: 17px;
+  box-shadow: 0 ${({ isSelected }) => (isSelected ? '1px' : '0')} ${props => props.theme.colors.black};
   cursor: pointer;
-
-  :hover {
-    box-shadow: 0 1px ${props => props.theme.colors.black};
-  }
 `;
 
 const CardContainer = styled.div`

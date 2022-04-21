@@ -14,14 +14,22 @@ import {
 
 const Special = () => {
   const [data, setData] = useState([]);
+  const [tabNum, setTabNum] = useState(0);
 
   useEffect(() => {
-    const TEST_URL = 'http://3.39.42.204/api/dishes';
-    (async () => {
-      const data = await fetchData(TEST_URL);
-      setData(data.response.slice(0, 3));
-    })();
+    fetchTabData();
   }, []);
+
+  const handleTabClick = tabNum => {
+    setTabNum(tabNum);
+    fetchTabData();
+  };
+
+  const fetchTabData = async () => {
+    const TEST_URL = 'http://3.39.42.204/api/dishes';
+    const data = await fetchData(TEST_URL);
+    setData(data.response.slice(0, 3));
+  };
 
   return (
     <SpecialContainer>
@@ -31,10 +39,18 @@ const Special = () => {
           <SpecialTitle>한 번 주문하면 두 번 반하는 반찬</SpecialTitle>
         </SpecialTitleBox>
         <SpecialTabBar>
-          <SpecialTab>풍성한 고기 반찬</SpecialTab>
-          <SpecialTab>편리한 반찬 세트</SpecialTab>
-          <SpecialTab>맛있는 제철 요리</SpecialTab>
-          <SpecialTab>우리 아이 영양 반찬</SpecialTab>
+          <SpecialTab onClick={() => handleTabClick(0)} isSelected={tabNum === 0 ? true : false}>
+            풍성한 고기 반찬
+          </SpecialTab>
+          <SpecialTab onClick={() => handleTabClick(1)} isSelected={tabNum === 1 ? true : false}>
+            편리한 반찬 세트
+          </SpecialTab>
+          <SpecialTab onClick={() => handleTabClick(2)} isSelected={tabNum === 2 ? true : false}>
+            맛있는 제철 요리
+          </SpecialTab>
+          <SpecialTab onClick={() => handleTabClick(3)} isSelected={tabNum === 3 ? true : false}>
+            우리 아이 영양 반찬
+          </SpecialTab>
         </SpecialTabBar>
       </SpecialHeader>
       <CardContainer>
