@@ -27,7 +27,7 @@
 		B5B0B8362810FA87005CE46B /* OrderingTest.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
 		B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83B281106EB005CE46B /* AppDelegate.swift */; };
 		B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83D281106ED005CE46B /* SceneDelegate.swift */; };
-		B5B0B84028110726005CE46B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83F28110726005CE46B /* ViewController.swift */; };
+		B5B0B84028110726005CE46B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83F28110726005CE46B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +58,7 @@
 		B50A0C5D280FF1E700A49273 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		B5B0B83B281106EB005CE46B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B0B83D281106ED005CE46B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5B0B83F28110726005CE46B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5B0B83F28110726005CE46B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +162,7 @@
 		B5B0B84228110745005CE46B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B5B0B83F28110726005CE46B /* ViewController.swift */,
+				B5B0B83F28110726005CE46B /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 				376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */,
 				B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */,
 				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
-				B5B0B84028110726005CE46B /* ViewController.swift in Sources */,
+				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
 				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
 				B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */,
 			);
