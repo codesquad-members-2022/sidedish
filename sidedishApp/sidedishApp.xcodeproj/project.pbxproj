@@ -25,6 +25,7 @@
 		D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */; };
 		D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */; };
 		D2DC5844280FE9A700AC6281 /* SFProDisplay-Regular.OTF in Resources */ = {isa = PBXBuildFile; fileRef = D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */; };
+		D2DC58462810498500AC6281 /* SFProDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DC58452810498500AC6281 /* SFProDisplay-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionViewController.swift; sourceTree = "<group>"; };
 		D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionViewController.swift; sourceTree = "<group>"; };
 		D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.OTF"; sourceTree = "<group>"; };
+		D2DC58452810498500AC6281 /* SFProDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
 				0068079C280D5195003C2808 /* Info.plist */,
 				D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */,
+				D2DC58452810498500AC6281 /* SFProDisplay-Semibold.otf */,
 			);
 			path = sidedishApp;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DC58462810498500AC6281 /* SFProDisplay-Semibold.otf in Resources */,
 				00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */,
 				0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */,
 				00680798280D5195003C2808 /* Assets.xcassets in Resources */,
