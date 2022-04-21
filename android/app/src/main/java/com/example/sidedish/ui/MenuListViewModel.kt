@@ -10,11 +10,16 @@ import com.example.sidedish.data.Detail
 import com.example.sidedish.data.MenuListDataSource
 import com.example.sidedish.data.MenuListRepository
 import com.example.sidedish.network.ApiClient
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MenuListViewModel: ViewModel() {
+@HiltViewModel
+class MenuListViewModel @Inject constructor(
+    private val repository: MenuListRepository
+): ViewModel() {
 
-    private val foodListRepository = MenuListRepository(MenuListDataSource(ApiClient.create()))
+//    private val foodListRepository = MenuListRepository(MenuListDataSource(ApiClient.create()))
 
     private val _mainFoodList = MutableLiveData<List<Body>>()
     val mainFoodList: LiveData<List<Body>> = _mainFoodList
@@ -35,15 +40,18 @@ class MenuListViewModel: ViewModel() {
     }
 
     private suspend fun load() {
-        _mainFoodList.value = foodListRepository.getMainFoodList()
-        _soupFoodList.value = foodListRepository.getSoupFoodList()
-        _sideFoodList.value = foodListRepository.getSideFoodList()
+//        _mainFoodList.value = foodListRepository.getMainFoodList()
+//        _soupFoodList.value = foodListRepository.getSoupFoodList()
+//        _sideFoodList.value = foodListRepository.getSideFoodList()
+        _mainFoodList.value = repository.getMainFoodList()
+        _soupFoodList.value = repository.getSoupFoodList()
+        _sideFoodList.value = repository.getSideFoodList()
     }
 
     fun loadFoodDetail(key: String) {
         viewModelScope.launch {
-            _selectedFoodDetail.postValue(foodListRepository.getSelectedFoodDetail(key))
-            Log.d("MainDetailFromGson", "${foodListRepository.getSelectedFoodDetail(key)}")
+            _selectedFoodDetail.postValue(repository.getSelectedFoodDetail(key))
+            Log.d("MainDetailFromGson", "${repository.getSelectedFoodDetail(key)}")
             Log.d("MainDetailLiveData", "${_selectedFoodDetail.value}")
         }
     }
