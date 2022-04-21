@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName
 
 data class MenuDto(
     @SerializedName("body")
-    val body: List<Body>?,
+    val dish: List<Dish> = emptyList(),
     @SerializedName("statusCode")
     val statusCode: Int,
 )
 
-data class Body(
+data class Dish(
     @SerializedName("detail_hash")
     val detailHash: String,
     @SerializedName("image")
@@ -32,5 +32,5 @@ data class Body(
     val badge: List<String>?,
 )
 
-fun Body.toMenu(): Menu =
+fun Dish.toMenu(): Menu =
     Menu(detailHash, image, alt, deliveryType, title, description, nPrice, sPrice, badge)
