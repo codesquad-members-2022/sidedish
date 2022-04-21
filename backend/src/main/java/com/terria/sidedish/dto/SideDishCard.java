@@ -1,7 +1,7 @@
 package com.terria.sidedish.dto;
 
 import com.terria.sidedish.domain.DiscountEvent;
-import com.terria.sidedish.domain.SideDishImage;
+import com.terria.sidedish.domain.entity.reference.SideDishImage;
 import com.terria.sidedish.domain.entity.reference.SideDish;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

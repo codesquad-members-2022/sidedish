@@ -115,3 +115,55 @@ values (12, '간장 코다리조림', '쫀득한 코다리를 국내산 간장�
 
 insert into side_dish(id, name, description, price, accrual_rate)
 values (13, '쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', 16900, 0.01);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%83%88%EC%BD%A4%EB%8B%AC%EC%BD%A4_%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8_1.png',
+        1, 1 /* 새콤달콤 오징어무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%98%B8%EB%91%90_%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C_1.png',
+        1, 2 /* 호두 멸치볶음 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%A7%A4%EC%BD%A4_%EC%95%88%EC%8B%AC%EC%9E%A5%EC%A1%B0%EB%A6%BC_1.png',
+        1, 3 /* 한돈 매콤 안심장조림 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%95%BC%EC%B1%84_%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C_1.png',
+        1, 4 /* 야채 어묵볶음 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%8F%BC%EC%A7%80_%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C_1.png',
+        1, 5 /* 한돈 돼지 김치찌개 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C_1.png',
+        1, 6 /* 된장찌개 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD_1.png',
+        1, 7 /* 미역오이냉국 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C_1.png',
+        1, 8 /* 동태찌개 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EB%A6%AC_%EC%A3%BC%EB%AC%BC%EB%9F%AD_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png',
+        1, 9 /* 오리 주물럭_반조리 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%9E%A1%EC%B1%84_1.png',
+        1, 10 /* 잡채 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C_1.png',
+        1, 11 /* 소갈비찜 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B0%84%EC%9E%A5_%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC_1.png',
+        1, 12 /* 간장 코다리 조림 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%AD%88%EA%BE%B8%EB%AF%B8+%ED%95%9C%EB%8F%88+%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png',
+        1, 13 /* 쭈꾸미 한돈 제육볶음_반조리 */);
