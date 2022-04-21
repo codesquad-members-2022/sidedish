@@ -50,7 +50,6 @@ extension MainViewController: UICollectionViewDataSource {
         
         let card = mainCards[indexPath.item]
         cell.setPropertiesValue(image: card.imageURL, cardTitle: card.title, cardBody: card.description, normalPrice: card.normalPrice, salePrice: card.salePrice, badgeList: card.badgeList)
-        cell.backgroundColor = .systemGray3
         return cell
     }
     

@@ -42,6 +42,7 @@ class MainViewCardCell: UICollectionViewCell {
     
     private lazy var eventBadgeLabel: UILabel = {
         var label = UILabel()
+        label.text = "이벤트특가"
         label.textColor = .white
         label.backgroundColor = UIColor(red: 127 / 255, green: 188 / 255, blue: 255 / 255, alpha: 1)
         return label
@@ -49,6 +50,7 @@ class MainViewCardCell: UICollectionViewCell {
     
     private lazy var launchingBadgeLabel: UILabel = {
         var label = UILabel()
+        label.text = "런칭특가"
         label.textColor = .white
         label.backgroundColor = UIColor(red: 1 / 255, green: 102 / 255, blue: 214 / 255, alpha: 1)
         return label
@@ -73,6 +75,10 @@ class MainViewCardCell: UICollectionViewCell {
         }
         // MARK: 뱃지가 상황에 따라 표시되도록 해야 함
         if let badgeList = badgeList {
+            if badgeList.contains(.eventPrice),
+               badgeList.contains(.launchingPrice) {
+                configureEventLabelAndBadgeLabelConstraint()
+            }
             if badgeList.contains(.eventPrice) {
                 configureEventBadgeLabelConstraint()
             }
@@ -88,8 +94,8 @@ class MainViewCardCell: UICollectionViewCell {
         self.addSubview(cardBodyLabel)
         self.addSubview(normalPriceLabel)
         self.addSubview(salePriceLabel)
-        self.addSubview(eventBadgeLabel)
-        self.addSubview(launchingBadgeLabel)
+        //self.addSubview(eventBadgeLabel)
+//        self.addSubview(launchingBadgeLabel)
         setUIConstraints()
     }
     
@@ -134,17 +140,27 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     private func configureEventBadgeLabelConstraint() {
-        eventBadgeLabel.layer.cornerRadius = 5
-        
+        self.addSubview(eventBadgeLabel)
         eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
         eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
     }
     
     private func configureLaunchingBadgeLabelConstraint() {
+        print("런칭특가")
+        self.addSubview(launchingBadgeLabel)
+        launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
+        launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
+        launchingBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+    }
+    
+    private func configureEventLabelAndBadgeLabelConstraint() {
+        eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
+        eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
         launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5).isActive = true
     }
-    
 }
