@@ -34,11 +34,6 @@ header {
     margin-bottom: 8px;
     cursor: pointer;
 }
-.header__food-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
 .header__icons {
     display: flex;
     gap: 25px;
@@ -61,7 +56,4 @@ header {
 .header__food-item:hover {
     color: #777;
     text-decoration: underline;
-}
-.hidden {
-    display: none;
 }
