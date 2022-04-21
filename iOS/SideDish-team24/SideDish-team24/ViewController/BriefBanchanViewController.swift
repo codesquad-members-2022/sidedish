@@ -63,7 +63,7 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
         if kind == UICollectionView.elementKindSectionHeader {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BriefBanchanReusableView.identifier, for: indexPath) as? BriefBanchanReusableView else {return UICollectionReusableView()}
             return headerView
-        }else {
+        } else {
             return UICollectionReusableView()
         }
     }
