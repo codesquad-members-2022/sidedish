@@ -5,7 +5,6 @@ import Header from './Header';
 import MainCard from './MainCard';
 import SubCard from './SubCard';
 import styled from 'styled-components';
-import { flexCenter } from './css/mixins';
 
 const App = () => {
   const [mainCardData, setMainCardData] = useState([]);
