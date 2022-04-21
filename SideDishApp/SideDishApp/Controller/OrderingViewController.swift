@@ -69,7 +69,7 @@ final class OrderingViewController: UIViewController {
                     self.orderingCollectionView.reloadData()
                 }
             case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")    
+                os_log(.error, "\(failure.localizedDescription)")
             }
         }
     }
