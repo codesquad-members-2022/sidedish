@@ -39,10 +39,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CategoryIntegrationTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @BeforeEach
     void init() {
@@ -66,7 +66,7 @@ class CategoryIntegrationTest {
 
     @Test
     @DisplayName("1 페이지 요청시 4개의 아이템을 반환해야 한다.")
-    public void find_main_category_use_pageId_test() throws Exception {
+    void find_main_category_use_pageId_test() throws Exception {
         // given
         ResultActions requestThenResult = mockMvc.
                 perform(get("/api/categories/main?pageId=1")
