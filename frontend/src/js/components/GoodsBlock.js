@@ -23,8 +23,8 @@ function GoodsBlock(props) {
         <h4 className="goodsName"> {props.goodsName}</h4>
         <p className="goodsDescription">{props.goodsDescription}</p>
         <div className="goodsPrice">
-          <p className="discountedPrice">{discountedPrice + '원'}</p>
-          <p className="regularPrice">{regularPrice + '원'}</p>
+          <p className="discountedPrice">{Number(discountedPrice).toLocaleString('en') + '원'}</p>
+          <p className="regularPrice">{Number(regularPrice).toLocaleString('en') + '원'}</p>
         </div>
       </section>
       <div className="goodsLabel">

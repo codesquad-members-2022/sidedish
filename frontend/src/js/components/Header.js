@@ -21,22 +21,24 @@ function Header() {
 
   return (
     <header className={'header ' + (isOpen ? 'isOpen' : '')}>
-      <h1 className="brandHeader">
-        <img src={pageHeaderIcon} alt="pageHeaderIcon"></img>
-      </h1>
-      <div className="category" onMouseOver={() => setIsOpen(true)} onMouseOut={() => setIsOpen(false)}>
-        <ul className="categoryList">{categoryList}</ul>
-      </div>
-      <div className="navRightBar">
-        <a href="#!" className="search">
-          <img className="searchIcon" src={searchIcon} alt="searchIcon"></img>
-        </a>
-        <a href="#!" className="user">
-          <img className="userIcon" src={userIcon} alt="userIcon"></img>
-        </a>
-        <a href="#!" className="myCart">
-          <img className="myCartIcon" src={myCartIcon} alt="myCartIcon"></img>
-        </a>
+      <div className="innerHeader">
+        <h1 className="brandHeader">
+          <img src={pageHeaderIcon} alt="pageHeaderIcon"></img>
+        </h1>
+        <div className="category" onMouseOver={() => setIsOpen(true)} onMouseOut={() => setIsOpen(false)}>
+          <ul className="categoryList">{categoryList}</ul>
+        </div>
+        <nav className="navBar">
+          <a href="#!" className="search">
+            <img className="searchIcon" src={searchIcon} alt="searchIcon"></img>
+          </a>
+          <a href="#!" className="user">
+            <img className="userIcon" src={userIcon} alt="userIcon"></img>
+          </a>
+          <a href="#!" className="myCart">
+            <img className="myCartIcon" src={myCartIcon} alt="myCartIcon"></img>
+          </a>
+        </nav>
       </div>
     </header>
   );

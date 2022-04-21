@@ -1,7 +1,11 @@
 .specialPromotion {
-  padding: 0px 80px;
   font-family: 'Noto Sans KR';
   font-style: normal;
+}
+
+.innerSpecialPromotion{
+  width: 1280px;
+  margin: 0 auto;
 }
 
 .tab {
@@ -32,6 +36,24 @@
   margin-right: 16px;
 }
 
+.bestSideDishContainer::after, .bestSideDishContainer::before{
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #EBEBEB;
+}
+
+.bestSideDishContainer::before{
+  margin-top: -34px;
+}
+
+.bestSideDishContainer::after{
+  margin-top: 56px;
+}
+
 .tab li {
   margin-right: 32px;
   padding-bottom: 16px;
@@ -44,12 +66,10 @@
 }
 
 .bestSideDishContainer {
-  border-color: #EBEBEB;
-  border-top: 1px solid #EBEBEB;
-  border-bottom: 1px solid #EBEBEB;
   padding: 34px 0px 56px 0px;
 }
 
 .bestSideDishList {
   display: flex; 
+  justify-content: flex-start;
 }
