@@ -1,10 +1,26 @@
 .goodsBlock {
      margin-right: 24px;
  }
+
+.thumbContainer{
+    position: relative;
+}
+
+.thumbContainer:hover{
+    cursor: pointer;
+    filter: brightness(90%);
+}
  
 .thumb{
     width: 411px;
     height: 411px;
+}
+
+.deliveryIcon{
+    z-index: 1;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .price {

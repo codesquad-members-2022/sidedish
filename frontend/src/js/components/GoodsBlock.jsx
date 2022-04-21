@@ -1,8 +1,9 @@
-import React from 'react';
-import {eventLabelIcon, launchingLabelIcon} from '../constants/iconPath.js';
+import React, {useState} from 'react';
+import {eventLabelIcon, launchingLabelIcon, deliveryIcon} from '../constants/iconPath.js';
 import '../../css/GoodsBlock.css';
 
 function GoodsBlock({thumb, name, description, price, label}) {
+  const [isHover, setIsHover] = useState(false);
   const [discountedPrice, regularPrice] = price.map(element => element.price);
   const [eventLabel, launchingLabel] = label.map(element => element.exist);
   const eventLabelElement = eventLabel ? (
@@ -15,10 +16,22 @@ function GoodsBlock({thumb, name, description, price, label}) {
   ) : (
     <></>
   );
+  const deliveryIconElement = isHover ? (
+    <img className="deliveryIcon" src={deliveryIcon} alt="deliveryIcon"></img>
+  ) : (
+    <></>
+  );
 
   return (
     <div className="goodsBlock">
-      <img className="thumb" src={thumb} alt="thumb"></img>
+      <div
+        className="thumbContainer"
+        onMouseOver={() => setIsHover(true)}
+        onMouseOut={() => setIsHover(false)}
+      >
+        <img className="thumb" src={thumb} alt="thumb"></img>
+        {deliveryIconElement}
+      </div>
       <section className="info">
         <h4 className="name"> {name}</h4>
         <p className="description">{description}</p>
