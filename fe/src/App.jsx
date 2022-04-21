@@ -1,5 +1,5 @@
 import { Header } from './Header/Header';
-import { BestProducts } from './Recommand/BestProduct';
+import { BestProducts } from './main/Recommand/BestProduct';
 
 function App() {
   return (

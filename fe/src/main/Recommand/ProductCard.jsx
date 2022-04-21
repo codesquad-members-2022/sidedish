@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { DiscountBadge } from '../Badge/DiscountBadge';
-import Colors from '../Constants/Colors';
+import { DiscountBadge } from '../../Badge/DiscountBadge';
+import Colors from '../../Constants/Colors';
 
 const CardWrapper = styled.li`
   display: flex;
@@ -59,7 +59,7 @@ const DiscountPrice = styled.div`
   text-decoration: line-through;
 `;
 
-const CheckDiscount = ({
+const CheckedDiscount = ({
   priceData: { price, discountPolicy, discountRate },
 }) => {
   if (!discountPolicy) {
@@ -78,6 +78,18 @@ const CheckDiscount = ({
         {price.toLocaleString()} 원
       </DiscountPrice>
     </>
+  );
+};
+
+const CheckedBadge = ({ discountPolicy }) => {
+  if (!discountPolicy) {
+    return;
+  }
+
+  return (
+    <BadgeWrapper>
+      <DiscountBadge type={discountPolicy} />
+    </BadgeWrapper>
   );
 };
 
@@ -105,7 +117,7 @@ export const ProductCard = ({
       <Title className="fonts-md">{title}</Title>
       <Description className="fonts-sm">{description}</Description>
       <PriceWrapper>
-        <CheckDiscount
+        <CheckedDiscount
           priceData={{
             price: price,
             discountRate: discountRate,
@@ -113,10 +125,7 @@ export const ProductCard = ({
           }}
         />
       </PriceWrapper>
-
-      <BadgeWrapper>
-        <DiscountBadge type={discountPolicy} />
-      </BadgeWrapper>
+      <CheckedBadge priceData={discountPolicy} />
     </CardWrapper>
   );
 };

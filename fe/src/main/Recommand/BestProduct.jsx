@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import COLOR from '../Constants/Colors';
+import COLOR from '../../Constants/Colors';
 import { ProductCard } from './ProductCard';
-import { CategoryBadge } from '../Badge/CategoryBadge';
+import { CategoryBadge } from '../../Badge/CategoryBadge';
 const BestProductWrapper = styled.li`
   display: flex;
   width: 1440px;
@@ -80,7 +80,7 @@ export const BestProducts = () => {
       description: '감칠맛 나는 매운 양념',
       price: 12500,
       size: 'big',
-      discountPolicy: 'launch',
+      discountPolicy: null,
       discountRate: 0.15,
     },
     {
