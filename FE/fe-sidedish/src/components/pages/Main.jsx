@@ -6,11 +6,11 @@ import dishes from '../../data/dishes';
 const Main = () => {
   return (
     <>
-      {dishes.map((dish, index) => {
-        return <Card key={index} dish={dish} />
+      {dishes.map(dish => {
+        return <Card key={dish.id} dish={dish} />
       })}
-      {dishes.map((dish, index) => {
-        return <SmallCard key={index} {...dish} />
+      {dishes.map(dish => {
+        return <SmallCard key={dish.id} {...dish} />
       })}
     </>
   );

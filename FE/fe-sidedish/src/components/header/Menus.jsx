@@ -9,8 +9,8 @@ const Menus = () => {
         로그인
       </Link>
       <ul className="header__icon-menus">
-        {iconMenus.map(({ name, className }, index) => (
-          <IconMenu name={name} className={className} key={index} />
+        {iconMenus.map(({ id, name, className }) => (
+          <IconMenu name={name} className={className} key={id} />
         ))}
       </ul>
     </div>
