@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { flexBetween } from '../css/mixins';
 import GnbItem from './GnbItem';
 
