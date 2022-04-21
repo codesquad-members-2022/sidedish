@@ -1,9 +1,9 @@
 import Foundation
 
-enum Category: String, CaseIterable {
-    case main = "main"
-    case side = "side"
-    case soup = "soup"
+enum Category: CaseIterable {
+    case main
+    case side
+    case soup
 }
 
 class Ordering{
@@ -52,7 +52,7 @@ class Ordering{
     
     private func getSampleFoodList(){
         for category in Category.allCases {
-            guard let data = getSampleJSONData(fileName: category.rawValue) else { continue }
+            guard let data = getSampleJSONData(fileName: "\(category)") else { continue }
             guard let response = JSONHandler.convertJSONToObject(from: data, to: Response.self) else { continue }
             
             let foods = response.body
