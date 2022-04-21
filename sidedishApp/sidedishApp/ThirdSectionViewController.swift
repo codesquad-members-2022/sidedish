@@ -35,7 +35,6 @@ private extension ThirdSectionViewController{
         configureAccountLabel()
         configureAccountText()
         configureOrderButton()
-        // 총주문금액, 주문하기 구현 필요
     }
     
     func configureSectionUpper() {
@@ -44,10 +43,12 @@ private extension ThirdSectionViewController{
         self.view.addSubview(sectionUpper)
         
         sectionUpper.translatesAutoresizingMaskIntoConstraints = false
-        sectionUpper.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        sectionUpper.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        sectionUpper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        sectionUpper.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        NSLayoutConstraint.activate([
+            sectionUpper.topAnchor.constraint(equalTo: self.view.topAnchor),
+            sectionUpper.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            sectionUpper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            sectionUpper.heightAnchor.constraint(equalToConstant: 1)
+        ])
     }
     
     func configureCountLabel() {
@@ -59,10 +60,12 @@ private extension ThirdSectionViewController{
         self.view.addSubview(countLabel)
         
         countLabel.translatesAutoresizingMaskIntoConstraints = false
-        countLabel.topAnchor.constraint(equalTo: self.sectionUpper.bottomAnchor, constant: 26).isActive = true
-        countLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        countLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        countLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            countLabel.topAnchor.constraint(equalTo: self.sectionUpper.bottomAnchor, constant: 26),
+            countLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            countLabel.widthAnchor.constraint(equalToConstant: 60),
+            countLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureCountText() {
@@ -74,10 +77,12 @@ private extension ThirdSectionViewController{
         self.view.addSubview(countText)
         
         countText.translatesAutoresizingMaskIntoConstraints = false
-        countText.topAnchor.constraint(equalTo: self.sectionUpper.bottomAnchor, constant: 26).isActive = true
-        countText.leadingAnchor.constraint(equalTo: self.countLabel.trailingAnchor, constant: 150).isActive = true
-        countText.widthAnchor.constraint(equalToConstant: 9).isActive = true
-        countText.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            countText.topAnchor.constraint(equalTo: self.sectionUpper.bottomAnchor, constant: 26),
+            countText.leadingAnchor.constraint(equalTo: self.countLabel.trailingAnchor, constant: 150),
+            countText.widthAnchor.constraint(equalToConstant: 9),
+            countText.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureCountStepper() {
@@ -86,10 +91,12 @@ private extension ThirdSectionViewController{
         self.view.addSubview(countStepper)
         
         countStepper.translatesAutoresizingMaskIntoConstraints = false
-        countStepper.topAnchor.constraint(equalTo: self.sectionUpper.topAnchor, constant: 26).isActive = true
-        countStepper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        countStepper.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        countStepper.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        NSLayoutConstraint.activate([
+            countStepper.topAnchor.constraint(equalTo: self.sectionUpper.topAnchor, constant: 26),
+            countStepper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            countStepper.widthAnchor.constraint(equalToConstant: 100),
+            countStepper.heightAnchor.constraint(equalToConstant: 28)
+        ])
     }
     
     func configureSectionBottom() {
@@ -98,10 +105,12 @@ private extension ThirdSectionViewController{
         self.view.addSubview(sectionCenter)
         
         sectionCenter.translatesAutoresizingMaskIntoConstraints = false
-        sectionCenter.topAnchor.constraint(equalTo: self.countLabel.bottomAnchor, constant: 26).isActive = true
-        sectionCenter.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        sectionCenter.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        sectionCenter.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        NSLayoutConstraint.activate([
+            sectionCenter.topAnchor.constraint(equalTo: self.countLabel.bottomAnchor, constant: 26),
+            sectionCenter.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            sectionCenter.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            sectionCenter.heightAnchor.constraint(equalToConstant: 1)
+        ])
     }
     
     func configureAccountView() {
@@ -109,11 +118,13 @@ private extension ThirdSectionViewController{
         self.view.addSubview(accountView)
         
         accountView.translatesAutoresizingMaskIntoConstraints = false
-        accountView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 116).isActive = true
-        accountView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 16).isActive = true
-        accountView.topAnchor.constraint(equalTo: self.sectionCenter.bottomAnchor, constant: 24).isActive = true
-        accountView.widthAnchor.constraint(equalToConstant: 243).isActive = true
-        accountView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        NSLayoutConstraint.activate([
+            accountView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 116),
+            accountView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 16),
+            accountView.topAnchor.constraint(equalTo: self.sectionCenter.bottomAnchor, constant: 24),
+            accountView.widthAnchor.constraint(equalToConstant: 243),
+            accountView.heightAnchor.constraint(equalToConstant: 48)
+        ])
     }
     
     func configureAccountLabel() {
@@ -125,11 +136,13 @@ private extension ThirdSectionViewController{
         self.accountView.addSubview(accountLabel)
         
         accountLabel.translatesAutoresizingMaskIntoConstraints = false
-        accountLabel.topAnchor.constraint(equalTo: self.accountView.topAnchor, constant: 12).isActive = true
-        accountLabel.bottomAnchor.constraint(equalTo: self.accountView.bottomAnchor, constant: -12).isActive = true
-        accountLabel.leadingAnchor.constraint(equalTo: self.accountView.leadingAnchor).isActive = true
-        accountLabel.widthAnchor.constraint(equalToConstant: 87).isActive = true
-        accountLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            accountLabel.topAnchor.constraint(equalTo: self.accountView.topAnchor, constant: 12),
+            accountLabel.bottomAnchor.constraint(equalTo: self.accountView.bottomAnchor, constant: -12),
+            accountLabel.leadingAnchor.constraint(equalTo: self.accountView.leadingAnchor),
+            accountLabel.widthAnchor.constraint(equalToConstant: 87),
+            accountLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureAccountText() {
@@ -141,12 +154,14 @@ private extension ThirdSectionViewController{
         self.accountView.addSubview(accountText)
         
         accountText.translatesAutoresizingMaskIntoConstraints = false
-        accountText.topAnchor.constraint(equalTo: self.accountView.topAnchor).isActive = true
-        accountText.bottomAnchor.constraint(equalTo: self.accountView.bottomAnchor).isActive = true
-        accountText.leadingAnchor.constraint(equalTo: self.accountLabel.trailingAnchor, constant: 24).isActive = true
-        accountText.trailingAnchor.constraint(equalTo: self.accountView.trailingAnchor).isActive = true
-        accountText.widthAnchor.constraint(equalToConstant: 132).isActive = true
-        accountText.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        NSLayoutConstraint.activate([
+            accountText.topAnchor.constraint(equalTo: self.accountView.topAnchor),
+            accountText.bottomAnchor.constraint(equalTo: self.accountView.bottomAnchor),
+            accountText.leadingAnchor.constraint(equalTo: self.accountLabel.trailingAnchor, constant: 24),
+            accountText.trailingAnchor.constraint(equalTo: self.accountView.trailingAnchor),
+            accountText.widthAnchor.constraint(equalToConstant: 132),
+            accountText.heightAnchor.constraint(equalToConstant: 48)
+        ])
     }
     
     func configureOrderButton(){
@@ -161,9 +176,11 @@ private extension ThirdSectionViewController{
         self.view.addSubview(orderButton)
         
         orderButton.translatesAutoresizingMaskIntoConstraints = false
-        orderButton.topAnchor.constraint(equalTo: self.accountView.bottomAnchor, constant: 24).isActive = true
-        orderButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24).isActive = true
-        orderButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        orderButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            orderButton.topAnchor.constraint(equalTo: self.accountView.bottomAnchor, constant: 24),
+            orderButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24),
+            orderButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            orderButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+        ])
     }
 }

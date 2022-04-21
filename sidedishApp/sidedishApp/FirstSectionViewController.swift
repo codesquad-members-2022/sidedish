@@ -41,10 +41,12 @@ private extension FirstSectionViewController {
         self.view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 48)
+        ])
     }
     
     func configureSubLabel() {
@@ -57,10 +59,12 @@ private extension FirstSectionViewController {
         self.view.addSubview(subLabel)
         
         subLabel.translatesAutoresizingMaskIntoConstraints = false
-        subLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8).isActive = true
-        subLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        subLabel.widthAnchor.constraint(equalToConstant: 177).isActive = true
-        subLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            subLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
+            subLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            subLabel.widthAnchor.constraint(equalToConstant: 177),
+            subLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureSalePrice() {
@@ -73,10 +77,12 @@ private extension FirstSectionViewController {
         self.view.addSubview(salePrice)
         
         salePrice.translatesAutoresizingMaskIntoConstraints = false
-        salePrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8).isActive = true
-        salePrice.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        salePrice.widthAnchor.constraint(equalToConstant: 74).isActive = true
-        salePrice.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            salePrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8),
+            salePrice.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            salePrice.widthAnchor.constraint(equalToConstant: 74),
+            salePrice.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureRawPrice() {
@@ -88,10 +94,12 @@ private extension FirstSectionViewController {
         self.view.addSubview(rawPrice)
         
         rawPrice.translatesAutoresizingMaskIntoConstraints = false
-        rawPrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8).isActive = true
-        rawPrice.leadingAnchor.constraint(equalTo: self.salePrice.trailingAnchor, constant: 8).isActive = true
-        rawPrice.widthAnchor.constraint(equalToConstant: 64).isActive = true
-        rawPrice.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            rawPrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8),
+            rawPrice.leadingAnchor.constraint(equalTo: self.salePrice.trailingAnchor, constant: 8),
+            rawPrice.widthAnchor.constraint(equalToConstant: 64),
+            rawPrice.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureEventLabel() {
@@ -108,10 +116,12 @@ private extension FirstSectionViewController {
         self.view.addSubview(eventLabel)
         
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventLabel.topAnchor.constraint(equalTo: self.salePrice.bottomAnchor, constant: 16).isActive = true
-        eventLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        eventLabel.widthAnchor.constraint(equalToConstant: 77).isActive = true
-        eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            eventLabel.topAnchor.constraint(equalTo: self.salePrice.bottomAnchor, constant: 16),
+            eventLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            eventLabel.widthAnchor.constraint(equalToConstant: 77),
+            eventLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureSectionBottom() {
@@ -121,11 +131,13 @@ private extension FirstSectionViewController {
         self.view.addSubview(sectionBottom)
         
         sectionBottom.translatesAutoresizingMaskIntoConstraints = false
-        sectionBottom.topAnchor.constraint(equalTo: self.eventLabel.bottomAnchor, constant: 24).isActive = true
-        sectionBottom.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        sectionBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        sectionBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            sectionBottom.topAnchor.constraint(equalTo: self.eventLabel.bottomAnchor, constant: 24),
+            sectionBottom.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            sectionBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            sectionBottom.heightAnchor.constraint(equalToConstant: 1),
+            sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
     }
     
     func setRawPriceAttribute(label: UILabel, text: String) {

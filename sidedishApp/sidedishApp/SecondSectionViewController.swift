@@ -38,10 +38,12 @@ private extension SecondSectionViewController{
         self.view.addSubview(pointLabel)
         
         pointLabel.translatesAutoresizingMaskIntoConstraints = false
-        pointLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
-        pointLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        pointLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        pointLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            pointLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24),
+            pointLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            pointLabel.widthAnchor.constraint(equalToConstant: 60),
+            pointLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configurePointText() {
@@ -51,10 +53,12 @@ private extension SecondSectionViewController{
         self.view.addSubview(pointText)
         
         pointText.translatesAutoresizingMaskIntoConstraints = false
-        pointText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
-        pointText.leadingAnchor.constraint(equalTo: self.pointLabel.trailingAnchor, constant: 16).isActive = true
-        pointText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        pointText.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            pointText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24),
+            pointText.leadingAnchor.constraint(equalTo: self.pointLabel.trailingAnchor, constant: 16),
+            pointText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            pointText.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureDeliveryLabel() {
@@ -64,10 +68,12 @@ private extension SecondSectionViewController{
         self.view.addSubview(deliveryLabel)
         
         deliveryLabel.translatesAutoresizingMaskIntoConstraints = false
-        deliveryLabel.topAnchor.constraint(equalTo: self.pointLabel.bottomAnchor, constant: 16).isActive = true
-        deliveryLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        deliveryLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        deliveryLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            deliveryLabel.topAnchor.constraint(equalTo: self.pointLabel.bottomAnchor, constant: 16),
+            deliveryLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            deliveryLabel.widthAnchor.constraint(equalToConstant: 60),
+            deliveryLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureDeliveryText() {
@@ -77,10 +83,12 @@ private extension SecondSectionViewController{
         self.view.addSubview(deliveryText)
         
         deliveryText.translatesAutoresizingMaskIntoConstraints = false
-        deliveryText.topAnchor.constraint(equalTo: self.pointText.bottomAnchor, constant: 16).isActive = true
-        deliveryText.leadingAnchor.constraint(equalTo: self.deliveryLabel.trailingAnchor, constant: 16).isActive = true
-        deliveryText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        deliveryText.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        NSLayoutConstraint.activate([
+            deliveryText.topAnchor.constraint(equalTo: self.pointText.bottomAnchor, constant: 16),
+            deliveryText.leadingAnchor.constraint(equalTo: self.deliveryLabel.trailingAnchor, constant: 16),
+            deliveryText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            deliveryText.heightAnchor.constraint(equalToConstant: 24)
+        ])
     }
     
     func configureChargeLabel() {
@@ -90,11 +98,13 @@ private extension SecondSectionViewController{
         self.view.addSubview(chargeLabel)
         
         chargeLabel.translatesAutoresizingMaskIntoConstraints = false
-        chargeLabel.topAnchor.constraint(equalTo: self.deliveryLabel.bottomAnchor, constant: 16).isActive = true
-        chargeLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        chargeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        chargeLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        chargeLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24).isActive = true
+        NSLayoutConstraint.activate([
+            chargeLabel.topAnchor.constraint(equalTo: self.deliveryLabel.bottomAnchor, constant: 16),
+            chargeLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            chargeLabel.widthAnchor.constraint(equalToConstant: 60),
+            chargeLabel.heightAnchor.constraint(equalToConstant: 24),
+            chargeLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24)
+        ])
     }
     
     func configureChargeText() {
@@ -104,10 +114,12 @@ private extension SecondSectionViewController{
         self.view.addSubview(chargeText)
         
         chargeText.translatesAutoresizingMaskIntoConstraints = false
-        chargeText.topAnchor.constraint(equalTo: self.deliveryText.bottomAnchor, constant: 16).isActive = true
-        chargeText.leadingAnchor.constraint(equalTo: self.chargeLabel.trailingAnchor, constant: 16).isActive = true
-        chargeText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        chargeText.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        chargeText.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24).isActive = true
+        NSLayoutConstraint.activate([
+            chargeText.topAnchor.constraint(equalTo: self.deliveryText.bottomAnchor, constant: 16),
+            chargeText.leadingAnchor.constraint(equalTo: self.chargeLabel.trailingAnchor, constant: 16),
+            chargeText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            chargeText.heightAnchor.constraint(equalToConstant: 24),
+            chargeText.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24)
+        ])
     }
 }
