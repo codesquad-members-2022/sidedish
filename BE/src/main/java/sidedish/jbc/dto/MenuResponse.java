@@ -1,10 +1,7 @@
 package sidedish.jbc.dto;
 
-import org.springframework.data.annotation.Id;
+public class MenuResponse {
 
-public class ResponseMenu {
-
-	@Id
 	private long id;
 	private String name;
 	private String description;
@@ -13,7 +10,7 @@ public class ResponseMenu {
 	private int saleType;
 	private String imagePath;
 
-	public ResponseMenu(long id, String name, String description, int price, int menuType,
+	public MenuResponse(long id, String name, String description, int price, int menuType,
 		int saleType, String imagePath) {
 		this.id = id;
 		this.name = name;
