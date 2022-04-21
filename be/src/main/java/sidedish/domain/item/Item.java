@@ -1,16 +1,14 @@
-package sidedish.domain.dish;
+package sidedish.domain.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Embedded;
-import sidedish.domain.category.MainCategory;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Dish {
+public class Item {
 
 	@Id
 	private Long id;
