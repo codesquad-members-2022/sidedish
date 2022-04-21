@@ -6,15 +6,15 @@ public class Order {
 
     @Id
     private final Long order_id;
-    private final Long banchan_id;
-    private final Long member_id;
+    private final Long item_id;
+    private final Long user_id;
     private final Integer quantity;
     private final Integer total_price;
 
-    public Order(Long order_id, Long banchan_id, Long member_id, Integer quantity, Integer total_price) {
+    public Order(Long order_id, Long item_id, Long user_id, Integer quantity, Integer total_price) {
         this.order_id = order_id;
-        this.banchan_id = banchan_id;
-        this.member_id = member_id;
+        this.item_id = item_id;
+        this.user_id = user_id;
         this.quantity = quantity;
         this.total_price = total_price;
     }
@@ -23,12 +23,12 @@ public class Order {
         return order_id;
     }
 
-    public Long getBanchan_id() {
-        return banchan_id;
+    public Long getItem_id() {
+        return item_id;
     }
 
-    public Long getMember_id() {
-        return member_id;
+    public Long getUser_id() {
+        return user_id;
     }
 
     public Integer getQuantity() {

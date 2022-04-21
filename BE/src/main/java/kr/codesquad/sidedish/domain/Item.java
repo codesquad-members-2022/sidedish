@@ -2,12 +2,12 @@ package kr.codesquad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
 
-public class Banchan {
+public class Item {
 
     @Id
-    private final Long banchan_id;
+    private final Long item_id;
     private final Long category_id;
-    private final String banchan_name;
+    private final String item_name;
     private final String description;
     private final Integer or_price;
     private final Integer dc_price;
@@ -17,11 +17,11 @@ public class Banchan {
     private final Integer delivery_id;
     private final Long best_id;
 
-    public Banchan(Long banchan_id, Long category_id, String banchan_name, String description, Integer or_price,
-                   Integer dc_price, Integer stock, Integer label_id, String main_image, Integer delivery_id, Long best_id) {
-        this.banchan_id = banchan_id;
+    public Item(Long item_id, Long category_id, String item_name, String description, Integer or_price,
+                Integer dc_price, Integer stock, Integer label_id, String main_image, Integer delivery_id, Long best_id) {
+        this.item_id = item_id;
         this.category_id = category_id;
-        this.banchan_name = banchan_name;
+        this.item_name = item_name;
         this.description = description;
         this.or_price = or_price;
         this.dc_price = dc_price;
@@ -32,16 +32,16 @@ public class Banchan {
         this.best_id = best_id;
     }
 
-    public Long getBanchan_id() {
-        return banchan_id;
+    public Long getItem_id() {
+        return item_id;
     }
 
     public Long getCategory_id() {
         return category_id;
     }
 
-    public String getBanchan_name() {
-        return banchan_name;
+    public String getItem_name() {
+        return item_name;
     }
 
     public String getDescription() {
