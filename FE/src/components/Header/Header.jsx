@@ -31,7 +31,7 @@ const navCategory = [
   },
 ];
 
-function MainNav({ setIsShown }) {
+function MainCategoryNav({ setIsShown }) {
   const mainNav = navCategory.map((nav) => (
     <li key={nav.id} className="category-nav__main">
       {nav.mainCategory}
@@ -49,7 +49,7 @@ function MainNav({ setIsShown }) {
   );
 }
 
-function MainSubNav({ setIsShown }) {
+function MainSubCategoryNav({ setIsShown }) {
   //TODO: 컴포넌트 분리하게되면 서브 카테고리 생성 메서드 분리하기
   const mainSubNav = navCategory.map((category) => {
     const subCategory = category.subCategory.map((subCategory, index) => {
@@ -82,9 +82,9 @@ function MainSubNav({ setIsShown }) {
 
 function Nav({ isShown, setIsShown }) {
   if (isShown) {
-    return <MainSubNav setIsShown={setIsShown} />;
+    return <MainSubCategoryNav setIsShown={setIsShown} />;
   }
-  return <MainNav setIsShown={setIsShown} />;
+  return <MainCategoryNav setIsShown={setIsShown} />;
 }
 
 function Info() {
