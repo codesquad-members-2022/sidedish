@@ -1,4 +1,4 @@
-const iconMenu = [
+const iconMenus = [
   {
     id: 1,
     name: "검색",
@@ -16,4 +16,4 @@ const iconMenu = [
   },
 ];
 
-export default iconMenu;
+export default iconMenus;

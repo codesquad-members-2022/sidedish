@@ -1,16 +1,28 @@
-import Categories from "./Categories";
-import Menus from "./Menus";
-import styles from "../../styles/components/header.scss";
+import iconMenusData from "../../data/iconMenus";
+import categoriesData from "../../data/categories";
+import {
+  Container,
+  Wrapper,
+  Title,
+  CategoryList,
+  IconMenuList,
+} from "./Header.style";
+import CategoryItems from "./CategoryItems";
+import IconMenuItems from "./IconMenuItems";
 
 const Header = () => {
   return (
-    <header className="header">
-      <div className="wrapper">
-        <h2 className="header__title">Ordering</h2>
-        <Categories />
-        <Menus />
-      </div>
-    </header>
+    <Container>
+      <Wrapper>
+        <Title>Ordering</Title>
+        <CategoryList>
+          <CategoryItems categoriesData={categoriesData} />
+        </CategoryList>
+        <IconMenuList>
+          <IconMenuItems iconMenusData={iconMenusData} />
+        </IconMenuList>
+      </Wrapper>
+    </Container>
   );
 };
 
