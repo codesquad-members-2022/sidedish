@@ -57,43 +57,34 @@ const mouseHandler = ({ target }) => {
 
 const GNB_LIST = [
   {
-    id: 'main',
     title: '든든한 메인요리',
     menu: [
       {
-        id: 'meat',
         title: '육류 요리',
       },
       {
-        id: 'seafood',
         title: '해산물 요리',
       },
     ],
   },
   {
-    id: 'soup',
     title: '뜨끈한 국물요리',
     menu: [
       {
-        id: 'soup1',
         title: '국,탕,찌개',
       },
     ],
   },
   {
-    id: 'side',
     title: '정갈한 밑반찬',
     menu: [
       {
-        id: 'side1',
         title: '나물/무침',
       },
       {
-        id: 'side2',
         title: '조림/볶음',
       },
       {
-        id: 'side3',
         title: '절임/장아찌',
       },
     ],
