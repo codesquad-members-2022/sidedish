@@ -1,27 +1,35 @@
 package sidedish.com.domain;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 
 @Getter
-@ToString
-@AllArgsConstructor
-
 public class Product {
-
-	@Id
 	private Long id;
-	private Long discountPolicyId;
-	@MappedCollection(idColumn = "ID", keyColumn = "ID")
-	private List<Image> image;
+	private DiscountPolicy discountPolicy;
+	private List<Image> images;
 	private String productName;
 	private String description;
+	private long fixedPrice;
 	private long originalPrice;
 	private String mealCategory;
 	private String bestCategory;
 
+	public Product(Long id, DiscountPolicy discountPolicy,
+		List<Image> images, String productName, String description, long originalPrice,
+		String mealCategory, String bestCategory) {
+		this.id = id;
+		this.discountPolicy = discountPolicy;
+		this.images = images;
+		this.productName = productName;
+		this.description = description;
+		this.originalPrice = originalPrice;
+		this.mealCategory = mealCategory;
+		this.bestCategory = bestCategory;
+		this.fixedPrice = calculateFixedPrice();
+	}
+
+	private long calculateFixedPrice() {
+		return (long) (originalPrice * (100 - discountPolicy.getDiscountRate() / 100));
+	}
 }

@@ -13,7 +13,7 @@ import sidedish.com.service.ProductsService;
 @RequestMapping("/api/products")
 public class ProductsController {
 
-	ProductsService productsService;
+	private final ProductsService productsService;
 
 	public ProductsController(ProductsService productsService) {
 		this.productsService = productsService;

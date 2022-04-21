@@ -2,32 +2,32 @@ package sidedish.com.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.Product;
+import sidedish.com.repository.entity.ProductEntity;
 
+@Component
 public class ProductsDtoMapper {
 
-	private ProductsDtoMapper() {
-	}
-
-	public static List<ProductMealTypeResponse> toProductsMealTypeResponseFromDomain(
+	public List<ProductMealTypeResponse> toProductsMealTypeResponseFromDomain(
 		List<Product> products) {
 		return products.stream()
-			.map(ProductsDtoMapper::toProductMealTypeResponseFromDomain)
+			.map(this::toProductMealTypeResponseFromDomain)
 			.collect(Collectors.toList());
 	}
 
 
-	private static ProductMealTypeResponse toProductMealTypeResponseFromDomain(Product product) {
+	private ProductMealTypeResponse toProductMealTypeResponseFromDomain(
+		Product product) {
 		return new ProductMealTypeResponse(
 			product.getId(),
-			product.getImage().get(0).getImageUrl(),
+			product.getImages().get(0).getImageUrl(),
 			product.getProductName(),
 			product.getDescription(),
-			product.getOriginalPrice(), //TODO : fixed 구현
+			product.getFixedPrice(),
 			product.getOriginalPrice(),
-			"a"); // TODO event 구현
-//			product.getDisCountPolicy().getPolicyName());
+			product.getDiscountPolicy().getPolicyName());
 	}
 
 }

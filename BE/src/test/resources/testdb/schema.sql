@@ -6,9 +6,7 @@ create table discount_policy
 (
     id            bigint auto_increment primary key,
     discount_rate int          not null,
-    policy_name   varchar(100) not null,
-    start_at      datetime default current_timestamp,
-    end_at        datetime default current_timestamp
+    policy_name   varchar(100) not null
 );
 
 create table product

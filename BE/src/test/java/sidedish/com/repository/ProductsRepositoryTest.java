@@ -7,12 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import sidedish.com.domain.Product;
+import sidedish.com.repository.entity.ProductEntity;
 
 @DataJdbcTest
 @DisplayName("ProductsRepository 클래스")
@@ -38,7 +36,7 @@ class ProductsRepositoryTest  {
 	        @Test
 	        @DisplayName("meal 타입이 soup인 모든 Product의 리스트를 반환한다")
 	        void It_returns_products_type_soup() {
-				List<Product> result = productsRepository.findByMealType("soup");
+				List<ProductEntity> result = productsRepository.findByMealType("soup");
 
 				assertThat(result.get(0).getMealCategory()).isEqualTo("soup");
 	        }
@@ -51,7 +49,7 @@ class ProductsRepositoryTest  {
 			@Test
 			@DisplayName("meal 타입이 main인 모든 Product의 리스트를 반환한다")
 			void It_returns_products_type_main() {
-				List<Product> result = productsRepository.findByMealType("main");
+				List<ProductEntity> result = productsRepository.findByMealType("main");
 
 				assertThat(result.get(0).getMealCategory()).isEqualTo("main");
 			}
@@ -64,7 +62,7 @@ class ProductsRepositoryTest  {
 			@Test
 			@DisplayName("meal 타입이 side인 모든 Product의 리스트를 반환한다")
 			void It_returns_products_type_side() {
-				List<Product> result = productsRepository.findByMealType("side");
+				List<ProductEntity> result = productsRepository.findByMealType("side");
 
 				assertThat(result.get(0).getMealCategory()).isEqualTo("side");
 			}
@@ -77,7 +75,7 @@ class ProductsRepositoryTest  {
 			@Test
 			@DisplayName("빈 리스트를 반환한다.")
 			void It_returns_products_type_side() {
-				List<Product> result = productsRepository.findByMealType("error Meal Type");
+				List<ProductEntity> result = productsRepository.findByMealType("error Meal Type");
 
 				assertThat(result).isEmpty();
 			}
