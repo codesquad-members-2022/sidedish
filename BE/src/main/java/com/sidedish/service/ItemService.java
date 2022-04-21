@@ -21,4 +21,8 @@ public class ItemService {
         PageRequest pageable = PageRequest.of(startPage, PAGE_UNIT);
         return itemRepository.findByCategoryType(CategoryType.MAIN, pageable);
     }
+
+    public List<Item> findItemByDetailType(String type) {
+        return itemRepository.findByDetailType(type);
+    }
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import lombok.Getter;
 
 @Getter
-public class ResponseCategoryTypeDto {
+public class ResponseItemDto {
 
     private String title;
     private String description;
@@ -16,11 +16,11 @@ public class ResponseCategoryTypeDto {
     private Badge badge;
     private BigDecimal discountPrice;
 
-    public ResponseCategoryTypeDto(Item item) {
+    public ResponseItemDto(Item item) {
         this.title = item.getTitle();
         this.description = item.getDescription();
         this.price = item.getPrice();
-        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate())));
+        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)));
         this.badge = item.getBadge();
     }
 }

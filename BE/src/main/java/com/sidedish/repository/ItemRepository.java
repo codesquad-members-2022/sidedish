@@ -5,7 +5,6 @@ import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
 
 import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -19,4 +18,8 @@ public interface ItemRepository extends PagingAndSortingRepository<Item, Long> {
     Set<Item> findByOrderId(@Param("id") Long id);
 
     List<Item> findByCategoryType(CategoryType type, PageRequest pageable);
+
+    @Query("SELECT * FROM items WHERE detail_type = :detailType ORDER BY RAND() LIMIT 3")
+    List<Item> findByDetailType(@Param("detailType") String detailType);
+
 }
