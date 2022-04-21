@@ -23,7 +23,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:updateImage="@{menuData.image}" />
+            bind:updateImage="@{menuData.representImages}" />
 
         <TextView
             android:id="@+id/tv_home_name"
@@ -33,7 +33,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@{menuData.name}"
+            android:text="@{menuData.productName}"
             android:textColor="#010101"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
@@ -48,7 +48,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@{menuData.body}"
+            android:text="@{menuData.description}"
             android:textColor="#828282"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
@@ -61,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="72dp"
             android:gravity="center_vertical"
-            android:text="@{menuData.discountPrice}"
+            android:text="@{menuData.price}"
             android:textColor="#010101"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
@@ -78,7 +78,7 @@
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/tv_home_discountPrice"
             app:layout_constraintTop_toTopOf="parent"
-            bind:updatePrice="@{menuData.price}" />
+            bind:updateTextWithStroke="@{menuData.discountPrice}" />
 
         <TextView
             android:id="@+id/tv_home_event"
@@ -89,14 +89,14 @@
             android:background="@drawable/bg_event_badge"
             app:layout_goneMarginLeft="20dp"
             android:gravity="center"
-            android:text="@{menuData.eventCategory}"
+            android:text="@{menuData.eventInfo}"
             android:paddingStart="12dp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:paddingEnd="12dp"
             android:textColor="#F2E7FE"
             android:textSize="12sp"
-            bind:updateEvent="@{menuData.eventCategory}"
+            bind:updateVisible="@{menuData.eventInfo}"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
             app:layout_constraintTop_toTopOf="parent" />
 

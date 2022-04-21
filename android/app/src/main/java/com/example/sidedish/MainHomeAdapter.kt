@@ -6,15 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sidedish.databinding.HomeListBinding
+import com.example.sidedish.databinding.ItemMenuDataBinding
 
-class MainHomeAdapter : ListAdapter<MenuData, MainHomeAdapter.MainHomeHolder>(diffUtil) {
-    inner class MainHomeHolder(private val binding: HomeListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(menuList: MenuData) {
-            binding.menuData = menuList
-        }
-    }
+class MainHomeAdapter : ListAdapter<MenuData, MainHomeHolder>(diffUtil) {
 
     override fun onBindViewHolder(holder: MainHomeHolder, position: Int) {
         val item = getItem(position)
@@ -22,7 +16,7 @@ class MainHomeAdapter : ListAdapter<MenuData, MainHomeAdapter.MainHomeHolder>(di
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        DataBindingUtil.inflate<HomeListBinding>(
+        DataBindingUtil.inflate<ItemMenuDataBinding>(
             LayoutInflater.from(parent.context),
             R.layout.item_menu_data,
             parent,
@@ -30,6 +24,13 @@ class MainHomeAdapter : ListAdapter<MenuData, MainHomeAdapter.MainHomeHolder>(di
         ).let {
             MainHomeHolder(it)
         }
+}
+
+class MainHomeHolder(private val binding: ItemMenuDataBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(menuList: MenuData) {
+        binding.menuData = menuList
+    }
 }
 
 private val diffUtil = object : DiffUtil.ItemCallback<MenuData>() {

@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+<!--    android:name=".HiltApplication"-->
+    <!-- .HiltApplication을 받아서 hilt Apllication 적용-->
     <application
         android:name=".HiltApplication"
         android:allowBackup="true"

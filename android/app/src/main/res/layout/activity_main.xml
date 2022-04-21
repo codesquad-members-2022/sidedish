@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="menu_xml"
-            type="com.example.sidedish.MenuData" />
-    </data>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -123,8 +116,7 @@
                 android:text="정성이 담긴 뜨끈뜨끈 국물 요리"
                 android:textColor="#010101"
                 android:textSize="32sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerview_mainlist" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_header_sub3"
