@@ -8,6 +8,6 @@
 import Foundation
 
 struct Category {
-    let product : [Product]
-    let type : ProductType
+    let product: [Product]
+    let type: ProductType
 }

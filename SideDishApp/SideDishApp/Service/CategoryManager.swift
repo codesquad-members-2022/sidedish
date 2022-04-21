@@ -9,7 +9,7 @@ import Foundation
 
 struct CategoryManager {
     let networkManager = NetworkManager()
-    
+
     func fetchCategory(of type: ProductType, then completion: @escaping (Category) -> Void) {
         networkManager.fetchProducts(of: type) { result in
             switch result {
@@ -20,9 +20,9 @@ struct CategoryManager {
             }
         }
     }
-    
+
     func fetchImageData(of product: Product, then completion: @escaping (Data) -> Void) {
-        
+
         networkManager.fetchImageData(url: product.imageURL) { result in
             switch result {
             case .success(let data): completion(data)
