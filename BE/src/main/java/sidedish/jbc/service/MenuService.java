@@ -24,7 +24,7 @@ public class MenuService {
 		return null;
 	}
 
-	public List<MenuResponse> findMenu(MenuType menuType) {
-		return menuRepository.findAllByType(menuType.getTypeValue());
+	public List<MenuResponse> findMenu(String type) {
+		return menuRepository.findAllByType(MenuType.getInstance(type));
 	}
 }

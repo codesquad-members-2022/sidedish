@@ -10,8 +10,8 @@ public class Menu {
 	private String name;
 	private String description;
 	private int price;
-	private int menuType;
-	private int saleType;
+	private String menuType;
+	private String saleType;
 	private int fee;
 	private int freeShippingMin;
 	private String deliveryInfo;
@@ -19,8 +19,9 @@ public class Menu {
 	private Integer imageId;
 
 	@PersistenceConstructor
-	public Menu(Long id, String name, String description, int price, int menuType, int saleType,
-		int fee, int freeShippingMin, String deliveryInfo, int stock, Integer imageId) {
+	public Menu(Long id, String name, String description, int price,
+		String menuType, String saleType, int fee, int freeShippingMin,
+		String deliveryInfo, int stock, Integer imageId) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -34,8 +35,9 @@ public class Menu {
 		this.imageId = imageId;
 	}
 
-	public Menu(String name, String description, int price, int menuType, int saleType, int fee,
-		int freeShippingMin, String deliveryInfo, int stock, Integer imageId) {
+	public Menu(String name, String description, int price, String menuType,
+		String saleType, int fee, int freeShippingMin, String deliveryInfo, int stock,
+		Integer imageId) {
 		this.name = name;
 		this.description = description;
 		this.price = price;

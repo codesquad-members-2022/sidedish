@@ -6,12 +6,12 @@ public class MenuResponse {
 	private String name;
 	private String description;
 	private int price;
-	private int menuType;
-	private int saleType;
+	private String menuType;
+	private String saleType;
 	private String imagePath;
 
-	public MenuResponse(long id, String name, String description, int price, int menuType,
-		int saleType, String imagePath) {
+	public MenuResponse(long id, String name, String description, int price, String menuType,
+		String saleType, String imagePath) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -37,11 +37,11 @@ public class MenuResponse {
 		return price;
 	}
 
-	public int getMenuType() {
+	public String getMenuType() {
 		return menuType;
 	}
 
-	public int getSaleType() {
+	public String getSaleType() {
 		return saleType;
 	}
 

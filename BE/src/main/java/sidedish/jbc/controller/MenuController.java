@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import sidedish.jbc.domain.MenuType;
 import sidedish.jbc.dto.MenuResponse;
 import sidedish.jbc.service.MenuService;
 
@@ -25,14 +24,14 @@ public class MenuController {
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<MenuResponse> menu() {
+	public List<MenuResponse> welcome() {
 		return menuService.findAll();
 	}
 
 	@GetMapping("/{type}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<MenuResponse> find(@PathVariable("type") String type) {
-		return menuService.findMenu(MenuType.getInstance(type));
+	public List<MenuResponse> findMenu(@PathVariable("type") String type) {
+		return menuService.findMenu(type);
 	}
 }
