@@ -1,5 +1,6 @@
-package com.codesquadhan.sidedish.network
+package com.codesquadhan.sidedish.di
 
+import com.codesquadhan.sidedish.network.MenuService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
