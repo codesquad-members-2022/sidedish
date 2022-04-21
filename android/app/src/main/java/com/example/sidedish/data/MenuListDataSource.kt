@@ -1,9 +1,7 @@
 package com.example.sidedish.data
 
 import com.example.sidedish.network.ApiClient
-import retrofit2.Response
 import javax.inject.Inject
-
 
 class MenuListDataSource @Inject constructor(private val api: ApiClient) : DataSource {
 

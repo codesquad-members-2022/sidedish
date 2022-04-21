@@ -1,5 +1,7 @@
 package com.example.sidedish.di
 
+import com.example.sidedish.data.MenuListDataSource
+import com.example.sidedish.data.MenuListRepository
 import com.example.sidedish.network.ApiClient
 import dagger.Module
 import dagger.Provides
@@ -14,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object Module {
+object NetworkModule {
     private const val BASE_URL = "https://api.codesquad.kr"
 
     @Provides
@@ -45,10 +47,15 @@ object Module {
 object AppModule {
 
     @Qualifier
-    @Retention(RUNTINE)
-    annotation class
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class RemoteMenuDataSource
 
-
+    @Singleton
+    @RemoteMenuDataSource
+    @Provides
+    fun provideMenuDataSource(apiClient: ApiClient): MenuListDataSource {
+        return MenuListDataSource(apiClient)
+    }
 }
 
 
@@ -58,10 +65,10 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRepository(@App) {
-
+    fun provideRepository(
+        @AppModule.RemoteMenuDataSource menuListDataSource: MenuListDataSource
+    ): MenuListRepository {
+        return MenuListRepository(menuListDataSource)
     }
-
-
 
 }

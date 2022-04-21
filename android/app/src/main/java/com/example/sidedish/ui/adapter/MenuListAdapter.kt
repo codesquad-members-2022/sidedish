@@ -22,15 +22,22 @@ class MenuListAdapter(private val header: Header) :
 
     lateinit var itemClickCallback: ((key: String) -> Unit)
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val listBinding =
-            ItemMenuListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val headerBinding =
-            ItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return when (viewType) {
-            HEADER -> MenuListHeaderViewHolder(headerBinding)
-            else -> MenuListViewHolder(listBinding)
+            HEADER -> MenuListHeaderViewHolder(
+                ItemHeaderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            else -> MenuListViewHolder(
+                ItemMenuListBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
         }
     }
 
@@ -96,6 +103,7 @@ class MenuListAdapter(private val header: Header) :
             }
 
             itemView.setOnClickListener {
+                Log.d("TAG", "${menu.detailHash}")
                 menu.detailHash?.let { key -> itemClickCallback.invoke(key) }
             }
         }

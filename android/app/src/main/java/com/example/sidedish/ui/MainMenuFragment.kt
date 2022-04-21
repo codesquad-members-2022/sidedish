@@ -14,7 +14,6 @@ import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.FragmentMainBinding
 import com.example.sidedish.ui.adapter.MenuListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainMenuFragment : Fragment() {
@@ -23,9 +22,7 @@ class MainMenuFragment : Fragment() {
         FragmentMainBinding.inflate(layoutInflater)
     }
 
-    //    private val viewModel:MenuListViewModel by activityViewModels()
-    @Inject
-    lateinit var viewModel: MenuListViewModel
+    private val viewModel:MenuListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +35,7 @@ class MainMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mainFoodAdapter = MenuListAdapter(Header.MAIN)
         mainFoodAdapter.itemClickCallback = { key: String ->
+            Log.d("TAG", "key ${key}")
             viewModel.loadFoodDetail(key)
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
