@@ -6,9 +6,9 @@ import kr.codesquad.sidedish.domain.Event;
 public class SpecialEdition {
 
     private final String name = "기획전";
-    private List<Event> eventDishes;
+    private List<EventResponse> eventDishes;
 
-    public SpecialEdition(List<Event> eventDishes) {
+    public SpecialEdition(List<EventResponse> eventDishes) {
         this.eventDishes = eventDishes;
     }
 
@@ -16,7 +16,7 @@ public class SpecialEdition {
         return name;
     }
 
-    public List<Event> getEventDishes() {
+    public List<EventResponse> getEventDishes() {
         return eventDishes;
     }
 }

@@ -2,7 +2,10 @@ package kr.codesquad.sidedish.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import kr.codesquad.sidedish.domain.Event;
+import kr.codesquad.sidedish.dto.EventResponse;
 import kr.codesquad.sidedish.dto.SpecialEdition;
 import kr.codesquad.sidedish.repository.JdbcEventRepository;
 import org.springframework.stereotype.Service;
@@ -20,8 +23,11 @@ public class EventService {
         List<Event> events = new ArrayList<>();
         jdbcEventRepository.findAll().forEach(events::add);
 
+        List<EventResponse> eventResponses = events.stream()
+                .map(EventResponse::from)
+                .collect(Collectors.toList());
 
-        return new SpecialEdition(events.subList(0, 4));
+        return new SpecialEdition(eventResponses.subList(0, 4));
     }
 
 }
