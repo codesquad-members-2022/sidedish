@@ -15,8 +15,8 @@ const Card = ({ cardInfo }) => {
 };
 
 const Img = styled.img`
-  width: 411px;
-  height: 411px;
+  width: 410px;
+  height: 410px;
 `;
 
 export default Card;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { color } from '../css/variables';
+import { color, slideBtn } from '../css/variables';
 
-const CaegoryTitle = ({ title, banner = null }) => {
+const CategoryTitle = ({ title, banner = null }) => {
   return (
     <StyledTitle>
       {banner && <StyledSpan>{banner}</StyledSpan>}
@@ -14,6 +14,7 @@ const CaegoryTitle = ({ title, banner = null }) => {
 
 const StyledTitle = styled.div`
   display: flex;
+  margin-left: ${slideBtn.size + slideBtn.margin}px;
 `;
 
 const StyledSpan = styled.span`
@@ -32,4 +33,4 @@ const StyledH4 = styled.h4`
   font-size: 20px;
 `;
 
-export default CaegoryTitle;
+export default CategoryTitle;

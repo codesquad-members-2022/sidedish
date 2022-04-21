@@ -18,4 +18,9 @@ const fontSize = {
   xs: '0.75rem',
 };
 
-export { color, fontSize };
+const slideBtn = {
+  size: 30,
+  margin: 10,
+};
+
+export { color, fontSize, slideBtn };
