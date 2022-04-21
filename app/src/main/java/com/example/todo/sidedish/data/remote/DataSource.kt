@@ -1,5 +1,6 @@
 package com.example.todo.sidedish.data.remote
 
+import com.example.todo.sidedish.data.dto.MenuDetailDto
 import com.example.todo.sidedish.data.dto.MenuDto
 
 interface DataSource {
@@ -9,4 +10,6 @@ interface DataSource {
     suspend fun getSoup(): MenuDto
 
     suspend fun getSide(): MenuDto
+
+    suspend fun getDetail(hashDetail:String): MenuDetailDto
 }

@@ -31,8 +31,9 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigator= Navigation.findNavController(view)
-        val adapter = MenuAdapter{it->
-            navigator.navigate(R.id.action_menuFragment_to_menuDetailFragment, bundleOf("detailHash" to it))
+        val adapter = MenuAdapter{detailHash,title, badge ->
+            val bundle= bundleOf("detailHash" to detailHash, "title" to title, "badge" to badge)
+            navigator.navigate(R.id.action_menuFragment_to_menuDetailFragment, bundle)
         }
 
         binding.lifecycleOwner = viewLifecycleOwner

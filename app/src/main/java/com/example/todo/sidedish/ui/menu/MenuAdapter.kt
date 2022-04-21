@@ -11,7 +11,7 @@ import com.example.todo.sidedish.domain.model.Header
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.model.MenuItem
 
-class MenuAdapter(private val menuClick: (detailHash:String)-> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(private val menuClick: (detailHash:String, title:String, badges:List<String>? )-> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var menuItems = mutableListOf<MenuItem>()
 
@@ -68,10 +68,10 @@ class MenuAdapter(private val menuClick: (detailHash:String)-> Unit) : RecyclerV
     inner class ItemViewHolder(private val binding: ItemMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Menu, menuClick: (detailHash: String) -> Unit) {
+        fun bind(item: Menu, menuClick: (detailHash: String, description: String, badges: List<String>?) -> Unit){
             binding.item = item
             binding.root.setOnClickListener {
-                menuClick.invoke(item.detailHash)
+                menuClick.invoke(item.detailHash, item.title, item.badge)
             }
             binding.executePendingBindings()
         }

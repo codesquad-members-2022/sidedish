@@ -4,9 +4,11 @@ import com.example.todo.sidedish.common.Constants.NETWORK_ERROR_MESSAGE
 import com.example.todo.sidedish.common.Constants.STATUS_CODE_GET_SUCCESS
 import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.data.dto.toMenu
+import com.example.todo.sidedish.data.dto.toMenuDetail
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.data.remote.DataSource
 import com.example.todo.sidedish.domain.Repository
+import com.example.todo.sidedish.domain.model.MenuDetail
 import javax.inject.Inject
 
 class MenuRepositoryImpl @Inject constructor(
@@ -42,4 +44,11 @@ class MenuRepositoryImpl @Inject constructor(
         }
         return Result.Error(NETWORK_ERROR_MESSAGE, null)
     }
+
+    override suspend fun getDetail(detailHash: String): MenuDetail {
+        val response = onBanDataSource.getDetail(detailHash)
+        return response.data.toMenuDetail()
+    }
+
+
 }

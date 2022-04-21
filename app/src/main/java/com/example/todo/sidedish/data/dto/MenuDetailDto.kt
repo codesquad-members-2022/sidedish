@@ -11,22 +11,30 @@ data class MenuDetailDto(
 )
 
 data class Data(
-    @SerializedName("delivery_fee")
-    val deliveryFee: String,
-    @SerializedName("delivery_info")
-    val deliveryInfo: String,
-    @SerializedName("detail_section")
-    val detailSection: List<String>,
-    @SerializedName("point")
-    val point: String,
-    @SerializedName("prices")
-    val prices: List<String>,
-    @SerializedName("product_description")
-    val productDescription: String,
+
+    @SerializedName("top_image")
+    val topImage: String,
     @SerializedName("thumb_images")
     val thumbImages: List<String>,
-    @SerializedName("top_image")
-    val topImage: String
+    @SerializedName("product_description")
+    val productDescription: String,
+    @SerializedName("point")
+    val point: String,
+    @SerializedName("delivery_info")
+    val deliveryInfo: String,
+    @SerializedName("delivery_fee")
+    val deliveryFee: String,
+    @SerializedName("prices")
+    val prices: List<String>,
+    @SerializedName("detail_section")
+    val detailSection: List<String>
 )
 
-fun Data.toMenuDetail(): MenuDetail =  MenuDetail(deliveryFee, deliveryInfo, detailSection, point, prices, productDescription, thumbImages, topImage )
+fun Data.toMenuDetail(): MenuDetail {
+    return if(prices.size>1){
+        MenuDetail(topImage, thumbImages, productDescription, point, deliveryInfo, deliveryFee, prices[0], prices[1], detailSection )
+    }
+    else{
+        MenuDetail(topImage, thumbImages, productDescription, point, deliveryInfo, deliveryFee, null, prices[0], detailSection )
+    }
+}

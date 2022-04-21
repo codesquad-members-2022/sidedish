@@ -3,9 +3,22 @@
 
     <data>
 
+        <import type="java.util.List" />
+
+        <variable
+            name="detail"
+            type="com.example.todo.sidedish.domain.model.MenuDetail" />
+
+        <variable
+            name="event"
+            type="java.lang.String" />
+
+        <variable
+            name="badge"
+            type="List&lt;String>" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,7 +31,9 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_item_detail_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="340dp"
+
+                />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +42,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="340dp"
                 android:layout_marginEnd="16dp">
+
 
                 <TextView
                     android:id="@+id/tv_menu_title"
@@ -43,7 +59,8 @@
                     style="@style/TextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_menu_detail_subtitle"
+                    android:layout_marginTop="10dp"
+                    android:text="@{detail.description}"
                     android:textColor="@color/grey2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_menu_title" />
@@ -53,7 +70,8 @@
                     style="@style/TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_menu_detail_discountPrice"
+                    android:layout_marginTop="10dp"
+                    android:text="@{detail.SPrice}"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_menu_sub_title" />
@@ -61,35 +79,57 @@
                 <TextView
                     android:id="@+id/tv_menu_origin_price"
                     style="@style/TextMedium"
+                    cancelText="@{detail.NPrice}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="@string/label_menu_detail_originPrice"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/grey2"
                     app:layout_constraintStart_toEndOf="@+id/tv_menu_price"
                     app:layout_constraintTop_toBottomOf="@id/tv_menu_sub_title" />
 
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_launching_event"
-                    style="@style/Caption"
-                    android:layout_width="64dp"
+                <TextView
+                    android:id="@+id/btn_event"
+                    style="@style/Caption.Purple2"
+                    checkEvent="@{badge}"
+                    android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:background="@drawable/badge_background_purple"
-                    android:paddingHorizontal="8dp"
-                    android:text="@string/label_menu_sub_eventBtn_title"
-                    android:textColor="@color/white"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/badge_background_light_purple"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/label_event"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price" />
+
+                <TextView
+                    android:id="@+id/btn_launching"
+                    style="@style/Caption.White"
+                    checkLaunch="@{badge}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:background="@drawable/badge_background_purple"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/label_launch"
+                    app:layout_constraintStart_toEndOf="@id/btn_event"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price" />
+
 
                 <View
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="48dp"
                     android:background="@color/grey2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_launching_event" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price"
+
+                    />
 
                 <TextView
                     android:id="@+id/tv_point"
@@ -109,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="24dp"
-                    android:text="@string/label_menu_detail_point_value"
+                    android:text="@{detail.point}"
                     android:textColor="@color/grey2"
                     app:layout_constraintStart_toEndOf="@id/tv_point"
                     app:layout_constraintTop_toBottomOf="@id/divider" />
@@ -131,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="@string/label_menu_detail_delivery_info_value"
+                    android:text="@{detail.deliveryInfo}"
                     android:textColor="@color/grey2"
                     app:layout_constraintStart_toStartOf="@id/tv_point_value"
                     app:layout_constraintTop_toBottomOf="@id/tv_point" />
@@ -154,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="@string/label_menu_detail_delivery_price_value"
+                    android:text="@{detail.deliveryFee}"
                     android:textColor="@color/grey2"
                     app:layout_constraintStart_toStartOf="@id/tv_point_value"
                     app:layout_constraintTop_toBottomOf="@id/tv_delievery_info" />
@@ -247,6 +287,7 @@
                     app:layout_constraintTop_toTopOf="@id/tv_total_count" />
 
                 <Button
+                    android:id="@+id/btn_total_price"
                     style="@style/TextMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -257,7 +298,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_total_count" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_total_price" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>
