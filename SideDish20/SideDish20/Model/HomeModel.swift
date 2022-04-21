@@ -7,15 +7,11 @@
 
 import Foundation
 
-class HomeModel {
-    var image: String?
-    var name: String?
-    var description: String?
-    var discountedPrice: String?
-    var originalPrice: String?
-    var specialMessage: String?
-    
-    required init?() {
-        
-    }
+struct HomeModel {
+    let image: String
+    let name: String
+    let description: String
+    let discountedPrice: String?
+    let originalPrice: String
+    let specialMessage: String
 }
