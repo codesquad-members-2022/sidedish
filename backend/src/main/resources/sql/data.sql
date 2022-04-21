@@ -96,9 +96,9 @@ VALUES ('서울 경기 새벽 배송');
 INSERT INTO delivery (detail)
 VALUES ('전국 택배 배송');
 
-INSERT INTO delivery_dish (dish_id, delivery_id)
+INSERT INTO dish_delivery (dish_id, delivery_id)
 VALUES (1, 1);
-INSERT INTO delivery_dish (dish_id, delivery_id)
+INSERT INTO dish_delivery (dish_id, delivery_id)
 VALUES (1, 2);
 
 -- category : festival

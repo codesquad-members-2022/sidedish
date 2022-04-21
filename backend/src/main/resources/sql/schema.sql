@@ -70,24 +70,24 @@ CREATE TABLE delivery
     PRIMARY KEY (delivery_id)
 );
 
-DROP TABLE IF EXISTS delivery_order;
+DROP TABLE IF EXISTS order_delivery;
 
-CREATE TABLE delivery_order
+CREATE TABLE order_delivery
 (
     order_id    INT NOT NULL COMMENT 'order 테이블의 레코드를 식별하기 위한 ID',
     delivery_id INT NOT NULL COMMENT 'delivery 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_delivery_order PRIMARY KEY (order_id, delivery_id),
+    CONSTRAINT PK_order_delivery PRIMARY KEY (order_id, delivery_id),
     FOREIGN KEY (order_id) REFERENCES `order` (order_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id)
 );
 
-DROP TABLE IF EXISTS delivery_dish;
+DROP TABLE IF EXISTS dish_delivery;
 
-CREATE TABLE delivery_dish
+CREATE TABLE dish_delivery
 (
     dish_id     INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
     delivery_id INT NOT NULL COMMENT 'delivery 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_delivery_dish PRIMARY KEY (dish_id, delivery_id),
+    CONSTRAINT PK_dish_delivery PRIMARY KEY (dish_id, delivery_id),
     FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id)
 );
