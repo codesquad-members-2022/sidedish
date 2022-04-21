@@ -16,7 +16,8 @@ public class DishRowMapper implements RowMapper<Dish> {
             rs.getString("title"),
             rs.getString("description"),
             rs.getInt("price"),
-            rs.getInt("stock")
+            rs.getInt("stock"),
+            rs.getInt("category_id")
         );
         EventBadge eventBadge = new EventBadge(
             rs.getInt("event_badge_id"),

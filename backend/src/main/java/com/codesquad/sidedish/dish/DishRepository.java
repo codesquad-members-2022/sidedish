@@ -10,7 +10,7 @@ public interface DishRepository extends CrudRepository<Dish, Integer> {
 
     @Query(value = "select d.dish_id, d.title, d.description, d.price, d.stock,"
         + " eb.event_badge_id, eb.event_badge_name, eb.discount,"
-        + " di.dish_image_id, di.image_path"
+        + " di.dish_image_id, di.image_path, dc.category_id"
         + " from dish d"
         + " left outer join event_badge eb on d.event_badge_id = eb.event_badge_id"
         + " left outer join dish_image di on d.dish_id = di.dish_id and di.sequence = 1"
@@ -23,7 +23,7 @@ public interface DishRepository extends CrudRepository<Dish, Integer> {
 
     @Query(value = "select d.dish_id, d.title, d.description, d.price, d.stock,"
         + " eb.event_badge_id, eb.event_badge_name, eb.discount,"
-        + " di.dish_image_id, di.image_path"
+        + " di.dish_image_id, di.image_path, dc.category_id"
         + " from dish d"
         + " left outer join event_badge eb on d.event_badge_id = eb.event_badge_id"
         + " left outer join dish_image di on d.dish_id = di.dish_id and di.sequence = 1"

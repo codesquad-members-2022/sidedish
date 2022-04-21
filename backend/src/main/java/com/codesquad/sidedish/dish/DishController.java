@@ -2,7 +2,6 @@ package com.codesquad.sidedish.dish;
 
 import com.codesquad.sidedish.dish.dto.DishResponse;
 import com.codesquad.sidedish.dish.dto.Slice;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +18,7 @@ public class DishController {
     @GetMapping
     public Slice<DishResponse> findDishes(
         @RequestParam(value = "section", required = false) String sectionName,
-        @RequestParam(value = "category", required = false) String categoryName,
-        @RequestParam(value = "festival", required = false) String festivalName,
-        @RequestParam(value = "flat", required = false) Boolean flat
+        @RequestParam(value = "category", required = false) String categoryName
     ) {
         if (sectionName != null) {
             return dishService.findDishBySection(sectionName.replace("-", " "));
