@@ -3,8 +3,67 @@ import "./Tab.css";
 import React, { useState } from "react";
 
 const Tab = () => {
+  const a = [
+    {
+      detail_hash: "HBDEF",
+      image:
+        "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+      alt: "오리 주물럭_반조리",
+      delivery_type: ["새벽배송", "전국택배"],
+      title: "오리 주물럭_반조리",
+      description: "감칠맛 나는 매콤한 양념",
+      n_price: "15,800원",
+      s_price: "12,640원",
+      badge: ["런칭특가"],
+    },
+  ];
+  const b = [
+    {
+      detail_hash: "HDF73",
+      image:
+        "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
+      alt: "잡채",
+      delivery_type: ["새벽배송", "전국택배"],
+      title: "잡채",
+      description: "탱글한 면발과 맛깔진 고명이 가득",
+      n_price: "12,900원",
+      s_price: "11,610원",
+      badge: ["이벤트특가"],
+    },
+  ];
+  const c = [
+    {
+      detail_hash: "HEDFB",
+      image:
+        "http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg",
+      alt: "쭈꾸미 한돈 제육볶음_반조림",
+      delivery_type: ["새벽배송", "전국택배"],
+      title: "쭈꾸미 한돈 제육볶음_반조림",
+      description: "쫄깃한 쭈꾸미와 고소한 돼지고기가 일품",
+      s_price: "16,900원",
+    },
+  ];
+
   const [infor, setInfor] = useState([
-    { id: 1, title: "풍성한 고기반찬", active: true },
+    {
+      id: 1,
+      title: "풍성한 고기반찬",
+      active: true,
+      detail: [
+        {
+          detail_hash: "HBDEF",
+          image:
+            "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
+          alt: "오리 주물럭_반조리",
+          delivery_type: ["새벽배송", "전국택배"],
+          title: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          n_price: "15,800원",
+          s_price: "12,640원",
+          badge: ["런칭특가"],
+        },
+      ],
+    },
     { id: 2, title: "편리한 반찬세트", active: false },
     { id: 3, title: "맛있는 제철요리", active: false },
     { id: 4, title: "우리 아이 영향 반찬", active: false },
