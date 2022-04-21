@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./BigSidedish.css";
 
-function SidedischCard(props) {
+function SidedischCard() {
     return (
         <ul className="big-sidedish__cards">
             <li className="big-sidedish__card">
@@ -33,30 +33,41 @@ function SidedischCard(props) {
     );
 }
 
-function BigSidedish() {
-    const [currTab, setTab] = useState(0);
-    const changeTab = (event) => {
-        const idx = Number(event.target.dataset.idx);
-        setTab(idx);
-    };
-
+function TabMenu(props) {
     const tabMenu = [
         "풍성한 고기 반찬",
         "편리한 반찬 세트",
         "맛있는 제철 요리",
         "우리 아이 영양 반찬",
     ];
+
     const tabMenuTemplate = tabMenu.map((menuName, idx) => {
         let tabMenuClassName = "big-sidedish__menu-item";
-        if (idx === currTab) {
+        if (idx === props.currTab) {
             tabMenuClassName += " current-tab";
         }
         return (
-            <li className={tabMenuClassName} data-idx={idx} key={idx}>
+            <li
+                className={tabMenuClassName}
+                index={idx}
+                key={idx}
+                onClick={() => {
+                    props.onChangeCurrTab(idx);
+                }}
+            >
                 {menuName}
             </li>
         );
     });
+
+    return tabMenuTemplate;
+}
+
+function BigSidedish() {
+    const [currTab, setTab] = useState(0);
+    const changeTab = (index) => {
+        setTab(index);
+    };
 
     return (
         <div className="big-sidedish">
@@ -64,8 +75,8 @@ function BigSidedish() {
                 <h2 className="big-sidedish__title">
                     한 번 주문하면 두 번 반하는 반찬
                 </h2>
-                <ul className="big-sidedish__tab-menu" onClick={changeTab}>
-                    {tabMenuTemplate}
+                <ul className="big-sidedish__tab-menu">
+                    <TabMenu currTab={currTab} onChangeCurrTab={changeTab} />
                 </ul>
             </div>
             <SidedischCard currTab={currTab} />

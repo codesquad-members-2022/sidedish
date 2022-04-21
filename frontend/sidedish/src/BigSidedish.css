@@ -4,8 +4,7 @@
     margin: 56px 80px;
 }
 .big-sidedish__title {
-    font-family: Noto Sans KR;
-    font-size: 40px;
+    font-size: 4rem;
     font-weight: 700;
     line-height: 58px;
     letter-spacing: -0.004em;
@@ -15,8 +14,7 @@
     display: flex;
 }
 .big-sidedish__menu-item {
-    font-family: Noto Sans KR;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 500;
     line-height: 30px;
     letter-spacing: -0.008em;
@@ -25,13 +23,6 @@
 }
 .big-sidedish__cards {
     display: flex;
-}
-.big-sidedish__card {
-    position: static;
-    width: 302px;
-    height: 302px;
-    left: 0px;
-    top: 0px;
 }
 .current-tab {
     border-bottom: solid 1px black;

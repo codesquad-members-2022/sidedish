@@ -5,9 +5,8 @@ header {
 }
 .header__title {
     font-family: "Outfit";
-    font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 4rem;
     line-height: 50px;
     color: #1b1b1b;
 }
@@ -15,7 +14,6 @@ header {
     display: flex;
     width: 100%;
     margin-left: 40px;
-    cursor: pointer;
 }
 .header__nav-list {
     display: flex;
@@ -25,14 +23,13 @@ header {
     padding-bottom: 10px;
 }
 .header__food-title {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 26px;
     letter-spacing: -0.008em;
     color: #1b1b1b;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 .header__food-list {
     display: flex;
@@ -49,14 +46,14 @@ header {
 .header__icon-item {
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 .header__food-item {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 24px;
     letter-spacing: -0.008em;
+    cursor: pointer;
 }
 .header__food-item:hover {
     color: #777;
