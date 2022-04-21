@@ -1,18 +1,14 @@
 package com.example.sidedish.ui
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.sidedish.R
 import com.example.sidedish.databinding.FragmentHomeBinding
 import com.example.sidedish.ui.animation.ZoomOutPageTransformer
 import dagger.hilt.android.AndroidEntryPoint

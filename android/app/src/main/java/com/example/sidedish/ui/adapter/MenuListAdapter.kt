@@ -103,7 +103,6 @@ class MenuListAdapter(private val header: Header) :
             }
 
             itemView.setOnClickListener {
-                Log.d("TAG", "${menu.detailHash}")
                 menu.detailHash?.let { key -> itemClickCallback.invoke(key) }
             }
         }

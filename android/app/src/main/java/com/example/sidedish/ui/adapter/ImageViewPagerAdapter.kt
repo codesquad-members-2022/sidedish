@@ -1,5 +1,6 @@
 package com.example.sidedish.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -15,6 +16,7 @@ class ImageViewPagerAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(foodImage: FoodImage) {
             with(binding) {
+                Log.d("TAG", "viewholder ${foodImage.thumbnailImage}")
                 Glide.with(itemView).load(foodImage.thumbnailImage).into(ivThumbnail)
             }
         }
