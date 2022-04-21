@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import MainCard from './MainCard';
+
 import { fetchData } from './utility/util';
+import MainCard from './MainCard';
 
 const App = () => {
   const [mainCardData, setMainCardData] = useState([]);
