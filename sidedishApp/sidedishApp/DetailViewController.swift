@@ -69,7 +69,7 @@ private extension DetailViewController{
         firstSectionView.topAnchor.constraint(equalTo: self.imageScrollView.bottomAnchor, constant: 24).isActive = true
         firstSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
         firstSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16).isActive = true
-        firstSectionView.heightAnchor.constraint(equalToConstant: 176).isActive = true
+        firstSectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
     
     func configureSecondSectionView() {
@@ -85,6 +85,6 @@ private extension DetailViewController{
         thirdSectionView.topAnchor.constraint(equalTo: self.secondSectionView.bottomAnchor).isActive = true
         thirdSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16).isActive = true
         thirdSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16).isActive = true
-        thirdSectionView.heightAnchor.constraint(equalToConstant: 176).isActive = true
+        thirdSectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
     }
 }

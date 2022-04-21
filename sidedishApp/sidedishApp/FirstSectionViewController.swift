@@ -36,7 +36,8 @@ private extension FirstSectionViewController {
         titleLabel.frame = CGRect(x: 0, y: 0, width: 343, height: 48)
         titleLabel.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
         titleLabel.font = UIFont(name: "SFProDisplay-Regular", size: 32)
-        setTextAttribute(label: titleLabel, text: "오리 주물럭_반조리")
+        titleLabel.baselineAdjustment = .alignCenters
+        titleLabel.text = "오리 주물럭_반조리"
         self.view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +52,8 @@ private extension FirstSectionViewController {
         subLabel.frame = CGRect(x: 0, y: 0, width: 177, height: 24)
         subLabel.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         subLabel.font = UIFont(name: "SFProDisplay-Regular", size: 18)
-        setTextAttribute(label: subLabel, text: "감칠맛 나는 매콤한 양념")
+        subLabel.baselineAdjustment = .alignCenters
+        subLabel.text = "감칠맛 나는 매콤한 양념"
         self.view.addSubview(subLabel)
         
         subLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +68,8 @@ private extension FirstSectionViewController {
         salePrice.frame = CGRect(x: 0, y: 0, width: 74, height: 24)
         salePrice.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
         salePrice.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
-        setTextAttribute(label: salePrice, text: "12,640원")
+        salePrice.baselineAdjustment = .alignCenters
+        salePrice.text = "12,640원"
         self.view.addSubview(salePrice)
         
         salePrice.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +103,7 @@ private extension FirstSectionViewController {
         eventLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         eventLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         eventLabel.textAlignment = .center
+        eventLabel.baselineAdjustment = .alignCenters
         eventLabel.text = "런칭특가"
         self.view.addSubview(eventLabel)
         
@@ -124,17 +128,12 @@ private extension FirstSectionViewController {
         sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
-    func setTextAttribute(label: UILabel, text: String) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.26
-        
-        label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-    }
-    
     func setRawPriceAttribute(label: UILabel, text: String) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.26
-        
-        label.attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(.strikethroughStyle,
+                                        value: NSUnderlineStyle.single.rawValue,
+                                        range: NSMakeRange(0, attributeString.length))
+        label.attributedText = attributeString
+        label.baselineAdjustment = .alignCenters
     }
 }
