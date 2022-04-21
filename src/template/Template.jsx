@@ -85,7 +85,14 @@ export default function Template() {
       <TabButton value="Text" />
       <TabButton isSelected value="Text" />
       <TemplateSubTitle>Tab Bar</TemplateSubTitle>
-      <TabBar />
+      <TabBar
+        tabNames={[
+          "훌륭한 고기 반찬",
+          "편리한 반찬 세트",
+          "맛있는 제철 요리",
+          "우리 아이 영양 반찬",
+        ]}
+      />
     </div>
   );
 }

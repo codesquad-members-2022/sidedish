@@ -2,16 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import TabButton from "./TabButton";
 
-export default function TabBar() {
+export default function TabBar(props) {
+  const { tabNames } = props;
   return (
     <Wrap>
-      <TabButton value="풍성한 고기 반찬" isSelected />
-      <TabButton value="편리한 반찬 세트" />
-      <TabButton value="맛있는 제철 요리" />
-      <TabButton value="우리 아이 영양 반찬" />
+      {tabNames.map((tabName, i) => {
+        if (i === 0) {
+          return <TabButton value={tabName} isSelected />;
+        }
+        return <TabButton value={tabName} />;
+      })}
     </Wrap>
   );
 }
+
+TabBar.defaultProps = {
+  tabNames: [],
+};
 
 const Wrap = styled.div({
   display: "flex",
