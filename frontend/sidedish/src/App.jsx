@@ -1,6 +1,6 @@
-import Header from "./Header";
-import Main from "./Main";
+import Main from "./components/Main";
 import { Reset } from "styled-reset";
+import Header from "./components/Header";
 
 const App = () => {
   return (

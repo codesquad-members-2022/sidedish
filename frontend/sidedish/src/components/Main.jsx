@@ -1,48 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import ItemCards from "./ItemCards";
-import Label from "./Label";
-import mockData from "./mockData";
-import constants from "./constants";
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-direction: column;
-`;
-
-const MainTitleContainer = styled.div`
-  padding: 66px 80px 33px 80px;
-  display: flex;
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  display: inline-block;
-  font-family: "Noto Sans KR";
-  font-weight: 700;
-  font-size: 40px;
-  color: #1b1b1b;
-  padding-left: 16px;
-`;
-
-const MainLnbContainer = styled.ul`
-  display: flex;
-  border-bottom: 1px solid #ebebeb;
-  padding-left: 48px;
-`;
-
-const MainLnb = styled.li`
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  margin: 0 32px;
-  padding-bottom: 17px;
-  cursor: pointer;
-
-  border-bottom: ${(props) => (props.title === props.lnbState ? "black solid 1px" : "")};
-`;
+import Label from "../core/Label";
+import mockData from "../mockData";
+import constants from "../consts/constants";
 
 const Main = () => {
   const lnb = mockData.lnb;
@@ -83,5 +44,45 @@ const Main = () => {
     </MainContainer>
   );
 };
+
+const MainContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+`;
+
+const MainTitleContainer = styled.div`
+  padding: 66px 80px 33px 80px;
+  display: flex;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  display: inline-block;
+  font-family: "Noto Sans KR";
+  font-weight: 700;
+  font-size: 40px;
+  color: #1b1b1b;
+  padding-left: 16px;
+`;
+
+const MainLnbContainer = styled.ul`
+  display: flex;
+  border-bottom: 1px solid #ebebeb;
+  padding-left: 48px;
+`;
+
+const MainLnb = styled.li`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0 32px;
+  padding-bottom: 17px;
+  cursor: pointer;
+
+  border-bottom: ${(props) => (props.title === props.lnbState ? "black solid 1px" : "")};
+`;
 
 export default Main;
