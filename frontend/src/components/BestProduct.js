@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   height: 786px;
 `;
 export const BestProduct = ({ themes }) => {
+  console.log(themes);
   const [selected, setSelected] = useState(0);
   useEffect(() => {});
   return (

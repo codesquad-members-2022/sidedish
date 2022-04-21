@@ -59,23 +59,25 @@ export const Category = ({
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    (async () => {
       let query;
       query = theme ? `api/products/theme_id?=${id}` : `products.json`;
       const res = await (await fetch(query)).json();
-      setProducts(res.data);
-    };
-    fetchProducts().then(() => console.log(products));
-  }, []);
-
+      const {
+        products: { data },
+      } = res;
+      setProducts(data);
+    })();
+  }, [theme, id]);
+  console.log(products);
   return (
     <>
       <CategoryTitle size={size}>{name}</CategoryTitle>
       <ProductCardWrapper size={size}>
-        $
-        {products.map((productData) => (
-          <ProductCard size={size} {...productData}></ProductCard>
-        ))}
+        {products &&
+          products.map((productData, key) => (
+            <ProductCard key={key} size={size} {...productData}></ProductCard>
+          ))}
       </ProductCardWrapper>
       <SlideButtons size={size}></SlideButtons>
     </>
