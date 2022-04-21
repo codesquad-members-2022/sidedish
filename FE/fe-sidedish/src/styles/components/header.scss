@@ -1,0 +1,79 @@
+@import "../base/app.scss";
+
+.header {
+  border-bottom: 1px solid $black;
+
+  .wrapper {
+    margin: 0 auto;
+    width: 1440px;
+    padding: 16px 80px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__title {
+    font-family: "Outfit";
+    font-weight: $heavy;
+    font-size: $display;
+  }
+
+  &__categories {
+    margin: 20px auto 0 40px;
+    display: flex;
+    gap: 24px;
+  }
+
+  &__sub-categories {
+    margin: 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__sub-category {
+    font-size: $small;
+
+    a {
+      display: block;
+      color: $black;
+      &:hover {
+        color: $orange;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__menus {
+    margin: 16px 0 0;
+    display: flex;
+    gap: 16px;
+  }
+
+  &__icon-menus {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__icon-menu {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+
+    a {
+      display: block;
+      height: 32px;
+      font-size: 0;
+    }
+
+    &--search {
+      background-image: url("../../asset/icons/search.svg");
+    }
+    &--mypage {
+      background-image: url("../../asset/icons/mypage.svg");
+    }
+    &--cart {
+      background-image: url("../../asset/icons/cart.svg");
+    }
+  }
+}
