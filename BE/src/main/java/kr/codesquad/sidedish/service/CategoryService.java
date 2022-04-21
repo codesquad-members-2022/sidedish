@@ -1,7 +1,6 @@
 package kr.codesquad.sidedish.service;
 
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import kr.codesquad.sidedish.domain.Category;
 import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.dto.CategorizedDishes;
@@ -26,20 +25,20 @@ public class CategoryService {
     public List<Dish> findAll() {
         List<Dish> dishes = new ArrayList<>();
         jdbcDishRepository.findAll().forEach(dishes::add);
-
         return dishes;
     }
 
     public CategorizedDishes findDishesByCategoryId(Long categoryId) {
         Category category = jdbcCategoryRepository.findById(categoryId).orElseThrow();
-
         List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(category.getId());
-
         List<DishSimpleResponse> dishSimpleResponses = dishesByCategoryId.stream()
             .map(dish -> DishSimpleResponse.of(dish)).collect(Collectors.toList());
 
         return new CategorizedDishes(category, dishSimpleResponses);
     }
+
+
+
 
 
 }
