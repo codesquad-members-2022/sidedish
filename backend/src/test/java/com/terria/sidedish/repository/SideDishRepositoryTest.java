@@ -21,6 +21,5 @@ class SideDishRepositoryTest {
     void findById() {
         Optional<SideDish> sideDish = sideDishRepository.findById(1L);
         assertThat(sideDish).isNotEmpty();
-        System.out.println(sideDish);
     }
 }

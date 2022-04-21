@@ -21,6 +21,5 @@ class ExhibitionRepositoryTest {
     void findByExhibitionId() {
         Optional<Exhibition> exhibition = exhibitionRepository.findById(2L);
         assertThat(exhibition).isNotEmpty();
-        System.out.println(exhibition);
     }
 }
