@@ -1,6 +1,6 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.domain.SideDish;
+import com.terria.sidedish.domain.entity.reference.SideDish;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

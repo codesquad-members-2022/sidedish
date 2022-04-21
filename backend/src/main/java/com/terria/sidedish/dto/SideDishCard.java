@@ -1,8 +1,8 @@
 package com.terria.sidedish.dto;
 
 import com.terria.sidedish.domain.DiscountEvent;
-import com.terria.sidedish.domain.SideDish;
 import com.terria.sidedish.domain.SideDishImage;
+import com.terria.sidedish.domain.entity.reference.SideDish;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -32,7 +32,7 @@ public class SideDishCard {
 
         return new SideDishCard(
                 sideDish.getId(),
-                sideDishImage.getImageUrl(), //
+                sideDishImage.getImageUrl(),
                 sideDish.getName(),
                 sideDish.getDescription(),
                 (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 100 * 100,

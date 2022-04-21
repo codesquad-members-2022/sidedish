@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @AllArgsConstructor
-@ToString
 public class SideDishImage {
 
     @Id

@@ -1,13 +1,13 @@
 package com.terria.sidedish.repository;
 
-import com.terria.sidedish.domain.entity.reference.SideDish;
+import com.terria.sidedish.domain.entity.aggregate.Exhibition;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface SideDishRepository extends CrudRepository<SideDish, Long> {
+public interface ExhibitionRepository extends CrudRepository<Exhibition, Long> {
 
-    Optional<SideDish> findById(long id);
+    Optional<Exhibition> findById(long id);
 }
