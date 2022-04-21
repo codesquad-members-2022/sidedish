@@ -119,3 +119,20 @@
     height: 411px;
   }
 }
+
+.card--small {
+
+  .card__image {
+    display: block;
+    width: 160px;
+    margin-bottom: 8px;
+  }
+
+  .card__title {
+    color: $grey-1;
+    font-size: $small;
+    font-weight: $medium;
+    letter-spacing: -0.008em;
+    margin-bottom: 8px;
+  }
+}
