@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     line-height: 1.5;
     height: 100%;
-    font-family: "Outfit", sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
   }
   html,
   h1,
