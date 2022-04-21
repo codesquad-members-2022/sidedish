@@ -1,26 +1,26 @@
 package kr.codesquad.sidedish.dto;
 
-import kr.codesquad.sidedish.domain.MainCategory;
-import kr.codesquad.sidedish.domain.Dish;
+import kr.codesquad.sidedish.domain.Category;
+
 
 import java.util.List;
 
 public class CategorizedDishes {
 
-    private final MainCategory mainCategory;
-    private final List<Dish> dishes;
+    private final Category category;
+    private final List<DishSimpleResponse> dishes;
 
 
-    public CategorizedDishes(MainCategory mainCategory, List<Dish> dishes) {
-        this.mainCategory = mainCategory;
+    public CategorizedDishes(Category mainCategory, List<DishSimpleResponse> dishes) {
+        this.category = mainCategory;
         this.dishes = dishes;
     }
 
-    public MainCategory getMainCategory() {
-        return mainCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public List<Dish> getDishes() {
+    public List<DishSimpleResponse> getDishes() {
         return dishes;
     }
 }

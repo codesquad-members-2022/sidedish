@@ -1,7 +1,7 @@
 package kr.codesquad.sidedish.repository;
 
 import kr.codesquad.sidedish.domain.Dish;
-import kr.codesquad.sidedish.dto.DishSimpleResponse;
+import kr.codesquad.sidedish.dto.DishDetailResponse;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,7 +21,7 @@ public interface JdbcDishRepository extends CrudRepository<Dish, Long> {
             "left outer join IMAGE i" +
             "ON d.id = i.dish_id" +
             "where d.category_id = :categoryId")
-    public List<DishSimpleResponse> findAllByCategoryId(Long categoryId);
+    public List<DishDetailResponse> findAllByCategoryId(Long categoryId);
 
-    public List<Dish> findDishesByMainCategoryId(Long categoryId);
+    public List<Dish> findDishesByCategoryId(Long categoryId);
 }

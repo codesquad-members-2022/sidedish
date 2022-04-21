@@ -12,4 +12,8 @@ public enum DiscountPolicy {
     DiscountPolicy(Function<Integer, Integer> calculate) {
         this.calculate = calculate;
     }
+
+    public int calculate(int price) {
+        return this.calculate.apply(price);
+    }
 }

@@ -1,7 +1,6 @@
 package kr.codesquad.sidedish.repository;
 
 import kr.codesquad.sidedish.domain.Dish;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,8 @@ class JdbcDishRepositoryTest {
         Dish dish = jdbcDishRepository.findById(1L).orElseThrow();
 
         assertThat(dish.getImages()).hasSize(3);
-        assertThat(dish.getMainCategoryId()).isEqualTo(1L);
-        assertThat(dish.getSubCategoryId()).isEqualTo(1L);
+        assertThat(dish.getCategoryId()).isEqualTo(1L);
+        assertThat(dish.getEventId()).isEqualTo(1L);
         assertThat(dish.getImages().get(0).getName()).isEqualTo("짱민아침메인사진.jpg");
         assertThat(dish.getImages().get(1).getName()).isEqualTo("짱민아침서브사진.jpg");
         assertThat(dish.getImages().get(2).getName()).isEqualTo("짱민아침디테일사진.jpg");
@@ -47,9 +46,9 @@ class JdbcDishRepositoryTest {
 
     @Test
     void find_dishes_with_image() {
-        List<Dish> dishesByMainCategoryId = jdbcDishRepository.findDishesByMainCategoryId(1L);
+        List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(1L);
 
-        for (Dish dish1 : dishesByMainCategoryId) {
+        for (Dish dish1 : dishesByCategoryId) {
             System.out.println(dish1);
         }
     }

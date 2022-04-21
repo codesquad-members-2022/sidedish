@@ -1,6 +1,7 @@
 package kr.codesquad.sidedish.repository;
 
-import kr.codesquad.sidedish.domain.MainCategory;
+
+import kr.codesquad.sidedish.domain.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,16 @@ class JdbcCategoryRepositoryTest {
     private JdbcCategoryRepository jdbcCategoryRepository;
 
 
-    private MainCategory category;
+    private Category category;
 
     @BeforeEach
     void setUp() {
-        category = new MainCategory(null, "짱민", "짱");
+        category = new Category(null, "짱민", "짱");
     }
     @Test
     void test() {
 
-        MainCategory saved = jdbcCategoryRepository.save(category);
+        Category saved = jdbcCategoryRepository.save(category);
         assertThat(saved.getId()).isEqualTo(1L);
         assertThat(saved.getName()).isEqualTo("짱민");
         assertThat(saved.getDescription()).isEqualTo("짱");

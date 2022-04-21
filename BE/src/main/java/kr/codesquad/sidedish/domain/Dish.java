@@ -5,13 +5,13 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.List;
 
-
 public class Dish {
+
 
     @Id
     private final Long id;
-    private final Long mainCategoryId;
-    private final Long subCategoryId;
+    private final Long categoryId;
+    private final Long eventId;
     private final String name;
     private final String description;
     private final int stock;
@@ -21,11 +21,12 @@ public class Dish {
     @MappedCollection(idColumn = "DISH_ID", keyColumn = "ID")
     private final List<Image> images;
 
-    public Dish(Long id, Long mainCategoryId, Long subCategoryId, String name, String description,
-                int stock, int price, DeliveryType deliveryType, DiscountPolicy discountPolicy, List<Image> images) {
+    public Dish(Long id, Long categoryId, Long eventId, String name, String description, int stock,
+        int price, DeliveryType deliveryType,
+        DiscountPolicy discountPolicy, List<Image> images) {
         this.id = id;
-        this.mainCategoryId = mainCategoryId;
-        this.subCategoryId = subCategoryId;
+        this.categoryId = categoryId;
+        this.eventId = eventId;
         this.name = name;
         this.description = description;
         this.stock = stock;
@@ -39,12 +40,12 @@ public class Dish {
         return id;
     }
 
-    public Long getMainCategoryId() {
-        return mainCategoryId;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public Long getSubCategoryId() {
-        return subCategoryId;
+    public Long getEventId() {
+        return eventId;
     }
 
     public String getName() {
@@ -75,19 +76,28 @@ public class Dish {
         return images;
     }
 
+    public int getDiscountPrice() {
+        return this.discountPolicy.calculate(this.price);
+    }
+
+    public String getImageName(int imageIndex) {
+        return this.images.get(imageIndex).getName();
+    }
+
+
     @Override
     public String toString() {
         return "Dish{" +
-                "id=" + id +
-                ", mainCategoryId=" + mainCategoryId +
-                ", subCategoryId=" + subCategoryId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", stock=" + stock +
-                ", price=" + price +
-                ", deliveryType=" + deliveryType +
-                ", discountPolicy=" + discountPolicy +
-                ", images=" + images +
-                '}';
+            "id=" + id +
+            ", categoryId=" + categoryId +
+            ", eventId=" + eventId +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", stock=" + stock +
+            ", price=" + price +
+            ", deliveryType=" + deliveryType +
+            ", discountPolicy=" + discountPolicy +
+            ", images=" + images +
+            '}';
     }
 }
