@@ -1,12 +1,20 @@
 import { MenuList } from './MenuList';
 import { UserButtons } from './UserButtons';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import Colors from '../Constants/Colors';
+=======
+import COLOR from '../Constants/Constants';
+>>>>>>> 4ebb429 (feat: 카드 컴포넌트 구현)
 
 const HeaderWrapper = styled.header`
   width: 1440px;
   padding: 16px 80px;
+<<<<<<< HEAD
   border-bottom: 1px solid ${Colors.BLACK};
+=======
+  border-bottom: 1px solid ${COLOR.BLACK};
+>>>>>>> 4ebb429 (feat: 카드 컴포넌트 구현)
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
