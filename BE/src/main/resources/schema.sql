@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS banchans;
 CREATE TABLE banchans
 (
      banchan_id   BIGINT AUTO_INCREMENT NOT NULL,
-     category_id  INTEGER NOT NULL,
+     category_id  BIGINT NOT NULL,
      banchan_name VARCHAR(255) NOT NULL,
      description  VARCHAR(255) NOT NULL,
      or_price     INTEGER NOT NULL,
