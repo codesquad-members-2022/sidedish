@@ -23,7 +23,7 @@ CREATE TABLE items
     detail_type   VARCHAR(32),
     quantity      BIGINT       NOT NULL,
     reward_point  DECIMAL      NOT NULL,
-    image         VARCHAR(64)  NOT NULL,
+    image         VARCHAR(255)  NOT NULL,
     category_type VARCHAR (32),
     PRIMARY KEY (id)
 );
