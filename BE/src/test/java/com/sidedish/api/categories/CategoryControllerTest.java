@@ -6,6 +6,7 @@ import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
 import com.sidedish.repository.CategoryRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -47,24 +48,25 @@ class CategoryControllerTest {
     void init() {
         Category mainCategory = new Category(CategoryType.MAIN);
 
-        Item newItem1 = new Item("고기1", "맛있는 고기1", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
-
-        Item newItem2 = new Item("고기2", "맛있는 고기2", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
-
-        Item newItem3 = new Item("고기3", "맛있는 고기3", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
-
-        mainCategory.saveItem(newItem1);
-        mainCategory.saveItem(newItem2);
-        mainCategory.saveItem(newItem3);
+        createMainItem(mainCategory, "고기1", "맛있는 고기1"); // page1
+        createMainItem(mainCategory, "고기2", "맛있는 고기2"); // page1
+        createMainItem(mainCategory, "고기3", "맛있는 고기3"); // page1
+        createMainItem(mainCategory, "고기4", "맛있는 고기4"); // page1
+        createMainItem(mainCategory, "고기5", "맛있는 고기5"); // page2
+        createMainItem(mainCategory, "고기6", "맛있는 고기6"); // page2
 
         categoryRepository.save(mainCategory);
     }
 
+    private void createMainItem(Category mainCategory, String name, String desc) {
+        Item newItem = new Item(name, desc, BigDecimal.valueOf(10000),
+                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html", CategoryType.MAIN);
+        mainCategory.saveItem(newItem);
+    }
+
     @Test
-    public void findMainCategoryTest() throws Exception {
+    @DisplayName("1 페이지 요청시 4개의 아이템을 반환해야 한다.")
+    public void find_main_category_use_pageId_test() throws Exception {
         // given
         ResultActions requestThenResult = mockMvc.
                 perform(get("/api/categories/main/1")
@@ -78,6 +80,8 @@ class CategoryControllerTest {
                 .andExpect(jsonPath("_embedded.itemList[0]").exists())
                 .andExpect(jsonPath("_embedded.itemList[1]").exists())
                 .andExpect(jsonPath("_embedded.itemList[2]").exists())
+                .andExpect(jsonPath("_embedded.itemList[3]").exists())
+                .andExpect(jsonPath("_embedded.itemList.length()").value(4))
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.prev-page").exists())
                 .andExpect(jsonPath("_links.next-page").exists())

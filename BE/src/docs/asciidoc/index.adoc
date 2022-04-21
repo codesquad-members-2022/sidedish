@@ -1,3 +1,6 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
 = Shine's REST API Guide
 Shine;
 :doctype: book
@@ -25,15 +28,6 @@ Shine;
 
 | `POST`
 | 새 리소스를 만들 때 사용
-
-| `PUT`
-| 기존 리소스를 수정할 때 사용
-
-| `PATCH`
-| 기존 리소스의 일부를 수정할 때 사용
-
-| `DELETE`
-| 기존 리소스를 삭제할 떄 사용
 |===
 
 [[overview-http-status-codes]]
@@ -59,18 +53,6 @@ Shine;
 | `404 Not Found`
 | 요청한 리소스가 없음.
 |===
-
-[[overview-errors]]
-== 오류
-
-에러 응답이 발생했을 때 (상태 코드 >= 400), 본문에 해당 문제를 기술한 JSON 객체가 담겨있다.
-에러 객체는 다음의 구조를 따른다.
-
-include::{snippets}/errors/response-fields.adoc[]
-
-예를 들어, 잘못된 요청으로 이벤트를 만들려고 했을 때 다음과 같은 `400 Bad Request` 응답을 받는다.
-
-include::{snippets}/errors/http-response.adoc[]
 
 [[overview-hypermedia]]
 == 하이퍼미디어
@@ -105,9 +87,11 @@ operation::index[snippets='response-body,http-response,links']
 
 `GET` 요청을 사용하여 서비스의 모든 이벤트를 조회할 수 있다.
 
-operation::search-main[snippets='response-fields,curl-request,http-response,request-body,response-body,response-headers,links']
-
-[[resources-events-create]]
-=== 이벤트 생성
-
-`POST` 요청을 사용해서 새 이벤트를 만들 수 있다.
+include::{snippets}/search-main/response-fields.adoc[]
+include::{snippets}/search-main/curl-request.adoc[]
+include::{snippets}/search-main/http-response.adoc[]
+include::{snippets}/search-main/request-body.adoc[]
+include::{snippets}/search-main/response-body.adoc[]
+include::{snippets}/search-main/response-headers.adoc[]
+include::{snippets}/search-main/links.adoc[]
+//operation::search-main[snippets='response-fields,curl-request,http-response,request-body,response-body,response-headers,links']

@@ -1,12 +1,10 @@
 package com.sidedish.api.categories;
 
 import com.sidedish.api.categories.dto.ItemResource;
-import com.sidedish.api.categories.dto.ResponseCategoryTypeDto;
-import com.sidedish.api.categories.dto.ResponseItems;
-import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
-import com.sidedish.service.CategoryService;
+import com.sidedish.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,17 +17,18 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private final CategoryService categoryService;
+    private final ItemService itemService;
 
     @GetMapping("/main/{pageId}")
     public CollectionModel<ItemResource> getMain(@PathVariable Long pageId) {
-        List<Item> items = categoryService.findItemsByPageId(pageId);
 
+        List<Item> items = itemService.findUnitPageById(pageId);
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
 
         CollectionModel<ItemResource> responseMainType = CollectionModel.of(itemResources);
@@ -38,14 +37,5 @@ public class CategoryController {
         responseMainType.add(linkTo(methodOn(CategoryController.class).getMain(pageId+1)).withRel("next-page"));
 
         return responseMainType;
-    }
-
-    @GetMapping("/sidedish/{pageId}")
-    public ResponseItems getSideDish(@PathVariable Long pageId) {
-        List<Item> items = categoryService.findItemsByPageId(pageId);
-
-        List<ResponseCategoryTypeDto> responseSidedishType = items.stream().map(ResponseCategoryTypeDto::new).collect(Collectors.toList());
-
-        return new ResponseItems(CategoryType.SIDE, responseSidedishType);
     }
 }
