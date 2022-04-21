@@ -17,7 +17,7 @@ public class Item {
 	private String description;
 	private int price;
 	private int quantity;
-	private double discountPolicy;
+	private String discountPolicy;
 	private boolean morningDelivery;
 
 }
