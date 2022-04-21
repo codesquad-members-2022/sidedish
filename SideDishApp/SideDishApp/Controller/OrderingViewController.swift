@@ -88,7 +88,9 @@ extension OrderingViewController {
 }
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
-    func didSelectItem(item: Menu) {
+    func didSelectItem(index: IndexPath) {
+        guard let item = collectionViewDataSource.getSelectedItem(at: index.item) else { return }
+        
         networkManger.request(endpoint: EndPointCase.getDetail(hash: item.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
             switch result {
             case .success(let success):
@@ -98,9 +100,8 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
                 os_log(.error, "\(failure.localizedDescription)")
             }
         }
-        
-        let detailVC = DetailViewController(menu: item)
-        
+        let detailVC = DetailViewController()
+        detailVC.title = item.title
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -59,7 +59,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
         menus = dishes
     }
     
-    func getSelectedItem(at index: Int) -> Menu {
+    func getSelectedItem(at index: Int) -> Menu? {
         return menus[index]
     }
 }
