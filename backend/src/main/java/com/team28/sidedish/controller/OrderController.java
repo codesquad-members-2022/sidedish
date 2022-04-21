@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
     private final OrderService orderService;
-    private final String OUT_OF_STOCK = "재고 수량이 부족합니다.";
 
     @Operation(summary = "주문 등록",
             description = "하나의 상품에 대해 주문을 등록합니다.",
@@ -41,16 +41,16 @@ public class OrderController {
             }
     )
     @PostMapping("/orders")
-    public ResponseEntity<ErrorResponse> postOrder(@RequestBody OrderRequest orderRequest) {
-        if (orderService.isEnoughStockCount(orderRequest.getProductId(), orderRequest.getQuantity())) {
-            return ResponseEntity.badRequest().body(ErrorResponse.builder()
-                    .errorCode(HttpStatus.BAD_REQUEST.value())
-                    .errorName(HttpStatus.BAD_REQUEST.name())
-                    .errorMessage(OUT_OF_STOCK)
-                    .build());
-        }
+    public ResponseEntity<Void> postOrder(@RequestBody OrderRequest orderRequest) {
 
-        orderService.updateStock(orderRequest.getProductId(), orderRequest.getQuantity());
+        orderService.order(orderRequest.getProductId(), orderRequest.getQuantity());
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e) {
+        ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
