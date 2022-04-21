@@ -9,6 +9,7 @@
 
 h1 {
   margin: 0;
+  height: 200vh;
 }
 
 a {
@@ -120,4 +121,5 @@ ol {
   font-size: 40px;
   line-height: 58px;
   letter-spacing: -0.04em;
+  font-weight: bold;
 }
