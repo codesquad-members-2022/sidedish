@@ -34,8 +34,8 @@ public class DishResponse {
             dish.getPrice(),
             dish.getStock(),
             eventBadge != null ? eventBadge.getEventBadgeName() : null,
-            eventBadge != null ? eventBadge.getDiscount(): null,
-            dishImage != null ? dishImage.getImagePath(): null
+            eventBadge != null ? eventBadge.getDiscount() : null,
+            dishImage != null ? dishImage.getImagePath() : null
         );
     }
 

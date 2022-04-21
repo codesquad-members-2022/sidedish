@@ -2,7 +2,6 @@ package com.codesquad.sidedish.dish.dto;
 
 import java.util.List;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 public class Slice<T> {
