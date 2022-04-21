@@ -18,6 +18,7 @@ const Badge = styled.button`
   color: ${Colors.WHITE};
   border-radius: 999px;
   background-color: ${props => props.backgroundColor};
+  display: inline-block;
 `;
 
 export const DiscountBadge = ({ type }) => {
