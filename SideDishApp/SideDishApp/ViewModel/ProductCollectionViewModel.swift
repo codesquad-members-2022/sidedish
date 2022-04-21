@@ -7,21 +7,52 @@
 
 import Foundation
 // This is going to represent single viewModel that drives productCollectionView
+
+struct CategorySectionViewModel {
+    var type: ProductType
+    var productVM: [ProductCellViewModel]
+}
+
 struct ProductCollectionViewModel {
 
     var categoryManager = CategoryManager()
-    var cellViewModels: [Observable<[ProductCellViewModel]>] = [Observable([])]
+    var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
     func countProduct(section: Int) -> Int {
-        self.cellViewModels[section].value.count
+        self.cellViewModels.value[section].productVM.count
     }
 
     func countSection() -> Int {
-        self.cellViewModels.count
+        self.cellViewModels.value.count
     }
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
-        return self.cellViewModels[indexPath.section].value[indexPath.item]
+        let categoryVM = cellViewModels.value[indexPath.section]
+        return categoryVM.productVM[indexPath.item]
+    }
+
+    func fetch() {
+        var temp = [CategorySectionViewModel]()
+
+        let dispatchGroup = DispatchGroup()
+
+        for type in ProductType.allCases {
+            dispatchGroup.enter()
+            categoryManager.fetchCategory(of: type) { category in
+                let productCellVMs = category.product.compactMap { product in
+                    ProductCellViewModel(title: product.title, description: product.description, imageURL: product.imageURL, originalPrice: product.originalPrice, salePrice: product.salePrice, badge: product.badge)
+                }
+                let categorySectionVM = CategorySectionViewModel(type: .main, productVM: productCellVMs)
+                temp.append(categorySectionVM)
+                dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.notify(queue: .global(), work: DispatchWorkItem {
+            print("Async done")
+            cellViewModels.value = temp
+        })
+
     }
 
 }
