@@ -7,6 +7,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        setUnderbarAtNavigationBar()
+
     }
 }
 
@@ -66,5 +68,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let width: CGFloat = collectionView.frame.width
         let height: CGFloat = 96
         return CGSize(width: width, height: height)
+    }
+}
+
+extension HomeViewController {
+    private func setUnderbarAtNavigationBar() {
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.shadowColor = .systemGray3
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
     }
 }

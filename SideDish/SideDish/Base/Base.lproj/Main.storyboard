@@ -17,14 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Yi-mI-Dmc">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="5Yi-mI-Dmc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n4W-wP-L1b">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="24"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DishCell" id="Og1-Ro-uCd" customClass="DishCell" customModule="SideDish" customModuleProvider="target">
@@ -42,9 +43,8 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnB-97-bEV">
-                                            <rect key="frame" x="35.5" y="-23" width="343" height="96"/>
+                                            <rect key="frame" x="24" y="15" width="366" height="20.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="96" id="gse-h6-diF"/>
                                                 <constraint firstAttribute="width" constant="343" id="ika-ld-AbR"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -53,7 +53,9 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="WnB-97-bEV" secondAttribute="trailing" constant="16" id="8Lu-Ze-f22"/>
                                         <constraint firstItem="WnB-97-bEV" firstAttribute="centerY" secondItem="7gc-Mk-D5e" secondAttribute="centerY" id="Cdz-yU-sJf"/>
+                                        <constraint firstItem="WnB-97-bEV" firstAttribute="leading" secondItem="7gc-Mk-D5e" secondAttribute="leadingMargin" constant="16" id="oyS-Mx-xpn"/>
                                         <constraint firstItem="WnB-97-bEV" firstAttribute="centerX" secondItem="7gc-Mk-D5e" secondAttribute="centerX" id="qUs-PN-imc"/>
                                     </constraints>
                                     <connections>
