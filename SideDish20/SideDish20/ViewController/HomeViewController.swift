@@ -49,16 +49,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self),
-                                                            for: indexPath) as? HomeCollectionViewCell else {
+        guard let cell = collectionView
+            .dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self),
+                                 for: indexPath) as? HomeCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.imageView.image = UIImage(named: "img01")
-        cell.nameLabel.text = products[indexPath.item].name
-        cell.descriptionLabel.text = products[indexPath.item].description
-        cell.discountedPriceLabel.text = products[indexPath.item].discountedPrice
-        cell.originalPriceLabel.text = products[indexPath.item].originalPrice
-        cell.specialMessagelabel.text = products[indexPath.item].specialMessage
+        cell.data = products[indexPath.item]
         return cell
     }
 
