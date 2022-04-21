@@ -76,6 +76,8 @@ const CardItemTag = styled.p`
 `;
 
 const Card = ({ item, imageSize }) => {
+  const setPrice = (price) => Number(price).toLocaleString();
+
   return (
     <CardItem>
       <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
@@ -84,13 +86,13 @@ const Card = ({ item, imageSize }) => {
         <p className="item__desc">{item.desc}</p>
         {item.salePrice ? (
           <>
-            <span className="item__default-price">{Number(item.salePrice).toLocaleString()}원</span>
+            <span className="item__default-price">{setPrice(item.salePrice)}원</span>
             <span className="item__normal-price">
               {Number(item.normalPrice).toLocaleString()}원
             </span>
           </>
         ) : (
-          <span className="item__default-price">{Number(item.normalPrice).toLocaleString()}원</span>
+          <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
         )}
       </CardItemInfo>
       {item.tag ? <CardItemTag tag={item.tag}>{item.tag}</CardItemTag> : ''}

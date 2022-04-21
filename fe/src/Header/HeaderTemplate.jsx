@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import HeaderCategory from './HeaderCategory';
-import CartImage from '../image/cart.svg';
-import PersonImage from '../image/person.svg';
-import SearchImage from '../image/search.svg';
+import HeaderCategory from 'Header/HeaderCategory';
+import { ReactComponent as CartImage } from 'image/cart.svg';
+import { ReactComponent as PersonImage } from 'image/person.svg';
+import { ReactComponent as SearchImage } from 'image/search.svg';
+import { CATEGORY_TEXTS } from 'MockData/dummyData';
 
 const HeaderLogo = styled.div`
   ${({ theme }) => theme.fontStyles.logo};
@@ -11,14 +12,8 @@ const HeaderLogo = styled.div`
   cursor: pointer;
 `;
 
-const HeaderIcon = styled.img`
-  width: 100%;
-  cursor: pointer;
-  margin: 0 12px;
-`;
-
 const HeaderWrapper = styled.div`
-  display: flex;
+  ${({ theme }) => theme.flexLayout.default};
   margin: 0 auto;
   max-width: 1440px;
   padding: 0 80px;
@@ -34,30 +29,27 @@ const HeaderTemplate = styled.header`
 const HeaderInnerTemplate = styled.div`
   width: 100%;
   height: 50px;
-  display: flex;
+  ${({ theme }) => theme.flexLayout.default};
   justify-content: space-between;
   align-items: center;
 `;
 
 const CategoryTemplate = styled.div`
-  display: flex;
+  ${({ theme }) => theme.flexLayout.default};
 `;
 
 const IconTemplate = styled.div`
-  display: flex;
+  ${({ theme }) => theme.flexLayout.default};
+  align-items: center;
+
+  .icon {
+    cursor: pointer;
+    margin: 0 12px;
+  }
 `;
 
 export default function Template() {
   const [open, setOpen] = useState(false);
-  const categoryTexts = [
-    {
-      main: '든든한 메인요리',
-      sub: ['육류 요리', '해산물 요리'],
-    },
-    { main: '뜨끈한 국물요리', sub: ['국/탕/찌개'] },
-    { main: '정갈한 밑반찬', sub: ['나물/무침', '조림/볶음', '절임/장아찌'] },
-  ];
-  const iconsPaths = [CartImage, PersonImage, SearchImage];
 
   const onMouseOver = () => {
     setOpen(true);
@@ -67,13 +59,19 @@ export default function Template() {
     setOpen(false);
   };
 
-  const categoryList = categoryTexts.map((category, index) => {
+  const categoryList = CATEGORY_TEXTS.map((category, index) => {
     return <HeaderCategory open={open} key={index} category={category}></HeaderCategory>;
   });
 
-  const iconList = iconsPaths.map((path, index) => {
-    return <HeaderIcon key={index} src={path} />;
-  });
+  const iconList = () => {
+    return (
+      <>
+        <CartImage className="icon" />
+        <PersonImage className="icon" />
+        <SearchImage className="icon" />
+      </>
+    );
+  };
 
   return (
     <HeaderTemplate open={open}>
@@ -83,7 +81,7 @@ export default function Template() {
           <CategoryTemplate onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
             {categoryList}
           </CategoryTemplate>
-          <IconTemplate>{iconList}</IconTemplate>
+          <IconTemplate>{iconList()}</IconTemplate>
         </HeaderInnerTemplate>
       </HeaderWrapper>
     </HeaderTemplate>

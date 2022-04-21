@@ -29,7 +29,7 @@ export default function HeaderCategory({ open, category }) {
   return (
     <TitleWrapper>
       {category.main}
-      {open ? categorySubList : ''}
+      {open && categorySubList}
     </TitleWrapper>
   );
 }
