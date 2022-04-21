@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class FoodCell: UICollectionViewCell {
-    static let identifier = "foodCell"
     private(set) var storageLabel = [UILabel]()
     
     //MARK: Initiallize

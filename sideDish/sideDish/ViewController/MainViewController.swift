@@ -10,7 +10,6 @@ import Toaster
 
 class MainViewController: UIViewController {
     
-
     let dummyData = [["오리주물럭, 잡채, 소갈비찜, 간장 코다리조림"],
                      ["한돈 돼지 김치찌개","된장찌개","미역 오이냉국"],
                      ["새콤달콤 오징어무침","호두 멸치볶음","한돈 매콤 안심장조림"]]
@@ -22,14 +21,15 @@ class MainViewController: UIViewController {
         return tempCollcetion
     }()
     
-    let headerID = "headerView"
+    private let headerID = "headerView"
+    private let cellID = "foodCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureCollectionViewLayout()
         collectionView.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
-        collectionView.register(FoodCell.self, forCellWithReuseIdentifier: FoodCell.identifier)
+        collectionView.register(FoodCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.delegate = self
         collectionView.dataSource = self
 
@@ -63,8 +63,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellId = String(describing: FoodCell.self)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCell.identifier, for: indexPath) as! FoodCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as! FoodCell
         return cell
     }
     
