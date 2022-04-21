@@ -7,7 +7,7 @@
 
         <variable
             name="detailImage"
-            type="com.codesquadhan.sidedish.data.DetailImage" />
+            type="com.codesquadhan.sidedish.data.model.DetailImage" />
 
     </data>
 

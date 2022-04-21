@@ -1,11 +1,18 @@
 package com.codesquadhan.sidedish.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.codesquadhan.sidedish.data.MenuData
+import androidx.lifecycle.viewModelScope
+import com.codesquadhan.sidedish.data.model.MenuData
+import com.codesquadhan.sidedish.data.repository.MenuRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel: ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val menuRepository: MenuRepository): ViewModel() {
 
     private val _menuMainListLd = MutableLiveData<MutableList<MenuData>>(mutableListOf())
     private val menuMainList = mutableListOf<MenuData>()
@@ -53,4 +60,17 @@ class MainViewModel: ViewModel() {
         _menuSideListLd.value = menuSideList
     }
 
+    // hilt test
+    fun getMenu(){
+        viewModelScope.launch {
+            val response = menuRepository.getOnbanMenu()
+
+            if(response.isSuccessful){
+                Log.d("AppTest", "${response.body()}")
+            }
+            else{
+                Log.d("AppTest", "통신 실패 ")
+            }
+        }
+    }
 }

@@ -9,7 +9,9 @@ import androidx.databinding.DataBindingUtil
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityMainBinding
 import com.codesquadhan.sidedish.ui.detail.DetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         setSoupRv()
         setSideRv()
         setBtnGitHub()
+
+        viewModel.getMenu()
     }
 
     private fun setBtnGitHub() {

@@ -1,4 +1,4 @@
-package com.codesquadhan.sidedish.data
+package com.codesquadhan.sidedish.data.model
 
 data class DetailImage(
     val id: Int = 1,

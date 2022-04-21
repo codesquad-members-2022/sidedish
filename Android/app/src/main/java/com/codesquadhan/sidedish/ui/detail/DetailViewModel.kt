@@ -3,7 +3,7 @@ package com.codesquadhan.sidedish.ui.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.codesquadhan.sidedish.data.DetailImage
+import com.codesquadhan.sidedish.data.model.DetailImage
 
 class DetailViewModel : ViewModel() {
 

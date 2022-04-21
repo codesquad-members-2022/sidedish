@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.codesquadhan.sidedish.data.MenuData
+import com.codesquadhan.sidedish.data.model.MenuData
 import com.codesquadhan.sidedish.databinding.ItemMainFoodBinding
 import com.codesquadhan.sidedish.databinding.ItemMainHeaderBinding
 import com.codesquadhan.sidedish.ui.constant.ViewType.FOOD_VIEW_TYPE

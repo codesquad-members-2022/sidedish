@@ -1,4 +1,4 @@
-package com.codesquadhan.sidedish.data
+package com.codesquadhan.sidedish.data.model
 
 data class MenuData(
     val id: Int,
