@@ -21,6 +21,7 @@ CREATE TABLE dish
     `id`                    BIGINT           NOT NULL    AUTO_INCREMENT COMMENT 'id',
     `title`                 VARCHAR(50)      NOT NULL    COMMENT '반찬 이름',
     `content`               VARCHAR(500)     NULL        COMMENT '반찬 설명',
+    `badge`                 VARCHAR(50)      NULL        COMMENT '뱃지',
     `price`                 INT              NOT NULL    COMMENT '정가',
     `stock`                 INT              NOT NULL    COMMENT '재고',
     `delivery_fee`          INT              NOT NULL    COMMENT '배송비',
