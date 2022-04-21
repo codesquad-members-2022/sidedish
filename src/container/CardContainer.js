@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import Card from '../components/Card';
 
-// Todo : tab이나 카테고리 제목 태그를 children으로 받기
 const CardContainer = ({ cardInfos, children }) => {
   return (
-    <>
+    <StyledSection>
       {children}
       <StyledCardContainer>
         {cardInfos.map((cardInfo, idx) => (
@@ -15,9 +14,13 @@ const CardContainer = ({ cardInfos, children }) => {
           </StyledCard>
         ))}
       </StyledCardContainer>
-    </>
+    </StyledSection>
   );
 };
+
+const StyledSection = styled.section`
+  margin-top: 50px;
+`;
 
 const StyledCardContainer = styled.ul`
   display: flex;

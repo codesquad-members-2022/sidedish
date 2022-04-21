@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import CardContainer from './container/CardContainer';
 import Tab from './components/Tab';
+import CategoryTitle from './components/CategoryTitle';
 
 const MainCard = ({ mainCardData }) => {
   const [tabId, setTabId] = useState(0);
@@ -19,12 +20,14 @@ const MainCard = ({ mainCardData }) => {
   const endId = startId + 3;
   const mainDatas = mainCardData.slice(startId, endId);
 
+  const banner = '기획전';
+  const title = '한 번 주문하면 두 번 반하는 반찬';
+
   return (
     <CardContainer cardInfos={mainDatas}>
       <div>
         <StyledTap>
-          <span>기획전 </span>
-          <h2>한 번 주문하면 두 번 반하는 반찬</h2>
+          <CategoryTitle title={title} banner={banner} />
         </StyledTap>
         <Tab onClick={handleClickTab} />
       </div>

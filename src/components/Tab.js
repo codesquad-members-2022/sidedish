@@ -21,8 +21,11 @@ const Tab = ({ onClick }) => {
 const StyledTab = styled.ul`
   display: flex;
   padding: 20px;
+
   li {
     margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
   }
 `;
 
