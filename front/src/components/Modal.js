@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ProductDetail from './ProductDetail';
 
 const ModalWrap = styled.div`
   position: fixed;
@@ -43,6 +44,7 @@ function Modal({ dishes }) {
       <PopupBox>
         <PopupCloseButtonWrap>
           <PopupCloseButton>닫기</PopupCloseButton>
+          <ProductDetail dishes={dishes}></ProductDetail>
         </PopupCloseButtonWrap>
       </PopupBox>
     </ModalWrap>
