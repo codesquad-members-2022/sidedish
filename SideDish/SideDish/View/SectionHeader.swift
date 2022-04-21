@@ -8,13 +8,17 @@
 import UIKit
 
 class SectionHeader: UICollectionReusableView {
-    
+
     static let cellId = "homeHeaderView"
     @IBOutlet weak var label: UILabel!
-    
+
     public func setup() {
-        label.text = "header"
+        label.text = """
+                    모두가 좋아하는
+                    든든한 메인 요리
+                    """
+        label.font = label.font.withSize(32)
         backgroundColor = .yellow
     }
-    
+
 }

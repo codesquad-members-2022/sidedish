@@ -15,18 +15,26 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return 3
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishCell", for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+                    -> UICollectionViewCell {
+        guard let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
+            return UICollectionViewCell()
+        }
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath)
+                        -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader
+            let headerView = collectionView
+                .dequeueReusableSupplementaryView(
+                    ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader
             headerView?.setup()
             return headerView!
         default:
@@ -50,5 +58,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let size = Int((collectionView.bounds.width - totalSpace)
                        / CGFloat(numberOfCellPerRow))
         return CGSize(width: size, height: size)
+    }
+    // MARK: - Section Header 크기
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        let height: CGFloat = 96
+        return CGSize(width: width, height: height)
     }
 }
