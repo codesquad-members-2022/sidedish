@@ -20,8 +20,8 @@ public class ItemController {
         return viewService.findAll();
     }
 
-    @GetMapping("/items/{itemId}")
-    public DetailItemDto detail(@PathVariable Integer itemId) {
-        return viewService.findById(itemId);
+    @GetMapping("/items/{id}")
+    public DetailItemDto detail(@PathVariable Integer id) {
+        return viewService.findById(id);
     }
 }

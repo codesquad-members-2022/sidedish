@@ -1,17 +1,19 @@
 package com.codesquad.sidedish.item.dto;
 
 public class DetailItemDto {
-    private Integer itemId;
+    private Integer id;
     private String discountPolicy;
+    private Integer discountRate;
     private String description;
     private String name;
     private Integer price;
     private String mainImageLink;
     private String detailImageLink;
 
-    public DetailItemDto(Integer itemId, String discountPolicy, String description, String name, Integer price, String mainImageLink, String detailImageLink) {
-        this.itemId = itemId;
+    public DetailItemDto(Integer id, String discountPolicy, Integer discountRate, String description, String name, Integer price, String mainImageLink, String detailImageLink) {
+        this.id = id;
         this.discountPolicy = discountPolicy;
+        this.discountRate = discountRate;
         this.description = description;
         this.name = name;
         this.price = price;
@@ -19,12 +21,16 @@ public class DetailItemDto {
         this.detailImageLink = detailImageLink;
     }
 
-    public Integer getItemId() {
-        return itemId;
+    public Integer getId() {
+        return id;
     }
 
     public String getDiscountPolicy() {
         return discountPolicy;
+    }
+
+    public Integer getDiscountRate() {
+        return discountRate;
     }
 
     public String getDescription() {
