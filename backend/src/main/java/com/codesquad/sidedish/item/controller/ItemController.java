@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ItemController {
-    private final ItemService viewService;
+    private final ItemService itemService;
 
-    public ItemController(ItemService viewService) {
-        this.viewService = viewService;
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
     }
 
     @GetMapping("/items")
     public CategoryItemsDto list() {
-        return viewService.findAll();
+        return itemService.findAll();
     }
 
     @GetMapping("/items/{id}")
     public DetailItemDto detail(@PathVariable Integer id) {
-        return viewService.findById(id);
+        return itemService.findById(id);
     }
 }
