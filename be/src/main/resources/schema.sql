@@ -35,7 +35,7 @@ create table images
 (
     id          bigint      not null AUTO_INCREMENT PRIMARY KEY,
     item_id     bigint      NOT NULL,
-    url         varchar(60) NOT NULL,
+    url         varchar(255) NOT NULL,
     main_status boolean     NOT NULL,
     FOREIGN KEY (item_id) references item (id)
 );
