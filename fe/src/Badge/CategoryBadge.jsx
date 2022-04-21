@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import Colors from '../Constants/Colors';
 
-const Root = styled.button`
+const Badge = styled.button`
   padding: 8px 16px;
-  border: 2px solid black;
+  border: 2px solid ${Colors.BLACK};
   border-radius: 999px;
-  background-color: #f8f7f7; // TODO: 변수로 바꾸기
+  background-color: ${Colors.PALE_GREY}; // TODO: 변수로 바꾸기
 `;
 
 export const CategoryBadge = ({ name }) => {
-  return <Root className={'fonts-md'}>{name}</Root>;
+  return <Badge className={'fonts-md'}>{name || "기획전"}</Badge>;
 };

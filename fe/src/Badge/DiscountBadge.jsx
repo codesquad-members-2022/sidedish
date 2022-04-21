@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Colors from '../Constants/Colors';
 
 const getBadgeName = type => {
   if (type === 'launch') return '런칭특가';
@@ -7,25 +8,25 @@ const getBadgeName = type => {
 };
 
 const getBadgeBackgroundColor = type => {
-  if (type === 'launch') return '#FF8E14';
-  if (type === 'event') return '#6dd028';
+  if (type === 'launch') return Colors.ORANGE;
+  if (type === 'event') return Colors.GREEN;
   throw Error('DiscountBadge type must be launch or event');
 };
 
-const Root = styled.button`
+const Badge = styled.button`
   padding: 6px 16px;
-  color: #fff;
+  color: ${Colors.WHITE};
   border-radius: 999px;
   background-color: ${props => props.backgroundColor};
 `;
 
 export const DiscountBadge = ({ type }) => {
   return (
-    <Root
+    <Badge
       className={'fonts-sm'}
       backgroundColor={getBadgeBackgroundColor(type)}
     >
       {getBadgeName(type)}
-    </Root>
+    </Badge>
   );
 };
