@@ -21,7 +21,7 @@ CREATE TABLE dish
     `id`                    BIGINT           NOT NULL    AUTO_INCREMENT COMMENT 'id',
     `title`                 VARCHAR(50)      NOT NULL    COMMENT '반찬 이름',
     `content`               VARCHAR(500)     NULL        COMMENT '반찬 설명',
-    `badge`                 VARCHAR(50)      NULL        COMMENT '뱃지',
+    `tag`                    VARCHAR(50)      NULL        COMMENT '뱃지',
     `price`                 INT              NOT NULL    COMMENT '정가',
     `stock`                 INT              NOT NULL    COMMENT '재고',
     `delivery_fee`          INT              NOT NULL    COMMENT '배송비',
@@ -48,10 +48,6 @@ CREATE TABLE category
 
 ALTER TABLE category COMMENT '카테고리';
 
-ALTER TABLE category
-    ADD CONSTRAINT FK_category_parent_category_id_category_id FOREIGN KEY (parent_category_id)
-        REFERENCES category (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
 -- orders Table
 DROP TABLE IF EXISTS orders;
 
@@ -67,14 +63,6 @@ CREATE TABLE orders
 
 ALTER TABLE orders COMMENT '주문';
 
-ALTER TABLE orders
-    ADD CONSTRAINT FK_order_member_id_member_id FOREIGN KEY (member_id)
-        REFERENCES member (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE orders
-    ADD CONSTRAINT FK_order_dish_id_dish_id FOREIGN KEY (dish_id)
-        REFERENCES dish (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
 -- category_dish Table
 DROP TABLE IF EXISTS category_dish;
 
@@ -88,14 +76,6 @@ CREATE TABLE category_dish
 
 ALTER TABLE category_dish COMMENT '카테고리반찬';
 
-ALTER TABLE category_dish
-    ADD CONSTRAINT FK_category_dish_category_id_category_id FOREIGN KEY (category_id)
-        REFERENCES category (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE category_dish
-    ADD CONSTRAINT FK_category_dish_dish_id_dish_id FOREIGN KEY (dish_id)
-        REFERENCES dish (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
 -- dish_image Table
 DROP TABLE IF EXISTS dish_image;
 
@@ -108,7 +88,3 @@ CREATE TABLE dish_image
 );
 
 ALTER TABLE dish_image COMMENT '반찬이미지';
-
-ALTER TABLE dish_image
-    ADD CONSTRAINT FK_dish_image_dish_id_dish_id FOREIGN KEY (dish_id)
-        REFERENCES dish (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
