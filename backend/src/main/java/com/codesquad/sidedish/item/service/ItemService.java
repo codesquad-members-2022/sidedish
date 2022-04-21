@@ -8,8 +8,7 @@ import com.codesquad.sidedish.item.dto.CategoryItemDto;
 import com.codesquad.sidedish.item.dto.CategoryItemsDto;
 import com.codesquad.sidedish.item.dto.DetailItemDto;
 import com.codesquad.sidedish.item.dto.ItemDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.codesquad.sidedish.item.exception.ItemIdNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
-    private static final Logger log = LoggerFactory.getLogger(ItemService.class);
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
 
@@ -42,7 +40,9 @@ public class ItemService {
         return new CategoryItemsDto(categoryItemDtoList);
     }
 
-    public DetailItemDto findById(Integer id) {
-        return null;
+    public DetailItemDto findById(Integer id) throws ItemIdNotFoundException {
+        return itemRepository.findById(id)
+                .map(DetailItemDto::from)
+                .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
     }
 }
