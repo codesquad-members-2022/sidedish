@@ -44,11 +44,14 @@ class ProductDetailFragment : Fragment() {
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
                 // 추후 수정 필요
                 binding.textViewImageIndex.text = "${position + 1}/${dummyList.size}"
             }
         })
         return binding.root
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("lastFragment" ,1)
     }
 }

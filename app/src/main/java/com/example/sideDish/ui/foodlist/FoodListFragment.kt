@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.example.sideDish.common.ViewModelFactory
 import com.example.sideDish.data.FoodCategory
 import com.example.sideDish.data.source.FoodRepository
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
+import kotlin.concurrent.fixedRateTimer
 
 class FoodListFragment : Fragment() {
 
@@ -59,9 +61,9 @@ class FoodListFragment : Fragment() {
     }
 
     private fun openDetail() {
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, ProductDetailFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        parentFragmentManager.commit {
+            addToBackStack(null)
+            replace(R.id.container, ProductDetailFragment())
+        }
     }
 }
