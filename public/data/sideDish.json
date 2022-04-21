@@ -51,7 +51,6 @@
       "title": "두부조림",
       "description": "각종 영양이 가득 담긴",
       "price": "13,800원",
-
       "discountedPrice": "6,900원"
     },
     {
@@ -60,7 +59,6 @@
       "title": "미나리무침",
       "description": "향긋하고 고소한 봄나물",
       "price": "8,600원",
-
       "discountedPrice": "4,300원"
     },
     {
@@ -69,7 +67,6 @@
       "title": "참외오이무침",
       "description": "시원하고 아삭한 여름 생채 무침",
       "price": "8,600원",
-
       "discountedPrice": "4,300원"
     }
   ]
