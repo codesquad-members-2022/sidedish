@@ -69,14 +69,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        if (kind == UICollectionView.elementKindSectionHeader){
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
-            
-            
-            headerView.setTitle(text: dummyHeaderData[indexPath.section])
-            return headerView
-        }
-        return UICollectionReusableView()
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+        headerView.setTitle(text: dummyHeaderData[indexPath.section])
+        return headerView
     }
     
 }
