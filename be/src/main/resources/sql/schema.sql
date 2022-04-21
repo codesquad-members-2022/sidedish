@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS
+DROP TABLE IF EXISTS PRODUCT;
 
 CREATE TABLE PRODUCT
 (
@@ -9,6 +9,6 @@ CREATE TABLE PRODUCT
     quantity        INTEGER         NOT NULL,
     dishType        VARCHAR(30)     NOT NULL,
     sideDishType    VARCHAR(30),
-    applyEvent      VARCHAR(30)[],
-    imgUrl          VARCHAR(300)[]
+    applyEvent      VARCHAR(30),
+    imgUrl          VARCHAR(3000)
 );
