@@ -1,5 +1,7 @@
 package com.example.sidedish.ui.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,14 +15,14 @@ import com.example.sidedish.data.Body
 import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.ItemHeaderBinding
 import com.example.sidedish.databinding.ItemMenuListBinding
+import com.example.sidedish.ui.MenuItemClickListener
 
 private const val HEADER = 0
 private const val ITEM = 1
 
-class MenuListAdapter(private val header: Header) :
+class MenuListAdapter(private val header: Header, private val listener: MenuItemClickListener) :
     ListAdapter<Body, RecyclerView.ViewHolder>(DiffUtil) {
 
-    lateinit var itemClickCallback: ((key: String) -> Unit)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -103,7 +105,7 @@ class MenuListAdapter(private val header: Header) :
             }
 
             itemView.setOnClickListener {
-                menu.detailHash?.let { key -> itemClickCallback.invoke(key) }
+                menu.detailHash?.let { key -> listener.itemClickCallback(key) }
             }
         }
 
@@ -113,16 +115,28 @@ class MenuListAdapter(private val header: Header) :
                 tvBeforeCost.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 tvBeforeCost.text = menu.nPrice
                 setBadge(menu.badge?.get(0) ?: "none")
+                Log.d("TAG", menu.badge?.get(0).toString())
             }
         }
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         private fun setBadge(sale: String) {
             when (sale) {
                 "런칭특가" -> {
-                    binding.tvLaunchingCostBadge.visibility = View.VISIBLE
+                    with(binding) {
+                        tvLaunchingCostBadge.visibility = View.VISIBLE
+                        tvLaunchingCostBadge.text = sale
+                        tvLaunchingCostBadge.background = root.context.getDrawable(R.drawable.background_badge_event)
+                    }
                 }
                 "이벤트특가" -> {
-                    binding.tvLimitedCostBadge.visibility = View.VISIBLE
+//                    binding.tvLimitedCostBadge.visibility = View.VISIBLE
+                    with(binding) {
+                        tvLaunchingCostBadge.visibility = View.VISIBLE
+                        tvLaunchingCostBadge.text = sale
+                        tvLaunchingCostBadge.background = root.context.getDrawable(R.drawable.background_badge_limited)
+                        tvLaunchingCostBadge.setTextColor(Color.WHITE)
+                    }
                 }
                 else -> {
                     Log.e("Adapter", "setBadge none")
@@ -130,4 +144,5 @@ class MenuListAdapter(private val header: Header) :
             }
         }
     }
+
 }

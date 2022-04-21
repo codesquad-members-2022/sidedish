@@ -76,28 +76,26 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_after_cost"
             app:layout_constraintStart_toEndOf="@id/im_menu_image"
-            android:background="@drawable/background_badge_event"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:visibility="gone"
-            android:text="@string/event_label"
             android:layout_marginStart="20dp"
             />
 
-        <TextView
-            android:id="@+id/tv_limited_cost_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_after_cost"
-            app:layout_constraintStart_toEndOf="@id/tv_launching_cost_badge"
-            android:background="@drawable/background_badge_limited"
-            android:textColor="@color/white"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:visibility="gone"
-            android:text="@string/limited_label"
-            android:layout_marginStart="20dp"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_limited_cost_badge"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_after_cost"-->
+<!--            app:layout_constraintStart_toEndOf="@id/tv_launching_cost_badge"-->
+<!--            android:background="@drawable/background_badge_limited"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:paddingStart="15dp"-->
+<!--            android:paddingEnd="15dp"-->
+<!--            android:visibility="gone"-->
+<!--            android:text="@string/limited_label"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
