@@ -1,3 +1,5 @@
+import { formatPrice } from '../../utils';
+
 const SmallCard = ({ name, image, price, discountedPrice }) => {
 
   const priceClassName = discountedPrice => `card__price ${discountedPrice ? '' : 'card__price-main'}`;
@@ -7,8 +9,8 @@ const SmallCard = ({ name, image, price, discountedPrice }) => {
       <img src={image} alt={name} className="card__image" />
       <h3 className="card__title">{name}</h3>
       <div className="card__prices">
-        {discountedPrice && <span className="card__discounted-price card__price-main">{discountedPrice}원</span>}
-        <span className={priceClassName(discountedPrice)}>{price}원</span>
+        {discountedPrice && <span className="card__discounted-price card__price-main">{formatPrice(discountedPrice)}원</span>}
+        <span className={priceClassName(discountedPrice)}>{formatPrice(price)}원</span>
       </div>
     </div>
   );
