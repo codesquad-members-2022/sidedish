@@ -8,12 +8,42 @@
 import UIKit
 
 class SecondSectionViewController: UIViewController{
-    private var pointLabel: UILabel!
-    private var pointText: UILabel!
-    private var deliveryLabel: UILabel!
-    private var deliveryText: UILabel!
-    private var chargeLabel: UILabel!
-    private var chargeText: UILabel!
+    private lazy var pointLabel: UILabel = {
+        var label = UILabel()
+        label.baselineAdjustment = .alignCenters
+        label.text = "적립금"
+        return label
+    }()
+    private lazy var pointText: UILabel = {
+        var label = UILabel()
+        label.baselineAdjustment = .alignCenters
+        label.text = "126원"
+        return label
+    }()
+    private lazy var deliveryLabel: UILabel = {
+        var label = UILabel()
+        label.baselineAdjustment = .alignCenters
+        label.text = "배송정보"
+        return label
+    }()
+    private lazy var deliveryText: UILabel = {
+        var label = UILabel()
+        label.baselineAdjustment = .alignCenters
+        label.text = "서울 경기 새벽 배송, 전국 택배 배송"
+        return label
+    }()
+    private lazy var chargeLabel: UILabel = {
+        var label = UILabel()
+        label.baselineAdjustment = .alignCenters
+        label.text = "배송비"
+        return label
+    }()
+    private lazy var chargeText: UILabel = {
+        var label = UILabel()
+        label.baselineAdjustment = .alignCenters
+        label.text = "2,500원 (40,000원 이상 구매 시 무료)"
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +62,6 @@ private extension SecondSectionViewController{
     }
     
     func configurePointLabel() {
-        pointLabel = UILabel()
-        pointLabel.baselineAdjustment = .alignCenters
-        pointLabel.text = "적립금"
         self.view.addSubview(pointLabel)
         
         pointLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,9 +74,6 @@ private extension SecondSectionViewController{
     }
     
     func configurePointText() {
-        pointText = UILabel()
-        pointText.baselineAdjustment = .alignCenters
-        pointText.text = "126원"
         self.view.addSubview(pointText)
         
         pointText.translatesAutoresizingMaskIntoConstraints = false
@@ -62,9 +86,6 @@ private extension SecondSectionViewController{
     }
     
     func configureDeliveryLabel() {
-        deliveryLabel = UILabel()
-        deliveryLabel.baselineAdjustment = .alignCenters
-        deliveryLabel.text = "배송정보"
         self.view.addSubview(deliveryLabel)
         
         deliveryLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -77,9 +98,6 @@ private extension SecondSectionViewController{
     }
     
     func configureDeliveryText() {
-        deliveryText = UILabel()
-        deliveryText.baselineAdjustment = .alignCenters
-        deliveryText.text = "서울 경기 새벽 배송, 전국 택배 배송"
         self.view.addSubview(deliveryText)
         
         deliveryText.translatesAutoresizingMaskIntoConstraints = false
@@ -92,9 +110,6 @@ private extension SecondSectionViewController{
     }
     
     func configureChargeLabel() {
-        chargeLabel = UILabel()
-        chargeLabel.baselineAdjustment = .alignCenters
-        chargeLabel.text = "배송비"
         self.view.addSubview(chargeLabel)
         
         chargeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -108,9 +123,6 @@ private extension SecondSectionViewController{
     }
     
     func configureChargeText() {
-        chargeText = UILabel()
-        chargeText.baselineAdjustment = .alignCenters
-        chargeText.text = "2,500원 (40,000원 이상 구매 시 무료)"
         self.view.addSubview(chargeText)
         
         chargeText.translatesAutoresizingMaskIntoConstraints = false

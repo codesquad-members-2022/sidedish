@@ -34,7 +34,6 @@ private extension DetailViewController{
     
     func configureFullSizeScrollView() {
         fullSizeVerticalScrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             fullSizeVerticalScrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             fullSizeVerticalScrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
