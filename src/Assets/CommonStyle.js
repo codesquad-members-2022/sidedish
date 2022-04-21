@@ -1,0 +1,29 @@
+import { css } from 'styled-components';
+
+const F_basic = css`
+  display: flex;
+`;
+
+const F_basicCenter = css`
+  ${F_basic}
+  align-items: center;
+`;
+
+const F_BtweenCenter = css`
+  ${F_basicCenter}
+  justify-content: space-between;
+`;
+
+const Color = {
+  black: '#1B1B1B',
+  gray1: '#3F3F3F',
+  gray2: '#777777',
+  gray3: '#BCBCBC',
+  gray4: '#EBEBEB',
+  offWhite: '#F8F7F7',
+  white: '#FFFFFF',
+  green: '#6DD028',
+  orange: '#FF8E14',
+};
+
+export { F_basic, F_basicCenter, F_BtweenCenter, Color };
