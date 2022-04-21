@@ -1,21 +1,22 @@
-import React from "react";
-import styled from "styled-components";
-import Text from "../components/Text";
-import MoreButton from "../components/MoreButton";
-import Tag from "../components/Tag";
-import TabButton from "../components/TabButton";
-import TabBar from "../components/TabBar";
+import React from 'react';
+import styled from 'styled-components';
+import Text from '../components/Text';
+import Button from '../components/Button';
+import MoreButton from '../components/MoreButton';
+import Tag from '../components/Tag';
+import TabButton from '../components/TabButton';
+import TabBar from '../components/TabBar';
 
 const TemplateTitle = styled.h3({
-  margin: "20px 0 -5px",
-  "font-size": "30px",
-  "font-family": "Outfit",
+  margin: '20px 0 -5px',
+  'font-size': '30px',
+  'font-family': 'Outfit',
 });
 
 const TemplateSubTitle = styled.span({
-  margin: "15px 0 5px",
-  display: "block",
-  color: "#777",
+  margin: '15px 0 5px',
+  display: 'block',
+  color: '#777',
 });
 
 export default function Template() {
@@ -35,19 +36,11 @@ export default function Template() {
       <Text size="MEDIUM" color="BLACK" value="맛있는 반찬을 배달해드립니다." />
       <br />
       <TemplateSubTitle>Large Medium</TemplateSubTitle>
-      <Text
-        size="LARGE"
-        weight="MEDIUM"
-        color="BLACK"
-        value="맛있는 반찬을 배달해드립니다."
-      />
-      <TemplateSubTitle>X-Large Bold</TemplateSubTitle>
-      <Text
-        size="X_LARGE"
-        weight="BOLD"
-        color="BLACK"
-        value="맛있는 반찬을 배달해드립니다."
-      />
+      <Text size="LARGE" weight="MEDIUM" color="BLACK" value="맛있는 반찬을 배달해드립니다." />
+      <TemplateSubTitle>X_LARGE Medium</TemplateSubTitle>
+      <Text size="X_LARGE" weight="MEDIUM" color="BLACK" value="맛있는 반찬을 배달해드립니다." />
+      <TemplateSubTitle>TITLE_3</TemplateSubTitle>
+      <Text size="TITLE_3" weight="BOLD" color="BLACK" value="맛있는 반찬을 배달해드립니다." />
 
       <TemplateTitle>COLORS</TemplateTitle>
       <TemplateSubTitle>Black</TemplateSubTitle>
@@ -66,11 +59,7 @@ export default function Template() {
       <Text size="BASE" color="GREY4" value="맛있는 반찬을 배달해드립니다." />
       <br />
       <TemplateSubTitle>Off-White</TemplateSubTitle>
-      <Text
-        size="BASE"
-        color="OFF_WHITE"
-        value="맛있는 반찬을 배달해드립니다."
-      />
+      <Text size="BASE" color="OFF_WHITE" value="맛있는 반찬을 배달해드립니다." />
 
       <TemplateTitle>LABELS</TemplateTitle>
       <TemplateSubTitle>Event</TemplateSubTitle>
@@ -79,20 +68,16 @@ export default function Template() {
       <Tag type="런칭특가" />
 
       <TemplateTitle>BUTTONS</TemplateTitle>
+      <TemplateSubTitle>Button</TemplateSubTitle>
+      <Button value="주문하기" />
+      <Button value="주문하기" disabled="true" />
       <TemplateSubTitle>More Button</TemplateSubTitle>
       <MoreButton value="모든 카테고리 보기" />
       <TemplateSubTitle>Tab button</TemplateSubTitle>
       <TabButton value="Text" />
       <TabButton isSelected value="Text" />
       <TemplateSubTitle>Tab Bar</TemplateSubTitle>
-      <TabBar
-        tabNames={[
-          "훌륭한 고기 반찬",
-          "편리한 반찬 세트",
-          "맛있는 제철 요리",
-          "우리 아이 영양 반찬",
-        ]}
-      />
+      <TabBar tabNames={['훌륭한 고기 반찬', '편리한 반찬 세트', '맛있는 제철 요리', '우리 아이 영양 반찬']} />
     </div>
   );
 }
