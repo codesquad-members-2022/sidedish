@@ -17,7 +17,7 @@ class SectionHeader: UICollectionReusableView {
                     모두가 좋아하는
                     든든한 메인 요리
                     """
-        label.font = label.font.withSize(32)
+        label.font = UIFont.init(name: Font.sfRegular, size: 32)
         backgroundColor = .yellow
     }
 
