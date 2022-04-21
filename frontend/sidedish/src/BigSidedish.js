@@ -1,40 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./BigSidedish.css";
 
-function SidedischCard() {
+function SidedishCard(props) {
+    const dishData = props.dishData;
+    const event = dishData.event_badge;
+
     return (
-        <ul className="big-sidedish__cards">
-            <li className="big-sidedish__card">
-                <div className="big-sidedish__card-img-container">
-                    <img
-                        className="big-sidedish__card-img"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiB2hsfT2WUM3m26kHqcYyAc77UI_JU61u0w&usqp=CAU"
-                    />
-                </div>
-                <div className="big-sidedish__card-item">
-                    <div className="big-sidedish__card-item--text">
-                        <h3 className="big-sidedish__card-name">
-                            오리 주물럭_반조리
-                        </h3>
-                        <p className="big-sidedish__card-description">
-                            감칠맛 나는 매콤한 양념
-                        </p>
-                        <div className="big-sidedish__card-prices">
-                            <span className="big-sidedish__card-price--default">
-                                12,640원
-                            </span>
-                            <span className="big-sidedish__card-price--option">
-                                15,800원
-                            </span>
-                        </div>
+        <li className="big-sidedish__card" key={dishData.dish_id}>
+            <div className="big-sidedish__card-img-container">
+                <img
+                    className="big-sidedish__card-img"
+                    src={dishData.image_url}
+                />
+            </div>
+            <div className="big-sidedish__card-item">
+                <div className="big-sidedish__card-item--text">
+                    <h3 className="big-sidedish__card-name">
+                        {dishData.title}
+                    </h3>
+                    <p className="big-sidedish__card-description">
+                        {dishData.description}
+                    </p>
+                    <div className="big-sidedish__card-prices">
+                        <span className="big-sidedish__card-price--default">
+                            12,640원
+                        </span>
+                        <span className="big-sidedish__card-price--option">
+                            15,800원
+                        </span>
                     </div>
-                    <span className="big-sidedish__card-tag--launch">
-                        런칭특가
-                    </span>
                 </div>
-            </li>
-        </ul>
+                <span className="big-sidedish__card-tag--launch">런칭특가</span>
+            </div>
+        </li>
     );
+}
+
+function SidedishCards() {
+    const [sidedishCards, setSidedishCards] = useState([]);
+    useEffect(() => {
+        const getData = async (url) => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                const dishesData = await response.json();
+                const dishes = dishesData.data.dishes;
+                console.log(dishes);
+
+                const sidedischCards = dishes.map((dish) => (
+                    <SidedishCard dishData={dish} />
+                ));
+
+                setSidedishCards(sidedischCards);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getData(
+            "https://273b4433-0674-40c4-9d88-6ab939cd01f8.mock.pstmn.io/api/dish?festival=%ED%92%8D%EC%84%B1%ED%95%9C-%EA%B3%A0%EA%B8%B0-%EB%B0%98%EC%B0%AC&page=1"
+        );
+    }, []);
+
+    return <ul className="big-sidedish__cards">{sidedishCards}</ul>;
 }
 
 function TabMenu(props) {
@@ -78,7 +107,7 @@ function BigSidedish() {
                 </h2>
                 <TabMenu currTab={currTab} onChangeTab={changeTab} />
             </div>
-            <SidedischCard currTab={currTab} />
+            <SidedishCards currTab={currTab} />
         </div>
     );
 }
