@@ -1,12 +1,17 @@
 package sidedish.web.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
-@AllArgsConstructor
 public class ResponseDto<T>{
-    private int statusCode;
     private String message;
+    private int statusCode;
     private T body;
+
+    public ResponseDto(HttpStatus statusCode, T body) {
+        this.message = statusCode.name();
+        this.statusCode = statusCode.value();
+        this.body = body;
+    }
 }
