@@ -12,35 +12,35 @@ class MainViewCardCell: UICollectionViewCell {
     
     static let identifier = "MainViewCardCell"
     
-    private lazy var cardImageView: UIImageView = {
+    private let cardImageView: UIImageView = {
         var image = UIImageView()
         image.backgroundColor = .systemGray5
         return image
     }()
     
-    private lazy var cardTitleLabel: UILabel = {
+    private let cardTitleLabel: UILabel = {
         var label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     
-    private lazy var cardBodyLabel: UILabel = {
+    private let cardBodyLabel: UILabel = {
         var label = UILabel()
         return label
     }()
     
-    private lazy var normalPriceLabel: UILabel = {
+    private let normalPriceLabel: UILabel = {
         var label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
     
-    private lazy var salePriceLabel: UILabel = {
+    private let salePriceLabel: UILabel = {
         var label = UILabel()
         return label
     }()
     
-    private lazy var eventBadgeLabel: UILabel = {
+    private let eventBadgeLabel: UILabel = {
         var label = UILabel()
         label.text = "이벤트특가"
         label.textColor = .white
@@ -48,7 +48,7 @@ class MainViewCardCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var launchingBadgeLabel: UILabel = {
+    private let launchingBadgeLabel: UILabel = {
         var label = UILabel()
         label.text = "런칭특가"
         label.textColor = .white
@@ -66,7 +66,7 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
-    func setPropertiesValue(image: String, cardTitle: String, cardBody: String, normalPrice: String, salePrice: String?, badgeList: [Badge]?) {
+    func setPropertiesValue(_ image: String, _ cardTitle: String, _ cardBody: String, _ normalPrice: String, _ salePrice: String?, _ badgeList: [Badge]?) {
         cardTitleLabel.text = cardTitle
         cardBodyLabel.text = cardBody
         normalPriceLabel.text = normalPrice
@@ -109,49 +109,63 @@ class MainViewCardCell: UICollectionViewCell {
     
     private func congifureCardImageViewConstraint() {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
-        cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
-        cardImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        cardImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        NSLayoutConstraint.activate([
+            cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            cardImageView.widthAnchor.constraint(equalToConstant: 120),
+            cardImageView.heightAnchor.constraint(equalToConstant: 120)
+        ])
     }
     
     private func configureCardTitleLabelConstraint() {
         cardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardTitleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
-        cardTitleLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            cardTitleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            cardTitleLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+        ])
     }
     
     private func configureCardBodyLabelConstraint() {
         cardBodyLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardBodyLabel.topAnchor.constraint(equalTo: cardTitleLabel.bottomAnchor, constant: 5).isActive = true
-        cardBodyLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            cardBodyLabel.topAnchor.constraint(equalTo: cardTitleLabel.bottomAnchor, constant: 5),
+            cardBodyLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+        ])
     }
     
     private func configurePriceLabelConstraint() {
         normalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        normalPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
-        normalPriceLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            normalPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5),
+            normalPriceLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+        ])
     }
     
     private func configureDiscountedPriceLabelConstraint() {
         salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        salePriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5).isActive = true
-        salePriceLabel.leadingAnchor.constraint(equalTo: normalPriceLabel.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            salePriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5),
+            salePriceLabel.leadingAnchor.constraint(equalTo: normalPriceLabel.trailingAnchor, constant: 5)
+        ])
     }
     
     private func configureEventBadgeLabelConstraint() {
         self.addSubview(eventBadgeLabel)
         eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
-        eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
+            eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+        ])
     }
     
     private func configureLaunchingBadgeLabelConstraint() {
         print("런칭특가")
         self.addSubview(launchingBadgeLabel)
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
-        launchingBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
+            launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5)
+        ])
     }
     
     private func configureEventLabelAndBadgeLabelConstraint() {
