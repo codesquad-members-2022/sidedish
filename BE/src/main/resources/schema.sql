@@ -23,17 +23,17 @@ USE `sidedish` ;
 DROP TABLE IF EXISTS `sidedish`.`menu` ;
 
 CREATE TABLE IF NOT EXISTS `sidedish`.`menu` (
-                                                 `id` INT NOT NULL AUTO_INCREMENT,
-                                                 `name` VARCHAR(255) NOT NULL,
-    `description` VARCHAR(255) NOT NULL,
-    `price` INT NOT NULL,
-    `menu_type` VARCHAR(45) NOT NULL,
-    `sale_type` VARCHAR(45) NOT NULL,
-    `fee` INT NOT NULL,
-    `free_shipping_min` INT NOT NULL,
-    `delivery_info` VARCHAR(45) NOT NULL,
-    `stock` INT NOT NULL,
-    `image_id` INT NOT NULL,
+    `id`                    INT             NOT NULL    AUTO_INCREMENT  COMMENT '메뉴 PK',
+    `name`                  VARCHAR(255)    NOT NULL    COMMENT '메뉴 이름',
+    `description`           VARCHAR(255)    NOT NULL    COMMENT '메뉴 설명',
+    `price`                 INT             NOT NULL    COMMENT '메뉴 가격',
+    `menu_type`             VARCHAR(45)     NOT NULL    COMMENT '메뉴 종류 (MAIN, SOUP, SIDE)',
+    `sale_type`             VARCHAR(45)     NOT NULL    COMMENT '세일 종류 (NONE, LAUNCH, EVENT)',
+    `fee`                   INT             NOT NULL    COMMENT '배송비',
+    `free_shipping_min`     INT             NOT NULL    COMMENT '무료배송 기준 최소주문 금액',
+    `delivery_info`         VARCHAR(45)     NOT NULL    COMMENT '배송 정보 (서울경기 당일배송)',
+    `stock`                 INT             NOT NULL    COMMENT '재고',
+    `image_id`              INT             NOT NULL    COMMENT '대표 이미지 ID',
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -44,10 +44,10 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`menu` (
 DROP TABLE IF EXISTS `sidedish`.`image` ;
 
 CREATE TABLE IF NOT EXISTS `sidedish`.`image` (
-                                                  `id` INT NOT NULL AUTO_INCREMENT,
-                                                  `menu_id` INT NOT NULL,
-                                                  `image_path` VARCHAR(1000) NOT NULL,
-    `is_main_image` TINYINT NOT NULL,
+    `id`            INT             NOT NULL     AUTO_INCREMENT      COMMENT '이미지 PK',
+    `menu_id`       INT             NOT NULL     COMMENT '메뉴 정보',
+    `image_path`    VARCHAR(1000)   NOT NULL     COMMENT '이미지 PATH',
+    `is_main_image` TINYINT         NOT NULL     COMMENT '메인 이미지와 상세 이미지 판단',
     PRIMARY KEY (`id`),
     INDEX `fk_image_menu_idx` (`menu_id` ASC) VISIBLE,
     CONSTRAINT `fk_image_menu`
@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`image` (
 DROP TABLE IF EXISTS `sidedish`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `sidedish`.`user` (
-                                                 `id` INT NOT NULL AUTO_INCREMENT,
-                                                 `address` VARCHAR(255) NOT NULL,
-    `name` VARCHAR(45) NOT NULL,
+    `id`            INT             NOT NULL        AUTO_INCREMENT      COMMENT '유저 PK',
+    `address`       VARCHAR(255)    NOT NULL        COMMENT '주소',
+    `name`          VARCHAR(45)     NOT NULL        COMMENT '이름',
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -77,12 +77,12 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`user` (
 DROP TABLE IF EXISTS `sidedish`.`menu_order` ;
 
 CREATE TABLE IF NOT EXISTS `sidedish`.`menu_order` (
-                                                       `id` INT NOT NULL AUTO_INCREMENT,
-                                                       `user_id` INT NOT NULL,
-                                                       `menu_name` VARCHAR(45) NULL,
-    `menu_price` INT NULL,
-    `fee` INT NULL,
-    `quantity` INT UNSIGNED NOT NULL,
+    `id`            INT             NOT NULL        AUTO_INCREMENT      COMMENT '주문 정보 PK',
+    `user_id`       INT             NOT NULL        COMMENT '유저 FK',
+    `menu_name`     VARCHAR(45)     NOT NULL        COMMENT '메뉴 이름',
+    `menu_price`    INT             NOT NULL        COMMENT '(세일 적용 후) 메뉴 가격',
+    `fee`           INT             NOT NULL        COMMENT '배송비',
+    `quantity`      INT             UNSIGNED        NOT NULL            COMMENT '주문 수량',
     PRIMARY KEY (`id`),
     INDEX `fk_menu_order_user1_idx` (`user_id` ASC) VISIBLE,
     CONSTRAINT `fk_menu_order_user1`
