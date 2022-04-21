@@ -1,6 +1,7 @@
 package com.codesquad.sidedish.dish;
 
-import com.codesquad.sidedish.dish.domain.Dish;
+import com.codesquad.sidedish.dish.dto.DishResponse;
+import com.codesquad.sidedish.dish.dto.Slice;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +17,17 @@ public class DishController {
     private final DishService dishService;
 
     @GetMapping
-    public List<Dish> findDishes(
+    public Slice<DishResponse> findDishes(
         @RequestParam(value = "section", required = false) String sectionName,
         @RequestParam(value = "category", required = false) String categoryName,
-        @RequestParam(value = "flat", defaultValue = "true", required = false) Boolean flat
+        @RequestParam(value = "festival", required = false) String festivalName,
+        @RequestParam(value = "flat", required = false) Boolean flat
     ) {
-        if (sectionName != null && flat) {
-            return dishService.findDishBySection(sectionName);
+        if (sectionName != null) {
+            return dishService.findDishBySection(sectionName.replace("-", " "));
         }
-        if (categoryName != null && flat) {
-            return dishService.findDishByCategory(categoryName);
+        if (categoryName != null) {
+            return dishService.findDishByCategory(categoryName.replace("-", " "));
         }
         return null;
     }
