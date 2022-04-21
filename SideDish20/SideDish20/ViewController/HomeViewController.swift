@@ -9,7 +9,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var products = [HomeModel]()
-    let homeCollectionViewCellId = "homeCollectionViewCell"
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -17,9 +16,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         registerXib()
-
-        let nibName = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        collectionView.register(nibName, forCellWithReuseIdentifier: homeCollectionViewCellId)
 
         for _ in 1...25 {
             let model = HomeModel()
@@ -35,9 +31,8 @@ class HomeViewController: UIViewController {
     }
 
     private func registerXib() {
-        let nibName = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        collectionView.register(nibName, forCellWithReuseIdentifier: homeCollectionViewCellId)
-        collectionView.register(HomeHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "homeHeaderView")
+        let nibName = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
+        collectionView.register(nibName, forCellWithReuseIdentifier: String(describing: HomeCollectionViewCell.self))
     }
 }
 
@@ -52,7 +47,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCollectionViewCell",
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self),
                                                             for: indexPath) as? HomeCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -81,17 +76,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: "homeHeaderView",
-                                                                         for: indexPath)
-            return header
-        } else {
-            return UICollectionReusableView()
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: String(describing: HomeHeaderCollectionReusableView.self),
+                                                                             for: indexPath)
+            
+            guard let homeHeaderView = headerView as? HomeHeaderCollectionReusableView else { return headerView }
+            return homeHeaderView
+        default:
+            assert(false, "Invalid element type")
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 300, height: 120)
     }
 }
