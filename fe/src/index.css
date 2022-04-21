@@ -115,3 +115,9 @@ ol {
   letter-spacing: -0.08em;
   font-weight: bold;
 }
+
+.fonts-display {
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
