@@ -25,40 +25,23 @@ class OrderView: UIView {
         return stack
     }()
 
-    private lazy var totalPriceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-
-        let padding = NSTextAttachment()
-        padding.bounds.size = CGSize(width: 24, height: 0)
-
-        let titleAttribute: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "Grey2") ?? UIColor.black,
-            .font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-            .baselineOffset: (32 - 18) / 3
-        ]
-
-        let priceAttribute: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.black,
-            .font: UIFont.systemFont(ofSize: 32, weight: .semibold)
-        ]
-
-        let attributedText = NSMutableAttributedString(string: "총 주문금액", attributes: titleAttribute)
-        let priceText = NSMutableAttributedString(string: "12,000원", attributes: priceAttribute)
-
-        let offset = abs(attributedText.size().height - priceText.size().height)
-
-        attributedText.insert(NSAttributedString(attachment: padding), at: attributedText.length)
-        attributedText.append(priceText)
-        label.attributedText = attributedText
-
+    private lazy var totalPriceLabel: PriceLabel = {
+        let label = PriceLabel()
+        label.price = 15000
         return label
     }()
 
     private lazy var quantityView = UIView()
 
     private lazy var orderButton: UIButton = {
-        let button = UIButton(type: .system)
+        let configuration = UIButton.Configuration.filled()
+        let button = UIButton(
+            configuration: configuration,
+            primaryAction: UIAction(handler: self.handleOnTapOrderButton)
+        )
+
+        button.setTitle("주문하기", for: .normal)
+
         return button
     }()
 
@@ -141,8 +124,6 @@ class OrderView: UIView {
             trailing: self.trailingAnchor,
             paddingTop: 24
         )
-
-        self.orderButton.setTitle("주문하기", for: .normal)
     }
 
     private func configureUI() {
@@ -151,5 +132,9 @@ class OrderView: UIView {
         self.configureQuantityView()
         self.configureTotalPriceLabel()
         self.configureOrderButton()
+    }
+
+    private func handleOnTapOrderButton(_ action: UIAction) {
+        self.delegate?.orderViewDidTapOrderButton()
     }
 }

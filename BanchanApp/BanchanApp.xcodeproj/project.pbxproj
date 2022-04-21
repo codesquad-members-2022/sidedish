@@ -16,6 +16,7 @@
 		E439A361280EB1CD001598D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A360280EB1CD001598D4 /* ViewController.swift */; };
 		E445CF7E280FEF280087D5EB /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445CF7D280FEF280087D5EB /* OrderView.swift */; };
 		E445CF80280FF0200087D5EB /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445CF7F280FF0200087D5EB /* ProductDetailView.swift */; };
+		E48748A52810FE8200959D88 /* PriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A42810FE8200959D88 /* PriceLabel.swift */; };
 		E4A41E53280E45300044CEB3 /* BanchanDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */; };
 		E4A41E55280E46780044CEB3 /* BanchanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A41E54280E46780044CEB3 /* BanchanDetailViewController.swift */; };
 		E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */; };
@@ -40,6 +41,7 @@
 		E445CF7F280FF0200087D5EB /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		E469A945280D136B00C02D97 /* BanchanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanchanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E469A94A280D166700C02D97 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		E48748A42810FE8200959D88 /* PriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLabel.swift; sourceTree = "<group>"; };
 		E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanDetailViewController.storyboard; sourceTree = "<group>"; };
 		E4A41E54280E46780044CEB3 /* BanchanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanDetailViewController.swift; sourceTree = "<group>"; };
 		E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanListViewController.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				E445CF7D280FEF280087D5EB /* OrderView.swift */,
+				E48748A42810FE8200959D88 /* PriceLabel.swift */,
 				E445CF7F280FF0200087D5EB /* ProductDetailView.swift */,
 			);
 			path = BanchanDetailViewController;
@@ -294,6 +297,7 @@
 				6FCDA43E280E954500EB8DF6 /* ProductDetailView.swift in Sources */,
 				E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */,
 				E445CF7E280FEF280087D5EB /* OrderView.swift in Sources */,
+				E48748A52810FE8200959D88 /* PriceLabel.swift in Sources */,
 				E4A41E55280E46780044CEB3 /* BanchanDetailViewController.swift in Sources */,
 				E4C6B77A280CFA7D001C14F7 /* BanchanListViewController.swift in Sources */,
 				E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */,
