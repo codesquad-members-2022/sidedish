@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 150vh;
+}
+
 h1 {
   margin: 0;
 }
@@ -113,5 +117,12 @@ ol {
   font-size: 12px;
   line-height: 18px;
   letter-spacing: -0.08em;
+  font-weight: bold;
+}
+
+.fonts-display {
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
   font-weight: bold;
 }

@@ -8,9 +8,7 @@ const MenuWrapper = styled.li`
 const SubMenuList = styled.ul`
   margin: 16px 0;
 
-  li {
-    font-size: 14px;
-  }
+  flex-direction: column;
 
   li:not(:last-child) {
     margin-bottom: 8px;
@@ -29,7 +27,9 @@ export const Menu = ({ menuData: { mainMenu, subMenuList }, subMenuOpen }) => {
       {subMenuOpen ? (
         <SubMenuList className={'fonts-sm'}>
           {subMenuList.map((subMenu, idx) => (
-            <li key={idx}>{subMenu}</li>
+            <li size={'xlNormal'} key={idx}>
+              {subMenu}
+            </li>
           ))}
         </SubMenuList>
       ) : null}
