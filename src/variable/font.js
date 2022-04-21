@@ -13,4 +13,9 @@ const WEIGHT = {
   BOLD: 700,
 };
 
-export { SIZE, WEIGHT };
+const FAMILY = {
+  BASE: "'Noto Sans KR', sans-serif",
+  LOGO: "'Outfit', sans-serif",
+};
+
+export { SIZE, WEIGHT, FAMILY };
