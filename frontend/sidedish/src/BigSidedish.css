@@ -79,34 +79,3 @@
     display: flex;
     gap: 8px;
 }
-.big-sidedish__card-price--default {
-    font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 26px;
-    letter-spacing: -0.008em;
-    color: #1b1b1b;
-}
-.big-sidedish__card-price--option {
-    font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 24px;
-    letter-spacing: -0.008em;
-    text-decoration-line: line-through;
-    color: #bcbcbc;
-}
-.big-sidedish__card-tag {
-    font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 18px;
-    letter-spacing: -0.008em;
-    color: #fff;
-    padding: 6px 8px;
-    border-radius: 25px;
-    margin-top: 22px;
-}
-.launch {
-    background-color: #ff8e14;
-}
-.event {
-    background-color: #6dd028;
-}

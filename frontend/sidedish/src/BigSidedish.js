@@ -1,36 +1,50 @@
 import { useState, useEffect } from "react";
 import "./BigSidedish.css";
+import styled from "styled-components";
+
+const Price = styled.span`
+    font-weight: ${(props) => (props.isClientPrice ? "500" : "400")};
+    font-size: ${(props) => (props.isClientPrice ? "1.6rem" : "1.4rem")};
+    line-height: ${(props) => (props.isClientPrice ? "26px" : "24px")};
+    letter-spacing: -0.008em;
+    text-decoration-line: ${(props) =>
+        props.isClientPrice ? "none" : "line-through"};
+    color: ${(props) => (props.isClientPrice ? "#1b1b1b" : "#bcbcbc")};
+`;
+
+const EventBadge = styled.span`
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 18px;
+    letter-spacing: -0.008em;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 25px;
+    margin-top: 22px;
+    background-color: ${(props) =>
+        props.eventName === "런칭특가" ? "#ff8e14" : "#6dd028"};
+`;
 
 function SidedishCard(props) {
     const dishData = props.dishData;
     const eventBadge = dishData.event_badge;
-    let defaultPrice = "";
-    let optionPrice = "";
-    let eventTag = "";
+
+    let clientPrice;
+    let originalPrice;
+    let eventTag;
 
     if (Object.keys(eventBadge).length) {
-        const saled = (dishData.price * (100 - eventBadge.discount)) / 100;
-        defaultPrice = (
-            <span className="big-sidedish__card-price--default">{saled}원</span>
-        );
-        optionPrice = (
-            <span className="big-sidedish__card-price--option">
-                {dishData.price}원
-            </span>
-        );
+        const saledPrice = (dishData.price * (100 - eventBadge.discount)) / 100;
+        clientPrice = <Price isClientPrice={true}>{saledPrice}원</Price>;
+        originalPrice = <Price isClientPrice={false}>{dishData.price}원</Price>;
 
-        const eventTagClassName =
-            "big-sidedish__card-tag " +
-            (eventBadge.event_name === "런칭특가" ? "launch" : "event");
         eventTag = (
-            <span className={eventTagClassName}>{eventBadge.event_name}</span>
+            <EventBadge eventName={eventBadge.event_name}>
+                {eventBadge.event_name}
+            </EventBadge>
         );
     } else {
-        defaultPrice = (
-            <span className="big-sidedish__card-price--default">
-                {dishData.price}원
-            </span>
-        );
+        clientPrice = <Price isClientPrice={true}>{dishData.price}원</Price>;
     }
 
     return (
@@ -51,8 +65,8 @@ function SidedishCard(props) {
                     </p>
                     <div className="big-sidedish__card-prices">
                         <>
-                            {defaultPrice}
-                            {optionPrice}
+                            {clientPrice}
+                            {originalPrice}
                         </>
                     </div>
                 </div>
@@ -73,7 +87,6 @@ function SidedishCards() {
                 }
                 const dishesData = await response.json();
                 const dishes = dishesData.data.dishes;
-                console.log(dishes);
 
                 const sidedischCards = dishes.map((dish) => (
                     <SidedishCard dishData={dish} />
@@ -133,7 +146,7 @@ function BigSidedish() {
                 </h2>
                 <TabMenu currTab={currTab} onChangeTab={changeTab} />
             </div>
-            <SidedishCards currTab={currTab} />
+            <SidedishCards />
         </div>
     );
 }
