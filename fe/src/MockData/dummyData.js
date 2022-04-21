@@ -19,6 +19,7 @@ export const MAIN_ITEMS = {
       salePrice: 12640,
       normalPrice: 15800,
       tag: '런칭특가',
+      deliveryType: '새벽 배송, 전국 택배',
     },
     {
       id: 2,
@@ -28,6 +29,7 @@ export const MAIN_ITEMS = {
       salePrice: 12640,
       normalPrice: 15800,
       tag: '이벤트특가',
+      deliveryType: '전국 택배',
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ export const MAIN_ITEMS = {
       salePrice: 12640,
       normalPrice: 15800,
       tag: '런칭특가',
+      deliveryType: '새벽 배송, 전국 택배',
     },
     {
       id: 4,
@@ -46,6 +49,7 @@ export const MAIN_ITEMS = {
       salePrice: 12640,
       normalPrice: 15800,
       tag: '런칭특가',
+      deliveryType: '새벽 배송',
     },
   ],
 };
@@ -63,6 +67,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 12640,
         normalPrice: 15800,
         tag: '런칭특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
       {
         id: 2,
@@ -72,6 +77,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 12640,
         normalPrice: 15800,
         tag: '이벤트특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
       {
         id: 3,
@@ -81,6 +87,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 12640,
         normalPrice: 15800,
         tag: '런칭특가',
+        deliveryType: '전국 택배',
       },
     ],
   },
@@ -96,6 +103,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 26010,
         normalPrice: 28900,
         tag: '이벤트특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
       {
         id: 2,
@@ -105,6 +113,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 26010,
         normalPrice: 28900,
         tag: '런칭특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
       {
         id: 3,
@@ -114,6 +123,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 26010,
         normalPrice: 28900,
         tag: '이벤트특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
     ],
   },
@@ -129,6 +139,7 @@ export const RECOMMEND_ITEMS = [
         // salePrice: 16900,
         normalPrice: 16900,
         tag: '이벤트특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
       {
         id: 2,
@@ -138,6 +149,7 @@ export const RECOMMEND_ITEMS = [
         // salePrice: 16900,
         normalPrice: 16900,
         tag: '이벤트특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
       {
         id: 3,
@@ -147,6 +159,7 @@ export const RECOMMEND_ITEMS = [
         // salePrice: 16900,
         normalPrice: 16900,
         tag: '이벤트특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
     ],
   },
@@ -162,6 +175,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 6000,
         normalPrice: 7500,
         tag: '런칭특가',
+        deliveryType: '새벽 배송',
       },
       {
         id: 2,
@@ -171,6 +185,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 6000,
         normalPrice: 7500,
         tag: '런칭특가',
+        deliveryType: '전국 택배',
       },
       {
         id: 3,
@@ -180,6 +195,7 @@ export const RECOMMEND_ITEMS = [
         salePrice: 6000,
         normalPrice: 7500,
         tag: '런칭특가',
+        deliveryType: '새벽 배송, 전국 택배',
       },
     ],
   },
