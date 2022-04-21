@@ -11,22 +11,36 @@ class ThirdSectionViewController: UIViewController{
     private var countLabel: UILabel!
     private var countText: UILabel!
     private var countStepper: UIStepper!
+    private var sectionUpper: UILabel!
     private var sectionBottom: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 176)
         setAllProperties()
     }
 }
 
 private extension ThirdSectionViewController{
     func setAllProperties() {
+        configureSectionUpper()
         configureCountLabel()
         configureCountText()
         configureCountStepper()
         configureSectionBottom()
         // 총주문금액, 주문하기 구현 필요
+    }
+    
+    func configureSectionUpper() {
+        sectionUpper = UILabel()
+        sectionUpper.frame = CGRect(x: 0, y: 0, width: 343, height: 1)
+        sectionUpper.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
+        self.view.addSubview(sectionUpper)
+        
+        sectionUpper.translatesAutoresizingMaskIntoConstraints = false
+        sectionUpper.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        sectionUpper.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        sectionUpper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        sectionUpper.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
     func configureCountLabel() {
@@ -38,7 +52,7 @@ private extension ThirdSectionViewController{
         self.view.addSubview(countLabel)
         
         countLabel.translatesAutoresizingMaskIntoConstraints = false
-        countLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 26).isActive = true
+        countLabel.topAnchor.constraint(equalTo: self.sectionUpper.bottomAnchor, constant: 26).isActive = true
         countLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         countLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
         countLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
@@ -53,7 +67,7 @@ private extension ThirdSectionViewController{
         self.view.addSubview(countText)
         
         countText.translatesAutoresizingMaskIntoConstraints = false
-        countText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 26).isActive = true
+        countText.topAnchor.constraint(equalTo: self.sectionUpper.bottomAnchor, constant: 26).isActive = true
         countText.leadingAnchor.constraint(equalTo: self.countLabel.trailingAnchor, constant: 150).isActive = true
         countText.widthAnchor.constraint(equalToConstant: 9).isActive = true
         countText.heightAnchor.constraint(equalToConstant: 24).isActive = true
@@ -66,7 +80,7 @@ private extension ThirdSectionViewController{
         self.view.addSubview(countStepper)
         
         countStepper.translatesAutoresizingMaskIntoConstraints = false
-        countStepper.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 26).isActive = true
+        countStepper.topAnchor.constraint(equalTo: self.sectionUpper.topAnchor, constant: 26).isActive = true
         countStepper.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         countStepper.widthAnchor.constraint(equalToConstant: 100).isActive = true
         countStepper.heightAnchor.constraint(equalToConstant: 28).isActive = true

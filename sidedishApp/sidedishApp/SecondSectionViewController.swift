@@ -14,11 +14,9 @@ class SecondSectionViewController: UIViewController{
     private var deliveryText: UILabel!
     private var chargeLabel: UILabel!
     private var chargeText: UILabel!
-    private var sectionBottom: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.frame = CGRect(x: 0, y: 0, width: 343, height: 152)
         setAllProperties()
     }
 }
@@ -31,7 +29,7 @@ private extension SecondSectionViewController{
         configureDeliveryText()
         configureChargeLabel()
         configureChargeText()
-        configureSectionBottom()
+        //configureSectionBottom()
     }
     
     func configurePointLabel() {
@@ -92,6 +90,7 @@ private extension SecondSectionViewController{
         chargeLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         chargeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
         chargeLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        chargeLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24).isActive = true
     }
     
     func configureChargeText() {
@@ -104,20 +103,7 @@ private extension SecondSectionViewController{
         chargeText.leadingAnchor.constraint(equalTo: self.chargeLabel.trailingAnchor, constant: 16).isActive = true
         chargeText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         chargeText.heightAnchor.constraint(equalToConstant: 24).isActive = true
-    }
-    
-    func configureSectionBottom() {
-        sectionBottom = UILabel()
-        sectionBottom.frame = CGRect(x: 0, y: 0, width: 343, height: 1)
-        sectionBottom.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
-        self.view.addSubview(sectionBottom)
-        
-        sectionBottom.translatesAutoresizingMaskIntoConstraints = false
-        sectionBottom.topAnchor.constraint(equalTo: self.chargeLabel.bottomAnchor, constant: 24).isActive = true
-        sectionBottom.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        sectionBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        sectionBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        sectionBottom.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        chargeText.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24).isActive = true
     }
     
     func setLabelAttribute(label: UILabel, text: String) {
