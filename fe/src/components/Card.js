@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { applyFlex } from '../helper/utils';
 
 export function Card({ product }) {
@@ -11,8 +11,44 @@ export function Card({ product }) {
         <CutPrice>{product.cutPrice}</CutPrice>
         <Price>{product.price}</Price>
       </PriceWrapper>
+      <EventWrapper events={product.events}></EventWrapper>
     </CardWrapper>
   );
+}
+
+function EventWrapper(props) {
+  const events = props.events;
+  if (!events) {
+    return;
+  }
+  return (
+    <StyledWrapper flex>
+      {events.map((eventName, idx) => {
+        return (
+          <Event key={idx} flex align="center" justify="center" eventName={eventName}>
+            {eventName}
+          </Event>
+        );
+      })}
+    </StyledWrapper>
+  );
+}
+
+function styleColorToEvent({ eventName }) {
+  if (eventName === '런칭특가') {
+    return css`
+      width: 76px;
+      height: 30px;
+      background: #ff8e14;
+    `;
+  }
+  if (eventName === '이벤트특가') {
+    return css`
+      width: 87px;
+      height: 30px;
+      background: #6dd028;
+    `;
+  }
 }
 
 const StyledImg = styled.img`
@@ -68,4 +104,19 @@ const Price = styled.div`
   letter-spacing: -0.008em;
   text-decoration-line: line-through;
   color: #bcbcbc;
+`;
+
+const StyledWrapper = styled.div`
+  ${props => applyFlex(props)}
+  margin-top:16px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+`;
+
+const Event = styled.div`
+  ${props => applyFlex(props)}
+  ${props => styleColorToEvent(props)}
+  margin-right: 8px;
+  border-radius: 999px;
 `;
