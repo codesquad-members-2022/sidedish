@@ -1,11 +1,8 @@
 import { rest } from 'msw';
 
 const getRoot = rest.get('/', (req, res, ctx) => {
-  return res(
-    ctx.status(200),
-    ctx.json({})
-  )
-})
+  return res(ctx.status(200), ctx.json({}));
+});
 const getEvents = rest.get('/events', (req, res, ctx) => {
   return res(
     ctx.status(200),
@@ -48,7 +45,8 @@ const getEvent = [
             discountPolicy: 'launch',
             discountRate: 0.15,
             morningDelivery: true,
-            image: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/12e66f74-ca37-4a97-b19e-8e9231541a4a.jpeg',
+            image:
+              'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/12e66f74-ca37-4a97-b19e-8e9231541a4a.jpeg',
           },
           {
             id: 2,
@@ -70,12 +68,38 @@ const getEvent = [
             discountPolicy: '',
             discountRate: 0.15,
             morningDelivery: true,
-            image: 'https://cdn.mindgil.com/news/photo/202004/69068_2873_1455.jpg',
+            image:
+              'https://cdn.mindgil.com/news/photo/202004/69068_2873_1455.jpg',
           },
         ],
       })
     );
   }),
 ];
+const getCategories = rest.get('/categories', (req, res, ctx) => {
+  return res(
+    ctx.status(200),
+    ctx.delay(0),
+    ctx.json({
+      content: [
+        {
+          id: 1,
+          main: '든든한 메인 요리',
+          subs: ['육류 요리', '해산물 요리'],
+        },
+        {
+          id: 2,
+          main: '뜨끈한 국물 요리',
+          subs: ['국/탕/찌개'],
+        },
+        {
+          id: 3,
+          main: '정갈한 밑반찬',
+          subs: ['나물/무침', '조림/볶음', '절임/장아찌']
+        },
+      ],
+    })
+  );
+});
 
-export const handlers = [getEvents, ...getEvent, getRoot];
+export const handlers = [getEvents, ...getEvent, getRoot, getCategories];
