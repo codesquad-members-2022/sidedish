@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "상품 API")
+@Tag(name = "products", description = "상품 조회 API")
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
@@ -44,7 +44,22 @@ public class ProductController {
         return mockProductService.findProductList(categoryId);
     }
 
-
+    @Operation(
+            summary = "상품 상세 조회",
+            description = "상품의 상세 정보 및 상세설명 이미지를 조회합니다.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "상품 상세 조회 성공",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            schema = @Schema(implementation = ProductDetailResponse.class)
+                                    )
+                            }
+                    )
+            }
+    )
     @GetMapping("/products/{productId}")
     public ProductDetailResponse productDetail(@PathVariable Long productId) {
         return productDetailService.findProductDetail(productId);
