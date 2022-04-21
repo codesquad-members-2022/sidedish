@@ -10,6 +10,7 @@ const Button = ({ icon }) => {
 
 const StyledButton = styled.button`
   ${flexCenter}
+  cursor: pointer;
   border: none;
   background-color: transparent;
   font-size: ${slideBtn.size}px;
