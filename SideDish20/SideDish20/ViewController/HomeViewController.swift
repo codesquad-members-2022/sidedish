@@ -68,7 +68,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 130)
+        return CGSize(width: collectionView.frame.width, height: 130)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -76,9 +76,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                         at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: String(describing: HomeHeaderCollectionReusableView.self),
-                                                                             for: indexPath)
+            let headerView = collectionView
+                .dequeueReusableSupplementaryView(ofKind: kind,
+                                                  withReuseIdentifier:
+                                                    String(describing: HomeHeaderCollectionReusableView.self),
+                                                  for: indexPath)
             
             guard let homeHeaderView = headerView as? HomeHeaderCollectionReusableView else { return headerView }
             return homeHeaderView
