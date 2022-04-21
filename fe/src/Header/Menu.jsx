@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Colors from '../Constants/Colors';
 
-const Root = styled.li`
+const MenuWrapper = styled.li`
   margin-right: 24px;
 `;
 
@@ -17,21 +18,21 @@ const SubMenuList = styled.ul`
 
   li:hover {
     text-decoration: underline;
-    color: ${'#777777'};
+    color: ${Colors.GREY};
   }
 `;
 
 export const Menu = ({ menuData: { mainMenu, subMenuList }, subMenuOpen }) => {
   return (
-    <Root>
+    <MenuWrapper>
       <span>{mainMenu}</span>
       {subMenuOpen ? (
-        <SubMenuList className={"fonts-sm"}>
+        <SubMenuList className={'fonts-sm'}>
           {subMenuList.map((subMenu, idx) => (
             <li key={idx}>{subMenu}</li>
           ))}
         </SubMenuList>
       ) : null}
-    </Root>
+    </MenuWrapper>
   );
 };
