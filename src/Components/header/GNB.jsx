@@ -50,6 +50,17 @@ const GNB_style = styled.nav`
   }
 `;
 
+const mouseHandler = ({ target }) => {
+  const header = target.closest('header');
+
+  if (header.classList.contains('active')) {
+    header.classList.remove('active');
+    return;
+  }
+
+  header.classList.add('active');
+};
+
 const GNB = () => {
   const GNB_LIST = [
     {
@@ -98,7 +109,7 @@ const GNB = () => {
   const [GNB_MENU, setGNB_MENU] = useState(GNB_LIST);
 
   return (
-    <GNB_style>
+    <GNB_style onMouseEnter={mouseHandler} onMouseLeave={mouseHandler}>
       <List menu={GNB_MENU} />
     </GNB_style>
   );
