@@ -27,7 +27,7 @@ const HeaderUI = styled.div`
 export const Header = () => {
   return (
     <Root>
-      <Logo>Ordering</Logo>
+      <Logo><img src={"logo.svg"} alt={"로고"} /></Logo>
       <HeaderUI>
         <MenuList />
         <UserButtons />
