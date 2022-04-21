@@ -8,6 +8,10 @@
         <import type="android.text.Html" />
 
         <variable
+            name="detail"
+            type="com.example.sideDish.data.source.FoodDetail" />
+
+        <variable
             name="foodInfo"
             type="com.example.sideDish.data.Item.FoodInfo" />
     </data>
@@ -176,7 +180,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_weight="8"
-                    android:text="temp:126원"
+                    android:text="@{detail.point}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="8"
                     app:layout_constraintStart_toEndOf="@id/text_view_accumulate_fix"
@@ -191,7 +195,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="temp:서울 경기 새벽 배송, 전국 택배 배송"
+                    android:text="@{detail.deliveryInfo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="8"
                     app:layout_constraintStart_toEndOf="@id/text_view_info_deliver_fix"
@@ -220,7 +224,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
-                    android:text="temp:2500원(40,000 이상 구매시 무료)"
+                    android:text="@{detail.deliveryFee}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="8"
                     app:layout_constraintStart_toEndOf="@id/text_view_delivery_cost_fix"
@@ -275,7 +279,7 @@
                     style="@style/TextLarge.Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="temp:12,640원"
+                    android:text="temp: 1000원"
                     app:layout_constraintBottom_toTopOf="@id/button_order"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -305,18 +309,21 @@
                     app:layout_constraintTop_toBottomOf="@id/text_view_total_cost" />
 
                 <ImageView
+                    image="@{detail.detailImageUrls.get(0)}"
                     android:id="@+id/image_view_detail1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/button_order" />
 
                 <ImageView
+                    image="@{detail.detailImageUrls.get(1)}"
                     android:id="@+id/image_view_detail2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/image_view_detail1" />
 
                 <ImageView
+                    image="@{detail.detailImageUrls.get(2)}"
                     android:id="@+id/image_view_detail3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
