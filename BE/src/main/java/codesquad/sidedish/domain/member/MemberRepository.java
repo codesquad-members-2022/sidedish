@@ -20,7 +20,7 @@ public class MemberRepository {
 
     public MemberRepository(DataSource dataSource) {
         this.jdbcInsert = new SimpleJdbcInsert(dataSource)
-                .withTableName("members")
+                .withTableName("member")
                 .usingGeneratedKeyColumns("member_id");
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
@@ -38,7 +38,7 @@ public class MemberRepository {
 
     public Optional<Member> findById(Long memberId) {
         String sql = "select member_id, member_name, district, mileage\n" +
-                "from members\n" +
+                "from member\n" +
                 "where member_id = :memberId";
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("memberId", memberId);

@@ -1,5 +1,5 @@
-drop table if exists members cascade;
-create table members (
+drop table if exists member cascade;
+create table member (
     member_id bigint auto_increment,
     member_name varchar(10) not null,
     district varchar(10),
