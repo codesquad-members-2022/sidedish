@@ -4,11 +4,9 @@ import COLOR from '../Constants/Colors';
 import { ProductCard } from './ProductCard';
 import { CategoryBadge } from '../Badge/CategoryBadge';
 
-const BestProductWrapper = styled.li`
+const BestProductWrapper = styled.div`
   display: flex;
-  width: 1440px;
-  padding: 0 80px;
-  margin: 56px auto 0;
+  margin: 56px 0 0;
   flex-direction: column;
 `;
 
