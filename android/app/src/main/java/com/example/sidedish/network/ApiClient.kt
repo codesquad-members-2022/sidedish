@@ -2,6 +2,7 @@ package com.example.sidedish.network
 
 import com.example.sidedish.data.Body
 import com.example.sidedish.data.Food
+import com.example.sidedish.data.FoodDetail
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -20,10 +21,10 @@ interface ApiClient {
     @GET("/onban/side")
     suspend fun getSideFoodList(): Response<Food>
 
-    @GET("/onban/main/{detail_hash}")
+    @GET("/onban/detail/{detail_hash}")
     suspend fun getProductDetail(
         @Path("detail_hash") detailHash: String
-    ): Response<Body>
+    ): Response<FoodDetail>
 
     companion object {
         private const val BASE_URL = "https://api.codesquad.kr"

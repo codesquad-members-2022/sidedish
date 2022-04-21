@@ -1,5 +1,7 @@
 package com.example.sidedish.data
 
+import android.util.Log
+
 class MenuListRepository(private val dataSource: DataSource) {
 
     suspend fun getMainFoodList(): List<Body>? {
@@ -27,11 +29,12 @@ class MenuListRepository(private val dataSource: DataSource) {
         }
     }
 
-    suspend fun getSelectedFoodDetail(hashId: String): Body? {
+    suspend fun getSelectedFoodDetail(hashId: String): Detail? {
         val data = dataSource.getFoodDetail(hashId)
+        Log.d("MainDetail", "${data.body()?.data}")
         return when(data.isSuccessful) {
-            true -> data.body()
-            false -> throw RuntimeException("network fail")
+            true -> data.body()?.data
+            false -> throw RuntimeException("Detail network fail")
         }
     }
 
