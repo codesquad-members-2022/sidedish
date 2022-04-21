@@ -10,16 +10,20 @@ const Tab = () => {
     { id: 4, title: "우리 아이 영향 반찬", active: false },
   ]);
 
+  const [activeTab, setActiveTab] = useState(1);
+
+  // [0] , [1]
   const onChangeInfor = (clickedId) => {
-    const newInfor = infor.map((v) => {
-      return Object.assign(v, { active: false });
-    });
-    const newnew = newInfor.map((v) =>
-      v.id.toString() === clickedId
-        ? (v = Object.assign(v, { active: true }))
-        : v
-    );
-    setInfor(newnew);
+    // const newInfor = infor.map((v) => {
+    //   return Object.assign(v, { active: false });
+    // });
+    // const newnew = newInfor.map((v) =>
+    //   v.id.toString() === clickedId
+    //     ? (v = Object.assign(v, { active: true }))
+    //     : v
+    // );
+    // setInfor(newnew);
+    setActiveTab(clickedId);
   };
 
   return (
@@ -31,7 +35,7 @@ const Tab = () => {
               title={v.title}
               key={v.id}
               id={v.id}
-              className={v.active ? "active" : ""}
+              className={v.id.toString() === activeTab ? "active" : ""}
               onSaveClickedID={onChangeInfor}
             />
           );

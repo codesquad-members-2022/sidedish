@@ -6,7 +6,7 @@ import Tab from "./component/Tab/Tab";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header />
       <Tab />
       <div className="card-wrapper">
