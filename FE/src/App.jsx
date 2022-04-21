@@ -33,14 +33,8 @@ function App() {
 
 	return (
 		<>
-			<div className="App">
-				<main>
-					<div className="Best">
-						<header className="Best__header"></header>
-					</div>
-					<MealContainer meals={meals} />
-				</main>
-			</div>
+      <BestMealContainer />
+      <MealContainer meals={meals} />
 			<div className="Modal"></div>
 		</>
 	);
