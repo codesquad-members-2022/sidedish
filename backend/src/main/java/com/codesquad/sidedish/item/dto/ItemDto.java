@@ -1,20 +1,27 @@
 package com.codesquad.sidedish.item.dto;
 
+import com.codesquad.sidedish.item.domain.DiscountPolicy;
+import com.codesquad.sidedish.item.domain.Item;
+
 public class ItemDto {
     private Integer itemId;
     private String discountPoilcy;
     private String description;
     private String name;
-    private String price;
+    private Integer price;
     private String mainImageLink;
 
-    public ItemDto(Integer itemId, String discountPoilcy, String description, String name, String price, String mainImageLink) {
+    private ItemDto(Integer itemId, String discountPoilcy, String description, String name, Integer price, String mainImageLink) {
         this.itemId = itemId;
         this.discountPoilcy = discountPoilcy;
         this.description = description;
         this.name = name;
         this.price = price;
         this.mainImageLink = mainImageLink;
+    }
+
+    public static ItemDto from(Item item, DiscountPolicy discountPolicy) {
+        return new ItemDto(item.getId(), discountPolicy.getName(), item.getDescription(), item.getName(), item.getPrice(), item.getMainImageLink());
     }
 
     public Integer getItemId() {
@@ -33,7 +40,7 @@ public class ItemDto {
         return name;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 

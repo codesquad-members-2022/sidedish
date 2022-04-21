@@ -11,6 +11,10 @@ public class CategoryItemDto {
         this.items = items;
     }
 
+    public void addItemDto(ItemDto itemDto) {
+        items.add(itemDto);
+    }
+
     public String getCategoryName() {
         return categoryName;
     }
