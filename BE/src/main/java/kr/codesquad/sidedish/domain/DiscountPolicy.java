@@ -3,9 +3,9 @@ package kr.codesquad.sidedish.domain;
 import java.util.function.Function;
 
 public enum DiscountPolicy {
-    NONE(price -> price),
-    FIX(price -> price - 3000),
-    RATE(price -> Math.toIntExact(Math.round(price * 0.9)));
+    정가(price -> price),
+    런칭특가(price -> price - 3000),
+    이벤트특가(price -> Math.toIntExact(Math.round(price * 0.9)));
 
     private final Function<Integer, Integer> calculate;
 

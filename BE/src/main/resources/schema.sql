@@ -31,7 +31,7 @@ CREATE TABLE DISH(
 drop table if exists IMAGE;
 CREATE TABLE IMAGE(
                       id      BIGINT PRIMARY KEY AUTO_INCREMENT,
-                      name    VARCHAR(50) not null,
+                      name    VARCHAR(500) not null,
                       dish_id BIGINT,
                       foreign key (dish_id) references DISH(id)
 );

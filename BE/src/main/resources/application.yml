@@ -1,8 +1,5 @@
 spring:
   config:
-    import: secret.yml
-  datasource:
-    url:
-    driver-class-name:
-    username:
-    password:
+    activate:
+      on-profile: application-local.yml
+
