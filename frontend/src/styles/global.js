@@ -1,4 +1,4 @@
-import {createGlobalStyle, css} from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 import styled from "styled-components";
 
 export const Search = styled.svg`
@@ -7,7 +7,7 @@ export const Search = styled.svg`
   right: 14.62%;
   top: 12.5%;
   bottom: 14.62%;
-  color: ${({theme}) => theme.colors.Black};
+  color: ${({ theme }) => theme.colors.Black};
 `;
 export const MyPage = styled.svg`
   position: absolute;
@@ -31,8 +31,7 @@ export const Left = styled.svg`
   right: 37.5%;
   top: 25%;
   bottom: 25%;
-  border: 2px solid ${props => props.color}
-
+  border: 2px solid ${(props) => props.color};
 `;
 
 export const Right = styled.svg`
@@ -41,32 +40,32 @@ export const Right = styled.svg`
   right: 37.5%;
   top: 25%;
   bottom: 25%;
-  border: 2px solid ${props => props.color};
-`
+  border: 2px solid ${(props) => props.color};
+`;
 export const Minus = styled.svg`
   position: absolute;
   left: 28.12%;
   right: 28.12%;
   top: 50%;
   bottom: 50%;
-  border: 2px solid ${props => props.color};
-`
+  border: 2px solid ${(props) => props.color};
+`;
 export const Plushorizontal = styled.svg`
   position: absolute;
   left: 28.12%;
   right: 28.12%;
   top: 50%;
   bottom: 50%;
-  border: 2px solid ${props => props.color};
-`
+  border: 2px solid ${(props) => props.color};
+`;
 export const Plusvertical = styled.svg`
   position: absolute;
   left: 50%;
   right: 50%;
   top: 28.12%;
   bottom: 28.12%;
-  border: 2px solid ${props => props.color};
-`
+  border: 2px solid ${(props) => props.color};
+`;
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -123,29 +122,28 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 export const Ordering = css`
-  font-family: 'Outfit';
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
   line-height: 50px;
-  color: #1B1B1B;
-`
-export const Logo = css`
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 58px;
-  letter-spacing: -0.004em;
-  color: #1B1B1B;
-`
-export const Typography = css`
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 58px;
-  letter-spacing: -0.004em;
-  color: #1B1B1B;
+  color: #1b1b1b;
 `;
-
+export const Logo = css`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: -0.004em;
+  color: #1b1b1b;
+`;
+export const Typography = css`
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: -0.004em;
+  color: #1b1b1b;
+`;
