@@ -1,20 +1,24 @@
 PODS:
+  - Alamofire (5.6.1)
   - SwiftLint (0.47.0)
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire
   - SwiftLint
   - Toast-Swift (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - SwiftLint
     - Toast-Swift
 
 SPEC CHECKSUMS:
+  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: e6dcaa223f3c10fa2a168e76eeba23209c9179f0
+PODFILE CHECKSUM: f384e9f08059edb0d6fe8c04d313e787858ffaae
 
 COCOAPODS: 1.11.3
