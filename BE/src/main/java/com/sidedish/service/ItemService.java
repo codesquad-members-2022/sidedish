@@ -16,10 +16,10 @@ public class ItemService {
     public static final int PAGE_UNIT = 4;
     private final ItemRepository itemRepository;
 
-    public List<Item> findUnitPageById(Long pageId) {
+    public List<Item> findUnitPageById(CategoryType type, Long pageId) {
         int startPage = pageId.intValue() - 1;
         PageRequest pageable = PageRequest.of(startPage, PAGE_UNIT);
-        return itemRepository.findByCategoryType(CategoryType.MAIN, pageable);
+        return itemRepository.findByCategoryType(type, pageable);
     }
 
     public List<Item> findItemByDetailType(String type) {

@@ -69,7 +69,7 @@ class CategoryControllerTest {
     public void find_main_category_use_pageId_test() throws Exception {
         // given
         ResultActions requestThenResult = mockMvc.
-                perform(get("/api/categories/main/1")
+                perform(get("/api/categories/main?pageId=1")
                         .contentType(MediaType.APPLICATION_JSON)
                 );
 
