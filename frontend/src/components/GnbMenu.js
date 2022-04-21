@@ -9,7 +9,7 @@ const List = styled.li`
   height: auto;
 `;
 const Title = styled.span`
-  ${({theme}) => theme.custom_static(34, null, null, 0) + theme.custom_font("Noto Sans KR", 16, 400, 26) + theme.flex_none(0, 8, 0) + `color:${theme.colors.Black}`}
+  ${({theme}) => theme.custom_static(34, null, null, 0) + theme.custom_font("Noto Sans KR", 16, 400, 26, -0.008) + theme.flex_none(0, 8, 0) + `color:${theme.colors.Black}`}
 `;
 const Sub = styled.span`
   ${({
