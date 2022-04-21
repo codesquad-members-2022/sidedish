@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		376A6B99280EA78B0016F0CE /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
 		376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
+		37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */; };
 		B50A0C38280E9A1500A49273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C36280E9A1500A49273 /* Main.storyboard */; };
 		B50A0C3A280E9A1700A49273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C39280E9A1700A49273 /* Assets.xcassets */; };
 		B50A0C3D280E9A1700A49273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C3B280E9A1700A49273 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		376A6B98280EA78B0016F0CE /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		376A6B9A280EA8040016F0CE /* Ordering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordering.swift; sourceTree = "<group>"; };
+		37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C37280E9A1500A49273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B50A0C39280E9A1700A49273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		37EBAE84281131EC000A941D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B50A0C24280E9A1500A49273 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		B50A0C2F280E9A1500A49273 /* SideDish */ = {
 			isa = PBXGroup;
 			children = (
+				37EBAE84281131EC000A941D /* Views */,
 				B5B0B84228110745005CE46B /* Controllers */,
 				B5B0B84128110737005CE46B /* Supportings */,
 				B50A0C5A280EF77E00A49273 /* Commmon */,
@@ -283,6 +294,7 @@
 				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
 				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
 				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
+				37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */,
 				B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
