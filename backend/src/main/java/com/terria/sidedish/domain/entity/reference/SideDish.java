@@ -1,10 +1,12 @@
 package com.terria.sidedish.domain.entity.reference;
 
+import com.terria.sidedish.domain.entity.link.SideDishHasDiscountEvent;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,6 +27,9 @@ public class SideDish {
     @MappedCollection(idColumn = "side_dish_id", keyColumn = "id")
     private List<SideDishImage> sideDishImages;
 
+    @MappedCollection(idColumn = "side_dish_id")
+    private Set<SideDishHasDiscountEvent> sideDishHasDiscountEvents;
+
     @Override
     public String toString() {
         return "SideDish{" +
@@ -37,6 +42,7 @@ public class SideDish {
                 ", shippingFee=" + shippingFee +
                 ", exemptionCondition=" + exemptionCondition +
                 ", sideDishImages=" + sideDishImages +
+                ", sideDishHasDiscountEvents=" + sideDishHasDiscountEvents +
                 '}';
     }
 }

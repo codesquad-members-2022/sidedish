@@ -6,6 +6,8 @@ drop table if exists exhibition;
 drop table if exists category_has_side_dish;
 drop table if exists side_dish;
 drop table if exists side_dish_image;
+drop table if exists discount_event;
+drop table if exists side_dish_has_discount_event;
 
 set
 foreign_key_checks = 1;
@@ -54,6 +56,23 @@ create table side_dish_image
     image_url    varchar(255) default 'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/noimage.png' comment '이미지 URL',
     image_seq    int comment '이미지 순서',
     side_dish_id bigint comment '반찬 아이디',
+
+    foreign key (side_dish_id) references side_dish (id)
+);
+
+create table discount_event
+(
+    id            bigint primary key auto_increment,
+    title         varchar(100) not null comment '할인 이벤트 이름',
+    discount_rate decimal comment '할인율'
+);
+
+create table side_dish_has_discount_event
+(
+    side_dish_id      bigint,
+    discount_event_id bigint,
+
+    primary key (side_dish_id, discount_event_id),
 
     foreign key (side_dish_id) references side_dish (id)
 );
