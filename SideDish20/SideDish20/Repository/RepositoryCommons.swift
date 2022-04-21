@@ -18,27 +18,17 @@ class RepositoryCommons {
         self.saveFileService.saveFile(as: name, contentsOf: data)
     }
     
-    func cachingFiles(parameters: [FileDTO]) {
+    func cachingFiles(parameters: [String: Data]) {
         for param in parameters {
-            self.saveFileService.saveFile(as: param.name, contentsOf: param.data)
+            self.saveFileService.saveFile(as: param.key, contentsOf: param.value)
         }
     }
     
-    func getAllFilesCached() -> Result<[FileDTO], CacheError> {
+    func getAllFilesCached() -> Result<[Data], CacheError> {
         return self.getFileService.fetchCachedFiles()
     }
     
-    func getFileCached(as name: String) -> Result<FileDTO, CacheError> {
+    func getFileCached(as name: String) -> Result<Data, CacheError> {
         return self.getFileService.fetchFile(as: name)
     }
-}
-
-struct FileDTO {
-    let name: String
-    let data: Data
-}
-
-enum RepositoryErrorCommons: Error {
-    case getFileCachedError(String)
-    case cacheFileError(String)
 }

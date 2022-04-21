@@ -9,7 +9,7 @@ import Foundation
 
 class CacheFileManagerAttribute {
     
-    let manager = FileManager.default
+    private let manager = FileManager.default
     private let cacheFolderName = "Cache"
     
     /// Application Support 경로를 반환
@@ -18,9 +18,8 @@ class CacheFileManagerAttribute {
     }
     
     /// Cache 폴더가 존재하는지 확인
-    func folderExists(at url: URL) -> Bool {
-        var isDirectory: ObjCBool = true
-        return manager.fileExists(atPath: url.path, isDirectory: &isDirectory)
+    func isFileExists(at url: URL) -> Bool {
+        return manager.fileExists(atPath: url.path)
     }
     
     /// Cache 폴더가 존재하면 그 경로를 가져오고, 없으면 생성한 뒤 경로를 가져옴.
@@ -32,7 +31,7 @@ class CacheFileManagerAttribute {
         
         cacheFolderPath.appendPathComponent(cacheFolderName, isDirectory: true)
         
-        if folderExists(at: cacheFolderPath) {
+        if isFileExists(at: cacheFolderPath) {
             return cacheFolderPath
         }
         
@@ -44,6 +43,49 @@ class CacheFileManagerAttribute {
 
         return cacheFolderPath
     }
+    
+    func createDirectoryInCache(as name: String) -> URL? {
+        guard var cacheFolderPath = getCacheDirPath() else {
+            return nil
+        }
+        
+        cacheFolderPath.appendPathComponent(name)
+        
+        do {
+            try manager.createDirectory(at: cacheFolderPath, withIntermediateDirectories: false)
+            return cacheFolderPath
+        } catch {
+            return nil
+        }
+    }
+    
+    func getContentsCache() -> [Data]? {
+        guard let cacheDir = getCacheDirPath() else {
+            return nil
+        }
+        
+        do {
+            let contentsInCache = try manager.contentsOfDirectory(at: cacheDir,
+                                                                  includingPropertiesForKeys: nil,
+                                                                  options: .skipsHiddenFiles)
+            let URLInCache = contentsInCache.map({$0.appendingPathComponent($0.lastPathComponent)})
+            return URLInCache.compactMap { url in
+                manager.contents(atPath: url.path)
+            }
+        } catch {
+            return nil
+        }
+    }
+    
+    func getContent(name: String) -> Data? {
+        guard var targetURL = getCacheDirPath() else { return nil }
+        
+        targetURL.appendPathComponent(name)
+        targetURL.appendPathComponent(name)
+        
+        return manager.contents(atPath: targetURL.path)
+    }
+    
 }
 
 enum CacheError: Error {

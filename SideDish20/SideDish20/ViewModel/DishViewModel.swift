@@ -25,7 +25,7 @@ class DishViewModel {
                 return
             }
             
-            let images = result.compactMap({ dto in UIImage(data: dto.data)})
+            let images = result.compactMap({ UIImage(data: $0) })
             
             guard images.count > 0 else {
                 self.fetchOnComplete(nil)
@@ -41,13 +41,13 @@ class DishViewModel {
         fetchImageHandler: @escaping (UIImage?) -> Void
     ) {
         
-        cacheImageRequestMiddleWare.getImageDataCached(as: name) { result in
-            guard let result = result else {
+        cacheImageRequestMiddleWare.getImageDataCached(as: name) { data in
+            guard let data = data else {
                 fetchImageHandler(nil)
                 return
             }
             
-            fetchImageHandler(UIImage(data: result.data))
+            fetchImageHandler(UIImage(data: data))
         }
     }
     
@@ -75,14 +75,13 @@ class DishViewModel {
         }
         
         let cacheName = url.lastPathComponent
-        
         getImageCached(as: cacheName) { image in
             if let image = image {
                 getImageHandler(image)
                 return
             }
             
-            URLSession.shared.dataTask(with: url) { data, response, error in
+            URLSession.shared.dataTask(with: url) { data, _, error in
                 guard error == nil, let data = data else {
                     getImageHandler(nil)
                     return

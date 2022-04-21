@@ -9,27 +9,15 @@ import Foundation
 
 final class SaveFileService: CacheFileManagerAttribute {
     
-    var locationCacheDir: URL {
-        manager.urls(for: .libraryDirectory, in: .userDomainMask)[0] // get Dir urlPath.
-    }
-    
     @discardableResult
     func saveFile(as name: String, contentsOf file: Data) -> Result<URL, CacheError> {
-        guard var targetURL = getCacheDirPath() else {
+        guard var targetURL = createDirectoryInCache(as: name) else { // Application Support/Cache
             return .failure(.cacheDirectoryError("Can not find Cache Directory."))
         }
         
-        targetURL.appendPathComponent(name, isDirectory: false)
-        if folderExists(at: targetURL) == false {
-            do {
-                try manager.createDirectory(at: targetURL, withIntermediateDirectories: false)
-            } catch {
-                return .failure(.cacheDirectoryError("Create Cache Directory Failed"))
-            }
-        }
+        targetURL.appendPathComponent(name, isDirectory: false) // Application Support/Cache/img01/img01
         
-        targetURL.appendPathComponent(name, isDirectory: false)
-        if manager.fileExists(atPath: targetURL.path) {
+        if isFileExists(at: targetURL) {
             return .success(targetURL)
         } else {
             do {

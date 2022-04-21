@@ -8,7 +8,7 @@
 import Foundation
 
 class CacheImageRequestMiddleWare {
-    func getAllImageDataCached(completionHandler: @escaping ([FileDTO]?) -> Void) {
+    func getAllImageDataCached(completionHandler: @escaping ([Data]?) -> Void) {
         let result = RepositoryCommons.shared.getAllFilesCached()
         
         do {
@@ -19,7 +19,7 @@ class CacheImageRequestMiddleWare {
         }
     }
     
-    func getImageDataCached(as name: String, completionHandler: @escaping (FileDTO?) -> Void) {
+    func getImageDataCached(as name: String, completionHandler: @escaping (Data?) -> Void) {
         let result = RepositoryCommons.shared.getFileCached(as: name)
         
         do {
