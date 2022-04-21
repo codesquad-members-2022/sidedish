@@ -25,14 +25,14 @@ const HeaderUI = styled.div`
   padding-top: 12px;
 `;
 
-export const Header = () => {
+export const Header = props => {
   return (
     <HeaderWrapper>
       <Logo>
         <img src={'logo.svg'} alt={'로고'} />
       </Logo>
       <HeaderUI>
-        <MenuList />
+        <MenuList categories={props.categories} />
         <UserButtons />
       </HeaderUI>
     </HeaderWrapper>

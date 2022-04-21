@@ -7,16 +7,7 @@ const MenuListWrapper = styled.ul`
   cursor: pointer;
 `;
 
-const menuDatas = [
-  { mainMenu: '든든한 메인요리', subMenuList: ['육류 요리', '해산물 요리'] },
-  { mainMenu: '뜨끈한 국물요리', subMenuList: ['국/탕/찌개'] },
-  {
-    mainMenu: '정갈한 밑반찬',
-    subMenuList: ['나물/무침', '조림/볶음', '절임/장아찌'],
-  },
-];
-
-export const MenuList = () => {
+export const MenuList = props => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -33,8 +24,8 @@ export const MenuList = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {menuDatas.map((menuData, idx) => (
-        <Menu key={idx} menuData={menuData} subMenuOpen={subMenuOpen} />
+      {props.categories.map(category => (
+        <Menu key={category.id} category={category} subMenuOpen={subMenuOpen} />
       ))}
     </MenuListWrapper>
   );
