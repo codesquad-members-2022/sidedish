@@ -14,19 +14,21 @@ const ModalWrap = styled.div`
   align-items: center;
 `;
 const PopupBox = styled.div`
-  /* width: 960px;
-  height: 994px; */
-  width: 700px;
-  height: 700px;
+  width: 960px;
+  height: 994px;
   background-color: #ffffff;
   border: 2px solid #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const PopupCloseButtonWrap = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   box-sizing: border-box;
-  padding: 32px 18px 48px;
+  padding: 32px 48px 18px 48px;
   height: 76px;
 `;
 const PopupCloseButton = styled.button`
@@ -38,14 +40,14 @@ const PopupCloseButton = styled.button`
   color: #777777;
 `;
 function Modal({ dishes }) {
-  const relatedDishes = dishes.related_dishes;
+  // const relatedDishes = dishes.related_dishes;
   return (
     <ModalWrap>
       <PopupBox>
         <PopupCloseButtonWrap>
           <PopupCloseButton>닫기</PopupCloseButton>
-          <ProductDetail dishes={dishes}></ProductDetail>
         </PopupCloseButtonWrap>
+        <ProductDetail dishes={dishes}></ProductDetail>
       </PopupBox>
     </ModalWrap>
   );
