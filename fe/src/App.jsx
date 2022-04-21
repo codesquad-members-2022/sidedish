@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [categories, setCategories] = useState(null);
-  const [loadedCategories, setLoadedCategories] = useState({});
+  const [loadedCategories, setLoadedCategories] = useState(null);
 
   useEffect(() => {
     fetch('/categories')
@@ -20,13 +20,17 @@ function App() {
   useEffect(() => {
     if (!categories) return;
     const firstCategoryId = categories[0].id;
+    const firstCategoryTitle = categories[0].main;
     fetch(`/category/${firstCategoryId}`)
       .then(response => response.json())
       .then(
         data => {
-          const obj = {};
-          obj[firstCategoryId] = data.content;
-          setLoadedCategories(obj);
+          const obj = {
+            id: firstCategoryTitle,
+            title: firstCategoryTitle,
+            content: data.content,
+          };
+          setLoadedCategories([obj]);
         },
         err => {
           console.log(err);
@@ -37,10 +41,12 @@ function App() {
   return (
     <>
       {categories && <Header categories={categories} />}
-      {/*<Main*/}
-      {/*  loadedCategories={loadedCategories}*/}
-      {/*  setLoadedCategories={setLoadedCategories}*/}
-      {/*/>*/}
+      {loadedCategories && (
+        <Main
+          loadedCategories={loadedCategories}
+          setLoadedCategories={setLoadedCategories}
+        />
+      )}
     </>
   );
 }
