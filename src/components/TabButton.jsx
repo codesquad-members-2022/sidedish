@@ -1,7 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import Text from "./Text";
+import React from 'react';
+import styled from 'styled-components';
+import Text from './Text';
 
 export default function TabButton(props) {
   const { value } = props;
@@ -12,15 +11,11 @@ export default function TabButton(props) {
   );
 }
 
-TabButton.propTypes = {
-  value: PropTypes.string,
-};
-
 TabButton.defaultProps = {
-  value: "",
+  value: '',
 };
 
 const Wrap = styled.div({
-  width: "fit-content",
-  height: "48px",
+  width: 'fit-content',
+  height: '48px',
 });
