@@ -5,7 +5,11 @@ const LARGE = 'large';
 const SMALL = 'small';
 
 const Container = styled.div`
+  display: block;
   width: fit-content;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -25,10 +29,14 @@ const ImageBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  display: none;
   width: ${({ size }) => size === LARGE ? '411px' : '302px'};
   height: ${({ size }) => size === LARGE ? '411px' : '302px'};
   background-color: rgba(0, 0, 0, 0.1);
   padding: 20px;
+  ${Container}:hover & {
+    display: block;
+  }
 `;
 
 const ImageBadge = styled.div`
@@ -45,7 +53,8 @@ const ImageBadge = styled.div`
 
   p {
     padding: 8px 0;
-
+    color: ${({ theme }) => theme.color.black};
+    
     &:first-of-type {
       border-bottom: 1px solid ${({ theme }) => theme.color.black};
     }
