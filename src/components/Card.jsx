@@ -1,13 +1,24 @@
-import React from "react";
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+/* eslint-disable no-console */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
 import Text from "./Text";
+import HoverInfo from "../images/HoverInfo.png";
 
 export default function Card(props) {
   const { size, imageURL, title, desc, curPrice, prevPrice, tags } = props;
+  const [isHoverImg, setHoverImg] = useState(false);
   return (
     <Wrap size={size}>
-      <img src={imageURL} alt="반찬" />
+      <ImgWrap
+        onMouseEnter={() => setHoverImg(true)}
+        onMouseLeave={() => setHoverImg(false)}
+      >
+        {getHoverImgBySize()}
+        <img src={imageURL} alt="반찬" />
+      </ImgWrap>
       {getSpaceBySize()}
       {getTitle()}
       {getDescription()}
@@ -30,6 +41,11 @@ export default function Card(props) {
       return <Text value={title} />;
     }
     return <Text size="MEDIUM" weight="MEDIUM" value={title} />;
+  }
+
+  function getHoverImgBySize() {
+    if (size === "SMALL") return "";
+    return <HoverImg isHoverImg={isHoverImg} />;
   }
 
   function getSpaceBySize() {
@@ -58,11 +74,17 @@ Card.defaultProps = {
   size: "MEDIUM",
 };
 
-const Wrap = styled.div({
+const Wrap = styled.a({
   width: (props) => getWidthBySize(props.size),
+  height: "fit-content",
   display: "flex",
   flexDirection: "column",
   gap: "8px",
+  cursor: "pointer",
+});
+
+const ImgWrap = styled.div({
+  position: "relative",
 });
 
 const Prices = styled.div({
@@ -78,6 +100,18 @@ const Tags = styled.div({
 });
 
 const Space = styled.div({});
+
+const HoverImg = styled.div({
+  width: "142px",
+  height: "149px",
+  backgroundImage: `url(${HoverInfo})`,
+  backgroundSize: "cover",
+  position: "absolute",
+  top: "20px",
+  right: "20px",
+  alignSelf: "end",
+  display: (props) => (props.isHoverImg ? "block" : "none"),
+});
 
 function getWidthBySize(size) {
   if (size === "LARGE") {
