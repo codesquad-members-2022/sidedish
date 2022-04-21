@@ -19,7 +19,6 @@
 .big-sidedish__tab-menu {
     display: flex;
     gap: 32px;
-    cursor: pointer;
     margin: 24px auto 0;
     width: 1280px;
 }
@@ -30,6 +29,7 @@
     letter-spacing: -0.008em;
     text-align: center;
     padding-bottom: 15px;
+    cursor: pointer;
 }
 .big-sidedish__cards {
     display: flex;
@@ -62,19 +62,15 @@
     margin-bottom: 22px;
 }
 .big-sidedish__card-name {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 26px;
     letter-spacing: -0.008em;
     color: #3f3f3f;
 }
 .big-sidedish__card-description {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 24px;
     letter-spacing: -0.008em;
     color: #777;
@@ -84,29 +80,23 @@
     gap: 8px;
 }
 .big-sidedish__card-price--default {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 26px;
     letter-spacing: -0.008em;
     color: #1b1b1b;
 }
 .big-sidedish__card-price--option {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 24px;
     letter-spacing: -0.008em;
     text-decoration-line: line-through;
     color: #bcbcbc;
 }
 .big-sidedish__card-tag--launch {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 1.2rem;
     line-height: 18px;
     letter-spacing: -0.008em;
     color: #fff;
@@ -116,10 +106,8 @@
     margin-top: 22px;
 }
 .big-sidedish__card-tag--event {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 1.2rem;
     line-height: 18px;
     letter-spacing: -0.008em;
     color: #fff;
