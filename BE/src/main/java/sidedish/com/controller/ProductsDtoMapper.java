@@ -1,6 +1,8 @@
 package sidedish.com.controller;
 
-import sidedish.com.controller.model.ProductsMealTypeResponse;
+import java.util.List;
+import java.util.stream.Collectors;
+import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.Product;
 
 public class ProductsDtoMapper {
@@ -8,14 +10,23 @@ public class ProductsDtoMapper {
 	private ProductsDtoMapper() {
 	}
 
-	public static ProductsMealTypeResponse toProductsMealTypeResponseFromDomain(Product product) {
-		return new ProductsMealTypeResponse(product.getId()
-			, product.getImage().get(0).getImage(),
+	public static List<ProductMealTypeResponse> toProductsMealTypeResponseFromDomain(
+		List<Product> products) {
+		return products.stream()
+			.map(ProductsDtoMapper::toProductMealTypeResponseFromDomain)
+			.collect(Collectors.toList());
+	}
+
+
+	private static ProductMealTypeResponse toProductMealTypeResponseFromDomain(Product product) {
+		return new ProductMealTypeResponse(
+			product.getId(),
+			product.getImage().get(0).getImage(),
 			product.getProductName(),
 			product.getDescription(),
 			product.getFixedPrice(),
 			product.getOriginalPrice(),
 			product.getDisCountPolicy().getPolicyName());
-
 	}
+
 }

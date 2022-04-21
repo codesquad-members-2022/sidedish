@@ -1,8 +1,6 @@
 package sidedish.com.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -17,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.DisCountPolicy;
 import sidedish.com.domain.Image;
 import sidedish.com.domain.Product;
@@ -35,7 +34,7 @@ class ProductsControllerTest {
 	@Test
 	void 만약_meal_type이_soup인_경우_soup음식_타입_조회_성공() throws Exception {
 		given(productsService.findByMealType("soup"))
-			.willReturn(createListProducts());
+			.willReturn(createProductsMealTypeResponse());
 
 		ResultActions perform = mockMvc.perform(get("/api/products?meal=soup"));
 
@@ -44,7 +43,7 @@ class ProductsControllerTest {
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 	}
 
-	private List<Product> createListProducts() {
+	private List<ProductMealTypeResponse> createProductsMealTypeResponse() {
 		List<Product> products = new ArrayList<>();
 
 		products.add(new Product(5L, List.of(new Image("http://kukukukukukukukuku.com/test.jpg")),
@@ -52,6 +51,6 @@ class ProductsControllerTest {
 		products.add(new Product(6L, List.of(new Image("http://kukukukukukukukuku.com/test2.jpg")),
 			"하하하 테스트 음식", "맛있어요", 8370, 9300, new DisCountPolicy("이벤트특가")));
 
-		return products;
+		return ProductsDtoMapper.toProductsMealTypeResponseFromDomain(products);
 	}
 }

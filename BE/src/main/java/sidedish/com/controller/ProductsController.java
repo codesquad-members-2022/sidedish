@@ -1,14 +1,12 @@
 package sidedish.com.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sidedish.com.controller.model.ProductsMealTypeResponse;
-import sidedish.com.domain.Product;
+import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.service.ProductsService;
 
 @RestController
@@ -22,12 +20,8 @@ public class ProductsController {
 	}
 
 	@GetMapping
-	public List<ProductsMealTypeResponse> findProductsMealType(
+	public List<ProductMealTypeResponse> findProductsMealType(
 		@RequestParam @NotEmpty String meal) {
-		List<Product> products = productsService.findByMealType(meal);
-
-		return products.stream()
-			.map(ProductsDtoMapper::toProductsMealTypeResponseFromDomain)
-			.collect(Collectors.toList());
+		return productsService.findByMealType(meal);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.DisCountPolicy;
 import sidedish.com.domain.Image;
 import sidedish.com.domain.Product;
@@ -31,7 +32,7 @@ class ProductsServiceTest {
 		given(productsRepository.findByMealType("soup"))
 			.willReturn(createListProducts());
 
-		List<Product> result = productsService.findByMealType("soup");
+		List<ProductMealTypeResponse> result = productsService.findByMealType("soup");
 
 		assertThat(result.size()).isEqualTo(2);
 	}

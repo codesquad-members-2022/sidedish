@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ProductsMealTypeResponse {
+public class ProductMealTypeResponse {
 
 	private Long id;
 	private String image;
