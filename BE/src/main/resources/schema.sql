@@ -35,7 +35,6 @@ CREATE TABLE IMAGE(
       id      BIGINT PRIMARY KEY AUTO_INCREMENT,
       name    VARCHAR(50) not null,
       dish_id BIGINT,
-      dish_key INT,
       foreign key (dish_id) references DISH(id)
 );
 

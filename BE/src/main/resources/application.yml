@@ -3,6 +3,6 @@ spring:
     import: secret.yml
   datasource:
     url:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name:
     username:
     password:

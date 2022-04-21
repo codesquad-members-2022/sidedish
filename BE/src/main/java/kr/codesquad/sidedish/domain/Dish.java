@@ -18,7 +18,7 @@ public class Dish {
     private final int price;
     private final DeliveryType deliveryType;
     private final DiscountPolicy discountPolicy;
-    @MappedCollection(idColumn = "DISH_ID")
+    @MappedCollection(idColumn = "DISH_ID", keyColumn = "ID")
     private final List<Image> images;
 
     public Dish(Long id, Long mainCategoryId, Long subCategoryId, String name, String description,

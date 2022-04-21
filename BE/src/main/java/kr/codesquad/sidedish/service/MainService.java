@@ -1,13 +1,12 @@
 package kr.codesquad.sidedish.service;
 
+import kr.codesquad.sidedish.domain.MainCategory;
 import kr.codesquad.sidedish.domain.Dish;
-import kr.codesquad.sidedish.dto.DishSimpleResponse;
+import kr.codesquad.sidedish.dto.CategorizedDishes;
 import kr.codesquad.sidedish.repository.JdbcCategoryRepository;
 import kr.codesquad.sidedish.repository.JdbcDishRepository;
 import kr.codesquad.sidedish.repository.JdbcImageRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 import java.util.*;
 
@@ -51,5 +50,13 @@ public class MainService {
         List<Dish> dishes = new ArrayList<>();
         jdbcDishRepository.findAll().forEach(dishes::add);
         return dishes;
+    }
+
+    public CategorizedDishes find(Long mainCategoryId) {
+        MainCategory category = jdbcCategoryRepository.findById(mainCategoryId).orElseThrow();
+
+        List<Dish> dishesByMainCategoryId = jdbcDishRepository.findDishesByMainCategoryId(category.getId());
+
+        return new CategorizedDishes(category, dishesByMainCategoryId);
     }
 }
