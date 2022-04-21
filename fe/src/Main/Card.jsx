@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
+import CardDeliveryInfo from 'Main/CardDeliveryInfo';
 
 const CardItem = styled.div`
   margin-right: 24px;
+`;
+
+const CardImgWrapper = styled.div`
+  position: relative;
 `;
 
 const CardItemImg = styled.img`
@@ -78,18 +83,27 @@ const CardItemTag = styled.p`
 const Card = ({ item, imageSize }) => {
   const setPrice = (price) => Number(price).toLocaleString();
 
+  const onMouseOver = () => {
+    return;
+  };
+
+  const onMouseOut = () => {
+    return;
+  };
+
   return (
     <CardItem>
-      <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
+      <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+        <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
+        <CardDeliveryInfo infos={item.deliveryType}></CardDeliveryInfo>
+      </CardImgWrapper>
       <CardItemInfo>
         <p className="item__title">{item.title}</p>
         <p className="item__desc">{item.desc}</p>
         {item.salePrice ? (
           <>
             <span className="item__default-price">{setPrice(item.salePrice)}원</span>
-            <span className="item__normal-price">
-              {Number(item.normalPrice).toLocaleString()}원
-            </span>
+            <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
           </>
         ) : (
           <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
