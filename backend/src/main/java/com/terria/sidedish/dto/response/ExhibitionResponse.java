@@ -1,4 +1,4 @@
-package com.terria.sidedish.dto;
+package com.terria.sidedish.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

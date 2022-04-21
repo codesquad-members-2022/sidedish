@@ -64,7 +64,7 @@ create table discount_event
 (
     id            bigint primary key auto_increment,
     title         varchar(100) not null comment '할인 이벤트 이름',
-    discount_rate decimal comment '할인율'
+    discount_rate decimal(2, 2) comment '할인율'
 );
 
 create table side_dish_has_discount_event

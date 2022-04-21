@@ -1,6 +1,6 @@
-package com.terria.sidedish.dto;
+package com.terria.sidedish.dto.response;
 
-import com.terria.sidedish.domain.DiscountEvent;
+import com.terria.sidedish.domain.entity.reference.DiscountEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DiscountEventResponse {
 
-    private long id;
+    private long discountEventId;
     private String title;
 
     public static DiscountEventResponse of(DiscountEvent discountEvent) {

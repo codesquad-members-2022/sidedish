@@ -1,6 +1,6 @@
-package com.terria.sidedish.dto;
+package com.terria.sidedish.dto.response;
 
-import com.terria.sidedish.domain.DiscountEvent;
+import com.terria.sidedish.domain.entity.reference.DiscountEvent;
 import com.terria.sidedish.domain.entity.reference.SideDish;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

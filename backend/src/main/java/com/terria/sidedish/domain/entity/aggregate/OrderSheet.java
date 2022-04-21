@@ -1,4 +1,4 @@
-package com.terria.sidedish.domain;
+package com.terria.sidedish.domain.entity.aggregate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

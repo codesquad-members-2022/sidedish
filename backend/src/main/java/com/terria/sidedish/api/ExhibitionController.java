@@ -1,7 +1,6 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.domain.entity.reference.Category;
-import com.terria.sidedish.dto.ExhibitionResponse;
+import com.terria.sidedish.dto.response.ExhibitionResponse;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
