@@ -84,11 +84,15 @@ class BriefBanchanViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layout()
+        self.layoutBreifStackView()
+        self.layoutPriceStackView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.layout()
+        self.layoutBreifStackView()
+        self.layoutPriceStackView()
     }
     
     private func layout() {
@@ -112,8 +116,6 @@ class BriefBanchanViewCell: UICollectionViewCell {
             self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
         ])
         
-        self.layoutBreifStackView()
-        self.layoutPriceStackView()
     }
     
     private func layoutBreifStackView() {

@@ -31,11 +31,13 @@ class DeliverySectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layout()
+        self.setSections()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.layout()
+        self.setSections()
     }
     
     private func layout() {
@@ -53,7 +55,6 @@ class DeliverySectionView: UIView {
             self.informationSection.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
         
-        setSections()
     }
     
     private func setSections() {
