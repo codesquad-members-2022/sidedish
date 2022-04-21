@@ -50,7 +50,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
         cell.setDishImage(by: dish.image)
         cell.setMenuTitle(by: dish.title)
         cell.setMenuDescription(by: dish.description)
-        cell.setMenuPrice(nPrice: dish.n_price, sPrice: dish.s_price)
+        cell.setMenuPrice(originPrice: dish.n_price, discountedPrice: dish.s_price)
         cell.setBadges(by: dish.badge)
         return cell
     }
