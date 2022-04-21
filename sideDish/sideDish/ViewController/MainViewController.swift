@@ -16,36 +16,39 @@ class MainViewController: UIViewController {
                      ["새콤달콤 오징어무침","호두 멸치볶음","한돈 매콤 안심장조림"]]
     let dummyHeaderData = ["모두가 좋아하는 든든한 메인 요리","정성이 담긴 뜨끈뜨끈 국물 요리","식탁을 풍성하게 하는 정갈한 밑반찬"]
     
-    private var collectionView: UICollectionView!
+    private var collectionView: UICollectionView = {
+        let tempCollcetion = UICollectionView(frame: CGRect(x: 0, y: 0, width: 500, height: 500), collectionViewLayout: UICollectionViewFlowLayout())
+        return tempCollcetion
+    }()
     
     let headerID = "headerView"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureLayout()
-        collectionView?.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
-        collectionView?.register(FoodCell.self, forCellWithReuseIdentifier: FoodCell.identifier)
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
+        configureCollectionViewLayout()
+        collectionView.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView.register(FoodCell.self, forCellWithReuseIdentifier: FoodCell.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
 
     }
     
-    func configureLayout() {
+    func configureCollectionViewLayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 1
         flowLayout.minimumInteritemSpacing = 1
         flowLayout.itemSize = CGSize(width: self.view.frame.width, height: (view.frame.size.height/4)-3)
-      
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 96)
-        self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 500, height: 500), collectionViewLayout: flowLayout)
+        collectionView.collectionViewLayout = flowLayout
+        
         self.view.addSubview(self.collectionView)
-        collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
         collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
-        collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 }
 
