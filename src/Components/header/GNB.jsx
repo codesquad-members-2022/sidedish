@@ -52,13 +52,7 @@ const GNB_style = styled.nav`
 
 const mouseHandler = ({ target }) => {
   const header = target.closest('header');
-
-  if (header.classList.contains('active')) {
-    header.classList.remove('active');
-    return;
-  }
-
-  header.classList.add('active');
+  header.classList.toggle('active');
 };
 
 const GNB = () => {
