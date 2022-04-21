@@ -35,9 +35,9 @@ function SidedishCard(props) {
 
     if (Object.keys(eventBadge).length) {
         const saledPrice = (dishData.price * (100 - eventBadge.discount)) / 100;
+
         clientPrice = <Price isClientPrice={true}>{saledPrice}원</Price>;
         originalPrice = <Price isClientPrice={false}>{dishData.price}원</Price>;
-
         eventTag = (
             <EventBadge eventName={eventBadge.event_name}>
                 {eventBadge.event_name}
@@ -105,6 +105,17 @@ function SidedishCards() {
     return <ul className="big-sidedish__cards">{sidedishCards}</ul>;
 }
 
+const MenuItem = styled.li`
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: -0.008em;
+    text-align: center;
+    padding-bottom: 15px;
+    cursor: pointer;
+    border-bottom: ${(props) => (props.isCurrTab ? "solid 2px black" : "")};
+`;
+
 function TabMenu(props) {
     const tabMenu = [
         "풍성한 고기 반찬",
@@ -114,18 +125,14 @@ function TabMenu(props) {
     ];
 
     const tabMenuTemplate = tabMenu.map((menuName, idx) => {
-        let tabMenuClassName = "big-sidedish__menu-item";
-        if (idx === props.currTab) {
-            tabMenuClassName += " current-tab";
-        }
         return (
-            <li
-                className={tabMenuClassName}
+            <MenuItem
+                isCurrTab={idx === props.currTab}
                 key={idx}
                 onClick={() => props.onChangeTab(idx)}
             >
                 {menuName}
-            </li>
+            </MenuItem>
         );
     });
 

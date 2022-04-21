@@ -22,23 +22,11 @@
     margin: 24px auto 0;
     width: 1280px;
 }
-.big-sidedish__menu-item {
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 30px;
-    letter-spacing: -0.008em;
-    text-align: center;
-    padding-bottom: 15px;
-    cursor: pointer;
-}
 .big-sidedish__cards {
     display: flex;
     margin-top: 34px;
     margin: 0 auto;
     width: 1280px;
-}
-.current-tab {
-    border-bottom: solid 2px black;
 }
 .big-sidedish__cards {
     display: grid;
