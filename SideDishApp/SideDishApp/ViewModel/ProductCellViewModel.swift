@@ -7,10 +7,10 @@
 
 import Foundation
 struct ProductCellViewModel {
-    let title : String
-    let description : String
-    let image : URL
-    let originalPrice : Money?
-    let salePrice : Money
-    let badge : [Badge]
+    let title: String
+    let description: String
+    let imageURL: URL
+    let originalPrice: Money?
+    let salePrice: Money
+    let badge: [Badge]?
 }

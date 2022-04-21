@@ -19,7 +19,6 @@
 		B7F90B31280E89520067E4FE /* mockProductData.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F90B2E280E86E10067E4FE /* mockProductData.json */; };
 		B7F90B33280EA7850067E4FE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B32280EA7850067E4FE /* Category.swift */; };
 		B7F90B35280EE1C20067E4FE /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B34280EE1C20067E4FE /* ProductType.swift */; };
-		B7F90B37280EEA1F0067E4FE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B36280EEA1F0067E4FE /* Extension.swift */; };
 		B7F90B39280FB8E90067E4FE /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B38280FB8E90067E4FE /* ProductDetail.swift */; };
 		B7F90B3F280FCC340067E4FE /* mockProductDetailData.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F90B3E280FCC340067E4FE /* mockProductDetailData.json */; };
 		B7F90B43280FCD710067E4FE /* DetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B42280FCD710067E4FE /* DetailData.swift */; };
@@ -46,6 +45,11 @@
 		B7F90B8C2810523A0067E4FE /* ProductCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B8B2810523A0067E4FE /* ProductCollectionViewModel.swift */; };
 		B7F90B8E2810561A0067E4FE /* Obseverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B8D2810561A0067E4FE /* Obseverable.swift */; };
 		B7F90B90281059870067E4FE /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B8F281059870067E4FE /* ProductCellViewModel.swift */; };
+		B7F90B922810723E0067E4FE /* ProductCollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B912810723E0067E4FE /* ProductCollectionViewModelTests.swift */; };
+		B7F90B932810725C0067E4FE /* ProductCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B8B2810523A0067E4FE /* ProductCollectionViewModel.swift */; };
+		B7F90B942810725E0067E4FE /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B8F281059870067E4FE /* ProductCellViewModel.swift */; };
+		B7F90B95281076BE0067E4FE /* Obseverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B8D2810561A0067E4FE /* Obseverable.swift */; };
+		B7F90B98281128DB0067E4FE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B7F90B97281128DB0067E4FE /* .swiftlint.yml */; };
 		BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4835280D5AE100F23DCE /* AppDelegate.swift */; };
 		BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */; };
 		BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4839280D5AE100F23DCE /* ViewController.swift */; };
@@ -89,7 +93,6 @@
 		B7F90B2E280E86E10067E4FE /* mockProductData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockProductData.json; sourceTree = "<group>"; };
 		B7F90B32280EA7850067E4FE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B7F90B34280EE1C20067E4FE /* ProductType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
-		B7F90B36280EEA1F0067E4FE /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		B7F90B38280FB8E90067E4FE /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		B7F90B3E280FCC340067E4FE /* mockProductDetailData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockProductDetailData.json; sourceTree = "<group>"; };
 		B7F90B42280FCD710067E4FE /* DetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailData.swift; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 		B7F90B8B2810523A0067E4FE /* ProductCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewModel.swift; sourceTree = "<group>"; };
 		B7F90B8D2810561A0067E4FE /* Obseverable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obseverable.swift; sourceTree = "<group>"; };
 		B7F90B8F281059870067E4FE /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
+		B7F90B912810723E0067E4FE /* ProductCollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewModelTests.swift; sourceTree = "<group>"; };
+		B7F90B97281128DB0067E4FE /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B98C60A45FBEDB596EF4430A /* Pods-SideDishApp-SideDishAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCFE4832280D5AE100F23DCE /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE4835280D5AE100F23DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -208,6 +213,7 @@
 		BCFE4829280D5AE100F23DCE = {
 			isa = PBXGroup;
 			children = (
+				B7F90B97281128DB0067E4FE /* .swiftlint.yml */,
 				BCFE4834280D5AE100F23DCE /* SideDishApp */,
 				BCFE484B280D5AE200F23DCE /* SideDishAppTests */,
 				BCFE4855280D5AE200F23DCE /* SideDishAppUITests */,
@@ -245,6 +251,7 @@
 		BCFE484B280D5AE200F23DCE /* SideDishAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				B7F90B912810723E0067E4FE /* ProductCollectionViewModelTests.swift */,
 				B7F90B4F280FE29B0067E4FE /* NetworkManagerTests.swift */,
 				B7F90B44280FD65D0067E4FE /* ProductDetailDecodingTest.swift */,
 				B7F90B2B280E86200067E4FE /* ProductDecodingTests.swift */,
@@ -298,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				B7F90B4D280FE1940067E4FE /* SystemLog.swift */,
-				B7F90B36280EEA1F0067E4FE /* Extension.swift */,
 				B7F90B8D2810561A0067E4FE /* Obseverable.swift */,
 			);
 			name = Common;
@@ -337,6 +343,7 @@
 				BCFE482F280D5AE100F23DCE /* Frameworks */,
 				BCFE4830280D5AE100F23DCE /* Resources */,
 				8376A3028B5B4DA864DB8BE9 /* [CP] Embed Pods Frameworks */,
+				B7F90B96281126570067E4FE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -435,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7F90B98281128DB0067E4FE /* .swiftlint.yml in Resources */,
 				B7F90B46280FD69A0067E4FE /* mockProductDetailData.json in Resources */,
 				BCFE4842280D5AE200F23DCE /* LaunchScreen.storyboard in Resources */,
 				B7F90B31280E89520067E4FE /* mockProductData.json in Resources */,
@@ -541,6 +549,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B7F90B96281126570067E4FE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
+		};
 		BE96EBAE2FF18ACBAF180DF6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,7 +621,6 @@
 				B7F90B4E280FE1940067E4FE /* SystemLog.swift in Sources */,
 				B7F90B8E2810561A0067E4FE /* Obseverable.swift in Sources */,
 				B7F90B24280E7C2A0067E4FE /* Product.swift in Sources */,
-				B7F90B37280EEA1F0067E4FE /* Extension.swift in Sources */,
 				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
 				B7F90B7C2810090D0067E4FE /* CategoryManager.swift in Sources */,
 				BCFE48B6281003BE00F23DCE /* NetworkError.swift in Sources */,
@@ -621,10 +645,14 @@
 				B7F90B6F2810081F0067E4FE /* ProductDetail.swift in Sources */,
 				B7F90B75281008290067E4FE /* Delivery.swift in Sources */,
 				B7F90B7E2810094B0067E4FE /* SystemLog.swift in Sources */,
+				B7F90B922810723E0067E4FE /* ProductCollectionViewModelTests.swift in Sources */,
 				BCFE484D280D5AE200F23DCE /* SideDishAppTests.swift in Sources */,
+				B7F90B932810725C0067E4FE /* ProductCollectionViewModel.swift in Sources */,
 				B7F90B73281008250067E4FE /* Money.swift in Sources */,
+				B7F90B95281076BE0067E4FE /* Obseverable.swift in Sources */,
 				B7F90B7D2810090D0067E4FE /* CategoryManager.swift in Sources */,
 				B7F90B45280FD65D0067E4FE /* ProductDetailDecodingTest.swift in Sources */,
+				B7F90B942810725E0067E4FE /* ProductCellViewModel.swift in Sources */,
 				B7F90B70281008200067E4FE /* DetailData.swift in Sources */,
 				B7F90B2C280E86200067E4FE /* ProductDecodingTests.swift in Sources */,
 				B7F90B762810086C0067E4FE /* NetworkManager.swift in Sources */,
