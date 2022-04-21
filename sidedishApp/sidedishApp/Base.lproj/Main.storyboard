@@ -140,8 +140,8 @@
                     <navigationItem key="navigationItem" id="XVR-au-CEa"/>
                     <connections>
                         <outlet property="firstSectionView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
-                        <outlet property="fullSizeScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
-                        <outlet property="imageScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
+                        <outlet property="fullSizeVerticalScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
+                        <outlet property="imageHorizontalScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
                         <outlet property="secondSectionView" destination="3ds-sl-mPb" id="zbJ-jH-g8h"/>
                         <outlet property="stackView" destination="B1F-sX-Dun" id="XFG-t1-5DK"/>
                         <outlet property="thirdSectionView" destination="ugP-ya-KTg" id="OLG-Pf-RrC"/>
