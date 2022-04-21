@@ -9,6 +9,10 @@ const StyledNav = styled.nav`
 const StyledLi = styled.li`
   margin-top: 10px;
   font-size: 14px;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 const StyledUl = styled.ul`

@@ -1,7 +1,22 @@
 import List from "./List";
 import Card from "../UI/Card";
-import "./Tab.css";
+import styled from "styled-components";
 import React, { useEffect, useState } from "react";
+
+const TabList = styled.ul`
+  display: flex;
+  margin: 20px 0 20px 40px;
+`;
+
+const TabListItem = styled.li`
+  margin-right: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  &.active {
+    border-bottom: 1px solid #000;
+  }
+`;
 
 const Tab = () => {
   const [infor, setInfor] = useState([
@@ -15,30 +30,35 @@ const Tab = () => {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    setActiveTab("1");
+  }, []);
+
+  useEffect(() => {
     fetch("https://api.codesquad.kr/onban/main")
       .then((res) => res.json())
       .then((data) => setCards(data.body[activeTab]));
-  });
+  }, [activeTab]);
+
   const onClickHandler = (event) => {
     setActiveTab(event.target.id);
   };
 
   return (
-    <div>
-      <ul className="tab-list">
+    <>
+      <TabList>
         {infor.map((v) => {
           return (
-            <li
+            <TabListItem
               id={v.id}
               key={v.id}
               className={v.id.toString() === activeTab ? "active" : ""}
               onClick={onClickHandler}
             >
               {v.title}
-            </li>
+            </TabListItem>
           );
         })}
-      </ul>
+      </TabList>
 
       <div className="card-wrapper">
         <Card
@@ -52,7 +72,7 @@ const Tab = () => {
           badge={cards.badge}
         />
       </div>
-    </div>
+    </>
   );
 };
 

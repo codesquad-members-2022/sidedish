@@ -23,6 +23,7 @@ const GNBWrapper = styled.div`
 `;
 
 const GNB = () => {
+  //상수파일로 옮길 예정
   const GNBLists = [
     { navTitle: "든든한 메인 요리", navList: ["육류 요리", "해산물 요리"] },
     { navTitle: "뜨끈한 국물요리", navList: ["국/탕/찌개"] },
