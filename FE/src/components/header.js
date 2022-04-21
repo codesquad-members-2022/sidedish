@@ -63,8 +63,10 @@ const MenuWrap = styled.div`
 
 const SubMenu = ({ subMenus }) => (
   <SubMenuWrap>
-    {subMenus.map((menu) => (
-      <Food font={FONT.SMALL}>{menu}</Food>
+    {subMenus.map((menu, idx) => (
+      <Food key={menu + idx} font={FONT.SMALL}>
+        {menu}
+      </Food>
     ))}
   </SubMenuWrap>
 );
@@ -78,8 +80,8 @@ export default function Header() {
         <ShoppingCartIcon />
       </Icons>
       <MenuBar>
-        {headerMenus.map((menu) => (
-          <MenuWrap>
+        {headerMenus.map((menu, idx) => (
+          <MenuWrap key={menu + idx}>
             <Text font={FONT.MEDIUM}>{menu.title}</Text>
             <SubMenu subMenus={menu.subMenus} />
           </MenuWrap>
