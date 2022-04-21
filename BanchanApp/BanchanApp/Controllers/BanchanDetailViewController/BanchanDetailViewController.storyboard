@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Banchan Detail View Controller-->
+        <!--View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="BanchanDetailViewController" customModule="BanchanApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,10 +86,10 @@
                                                     <constraint firstAttribute="bottom" secondItem="7Ul-dQ-7FK" secondAttribute="bottom" id="hY5-hd-jJI"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cly-aV-li1" userLabel="Product Description">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cly-aV-li1" userLabel="OrderView">
                                                 <rect key="frame" x="16" y="414" width="358" height="484.33333333333326"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="27c-nW-uWN" userLabel="DescriptionStack">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="27c-nW-uWN" userLabel="ProductDetailStack">
                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="129.66666666666666"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="오리 주물럭 반조리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-Yc-ADW" userLabel="Title">
@@ -130,10 +130,10 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bID-3J-8s8" userLabel="DeliveryStack">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bID-3J-8s8" userLabel="DeliveryInformationContainerStack">
                                                         <rect key="frame" x="0.0" y="153.66666666666663" width="358" height="93"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gec-jX-Loz" userLabel="Category">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gec-jX-Loz" userLabel="CategoryStack">
                                                                 <rect key="frame" x="0.0" y="0.0" width="62" height="93"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="적립금" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsE-ic-KOh">
@@ -156,7 +156,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="r7Y-Ky-0lM" userLabel="Information">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="r7Y-Ky-0lM" userLabel="CategoryValueStack">
                                                                 <rect key="frame" x="78" y="0.0" width="280" height="93"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="126원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCU-k7-IDi">
@@ -181,7 +181,7 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPF-bZ-XNA" userLabel="Quantity">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPF-bZ-XNA" userLabel="QuantityView">
                                                         <rect key="frame" x="0.0" y="270.66666666666663" width="358" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="k9Y-79-znj" userLabel="QuantityStackView">
@@ -213,7 +213,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="k9Y-79-znj" secondAttribute="trailing" id="ruc-hB-xOy"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 주문금액 12,640원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Gd-Yyi">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 주문금액 12,640원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Gd-Yyi" userLabel="PriceTag">
                                                         <rect key="frame" x="0.0" y="374.66666666666663" width="358" height="35.666666666666686"/>
                                                         <fontDescription key="fontDescription" name=".AppleSDGothicNeoI-Regular" family=".Apple SD Gothic NeoI" pointSize="32"/>
                                                         <nil key="textColor"/>
@@ -290,20 +290,15 @@
                             <constraint firstItem="8aN-RJ-HYL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rYF-rz-0cX"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="orderButton" destination="mqX-ek-pwf" id="HEB-74-U8t"/>
-                        <outlet property="quantityLabel" destination="Ige-b1-xVt" id="hBH-MF-rVG"/>
-                        <outlet property="quantityStepper" destination="7lS-o8-ebZ" id="eRn-xC-R3s"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-94" y="55"/>
         </scene>
-        <!--View Controller-->
+        <!--Banchan Detail View Controller-->
         <scene sceneID="v0l-Sw-JqW">
             <objects>
-                <viewController id="gxR-Wr-5f7" customClass="ViewController" customModule="BanchanApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gxR-Wr-5f7" customClass="BanchanDetailViewController" customModule="BanchanApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FbH-W5-P5H">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

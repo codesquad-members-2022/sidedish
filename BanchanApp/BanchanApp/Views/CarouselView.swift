@@ -9,7 +9,7 @@ import UIKit
 
 protocol CarouselViewDataSource: AnyObject {
     // Item View
-    func carouselView(_ carouselView: CarouselView) -> UIView
+    func carouselView(_ carouselView: CarouselView, index: Int) -> UIView
 
     // Item 개수
     func carouselView(_ carouselView: CarouselView, numberOfItems: Int) -> Int
@@ -86,8 +86,8 @@ class CarouselView: UIView {
 
         self.resetItems()
 
-        for _ in 1...count {
-            let item = self.delegate?.carouselView(self) ?? itemView.init()
+        for index in 0..<count {
+            let item = self.delegate?.carouselView(self, index: index) ?? itemView.init()
             self.stackView.addArrangedSubview(item)
             item.setWidth(toAnchor: self.scrollView.frameLayoutGuide.widthAnchor)
             item.setHeight(toAnchor: self.scrollView.frameLayoutGuide.heightAnchor)
