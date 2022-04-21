@@ -116,7 +116,6 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     width: 100%;
-    font-family: 'NotoSans', sans-serif;
     font-size: ${SIZE.BASE};
     line-height: 1.15;
     color: ${COLOR.BLACK};
