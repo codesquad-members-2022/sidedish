@@ -1,6 +1,6 @@
-package com.codesquad.sidedish.dish;
+package com.codesquad.sidedish.dish.domain;
 
-import lombok.AllArgsConstructor;
+import com.codesquad.sidedish.other.domain.EventBadge;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -9,14 +9,12 @@ import org.springframework.data.relational.core.mapping.Column;
 
 @Getter
 @RequiredArgsConstructor
-@AllArgsConstructor
-@ToString(of = {"title", "description", "price", "stock"})
+@ToString
 public class Dish {
 
     @Id
     @Column(value = "dish_id")
     private Integer id;
-    private Integer eventBadgeId;
 
     private final String title;
     private final String description;
@@ -24,9 +22,23 @@ public class Dish {
     private final Integer stock;
 
     // relation
+    private Integer eventBadgeId;
     private EventBadge eventBadge;
+    private DishImage dishImage;
+
+    public Dish(Integer id, String title, String description, Integer price, Integer stock) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
 
     public void setEventBadge(EventBadge eventBadge) {
-        this.eventBadgeId = eventBadge.getId();
+        this.eventBadge = eventBadge;
+    }
+
+    public void setDishImage(DishImage dishImage) {
+        this.dishImage = dishImage;
     }
 }

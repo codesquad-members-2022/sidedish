@@ -1,5 +1,6 @@
-package com.codesquad.sidedish.dish;
+package com.codesquad.sidedish.other.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -8,7 +9,8 @@ import org.springframework.data.relational.core.mapping.Column;
 
 @Getter
 @RequiredArgsConstructor
-@ToString(of = {"eventBadgeName", "discount"})
+@AllArgsConstructor
+@ToString
 public class EventBadge {
 
     @Id
