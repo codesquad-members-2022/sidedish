@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp">
+
+        <TextView
+            android:id="@+id/tv_menu_list_label"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            tools:text="모두가 좋아하는 \n 든든한 메인 요리"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
