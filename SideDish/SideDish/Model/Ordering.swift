@@ -7,41 +7,47 @@ enum Category: CaseIterable {
 }
 
 class Ordering{
-    //추후 foodList 제거하고, foodMap으로 통일해서 사용할 예정
-    var foodMap: [Category:[Food]] = [:]
-    var foodList: [String:Food] = [:]
+    private (set) var foodMap: [Category:[String:Food]] = [:]
     private (set) var selectedMenu: Food?
-    private var count: Int = 0
+    private var orderingCount: Int = 0
+    var foodCount: Int{
+        var count = 0
+        for category in foodMap.keys{
+            count += foodMap[category]?.count ?? 0
+        }
+        return count
+    }
     var deliveryMoney: Int = 2500
     
     init(){
-        getSampleFoodList()
+        for category in Category.allCases {
+            foodMap[category] = [String:Food]()
+        }
     }
     
     var sum: Int{
         //가격정보가 String으로 응답이 와서, 우선 이를 Int로 형변환 처리하기 전이라 임시로 Int값을 할당해서 처리
-        //guard let price = selectedMenu?.specialPrice else { return -1}
+        guard let _ = selectedMenu else { return -1}
         let price = 5000
-        if count * price > 40000 {
-            return (count * price) + deliveryMoney
+        if orderingCount * price > 40000 {
+            return (orderingCount * price) + deliveryMoney
         } else {
-            return count * price
+            return orderingCount * price
         }
     }
     
     func increaseCount(foodHash: String){
-        if foodList[foodHash] != nil {
-            count += 1
-        }
+        guard let _ = selectedMenu else { return }
+        orderingCount += 1
     }
     
-    func addFood(food: Food){
-        foodList[food.detailHash] = food
+    func addFood(food: Food, category: Category){
+        foodMap[category]?[food.detailHash] = food
     }
     
-    func selectFood(foodHash: String){
-        guard let unwrappedFood = foodList[foodHash] else { return }
-        selectedMenu = unwrappedFood
+    func selectFood(foodHash: String, category: Category){
+        guard let food = foodMap[category]?[foodHash] else { return }
+        selectedMenu = food
     }
     
     private func getSampleJSONData(fileName: String)-> Data?{
@@ -50,18 +56,23 @@ class Ordering{
         return data
     }
     
-    private func getSampleFoodList(){
+    func getSampleFoodList(){
         for category in Category.allCases {
             guard let data = getSampleJSONData(fileName: "\(category)") else { continue }
             guard let response = JSONHandler.convertJSONToObject(from: data, to: Response<Food>.self) else { continue }
             
             let foods = response.body
-            foodMap[category] = foods
-            //추후 foodList 속성 제거되면 아래 로직도 제거
             for food in foods {
-                foodList[food.detailHash] = food
+                foodMap[category]?[food.detailHash] = food
             }
         }
     }
     
+    subscript(index: Int = 0 , category: Category)->Food?{
+        guard let foods = foodMap[category]?.values else { return nil }
+        let foodArray = Array(foods).sorted(by: { lhs, rhs in
+            return lhs.specialPrice > rhs.specialPrice
+        })
+        return foodArray[index]
+    }
 }
