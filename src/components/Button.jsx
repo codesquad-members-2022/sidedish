@@ -7,7 +7,7 @@ export default function Button(props) {
   const { value, disabled } = props;
   return (
     <Wrap disabled={disabled}>
-      <Text size="LARGE" weight="BOLD" value={value} />
+      <Text size="LARGE" color="OFF_WHITE" weight="BOLD" value={value} />
     </Wrap>
   );
 }
@@ -29,5 +29,6 @@ const Wrap = styled.button`
   }
   &:disabled {
     background: ${COLOR.GREY3};
+    cursor: default;
   }
 `;
