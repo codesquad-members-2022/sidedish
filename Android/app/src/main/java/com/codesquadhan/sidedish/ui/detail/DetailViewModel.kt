@@ -11,8 +11,13 @@ class DetailViewModel : ViewModel() {
     private val detailImageList = mutableListOf<DetailImage>()
     val detailImageListLd: LiveData<MutableList<DetailImage>> = _detailImageListLd
 
+    private val _vpImageListLd = MutableLiveData<ArrayList<String>>()
+    private val vpImageList = arrayListOf<String>()
+    val vpImageListLd: LiveData<ArrayList<String>> = _vpImageListLd
+
     init {
         addMainListTest()
+        addViewPagerImageTest()
     }
 
     private fun addMainListTest() {
@@ -58,6 +63,12 @@ class DetailViewModel : ViewModel() {
         )
 
         _detailImageListLd.value = detailImageList
+    }
+
+    fun addViewPagerImageTest(){
+        vpImageList.add("https://ww.namu.la/s/32b66f77ef969034adcbce3840d362f66470c1ade8b3b67e9859954467a61a77ffe24051fd4db50a6a5251acd242a9140df6fc120653c85407c5508b00e763d8b2b09754bbe86f5ec315d6c2bfa597a8dc287028f3608155e80c67801d60595d")
+        vpImageList.add("https://imagescdn.gettyimagesbank.com/500/21/442/935/0/1298312835.jpg")
+        _vpImageListLd.value = vpImageList
     }
 
 }

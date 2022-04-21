@@ -40,43 +40,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setMainRv(){
-        mainAdapter = MainAdapter { it ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("id", it)
-            startActivity(intent)
-        }
+    private fun setMainRv() {
+        mainAdapter = makeMainAdapter()
         binding.rvMain.adapter = mainAdapter
-        viewModel.menuMainListLd.observe(this){
+        viewModel.menuMainListLd.observe(this) {
             mainAdapter.submitList(it.toList())
         }
     }
 
-    private fun setSoupRv(){
-        soupAdapter = MainAdapter{ it ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("id", it)
-            startActivity(intent)
-        }
+    private fun setSoupRv() {
+        soupAdapter = makeMainAdapter()
         binding.rvSoup.adapter = soupAdapter
-        viewModel.menuSoupListLd.observe(this){
+        viewModel.menuSoupListLd.observe(this) {
             soupAdapter.submitList(it.toList())
         }
     }
 
-    private fun setSideRv(){
-        sideAdapter = MainAdapter{ it ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("id", it)
-            startActivity(intent)
-        }
+    private fun setSideRv() {
+        sideAdapter = makeMainAdapter()
         binding.rvSide.adapter = sideAdapter
-        viewModel.menuSideListLd.observe(this){
+        viewModel.menuSideListLd.observe(this) {
             sideAdapter.submitList(it.toList())
         }
     }
 
-    private fun rvTest(){
+
+    private fun makeMainAdapter(): MainAdapter {
+        return MainAdapter { it ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("id", it)
+            startActivity(intent)
+        }
+    }
+
+    private fun rvTest() {
         viewModel.addMainListTest()
         viewModel.addSoupListTest()
         viewModel.addSideListTest()
