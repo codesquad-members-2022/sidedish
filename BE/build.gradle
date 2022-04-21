@@ -13,14 +13,23 @@ repositories {
 }
 
 dependencies {
+    // spring web
     implementation 'org.springframework.boot:spring-boot-starter:2.5.5'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.4'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jdbc', version: '2.6.4'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.6.4'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+    // DB
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'mysql:mysql-connector-java:8.0.28'
     runtimeOnly 'com.h2database:h2:1.4.199'
+
+    // swagger
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
 }
 
 tasks.named('test') {
