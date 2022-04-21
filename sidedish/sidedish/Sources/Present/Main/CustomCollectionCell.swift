@@ -17,10 +17,10 @@ class CustomCollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
-        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        imageView.layer.shadowOpacity = 0.1
-        imageView.layer.shadowRadius = 3
-        imageView.layer.shadowColor = UIColor.black.cgColor
+//        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+//        imageView.layer.shadowOpacity = 0.1
+//        imageView.layer.shadowRadius = 3
+//        imageView.layer.shadowColor = UIColor.black.cgColor
         return imageView
     }()
     
@@ -106,7 +106,6 @@ class CustomCollectionCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             imageView.widthAnchor.constraint(equalToConstant: imageSize),
             imageView.heightAnchor.constraint(equalToConstant: imageSize),
             

@@ -22,9 +22,7 @@ class MainViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
-        flowLayout.itemSize = CGSize(width: 360, height: 130)
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 110)
-
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.identifier)
@@ -39,7 +37,7 @@ class MainViewController: UIViewController {
         layout()
     
         model.action.loadData.send() // loadData 호출 (이벤트가 발생했다!)
-        
+
     }
     
     private func bind() {
@@ -76,7 +74,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int { 3 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { 8 }
@@ -85,6 +83,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.identifier, for: indexPath) as? CustomCollectionCell else {
             return UICollectionViewCell()
         }
+        
         cell.changeImage(name: "testimage") // 임시데이터)
         cell.changeTitleLabel(text: "오리 주물럭_반조리")
         cell.changeDescriptionLabel(text: "감질맛 나는 매콤한 양념")
@@ -101,5 +100,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 return headerView
             }
             return UICollectionReusableView()
-        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: collectionView.frame.width, height: 130)
+        return size
+    }
 }
