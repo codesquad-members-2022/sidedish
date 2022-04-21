@@ -19,19 +19,21 @@ class MenuDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuDetailBinding
     private lateinit var viewPagerAdapter: ViewPagerAdapter
-    private lateinit var detailHash: String
-    private lateinit var title:String
-    private var badges:List<String>? = null
+    private val detailHash: String by lazy {
+        requireArguments().getString("KEY_HASH","")
+    }
+    private val title:String by lazy {
+        requireArguments().getString("KEY_TITLE","")
+    }
+    private val badges:List<String>? by lazy {
+        requireArguments().get("KEY_BADGE") as List<String>?
+    }
     private val viewModel: MenuDetailViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         binding =  FragmentMenuDetailBinding.inflate(inflater, container, false)
-        val args = requireArguments()
-        detailHash = args.getString("detailHash", "")
-        title= args.get("title").toString()
-        badges= args.get("badge") as List<String>?
         viewModel.getDetail(detailHash)
         return binding.root
     }
@@ -43,11 +45,7 @@ class MenuDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.rvDetail.adapter= menuDetailAdapter
         binding.vpItemDetailImg.adapter= viewPagerAdapter
-
-        badges?.let{
-            binding.badge= badges
-        }
-        binding.tvMenuTitle.text= title
+        setMenuInfo()
 
         viewModel._detailInfo.observe(viewLifecycleOwner) {
             binding.detail = it
@@ -57,8 +55,13 @@ class MenuDetailFragment : Fragment() {
             viewPagerAdapter.submitThumbnails(it)
             binding.vpItemDetailImg.orientation= ViewPager2.ORIENTATION_HORIZONTAL
         }
+    }
 
-
+    private fun setMenuInfo(){
+        badges?.let{
+            binding.badge= badges
+        }
+        binding.tvMenuTitle.text= title
     }
 
 }

@@ -1,14 +1,15 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+
 
     <data>
         <variable
-            name="imageUri"
+            name="details"
             type="java.lang.String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,7 +17,8 @@
             android:id="@+id/iv_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            imageUrl="@{imageUri}" />
+            android:scaleType="fitXY"
+            imageUrl="@{details}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

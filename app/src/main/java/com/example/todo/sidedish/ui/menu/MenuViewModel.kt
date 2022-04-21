@@ -10,6 +10,7 @@ import com.example.todo.sidedish.common.Constants.SOUP_DISH
 import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.Repository
+import com.example.todo.sidedish.ui.common.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,8 +28,14 @@ class MenuViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
+    private val _openMenuEvent= MutableLiveData<Event<Menu>>()
+    val openMenuEvent:LiveData<Event<Menu>> = _openMenuEvent
     init {
         getMenus()
+    }
+
+    fun openMenuDetail(menu:Menu){
+        _openMenuEvent.value= Event(menu)
     }
 
     fun getMenus() {

@@ -8,12 +8,10 @@ import com.example.todo.sidedish.databinding.ItemDetailImageBinding
 
 class MenuDetailAdapter() :RecyclerView.Adapter<MenuDetailAdapter.ViewHolder>(){
 
-    private val sliderImages = mutableListOf<String>()
+    private val detailImages = mutableListOf<String>()
     class ViewHolder(private val binding: ItemDetailImageBinding): RecyclerView.ViewHolder(binding.root){
-
         fun bind(imageUri:String){
-            binding.imageUri= imageUri
-            binding.executePendingBindings()
+            binding.details= imageUri
         }
     }
 
@@ -23,15 +21,15 @@ class MenuDetailAdapter() :RecyclerView.Adapter<MenuDetailAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(sliderImages[position])
+        holder.bind(detailImages[position])
     }
 
     fun submitDetailImages(detailImages:List<String>){
-        this.sliderImages.addAll(detailImages)
+        this.detailImages.addAll(detailImages)
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return sliderImages.size
+        return detailImages.size
     }
 }
