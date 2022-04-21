@@ -95,11 +95,70 @@ const getCategories = rest.get('/categories', (req, res, ctx) => {
         {
           id: 3,
           main: '정갈한 밑반찬',
-          subs: ['나물/무침', '조림/볶음', '절임/장아찌']
+          subs: ['나물/무침', '조림/볶음', '절임/장아찌'],
         },
       ],
     })
   );
 });
+const getCategory = [
+  rest.get('/category/:id', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(0),
+      ctx.json({
+        content: [
+          {
+            id: 1,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: 'launch',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              '//thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2020/11/12/15/2/d86f6c5e-1241-4e90-9871-1e4d2f75863c.jpg',
+          },
+          {
+            id: 2,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: 'event',
+            discountRate: 0.15,
+            morningDelivery: false,
+            image: '//thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/ce6a/4c25169c893104ca85c12d95f73865135d4944e7d5c403117d7baa93d8af.jpg',
+          },
+          {
+            id: 3,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://blog.kakaocdn.net/dn/U27A3/btqAccmhHxG/ManeQ0zJA77PgTnNx02VzK/img.jpg',
+          },
+          {
+            id: 4,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+        ],
+      })
+    );
+  }),
+];
 
-export const handlers = [getEvents, ...getEvent, getRoot, getCategories];
+export const handlers = [getEvents, ...getEvent, getRoot, getCategories, ...getCategory];
