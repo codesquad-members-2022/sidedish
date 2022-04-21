@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import sidedish.jbc.dto.DetailMenuResponse;
 import sidedish.jbc.dto.MenuResponse;
 import sidedish.jbc.service.MenuService;
 
@@ -33,5 +34,12 @@ public class MenuController {
 	@ResponseBody
 	public List<MenuResponse> findMenu(@PathVariable("type") String type) {
 		return menuService.findMenu(type);
+	}
+
+	@GetMapping("/detail/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public DetailMenuResponse findDetailMenu(@PathVariable("id") int menuId) {
+		return menuService.findDetailMenu(menuId);
 	}
 }

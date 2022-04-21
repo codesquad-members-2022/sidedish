@@ -203,3 +203,5 @@ VALUES (15, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/signature-m
         false),
        (15, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/signature-detail05.png',
         false);
+
+INSERT INTO user (address, name) VALUES ('코드스쿼드', 'Dion');
