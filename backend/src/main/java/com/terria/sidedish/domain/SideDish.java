@@ -14,6 +14,7 @@ public class SideDish {
     private String description;
     private int price;
     private double accrualRate;
-    private int fee;
+    private String shippingInfo;
+    private int shippingFee;
     private int exemptionCondition;
 }

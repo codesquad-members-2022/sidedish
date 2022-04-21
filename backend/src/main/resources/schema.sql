@@ -20,11 +20,14 @@ drop table if exists side_dish;
 
 create table side_dish
 (
-    id           bigint primary key auto_increment,
-    name         varchar(100) not null comment '반찬 이름',
-    description  varchar(100) comment '반찬 설명',
-    price        int comment '정상가격',
-    accrual_rate decimal comment '적립율'
+    id                  bigint primary key auto_increment,
+    name                varchar(100) not null comment '반찬 이름',
+    description         varchar(100) comment '반찬 설명',
+    price               int comment '정상가격',
+    accrual_rate        decimal(2, 2) comment '적립율',
+    shipping_info       varchar(100) default '서울 경기 새벽 배송, 전국 택배 배송' comment '배송정보',
+    shipping_fee        int          default 2500 comment '배송료',
+    exemption_condition int          default 40000 comment '배송비 면제 조건'
 );
 
 drop table if exists category_to_side_dish;
@@ -37,13 +40,14 @@ create table category_to_side_dish
     primary key (category_id, side_dish_id)
 );
 
+drop table if exists shipping;
 
 drop table if exists side_dish_image;
 
 create table side_dish_image
 (
     id           bigint primary key auto_increment,
-    image_url    varchar(100) not null comment '이미지 URL',
+    image_url    varchar(255) default 'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/noimage.png' comment '이미지 URL',
     image_seq    int comment '이미지 순서',
     side_dish_id bigint comment '반찬 아이디'
 );
@@ -65,16 +69,6 @@ create table side_dish_to_discount_event
     discount_event_id bigint,
 
     primary key (side_dish_id, discount_event_id)
-);
-
-drop table if exists shipping;
-
-create table shipping
-(
-    id                  bigint primary key auto_increment,
-    type                varchar(100) not null comment '배송 정보',
-    fee                 int          not null comment '배송료',
-    exemption_condition int          not null comment '배송비 면제 조건'
 );
 
 drop table if exists order_sheet;
