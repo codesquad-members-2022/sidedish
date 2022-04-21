@@ -21,13 +21,14 @@ struct CategoryManager {
         }
     }
 
-    func fetchImageData(of product: Product, then completion: @escaping (Data) -> Void) {
+    func fetchImageData(of url: URL, then completion: @escaping (Data?) -> Void) {
 
-        networkManager.fetchImageData(url: product.imageURL) { result in
+        networkManager.fetchImageData(url: url) { result in
             switch result {
             case .success(let data): completion(data)
             case .failure(let error):
                 SystemLog.fault(error.localizedDescription)
+                completion(nil)
             }
         }
     }

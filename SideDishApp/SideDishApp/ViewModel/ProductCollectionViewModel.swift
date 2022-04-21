@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit.UIImage
+import UIKit
 // This is going to represent single viewModel that drives productCollectionView
 
 struct CategorySectionViewModel {
@@ -55,4 +57,12 @@ struct ProductCollectionViewModel {
 
     }
 
+    func fetchImage(from url: URL, then completion: @escaping (UIImage?) -> Void) {
+        categoryManager.fetchImageData(of: url) { data in
+            guard let data = data, let image = UIImage(data: data) else {
+                return completion(nil)
+            }
+            completion(image)
+        }
+    }
 }
