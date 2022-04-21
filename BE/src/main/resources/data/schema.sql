@@ -1,6 +1,7 @@
-SET FOREIGN_KEY_CHECKS = 0;
-
+DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS item_order;
 
 CREATE TABLE category
 (
@@ -8,8 +9,6 @@ CREATE TABLE category
     type VARCHAR(64),
     PRIMARY KEY (id)
 );
-
-DROP TABLE IF EXISTS items;
 
 CREATE TABLE items
 (
@@ -29,8 +28,6 @@ CREATE TABLE items
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS orders;
-
 CREATE TABLE orders
 (
     id            BIGINT primary key AUTO_INCREMENT,
@@ -38,14 +35,9 @@ CREATE TABLE orders
     shipping_info VARCHAR(64)
 );
 
-DROP TABLE IF EXISTS item_order;
-
 CREATE TABLE item_order
 (
     item BIGINT,
     orders BIGINT,
     primary key (item, orders)
 );
-
-
-SET FOREIGN_KEY_CHECKS = 1;
