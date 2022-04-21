@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.sidedish.R
 import com.example.sidedish.databinding.FragmentHomeBinding
 import com.example.sidedish.ui.animation.ZoomOutPageTransformer
 
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val screenList = listOf(MainMenuFragment(), SoupMenuFragment(), SideMenuFragment())
-
+        Log.d("HomeFragment", "onViewCreated")
         viewPager.adapter =
             activity?.let {
                 ScreenSlidePagerAdapter(
@@ -65,4 +65,5 @@ class HomeFragment : Fragment() {
             return list[position]
         }
     }
+
 }

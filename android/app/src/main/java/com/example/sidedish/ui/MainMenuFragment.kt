@@ -16,6 +16,7 @@ import com.example.sidedish.ui.adapter.MenuListAdapter
 
 class MainMenuFragment : Fragment() {
 
+
     private val binding: FragmentMainBinding by lazy {
         FragmentMainBinding.inflate(layoutInflater)
     }
@@ -34,10 +35,8 @@ class MainMenuFragment : Fragment() {
         val mainFoodAdapter = MenuListAdapter(Header.MAIN)
         mainFoodAdapter.itemClickCallback = { key: String ->
             viewModel.loadFoodDetail(key)
-            Log.d("MainMenuFragment", "${viewModel.selectedFoodDetail.value}")
             findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
-
         with(binding) {
             rvMain.adapter = mainFoodAdapter
             rvMain.layoutManager = LinearLayoutManager(activity)
