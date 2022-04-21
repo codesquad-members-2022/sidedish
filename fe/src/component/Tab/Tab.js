@@ -1,88 +1,26 @@
 import List from "./List";
+import Card from "../UI/Card";
 import "./Tab.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Tab = () => {
-  const a = [
-    {
-      detail_hash: "HBDEF",
-      image:
-        "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-      alt: "오리 주물럭_반조리",
-      delivery_type: ["새벽배송", "전국택배"],
-      title: "오리 주물럭_반조리",
-      description: "감칠맛 나는 매콤한 양념",
-      n_price: "15,800원",
-      s_price: "12,640원",
-      badge: ["런칭특가"],
-    },
-  ];
-  const b = [
-    {
-      detail_hash: "HDF73",
-      image:
-        "http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg",
-      alt: "잡채",
-      delivery_type: ["새벽배송", "전국택배"],
-      title: "잡채",
-      description: "탱글한 면발과 맛깔진 고명이 가득",
-      n_price: "12,900원",
-      s_price: "11,610원",
-      badge: ["이벤트특가"],
-    },
-  ];
-  const c = [
-    {
-      detail_hash: "HEDFB",
-      image:
-        "http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg",
-      alt: "쭈꾸미 한돈 제육볶음_반조림",
-      delivery_type: ["새벽배송", "전국택배"],
-      title: "쭈꾸미 한돈 제육볶음_반조림",
-      description: "쫄깃한 쭈꾸미와 고소한 돼지고기가 일품",
-      s_price: "16,900원",
-    },
-  ];
-
   const [infor, setInfor] = useState([
-    {
-      id: 1,
-      title: "풍성한 고기반찬",
-      active: true,
-      detail: [
-        {
-          detail_hash: "HBDEF",
-          image:
-            "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-          alt: "오리 주물럭_반조리",
-          delivery_type: ["새벽배송", "전국택배"],
-          title: "오리 주물럭_반조리",
-          description: "감칠맛 나는 매콤한 양념",
-          n_price: "15,800원",
-          s_price: "12,640원",
-          badge: ["런칭특가"],
-        },
-      ],
-    },
-    { id: 2, title: "편리한 반찬세트", active: false },
-    { id: 3, title: "맛있는 제철요리", active: false },
-    { id: 4, title: "우리 아이 영향 반찬", active: false },
+    { id: 1, title: "풍성한 고기반찬" },
+    { id: 2, title: "편리한 반찬세트" },
+    { id: 3, title: "맛있는 제철요리" },
+    { id: 4, title: "우리 아이 영향 반찬" },
   ]);
 
+  const [cards, setCards] = useState([]);
   const [activeTab, setActiveTab] = useState(1);
 
-  // [0] , [1]
-  const onChangeInfor = (clickedId) => {
-    // const newInfor = infor.map((v) => {
-    //   return Object.assign(v, { active: false });
-    // });
-    // const newnew = newInfor.map((v) =>
-    //   v.id.toString() === clickedId
-    //     ? (v = Object.assign(v, { active: true }))
-    //     : v
-    // );
-    // setInfor(newnew);
-    setActiveTab(clickedId);
+  useEffect(() => {
+    fetch("https://api.codesquad.kr/onban/main")
+      .then((res) => res.json())
+      .then((data) => setCards(data.body[activeTab]));
+  });
+  const onClickHandler = (event) => {
+    setActiveTab(event.target.id);
   };
 
   return (
@@ -90,16 +28,30 @@ const Tab = () => {
       <ul className="tab-list">
         {infor.map((v) => {
           return (
-            <List
-              title={v.title}
-              key={v.id}
+            <li
               id={v.id}
+              key={v.id}
               className={v.id.toString() === activeTab ? "active" : ""}
-              onSaveClickedID={onChangeInfor}
-            />
+              onClick={onClickHandler}
+            >
+              {v.title}
+            </li>
           );
         })}
       </ul>
+
+      <div className="card-wrapper">
+        <Card
+          key={cards.detail_hash}
+          image={cards.image}
+          alt={cards.alt}
+          title={cards.title}
+          description={cards.description}
+          s_price={cards.s_price}
+          n_price={cards.n_price}
+          badge={cards.badge}
+        />
+      </div>
     </div>
   );
 };

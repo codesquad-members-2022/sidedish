@@ -11,9 +11,9 @@ function App() {
       <SubTitle />
       <Tab />
       <div className="card-wrapper">
+        {/* <Card />
         <Card />
-        <Card />
-        <Card />
+        <Card /> */}
       </div>
     </div>
   );
