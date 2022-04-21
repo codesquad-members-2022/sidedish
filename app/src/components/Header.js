@@ -44,12 +44,25 @@ const Gnb = styled.nav`
 `;
 
 const HeaderContainer = styled.div`
-  display: flex;
   box-sizing: border-box;
   padding-top: 1.6rem;
   max-height: 19rem;
   min-height: 8.3rem;
   border-bottom: 1px solid ${({ theme }) => theme.color.black};
+`;
+
+const HeaderContent = styled.div`
+  display: flex;
+  width: 144rem;
+  margin: 0 auto;
+`;
+
+const Icons = styled.ul`
+  display: flex;
+  margin: 1.2rem 8.5rem 0 auto;
+  gap: 2.6rem;
+  height: 2.8rem;
+  align-items: center;
 `;
 
 const GNB = () => {
@@ -100,30 +113,28 @@ const GNB = () => {
   );
 };
 
-const Icons = styled.ul`
-  display: flex;
-  margin: 1.2rem 8.5rem 0 auto;
-  gap: 2.6rem;
-  height: 2.8rem;
-  align-items: center;
-`;
-
 const IconMenu = () => {
   return (
     <Icons>
       <li className="search">
         <a href="#">
-          <img src="../images/Search.svg" alt="검색" />
+          <img src={`${process.env.PUBLIC_URL}/images/Search.svg`} alt="검색" />
         </a>
       </li>
       <li className="my-page">
         <a href="#">
-          <img src="../images/MyPage.svg" alt="마이페이지" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/MyPage.svg`}
+            alt="마이페이지"
+          />
         </a>
       </li>
       <li className="cart">
         <a href="#">
-          <img src="../images/Cart.svg" alt="장바구니" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/Cart.svg`}
+            alt="장바구니"
+          />
         </a>
       </li>
     </Icons>
@@ -134,11 +145,13 @@ const Header = () => {
   return (
     <ThemeProvider theme={theme}>
       <HeaderContainer>
-        <Logo>
-          <a href="#">Ordering</a>
-        </Logo>
-        <GNB />
-        <IconMenu />
+        <HeaderContent>
+          <Logo>
+            <a href="#">Ordering</a>
+          </Logo>
+          <GNB />
+          <IconMenu />
+        </HeaderContent>
       </HeaderContainer>
     </ThemeProvider>
   );

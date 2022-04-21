@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
 import CardList from "./CardList.js";
+import { FlexMarginCenter } from "../styles/utils.js";
 
-const Header = styled.div`
-  display: flex;
+const Header = styled(FlexMarginCenter)`
+  width: 144rem;
   gap: 1.6rem;
   padding-top: 5.6rem;
   padding-left: 8rem;
@@ -28,16 +29,6 @@ const Title = styled.h2`
 `;
 
 const Main = styled.div`
-  .tab {
-    display: flex;
-    margin-top: 2.4rem;
-    gap: 3.2rem;
-    font-size: ${({ theme }) => theme.fontSize.large};
-    font-weight: ${({ theme }) => theme.fontWeight.bold};
-    line-height: 3rem;
-    padding-left: 8rem;
-  }
-
   .tab-item {
     padding-bottom: 1.6rem;
     cursor: pointer;
@@ -48,6 +39,24 @@ const Main = styled.div`
   }
 `;
 
+const Tab = styled(FlexMarginCenter)`
+  width: 144rem;
+  display: flex;
+  margin-top: 2.4rem;
+  gap: 3.2rem;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  line-height: 3rem;
+  padding-left: 8rem;
+`;
+
+const Horizon = styled.hr`
+  background-color: ${({ theme }) => theme.color.grey4};
+  height: 1px;
+  border: 0;
+  margin: 0;
+`;
+
 const MainTab = ({ dish }) => {
   const tabTexts = [
     "풍성한 고기 반찬",
@@ -56,8 +65,10 @@ const MainTab = ({ dish }) => {
     "우리 아이 영양 반찬",
   ];
 
+  const tabKeys = ["meat", "convenient", "season", "nutrition"];
+
   const [tabNumber, setTabNumber] = useState(0);
-  const [tabCards, setTabCards] = useState({});
+  const [tabCards, setTabCards] = useState([]);
 
   useEffect(() => {
     if (dish.length === 0) return;
@@ -73,7 +84,7 @@ const MainTab = ({ dish }) => {
   };
 
   const setShuffleCards = (shuffle) => {
-    const tabCards = {};
+    const tabCards = [];
     for (let i = 0, count = 0; i < tabTexts.length; i++) {
       tabCards[i] = shuffle.slice(count, count + 3);
       count += 3;
@@ -95,7 +106,7 @@ const MainTab = ({ dish }) => {
         <Title>한 번 주문하면 두 번 반하는 반찬</Title>
       </Header>
       <Main>
-        <ul className="tab">
+        <Tab as={"ul"}>
           {tabTexts.map((text, index) => {
             return (
               <li
@@ -107,8 +118,17 @@ const MainTab = ({ dish }) => {
               </li>
             );
           })}
-        </ul>
-        <CardList />
+        </Tab>
+        <Horizon />
+        {tabCards.map((cards, index) => (
+          <CardList
+            key={tabKeys[index]}
+            tabCards={cards}
+            tabNumber={tabNumber}
+            index={index}
+          />
+        ))}
+        <Horizon />
       </Main>
     </ThemeProvider>
   );

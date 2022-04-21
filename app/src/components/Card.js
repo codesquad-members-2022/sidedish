@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
@@ -8,41 +9,87 @@ const cardSize = {
   small: "16rem",
 };
 
-const Badge = styled.div`
-  box-sizing: border-box;
-  width: 7.6rem;
-  height: 4.2rem;
-  text-align: center;
-  line-height: 3.6rem;
-  font-size: ${({ theme }) => theme.fontSize.medium};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  border: 0.2rem solid ${({ theme }) => theme.color.black};
-  border-radius: 99.9rem;
+const Badges = styled.div`
+  margin-top: 2.2rem;
 `;
 
-const Card = () => {
+const Badge = styled.strong`
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: 0.8rem;
+  padding: 0.6rem 1.6rem;
+  height: 3rem;
+  text-align: center;
+  line-height: 1.8rem;
+  font-size: ${({ theme }) => theme.fontSize.xSmall};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  border-radius: 99.9rem;
+  background-color: ${({ theme, bgColor }) => theme.color[bgColor]};
+  color: ${({ theme }) => theme.color.white};
+`;
+
+const Image = styled.img`
+  display: block;
+  width: ${({ cardSize }) => cardSize.large};
+`;
+
+const Info = styled.div`
+  margin-top: 1.6rem;
+`;
+
+const Title = styled.strong`
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  color: ${({ theme }) => theme.color.grey1};
+`;
+
+const Desc = styled.p`
+  margin: 0.8rem 0;
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  color: ${({ theme }) => theme.color.grey2};
+`;
+
+const SPrice = styled.span`
+  margin-right: 0.8rem;
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+`;
+
+const NPrice = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  color: ${({ theme }) => theme.color.grey3};
+  text-decoration: line-through;
+`;
+
+const Card = ({ card }) => {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <img src="" alt="" />
-        <div>
-          <strong>title</strong>
-          <p>desc</p>
+        <Image cardSize={cardSize} src={card.image} alt={card.alt} />
+        <Info>
+          <Title>{card.title}</Title>
+          <Desc>{card.description}</Desc>
           <div>
-            <span>price</span>
-            <span>price</span>
+            <SPrice>{card.s_price}</SPrice>
+            <NPrice>{card.n_price}</NPrice>
           </div>
-          <div>
-            <Badge>
-              <strong>sale</strong>
-            </Badge>
-            <Badge>
-              <strong>sale</strong>
-            </Badge>
-          </div>
-        </div>
+          <Badges>
+            {card.badge
+              ? card.badge
+                .filter((badge) => badge !== "메인특가")
+                .map((badge) =>
+                  badge === "런칭특가" ? (
+                    <Badge bgColor={"orange"}>{badge}</Badge>
+                  ) : (
+                    <Badge bgColor={"green"}>{badge}</Badge>
+                  )
+                )
+              : null}
+          </Badges>
+        </Info>
       </div>
-      ;
     </ThemeProvider>
   );
 };
