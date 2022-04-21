@@ -48,4 +48,20 @@ const SpecialTab = styled.div`
   }
 `;
 
-export { SpecialContainer, SpecialHeader, SpecialTitleBox, SpecialBadge, SpecialTitle, SpecialTabBar, SpecialTab };
+const CardContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 34px 80px 56px 80px;
+  border-bottom: 1px solid ${props => props.theme.colors.grey4};
+`;
+
+export {
+  SpecialContainer,
+  SpecialHeader,
+  SpecialTitleBox,
+  SpecialBadge,
+  SpecialTitle,
+  SpecialTabBar,
+  SpecialTab,
+  CardContainer,
+};
