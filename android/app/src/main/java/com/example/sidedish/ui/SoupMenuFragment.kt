@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.FragmentMainBinding
 import com.example.sidedish.ui.adapter.MenuListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SoupMenuFragment : Fragment() {
 
     private val binding: FragmentMainBinding by lazy {

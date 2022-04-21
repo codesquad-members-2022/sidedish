@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.sidedish.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-private const val NUM_PAGES = 3
-
-
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private val binding: ActivityHomeBinding by lazy {

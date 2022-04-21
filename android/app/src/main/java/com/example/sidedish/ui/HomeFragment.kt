@@ -19,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 private const val NUM_PAGES = 3
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val binding: FragmentHomeBinding by lazy {
@@ -39,7 +40,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val screenList = listOf(MainMenuFragment(), SoupMenuFragment(), SideMenuFragment())
-        Log.d("HomeFragment", "onViewCreated")
         viewPager.adapter =
             activity?.let {
                 ScreenSlidePagerAdapter(
