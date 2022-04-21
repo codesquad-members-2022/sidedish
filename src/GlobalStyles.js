@@ -1,7 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { Color } from './Assets/CommonStyle';
 const GlobalStyles = createGlobalStyle` 
   ${reset}
+
+    body {
+      color: ${Color.black};
+    }
 
     a{
         text-decoration: none;
