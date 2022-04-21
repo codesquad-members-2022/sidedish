@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import BestMealCard from "./BestMealCard";
+import Loader from "./Loader";
 
 const MOCK_SERVER_URL = `https://c8611651-19e0-4ab7-9b27-51a7c3fe2fa6.mock.pstmn.io`;
 const BEST_TITLE = "한 번 주문하면 두 번 반하는 반찬";
@@ -46,11 +47,7 @@ function BestMealContainer() {
         ))}
       </div>
       <BestMealCardContainer>
-        {meals.length ? (
-          meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />)
-        ) : (
-          <span>반찬이 없어요 😊</span>
-        )}
+        {meals.length ? meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />) : <Loader />}
       </BestMealCardContainer>
     </BestMealContainerStyled>
   );
