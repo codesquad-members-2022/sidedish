@@ -1,16 +1,5 @@
 import Foundation
 
-/*
- - 고유번호
-   - 이미지 주소
-   - 이름(alt)
-   - 설명
-   - 제목(title)
-   - 정가
-   - 특가
-   - 특가정보
- */
-
 struct Food {
     
     private (set) var detailHash: String
@@ -21,7 +10,19 @@ struct Food {
     private let deliveryInformation: [String]
     private let title: String
     private let imageUrl: String
-    private let badges: [String]
+    private (set) var badges: [String]
+    
+    init(detailHash: String, alt: String, foodDescription: String, normalPrice: String, specialPrice: String, deliveryInformation: [String], title: String, imageUrl: String, badges: [String]){
+        self.detailHash = detailHash
+        self.alt = alt
+        self.foodDescription = foodDescription
+        self.normalPrice = normalPrice
+        self.specialPrice = specialPrice
+        self.deliveryInformation = deliveryInformation
+        self.title = title
+        self.imageUrl = imageUrl
+        self.badges = badges
+    }
 }
 
 extension Food: Codable {
