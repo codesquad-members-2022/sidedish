@@ -1,11 +1,10 @@
 package sidedish.web.dto.item;
 
-import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import sidedish.domain.item.Item;
 
 import java.util.List;
-import sidedish.domain.item.Item;
 
 @Getter
 @AllArgsConstructor
@@ -21,7 +20,7 @@ public class ResponseItemDto {
     private String mainImage;
     private List<String> tabList;
 
-    public ResponseItemDto(Item item) {
+    public ResponseItemDto(Item item, String mainImage, List<String> tabList) {
         this.id = item.getId();
         this.title = item.getTitle();
         this.description = item.getDescription();
@@ -30,7 +29,7 @@ public class ResponseItemDto {
         this.discountPolicy = item.getDiscountPolicy();
         this.discountRate = 0.1;
         this.morningDelivery = item.isMorningDelivery();
-        this.mainImage = "이미지";
-        this.tabList = new ArrayList<>();
+        this.mainImage = mainImage;
+        this.tabList = tabList;
     }
 }
