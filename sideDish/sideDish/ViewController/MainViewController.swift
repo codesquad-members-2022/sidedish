@@ -17,7 +17,8 @@ class MainViewController: UIViewController {
     let dummyHeaderData = ["모두가 좋아하는 든든한 메인 요리","정성이 담긴 뜨끈뜨끈 국물 요리","식탁을 풍성하게 하는 정갈한 밑반찬"]
     
     private var collectionView: UICollectionView = {
-        let tempCollcetion = UICollectionView(frame: CGRect(x: 0, y: 0, width: 500, height: 500), collectionViewLayout: UICollectionViewFlowLayout())
+        let tempCollcetion = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 32, height: 500), collectionViewLayout: UICollectionViewFlowLayout())
+        
         return tempCollcetion
     }()
     
@@ -36,19 +37,19 @@ class MainViewController: UIViewController {
     
     func configureCollectionViewLayout() {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 1
-        flowLayout.minimumInteritemSpacing = 1
-        flowLayout.itemSize = CGSize(width: self.view.frame.width, height: (view.frame.size.height/4)-3)
+       
+        flowLayout.itemSize = CGSize(width: self.collectionView.frame.width, height: 130)
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 96)
         collectionView.collectionViewLayout = flowLayout
         
         self.view.addSubview(self.collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.widthAnchor.constraint(greaterThanOrEqualToConstant: 343).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
         collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
     }
 }
 
@@ -64,7 +65,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellId = String(describing: FoodCell.self)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCell.identifier, for: indexPath) as! FoodCell
-        cell.configure()
         return cell
     }
     
@@ -77,5 +77,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         return UICollectionReusableView()
     }
+    
 }
 
