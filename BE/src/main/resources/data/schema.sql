@@ -25,6 +25,7 @@ CREATE TABLE items
     quantity      BIGINT       NOT NULL,
     reward_point  DECIMAL      NOT NULL,
     image         VARCHAR(64)  NOT NULL,
+    category_type VARCHAR (32),
     PRIMARY KEY (id)
 );
 

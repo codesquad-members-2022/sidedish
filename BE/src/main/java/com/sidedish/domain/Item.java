@@ -23,10 +23,11 @@ public class Item {
     private int quantity;
     private BigDecimal rewardPoint;
     private String image;
+    private CategoryType categoryType;
 
     private Set<OrderRef> orders = new HashSet<>();
 
-    public Item(String title, String description, BigDecimal price, double discountRate, Badge badge, String detailType, int quantity, BigDecimal rewardPoint, String image) {
+    public Item(String title, String description, BigDecimal price, double discountRate, Badge badge, String detailType, int quantity, BigDecimal rewardPoint, String image, CategoryType categoryType) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -36,6 +37,7 @@ public class Item {
         this.quantity = quantity;
         this.rewardPoint = rewardPoint;
         this.image = image;
+        this.categoryType = categoryType;
     }
 
     void addOrders(Order order) {
