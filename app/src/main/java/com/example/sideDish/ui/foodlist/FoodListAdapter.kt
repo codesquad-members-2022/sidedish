@@ -3,6 +3,8 @@ package com.example.sideDish.ui.foodlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.data.FoodCategory
@@ -14,9 +16,7 @@ private const val VIEW_TYPE_SECTION = 1
 private const val VIEW_TYPE_CONTENT = 2
 
 class FoodListAdapter(private val viewModel: FoodListViewModel) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val items = mutableListOf<Item>()
-
+    ListAdapter<Item, RecyclerView.ViewHolder>(diffUtil) {
     inner class SectionViewHolder(private val binding: SectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(section: Item.Section) {
@@ -29,7 +29,7 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
         fun bind(foodInfo: Item.FoodInfo) = with(binding) {
             binding.foodInfo = foodInfo
             binding.viewmodel = viewModel
-            executePendingBindings()
+//            executePendingBindings()
         }
     }
 
@@ -62,56 +62,38 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is SectionViewHolder -> {
-                holder.bind(items[position] as Item.Section)
+                holder.bind(getItem(position) as Item.Section)
             }
             is SummaryItemViewHolder -> {
-                holder.bind(items[position] as Item.FoodInfo)
+                holder.bind(getItem(position) as Item.FoodInfo)
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (items[position]) {
+        return when (getItem(position)) {
             is Item.Section -> VIEW_TYPE_SECTION
             is Item.FoodInfo -> VIEW_TYPE_CONTENT
         }
     }
 
-    override fun getItemCount(): Int {
-        return items.size
+    fun updateCategoryItems(category: FoodCategory) {
+        viewModel.updateItems(category)
+    }
+}
+
+private val diffUtil = object : DiffUtil.ItemCallback<Item>() {
+    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+        return when (oldItem) {
+            is Item.Section -> oldItem == (newItem as? Item.Section) ?: false
+            is Item.FoodInfo -> oldItem == (newItem as? Item.FoodInfo) ?: false
+        }
     }
 
-    fun setItems(category: FoodCategory, newItems: List<Item>) {
-        var sectionIndex = -1
-        items.forEachIndexed { itemIndex, item ->
-            when (item) {
-                is Item.Section -> {
-                    if (item.category == category) {
-                        sectionIndex = itemIndex
-                        return@forEachIndexed
-                    }
-                }
-                else -> {}
-            }
-        }
-        if (sectionIndex == -1) {
-            items.addAll(newItems)
-
-            notifyItemRangeChanged(items.size + 1, newItems.size)
-        } else {
-            var removedIndex = 0
-            for (index in sectionIndex + 1 until items.size) {
-                when (items[index]) {
-                    is Item.Section -> break
-                    else -> removedIndex++
-                }
-            }
-
-            items.removeAll(items.slice(sectionIndex + 1..sectionIndex + removedIndex))
-            items.addAll(sectionIndex + 1, newItems)
-
-            notifyItemRangeRemoved(sectionIndex + 1, removedIndex)
-            notifyItemRangeChanged(sectionIndex + 1, newItems.size)
+    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+        return when (oldItem) {
+            is Item.Section -> oldItem.category == (newItem as? Item.Section)?.category ?: false
+            is Item.FoodInfo -> oldItem.detailHash == (newItem as? Item.FoodInfo)?.detailHash ?: false
         }
     }
 }
