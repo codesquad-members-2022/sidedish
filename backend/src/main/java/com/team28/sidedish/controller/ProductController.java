@@ -1,22 +1,27 @@
 package com.team28.sidedish.controller;
 
+import com.team28.sidedish.controller.dto.ProductDetailResponse;
 import com.team28.sidedish.controller.dto.ProductListResponse;
+import com.team28.sidedish.service.ProductDetailService;
 import com.team28.sidedish.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "상품 API")
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService mockProductService;
+    private final ProductDetailService productDetailService;
 
     @Operation(
             summary = "상품 목록 조회",
@@ -37,5 +42,11 @@ public class ProductController {
     @GetMapping("/products")
     public ProductListResponse productList(@RequestParam Long categoryId) {
         return mockProductService.findProductList(categoryId);
+    }
+
+
+    @GetMapping("/products/{productId}")
+    public ProductDetailResponse productDetail(@PathVariable Long productId) {
+        return productDetailService.findProductDetail(productId);
     }
 }
