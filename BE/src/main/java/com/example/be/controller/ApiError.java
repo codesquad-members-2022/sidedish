@@ -13,7 +13,7 @@ public class ApiError {
         this(throwable.getMessage(), status);
     }
 
-    ApiError(String message, HttpStatus status) {
+    public ApiError(String message, HttpStatus status) {
         this.message = message;
         this.status = status.value();
     }

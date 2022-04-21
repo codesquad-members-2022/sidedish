@@ -2,11 +2,49 @@ plugins {
     id 'org.springframework.boot' version '2.6.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'org.asciidoctor.jvm.convert' version "3.3.2"
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+configurations {
+    asciidoctorExtentions
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+test {
+    outputs.dir snippetsDir
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+bootJar {
+    dependsOn asciidoctor
+    copy {
+        from "${asciidoctor.outputDir}"
+        into 'src/main/resources/static/docs'
+    }
+}
+
+// docs html 에 파일 복사
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+
+    from file("build/asciidoc/html5/")
+    into file("src/main/resources/static/docs")
+}
+
+build {
+    dependsOn copyDocument
+}
 
 repositories {
     mavenCentral()
@@ -19,6 +57,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.6.4'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
+    // lombok
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
     // DB
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'mysql:mysql-connector-java:8.0.28'
@@ -28,8 +70,13 @@ dependencies {
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
+    // Spring Rest Docs
+    asciidoctorExtentions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
     // test
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.rest-assured:rest-assured'
 }
 
 tasks.named('test') {
