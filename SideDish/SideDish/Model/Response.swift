@@ -1,6 +1,6 @@
 import Foundation
 
-struct Response: Codable {
+struct Response<T: Codable>: Codable {
     let statusCode: Int
-    let body: [Food]
+    let body: [T]
 }

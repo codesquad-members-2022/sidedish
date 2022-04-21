@@ -53,7 +53,7 @@ class Ordering{
     private func getSampleFoodList(){
         for category in Category.allCases {
             guard let data = getSampleJSONData(fileName: "\(category)") else { continue }
-            guard let response = JSONHandler.convertJSONToObject(from: data, to: Response.self) else { continue }
+            guard let response = JSONHandler.convertJSONToObject(from: data, to: Response<Food>.self) else { continue }
             
             let foods = response.body
             foodMap[category] = foods
