@@ -64,7 +64,7 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
-    func setPropertiesValue(image: String, cardTitle: String, cardBody: String, normalPrice: String, salePrice: String?, badgeList: [Badge]?) {
+    func setPropertiesValue(_ image: String, _ cardTitle: String, _ cardBody: String, _ normalPrice: String, _ salePrice: String?, _ badgeList: [Badge]?) {
         cardTitleLabel.text = cardTitle
         cardBodyLabel.text = cardBody
         normalPriceLabel.text = normalPrice
