@@ -2,7 +2,11 @@ package com.codesquad.sidedish.item.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Table("ITEM")
 public class Item {
@@ -12,17 +16,16 @@ public class Item {
     private String description;
     private Integer price;
     private Integer stock;
-
     @Column(value = "MAIN_IMAGE_LINK")
     private String mainImageLink;
-
     @Column(value = "CATEGORY_ID")
     private Integer categoryId;
+    private String discountPolicy;
+    private Integer discountRate;
+    @MappedCollection(idColumn = "ITEM_ID")
+    private Set<ItemImage> itemImages = new HashSet<>();
 
-    @Column(value = "DISCOUNT_POLICY_ID")
-    private Integer discountPolicyId;
-
-    public Item(Integer id, String name, String description, Integer price, Integer stock, String mainImageLink, Integer categoryId, Integer discountPolicyId) {
+    public Item(Integer id, String name, String description, Integer price, Integer stock, String mainImageLink, Integer categoryId, String discountPolicy, Integer discountRate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,7 +33,8 @@ public class Item {
         this.stock = stock;
         this.mainImageLink = mainImageLink;
         this.categoryId = categoryId;
-        this.discountPolicyId = discountPolicyId;
+        this.discountPolicy = discountPolicy;
+        this.discountRate = discountRate;
     }
 
     public Integer getId() {
@@ -57,12 +61,20 @@ public class Item {
         return mainImageLink;
     }
 
-    public Integer getDiscountPolicyId() {
-        return discountPolicyId;
-    }
-
     public Integer getCategoryId() {
         return categoryId;
+    }
+
+    public String getDiscountPolicy() {
+        return discountPolicy;
+    }
+
+    public Integer getDiscountRate() {
+        return discountRate;
+    }
+
+    public Set<ItemImage> getItemImages() {
+        return itemImages;
     }
 
     @Override
@@ -75,7 +87,8 @@ public class Item {
                 ", stock=" + stock +
                 ", mainImageLink='" + mainImageLink + '\'' +
                 ", categoryId=" + categoryId +
-                ", discountPolicyId=" + discountPolicyId +
+                ", discountPolicy='" + discountPolicy + '\'' +
+                ", discountRate=" + discountRate +
                 '}';
     }
 }
