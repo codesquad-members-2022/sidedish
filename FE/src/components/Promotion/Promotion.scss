@@ -1,0 +1,71 @@
+.promotion-header {
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  margin-bottom: 25px;
+
+  &__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 42px;
+    border: 2px solid black;
+    border-radius: 999px;
+    background-color: #f8f7f7;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 16px;
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
+
+.promotion-bar {
+  display: flex;
+  padding: 0 80px;
+  gap: 32px;
+
+  &__category {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 550;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+.menu-section {
+  display: flex;
+  padding: 30px 80px;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.menu-article {
+  &__title {
+    font-size: 16px;
+    font-weight: 550;
+    margin: 16px 0 8px 0;
+  }
+  &__detail {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  &__prices {
+    margin-bottom: 8px;
+  }
+  &__price-now {
+    font-size: 16px;
+    font-weight: 550;
+    margin-right: 8px;
+  }
+  &__price-previous {
+    font-size: 14px;
+    color: #bcbcbc;
+    text-decoration: line-through;
+  }
+}

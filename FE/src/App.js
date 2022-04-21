@@ -33,9 +33,17 @@ import { Header } from "./components/Header/Header";
 import { Header } from "@src/components/Header/Header";
 >>>>>>> e0194a0 ([#8] Refactor: import 경로 수정)
 import "./App.scss";
+import { Promotion } from "@src/components/Promotion/Promotion";
 
 function App() {
-  return <Header />;
+  return (
+    <div>
+      <Header />
+      <main>
+        <Promotion />
+      </main>
+    </div>
+  );
 }
 
 >>>>>>> fd015ab ([#8] Feat: Header 구현)
