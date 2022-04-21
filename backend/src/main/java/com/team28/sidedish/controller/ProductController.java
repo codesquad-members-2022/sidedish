@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService mockProductService;
+    private final ProductService productService;
     private final ProductDetailService productDetailService;
 
     @Operation(
@@ -41,7 +41,7 @@ public class ProductController {
     )
     @GetMapping("/products")
     public ProductListResponse productList(@RequestParam Long categoryId) {
-        return mockProductService.findProductList(categoryId);
+        return productService.findProductList(categoryId);
     }
 
     @Operation(

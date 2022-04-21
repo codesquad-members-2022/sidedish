@@ -12,15 +12,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MockProductDetailService implements ProductDetailService {
 
-    private final ProductService mockProductService;
-    private final ProductImageService mockProductImageService;
+    private final ProductService productService;
+    private final ProductImageService productImageService;
 
     @Override
     public ProductDetailResponse findProductDetail(Long productId) {
-        ProductResponse product = mockProductService.findProduct(productId);
-        int stock = mockProductService.findProductStock(productId);
+        ProductResponse product = productService.findProduct(productId);
+        int stock = productService.findProductStock(productId);
 
-        List<ProductImageResponse> productImages = mockProductImageService.findProductImages(productId);
+        List<ProductImageResponse> productImages = productImageService.findProductImages(productId);
 
         return ProductDetailResponse.from(product, productImages, stock);
     }
