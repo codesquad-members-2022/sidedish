@@ -1,9 +1,10 @@
 package com.sidedish.domain;
 
-import com.sidedish.dto.EventCategoryDto;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+@Getter
 @Table("event_category")
 public class EventCategory {
 
@@ -16,9 +17,5 @@ public class EventCategory {
         this.id = id;
         this.eventId = eventId;
         this.name = name;
-    }
-
-    public EventCategoryDto convertToDto() {
-        return new EventCategoryDto(id, name);
     }
 }
