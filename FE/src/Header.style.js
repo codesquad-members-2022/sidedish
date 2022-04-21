@@ -35,10 +35,17 @@ const MainMenu = styled.div`
 
 const SubMenuList = styled.ul`
   font-size: ${props => props.theme.fontSize.small};
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `;
 
 const SubMenu = styled.li`
   margin-bottom: 8px;
+  cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+    color: ${props => props.theme.colors.grey2};
+  }
 `;
 
 export { Navbar, Menu, Icons, MenuBox, MainMenu, SubMenuList, SubMenu };
