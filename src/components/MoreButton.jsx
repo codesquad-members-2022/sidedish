@@ -7,7 +7,7 @@ export default function MoreButton(props) {
   const { value } = props;
   return (
     <Wrap>
-      <Text size="LARGE" weight="REGULAR" value={value} />
+      <Text size="X_LARGE" weight="REGULAR" value={value} />
     </Wrap>
   );
 }
@@ -17,9 +17,7 @@ MoreButton.defaultProps = {
 };
 
 const Wrap = styled.button({
-  width: 'fit-contents',
   padding: '16px 24px 16px 24px',
   border: `1px solid ${COLOR.GREY4}`,
   'background-color': COLOR.WHITE,
-  cursor: 'pointer',
 });
