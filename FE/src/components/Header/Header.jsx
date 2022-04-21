@@ -13,9 +13,7 @@ function Logo() {
   );
 }
 
-function Nav(props) {
-  const isShown = props.isShown;
-  const setIsShown = props.setIsShown;
+function Nav({ isShown, setIsShown }) {
   const navCategory = [
     {
       id: "main1",
