@@ -13,37 +13,25 @@ function Logo() {
   );
 }
 
-function Nav({ isShown, setIsShown }) {
-  const navCategory = [
-    {
-      id: "main1",
-      mainCategory: "든든한 메인요리",
-      subCategory: ["육류 요리", "해산물 요리"],
-    },
-    {
-      id: "main2",
-      mainCategory: "뜨끈한 국물요리",
-      subCategory: ["국/탕/찌개"],
-    },
-    {
-      id: "main3",
-      mainCategory: "정갈한 밑반찬",
-      subCategory: ["나물/무침", "조림/볶음", "절임/장아찌"],
-    },
-  ];
-  if (isShown) {
-    const mainSubNav = navCategory.map((category) => makeNavCatetory(category));
-    return (
-      <nav
-        className="category-nav"
-        onMouseEnter={() => {
-          setIsShown(true);
-        }}
-      >
-        {mainSubNav}
-      </nav>
-    );
-  }
+const navCategory = [
+  {
+    id: "main1",
+    mainCategory: "든든한 메인요리",
+    subCategory: ["육류 요리", "해산물 요리"],
+  },
+  {
+    id: "main2",
+    mainCategory: "뜨끈한 국물요리",
+    subCategory: ["국/탕/찌개"],
+  },
+  {
+    id: "main3",
+    mainCategory: "정갈한 밑반찬",
+    subCategory: ["나물/무침", "조림/볶음", "절임/장아찌"],
+  },
+];
+
+function MainNav({ setIsShown }) {
   const mainNav = navCategory.map((nav) => (
     <li key={nav.id} className="category-nav__main">
       {nav.mainCategory}
@@ -61,18 +49,42 @@ function Nav({ isShown, setIsShown }) {
   );
 }
 
-function makeNavCatetory(categoryObject) {
-  const subCategory = categoryObject.subCategory.map((subCategory, index) => (
-    <li className="category-nav__sub" key={`sub${index}`}>
-      {subCategory}
-    </li>
-  ));
+function MainSubNav({ setIsShown }) {
+  //TODO: 컴포넌트 분리하게되면 서브 카테고리 생성 메서드 분리하기
+  const mainSubNav = navCategory.map((category) => {
+    const subCategory = category.subCategory.map((subCategory, index) => {
+      return (
+        <li className="category-nav__sub" key={`sub${index}`}>
+          {subCategory}
+        </li>
+      );
+    });
+
+    return (
+      <li className="category-nav__main" key={category.id}>
+        <span>{category.mainCategory}</span>
+        <ul>{subCategory}</ul>
+      </li>
+    );
+  });
+
   return (
-    <li className="category-nav__main" key={categoryObject.id}>
-      <span>{categoryObject.mainCategory}</span>
-      <ul>{subCategory}</ul>
-    </li>
+    <nav
+      className="category-nav"
+      onMouseEnter={() => {
+        setIsShown(true);
+      }}
+    >
+      {mainSubNav}
+    </nav>
   );
+}
+
+function Nav({ isShown, setIsShown }) {
+  if (isShown) {
+    return <MainSubNav setIsShown={setIsShown} />;
+  }
+  return <MainNav setIsShown={setIsShown} />;
 }
 
 function Info() {
