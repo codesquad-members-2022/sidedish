@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import MainCard from './MainCard';
+
 import { fetchData } from './utility/util';
+import MainCard from './MainCard';
+import SubCard from './SubCard';
 
 const App = () => {
   const [mainCardData, setMainCardData] = useState([]);
@@ -30,6 +32,7 @@ const App = () => {
     <>
       <Header />
       <MainCard mainCardData={mainCardData} />
+      <SubCard mainCardData={mainCardData} />
     </>
   );
 };

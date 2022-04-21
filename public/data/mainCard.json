@@ -3,10 +3,10 @@
     {
       "id": "HBDEF",
       "image": "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-      "title": "오리 주물럭_반조리",
+      "title": "오리 주물럭 반조리",
       "description": "감칠맛 나는 매콤한 양념",
       "price": "15,800원",
-      "salesPrice": "12,640원",
+      "discountedPrice": "12,640원",
       "badge": ["런칭특가"]
     },
     {
@@ -78,7 +78,8 @@
       "title": "두부조림",
       "description": "각종 영양이 가득 담긴",
       "price": "13,800원",
-      "discountedPrice": "6,900원"
+      "discountedPrice": "6,900원",
+      "badge": ["이벤트특가"]
     },
     {
       "id": "H72C3",
