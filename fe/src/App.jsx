@@ -2,6 +2,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import RecommendProduct from './Main/Recommend/RecommendProduct';
 import HeaderTemplate from './Header/HeaderTemplate';
 import DishContainer from './Main/Dish/DishContainer';
+import DishCategoryAllButton from './Main/Dish/DishCategoryAllButton';
 import GlobalStyles from './GlobalStyles';
 import theme from './theme';
 
@@ -20,6 +21,7 @@ function App() {
         <Main>
           <RecommendProduct></RecommendProduct>
           <DishContainer></DishContainer>
+          <DishCategoryAllButton></DishCategoryAllButton>
         </Main>
       </ThemeProvider>
     </>
