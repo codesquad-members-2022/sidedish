@@ -12,7 +12,7 @@ class ProductCollectionViewModelTests: XCTestCase {
     let productCollectionViewModel = ProductCollectionViewModel()
 
     func testBinding() throws {
-        let promise = XCTestExpectation(description: "CellModel ")
+        let promise = XCTestExpectation(description: "cellViewModels")
 
         productCollectionViewModel.cellViewModels.bind { cellViewModels in
             XCTAssertTrue(cellViewModels.count == 3)
@@ -23,10 +23,6 @@ class ProductCollectionViewModelTests: XCTestCase {
         productCollectionViewModel.fetch()
 
         wait(for: [promise], timeout: 1)
-
-    }
-
-    func testBindResult() throws {
 
     }
 

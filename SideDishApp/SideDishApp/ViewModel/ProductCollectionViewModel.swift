@@ -49,7 +49,6 @@ struct ProductCollectionViewModel {
         }
 
         dispatchGroup.notify(queue: .global(), work: DispatchWorkItem {
-            print("Async done")
             cellViewModels.value = temp
         })
 

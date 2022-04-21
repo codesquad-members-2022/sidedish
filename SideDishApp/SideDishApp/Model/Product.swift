@@ -35,12 +35,11 @@ struct Product: Codable {
            case badge
        }
 
-    var originalPrice: Money? {
-        guard let unCastedOriginalPrice = unCastedOriginalPrice else {return nil}
+    var originalPrice: Money<KRW>? {
         return Money(unCastedOriginalPrice)
     }
 
-    var salePrice: Money {
+    var salePrice: Money<KRW> {
         Money(unCastedSalePrice)
     }
 

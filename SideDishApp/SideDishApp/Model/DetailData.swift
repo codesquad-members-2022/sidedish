@@ -28,11 +28,11 @@ struct DetailData: Codable {
            case unCastedPoint = "point"
     }
 
-    var prices: [Money] {
+    var prices: [Money<KRW>] {
         unCastedPrices.map({Money($0)})
     }
 
-    var point: Money {
+    var point: Money<KRW> {
         Money(unCastedPoint)
     }
 

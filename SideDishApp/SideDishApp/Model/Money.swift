@@ -6,18 +6,23 @@
 //
 
 import Foundation
-struct Money {
+struct Money<C: CurrencyFormatable> {
+
+    typealias C = CurrencyFormatable
 
     var value: Decimal
 
-    var krwFormat: String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        return numberFormatter.string(from: NSDecimalNumber(decimal: value))! + "원"
+    var priceTag: String {
+        "\(C.numberFormat.string(from: NSDecimalNumber(decimal: value))!)" + C.symbol
     }
 
     init (_ priceInput: String) {
         self.value = Decimal(string: priceInput.components(separatedBy: [",", "원"]).joined()) ?? 0.0
+    }
+
+    init?(_ priceInput: String?) {
+        guard let priceInput = priceInput else {return nil}
+        self.init(priceInput)
     }
 
     init (_ value: Decimal) {

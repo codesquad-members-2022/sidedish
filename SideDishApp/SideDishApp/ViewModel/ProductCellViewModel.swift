@@ -10,7 +10,7 @@ struct ProductCellViewModel {
     let title: String
     let description: String
     let imageURL: URL
-    let originalPrice: Money?
-    let salePrice: Money
+    let originalPrice: Money<KRW>?
+    let salePrice: Money<KRW>
     let badge: [Badge]?
 }

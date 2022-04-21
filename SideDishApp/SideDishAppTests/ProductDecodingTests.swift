@@ -41,16 +41,15 @@ class ProductTest: XCTestCase {
     }
 
     func testPriceMatch() throws {
-        XCTAssertEqual(products[0].salePrice.krwFormat, "12,640원")
+        XCTAssertEqual(products[0].salePrice.priceTag, "12,640원")
     }
 
     func testArithmetic() throws {
-        let add: Money = products[0].salePrice + products[1].salePrice
-        print(products[0].salePrice.krwFormat)
-        let subtract: Money = products[0].salePrice - products[1].salePrice
+        let add: Money<KRW> = products[0].salePrice + products[1].salePrice
+        let subtract: Money<KRW> = products[0].salePrice - products[1].salePrice
 
-        XCTAssertEqual(add.krwFormat, "24,250원")
-        XCTAssertEqual(subtract.krwFormat, "1,030원")
+        XCTAssertEqual(add.priceTag, "24,250원")
+        XCTAssertEqual(subtract.priceTag, "1,030원")
     }
 
     func testNotNill() throws {
