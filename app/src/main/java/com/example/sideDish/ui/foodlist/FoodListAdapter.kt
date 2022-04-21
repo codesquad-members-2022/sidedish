@@ -20,11 +20,7 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
     inner class SectionViewHolder(private val binding: SectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(section: Item.Section) {
-            binding.sectionText.text = when (section.category) {
-                FoodCategory.MAIN -> "모두가 좋아하는\n든든한 메인 요리"
-                FoodCategory.SOUP -> "정성이 담긴\n뜨끈뜨근 국물요리"
-                FoodCategory.SIDE -> "식탁을 풍성하게 하는\n정갈한 밑반찬"
-            }
+            binding.sectionText.text = section.category.sectionTitle
         }
     }
 
