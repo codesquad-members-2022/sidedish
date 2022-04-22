@@ -1,6 +1,8 @@
 import Foundation
 
 protocol JSONHandlable{
-    func convertJSONToObject(from data: Data, to targetType: Decodable.Type)->Decodable?
-    func convertObjectToJSON(from object: Encodable)->Data?
+
+    func convertJSONToObject<T:Decodable>(from data: Data, to targetType: T.Type)->T?
+    func convertObjectToJSON<T:Encodable>(from object: T)->Data?
 }
+
