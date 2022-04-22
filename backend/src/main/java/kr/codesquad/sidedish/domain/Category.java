@@ -16,5 +16,5 @@ public class Category {
     private String description;
 
     @MappedCollection(idColumn = "category_id")
-    private final Set<Subcategory> subcategories = new HashSet<>();
+    private Set<Subcategory> subcategories = new HashSet<>();
 }
