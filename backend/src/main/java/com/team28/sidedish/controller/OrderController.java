@@ -2,7 +2,7 @@ package com.team28.sidedish.controller;
 
 import com.team28.sidedish.controller.dto.OrderRequest;
 import com.team28.sidedish.exception.ErrorResponse;
-import com.team28.sidedish.service.OrderService;
+import com.team28.sidedish.service.MockOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
+    private final MockOrderService orderService;
 
     @Operation(summary = "주문 등록",
             description = "하나의 상품에 대해 주문을 등록합니다.",

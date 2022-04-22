@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MockProductImageService implements ProductImageService {
+public class MockProductImageService {
 
-    @Override
     public List<ProductImageResponse> findProductImages(Long productId) {
         return List.of(
                 new ProductImageResponse(1L, "http://fakeurl.com/image1.jpg", true, 1),

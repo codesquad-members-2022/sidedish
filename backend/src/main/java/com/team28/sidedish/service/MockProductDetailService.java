@@ -10,12 +10,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MockProductDetailService implements ProductDetailService {
+public class MockProductDetailService {
 
-    private final ProductService productService;
-    private final ProductImageService productImageService;
+    private final MockProductService productService;
+    private final MockProductImageService productImageService;
 
-    @Override
     public ProductDetailResponse findProductDetail(Long productId) {
         ProductResponse product = productService.findProduct(productId);
         int stock = productService.findProductStock(productId);

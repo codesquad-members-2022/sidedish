@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class MockProductService implements ProductService {
+public class MockProductService {
 
     private final int PRODUCT_STOCK = 5;
 
@@ -82,7 +82,6 @@ public class MockProductService implements ProductService {
                     .build()
     );
 
-    @Override
     public ProductListResponse findProductList(Long categoryId) {
         List<ProductResponse> productResponseList = new ArrayList<>();
 
@@ -96,7 +95,6 @@ public class MockProductService implements ProductService {
                 .build();
     }
 
-    @Override
     public ProductResponse findProduct(Long productId) {
         if (!productResponseMap.containsKey(productId)) {
             throw new IllegalArgumentException();
@@ -105,7 +103,6 @@ public class MockProductService implements ProductService {
         return productResponseMap.get(productId);
     }
 
-    @Override
     public int findProductStock(Long productId) {
         return PRODUCT_STOCK;
     }
