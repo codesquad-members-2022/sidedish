@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { ProductCard } from './ProductCard';
 
-const CategoryWrapper = styled.div`
+const CategoryWrapper = styled.li`
   width: 1280px;
+  margin-top: 56px;
+
+  &:last-child {
+    margin-bottom: 80px;
+  }
 `;
 
 const Header = styled.header`
