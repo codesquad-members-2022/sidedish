@@ -1,6 +1,7 @@
 package com.example.sideDish.ui.foodlist
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -21,6 +22,11 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(section: Item.Section) {
             binding.sectionText.text = section.category.sectionTitle
+            binding.sectionText.setOnClickListener {
+                binding.sectionCountText.visibility = View.VISIBLE
+                val count = viewModel.getCategoryItemsCount(section.category)
+                binding.sectionCountText.text = String.format("총 %d개의 상품이 등록되어 있습니다.", count)
+            }
         }
     }
 

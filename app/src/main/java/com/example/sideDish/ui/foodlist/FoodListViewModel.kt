@@ -15,20 +15,40 @@ class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {
     private val _items = MutableLiveData<List<Item>>()
     val items: LiveData<List<Item>> = _items
 
+    private var mainItemsCount = 0
+    private var soupItemsCount = 0
+    private var sideItemsCount = 0
+
     private fun getMainItems(): List<Item> {
-        return repository.getMainItems()
+        val mainItems = repository.getMainItems()
+        mainItemsCount = mainItems.size
+        return mainItems
     }
 
     private fun getSoupItems(): List<Item> {
-        return repository.getSoupItems()
+        val soupItems = repository.getSoupItems()
+        soupItemsCount = soupItems.size
+        return soupItems
     }
 
     private fun getSideItems(): List<Item> {
-        return repository.getSideItems()
+        val sideItems = repository.getSideItems()
+        sideItemsCount = sideItems.size
+        return sideItems
     }
 
     fun openDetail() {
         _openDetail.value = Event(true)
+    }
+
+    fun getCategoryItemsCount(category: FoodCategory): Int {
+        val count = when (category) {
+            FoodCategory.MAIN -> mainItemsCount
+            FoodCategory.SOUP -> soupItemsCount
+            FoodCategory.SIDE -> sideItemsCount
+        }
+        return if (count == 0) 0
+        else count - 1
     }
 
     fun updateItems(category: FoodCategory) {
