@@ -33,7 +33,7 @@ export default function Header() {
           {gnbNames.map((gnbName, gnbIndex) => (
             <Gnb>
               <Text size="MEDIUM" value={gnbName} />
-              <SubGnbList>
+              <SubGnbList subGnbVisible={subGnbVisible}>
                 {subGnbNames[gnbIndex].map((subGnbName) => (
                   <SubGnb>
                     <a href="http://localhost:3000/">
@@ -98,8 +98,10 @@ const SubGnbList = styled.ul({
   overflow: 'hidden',
 });
 
-const SubGnb = styled.li({
-  marginTop: '8px',
-  paddingBottom: '24px',
-  lineHeight: 1.5,
-});
+const SubGnb = styled.li`
+  margin-top: 8px;
+  line-height: 1.5;
+  &:last-child {
+    margin-bottom: 24px;
+  }
+`;
