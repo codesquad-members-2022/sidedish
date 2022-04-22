@@ -23,10 +23,6 @@ export const StyledImg = styled.img`
   height: 411px;
 `;
 
-export const CardWrapper = styled.div`
-  margin-right: 24px;
-`;
-
 export const StyledH2 = styled.h2`
   font-style: normal;
   font-weight: 500;
@@ -84,4 +80,9 @@ export const Event = styled.div`
   ${props => styleColorToEvent(props)}
   margin-right: 8px;
   border-radius: 999px;
+`;
+
+export const CardWrapper = styled.div`
+  margin-right: 24px;
+  cursor: pointer;
 `;
