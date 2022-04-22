@@ -96,7 +96,7 @@ class MenuDetailViewController: UIViewController {
                 self.infoView.changeSaleBadge(menu.badge)
                 self.subInfoView.setData(detail)
             }.store(in: &cancellables)
-//
+
         model.state.showError
             .sink { _ in
                 //TODO: 에러 처리
