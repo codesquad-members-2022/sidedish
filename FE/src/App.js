@@ -1,8 +1,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Header } from "@/components/templates/Header/Header";
 import { Promotion } from "@/components/templates/Promotion/Promotion";
+=======
+import { Header } from "@src/components/Header/Header";
+>>>>>>> 159047b (Chore: 깃 충돌 해결 과정에서 꼬인 코드 수정)
 import "./App.scss";
 
 function App() {
@@ -14,6 +18,7 @@ function App() {
       </main>
     </div>
   );
+<<<<<<< HEAD
 }
 
 =======
@@ -44,6 +49,8 @@ function App() {
       </main>
     </div>
   );
+=======
+>>>>>>> 159047b (Chore: 깃 충돌 해결 과정에서 꼬인 코드 수정)
 }
 
 >>>>>>> fd015ab ([#8] Feat: Header 구현)
