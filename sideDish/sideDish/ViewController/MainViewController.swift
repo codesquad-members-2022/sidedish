@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         collectionView.widthAnchor.constraint(greaterThanOrEqualToConstant: 343).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
-        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
     }
