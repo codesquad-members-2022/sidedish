@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const Container = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.color.black};
+  height: ${({ isOpen }) => (isOpen ? "176px" : "97px")};
+  transition: all ease-out 0.1s;
 `;
 
 const Wrapper = styled.div`
@@ -24,7 +26,8 @@ const Title = styled.h2`
 `;
 
 const CategoryList = styled.ul`
-  margin: 20px auto 0 40px;
+  margin: 0 auto 0 20px;
+  padding: 20px 20px 8px;
   display: flex;
   gap: 24px;
 `;
@@ -44,26 +47,31 @@ const IconMenu = styled.li`
     height: 32px;
     font-size: 0;
     svg:hover {
-      filter: invert(58%) sepia(62%) saturate(1704%) hue-rotate(348deg)
-        brightness(103%) contrast(104%);
+      fill: ${({ theme }) => theme.color.orange};
+      transition: all ease-out 0.1s;
     }
   }
 `;
 
 const Category = styled.li``;
 
-const CategoryTitle = styled.span``;
+const CategoryTitle = styled.p`
+  margin: 0 0 12px;
+`;
 
 const CategoryMenuList = styled.ul`
-  margin: 12px 0 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  transition: all ease-out 0.2s;
 `;
 
 const CategoryMenu = styled.li`
   font-size: ${({ theme }) => theme.fontSize.small};
+
   a {
+    display: block;
     color: ${({ theme }) => theme.color.black};
     &:hover {
       color: ${({ theme }) => theme.color.orange};

@@ -1,17 +1,20 @@
 import { Category, CategoryTitle, CategoryMenuList } from "./Header.style";
 import CategoryMenuItems from "./CategoryMenuItems";
 
-const CategoryItems = ({ categoriesData }) => {
-  return categoriesData.map(_getCategory);
+const CategoryItems = ({ isOpen, categoriesData }) => {
+  return categoriesData.map(_getCategory(isOpen));
 };
 
-const _getCategory = ({ id, categoryTitle, categoryMenus }) => (
-  <Category key={id}>
-    <CategoryTitle>{categoryTitle}</CategoryTitle>
-    <CategoryMenuList>
-      <CategoryMenuItems categoryMenus={categoryMenus} />
-    </CategoryMenuList>
-  </Category>
-);
+const _getCategory =
+  (isOpen) =>
+  ({ id, categoryTitle, categoryMenus }) =>
+    (
+      <Category key={id}>
+        <CategoryTitle>{categoryTitle}</CategoryTitle>
+        <CategoryMenuList isOpen={isOpen}>
+          {isOpen ? <CategoryMenuItems categoryMenus={categoryMenus} /> : ""}
+        </CategoryMenuList>
+      </Category>
+    );
 
 export default CategoryItems;
