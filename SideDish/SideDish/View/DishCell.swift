@@ -21,7 +21,7 @@ class DishCell: UICollectionViewCell {
         descriptionLabel.text = description
         finalPriceLabel.text = "\(finalPrice)원"
         normalPriceLabel.text = ""
-        
+
         if let normalPrice = normalPrice {
             let attributedStyle = NSUnderlineStyle.single
             let attributedString = NSMutableAttributedString(string: "\(normalPrice)원")
