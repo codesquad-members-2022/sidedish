@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import subContents from '../../mocks/subContents';
 import MainContent from './MainContent';
 import MoreContentButton from './MoreContentButton';
-import SubContent from './SubContent';
+import SubContents from './SubContents';
 
 const MainWrap = styled.div`
   display: flex;
@@ -11,12 +13,30 @@ const MainWrap = styled.div`
   margin-top: 200px;
 `;
 
-const Main = () => (
-  <MainWrap>
-    <MainContent />
-    <SubContent />
-    <MoreContentButton />
-  </MainWrap>
-);
+const Main = () => {
+  const [moreButtonDisplay, setMoreButtonDisplay] = useState('block');
+  const [subContentsList, setSubContentsList] = useState(subContents.slice(0, 1));
+
+  const handleMoreButtonClick = () => {
+    setMoreButtonDisplay('none');
+  };
+
+  useEffect(() => {
+    if (moreButtonDisplay === 'none') {
+      setSubContentsList(subContents);
+    }
+  }, [moreButtonDisplay]);
+
+  return (
+    <MainWrap>
+      <MainContent />
+      <SubContents subContents={subContentsList} />
+      <MoreContentButton
+        moreButtonDisplay={moreButtonDisplay}
+        onButtonClick={handleMoreButtonClick}
+      />
+    </MainWrap>
+  );
+};
 
 export default Main;

@@ -41,7 +41,10 @@
           },
           "newlines-between": "always"
         }
-      ]
+      ],
+      "no-confusing-arrow": "off",
+      "implicit-arrow-linebreak": "off",
+      "object-curly-newline": "off"
     }
   },
   "browserslist": {

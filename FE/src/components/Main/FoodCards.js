@@ -8,8 +8,8 @@ const CardsWrap = styled.ul`
   grid-template-columns: ${(props) => `repeat(${props.size}, 1fr)`};
 `;
 
-const FoodCards = ({ foods }) => (
-  <CardsWrap size={foods.length}>
+const FoodCards = ({ foods, size }) => (
+  <CardsWrap size={size}>
     {foods.map((food) => (
       <FoodCard key={food.detail_hash} food={food} />
     ))}

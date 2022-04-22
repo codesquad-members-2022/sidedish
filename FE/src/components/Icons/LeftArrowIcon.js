@@ -1,6 +1,6 @@
 import colors from '../../constants/colors';
 
-const RightArrowIcon = ({ isLastPage }) => (
+const LeftArrowIcon = ({ isStartPage }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="11"
@@ -9,8 +9,8 @@ const RightArrowIcon = ({ isLastPage }) => (
     fill="none"
   >
     <path
-      d="M2 18L10 10L2 2"
-      stroke={isLastPage ? colors.greyThree : colors.black}
+      d="M9 18L1 10L9 2"
+      stroke={isStartPage ? colors.greyThree : colors.black}
       strokeWidth="2"
       strokeLinecap="square"
       strokeLinejoin="round"
@@ -18,4 +18,4 @@ const RightArrowIcon = ({ isLastPage }) => (
   </svg>
 );
 
-export default RightArrowIcon;
+export default LeftArrowIcon;

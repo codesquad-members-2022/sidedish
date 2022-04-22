@@ -44,8 +44,8 @@ const FoodCard = ({ food }) => (
       <OriginPrice font={FONT.SMALL}>{food.n_price}</OriginPrice>
     </CardText>
     <BadgeWrap>
-      {food?.badge?.map((badgeName) => (
-        <Tag badge={badgeName} />
+      {food?.badge?.map((badgeName, idx) => (
+        <Tag key={badgeName + idx} badge={badgeName} />
       ))}
     </BadgeWrap>
   </CardWrap>
