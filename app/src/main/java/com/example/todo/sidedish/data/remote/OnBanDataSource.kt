@@ -13,6 +13,6 @@ class OnBanDataSource @Inject constructor(
 
     override suspend fun getSide(): MenuDto = api.getSide()
 
-    override suspend fun getDetail(hashDetail: String): MenuDetailDto = api.getDetail(hashDetail)
+    override suspend fun getDetail(hash: String): MenuDetailDto = api.getDetail(hash)
 
 }

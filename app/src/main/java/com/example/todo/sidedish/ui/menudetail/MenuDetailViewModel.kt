@@ -23,9 +23,9 @@ class MenuDetailViewModel @Inject constructor(
     val _thumbImages: LiveData<List<String>> = thumbImages
 
 
-    fun getDetail(detailHash:String) {
+    fun getDetail(hash:String) {
         viewModelScope.launch {
-            detailInfo.value = menuRepository.getDetail(detailHash)
+            detailInfo.value = menuRepository.getDetail(hash)
             thumbImages.value = detailInfo.value?.thumbnailImages
         }
     }

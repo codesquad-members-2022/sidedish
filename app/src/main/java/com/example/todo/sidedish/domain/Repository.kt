@@ -12,5 +12,5 @@ interface Repository {
 
     suspend fun getSide(): Result<List<Menu>>
 
-    suspend fun getDetail(detailHash:String) : MenuDetail
+    suspend fun getDetail(hash:String) : MenuDetail
 }

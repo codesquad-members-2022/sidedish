@@ -17,5 +17,5 @@ interface OnBanApi {
     suspend fun getSide(): MenuDto
 
     @GET("detail/{detail_hash}")
-    suspend fun getDetail(@Path("detail_hash") detailHash:String) : MenuDetailDto
+    suspend fun getDetail(@Path("detail_hash") hash:String) : MenuDetailDto
 }

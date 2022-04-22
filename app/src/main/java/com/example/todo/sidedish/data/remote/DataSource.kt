@@ -11,5 +11,5 @@ interface DataSource {
 
     suspend fun getSide(): MenuDto
 
-    suspend fun getDetail(hashDetail:String): MenuDetailDto
+    suspend fun getDetail(hash:String): MenuDetailDto
 }
