@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThirdSectionViewController: UIViewController{
+class OrderViewController: UIViewController{
     
     private lazy var countLabel: UILabel = {
         var label = UILabel()
@@ -86,7 +86,7 @@ class ThirdSectionViewController: UIViewController{
     }
 }
 
-private extension ThirdSectionViewController{
+private extension OrderViewController{
     func setAllProperties() {
         configureSectionUpper()
         configureCountLabel()
