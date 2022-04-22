@@ -39,10 +39,6 @@ class ProductDetailCell: UICollectionViewCell {
         info.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             image.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
             image.widthAnchor.constraint(equalTo: image.heightAnchor),
             info.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 13),
