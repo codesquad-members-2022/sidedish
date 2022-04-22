@@ -62,6 +62,13 @@ class CustomCollectionCell: UICollectionViewCell {
 }
 
 extension CustomCollectionCell {
+    func changeThumbnail(imageUrl: URL?) {
+        guard let imagePath = imageUrl?.path else {
+            return
+        }
+        
+        imageView.image = UIImage(contentsOfFile: imagePath)
+    }
     func changeTitleLabel(text: String) {
         menuInfoView.changeTitleLabel(text: text)
     }
