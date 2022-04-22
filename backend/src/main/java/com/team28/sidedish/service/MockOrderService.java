@@ -3,7 +3,7 @@ package com.team28.sidedish.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MockOrderService implements OrderService {
+public class MockOrderService {
 
     private final String OUT_OF_STOCK = "재고가 부족합니다.";
     private final int MAX_QUANTITY = 5;
@@ -16,7 +16,6 @@ public class MockOrderService implements OrderService {
         //TODO 실제 서비스에서는 재고를 업데이트한다
     }
 
-    @Override
     public void order(Long productId, int quantity) {
         if (!isEnoughStockCount(productId, quantity)) {
             throw new IllegalArgumentException(OUT_OF_STOCK);
