@@ -48,13 +48,18 @@ class CategoryManagerTests: XCTestCase {
 
         // Test Fetch method
         let fetchImagePromise = XCTestExpectation(description: "Fetch Image Success")
-
-        categoryManager.fetchImageData(of: testProduct) { data in
-            XCTAssertEqual(localImageData, data)
-            fetchImagePromise.fulfill()
-        }
+//
+//        categoryManager.fetchImageData(of: testProduct) { data in
+//            XCTAssertEqual(localImageData, data)
+//            fetchImagePromise.fulfill()
+//        }
 
         wait(for: [fetchImagePromise], timeout: 1)
+    }
+
+    func testCaching() {
+
+        print(nsURL)
     }
 
 }
