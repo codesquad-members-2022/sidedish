@@ -95,6 +95,7 @@ class MenuDetailViewController: UIViewController {
                 self.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
                 self.infoView.changeSaleBadge(menu.badge)
                 self.subInfoView.setData(detail)
+                self.orderView.setTotalPrice(menu.price)
             }.store(in: &cancellables)
 
         model.state.showError

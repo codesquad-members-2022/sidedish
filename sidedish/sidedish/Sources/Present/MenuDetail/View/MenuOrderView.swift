@@ -75,6 +75,7 @@ class MenuOrderView: UIView {
         ])
     }
     
-    func setData(_ data: MenuDetail) {
+    func setTotalPrice(_ totalPrice: String) {
+        totalPriceLabel.text = totalPrice
     }
 }
