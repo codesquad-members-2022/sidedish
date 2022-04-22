@@ -37,7 +37,7 @@ public class ItemService {
         return new CategoryItemsDto(categoryItemDtoList);
     }
 
-    public DetailItemDto findById(Integer id) throws ItemIdNotFoundException {
+    public DetailItemDto findById(int id) throws ItemIdNotFoundException {
         return categoryRepository.findByItemId(id)
                 .map(DetailItemDto::from)
                 .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));

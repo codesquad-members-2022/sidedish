@@ -29,7 +29,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DetailItemDto> detail(@PathVariable Integer id) {
+    public ResponseEntity<DetailItemDto> detail(@PathVariable int id) {
         DetailItemDto detailItemDto;
         try {
             detailItemDto = itemService.findById(id);
