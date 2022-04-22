@@ -47,14 +47,17 @@ final class NetworkManager {
             guard let self = self else {
                 return completion(.failure(.emptySession))
             }
+            
             // handling transportError
             if let error = error {
                 return completion(.failure(.transportError(error)))
             }
+            
             // handling NoDataError
             guard let data = data else {
                 return completion(.failure(.emptyData))
             }
+            
             // handling ServerError
             guard let statusCode = self.getStatusCode(response: response) else { return }
             guard 200..<300 ~= statusCode else {
@@ -63,7 +66,7 @@ final class NetworkManager {
             
             // handling DecodingError
             do {
-                let deleteCase: Any = "DELETE"
+                let deleteCase: Any = HTTPMethod.delete.description
                 if urlRequest.httpMethod == HTTPMethod.delete.description {
                     return completion(.success(deleteCase as? T ?? nil))
                 }
