@@ -34,22 +34,9 @@ CREATE TABLE delivery
 DROP TABLE IF EXISTS best_type;
 CREATE TABLE best_type
 (
-    best_id   BIGINT AUTO_INCREMENT NOT NULL, COMMENT '베스트 반찬 TAB에서 Sorting 하기 위한 ID'
+    best_id   BIGINT AUTO_INCREMENT NOT NULL COMMENT '베스트 반찬 TAB에서 Sorting 하기 위한 ID',
     best_name VARCHAR(255),
     PRIMARY KEY (best_id)
-);
-
-DROP TABLE IF EXISTS orders;
-CREATE TABLE orders
-(
-    order_id    BIGINT AUTO_INCREMENT NOT NULL,
-    item_id     BIGINT NOT NULL,
-    user_id     BIGINT NOT NULL,
-    quantity    INTEGER NOT NULL,
-    total_price DECIMAL(6,0) NOT NULL,
-    PRIMARY KEY (order_id),
-    FOREIGN KEY (item_id) REFERENCES item (item_id),
-    FOREIGN KEY (user_id)  REFERENCES user (user_id)
 );
 
 DROP TABLE IF EXISTS item;
@@ -71,6 +58,19 @@ CREATE TABLE item
     FOREIGN KEY (label_id)    REFERENCES label (label_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id),
     FOREIGN KEY (best_id)     REFERENCES best_type (best_id)
+);
+
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders
+(
+    order_id    BIGINT AUTO_INCREMENT NOT NULL,
+    item_id     BIGINT NOT NULL,
+    user_id     BIGINT NOT NULL,
+    quantity    INTEGER NOT NULL,
+    total_price DECIMAL(6,0) NOT NULL,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (item_id) REFERENCES item (item_id),
+    FOREIGN KEY (user_id)  REFERENCES user (user_id)
 );
 
 DROP TABLE IF EXISTS images;
