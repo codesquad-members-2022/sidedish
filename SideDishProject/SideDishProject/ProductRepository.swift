@@ -15,7 +15,7 @@ class MockProductRepository: ProductRepository {
     private let products: [Product]
     
     init() {
-        self.products = ProductFactory().makeRandomProducts(count: 3)
+        self.products = ProductFactory().makeRandomProducts(count: 10)
     }
     
     func fetchAll(completion: @escaping (Result<[Product], Error>) -> Void) {
@@ -34,3 +34,4 @@ class MockProductRepository: ProductRepository {
         completion(.success(result))
     }
 }
+

@@ -10,6 +10,7 @@
 		4955D9DB5F283663061A4436 /* Pods_SideDishProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374E71EB8263F8F76D8FC434 /* Pods_SideDishProjectTests.framework */; };
 		6763F64C32FC04181C72137C /* Pods_SideDishProject_SideDishProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35015B93C0674ADEC6754E9C /* Pods_SideDishProject_SideDishProjectUITests.framework */; };
 		6FE405B8280E967800FD218C /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE405B7280E967800FD218C /* ProductRepository.swift */; };
+		7268D0E1281126A0005449B9 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7268D0E0281126A0005449B9 /* ProductModel.swift */; };
 		729E885E280D8F700042ECC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E885D280D8F700042ECC9 /* AppDelegate.swift */; };
 		729E8860280D8F700042ECC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E885F280D8F700042ECC9 /* SceneDelegate.swift */; };
 		729E8862280D8F700042ECC9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E8861280D8F700042ECC9 /* HomeViewController.swift */; };
@@ -20,6 +21,9 @@
 		729E8881280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E8880280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift */; };
 		72B48E94280D9317008628BF /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 72B48E93280D9317008628BF /* .swiftlint.yml */; };
 		72BE39AE280FD873000919EC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE39AD280FD873000919EC /* DetailViewController.swift */; };
+		72BE39B0280FE8EA000919EC /* DishCollectionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE39AF280FE8EA000919EC /* DishCollectionWrapper.swift */; };
+		72BE39B2280FEB56000919EC /* DishCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE39B1280FEB56000919EC /* DishCollectionViewCell.swift */; };
+		72BE39B42810010B000919EC /* DishComentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE39B32810010B000919EC /* DishComentHeaderView.swift */; };
 		72C55BF2280EE1C600E55892 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C55BF1280EE1C600E55892 /* HomeView.swift */; };
 		72F9D2FF280E8D5B00EFA22F /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9D2FE280E8D5B00EFA22F /* RootNavigationController.swift */; };
 		72F9D301280E921F00EFA22F /* ProductFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9D300280E921F00EFA22F /* ProductFactory.swift */; };
@@ -53,6 +57,7 @@
 		5E145105A2198454DA1D9B65 /* Pods-SideDishProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishProjectTests.release.xcconfig"; path = "Target Support Files/Pods-SideDishProjectTests/Pods-SideDishProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DDF0E8D53B04C80FFD11E5C /* Pods-SideDishProject-SideDishProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishProject-SideDishProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6FE405B7280E967800FD218C /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		7268D0E0281126A0005449B9 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		729E885A280D8F700042ECC9 /* SideDishProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E885D280D8F700042ECC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E885F280D8F700042ECC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,9 @@
 		729E8880280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		72B48E93280D9317008628BF /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		72BE39AD280FD873000919EC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		72BE39AF280FE8EA000919EC /* DishCollectionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionWrapper.swift; sourceTree = "<group>"; };
+		72BE39B1280FEB56000919EC /* DishCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionViewCell.swift; sourceTree = "<group>"; };
+		72BE39B32810010B000919EC /* DishComentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishComentHeaderView.swift; sourceTree = "<group>"; };
 		72C55BF1280EE1C600E55892 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		72F9D2FE280E8D5B00EFA22F /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		72F9D300280E921F00EFA22F /* ProductFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFactory.swift; sourceTree = "<group>"; };
@@ -154,6 +162,10 @@
 				72F9D302280E923900EFA22F /* Product.swift */,
 				72C55BF1280EE1C600E55892 /* HomeView.swift */,
 				72BE39AD280FD873000919EC /* DetailViewController.swift */,
+				72BE39AF280FE8EA000919EC /* DishCollectionWrapper.swift */,
+				72BE39B1280FEB56000919EC /* DishCollectionViewCell.swift */,
+				72BE39B32810010B000919EC /* DishComentHeaderView.swift */,
+				7268D0E0281126A0005449B9 /* ProductModel.swift */,
 			);
 			path = SideDishProject;
 			sourceTree = "<group>";
@@ -446,10 +458,14 @@
 				729E8862280D8F700042ECC9 /* HomeViewController.swift in Sources */,
 				72F9D2FF280E8D5B00EFA22F /* RootNavigationController.swift in Sources */,
 				6FE405B8280E967800FD218C /* ProductRepository.swift in Sources */,
+				72BE39B42810010B000919EC /* DishComentHeaderView.swift in Sources */,
+				7268D0E1281126A0005449B9 /* ProductModel.swift in Sources */,
 				72F9D301280E921F00EFA22F /* ProductFactory.swift in Sources */,
 				729E885E280D8F700042ECC9 /* AppDelegate.swift in Sources */,
 				72C55BF2280EE1C600E55892 /* HomeView.swift in Sources */,
 				729E8860280D8F700042ECC9 /* SceneDelegate.swift in Sources */,
+				72BE39B0280FE8EA000919EC /* DishCollectionWrapper.swift in Sources */,
+				72BE39B2280FEB56000919EC /* DishCollectionViewCell.swift in Sources */,
 				72F9D303280E923900EFA22F /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

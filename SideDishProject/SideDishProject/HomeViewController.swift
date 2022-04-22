@@ -12,16 +12,21 @@ class HomeViewController: UIViewController {
 
     private var productRepository: ProductRepository?
     private lazy var homeView = HomeView(frame: view.frame)
+    private let dishCollectionWrapper = DishCollectionWrapper()
+    private var productModel: ProductModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "order"
+        productModel?.delegate = self
+        productModel?.getAll()
         view = homeView
+        homeView.setCollectionViewModel(viewModel: dishCollectionWrapper)
     }
 
     static func create(with repository: ProductRepository) -> HomeViewController {
         let viewController = HomeViewController()
-        viewController.productRepository = repository
+        viewController.productModel = ProductModel(repository: repository)
         return viewController
     }
     
@@ -31,4 +36,13 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
+}
+extension HomeViewController: ProductModelDelegate{
+    func updateAllDishes(dishes: [DishCategory : [Product]]) {
+        dishCollectionWrapper.setDishes(dishes: dishes)
+    }
+    
+    func updateFail(error: Error) {
+        Toast(text: "error \(error)").show()
+    }
 }
