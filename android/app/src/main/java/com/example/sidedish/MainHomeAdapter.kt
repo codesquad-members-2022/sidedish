@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sidedish.databinding.ItemMenuDataBinding
 
-class MainHomeAdapter : ListAdapter<MenuData, MainHomeHolder>(diffUtil) {
+class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
 
     override fun onBindViewHolder(holder: MainHomeHolder, position: Int) {
         val item = getItem(position)
@@ -28,17 +28,17 @@ class MainHomeAdapter : ListAdapter<MenuData, MainHomeHolder>(diffUtil) {
 
 class MainHomeHolder(private val binding: ItemMenuDataBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(menuList: MenuData) {
+    fun bind(menuList: Products) {
         binding.menuData = menuList
     }
 }
 
-private val diffUtil = object : DiffUtil.ItemCallback<MenuData>() {
-    override fun areItemsTheSame(oldItem: MenuData, newItem: MenuData): Boolean {
-        return oldItem.id == newItem.id
+private val diffUtil = object : DiffUtil.ItemCallback<Products>() {
+    override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
+        return oldItem.productId == newItem.productId
     }
 
-    override fun areContentsTheSame(oldItem: MenuData, newItem: MenuData): Boolean {
+    override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
         return oldItem == newItem
     }
 }

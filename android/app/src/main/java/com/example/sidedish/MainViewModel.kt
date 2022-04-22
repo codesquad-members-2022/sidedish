@@ -13,8 +13,8 @@ import javax.inject.Inject
 class MainViewModel
 @Inject
 constructor(private val repository: Repository) : ViewModel() {
-    private val _mainMenu = MutableLiveData<List<MenuData>>()
-    val mainMenu: LiveData<List<MenuData>> get() = _mainMenu
+    private val _mainMenu = MutableLiveData<List<Products>>()
+    val mainMenu: LiveData<List<Products>> get() = _mainMenu
 
     init {
         getMainMenu()
@@ -24,7 +24,7 @@ constructor(private val repository: Repository) : ViewModel() {
         repository.getMainMenu().let {
             Log.d("뭐지", "$it")
             if (it.isSuccessful) {
-                _mainMenu.postValue(it.body())
+                _mainMenu.value = it.body()?.products
             } else {
                 Log.d("reponse Error", "errorcode: ${it.code()}")
             }

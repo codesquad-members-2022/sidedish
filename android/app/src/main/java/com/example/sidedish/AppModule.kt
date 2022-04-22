@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module //경고창이 필요하다는데 왜필요하지?..
+@Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 

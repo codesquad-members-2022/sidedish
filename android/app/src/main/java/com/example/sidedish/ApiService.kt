@@ -1,19 +1,14 @@
 package com.example.sidedish
 
-import android.view.Menu
-import dagger.Binds
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Headers
 
 interface ApiService {
 
-    @GET("products/1")
-    suspend fun getMainMenu(): Response<List<MenuData>>
+    @GET("products?categoryId=1")
+    suspend fun getMainMenu(): Response<MenuData>
+
 
     //@Path("Int") variable: String
 //    suspend fun getMainMenu(): List<MenuData>

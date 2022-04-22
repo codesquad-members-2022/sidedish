@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
 //        soupAdapter.submitList(soupPut())
 //        sideAdapter.submitList(sidePut())
 
-        viewModel.mainMenu.observe(this) {
-            mainAdapter.currentList }
+//        viewModel.mainMenu.observe(this) {
+//            mainAdapter.currentList }
 
         val count1 = mainAdapter.itemCount.toString()
         binding.tvHeaderSub1.text = "${count1}개 상품이 등록되어 있습니다."
