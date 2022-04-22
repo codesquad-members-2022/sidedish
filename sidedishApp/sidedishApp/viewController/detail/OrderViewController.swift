@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderViewController: UIViewController{
+class OrderViewController: UIViewController {
     
     private lazy var countLabel: UILabel = {
         var label = UILabel()
@@ -86,7 +86,7 @@ class OrderViewController: UIViewController{
     }
 }
 
-private extension OrderViewController{
+private extension OrderViewController {
     func setAllProperties() {
         configureSectionUpper()
         configureCountLabel()
@@ -199,7 +199,7 @@ private extension OrderViewController{
         ])
     }
     
-    func configureOrderButton(){
+    func configureOrderButton() {
         self.view.addSubview(orderButton)
         
         orderButton.translatesAutoresizingMaskIntoConstraints = false

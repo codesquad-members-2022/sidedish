@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController{
+class DetailViewController: UIViewController {
     @IBOutlet weak var fullSizeVerticalScrollView: UIScrollView!
     
     @IBOutlet weak var stackView: UIStackView!
@@ -22,7 +22,7 @@ class DetailViewController: UIViewController{
     }
 }
 
-private extension DetailViewController{
+private extension DetailViewController {
     func setViews() {
         configureFullSizeScrollView()
         configureStackView()

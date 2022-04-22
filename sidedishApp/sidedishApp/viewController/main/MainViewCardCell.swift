@@ -185,7 +185,6 @@ class MainViewCardCell: UICollectionViewCell {
             eventBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
         
-        
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
@@ -193,6 +192,5 @@ class MainViewCardCell: UICollectionViewCell {
             launchingBadgeLabel.widthAnchor.constraint(equalToConstant: 77),
             launchingBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
-        
     }
 }

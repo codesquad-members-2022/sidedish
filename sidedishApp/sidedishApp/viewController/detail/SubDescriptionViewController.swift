@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubDescriptionViewController: UIViewController{
+class SubDescriptionViewController: UIViewController {
     
     private lazy var pointLabel: UILabel = {
         var label = UILabel()
@@ -57,7 +57,7 @@ class SubDescriptionViewController: UIViewController{
     }
 }
 
-private extension SubDescriptionViewController{
+private extension SubDescriptionViewController {
     func setAllProperties() {
         configurePointLabel()
         configurePointText()
