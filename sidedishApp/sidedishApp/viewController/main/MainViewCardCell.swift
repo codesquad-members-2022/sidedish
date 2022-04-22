@@ -42,17 +42,27 @@ class MainViewCardCell: UICollectionViewCell {
     
     private let eventBadgeLabel: UILabel = {
         var label = UILabel()
+        label.clipsToBounds = true
         label.text = "이벤트특가"
         label.textColor = .white
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.backgroundColor = UIColor(red: 127 / 255, green: 188 / 255, blue: 255 / 255, alpha: 1)
+        label.layer.cornerRadius = 13
+        label.textAlignment = .center
+        label.baselineAdjustment = .alignCenters
         return label
     }()
     
     private let launchingBadgeLabel: UILabel = {
         var label = UILabel()
+        label.clipsToBounds = true
         label.text = "런칭특가"
         label.textColor = .white
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.backgroundColor = UIColor(red: 1 / 255, green: 102 / 255, blue: 214 / 255, alpha: 1)
+        label.layer.cornerRadius = 13
+        label.textAlignment = .center
+        label.baselineAdjustment = .alignCenters
         return label
     }()
     
@@ -77,11 +87,9 @@ class MainViewCardCell: UICollectionViewCell {
             if badgeList.contains(.eventPrice),
                badgeList.contains(.launchingPrice) {
                 configureEventLabelAndBadgeLabelConstraint()
-            }
-            if badgeList.contains(.eventPrice) {
+            } else if badgeList.contains(.eventPrice) {
                 configureEventBadgeLabelConstraint()
-            }
-            if badgeList.contains(.launchingPrice) {
+            } else if badgeList.contains(.launchingPrice) {
                 configureLaunchingBadgeLabelConstraint()
             }
         }
@@ -152,7 +160,9 @@ class MainViewCardCell: UICollectionViewCell {
         eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+            eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
+            eventBadgeLabel.widthAnchor.constraint(equalToConstant: 89),
+            eventBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
@@ -160,17 +170,29 @@ class MainViewCardCell: UICollectionViewCell {
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            launchingBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+            launchingBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
+            launchingBadgeLabel.widthAnchor.constraint(equalToConstant: 77),
+            launchingBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
     private func configureEventLabelAndBadgeLabelConstraint() {
         eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
-        eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
+            eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
+            eventBadgeLabel.widthAnchor.constraint(equalToConstant: 89),
+            eventBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
+        
         
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5).isActive = true
-        launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
+            launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5),
+            launchingBadgeLabel.widthAnchor.constraint(equalToConstant: 77),
+            launchingBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
+        ])
+        
     }
 }

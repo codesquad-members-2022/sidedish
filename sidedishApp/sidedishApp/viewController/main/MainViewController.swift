@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
                                                            description: "감칠맛 나는 매콤한 양념",
                                                            normalPrice: "15,800원",
                                                            salePrice: "12,640원",
-                                                           bagdeList: [Badge.launchingPrice])
+                                                    bagdeList: [Badge.launchingPrice, Badge.eventPrice])
         mainCards.append(sampleMainCard)
         
         self.collectionView.delegate = self
