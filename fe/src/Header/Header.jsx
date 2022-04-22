@@ -1,11 +1,12 @@
 import { MenuList } from './MenuList';
 import { UserButtons } from './UserButtons';
 import styled from 'styled-components';
+import Colors from '../Constants/Colors';
 
-const Root = styled.header`
+const HeaderWrapper = styled.header`
   width: 1440px;
   padding: 16px 80px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${Colors.BLACK};
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
@@ -24,14 +25,16 @@ const HeaderUI = styled.div`
   padding-top: 12px;
 `;
 
-export const Header = () => {
+export const Header = props => {
   return (
-    <Root>
-      <Logo>Ordering</Logo>
+    <HeaderWrapper>
+      <Logo>
+        <img src={'logo.svg'} alt={'로고'} />
+      </Logo>
       <HeaderUI>
-        <MenuList />
+        <MenuList categories={props.categories} />
         <UserButtons />
       </HeaderUI>
-    </Root>
+    </HeaderWrapper>
   );
 };
