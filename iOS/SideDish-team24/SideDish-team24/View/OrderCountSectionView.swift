@@ -18,7 +18,10 @@ class OrderCountSectionView: UIView {
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.layer.cornerRadius = 5
+        stackView.clipsToBounds = true
         return stackView
     }()
     
@@ -30,6 +33,13 @@ class OrderCountSectionView: UIView {
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.dishGrey4
         return button
+    }()
+    
+    private var separator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.dishGrey3
+        return view
     }()
     
     private var plusButton: UIButton = {
@@ -70,7 +80,7 @@ class OrderCountSectionView: UIView {
         self.addSubview(counter)
         
         NSLayoutConstraint.activate([
-            self.counter.leadingAnchor.constraint(greaterThanOrEqualTo: self.countTitle.trailingAnchor, constant: 0),
+            self.counter.leadingAnchor.constraint(greaterThanOrEqualTo: self.countTitle.trailingAnchor, constant:  10),
             self.counter.topAnchor.constraint(equalTo: self.topAnchor),
             self.counter.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
@@ -79,13 +89,20 @@ class OrderCountSectionView: UIView {
     private func layoutButtons() {
         self.addSubview(buttons)
         self.buttons.addArrangedSubview(minusButton)
+        self.buttons.addArrangedSubview(separator)
         self.buttons.addArrangedSubview(plusButton)
         
         NSLayoutConstraint.activate([
-            self.buttons.leadingAnchor.constraint(equalTo: self.counter.trailingAnchor),
+            self.buttons.heightAnchor.constraint(equalToConstant: 28),
+            self.buttons.leadingAnchor.constraint(equalTo: self.counter.trailingAnchor, constant: CGFloat.defaultInset*3),
             self.buttons.topAnchor.constraint(equalTo: self.topAnchor),
             self.buttons.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.buttons.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            self.buttons.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.buttons.widthAnchor.constraint(equalToConstant: 100),
+            
+            self.minusButton.widthAnchor.constraint(equalTo: self.plusButton.widthAnchor),
+            self.separator.widthAnchor.constraint(equalToConstant: 1),
+            self.separator.heightAnchor.constraint(equalTo: self.buttons.heightAnchor, multiplier: 0.6)
         ])
     }
 }

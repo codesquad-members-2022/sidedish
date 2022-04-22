@@ -47,9 +47,9 @@ private extension DetailBanchanViewController {
         NSLayoutConstraint.activate([
             self.innerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             self.innerView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            self.innerView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            self.innerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            self.innerView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: CGFloat.defaultInset),
+            self.innerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -CGFloat.defaultInset),
+            self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -CGFloat.defaultInset*2),
             self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height),
         ])
     }
