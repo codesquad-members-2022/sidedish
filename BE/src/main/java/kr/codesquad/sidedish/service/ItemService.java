@@ -1,6 +1,7 @@
 package kr.codesquad.sidedish.service;
 
 import kr.codesquad.sidedish.repository.ItemRepository;
+import kr.codesquad.sidedish.web.dto.item.ItemListResponseDto;
 import kr.codesquad.sidedish.web.dto.item.ItemResponseDto;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,12 @@ public class ItemService {
     public List<ItemResponseDto> findItemByCategoryId(Long categoryId) {
         return itemRepository.findItemByCategoryId(categoryId)
                 .stream().map(ItemResponseDto::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<ItemListResponseDto> findByBestId (int bestId) {
+        return itemRepository.findByBestId(bestId)
+                .stream().map(ItemListResponseDto::of)
                 .collect(Collectors.toList());
     }
 
