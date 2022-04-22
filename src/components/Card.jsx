@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable no-console */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Tag from './Tag';
@@ -12,17 +9,19 @@ export default function Card(props) {
   const [isHoverImg, setHoverImg] = useState(false);
   return (
     <Wrap size={size}>
-      <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
-        {getHoverImgBySize()}
-        <img src={imageURL} alt="반찬" />
-      </ImgWrap>
-      {getSpaceBySize()}
-      {getTitle()}
-      {getDescription()}
-      <Prices>
-        <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
-        <Text size="BASE" weight="REGULAR" color="GREY3" value={prevPrice} line />
-      </Prices>
+      <A>
+        <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
+          {getHoverImgBySize()}
+          <img src={imageURL} alt="반찬" />
+        </ImgWrap>
+        {getSpaceBySize()}
+        {getTitle()}
+        {getDescription()}
+        <Prices>
+          <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
+          <Text size="BASE" weight="REGULAR" color="GREY3" value={prevPrice} line />
+        </Prices>
+      </A>
       <Tags>{getTags()}</Tags>
     </Wrap>
   );
@@ -65,13 +64,19 @@ Card.defaultProps = {
   size: 'MEDIUM'
 };
 
-const Wrap = styled.a({
+const Wrap = styled.div({
   width: props => getWidthBySize(props.size),
   height: 'fit-content',
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
-  cursor: 'pointer'
+  gap: '8px'
+});
+
+const A = styled.a({
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px'
 });
 
 const ImgWrap = styled.div({
