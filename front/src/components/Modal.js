@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import ProductDetail from './ProductDetail';
 
 const ModalWrap = styled.div`
   position: fixed;
