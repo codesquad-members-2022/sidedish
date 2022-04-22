@@ -6,7 +6,7 @@ class MainViewController: UIViewController {
     
     private lazy var foodCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical // 수직으로 표현된다.
+        layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: view.frame.width * 0.85, height: 150)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -19,13 +19,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Ordering"
-        initializeOrdering()
         setFoodCollectionView()
         setLayout()
-    }
-    
-    private func initializeOrdering(){
-        ordering.getSampleFoodList()
     }
     
     private func setFoodCollectionView(){
@@ -46,10 +41,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return Category.allCases.count
+        return ordering.categoryCount
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let category = Category.allCases[section]
+        let category = ordering.getCategoryWithIndex(index: section)
         return ordering.getFoodCount(category: category)
     }
     
@@ -59,6 +55,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.setLayout()
         
         let category = Category.allCases[indexPath.section]
+       
+        let category = ordering.getCategoryWithIndex(index: indexPath.section)
         let index = indexPath.row
         if let food = ordering[index, category] {
             cell.receiveFood(food: food)
