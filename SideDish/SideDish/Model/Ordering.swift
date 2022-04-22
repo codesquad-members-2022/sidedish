@@ -10,6 +10,7 @@ class Ordering{
     private var foodMap: [Category:[String:Food]] = [:]
     private (set) var selectedMenu: Food?
     private var orderingCount: Int = 0
+    private let jsonHandler = JSONHandler()
     var foodCount: Int{
         var count = 0
         for category in foodMap.keys{
@@ -59,7 +60,7 @@ class Ordering{
     func getSampleFoodList(){
         for category in Category.allCases {
             guard let data = getSampleJSONData(fileName: "\(category)") else { continue }
-            guard let response = JSONHandler.convertJSONToObject(from: data, to: Response<Food>.self) else { continue }
+            guard let response = jsonHandler.convertJSONToObject(from: data, to: Response<Food>.self) else { continue }
             
             let foods = response.body
             for food in foods {

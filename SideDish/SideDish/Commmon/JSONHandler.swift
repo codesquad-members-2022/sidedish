@@ -1,15 +1,16 @@
 import Foundation
 
+//아래 클래스에 대한 프로토콜을 구성해서, 추상타입을 채택한 구체타입을 사용할 예정
 final class JSONHandler{
     
-    private static let encoder = JSONEncoder()
-    private static let decoder = JSONDecoder()
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
     
-    static func convertJSONToObject<T: Decodable>(from data: Data, to targetType: T.Type)-> T?{
+    func convertJSONToObject<T: Decodable>(from data: Data, to targetType: T.Type)-> T?{
         return try? decoder.decode(T.self, from: data)
     }
     
-    static func convertObjectToJSON<T: Encodable>(from object: T)-> Any?{
+    func convertObjectToJSON<T: Encodable>(from object: T)-> Data?{
         return try? encoder.encode(object)
     }
 }
