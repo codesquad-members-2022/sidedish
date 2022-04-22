@@ -1,17 +1,27 @@
-drop table if exists orders, images, dish_event, item, event_category, main_category;
+drop table if exists orders, images, dish_event, item, event_category, sub_category, main_category;
+
 create table main_category
 (
-    id    bigint       not null AUTO_INCREMENT PRIMARY KEY,
-    title varchar(255) not null
+    id    bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title varchar(255) NOT NULL
 );
+
+create table sub_category
+(
+    id    bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    main_category_id bigint NOT NULL,
+    title varchar(255) NOT NULL,
+    FOREIGN KEY (main_category_id) references main_category (id)
+);
+
 create table event_category
 (
-    id    bigint       not null AUTO_INCREMENT PRIMARY KEY,
-    title varchar(255) not null
+    id    bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title varchar(255) NOT NULL
 );
 create table item
 (
-    id               bigint      not null AUTO_INCREMENT PRIMARY KEY,
+    id               bigint      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     main_category_id bigint      NOT NULL,
     title            varchar(50) NOT NULL,
     description      varchar(60) NOT NULL,
@@ -24,7 +34,7 @@ create table item
 
 create table dish_event
 (
-    id       bigint not null AUTO_INCREMENT PRIMARY KEY,
+    id       bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
     item_id  bigint NOT NULL,
     event_id bigint NOT NULL,
     FOREIGN KEY (item_id) references item (id),
@@ -33,7 +43,7 @@ create table dish_event
 
 create table images
 (
-    id          bigint      not null AUTO_INCREMENT PRIMARY KEY,
+    id          bigint      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     item_id     bigint      NOT NULL,
     url         varchar(255) NOT NULL,
     main_status boolean     NOT NULL,
@@ -42,7 +52,7 @@ create table images
 
 create table orders
 (
-    id             bigint not null AUTO_INCREMENT PRIMARY KEY,
+    id             bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
     item_id        bigint NOT NULL,
     order_quantity int    NOT NULL,
     delivery_fee   boolean,

@@ -8,11 +8,11 @@ import org.springframework.data.annotation.Id;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Image {
+public class Images {
 
 	@Id
 	private Long id;
-	private Long dishId;
+	private Long itemId;
 	private String url;
 	private boolean mainStatus;
 }
