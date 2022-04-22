@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { applyFlex } from '../helper/utils';
+import { applyFlex } from '../../helper/utils';
 
 export const CategoryBadge = styled.div`
   font-style: normal;

@@ -1,48 +1,15 @@
 import { useEffect, useState } from 'react';
 import { bestProductTapDatas } from '../helper/mock';
+import { TapMenu } from './bestProduct/tabMenu.js';
+import { TapList } from './bestProduct/tabList';
 import {
   BestProductHeader,
   CategoryBadge,
   StyledBestProduct,
-  StyledDiv,
-  StyledLi,
   TapBar,
   Title,
   TitleWrapper,
-} from '../styles/BestProduct';
-import { Card } from './Card';
-
-function TapMenu(props) {
-  if (!props.menus) {
-    return ``;
-  }
-
-  return props.menus.map(menu => (
-    <StyledLi
-      data-menu-id={menu.id}
-      key={menu.id}
-      onMouseEnter={e => props.onMouseEnter(e)}
-      onMouseLeave={e => props.onMouseLeave(e)}
-      curTap={props.curTap}
-      onClick={e => props.onClick(e, props.setCurTap)}
-    >
-      {menu.title}
-    </StyledLi>
-  ));
-}
-
-function TapList(props) {
-  if (!props.tapList) {
-    return ``;
-  }
-  return (
-    <StyledDiv flex>
-      {props.tapList.map((product, idx) => (
-        <Card product={product} key={idx} />
-      ))}
-    </StyledDiv>
-  );
-}
+} from './bestProduct/BestProduct.styled';
 
 export function BestProduct() {
   const [bestProductTap, setBestProductTap] = useState(null);
