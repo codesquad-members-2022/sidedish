@@ -48,19 +48,22 @@ class ProductsAcceptanceTest {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-		.when()
+			.when()
 			.get("/api/products?meal=soup")
 
-		.then()
+			.then()
 			.statusCode(HttpStatus.OK.value())
 			.assertThat()
 			.body("[0].id", equalTo(5))
 			.body("[0].image", containsString("s3"))
 			.body("[0].productName", equalTo("한돈 돼지 김치찌개"))
 			.body("[0].description", equalTo("김치찌개에는 역시 돼지고기"))
+			.body("[0].event", equalTo("이벤트특가"))
 			.body("[0].fixedPrice", equalTo(7440))
 			.body("[0].originalPrice", equalTo(9300))
-			.body("[0].event", equalTo("이벤트특가"));
+			.body("[3].productName", equalTo("동태찌개"))
+			.body("[3].originalPrice", equalTo(12000))
+			.body("[3].fixedPrice", equalTo(12000));
 	}
 
 	@Test

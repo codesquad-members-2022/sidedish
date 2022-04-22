@@ -18,14 +18,23 @@ public class DomainEntityMapper {
 		List<Product> products = new ArrayList<>();
 		for (ProductEntity productEntity : productEntities) {
 			Long discountPolicyId = productEntity.getDiscountPolicyId();
-			for (DiscountPolicyEntity discountPolicyEntity : discountPolicies) {
-				if (discountPolicyEntity.isEqualsId(discountPolicyId)) {
-					Product product = toDomainFromProductEntity(productEntity, discountPolicyEntity);
-					products.add(product);
-				}
-			}
+			DiscountPolicyEntity discountPolicyEntity = searchDiscountPolicyById(
+				discountPolicies, discountPolicyId);
+
+			Product product = toDomainFromProductEntity(productEntity, discountPolicyEntity);
+			products.add(product);
 		}
 		return products;
+	}
+
+	private DiscountPolicyEntity searchDiscountPolicyById(
+		List<DiscountPolicyEntity> discountPolicies, Long discountPolicyId) {
+		for (DiscountPolicyEntity discountPolicyEntity : discountPolicies) {
+			if (discountPolicyEntity.isEqualsId(discountPolicyId)) {
+				return discountPolicyEntity;
+			}
+		}
+		return new DiscountPolicyEntity(null, null, 0);
 	}
 
 	private Product toDomainFromProductEntity(ProductEntity productEntity,
@@ -51,7 +60,8 @@ public class DomainEntityMapper {
 			.collect(Collectors.toList());
 	}
 
-	private DiscountPolicy toDomainFromDiscountPolicyEntity(DiscountPolicyEntity discountPolicyEntity) {
+	private DiscountPolicy toDomainFromDiscountPolicyEntity(
+		DiscountPolicyEntity discountPolicyEntity) {
 		return new DiscountPolicy(
 			discountPolicyEntity.getPolicyName(),
 			discountPolicyEntity.getDiscountRate());
