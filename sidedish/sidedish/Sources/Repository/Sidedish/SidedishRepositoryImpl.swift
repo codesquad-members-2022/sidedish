@@ -10,16 +10,16 @@ import Foundation
 
 class SidedishRepositoryImpl: NetworkRepository<SidedishEndPoint>, SidedishRepository {
     
-    func loadMenu(_ type: Sidedish.Menu) -> AnyPublisher<ApiResult<[Sidedish], SessionError>, Never> {
+    func loadMenu(_ type: Sidedish.Menu) -> AnyPublisher<ApiResult<(Sidedish.Menu, [Sidedish]), SessionError>, Never> {
         request(.loadMenu(type))
             .map { $0.decode(SidedishAPIResult.self) }
-            .map { result -> ApiResult<[Sidedish], SessionError> in
+            .map { result -> ApiResult<(Sidedish.Menu, [Sidedish]), SessionError> in
                 if let error = result.error {
                     return ApiResult(value: nil, error: error)
                 }
                 if let result = result.value,
                    (200..<300).contains(result.statusCode) {
-                    return ApiResult(value: result.body, error: nil)
+                    return ApiResult(value: (type, result.body), error: nil)
                 } else {
                     return ApiResult(value: nil, error: .statusCodeError)
                 }

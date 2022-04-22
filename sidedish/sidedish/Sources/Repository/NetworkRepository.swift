@@ -13,7 +13,6 @@ class NetworkRepository<Target: EndPoint> {
     
     func request(_ target: Target, session: URLSessionProtocol = URLSession.shared ) -> AnyPublisher<NetworkResult, Never> {
         provider = URLSessionProvider(session: session)
-        
         guard let url = target.baseURL?.appendingPathComponent(target.path) else {
             return Future<NetworkResult, Never> { promise in promise(.success(NetworkResult(.pasingError))) }.eraseToAnyPublisher()
         }

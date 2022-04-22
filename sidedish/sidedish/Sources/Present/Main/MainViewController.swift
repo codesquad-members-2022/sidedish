@@ -36,9 +36,7 @@ class MainViewController: UIViewController {
         attritbute()
         layout()
 
-        model.action.loadMain.send()
-        model.action.loadSide.send()
-        model.action.loadSoup.send()
+        model.action.loadData.send(Sidedish.Menu.allCases)
     }
     
     private func bind() {
