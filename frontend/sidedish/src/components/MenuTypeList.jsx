@@ -1,5 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+
+const MenuTypeList = ({ menuTypeTitle, menuTypes, menuHideState }) => {
+  const menuTypeList = menuTypes.map((menuType, ind) => <MenuType key={ind}>{menuType}</MenuType>);
+
+  return (
+    <MenuTypeContainer>
+      <MenuTypeTitle>{menuTypeTitle}</MenuTypeTitle>
+      <MenuTypeListContainer menuHideState={menuHideState}>{menuTypeList}</MenuTypeListContainer>
+    </MenuTypeContainer>
+  );
+};
 
 const MenuTypeContainer = styled.div`
   display: flex;
@@ -19,12 +30,12 @@ const MenuTypeTitle = styled.h3`
 `;
 
 const MenuTypeListContainer = styled.ul`
-  display: flex;
+  display: ${(props) => (props.menuHideState ? "none" : "flex")};
   flex-direction: column;
   padding: 4px;
 `;
+
 const MenuType = styled.li`
-  display: ${(props) => (props.menuHideState ? "none" : "block")};
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
@@ -39,24 +50,5 @@ const MenuType = styled.li`
     cursor: pointer;
   }
 `;
-
-const MenuTypeList = ({ menuTypeTitle, menuTypes }) => {
-  const [menuHideState, setMenuHideState] = useState(true);
-  const handleMenuHidden = () => {
-    setMenuHideState(() => !menuHideState);
-  };
-  const menuTypeList = menuTypes.map((menuType, ind) => (
-    <MenuType menuHideState={menuHideState} key={ind}>
-      {menuType}
-    </MenuType>
-  ));
-
-  return (
-    <MenuTypeContainer onMouseLeave={handleMenuHidden} onMouseEnter={handleMenuHidden}>
-      <MenuTypeTitle>{menuTypeTitle}</MenuTypeTitle>
-      <MenuTypeListContainer>{menuTypeList}</MenuTypeListContainer>
-    </MenuTypeContainer>
-  );
-};
 
 export default MenuTypeList;

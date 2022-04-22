@@ -1,6 +1,29 @@
 import styled from "styled-components";
-import constants from "./constants";
-import Label from "./Label";
+import constants from "../consts/constants";
+import Label from "../core/Label";
+
+const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) => {
+  const labelList = badge.map((string, ind) => {
+    return string === "런칭특가" ? (
+      <Label key={ind} {...constants.LAUNCH_LABEL_ATTRIBUTES} />
+    ) : (
+      <Label key={ind} {...constants.EVENT_LABEL_ATTRIBUTES} />
+    );
+  });
+
+  return (
+    <Card>
+      <MenuCardImg src={image} alt={title} len={len} />
+      <MenuTitle>{title}</MenuTitle>
+      <MenuDescription>{description}</MenuDescription>
+      <Price>
+        <SalePrice>{s_price}</SalePrice>
+        <MenuPrice>{n_price}</MenuPrice>
+      </Price>
+      {labelList}
+    </Card>
+  );
+};
 
 const Card = styled.div`
   padding: 0 24px;
@@ -50,28 +73,4 @@ const MenuPrice = styled.div`
   text-decoration-line: line-through;
   color: #bcbcbc;
 `;
-
-const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) => {
-  const labelList = badge.map((string, key) => {
-    return string === "런칭특가" ? (
-      <Label key={key} {...constants.LAUNCH_LABEL_ATTRIBUTES} />
-    ) : (
-      <Label key={key} {...constants.EVENT_LABEL_ATTRIBUTES} />
-    );
-  });
-
-  return (
-    <Card>
-      <MenuCardImg src={image} alt={title} len={len} />
-      <MenuTitle>{title}</MenuTitle>
-      <MenuDescription>{description}</MenuDescription>
-      <Price>
-        <SalePrice>{s_price}</SalePrice>
-        <MenuPrice>{n_price}</MenuPrice>
-      </Price>
-      {labelList}
-    </Card>
-  );
-};
-
 export default ItemCard;
