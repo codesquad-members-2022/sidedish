@@ -1,6 +1,5 @@
 package sidedish.com.domain;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,4 +9,8 @@ public class DiscountPolicy {
 
 	private String policyName;
 	private float discountRate;
+
+	public long calculateFixedPrice(long originalPrice) {
+		return (long) (originalPrice * ((100 - discountRate) / 100));
+	}
 }

@@ -30,6 +30,6 @@ public class Product {
 	}
 
 	private long calculateFixedPrice() {
-		return (long) (originalPrice * ((100 - discountPolicy.getDiscountRate()) / 100));
+		return discountPolicy.calculateFixedPrice(originalPrice);
 	}
 }
