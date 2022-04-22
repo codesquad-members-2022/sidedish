@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import sideDish
 
 class DecodingEncodingTest: XCTestCase {
     
@@ -15,5 +16,12 @@ class DecodingEncodingTest: XCTestCase {
         return dummyJSONData
     }()
     
+    let decoder = JSONDecoder()
     
+    func testFoodJSONParsing() throws {
+        guard let dummyFoodJSONData = dummyFoodTestData else { return }
+        
+        let foods = try self.decoder.decode([Food].self, from: dummyFoodJSONData)
+        XCTAssertTrue(foods.count > 0)
+    }
 }
