@@ -2,6 +2,8 @@ import UIKit
 
 class OrderCountSectionView: UIView {
     
+    private var count = 1
+    
     private var countTitle: UILabel = {
         let label = UILabel.customLabel("수량", UIColor.dishLightGrey)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +34,7 @@ class OrderCountSectionView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.dishGrey4
+        button.isEnabled = false
         return button
     }()
     
@@ -68,6 +71,22 @@ class OrderCountSectionView: UIView {
 }
 
 private extension OrderCountSectionView {
+    @objc func plusButtonTouched(_ sender: UIButton) {
+        self.count += 1
+        self.counter.text = "\(self.count)"
+        if self.count > 1 {
+            self.minusButton.isEnabled = true
+        }
+    }
+    
+    @objc func minusButtonTouched(_ sender: UIButton) {
+        self.count -= 1
+        self.counter.text = "\(self.count)"
+        if self.count == 1 {
+            self.minusButton.isEnabled = false
+        }
+    }
+    
     func layoutCountTitle() {
         self.addSubview(countTitle)
         
@@ -93,6 +112,10 @@ private extension OrderCountSectionView {
         self.buttons.addArrangedSubview(minusButton)
         self.buttons.addArrangedSubview(separator)
         self.buttons.addArrangedSubview(plusButton)
+        
+        self.plusButton.addTarget(self, action: #selector(plusButtonTouched(_:)), for: .touchUpInside)
+        
+        self.minusButton.addTarget(self, action: #selector(minusButtonTouched(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             self.buttons.heightAnchor.constraint(equalToConstant: 28),
