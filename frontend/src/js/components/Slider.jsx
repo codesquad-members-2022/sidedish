@@ -5,26 +5,25 @@ import {SideDish} from './SideDish.jsx';
 function Slider({data}) {
   const [sliderState, setSliderState] = useState({clickedButton: '', list: ''});
   const [position, setPosition] = useState(0);
+
   const handleClickedButton = ({target}) => {
     const current = target.closest('button').className;
     const listElement = target.closest('.event-slider').querySelector('.sideDishList');
+
     setSliderState({
       ...sliderState,
       clickedButton: current,
       list: listElement,
     });
+
+    const goodBlockWidth = 326;
+    setPosition(current === 'nextButton' ? position - goodBlockWidth : position + goodBlockWidth);
   };
 
   useEffect(() => {
     if (!sliderState.clickedButton) return;
-    const goodBlockWidth = 326;
-    setPosition(
-      sliderState.clickedButton === 'nextButton' ? position - goodBlockWidth : position + goodBlockWidth,
-    );
-    const currentPosition =
-      sliderState.clickedButton === 'nextButton' ? position - goodBlockWidth : position + goodBlockWidth;
 
-    sliderState.list.style.transform = `translateX(${currentPosition}px)`;
+    sliderState.list.style.transform = `translateX(${position}px)`;
     sliderState.list.style.transition = '0.2s ease-out';
   }, [sliderState]);
 
