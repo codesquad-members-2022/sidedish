@@ -6,20 +6,24 @@
 //
 
 import Foundation
+import UIKit.UIImage
+import UIKit
 // This is going to represent single viewModel that drives productCollectionView
 
 struct CategorySectionViewModel {
     var type: ProductType
-    var productViewModel: [ProductCellViewModel]
+    var productVM: [ProductCellViewModel]
 }
 
 struct ProductCollectionViewModel {
 
-    var categoryManager = CategoryManager()
-    var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
+    private let categoryManager = CategoryManager()
+    private var imageCache = NSCache<NSURL, UIImage>()
+
+    public var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
     func countProduct(section: Int) -> Int {
-        self.cellViewModels.value[section].productViewModel.count
+        self.cellViewModels.value[section].productVM.count
     }
 
     func countSection() -> Int {
@@ -28,22 +32,26 @@ struct ProductCollectionViewModel {
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
         let categoryVM = cellViewModels.value[indexPath.section]
-        return categoryVM.productViewModel[indexPath.item]
+        return categoryVM.productVM[indexPath.item]
     }
 
-    func fetch() {
+    func fetchCategories() {
         var temp = [CategorySectionViewModel]()
 
         let dispatchGroup = DispatchGroup()
 
         for type in ProductType.allCases {
             dispatchGroup.enter()
+
             categoryManager.fetchCategory(of: type) { category in
                 let productCellVMs = category.product.compactMap { product in
-                    ProductCellViewModel(title: product.title, description: product.description, imageURL: product.imageURL, originalPrice: product.originalPrice, salePrice: product.salePrice, badge: product.badge)
+                    ProductCellViewModel(product: product)
                 }
-                let categorySectionVM = CategorySectionViewModel(type: .main, productViewModel: productCellVMs)
+                
+                let categorySectionVM = CategorySectionViewModel(type: type, productVM: productCellVMs)
+                
                 temp.append(categorySectionVM)
+
                 dispatchGroup.leave()
             }
         }
@@ -51,7 +59,19 @@ struct ProductCollectionViewModel {
         dispatchGroup.notify(queue: .global(), work: DispatchWorkItem {
             cellViewModels.value = temp
         })
-
     }
 
+    func fetchImage(from url: URL, then completion: @escaping (UIImage?) -> Void) {
+        if let image = imageCache.object(forKey: url as NSURL) {
+            return completion(image)
+        }
+
+        categoryManager.fetchImageData(of: url) { data in
+            guard let data = data, let image = UIImage(data: data) else {
+                return completion(nil)
+            }
+            imageCache.setObject(image, forKey: url as NSURL)
+            completion(image)
+        }
+    }
 }

@@ -36,10 +36,13 @@ class NetworkManagerTests: XCTestCase {
     func testFetchImageData() throws {
         let promise = XCTestExpectation(description: "Fetch Image data success")
 
+        // Prepare Stub
         let fileName = "1155_ZIP_P_0081_T"
         let fileExtension = "jpg"
-        guard let localImageURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension), let localImageData = try? Data(contentsOf: localImageURL) else {
-            return
+
+        guard let localImageURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension),
+              let localImageData = try? Data(contentsOf: localImageURL) else {
+            return XCTFail()
         }
 
         var components = URLComponents()
@@ -49,15 +52,14 @@ class NetworkManagerTests: XCTestCase {
         components.path += "\(fileName).\(fileExtension)"
         guard let url = components.url else { return }
 
-        SystemLog.info(url.debugDescription)
         networkManager.fetchImageData(url: url) { result in
             switch result {
             case .success(let data):
-                SystemLog.info(data.debugDescription)
                 XCTAssertEqual(localImageData, data)
                 promise.fulfill()
             case .failure(let error):
                 SystemLog.fault(error.localizedDescription)
+                XCTFail()
             }
         }
 
