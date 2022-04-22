@@ -6,12 +6,12 @@ CREATE TABLE product (
                          description     varchar(255) NOT NULL,
                          price           int NOT NULL,
                          stock           int NOT NULL,
-                         sale_type       enum('none', 'launching', 'event') NOT NULL,
+                         event_badge     enum('none', 'launching', 'event') NOT NULL,
                          main_category   enum('main', 'soup', 'side') NOT NULL,
                          event_category  enum('meat', 'side_set', 'season', 'kids_side') NOT NULL
 );
 
-CREATE TABLE image(
+CREATE TABLE image (
                       id              BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       product_id      BIGINT NOT NULL,
                       image_path      varchar(255) NOT NULL,
