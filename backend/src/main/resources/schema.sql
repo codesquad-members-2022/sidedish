@@ -49,7 +49,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `test`.`ORDER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `test`.`ORDER` (
+CREATE TABLE IF NOT EXISTS `test`.`ORDERS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `USER_ID` INT NOT NULL,
   `ITEM_ID` INT NOT NULL,
