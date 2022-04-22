@@ -112,4 +112,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let size = CGSize(width: collectionView.frame.width, height: 130)
         return size
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let menu = model[indexPath] else {
+            return
+        }
+        let detailViewController = MenuDetailViewController(model: MenuDetailViewModel(menu: menu))
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }

@@ -76,6 +76,5 @@ class MenuOrderView: UIView {
     }
     
     func setData(_ data: MenuDetail) {
-        
     }
 }

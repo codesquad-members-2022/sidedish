@@ -28,6 +28,10 @@ protocol MainViewModelProperty {
 typealias MainViewModelProtocol = MainViewModelBinding & MainViewModelProperty
 
 class MainViewModel: MainViewModelBinding, MainViewModelProperty {
+    private var cancellables = Set<AnyCancellable>()
+    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
+    private var menus = [Sidedish.Menu: [Sidedish]]()
+    
     let action = MainViewModelAction()
     let state = MainViewModelState()
     
@@ -40,17 +44,9 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
         return menus[indexPath.item]
     }
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
-    private var menus = [Sidedish.Menu: [Sidedish]]()
-    
     init() {
         let request = action.loadData
-            .map { $0.publisher }
-            .map { result in
-                result.map { self.sidedishRepository.loadMenu($0) }
-            }
+            .map { $0.publisher.map { self.sidedishRepository.loadMenu($0) } }
             .switchToLatest()
             .share()
         
@@ -65,8 +61,8 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
                 
                 result
                     .compactMap { $0.error }
-                    .sink { error in
-                        print(error)
+                    .sink { _ in
+                        //TODO: 데이터 로드 시 에러 처리
                     }.store(in: &self.cancellables)
             }.store(in: &cancellables)
     }

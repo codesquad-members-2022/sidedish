@@ -68,7 +68,8 @@ class MenuInfoView: UIView {
         layout()
     }
     
-    @available(*, unavailable) required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
         fatalError("Init with coder is unavailable")
     }
     
@@ -123,6 +124,8 @@ extension MenuInfoView {
     func changeSaleBadge(_ badges: [String]?) {
         badgeView.isHidden = (badges == nil)
         
+        badgeStackView.subviews.forEach { $0.removeFromSuperview() }
+        
         badges?.forEach { badge in
             let paddingLabel = makeBadge()
             paddingLabel.text = badge
@@ -135,7 +138,6 @@ extension MenuInfoView {
                 paddingLabel.backgroundColor = .primary3
             }
             badgeStackView.addArrangedSubview(paddingLabel)
-            badgeStackView.trailingAnchor.constraint(equalTo: paddingLabel.trailingAnchor).isActive = true
         }
     }
     

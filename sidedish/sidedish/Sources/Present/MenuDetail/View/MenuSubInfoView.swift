@@ -38,13 +38,6 @@ class MenuSubInfoView: UIView {
         return keyValueView
     }()
     
-    private let bottomBar: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .grey3
-        return view
-    }()
-    
     init() {
         super.init(frame: .zero)
         layout()
@@ -60,7 +53,6 @@ class MenuSubInfoView: UIView {
         stackView.addArrangedSubview(pointLabel)
         stackView.addArrangedSubview(deliveryInfoLabel)
         stackView.addArrangedSubview(deliveryPriceLabel)
-        stackView.addArrangedSubview(bottomBar)
         
         stackView.setCustomSpacing(24, after: deliveryPriceLabel)
         
@@ -68,10 +60,6 @@ class MenuSubInfoView: UIView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            bottomBar.heightAnchor.constraint(equalToConstant: 1),
-            
-            stackView.bottomAnchor.constraint(equalTo: bottomBar.bottomAnchor),
             
             bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
         ])

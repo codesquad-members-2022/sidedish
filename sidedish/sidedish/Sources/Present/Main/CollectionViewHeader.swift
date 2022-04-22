@@ -26,7 +26,8 @@ class CollectionViewHeader: UICollectionReusableView {
         layout()
     }
 
-    @available(*, unavailable) required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
         fatalError("Init with coder is unavailable")
     }
     

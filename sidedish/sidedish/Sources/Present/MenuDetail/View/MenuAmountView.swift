@@ -54,13 +54,6 @@ class MenuAmountView: UIView {
         return button
     }()
     
-    private let bottomBar: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .grey3
-        return view
-    }()
-    
     var plusPublisher: AnyPublisher<Void, Never> {
         plusButton.publisher(for: .touchUpInside)
     }
@@ -87,7 +80,6 @@ class MenuAmountView: UIView {
     
     private func layout() {
         addSubview(titleLabel)
-        addSubview(bottomBar)
         addSubview(stepper)
         stepper.addSubview(plusButton)
         stepper.addSubview(minusButton)
@@ -117,12 +109,7 @@ class MenuAmountView: UIView {
             amountLabel.widthAnchor.constraint(equalToConstant: 57),
             amountLabel.heightAnchor.constraint(equalTo: stepper.heightAnchor),
             
-            bottomBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 26),
-            bottomBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bottomBar.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bottomBar.heightAnchor.constraint(equalToConstant: 1),
-            
-            bottomAnchor.constraint(equalTo: bottomBar.bottomAnchor)
+            bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
         ])
     }
 }
