@@ -1,6 +1,6 @@
-import Header from './components/Header.js';
+import Header from './views/Header.js';
 import { Reset } from 'styled-reset';
-import { BestProduct } from './components/BestProduct.js';
+import { BestProduct } from './views/BestProduct.js';
 
 function App() {
   return (

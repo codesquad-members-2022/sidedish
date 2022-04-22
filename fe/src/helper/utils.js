@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-function flex({ justify, align, direction }) {
+function getFlexString({ justify, align, direction }) {
   justify = justify || 'start';
   align = align || 'stretch';
   direction = direction || 'row';
@@ -16,7 +16,7 @@ export function applyFlex(props) {
   return (
     props.flex &&
     css`
-      ${flex(props)}
+      ${getFlexString(props)}
     `
   );
 }
