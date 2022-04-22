@@ -49,7 +49,7 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         let card = mainCards[indexPath.item]
-        cell.setPropertiesValue(card.imageURL, card.title, card.description, card.normalPrice, card.salePrice, card.badgeList)
+        cell.setPropertiesValue(mainCard: card)
         return cell
     }
     
