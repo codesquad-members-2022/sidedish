@@ -9,9 +9,9 @@ import Foundation
 
 
 struct ProductFactory{
-    private let randomNames: [DishCategory : [String]]  = [.mainDish : ["삼겹살", "김치볶음밥", "제육볶음"], .soupDish : ["김치찌게", "된장찌게", "미역국"], .sideDish : ["멸치볶음", "김", "콩자반"]]
+    private let randomNames: [DishCategory : [String]]  = [.main : ["삼겹살", "김치볶음밥", "제육볶음"], .soup : ["김치찌게", "된장찌게", "미역국"], .side : ["멸치볶음", "김", "콩자반"]]
     private let randomDiscriptions: [String] = ["ebony가 직접 만들었습니다." , "rosa가 직접 만들었습니다.", "구찌가 극찬하였습니다.", "데일이 먹고 울었습니다."]
-    
+    private var events: [ProductEvent] = [.eventPrice(disCount: 0.15), .launchingPrice(disCount: 0.2), .none(disCount: 1.0)]
     func makeRandomProducts(count: Int) -> [Product] {
         var results: [Product] = []
         for _ in 0 ..< count {
@@ -32,7 +32,7 @@ struct ProductFactory{
     }
     
     private func randomEvents() -> [ProductEvent]{
-        guard let randomEvent = ProductEvent.allCases.randomElement() else { return [] }
+        guard let randomEvent = events.randomElement() else { return [] }
         return [randomEvent]
     }
     
@@ -55,7 +55,7 @@ struct ProductFactory{
     }
     
     private func randomCategory() -> DishCategory{
-        guard let category = DishCategory.allCases.randomElement() else { return .sideDish }
+        guard let category = DishCategory.allCases.randomElement() else { return .side }
         return category
     }
     

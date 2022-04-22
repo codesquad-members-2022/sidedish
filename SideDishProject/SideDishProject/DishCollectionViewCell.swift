@@ -128,12 +128,20 @@ final class DishCollectionViewCell: UICollectionViewCell{
     func setProperties(product: Product){
         dishTitleLabel.text = product.name
         descriptionTitleLabel.text = product.description
-        if product.event.contains(.none) {
-           setNonEventUIConstraint()
-        }else{
-           setEventUIConstraint()
+        //        if product.event.contains(.none) {
+        //           setNonEventUIConstraint()
+        //        }else{
+        //           setEventUIConstraint()
+        //        }
+        //
+        
+        let isContainEvent = product.event.contains { event in
+            if case .none = event {
+                return false
+            }
+            return true
         }
         
+        isContainEvent ? setNonEventUIConstraint() : setEventUIConstraint()
     }
-    
 }

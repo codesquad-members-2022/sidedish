@@ -30,9 +30,9 @@ final class ProductModel{
     
     private func makeAllDishes(products: [Product]){
         var dishes: [DishCategory : [Product]] = [:]
-        dishes[.mainDish] = products.filter{$0.category == .mainDish}
-        dishes[.soupDish] = products.filter{$0.category == .soupDish}
-        dishes[.sideDish] = products.filter{$0.category == .sideDish}
+        dishes[.main] = products.filter{$0.category == .main}
+        dishes[.soup] = products.filter{$0.category == .soup}
+        dishes[.side] = products.filter{$0.category == .side}
         delegate?.updateAllDishes(dishes: dishes)
         delegate?.updateDishComment(comments: ["모두가 좋아하는\n든든한 메인 요리", "정성이 담긴\n뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는\n정갈한 밑반찬"])
     }

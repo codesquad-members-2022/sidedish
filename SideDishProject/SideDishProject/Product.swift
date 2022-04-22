@@ -30,36 +30,26 @@ struct Product{
 }
 
 enum DishCategory: CaseIterable, CustomStringConvertible{
+    case main
+    case soup
+    case side
     var description: String{
         switch self{
-        case .mainDish:
+        case .main:
             return "메인음식"
-        case .sideDish:
+        case .side:
             return "밑반찬"
-        case .soupDish:
+        case .soup:
             return "국"
         }
     }
-    case mainDish
-    case soupDish
-    case sideDish
 }
 
-enum ProductEvent: CaseIterable, CustomStringConvertible{
-    case eventPrice
-    case launchingPrice
-    case none
+enum ProductEvent: CustomStringConvertible{
     
-    var disCountRate: Double{
-        switch self{
-        case .eventPrice:
-            return 0.2
-        case .launchingPrice:
-            return 0.15
-        case .none:
-            return 1.0
-        }
-    }
+    case eventPrice(disCount: Double)
+    case launchingPrice(disCount: Double)
+    case none(disCount: Double)
     
     var description: String{
         switch self{
