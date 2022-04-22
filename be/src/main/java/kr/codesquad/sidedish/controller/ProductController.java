@@ -1,8 +1,12 @@
 package kr.codesquad.sidedish.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import kr.codesquad.sidedish.domain.Product;
+import kr.codesquad.sidedish.dto.DetailProductInfo;
+import kr.codesquad.sidedish.dto.ProductDTO;
 import kr.codesquad.sidedish.dto.RequestProduct;
-import kr.codesquad.sidedish.dto.ResponseProduct;
+import kr.codesquad.sidedish.dto.SimpleProductInfo;
 import kr.codesquad.sidedish.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,18 +27,28 @@ public class ProductController {
 	/**
 	 * 상품 카테고리별 목록 불러오기
 	 */
+	@ResponseBody
 	@GetMapping("/{dishType}/{sideDishType}")
-	public List<ResponseProduct> loadListByType(@PathVariable String dishType,
+	public List<SimpleProductInfo> loadListByType(@PathVariable String dishType,
 		@PathVariable String sideDishType) {
-		return productService.loadListByType(dishType, sideDishType);
+
+		List<ProductDTO> dtoList = productService.loadListByType(dishType, sideDishType);
+
+		List<SimpleProductInfo> simpleDtoList = new ArrayList<>();
+		for (int i = 0; i < dtoList.size(); i++) {
+			SimpleProductInfo simpleDto = SimpleProductInfo.from(dtoList.get(i));
+			simpleDtoList.add(simpleDto);
+		}
+
+		return simpleDtoList;
 	}
 
 	/**
 	 * 상품 세부 정보 불러오기
 	 */
 	@GetMapping("/details/{id}")
-	public ResponseProduct loadDetails(@PathVariable Integer id) {
-		return productService.findById(id);
+	public DetailProductInfo loadDetails(@PathVariable Integer id) {
+		return DetailProductInfo.from(productService.findById(id));
 	}
 
 	/**
