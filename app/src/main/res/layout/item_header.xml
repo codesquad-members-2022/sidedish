@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="header"
+            type="com.example.todo.sidedish.domain.model.Header" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="40dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_header"
+            style="@style/TextLarge.Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{header.type.type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="모두가 좋아하는\n든든한 메인 요리" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
