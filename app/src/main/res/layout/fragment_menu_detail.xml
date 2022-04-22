@@ -6,7 +6,7 @@
     <data>
 
         <import type="java.util.List" />
-
+        <import type="android.view.View" />
         <variable
             name="detail"
             type="com.example.todo.sidedish.domain.model.MenuDetail" />
@@ -102,7 +102,7 @@
                 <TextView
                     android:id="@+id/btn_event"
                     style="@style/Caption.Purple2"
-                    checkEvent="@{badge}"
+                    android:visibility="@{badge.contains(@string/label_event) ? View.VISIBLE : View.GONE}"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginEnd="10dp"
@@ -118,7 +118,7 @@
                 <TextView
                     android:id="@+id/btn_launching"
                     style="@style/Caption.White"
-                    checkLaunch="@{badge}"
+                    android:visibility="@{badge.contains(@string/label_launch) ? View.VISIBLE : View.GONE}"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:background="@drawable/badge_background_purple"
