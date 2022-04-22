@@ -140,8 +140,8 @@
                     <navigationItem key="navigationItem" id="XVR-au-CEa"/>
                     <connections>
                         <outlet property="firstSectionView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
-                        <outlet property="fullSizeScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
-                        <outlet property="imageScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
+                        <outlet property="fullSizeVerticalScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
+                        <outlet property="imageHorizontalScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
                         <outlet property="secondSectionView" destination="3ds-sl-mPb" id="zbJ-jH-g8h"/>
                         <outlet property="stackView" destination="B1F-sX-Dun" id="XFG-t1-5DK"/>
                         <outlet property="thirdSectionView" destination="ugP-ya-KTg" id="OLG-Pf-RrC"/>
@@ -154,7 +154,7 @@
         <!--FirstSectionViewController-->
         <scene sceneID="SwR-Ni-xDI">
             <objects>
-                <viewController id="iGG-Gn-fRw" userLabel="FirstSectionViewController" customClass="FirstSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iGG-Gn-fRw" userLabel="FirstSectionViewController" customClass="MainDescriptionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eWS-yL-8vB">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -175,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="2001.5384615384614" y="-142.18009478672985"/>
         </scene>
-        <!--Second Section View Controller-->
+        <!--Sub Description View Controller-->
         <scene sceneID="aPo-O7-E8E">
             <objects>
-                <viewController id="ZOK-MW-p1m" customClass="SecondSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZOK-MW-p1m" customClass="SubDescriptionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2WA-cZ-wEq">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="74"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="2002" y="84"/>
         </scene>
-        <!--Third Section View Controller-->
+        <!--Order View Controller-->
         <scene sceneID="MsT-ek-Yhu">
             <objects>
-                <viewController id="mKr-iP-6LT" customClass="ThirdSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mKr-iP-6LT" customClass="OrderViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eXG-Fu-2Vh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

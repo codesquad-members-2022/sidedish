@@ -20,11 +20,13 @@
 		009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E8280EEDC900D0FF1A /* CardFactory.swift */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
+		D24CF2282812484300677D3D /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24CF2272812484300677D3D /* DetailCard.swift */; };
 		D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF61E280E7A0100507878 /* DetailViewController.swift */; };
-		D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF622280E887F00507878 /* FirstSectionViewController.swift */; };
-		D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */; };
-		D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */; };
+		D2ADF623280E888000507878 /* MainDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF622280E887F00507878 /* MainDescriptionViewController.swift */; };
+		D2ADF625280E9D7900507878 /* SubDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SubDescriptionViewController.swift */; };
+		D2ADF627280EA89700507878 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF626280EA89700507878 /* OrderViewController.swift */; };
 		D2DC5844280FE9A700AC6281 /* SFProDisplay-Regular.OTF in Resources */ = {isa = PBXBuildFile; fileRef = D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */; };
+		D2DC58462810498500AC6281 /* SFProDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DC58452810498500AC6281 /* SFProDisplay-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,11 +46,13 @@
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D24CF2272812484300677D3D /* DetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCard.swift; sourceTree = "<group>"; };
 		D2ADF61E280E7A0100507878 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		D2ADF622280E887F00507878 /* FirstSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionViewController.swift; sourceTree = "<group>"; };
-		D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionViewController.swift; sourceTree = "<group>"; };
-		D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionViewController.swift; sourceTree = "<group>"; };
+		D2ADF622280E887F00507878 /* MainDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDescriptionViewController.swift; sourceTree = "<group>"; };
+		D2ADF624280E9D7900507878 /* SubDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDescriptionViewController.swift; sourceTree = "<group>"; };
+		D2ADF626280EA89700507878 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.OTF"; sourceTree = "<group>"; };
+		D2DC58452810498500AC6281 /* SFProDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		E78EA6A4FBA0C3BB4E4C8BCA /* Pods-sidedishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.release.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,20 +92,14 @@
 			children = (
 				0068078E280D5195003C2808 /* AppDelegate.swift */,
 				00680790280D5195003C2808 /* SceneDelegate.swift */,
-				D2ADF61E280E7A0100507878 /* DetailViewController.swift */,
-				D2ADF622280E887F00507878 /* FirstSectionViewController.swift */,
-				D2ADF624280E9D7900507878 /* SecondSectionViewController.swift */,
-				D2ADF626280EA89700507878 /* ThirdSectionViewController.swift */,
-				00680792280D5195003C2808 /* MainViewController.swift */,
+				00EAA567281243EA00CC013C /* viewController */,
 				00680794280D5195003C2808 /* Main.storyboard */,
-				009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */,
-				009361DF280E637C00D0FF1A /* MainViewCardCell.swift */,
 				009361E3280EE40F00D0FF1A /* model */,
 				009361E8280EEDC900D0FF1A /* CardFactory.swift */,
 				00680797280D5195003C2808 /* Assets.xcassets */,
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
 				0068079C280D5195003C2808 /* Info.plist */,
-				D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */,
+				00EAA5682812441400CC013C /* font */,
 			);
 			path = sidedishApp;
 			sourceTree = "<group>";
@@ -110,9 +108,49 @@
 			isa = PBXGroup;
 			children = (
 				009361E4280EE47400D0FF1A /* MainCard.swift */,
+				D24CF2272812484300677D3D /* DetailCard.swift */,
 				009361E6280EE4FB00D0FF1A /* Badge.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		00EAA5652812439A00CC013C /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				D2ADF61E280E7A0100507878 /* DetailViewController.swift */,
+				D2ADF622280E887F00507878 /* MainDescriptionViewController.swift */,
+				D2ADF624280E9D7900507878 /* SubDescriptionViewController.swift */,
+				D2ADF626280EA89700507878 /* OrderViewController.swift */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		00EAA566281243AD00CC013C /* main */ = {
+			isa = PBXGroup;
+			children = (
+				00680792280D5195003C2808 /* MainViewController.swift */,
+				009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */,
+				009361DF280E637C00D0FF1A /* MainViewCardCell.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		00EAA567281243EA00CC013C /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				00EAA566281243AD00CC013C /* main */,
+				00EAA5652812439A00CC013C /* detail */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		00EAA5682812441400CC013C /* font */ = {
+			isa = PBXGroup;
+			children = (
+				D2DC5843280FE9A700AC6281 /* SFProDisplay-Regular.OTF */,
+				D2DC58452810498500AC6281 /* SFProDisplay-Semibold.otf */,
+			);
+			path = font;
 			sourceTree = "<group>";
 		};
 		54BAD4B7B23BC78239E4E567 /* Frameworks */ = {
@@ -192,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DC58462810498500AC6281 /* SFProDisplay-Semibold.otf in Resources */,
 				00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */,
 				0068079B280D5195003C2808 /* LaunchScreen.storyboard in Resources */,
 				00680798280D5195003C2808 /* Assets.xcassets in Resources */,
@@ -249,14 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2ADF625280E9D7900507878 /* SecondSectionViewController.swift in Sources */,
+				D2ADF625280E9D7900507878 /* SubDescriptionViewController.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
-				D2ADF623280E888000507878 /* FirstSectionViewController.swift in Sources */,
+				D2ADF623280E888000507878 /* MainDescriptionViewController.swift in Sources */,
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
-				D2ADF627280EA89700507878 /* ThirdSectionViewController.swift in Sources */,
+				D2ADF627280EA89700507878 /* OrderViewController.swift in Sources */,
 				D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */,
 				009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */,
+				D24CF2282812484300677D3D /* DetailCard.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
 				009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */,
