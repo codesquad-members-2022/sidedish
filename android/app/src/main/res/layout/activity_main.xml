@@ -3,37 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="menu_xml"
-            type="com.example.sidedish.MenuList" />
-    </data>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".MainActivity">
 
             <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
+                    android:id="@+id/tb_main"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFF"
                     android:minHeight="?attr/actionBarSize">
 
                     <TextView
-                        android:id="@+id/toolbar_title"
+                        android:id="@+id/tv_toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
@@ -49,7 +41,7 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/header_title1"
+                android:id="@+id/tv_header_title1"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginStart="16dp"
@@ -62,7 +54,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/header_sub1"
+                android:id="@+id/tv_header_sub1"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -72,16 +64,16 @@
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_mainlist"
+                android:id="@+id/rv_mainlist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/home_list" />
+                tools:listitem="@layout/item_menu_data" />
 
             <TextView
-                android:id="@+id/header_title2"
+                android:id="@+id/tv_header_title2"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginStart="16dp"
@@ -95,7 +87,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_mainlist" />
 
             <TextView
-                android:id="@+id/header_sub2"
+                android:id="@+id/tv_header_sub2"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -105,16 +97,16 @@
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_souplist"
+                android:id="@+id/rv_souplist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/home_list" />
+                tools:listitem="@layout/item_menu_data" />
 
             <TextView
-                android:id="@+id/header_title3"
+                android:id="@+id/tv_header_title3"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginStart="16dp"
@@ -124,11 +116,10 @@
                 android:text="정성이 담긴 뜨끈뜨끈 국물 요리"
                 android:textColor="#010101"
                 android:textSize="32sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerview_mainlist" />
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/header_sub3"
+                android:id="@+id/tv_header_sub3"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -138,13 +129,13 @@
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_sidelist"
+                android:id="@+id/rv_sidelist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/home_list" />
+                tools:listitem="@layout/item_menu_data" />
 
         </LinearLayout>
     </ScrollView>
