@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ProductFactory{
+struct MockProductFactory{
     private let randomNames: [DishCategory : [String]]  = [.main : ["삼겹살", "김치볶음밥", "제육볶음"], .soup : ["김치찌게", "된장찌게", "미역국"], .side : ["멸치볶음", "김", "콩자반"]]
     private let randomDiscriptions: [String] = ["ebony가 직접 만들었습니다." , "rosa가 직접 만들었습니다.", "구찌가 극찬하였습니다.", "데일이 먹고 울었습니다."]
     private var events: [ProductEvent] = [.eventPrice(disCount: 0.15), .launchingPrice(disCount: 0.2), .none(disCount: 1.0)]
