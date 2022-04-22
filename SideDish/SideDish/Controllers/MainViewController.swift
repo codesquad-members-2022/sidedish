@@ -19,9 +19,18 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Ordering"
+    }
+    
+    private func initializeOrdering(){
         ordering.getSampleFoodList()
+    }
+    
+    private func setFoodCollectionView(){
         foodCollectionView.delegate = self
         foodCollectionView.dataSource = self
+    }
+    
+    private func setLayout(){
         view.addSubview(foodCollectionView)
         NSLayoutConstraint.activate([
             foodCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
