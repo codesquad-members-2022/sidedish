@@ -10,11 +10,10 @@ import com.example.todo.sidedish.domain.model.Header
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.model.MenuItem
 
-
 const val VIEW_TYPE_HEADER = 0
 const val VIEW_TYPE_ITEM = 1
 
-class MenuAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(private val viewModel: MenuViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var menuItems = mutableListOf<MenuItem>()
 
@@ -73,6 +72,7 @@ class MenuAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(item: Menu) {
             binding.item = item
+            binding.viewModel= viewModel
             binding.executePendingBindings()
         }
     }

@@ -21,10 +21,22 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Subtitle1.Grey2" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
+    <style name="Subtitle1.Grey2.18sp">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="TextSmallBold" parent="TextAppearance.MaterialComponents.Subtitle2" />
 
     <style name="TextSmallBold.Grey2">
         <item name="android:textColor">@color/grey2</item>
+    </style>
+
+    <style name="TextSmallBold.Purple2">
+        <item name="android:textColor">@color/purple2</item>
     </style>
 
     <style name="TextSmallRegular" parent="TextAppearance.MaterialComponents.Body2" />
