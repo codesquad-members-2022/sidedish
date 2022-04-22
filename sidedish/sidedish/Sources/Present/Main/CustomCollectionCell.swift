@@ -10,7 +10,7 @@ import UIKit
 class CustomCollectionCell: UICollectionViewCell {
     static let identifier = "CustomCollectionCell"
     private let imageSize = 130.0
-    
+
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,5 +57,27 @@ class CustomCollectionCell: UICollectionViewCell {
             menuInfoView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
             menuInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
+    }
+}
+
+extension CustomCollectionCell {
+    func changeTitleLabel(text: String) {
+        menuInfoView.changeTitleLabel(text: text)
+    }
+
+    func changeDescriptionLabel(text: String) {
+        menuInfoView.changeDescriptionLabel(text: text)
+    }
+    
+    func changePriceLabel(text: String) {
+        menuInfoView.changePriceLabel(text: text)
+    }
+    
+    func changeSalePriceLabel(text: String) {
+        menuInfoView.changeSalePriceLabel(text: text)
+    }
+    
+    func changeSaleBadge(_ badges: [String]?) {
+        menuInfoView.changeSaleBadge(badges)
     }
 }
