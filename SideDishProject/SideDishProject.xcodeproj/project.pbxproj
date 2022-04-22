@@ -20,6 +20,7 @@
 		729E887F280D8F720042ECC9 /* SideDishProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E887E280D8F720042ECC9 /* SideDishProjectUITests.swift */; };
 		729E8881280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E8880280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift */; };
 		72A4F4E328123EAD00DE19C9 /* DishCommetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A4F4E228123EAD00DE19C9 /* DishCommetHeaderView.swift */; };
+		72A4F4E5281251EF00DE19C9 /* ProductSceneContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A4F4E4281251EF00DE19C9 /* ProductSceneContainer.swift */; };
 		72B48E94280D9317008628BF /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 72B48E93280D9317008628BF /* .swiftlint.yml */; };
 		72BE39AE280FD873000919EC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE39AD280FD873000919EC /* DetailViewController.swift */; };
 		72BE39B0280FE8EA000919EC /* DishCollectionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE39AF280FE8EA000919EC /* DishCollectionWrapper.swift */; };
@@ -71,6 +72,7 @@
 		729E887E280D8F720042ECC9 /* SideDishProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishProjectUITests.swift; sourceTree = "<group>"; };
 		729E8880280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		72A4F4E228123EAD00DE19C9 /* DishCommetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCommetHeaderView.swift; sourceTree = "<group>"; };
+		72A4F4E4281251EF00DE19C9 /* ProductSceneContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSceneContainer.swift; sourceTree = "<group>"; };
 		72B48E93280D9317008628BF /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		72BE39AD280FD873000919EC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		72BE39AF280FE8EA000919EC /* DishCollectionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionWrapper.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				72BE39B1280FEB56000919EC /* DishCollectionViewCell.swift */,
 				7268D0E0281126A0005449B9 /* ProductModel.swift */,
 				72A4F4E228123EAD00DE19C9 /* DishCommetHeaderView.swift */,
+				72A4F4E4281251EF00DE19C9 /* ProductSceneContainer.swift */,
 			);
 			path = SideDishProject;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			files = (
 				72BE39AE280FD873000919EC /* DetailViewController.swift in Sources */,
 				729E8862280D8F700042ECC9 /* HomeViewController.swift in Sources */,
+				72A4F4E5281251EF00DE19C9 /* ProductSceneContainer.swift in Sources */,
 				72F9D2FF280E8D5B00EFA22F /* RootNavigationController.swift in Sources */,
 				6FE405B8280E967800FD218C /* ProductRepository.swift in Sources */,
 				7268D0E1281126A0005449B9 /* ProductModel.swift in Sources */,

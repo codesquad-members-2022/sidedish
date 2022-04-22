@@ -7,10 +7,13 @@ enum ProductRepositoryError: Error {
 protocol ProductRepository {
     func fetchAll(completion: @escaping (Result<[Product], Error>) -> Void)
     func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], Error>) -> Void)
+}
+
+protocol ProductDetailRepository {
     func fetchOne(id: UniqueID, completion: @escaping (Result<Product, ProductRepositoryError>) -> Void)
 }
 
-final class MockProductRepository: ProductRepository {
+final class MockProductRepository: ProductRepository, ProductDetailRepository {
     
     private let products: [Product]
     
