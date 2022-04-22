@@ -6,7 +6,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUnderbarAtNavigationBar()
-//        registerDishCell()
+        registerDishCell()
         collectionViewDelegate()
 
     }
@@ -71,8 +71,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 100, height: 100)
         }
         // MARK: - SectionInset 및 셀 크기 조정
-        // TODO: - SectionInset.right = 40 을 주었는데 다른 좋은 의견이 있을까 싶음..
-        flowLayout.sectionInset = UIEdgeInsets(top: 24, left: 16, bottom: 24, right: 40)
+        flowLayout.sectionInset = UIEdgeInsets(top: 24, left: 16, bottom: 24, right: 16)
         flowLayout.minimumLineSpacing = 8
         let width = collectionView.bounds.width
         let widthPadding = flowLayout.sectionInset.left + flowLayout.sectionInset.right
