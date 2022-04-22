@@ -20,7 +20,7 @@ export function Card({ product }) {
         <CutPrice>{product.cutPrice}</CutPrice>
         <Price>{product.price}</Price>
       </PriceWrapper>
-      <EventWrapper events={product.events}></EventWrapper>
+      <EventWrapper events={product.events} />
     </CardWrapper>
   );
 }

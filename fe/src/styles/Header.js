@@ -3,7 +3,6 @@ import { applyFlex } from '../helper/utils';
 
 export const GnbMenu = styled.li`
   margin-right: 24px;
-  font-family: 'Noto Sans KR';
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
@@ -14,7 +13,6 @@ export const GnbSubMenuWrapper = styled.ul`
 `;
 
 export const GnbSubMenu = styled.li`
-  font-family: 'Noto Sans KR';
   font-size: 14px;
   line-height: 24px;
 `;
@@ -31,7 +29,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledH1 = styled.h1`
-  font-family: 'Outfit';
+  font-family: 'Outfit', serif;
   font-style: normal;
   font-weight: 900;
   font-size: 40px;

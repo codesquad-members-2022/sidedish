@@ -28,7 +28,6 @@ export const CardWrapper = styled.div`
 `;
 
 export const StyledH2 = styled.h2`
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -39,14 +38,13 @@ export const StyledH2 = styled.h2`
 `;
 
 export const StyledP = styled.p`
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: -0.008em;
   color: #777777;
-  margin: 8px 0px;
+  margin: 8px 0;
 `;
 
 export const PriceWrapper = styled.div`

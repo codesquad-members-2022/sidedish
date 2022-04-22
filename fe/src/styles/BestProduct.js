@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { applyFlex } from '../helper/utils';
 
 export const CategoryBadge = styled.div`
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -32,7 +31,6 @@ export const BestProductHeader = styled.div`
 
 export const Title = styled.h1`
   margin-left: 16px;
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
@@ -47,7 +45,6 @@ export const TapBar = styled.ul`
 export const StyledLi = styled.li`
   margin-right: 32px;
   padding-bottom: 17px;
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   font-size: 20px;

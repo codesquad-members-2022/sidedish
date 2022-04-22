@@ -34,15 +34,15 @@ function TapMenu(props) {
 function TapList(props) {
   if (!props.tapList) {
     return ``;
-    }
+  }
   return (
     <StyledDiv flex>
       {props.tapList.map((product, idx) => (
-        <Card product={product} key={idx}></Card>
+        <Card product={product} key={idx} />
       ))}
     </StyledDiv>
   );
-  }
+}
 
 export function BestProduct() {
   const [bestProductTap, setBestProductTap] = useState(null);
@@ -62,7 +62,7 @@ export function BestProduct() {
   useEffect(() => {
     if (!bestProductTap) return;
     setTapList(bestProductTapDatas[curTap]);
-  }, [curTap]);
+  }, [bestProductTap, curTap]);
 
   return (
     <StyledBestProduct>
@@ -79,10 +79,10 @@ export function BestProduct() {
             onClick={handleTapClick}
             curTap={curTap}
             setCurTap={setCurTap}
-          ></TapMenu>
+          />
         </TapBar>
       </BestProductHeader>
-      <TapList tapList={tapList}></TapList>
+      <TapList tapList={tapList} />
     </StyledBestProduct>
   );
 }

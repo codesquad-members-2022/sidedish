@@ -76,11 +76,11 @@ function Header() {
           onMouseEnter={() => {
             setisSubMenuOpen(true);
           }}
-        ></GnbLists>
+        />
       </StyledUl>
       <StyledDiv>
         <StyledInnerDiv flex align="center">
-          <Svg icons={icons} useIconsName={['search', 'mypage', 'shoppingCart']}></Svg>
+          <Svg icons={icons} useIconsName={['search', 'mypage', 'shoppingCart']} />
         </StyledInnerDiv>
       </StyledDiv>
     </StyledHeader>
