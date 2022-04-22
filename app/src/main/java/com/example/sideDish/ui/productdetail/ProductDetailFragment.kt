@@ -1,7 +1,9 @@
 package com.example.sideDish.ui.productdetail
 
+import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +20,12 @@ import com.example.sideDish.common.ViewModelFactory
 import com.example.sideDish.data.Item
 import com.example.sideDish.data.source.FoodRepository
 import com.example.sideDish.databinding.FragmentProductDetailBinding
+import java.text.DecimalFormat
 
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
     lateinit var viewModel: FoodDetailViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +37,7 @@ class ProductDetailFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
+        binding.viewModel = viewModel
         //dummy
         binding.foodInfo = Item.FoodInfo(
             "초계국수_쿠킹박스",
@@ -45,6 +50,12 @@ class ProductDetailFragment : Fragment() {
             "11,800원",
             "초계국수_쿠킹박스"
         )
+
+        viewModel.orderCount.observe(viewLifecycleOwner) {
+            binding.stepper.value.text = it.toString()
+            binding.textViewTotalCostFix.text =
+                "${DecimalFormat("#,###").format(it * (viewModel.detail.value?.discountedPrice ?: 0))}${resources.getString(R.string.money_unit)}"
+        }
 
         viewModel.detail.observe(viewLifecycleOwner) {
             binding.viewPager.adapter = ImageSliderAdapter(it.thumbImageUrls)

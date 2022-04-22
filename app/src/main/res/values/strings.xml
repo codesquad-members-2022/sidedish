@@ -15,4 +15,6 @@
     <string name="count">수량</string>
     <string name="total_price">총 주문 금액</string>
     <string name="order">주문하기</string>
+
+    <string name="money_unit">원</string>
 </resources>

@@ -8,6 +8,14 @@
         <import type="android.text.Html" />
 
         <variable
+            name="viewModel"
+            type="com.example.sideDish.ui.productdetail.FoodDetailViewModel" />
+
+        <variable
+            name="count"
+            type="Integer" />
+
+        <variable
             name="detail"
             type="com.example.sideDish.data.source.FoodDetail" />
 
@@ -255,6 +263,8 @@
 
                 <com.example.sideDish.ui.Stepper
                     android:id="@+id/stepper"
+                    android:count="@{viewModel.orderCount}"
+                    viewModel="@{viewModel}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -309,22 +319,22 @@
                     app:layout_constraintTop_toBottomOf="@id/text_view_total_cost" />
 
                 <ImageView
-                    image="@{detail.detailImageUrls.get(0)}"
                     android:id="@+id/image_view_detail1"
+                    image="@{detail.detailImageUrls.get(0)}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/button_order" />
 
                 <ImageView
-                    image="@{detail.detailImageUrls.get(1)}"
                     android:id="@+id/image_view_detail2"
+                    image="@{detail.detailImageUrls.get(1)}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/image_view_detail1" />
 
                 <ImageView
-                    image="@{detail.detailImageUrls.get(2)}"
                     android:id="@+id/image_view_detail3"
+                    image="@{detail.detailImageUrls.get(2)}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/image_view_detail2" />
