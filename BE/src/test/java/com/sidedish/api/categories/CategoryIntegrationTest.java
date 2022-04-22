@@ -60,7 +60,7 @@ class CategoryIntegrationTest {
 
     private void createMainItem(Category mainCategory, String name, String desc) {
         Item newItem = new Item(name, desc, BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html", CategoryType.MAIN);
+                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
         mainCategory.saveItem(newItem);
     }
 
@@ -77,11 +77,11 @@ class CategoryIntegrationTest {
         requestThenResult.andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
-                .andExpect(jsonPath("_embedded.itemList[0]").exists())
-                .andExpect(jsonPath("_embedded.itemList[1]").exists())
-                .andExpect(jsonPath("_embedded.itemList[2]").exists())
-                .andExpect(jsonPath("_embedded.itemList[3]").exists())
-                .andExpect(jsonPath("_embedded.itemList.length()").value(4))
+                .andExpect(jsonPath("_embedded.responseItemDtoList[0]").exists())
+                .andExpect(jsonPath("_embedded.responseItemDtoList[1]").exists())
+                .andExpect(jsonPath("_embedded.responseItemDtoList[2]").exists())
+                .andExpect(jsonPath("_embedded.responseItemDtoList[3]").exists())
+                .andExpect(jsonPath("_embedded.responseItemDtoList.length()").value(4))
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.prev-page").exists())
                 .andExpect(jsonPath("_links.next-page").exists())

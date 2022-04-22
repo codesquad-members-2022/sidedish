@@ -10,17 +10,23 @@ import lombok.Getter;
 @Getter
 public class ResponseItemDto {
 
+    private Long id;
     private String title;
     private String description;
     private BigDecimal price;
     private Badge badge;
     private BigDecimal discountPrice;
+    private BigDecimal rewardPoint;
+    private String image;
 
     public ResponseItemDto(Item item) {
+        this.id = item.getId();
         this.title = item.getTitle();
         this.description = item.getDescription();
         this.price = item.getPrice();
-        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)));
         this.badge = item.getBadge();
+        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)));
+        this.rewardPoint = item.getRewardPoint();
+        this.image = item.getImage();
     }
 }

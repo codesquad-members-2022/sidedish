@@ -35,7 +35,7 @@ class ItemOrderTest {
         orderRepository.save(order);
 
         Item newItem = new Item("고기", "맛있는 고기", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html", CategoryType.MAIN);
+                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
 
         //when
         newItem.addOrders(order);
