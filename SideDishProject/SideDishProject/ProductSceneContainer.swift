@@ -8,12 +8,20 @@
 import UIKit
 
 final class ProductSceneContainer {
-    static func makeRoot(repository: ProductRepository) -> UIViewController {
-        let viewController = HomeViewController.create(with: repository)
-        return RootNavigationController(rootViewController: viewController)
+    
+    static func makeViewController(sceneType: SceneType ,repository: ProductRepository) -> UIViewController{
+        switch sceneType{
+        case .home:
+            let viewController = HomeViewController.create(with: repository)
+            return RootNavigationController(rootViewController: viewController)
+        case .detail:
+            return DetailViewController.create(with: repository)
+        }
     }
     
-    static func makeDetail(repository: ProductRepository) -> UIViewController {
-        return DetailViewController.create(with: repository)
+    enum SceneType{
+        case home
+        case detail
     }
 }
+
