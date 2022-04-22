@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="viewModel"
+            type="com.example.todo.sidedish.ui.menu.MenuViewModel" />
+
+        <variable
             name="item"
             type="com.example.todo.sidedish.domain.model.Menu" />
     </data>
@@ -18,6 +22,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
+        android:onClick="@{() -> viewModel.openMenuDetail(item)}"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp">
 
