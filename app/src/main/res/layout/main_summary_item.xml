@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="foodInfo"
+            type="com.example.sideDish.data.Item.FoodInfo" />
+
+        <variable
+            name="viewmodel"
+            type="com.example.sideDish.ui.foodlist.FoodListViewModel" />
+        
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewmodel.openDetail()}" >
+
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/summary_item_imageview_radius"
+            android:contentDescription="@string/food_image_desc_string"
+            android:elevation="@dimen/elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            custom:image="@{foodInfo.image}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_summary_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@id/tag_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/food_image"
+            app:layout_constraintTop_toTopOf="@id/food_image">
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{foodInfo.title}"
+                android:textAppearance="@style/TextSmall.Bold"
+                app:layout_constraintBottom_toTopOf="@id/content_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="오리 주물럭_반조리" />
+
+            <TextView
+                android:id="@+id/content_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{foodInfo.description}"
+                android:textAppearance="@style/TextSmall"
+                android:textColor="@color/grey2"
+                app:layout_constraintBottom_toTopOf="@id/sell_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_text"
+                tools:text="이거슨 컨텐츠입니다. 이거슨 컨텐츠입니다. 이것슨 컨텐츠입니다." />
+
+            <TextView
+                android:id="@+id/sell_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{foodInfo.SPrice}"
+                android:textAppearance="@style/TextSmall.Bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_text"
+                tools:text="12,640원" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{Html.fromHtml(String.format(@string/original_price, foodInfo.NPrice))}"
+                android:textAppearance="@style/TextSmall"
+                android:textColor="@color/grey2"
+                app:layout_constraintBottom_toBottomOf="@id/sell_price"
+                app:layout_constraintStart_toEndOf="@id/sell_price"
+                app:layout_constraintTop_toTopOf="@id/sell_price"
+                tools:text="12,900원" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/tag_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:visibility="@{foodInfo.badge.isEmpty() ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/food_image"
+            app:layout_constraintStart_toEndOf="@id/food_image">
+
+            <TextView
+                android:id="@+id/event_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curve_corner_light_purple"
+                android:text="@string/event_price"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:id="@+id/launch_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/curve_corner_purple"
+                android:text="@string/launch_price"
+                android:textColor="@color/primaryLight" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
