@@ -8,17 +8,28 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
+import com.example.sideDish.common.ViewModelFactory
 import com.example.sideDish.data.Item
+import com.example.sideDish.data.source.FoodRepository
 import com.example.sideDish.databinding.FragmentProductDetailBinding
 
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
+    lateinit var viewModel: FoodDetailViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        viewModel = ViewModelProvider(this, ViewModelFactory(FoodRepository(), "hash")).get(
+            FoodDetailViewModel::class.java
+        )
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
@@ -34,21 +45,25 @@ class ProductDetailFragment : Fragment() {
             "11,800원",
             "초계국수_쿠킹박스"
         )
-        val dummyList = listOf<String>(
-            "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-            "http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg",
-            "http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg",
-        )
-        binding.viewPager.adapter = ImageSliderAdapter(dummyList)
+
+        viewModel.detail.observe(viewLifecycleOwner) {
+            binding.viewPager.adapter = ImageSliderAdapter(it.thumbImageUrls)
+            binding.detail = it
+        }
         binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                // 추후 수정 필요
-                binding.textViewImageIndex.text = "${position + 1}/${dummyList.size}"
+                // 추후 수정 필요 data binding 으로 옮기자
+                binding.textViewImageIndex.text =
+                    "${position + 1}/${viewModel.detail.value?.thumbImageUrls?.size}"
             }
         })
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("lastFragment", 1)
     }
 }
