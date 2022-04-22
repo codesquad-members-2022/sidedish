@@ -22,6 +22,7 @@ const HeaderBox = styled.div`
   background: ${colors.white};
   pointer-events: none;
   border-bottom: 1px solid ${colors.black};
+  z-index: 2;
   &:hover {
     height: 160px;
   }

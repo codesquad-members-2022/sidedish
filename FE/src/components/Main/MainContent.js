@@ -8,6 +8,8 @@ import Text from '../Text';
 import FoodCards from './FoodCards';
 import MainTabs from './MainTabs';
 
+const FOOD_PER_PAGE = 3;
+
 const MainContentWrap = styled.div`
   width: 100%;
 `;
@@ -15,8 +17,6 @@ const MainContentWrap = styled.div`
 const MainText = styled.div`
   padding: 0px 80px;
 `;
-
-const BIG_CARDS_LENGTH = 3;
 
 const MainContent = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
@@ -26,8 +26,13 @@ const MainContent = () => {
   };
 
   useEffect(() => {
-    const randomFoodIndex = Math.floor(Math.random() * (foods.length - BIG_CARDS_LENGTH));
-    const getRandomFoods = foods.slice(randomFoodIndex, randomFoodIndex + BIG_CARDS_LENGTH);
+    const randomFoodIndex = Math.floor(
+      Math.random() * (foods.length - FOOD_PER_PAGE),
+    );
+    const getRandomFoods = foods.slice(
+      randomFoodIndex,
+      randomFoodIndex + FOOD_PER_PAGE,
+    );
     setRandomFoods(getRandomFoods);
   }, [selectedTabIndex]);
 
@@ -36,8 +41,12 @@ const MainContent = () => {
       <MainText>
         <Text font={FONT.TITLE}>한 번 주문하면 두 번 반하는 반찬</Text>
       </MainText>
-      <MainTabs tabs={tabs} selectedTabIndex={selectedTabIndex} onTabClick={updateSelectedTab} />
-      <FoodCards foods={randomFoods} />
+      <MainTabs
+        tabs={tabs}
+        selectedTabIndex={selectedTabIndex}
+        onTabClick={updateSelectedTab}
+      />
+      <FoodCards foods={randomFoods} size={FOOD_PER_PAGE} />
     </MainContentWrap>
   );
 };
