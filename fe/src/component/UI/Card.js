@@ -1,8 +1,19 @@
+import React from "react";
 import styled, { css } from "styled-components";
 
 const CardImg = styled.img`
   width: 411px;
   height: 411px;
+  ${(props) =>
+    props.size === "small"
+      ? css`
+          width: 302px;
+          height: 302px;
+        `
+      : css`
+          wdith: 411px;
+          height: 411px;
+        `}
 `;
 
 const CardTitle = styled.h4`
@@ -47,10 +58,14 @@ const CardBadge = styled.div`
         `}
 `;
 
+const CardWrapper = styled.div`
+  margin-right: 18px;
+`;
+
 const Card = (props) => {
   return (
-    <div>
-      <CardImg src={props.image} alt={props.alt} />
+    <CardWrapper>
+      <CardImg src={props.image} alt={props.alt} size={props.size} />
       <CardTitle>{props.title}</CardTitle>
       <CardDesc>{props.description}</CardDesc>
       <span>{props.s_price}</span>
@@ -60,25 +75,8 @@ const Card = (props) => {
           ? ""
           : props.badge.map((v) => <CardBadge info={v}>{v}</CardBadge>)}
       </CardBadgeWapper>
-    </div>
+    </CardWrapper>
   );
 };
-
-// const Card = () => {
-//   return (
-//     <div>
-//       <div>
-//         <img src="https://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"></img>
-//       </div>
-//       <div>
-//         <h4>오리 주물럭_반조리</h4>
-//         <p>감칠맛 나는 매콥한 양념</p>
-//         <span>12,640원</span>
-//         <span className="original-price">15,800원</span>
-//         <div className="card-badge">런칭특가</div>
-//       </div>
-//     </div>
-//   );
-// };
 
 export default Card;

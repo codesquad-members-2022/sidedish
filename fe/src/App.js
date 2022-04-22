@@ -1,20 +1,18 @@
 import "./App.css";
 import "./reset.css";
-import Card from "./component/UI/Card";
+
 import Header from "./component/Header/Header";
 import Tab from "./component/Tab/Tab";
 import SubTitle from "./component/SubTitle/SubTitle";
+import Slide from "./component/bottom/Slide";
+
 function App() {
   return (
     <div className="app">
       <Header />
       <SubTitle />
       <Tab />
-      <div className="card-wrapper">
-        {/* <Card />
-        <Card />
-        <Card /> */}
-      </div>
+      <Slide />
     </div>
   );
 }

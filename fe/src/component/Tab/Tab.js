@@ -1,5 +1,6 @@
 import List from "./List";
 import Card from "../UI/Card";
+import CardsWrapper from "../UI/CardsWrapper";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 
@@ -60,7 +61,7 @@ const Tab = () => {
         })}
       </TabList>
 
-      <div className="card-wrapper">
+      <CardsWrapper>
         <Card
           key={cards.detail_hash}
           image={cards.image}
@@ -71,7 +72,7 @@ const Tab = () => {
           n_price={cards.n_price}
           badge={cards.badge}
         />
-      </div>
+      </CardsWrapper>
     </>
   );
 };
