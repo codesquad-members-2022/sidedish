@@ -10,7 +10,7 @@ import Foundation
 
 struct CategorySectionViewModel {
     var type: ProductType
-    var productVM: [ProductCellViewModel]
+    var productViewModel: [ProductCellViewModel]
 }
 
 struct ProductCollectionViewModel {
@@ -19,7 +19,7 @@ struct ProductCollectionViewModel {
     var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
     func countProduct(section: Int) -> Int {
-        self.cellViewModels.value[section].productVM.count
+        self.cellViewModels.value[section].productViewModel.count
     }
 
     func countSection() -> Int {
@@ -28,7 +28,7 @@ struct ProductCollectionViewModel {
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
         let categoryVM = cellViewModels.value[indexPath.section]
-        return categoryVM.productVM[indexPath.item]
+        return categoryVM.productViewModel[indexPath.item]
     }
 
     func fetch() {
@@ -42,7 +42,7 @@ struct ProductCollectionViewModel {
                 let productCellVMs = category.product.compactMap { product in
                     ProductCellViewModel(title: product.title, description: product.description, imageURL: product.imageURL, originalPrice: product.originalPrice, salePrice: product.salePrice, badge: product.badge)
                 }
-                let categorySectionVM = CategorySectionViewModel(type: .main, productVM: productCellVMs)
+                let categorySectionVM = CategorySectionViewModel(type: .main, productViewModel: productCellVMs)
                 temp.append(categorySectionVM)
                 dispatchGroup.leave()
             }

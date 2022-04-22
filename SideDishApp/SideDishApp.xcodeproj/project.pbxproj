@@ -52,9 +52,12 @@
 		B7F90B98281128DB0067E4FE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B7F90B97281128DB0067E4FE /* .swiftlint.yml */; };
 		B7F90B9A28114F470067E4FE /* MoneyCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B9928114F470067E4FE /* MoneyCurrency.swift */; };
 		B7F90B9B2811AA200067E4FE /* MoneyCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90B9928114F470067E4FE /* MoneyCurrency.swift */; };
+		B7F90BA12811D32C0067E4FE /* MainCollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90BA02811D32C0067E4FE /* MainCollectionViewSectionHeader.swift */; };
+		B7F90BA8281246300067E4FE /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90BA6281246300067E4FE /* MainCollectionViewCell.swift */; };
+		B7F90BA9281246300067E4FE /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F90BA7281246300067E4FE /* MainCollectionViewCell.xib */; };
 		BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4835280D5AE100F23DCE /* AppDelegate.swift */; };
 		BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */; };
-		BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4839280D5AE100F23DCE /* ViewController.swift */; };
+		BCFE483A280D5AE100F23DCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4839280D5AE100F23DCE /* MainViewController.swift */; };
 		BCFE483D280D5AE100F23DCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCFE483B280D5AE100F23DCE /* Main.storyboard */; };
 		BCFE483F280D5AE200F23DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFE483E280D5AE200F23DCE /* Assets.xcassets */; };
 		BCFE4842280D5AE200F23DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */; };
@@ -111,11 +114,14 @@
 		B7F90B912810723E0067E4FE /* ProductCollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewModelTests.swift; sourceTree = "<group>"; };
 		B7F90B97281128DB0067E4FE /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B7F90B9928114F470067E4FE /* MoneyCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyCurrency.swift; sourceTree = "<group>"; };
+		B7F90BA02811D32C0067E4FE /* MainCollectionViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewSectionHeader.swift; sourceTree = "<group>"; };
+		B7F90BA6281246300067E4FE /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7F90BA7281246300067E4FE /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		B98C60A45FBEDB596EF4430A /* Pods-SideDishApp-SideDishAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SideDishApp-SideDishAppUITests/Pods-SideDishApp-SideDishAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCFE4832280D5AE100F23DCE /* SideDishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE4835280D5AE100F23DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BCFE4839280D5AE100F23DCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BCFE4839280D5AE100F23DCE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BCFE483C280D5AE100F23DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BCFE483E280D5AE200F23DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCFE4841280D5AE200F23DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -279,7 +285,10 @@
 		BCFE4880280D756100F23DCE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BCFE4839280D5AE100F23DCE /* ViewController.swift */,
+				BCFE4839280D5AE100F23DCE /* MainViewController.swift */,
+				B7F90BA02811D32C0067E4FE /* MainCollectionViewSectionHeader.swift */,
+				B7F90BA6281246300067E4FE /* MainCollectionViewCell.swift */,
+				B7F90BA7281246300067E4FE /* MainCollectionViewCell.xib */,
 				BCFE483B280D5AE100F23DCE /* Main.storyboard */,
 				BCFE4840280D5AE200F23DCE /* LaunchScreen.storyboard */,
 			);
@@ -451,6 +460,7 @@
 				BCFE4842280D5AE200F23DCE /* LaunchScreen.storyboard in Resources */,
 				B7F90B31280E89520067E4FE /* mockProductData.json in Resources */,
 				BCFE483F280D5AE200F23DCE /* Assets.xcassets in Resources */,
+				B7F90BA9281246300067E4FE /* MainCollectionViewCell.xib in Resources */,
 				BCFE483D280D5AE100F23DCE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,13 +631,15 @@
 				B7F90B35280EE1C20067E4FE /* ProductType.swift in Sources */,
 				B7F90B90281059870067E4FE /* ProductCellViewModel.swift in Sources */,
 				B7F90B4C280FE10C0067E4FE /* NetworkManager.swift in Sources */,
-				BCFE483A280D5AE100F23DCE /* ViewController.swift in Sources */,
+				BCFE483A280D5AE100F23DCE /* MainViewController.swift in Sources */,
 				B7F90B4E280FE1940067E4FE /* SystemLog.swift in Sources */,
+				B7F90BA8281246300067E4FE /* MainCollectionViewCell.swift in Sources */,
 				B7F90B8E2810561A0067E4FE /* Obseverable.swift in Sources */,
 				B7F90B24280E7C2A0067E4FE /* Product.swift in Sources */,
 				BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */,
 				B7F90B7C2810090D0067E4FE /* CategoryManager.swift in Sources */,
 				BCFE48B6281003BE00F23DCE /* NetworkError.swift in Sources */,
+				B7F90BA12811D32C0067E4FE /* MainCollectionViewSectionHeader.swift in Sources */,
 				BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */,
 				B7F90B9A28114F470067E4FE /* MoneyCurrency.swift in Sources */,
 				B7F90B43280FCD710067E4FE /* DetailData.swift in Sources */,

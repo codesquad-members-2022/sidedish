@@ -9,8 +9,7 @@ import Foundation
 
 protocol CurrencyFormatable {
     static var symbol: String {get}
-    static var numberFormat: NumberFormatter {get
-    }
+    static var numberFormat: NumberFormatter {get}
 }
 
 enum KRW: CurrencyFormatable {
