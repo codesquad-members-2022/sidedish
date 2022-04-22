@@ -11,7 +11,6 @@ protocol BanchanViewControllerDelegate: AnyObject {
     func didRequestOrder()
 }
 
-// MARK: - 스토리 보드로 작업된 BanchanDetailViewController 코드로 옮기는 작업
 class BanchanDetailViewController: UIViewController {
     // MARK: - Container View(Vertical Scroll View)
     private lazy var containerScrollView: UIScrollView = {
@@ -20,13 +19,12 @@ class BanchanDetailViewController: UIViewController {
         return scroll
     }()
 
-    // TODO: 여러 이미지를 담는 스택뷰
-    private lazy var productDescriptionImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "dummy")
-        return imageView
-    }()
+	private lazy var productDescriptionImageStack: UIStackView = {
+		let stack = UIStackView()
+		stack.axis = .vertical
+		stack.distribution = .fillProportionally
+		return stack
+	}()
 
     // MARK: - Carousel View
     private lazy var carouselView = CarouselView()
@@ -121,7 +119,7 @@ class BanchanDetailViewController: UIViewController {
         self.configureContainerScrollView()
         self.configureCarouselView()
         self.configureOrderView()
-        self.configureProductDescriptionImageView()
+        self.configureProductDescriptionImageStack()
     }
 
     // MARK: - UI Configurations
@@ -160,19 +158,6 @@ class BanchanDetailViewController: UIViewController {
         self.configureQuantityView()
         self.configureTotalPriceLabel()
         self.configureOrderButton()
-    }
-
-    private func configureProductDescriptionImageView() {
-        self.containerContentView.addSubview(self.productDescriptionImageView)
-        self.productDescriptionImageView.anchor(
-            top: self.orderView.bottomAnchor,
-            bottom: self.containerContentView.bottomAnchor,
-            leading: self.containerContentView.leadingAnchor,
-            trailing: self.containerContentView.trailingAnchor,
-            paddingTop: 48,
-            paddingLeft: 16,
-            paddingRight: 16
-        )
     }
 
     // MARK: - OrderView Configuration
@@ -265,6 +250,60 @@ class BanchanDetailViewController: UIViewController {
         )
     }
 
+	private func configureProductDescriptionImageStack() {
+		self.containerContentView.addSubview(self.productDescriptionImageStack)
+		self.productDescriptionImageStack.anchor(
+			top: self.orderView.bottomAnchor,
+			bottom: self.containerContentView.bottomAnchor,
+			leading: self.containerContentView.leadingAnchor,
+			trailing: self.containerContentView.trailingAnchor,
+			paddingTop: 48,
+			paddingLeft: 16,
+			paddingRight: 16
+		)
+
+		let urls = [
+			"http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D1.jpg",
+			"http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D2.jpg",
+			"http://public.codesquad.kr/jk/storeapp/data/pakage_regular.jpg"
+		]
+
+		let group = DispatchGroup()
+
+		// TODO: 순서대로 담아야함
+		var images = [Data]()
+
+		for urlString in urls {
+			guard let url = URL(string: urlString) else { continue }
+
+			group.enter()
+
+			URLSession.shared.dataTask(with: url) { data, _, error in
+				guard let data = data, error == nil else { return }
+
+				group.leave()
+				images.append(data)
+			}.resume()
+		}
+
+		group.notify(queue: .main) { [weak self] in
+			for data in images {
+				guard let image = UIImage(data: data) else { return }
+				let imageView = UIImageView(image: image)
+				let width = Double(image.size.width)
+				let height = Double(image.size.height)
+				let ratio = width/height
+
+				imageView.contentMode = .scaleAspectFit
+
+				self?.productDescriptionImageStack.addArrangedSubview(imageView)
+				imageView.translatesAutoresizingMaskIntoConstraints = false
+				imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: ratio).isActive = true
+			}
+		}
+	}
+
+	// MARK: - Action Method
     private func handleOnTapOrderButton(_ action: UIAction) {
         self.delegate?.didRequestOrder()
     }
