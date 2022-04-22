@@ -4,9 +4,13 @@ import { Reset } from "styled-reset";
 import Header from "./Header.js";
 import MainTab from "./MainTab.js";
 import setData from "../store/store.js";
+import Category from "./Category.js";
 
 function App() {
   const [dishData, setDishData] = useState([]);
+  const [mainDish, setMainDish] = useState([]);
+  const [sideDish, setSideDish] = useState([]);
+  const [soupDish, setSoupDish] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -16,6 +20,9 @@ function App() {
         ...result.soup.body,
         ...result.side.body,
       ]);
+      setMainDish([...result.main.body]);
+      setSideDish([...result.side.body]);
+      setSoupDish([...result.soup.body]);
     })();
   }, []);
 
@@ -25,6 +32,9 @@ function App() {
       <Header />
       <main>
         <MainTab dish={dishData} />
+        <Category dish={sideDish} category={"side"} />
+        <Category dish={soupDish} category={"soup"} />
+        <Category dish={mainDish} category={"main"} />
       </main>
     </>
   );

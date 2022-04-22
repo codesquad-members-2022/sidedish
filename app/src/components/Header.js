@@ -44,17 +44,17 @@ const Gnb = styled.nav`
 `;
 
 const HeaderContainer = styled.div`
-  box-sizing: border-box;
-  padding-top: 1.6rem;
   max-height: 19rem;
   min-height: 8.3rem;
   border-bottom: 1px solid ${({ theme }) => theme.color.black};
 `;
 
 const HeaderContent = styled.div`
+  box-sizing: border-box;
   display: flex;
-  width: 144rem;
   margin: 0 auto;
+  padding-top: 1.6rem;
+  width: 144rem;
 `;
 
 const Icons = styled.ul`

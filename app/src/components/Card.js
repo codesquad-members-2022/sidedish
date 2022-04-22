@@ -1,13 +1,16 @@
 /* eslint-disable prettier/prettier */
-import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import theme from "../styles/theme.js";
+import styled, { ThemeProvider } from 'styled-components';
+import theme from '../styles/theme.js';
 
 const cardSize = {
-  large: "41.1rem",
-  medium: "30.2rem",
-  small: "16rem",
+  large: '41.1rem',
+  medium: '30.2rem',
+  small: '16rem',
 };
+
+const Wrapper = styled.div`
+  position: relative;
+`;
 
 const Badges = styled.div`
   margin-top: 2.2rem;
@@ -30,7 +33,7 @@ const Badge = styled.strong`
 
 const Image = styled.img`
   display: block;
-  width: ${({ cardSize }) => cardSize.large};
+  width: ${({ cardSize, size }) => cardSize[size]};
 `;
 
 const Info = styled.div`
@@ -63,11 +66,74 @@ const NPrice = styled.span`
   text-decoration: line-through;
 `;
 
-const Card = ({ card }) => {
+const DimmedLayer = styled.div`
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const Dimmer = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  width: ${({ cardSize, size }) => cardSize[size]};
+  height: ${({ cardSize, size }) => cardSize[size]};
+  background: ${({ theme }) => theme.color.black};
+  opacity: 0.1;
+`;
+
+const HoverInfo = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  padding-top: 4rem;
+  top: 2rem;
+  right: 2rem;
+  width: 14.2rem;
+  height: 14.2rem;
+  background: rgba(248, 247, 247, 0.8);
+  border: 1px solid ${({ theme }) => theme.color.black};
+  border-radius: 50%;
+  text-align: center;
+
+  .info {
+    font-size: ${({ theme }) => theme.fontSize.medium};
+    line-height: 2.6rem;
+  }
+
+  .line {
+    width: 6.2rem;
+    margin: 0.8rem auto;
+  }
+`;
+
+const Thumbnail = ({ src, alt, size, deliveryType }) => {
+  return (
+    <Wrapper>
+      <Image cardSize={cardSize} size={size} src={src} alt={alt} />
+      <DimmedLayer>
+        <Dimmer cardSize={cardSize} size={size}></Dimmer>
+        <HoverInfo>
+          <div className="info">{deliveryType[0]}</div>
+          <hr className="line"></hr>
+          <div className="info">{deliveryType[1]}</div>
+        </HoverInfo>
+      </DimmedLayer>
+    </Wrapper>
+  );
+};
+
+const Card = ({ card, size }) => {
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <Image cardSize={cardSize} src={card.image} alt={card.alt} />
+      <Wrapper>
+        <Thumbnail
+          src={card.image}
+          alt={card.alt}
+          size={size}
+          deliveryType={card.delivery_type}
+        />
         <Info>
           <Title>{card.title}</Title>
           <Desc>{card.description}</Desc>
@@ -78,18 +144,22 @@ const Card = ({ card }) => {
           <Badges>
             {card.badge
               ? card.badge
-                .filter((badge) => badge !== "메인특가")
-                .map((badge) =>
-                  badge === "런칭특가" ? (
-                    <Badge bgColor={"orange"}>{badge}</Badge>
-                  ) : (
-                    <Badge bgColor={"green"}>{badge}</Badge>
+                  .filter(badge => badge !== '메인특가')
+                  .map(badge =>
+                    badge === '런칭특가' ? (
+                      <Badge key={'lauching'} bgColor={'orange'}>
+                        {badge}
+                      </Badge>
+                    ) : (
+                      <Badge key={'event'} bgColor={'green'}>
+                        {badge}
+                      </Badge>
+                    ),
                   )
-                )
               : null}
           </Badges>
         </Info>
-      </div>
+      </Wrapper>
     </ThemeProvider>
   );
 };

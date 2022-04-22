@@ -5,10 +5,10 @@ import CardList from "./CardList.js";
 import { FlexMarginCenter } from "../styles/utils.js";
 
 const Header = styled(FlexMarginCenter)`
+  box-sizing: border-box;
   width: 144rem;
   gap: 1.6rem;
-  padding-top: 5.6rem;
-  padding-left: 8rem;
+  padding: 5.6rem 8rem 0;
 `;
 
 const Badge = styled.div`
@@ -40,6 +40,7 @@ const Main = styled.div`
 `;
 
 const Tab = styled(FlexMarginCenter)`
+  box-sizing: border-box;
   width: 144rem;
   display: flex;
   margin-top: 2.4rem;
@@ -123,9 +124,10 @@ const MainTab = ({ dish }) => {
         {tabCards.map((cards, index) => (
           <CardList
             key={tabKeys[index]}
-            tabCards={cards}
+            cards={cards}
             tabNumber={tabNumber}
             index={index}
+            cardSize={"large"}
           />
         ))}
         <Horizon />
