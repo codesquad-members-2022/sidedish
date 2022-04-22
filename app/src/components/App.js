@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Reset } from "styled-reset";
 import Header from "./Header.js";
 import MainTab from "./MainTab.js";
+import Modal from "./Modal.js";
 import setData from "../store/store.js";
 import Category from "./Category.js";
 
@@ -32,6 +33,7 @@ function App() {
       <Header />
       <main>
         <MainTab dish={dishData} />
+        <Modal />
         <Category dish={sideDish} category={"side"} />
         <Category dish={soupDish} category={"soup"} />
         <Category dish={mainDish} category={"main"} />

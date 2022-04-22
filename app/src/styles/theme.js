@@ -2,6 +2,7 @@ const fontSize = {
   display: "4rem",
   xLarge: "2.4rem",
   large: "2rem",
+  xMedium: "1.8rem",
   medium: "1.6rem",
   small: "1.4rem",
   xSmall: "1.2rem",

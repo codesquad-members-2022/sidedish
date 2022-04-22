@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
-import styled, { ThemeProvider } from 'styled-components';
-import theme from '../styles/theme.js';
+import { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import theme from "../styles/theme.js";
+import { Badge } from "../styles/utils.js";
 
 const cardSize = {
   large: '41.1rem',
@@ -14,21 +16,6 @@ const Wrapper = styled.div`
 
 const Badges = styled.div`
   margin-top: 2.2rem;
-`;
-
-const Badge = styled.strong`
-  box-sizing: border-box;
-  display: inline-block;
-  margin-right: 0.8rem;
-  padding: 0.6rem 1.6rem;
-  height: 3rem;
-  text-align: center;
-  line-height: 1.8rem;
-  font-size: ${({ theme }) => theme.fontSize.xSmall};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  border-radius: 99.9rem;
-  background-color: ${({ theme, bgColor }) => theme.color[bgColor]};
-  color: ${({ theme }) => theme.color.white};
 `;
 
 const Image = styled.img`
