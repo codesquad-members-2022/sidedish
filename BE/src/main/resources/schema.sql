@@ -27,7 +27,7 @@ CREATE TABLE dish
     `delivery_fee`          INT              NOT NULL    COMMENT '배송비',
     `free_shipping_amount`  INT              NULL        COMMENT '무료배송조건금액',
     `mileage_rate`          DECIMAL(2, 2)    NOT NULL    COMMENT '적립금 비율',
-    `early_deliverable`     TINYINT          NULL        COMMENT '새벽배송가능여부',
+    `early_deliverable`     BOOLEAN          NULL        COMMENT '새벽배송가능여부',
     PRIMARY KEY (id)
 );
 
@@ -41,9 +41,10 @@ CREATE TABLE category
     `id`                  BIGINT         NOT NULL    AUTO_INCREMENT COMMENT 'id',
     `parent_category_id`  BIGINT         NULL        COMMENT '상위 카테고리 id',
     `name`                VARCHAR(50)    NOT NULL    COMMENT '카테고리 이름',
-    `is_event`            TINYINT        NOT NULL    COMMENT '기획전 여부',
-    `is_deleted`          TINYINT        NOT NULL    COMMENT '삭제 여부',
-    PRIMARY KEY (id)
+    `is_event`            BOOLEAN        NOT NULL    COMMENT '기획전 여부',
+    `is_deleted`          BOOLEAN        NOT NULL    COMMENT '삭제 여부',
+    PRIMARY KEY (id),
+    FOREIGN KEY(parent_category_id) REFERENCES category(id)
 );
 
 ALTER TABLE category COMMENT '카테고리';
