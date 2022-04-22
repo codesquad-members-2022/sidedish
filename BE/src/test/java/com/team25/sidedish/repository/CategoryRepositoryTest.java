@@ -27,7 +27,7 @@ class CategoryRepositoryTest {
     @DisplayName("카테고리 목록을 조회할 수 있다")
     void 카테고리_목록_조회_테스트() {
         // when
-        List<Category> results = Lists.newArrayList(categoryRepository.findAll());
+        List<Category> results = categoryRepository.findAll();
 
         // then
         assertThat(results).hasSize(CATEGORY_COUNT);
