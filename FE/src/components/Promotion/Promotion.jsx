@@ -1,13 +1,13 @@
 import "./Promotion.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export function Promotion() {
-  const [cards, setCards] = useState([]);
+  const [dataID, setDataID] = useState(1);
   return (
     <section className="promotion-section">
       <PromotionHeader />
-      <PromotionBar dataName={"best"} setCards={setCards} />
-      <PromotionSection cards={cards} />
+      <PromotionBar setDataID={setDataID} />
+      <PromotionSection dataName={"best"} dataID={dataID} />
     </section>
   );
 }
@@ -23,69 +23,71 @@ function PromotionHeader() {
   );
 }
 
-function PromotionBar({ dataName, setCards }) {
-  // const [dataID, setDataID] = useState(1);
+function PromotionCategory({
+  index,
+  className,
+  category,
+  setDataID,
+  setClickedListID,
+}) {
   return (
-    <nav className="promotion-bar">
-      <li
-        className="promotion-bar__category"
-        data_id={1}
-        onClick={({ target }) => {
-          const dataID = target.getAttribute("data_id");
-          // setDataID(dataID);
-          updateCards(dataName, dataID, setCards);
-        }}
-      >
-        풍성한 고기 반찬
-      </li>
-      <li
-        className="promotion-bar__category"
-        data_id={2}
-        onClick={({ target }) => {
-          const dataID = target.getAttribute("data_id");
-          // setDataID(dataID);
-          updateCards(dataName, dataID, setCards);
-        }}
-      >
-        편리한 반찬 세트
-      </li>
-      <li
-        className="promotion-bar__category"
-        data_id={3}
-        onClick={({ target }) => {
-          const dataID = target.getAttribute("data_id");
-          // setDataID(dataID);
-          updateCards(dataName, dataID, setCards);
-        }}
-      >
-        맛있는 제철 요리
-      </li>
-      <li
-        className="promotion-bar__category"
-        data_id={4}
-        onClick={({ target }) => {
-          const dataID = target.getAttribute("data_id");
-          // setDataID(dataID);
-          updateCards(dataName, dataID, setCards);
-        }}
-      >
-        우리 아이 영양 반찬
-      </li>
-    </nav>
+    <li
+      data_id={index + 1}
+      className={className}
+      onClick={({ target }) => {
+        const promotionBarID = target.getAttribute("data_id");
+        setClickedListID(promotionBarID);
+        setDataID(promotionBarID);
+      }}
+    >
+      {category}
+    </li>
   );
 }
 
-function updateCards(dataName, dataID, setCards) {
-  async function fetchData() {
-    const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item?${dataName}_id=${dataID}`;
-    const response = await fetch(DATA_URL);
-    const data = await response.json();
-    setCards(data);
-  }
-  fetchData();
+const categoryText = [
+  "풍성한 고기 반찬",
+  "편리한 반찬 세트",
+  "맛있는 제철 요리",
+  "우리 아이 영양 반찬",
+];
+
+function PromotionBar({ setDataID }) {
+  const [clickedListID, setClickedListID] = useState(1);
+  const categoryList = categoryText.map((category, index) => {
+    /* 목서버 API에서 받아온 데이터 ID가 1 ~ 4여서,
+    초기값을 1로 두고 key값으로 index를 사용했습니다. 추후에 수정하겠습니다.*/
+    const className =
+      index + 1 === Number(clickedListID)
+        ? "promotion-bar__category is-clicked"
+        : "promotion-bar__category";
+    return (
+      <PromotionCategory
+        key={`category${index}`}
+        index={index}
+        className={className}
+        category={category}
+        setDataID={setDataID}
+        setClickedListID={setClickedListID}
+      />
+    );
+  });
+  return <nav className="promotion-bar">{categoryList}</nav>;
 }
 
-function PromotionSection({ cards }) {
+function PromotionSection({ dataName, dataID }) {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item/best?${dataName}_id=${dataID}`;
+      const response = await fetch(DATA_URL);
+      const data = await response.json();
+      setCards(data);
+    }
+    fetchData();
+  }, [dataID]);
+
   const menuArticles = cards.map((card, index) => {
     return (
       <article className="menu-article" key={`article${index}`}>
