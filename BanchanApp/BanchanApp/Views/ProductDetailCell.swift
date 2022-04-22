@@ -29,17 +29,24 @@ class ProductDetailCell: UICollectionViewCell {
         
         let stackView: UIStackView = UIStackView(arrangedSubviews: [image, info])
         stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fill
+        stackView.alignment = .center
         self.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         image.translatesAutoresizingMaskIntoConstraints = false
+        info.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            image.widthAnchor.constraint(equalTo: image.heightAnchor)
+            image.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
+            image.widthAnchor.constraint(equalTo: image.heightAnchor),
+            info.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 13),
+            info.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -13)
         ])
     }
 
