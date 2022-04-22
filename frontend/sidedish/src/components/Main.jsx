@@ -3,12 +3,16 @@ import styled from "styled-components";
 import ItemCards from "./ItemCards";
 import Label from "../core/Label";
 import mockData from "../mockData";
-import constants from "../consts/constants";
+import carouselMockData from "../carouselMockData.json";
+import CONSTANTS from "../consts/constants";
+import Carousel from "./Carousel";
+import DivisionLine from "../core/Line";
 
 const Main = () => {
   const lnb = mockData.lnb;
   const [lnbState, setLnbState] = useState(lnb[0]);
   const [dataState, setDataState] = useState(mockData.data);
+  const [carouselState, setCarouselDataState] = useState(carouselMockData);
 
   const handleLnbState = (event) => {
     setLnbState((lnbState) => (lnbState = event.target.textContent));
@@ -34,14 +38,18 @@ const Main = () => {
   );
 
   return (
-    <MainContainer>
-      <MainTitleContainer>
-        <Label {...constants.EXHIBITION_LABEL_ATTRIBUTES} />
-        <Title>한 번 주문하면 두 번 반하는 반찬</Title>
-      </MainTitleContainer>
-      {mainLnb}
-      <ItemCards dataState={dataState} len={constants.BIG_CARD_LENGHT} />
-    </MainContainer>
+    <>
+      <MainContainer>
+        <MainTitleContainer>
+          <Label {...CONSTANTS.EXHIBITION_LABEL_ATTRIBUTES} />
+          <Title>한 번 주문하면 두 번 반하는 반찬</Title>
+        </MainTitleContainer>
+        {mainLnb}
+        <ItemCards dataState={dataState} len={CONSTANTS.BIG_CARD_LENGHTH} />
+        <DivisionLine height="1px" color="#EBEBEB" />
+        <Carousel carouselState={carouselState} len={CONSTANTS.SMALL_CARD_LENGTH} />
+      </MainContainer>
+    </>
   );
 };
 
@@ -81,7 +89,6 @@ const MainLnb = styled.li`
   margin: 0 32px;
   padding-bottom: 17px;
   cursor: pointer;
-
   border-bottom: ${(props) => (props.title === props.lnbState ? "black solid 1px" : "")};
 `;
 

@@ -1,6 +1,6 @@
 const constants = {
-  BIG_CARD_LENGHT: "441px",
-  SMALL_CARD_LENGTH: "302px",
+  BIG_CARD_LENGHTH: "441px",
+  SMALL_CARD_LENGTH: "320px",
   LAUNCH_LABEL_ATTRIBUTES: {
     string: "런칭특가",
     color: "white",
@@ -10,7 +10,7 @@ const constants = {
     padding: "6px 16px",
   },
   EVENT_LABEL_ATTRIBUTES: {
-    string: "이벤트트가",
+    string: "이벤트특가",
     color: "white",
     fontSize: "12px",
     backgroundColor: "#6DD028",
@@ -24,6 +24,10 @@ const constants = {
     backgroundColor: "white",
     borderColor: "black",
     padding: "12px 12px",
+  },
+  CAROUSEL_CARD: {
+    WIDTH: "302",
+    HEIGHT: "302",
   },
 };
 
