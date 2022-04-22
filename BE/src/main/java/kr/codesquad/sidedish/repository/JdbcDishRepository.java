@@ -1,6 +1,7 @@
 package kr.codesquad.sidedish.repository;
 
 import kr.codesquad.sidedish.domain.Dish;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -17,5 +18,8 @@ public interface JdbcDishRepository extends CrudRepository<Dish, Long> {
 
     public List<Dish> findDishesByCategoryId(Long categoryId);
 
-    public List<Dish> findDishesByEventId(Long eventId);
+    @Query("select * from dish where category_id = :categoryId and id > :lastDishId limit 4")
+    public List<Dish> findDishesByCategoryId(Long lastDishId, Long categoryId);
+
+    public List<Dish> findDishesByCategoryId(Long categoryId, PageRequest pageRequest);
 }

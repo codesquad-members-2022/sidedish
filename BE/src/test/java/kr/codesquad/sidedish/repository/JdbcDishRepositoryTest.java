@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 
 import java.util.List;
+import org.springframework.data.domain.PageRequest;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -41,5 +42,19 @@ class JdbcDishRepositoryTest {
         for (Dish dish1 : dishesByCategoryId) {
             System.out.println(dish1);
         }
+    }
+
+    @Test
+    void findDishesByCategoryId2() {
+
+        PageRequest p = PageRequest.of(0, 4);
+
+        List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(1L, p);
+        for (Dish dish : dishesByCategoryId) {
+            System.out.println(dish);
+        }
+
+
+
     }
 }
