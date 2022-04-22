@@ -18,6 +18,6 @@ data class MainResponseItem(
     val price: Int,
     @SerializedName("saleType")
     val saleType: String,
-    val viewType: Int,
-    val headerText: String
+    val viewType: Int = 0,
+    val headerText: String? = ""
 )
