@@ -8,6 +8,7 @@
 
 # .properties files
 **/application-dev.properties
+**/application-test.properties
 
 # User-specific stuff
 .idea/**/workspace.xml
