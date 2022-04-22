@@ -6,7 +6,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeSB") as? HomeViewController else {
+        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeStoryBoard") as? HomeViewController else {
             return
         }
         
