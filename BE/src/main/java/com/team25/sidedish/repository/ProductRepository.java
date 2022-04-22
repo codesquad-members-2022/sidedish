@@ -13,4 +13,10 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
         + " FROM PRODUCT "
         + " WHERE CATEGORY_ID = :categoryId")
     Optional<List<Product>> findProductsByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Override
+    Optional<Product> findById(Long productId);
+
+    @Override
+    Product save(Product product);
 }
