@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
@@ -34,12 +35,7 @@ public class ExhibitionController {
     )
     @GetMapping("/{exhibitionId}")
     public ResponseEntity<ExhibitionResponse> getByExhibitionId(
-            @PathVariable @Validated @Positive @Min(value = 1) long exhibitionId,
-            BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            throw new ExhibitionRunTimeException(EXHIBITION_VALIDATION_ERROR);
-        }
+            @PathVariable @Valid @Positive @Min(value = 1) long exhibitionId) {
 
         return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
     }
