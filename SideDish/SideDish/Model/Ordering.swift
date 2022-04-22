@@ -1,10 +1,5 @@
 import Foundation
 
-enum Category: CaseIterable {
-    case main
-    case side
-    case soup
-}
 
 class Ordering{
     private var foodMap: [Category:[String:Food]] = [:]
