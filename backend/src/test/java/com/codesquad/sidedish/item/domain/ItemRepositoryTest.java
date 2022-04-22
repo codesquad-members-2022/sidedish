@@ -36,7 +36,7 @@ class ItemRepositoryTest {
         Set<Item> items = categoryList.get(0).getItems();
         size = items.size();
         testName = "testname";
-        Item save = itemRepository.save(new Item(null, testName, "테스트 아이템", 5000, 10, "link", 1, "테스트 할인", 20));
+        Item save = itemRepository.save(new Item(null, testName, "테스트 아이템", 5000, 10, "link", "테스트 할인", 20));
         id = save.getId();
     }
 

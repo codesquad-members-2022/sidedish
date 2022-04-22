@@ -3,7 +3,6 @@ package com.codesquad.sidedish.item.service;
 import com.codesquad.sidedish.item.domain.Category;
 import com.codesquad.sidedish.item.domain.CategoryRepository;
 import com.codesquad.sidedish.item.domain.Item;
-import com.codesquad.sidedish.item.domain.ItemRepository;
 import com.codesquad.sidedish.item.dto.CategoryItemDto;
 import com.codesquad.sidedish.item.dto.CategoryItemsDto;
 import com.codesquad.sidedish.item.dto.DetailItemDto;
@@ -18,11 +17,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
-    private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
 
-    public ItemService(ItemRepository itemRepository, CategoryRepository categoryRepository) {
-        this.itemRepository = itemRepository;
+    public ItemService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
@@ -41,7 +38,7 @@ public class ItemService {
     }
 
     public DetailItemDto findById(Integer id) throws ItemIdNotFoundException {
-        return itemRepository.findById(id)
+        return categoryRepository.findByItemId(id)
                 .map(DetailItemDto::from)
                 .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
     }

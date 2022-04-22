@@ -18,21 +18,18 @@ public class Item {
     private Integer stock;
     @Column(value = "MAIN_IMAGE_LINK")
     private String mainImageLink;
-    @Column(value = "CATEGORY_ID")
-    private Integer categoryId;
     private String discountPolicy;
     private Integer discountRate;
     @MappedCollection(idColumn = "ITEM_ID")
     private Set<ItemImage> itemImages = new HashSet<>();
 
-    public Item(Integer id, String name, String description, Integer price, Integer stock, String mainImageLink, Integer categoryId, String discountPolicy, Integer discountRate) {
+    public Item(Integer id, String name, String description, Integer price, Integer stock, String mainImageLink, String discountPolicy, Integer discountRate) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.mainImageLink = mainImageLink;
-        this.categoryId = categoryId;
         this.discountPolicy = discountPolicy;
         this.discountRate = discountRate;
     }
@@ -61,10 +58,6 @@ public class Item {
         return mainImageLink;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
     public String getDiscountPolicy() {
         return discountPolicy;
     }
@@ -86,9 +79,9 @@ public class Item {
                 ", price=" + price +
                 ", stock=" + stock +
                 ", mainImageLink='" + mainImageLink + '\'' +
-                ", categoryId=" + categoryId +
                 ", discountPolicy='" + discountPolicy + '\'' +
                 ", discountRate=" + discountRate +
+                ", itemImages=" + itemImages +
                 '}';
     }
 }
