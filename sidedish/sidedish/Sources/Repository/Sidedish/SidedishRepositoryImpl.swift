@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class SidedishRepositoryImpl: NetworkRepository<SidedishEndPoint>, SidedishRepository {
+class SidedishRepositoryImpl: NetworkApiRepository<SidedishEndPoint>, SidedishRepository {
     
     func loadMenu(_ type: Sidedish.Menu) -> AnyPublisher<ApiResult<(Sidedish.Menu, [Sidedish]), SessionError>, Never> {
         request(.loadMenu(type))

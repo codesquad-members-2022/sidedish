@@ -18,13 +18,16 @@
 		7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */; };
 		73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */; };
 		D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */; };
+		E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B128129D67009627A1 /* ResourceRepository.swift */; };
+		E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */; };
+		E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B52812A001009627A1 /* NetworkRepository.swift */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
 		E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */; };
 		E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EDD5A2280CF94700DBF9C6 /* Assets.xcassets */; };
 		E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */; };
 		E0EDD5BC280D513700DBF9C6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */; };
 		E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */; };
-		E0FAAA3C280D881900B36F4D /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA30280D881900B36F4D /* NetworkRepository.swift */; };
+		E0FAAA3C280D881900B36F4D /* NetworkApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA30280D881900B36F4D /* NetworkApiRepository.swift */; };
 		E0FAAA3D280D881900B36F4D /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA32280D881900B36F4D /* URLSessionProtocol.swift */; };
 		E0FAAA3E280D881900B36F4D /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA33280D881900B36F4D /* SessionError.swift */; };
 		E0FAAA3F280D881900B36F4D /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA34280D881900B36F4D /* URLSessionProvider.swift */; };
@@ -56,6 +59,9 @@
 		7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
 		73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "sidedish/Sources/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.debug.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.debug.xcconfig"; sourceTree = "<group>"; };
+		E0D380B128129D67009627A1 /* ResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepository.swift; sourceTree = "<group>"; };
+		E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepositoryImpl.swift; sourceTree = "<group>"; };
+		E0D380B52812A001009627A1 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +70,7 @@
 		E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidedish.swift; sourceTree = "<group>"; };
-		E0FAAA30280D881900B36F4D /* NetworkRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		E0FAAA30280D881900B36F4D /* NetworkApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkApiRepository.swift; sourceTree = "<group>"; };
 		E0FAAA32280D881900B36F4D /* URLSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		E0FAAA33280D881900B36F4D /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		E0FAAA34280D881900B36F4D /* URLSessionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
@@ -118,6 +124,15 @@
 				2AABCEAD7046DD330E59CB60 /* Pods-sidedish.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E0D380B028129D09009627A1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E0D380B128129D67009627A1 /* ResourceRepository.swift */,
+				E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		E0EDD58D280CF94700DBF9C6 = {
@@ -248,9 +263,11 @@
 		E0FAAA2F280D881900B36F4D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				E0D380B028129D09009627A1 /* Images */,
 				7345C9A7280E538400F89135 /* Sidedish */,
-				E0FAAA30280D881900B36F4D /* NetworkRepository.swift */,
 				E0FAAA31280D881900B36F4D /* Base */,
+				E0FAAA30280D881900B36F4D /* NetworkApiRepository.swift */,
+				E0D380B52812A001009627A1 /* NetworkRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -412,19 +429,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0FAAA3D280D881900B36F4D /* URLSessionProtocol.swift in Sources */,
-				E0FAAA3C280D881900B36F4D /* NetworkRepository.swift in Sources */,
+				E0FAAA3C280D881900B36F4D /* NetworkApiRepository.swift in Sources */,
 				73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */,
 				7345C9B1280EA0CA00F89135 /* CustomCollectionCell.swift in Sources */,
 				733D58442810F603007FC36F /* MenuInfoView.swift in Sources */,
 				E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */,
 				E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */,
+				E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */,
 				733D58422810EF1F007FC36F /* HTTPMethod.swift in Sources */,
 				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
 				E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */,
 				E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */,
 				E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */,
+				E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */,
 				E0FAAA5E280F120900B36F4D /* MenuOrderView.swift in Sources */,
 				E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */,
+				E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */,
 				7345C9A9280E53AE00F89135 /* SidedishRepository.swift in Sources */,
 				733D584628112E96007FC36F /* String+Extension.swift in Sources */,
 				7345C9A6280E522D00F89135 /* SidedishEndPoint.swift in Sources */,

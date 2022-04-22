@@ -48,6 +48,12 @@ class MainViewController: UIViewController {
             .sink { type in
                 self.collectionView.reloadSections(IndexSet(integer: type.index))
             }.store(in: &cancellables)
+        
+        model.state.loadedImage
+            .receive(on: DispatchQueue.main)
+            .sink {
+                self.collectionView.reloadItems(at: [$0])
+            }.store(in: &cancellables)
     }
     
     private func attritbute() {
@@ -74,9 +80,16 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func numberOfSections(in collectionView: UICollectionView) -> Int { 3 }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        Sidedish.Menu.allCases.count
+    }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { 8 }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let menuType = Sidedish.Menu(rawValue: section) else {
+            return 0
+        }
+        return model.getMenuCount(menuType)
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.identifier, for: indexPath) as? CustomCollectionCell else {
@@ -88,6 +101,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 return
             }
               
+            cell.changeThumbnail(imageUrl: self.model.getThumbnailUrl(indexPath: indexPath))
             cell.changeTitleLabel(text: menuData.title)
             cell.changeDescriptionLabel(text: menuData.description)
             cell.changePriceLabel(text: menuData.price)
