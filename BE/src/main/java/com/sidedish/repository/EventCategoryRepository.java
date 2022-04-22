@@ -8,9 +8,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventCategoryRepository extends CrudRepository<EventCategory, Long> {
+public interface EventCategoryRepository extends CrudRepository<EventCategory, Integer> {
 
     @Query("SELECT id, name FROM event_category WHERE event_id = :eventId")
-    List<EventCategory> findAllByEventId(@Param("eventId") Long eventId);
+    List<EventCategory> findAllByEventId(@Param("eventId") Integer eventId);
 
 }

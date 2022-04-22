@@ -9,8 +9,8 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ImageFile {
 
     @Id
-    private Long id;
-    private Long sidedishId;
+    private Integer id;
+    private Integer sidedishId;
     private String fileName;
     private String saveFileName;
     private String contentType;
@@ -21,20 +21,6 @@ public class ImageFile {
     private LocalDateTime createdDateTime;
     @Column("modified_datetime")
     private LocalDateTime modifiedDateTime;
-
-    public ImageFile(Long id, Long sidedishId, String fileName, String saveFileName,
-        String contentType, String imageType, boolean deleteFlag,
-        LocalDateTime createdDateTime, LocalDateTime modifiedDateTime) {
-        this.id = id;
-        this.sidedishId = sidedishId;
-        this.fileName = fileName;
-        this.saveFileName = saveFileName;
-        this.contentType = contentType;
-        this.imageType = imageType;
-        this.deleteFlag = deleteFlag;
-        this.createdDateTime = createdDateTime;
-        this.modifiedDateTime = modifiedDateTime;
-    }
 
     public boolean hasMainImageType() {
         return imageType.equals("main");

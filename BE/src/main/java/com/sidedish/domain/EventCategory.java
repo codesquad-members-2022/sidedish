@@ -9,13 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class EventCategory {
 
     @Id
-    private Long id;
-    private Long eventId;
+    private Integer id;
+    private Integer eventId;
     private String name;
-
-    public EventCategory(Long id, Long eventId, String name) {
-        this.id = id;
-        this.eventId = eventId;
-        this.name = name;
-    }
 }

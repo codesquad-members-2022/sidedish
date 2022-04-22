@@ -9,8 +9,8 @@ public class SideDishMapper {
         return new SideDishDto(sideDish.getId(), sideDish.getName(),
             sideDish.getDescription(), sideDish.isDawnDeliveryFlag(),
             sideDish.isWholeNationDeliveryFlag(),
-            sideDish.getPriceOfSideDish(), sideDish.getDiscountTypeOfSideDish(),
-            sideDish.getDiscountRateOfSideDish(), sideDish.getMainImage());
+            sideDish.getPrice(), sideDish.getDiscountType(),
+            sideDish.getDiscountRate(), sideDish.getMainImage());
     }
 
 }

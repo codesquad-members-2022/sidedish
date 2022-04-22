@@ -1,7 +1,6 @@
 package com.sidedish.service;
 
 import com.sidedish.domain.SideDish;
-import com.sidedish.dto.SideDishDto;
 import com.sidedish.dto.SideDishListDto;
 import com.sidedish.mapper.SideDishMapper;
 import com.sidedish.repository.SideDishRepository;

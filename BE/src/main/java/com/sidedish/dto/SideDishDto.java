@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class SideDishDto {
 
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
     private boolean dawnDeliveryFlag;
@@ -15,7 +15,7 @@ public class SideDishDto {
     private Integer discountRate;
     private String saveFileName;
 
-    public SideDishDto(Long id, String name, String description, boolean dawnDeliveryFlag,
+    public SideDishDto(Integer id, String name, String description, boolean dawnDeliveryFlag,
         boolean wholeNationDeliveryFlag, Integer price, String discountType,
         Integer discountRate, String saveFileName) {
         this.id = id;
