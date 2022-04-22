@@ -9,15 +9,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
-
-import static com.terria.sidedish.error.ErrorCode.*;
 
 @Api(tags = "ExhibitionController")
 @RestController
@@ -35,7 +30,7 @@ public class ExhibitionController {
     )
     @GetMapping("/{exhibitionId}")
     public ResponseEntity<ExhibitionResponse> getByExhibitionId(
-            @PathVariable @Valid @Positive @Min(value = 1) long exhibitionId) {
+            @PathVariable @Validated @Positive long exhibitionId) {
 
         return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
     }
