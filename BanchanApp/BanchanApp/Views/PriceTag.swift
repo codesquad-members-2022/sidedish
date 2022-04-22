@@ -41,7 +41,7 @@ class PriceTag: UILabel {
         let formattedNumber = numberFormatter.string(from: NSNumber(value: self.price)) ?? "0"
 
         let titleAttribute: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "Grey2") ?? UIColor.black,
+            .foregroundColor: UIColor(named: "Gray2") ?? UIColor.black,
             .font: UIFont.systemFont(ofSize: 18, weight: .semibold),
             .baselineOffset: (32 - 18) / 3
         ]

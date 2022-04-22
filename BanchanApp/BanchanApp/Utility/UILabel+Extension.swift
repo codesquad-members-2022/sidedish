@@ -23,7 +23,7 @@ extension UILabel {
 
 	func applyColorGray() {
 		self.font = .systemFont(ofSize: 14)
-		self.textColor = .systemGray2
+		self.textColor = UIColor(named: "Gray2")
 	}
 
 }

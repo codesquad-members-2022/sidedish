@@ -109,7 +109,7 @@ class BanchanDetailViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.view.backgroundColor = .white
+		self.view.backgroundColor = .systemBackground
 
         self.configureUI()
         self.carouselView.delegate = self
@@ -314,7 +314,7 @@ extension BanchanDetailViewController: CarouselViewDataSource {
     func carouselView(_ carouselView: CarouselView, index: Int) -> UIView {
         let image = UIImageView()
         // TODO: get image url from ViewModel
-        image.image = UIImage(named: "dummy")
+        image.image = UIImage(systemName: "suitcase.cart")
         image.contentMode = .scaleAspectFit
         return image
     }

@@ -38,7 +38,7 @@ class ProductDetailView: UIView {
         normalPrice?.text = "12,640원"
         salePrice.text = "15,800원"
         badgeList.forEach {
-            let badge = BadgeLabel(color: .systemBlue)
+			let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
             badge.text = $0
             badges.addArrangedSubview(badge)
         }

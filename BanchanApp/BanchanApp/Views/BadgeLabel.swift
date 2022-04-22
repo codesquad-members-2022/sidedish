@@ -18,7 +18,7 @@ class BadgeLabel: UILabel {
 
 	private func setupStyle(with color: UIColor) {
 		self.font = .systemFont(ofSize: 12, weight: .semibold)
-		self.textColor = .white
+		self.textColor = .systemBackground
 		self.backgroundColor = color
 		self.textAlignment = .center
 		self.layer.masksToBounds = true
