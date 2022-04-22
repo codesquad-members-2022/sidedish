@@ -13,7 +13,7 @@ public class DiscountEventResponse {
     private long discountEventId;
     private String title;
 
-    public static DiscountEventResponse of(DiscountEvent discountEvent) {
+    public static DiscountEventResponse from(DiscountEvent discountEvent) {
         return new DiscountEventResponse(discountEvent.getId(), discountEvent.getTitle());
     }
 }

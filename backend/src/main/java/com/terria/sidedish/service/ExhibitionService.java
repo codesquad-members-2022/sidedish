@@ -9,7 +9,6 @@ import com.terria.sidedish.domain.entity.reference.SideDish;
 import com.terria.sidedish.dto.response.CategoryResponse;
 import com.terria.sidedish.dto.response.ExhibitionResponse;
 import com.terria.sidedish.dto.response.SideDishCardResponse;
-import com.terria.sidedish.error.ErrorCode;
 import com.terria.sidedish.error.ExhibitionRunTimeException;
 import com.terria.sidedish.repository.DiscountEventRepository;
 import com.terria.sidedish.repository.ExhibitionRepository;
@@ -61,12 +60,12 @@ public class ExhibitionService {
                         .map(Optional::get)
                         .collect(Collectors.toList());
 
-                sideDishCardResponses.add(SideDishCardResponse.of(sideDish, discountEvents));
+                sideDishCardResponses.add(SideDishCardResponse.from(sideDish, discountEvents));
             }
 
-            categoryResponses.add(CategoryResponse.of(category, sideDishCardResponses));
+            categoryResponses.add(CategoryResponse.from(category, sideDishCardResponses));
         }
 
-        return ExhibitionResponse.of(exhibition.getId(), exhibition.getTitle(), categoryResponses);
+        return ExhibitionResponse.from(exhibition.getId(), exhibition.getTitle(), categoryResponses);
     }
 }

@@ -23,7 +23,7 @@ public class SideDishCardResponse {
     private String shippingInfo;
     private List<DiscountEventResponse> discountEventResponses;
 
-    public static SideDishCardResponse of(SideDish sideDish, List<DiscountEvent> discountEvents) {
+    public static SideDishCardResponse from(SideDish sideDish, List<DiscountEvent> discountEvents) {
 
         double totalDiscountRate = discountEvents.stream()
                 .mapToDouble(DiscountEvent::getDiscountRate)
@@ -38,7 +38,7 @@ public class SideDishCardResponse {
                 sideDish.getPrice(),
                 sideDish.getShippingInfo(),
                 discountEvents.stream()
-                        .map(DiscountEventResponse::of)
+                        .map(DiscountEventResponse::from)
                         .collect(Collectors.toList())
         );
     }

@@ -15,7 +15,7 @@ public class ExhibitionResponse {
     private String exhibitionTitle;
     private List<CategoryResponse> categoryResponses;
 
-    public static ExhibitionResponse of(long exhibitionId, String exhibitionTitle, List<CategoryResponse> categoryResponses) {
+    public static ExhibitionResponse from(long exhibitionId, String exhibitionTitle, List<CategoryResponse> categoryResponses) {
         return new ExhibitionResponse(exhibitionId, exhibitionTitle, categoryResponses);
     }
 }

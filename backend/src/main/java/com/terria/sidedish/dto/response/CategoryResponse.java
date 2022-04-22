@@ -16,7 +16,7 @@ public class CategoryResponse {
     private String categoryTitle;
     private List<SideDishCardResponse> sideDishCardResponses;
 
-    public static CategoryResponse of(Category category, List<SideDishCardResponse> sideDishCardResponses) {
+    public static CategoryResponse from(Category category, List<SideDishCardResponse> sideDishCardResponses) {
         return new CategoryResponse(category.getId(), category.getTitle(), sideDishCardResponses);
     }
 }
