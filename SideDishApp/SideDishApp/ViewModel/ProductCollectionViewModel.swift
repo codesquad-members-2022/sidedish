@@ -16,30 +16,30 @@ struct CategorySectionViewModel {
 }
 
 struct ProductCollectionViewModel {
-    
+
     var categoryManager = CategoryManager()
     var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
-    
+
     var imageCache = NSCache<NSURL, UIImage>()
-    
+
     func countProduct(section: Int) -> Int {
         self.cellViewModels.value[section].productVM.count
     }
-    
+
     func countSection() -> Int {
         self.cellViewModels.value.count
     }
-    
+
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
         let categoryVM = cellViewModels.value[indexPath.section]
         return categoryVM.productVM[indexPath.item]
     }
-    
+
     func fetch() {
         var temp = [CategorySectionViewModel]()
-        
+
         let dispatchGroup = DispatchGroup()
-        
+
         for type in ProductType.allCases {
             dispatchGroup.enter()
             categoryManager.fetchCategory(of: type) { category in
@@ -51,19 +51,19 @@ struct ProductCollectionViewModel {
                 dispatchGroup.leave()
             }
         }
-        
+
         dispatchGroup.notify(queue: .global(), work: DispatchWorkItem {
             print("Async done")
             cellViewModels.value = temp
         })
-        
+
     }
-    
+
     func fetchImage(from url: URL, then completion: @escaping (UIImage?) -> Void) {
         if let image = imageCache.object(forKey: url as NSURL) {
             return completion(image)
         }
-        
+
         categoryManager.fetchImageData(of: url) { data in
             guard let data = data, let image = UIImage(data: data) else {
                 return completion(nil)

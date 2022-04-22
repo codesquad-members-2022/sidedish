@@ -24,7 +24,7 @@ class CategoryManagerTests: XCTestCase {
         wait(for: [promise], timeout: 1)
     }
 
-    func testFetchImage() {
+    func testFetchImageData() {
 
         // Prepare Product to test fetch Image
         var testProduct: Product?
@@ -43,23 +43,22 @@ class CategoryManagerTests: XCTestCase {
         let fileName = "1155_ZIP_P_0081_T"
         let fileExtension = "jpg"
         guard let localImageURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension), let localImageData = try? Data(contentsOf: localImageURL) else {
-            return
+            return XCTFail()
         }
 
         // Test Fetch method
         let fetchImagePromise = XCTestExpectation(description: "Fetch Image Success")
-//
-//        categoryManager.fetchImageData(of: testProduct) { data in
-//            XCTAssertEqual(localImageData, data)
-//            fetchImagePromise.fulfill()
-//        }
+
+        categoryManager.fetchImageData(of: testProduct.imageURL) { data in
+            XCTAssertEqual(localImageData, data)
+            fetchImagePromise.fulfill()
+        }
 
         wait(for: [fetchImagePromise], timeout: 1)
     }
 
     func testCaching() {
 
-        print(nsURL)
     }
 
 }
