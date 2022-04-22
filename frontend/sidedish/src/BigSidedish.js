@@ -7,6 +7,7 @@ function SidedischCard() {
             <li className="big-sidedish__card">
                 <div className="big-sidedish__card-img-container">
                     <img
+                        alt="반찬 이미지"
                         className="big-sidedish__card-img"
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiB2hsfT2WUM3m26kHqcYyAc77UI_JU61u0w&usqp=CAU"
                     />
