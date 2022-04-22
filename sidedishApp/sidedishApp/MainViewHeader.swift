@@ -57,7 +57,6 @@ class MainViewHeader: UICollectionReusableView {
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
-        
     }
     
     private func configureCaptionLabelConstraint() {
@@ -67,6 +66,5 @@ class MainViewHeader: UICollectionReusableView {
             captionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             captionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
-        
     }
 }

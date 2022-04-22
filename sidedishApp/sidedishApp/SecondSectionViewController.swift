@@ -8,36 +8,42 @@
 import UIKit
 
 class SecondSectionViewController: UIViewController{
+    
     private lazy var pointLabel: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "적립금"
         return label
     }()
+    
     private lazy var pointText: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "126원"
         return label
     }()
+    
     private lazy var deliveryLabel: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "배송정보"
         return label
     }()
+    
     private lazy var deliveryText: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "서울 경기 새벽 배송, 전국 택배 배송"
         return label
     }()
+    
     private lazy var chargeLabel: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "배송비"
         return label
     }()
+    
     private lazy var chargeText: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters

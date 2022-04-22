@@ -73,7 +73,6 @@ class MainViewCardCell: UICollectionViewCell {
         if let salePrice = salePrice {
             salePriceLabel.text = salePrice
         }
-        // MARK: 뱃지가 상황에 따라 표시되도록 해야 함
         if let badgeList = badgeList {
             if badgeList.contains(.eventPrice),
                badgeList.contains(.launchingPrice) {
@@ -94,8 +93,8 @@ class MainViewCardCell: UICollectionViewCell {
         self.addSubview(cardBodyLabel)
         self.addSubview(normalPriceLabel)
         self.addSubview(salePriceLabel)
-        //self.addSubview(eventBadgeLabel)
-//        self.addSubview(launchingBadgeLabel)
+        self.addSubview(eventBadgeLabel)
+        self.addSubview(launchingBadgeLabel)
         setUIConstraints()
     }
     
@@ -150,7 +149,6 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     private func configureEventBadgeLabelConstraint() {
-        self.addSubview(eventBadgeLabel)
         eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
@@ -159,12 +157,10 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     private func configureLaunchingBadgeLabelConstraint() {
-        print("런칭특가")
-        self.addSubview(launchingBadgeLabel)
         launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5)
+            launchingBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
         ])
     }
     

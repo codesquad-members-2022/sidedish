@@ -8,6 +8,7 @@
 import UIKit
 
 class FirstSectionViewController: UIViewController {
+    
     private lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
@@ -16,6 +17,7 @@ class FirstSectionViewController: UIViewController {
         label.text = "오리 주물럭_반조리"
         return label
     }()
+    
     private lazy var subLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
@@ -24,6 +26,7 @@ class FirstSectionViewController: UIViewController {
         label.text = "감칠맛 나는 매콤한 양념"
         return label
     }()
+    
     private lazy var salePrice: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
@@ -32,12 +35,14 @@ class FirstSectionViewController: UIViewController {
         label.text = "12,640원"
         return label
     }()
+    
     private lazy var rawPrice: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         return label
     }()
+    
     private lazy var eventLabel: UILabel = {
         var label = UILabel()
         label.clipsToBounds = true
@@ -50,6 +55,7 @@ class FirstSectionViewController: UIViewController {
         label.text = "런칭특가"
         return label
     }()
+    
     private lazy var sectionBottom: UILabel = {
         var label = UILabel()
         label.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
