@@ -13,3 +13,4 @@ spring:
 
 logging:
   level.com.codesquad.sidedish.item: debug
+  level.sql: debug
