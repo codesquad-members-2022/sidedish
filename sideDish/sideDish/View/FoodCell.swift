@@ -11,7 +11,7 @@ import UIKit
 class FoodCell: UICollectionViewCell {
     private(set) var storageLabel = [UILabel]()
     
-    //MARK: Initiallize
+    // MARK: Initiallize
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -22,7 +22,7 @@ class FoodCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    //MARK: Image Attribute
+    // MARK: Image Attribute
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "tempFood")
@@ -31,9 +31,9 @@ class FoodCell: UICollectionViewCell {
         return imageView
     }()
     
-    //MARK: Label configure
+    // MARK: Label configure
     func configure() {
-        let dumyContentArr = ["오리 주물럭_반조리","감질맛 나는 매콤한 양념","12,640원","15,800원","런칭특가"]
+        let dumyContentArr = ["오리 주물럭_반조리", "감질맛 나는 매콤한 양념", "12,640원", "15,800원", "런칭특가"]
         
         for index in 0...4 {
             let repeatLabel = UILabel()
@@ -80,10 +80,6 @@ class FoodCell: UICollectionViewCell {
         storageLabel[4].heightAnchor.constraint(equalToConstant: 24).isActive = true
         storageLabel[4].bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 13).isActive = true
         
-        
-        
-        
     }
-
     
 }

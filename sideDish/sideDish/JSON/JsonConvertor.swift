@@ -17,11 +17,10 @@ class JsonConvertor{
         
         do {
             let data = try Data(contentsOf: fileLocation)
-            guard let decodeData : [Food] = JsonConvertor.decodeJsonArray(data: data) else { return }
+            guard let decodeData: [Food] = JsonConvertor.decodeJsonArray(data: data) else { return }
         } catch {
         }
     }
-    
     
     static func decodeJsonArray<T: Codable>(data: Data) -> [T]?{
         do{

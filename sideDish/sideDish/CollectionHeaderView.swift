@@ -37,10 +37,7 @@ class CollectionHeaderView: UICollectionReusableView {
         title.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
-    
     func setTitle(text: String){
         title.text = text
     }
 }
-
-

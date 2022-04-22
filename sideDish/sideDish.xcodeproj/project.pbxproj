@@ -18,6 +18,7 @@
 		B3618E10280FD2A00049C1A5 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3618E0F280FD2A00049C1A5 /* Food.swift */; };
 		B3618E12280FD7760049C1A5 /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = B3618E11280FD7760049C1A5 /* mock.json */; };
 		B3618E16280FE40C0049C1A5 /* JsonConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3618E15280FE40C0049C1A5 /* JsonConvertor.swift */; };
+		B3BC0DE028124CF90014CE2C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B3BC0DDF28124CF90014CE2C /* .swiftlint.yml */; };
 		C1DEAF7C17CD8B6AF52FDFA4 /* Pods_sideDish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15621E10DC80D838BE16F7A0 /* Pods_sideDish.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		B3618E0F280FD2A00049C1A5 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		B3618E11280FD7760049C1A5 /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
 		B3618E15280FE40C0049C1A5 /* JsonConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertor.swift; sourceTree = "<group>"; };
+		B3BC0DDF28124CF90014CE2C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		5BD52B31280D5DD4002099B7 = {
 			isa = PBXGroup;
 			children = (
+				B3BC0DDF28124CF90014CE2C /* .swiftlint.yml */,
 				5BD52B3C280D5DD5002099B7 /* sideDish */,
 				5BD52B3B280D5DD5002099B7 /* Products */,
 				90020F87D711178E84F0D024 /* Pods */,
@@ -158,6 +161,7 @@
 				5BD52B37280D5DD5002099B7 /* Frameworks */,
 				5BD52B38280D5DD5002099B7 /* Resources */,
 				8EAF7EAF7D3DABAF55CC89DC /* [CP] Embed Pods Frameworks */,
+				B3BC0DDE28124BCB0014CE2C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -206,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3BC0DE028124CF90014CE2C /* .swiftlint.yml in Resources */,
 				5BD52B4A280D5DD8002099B7 /* LaunchScreen.storyboard in Resources */,
 				5BD52B47280D5DD8002099B7 /* Assets.xcassets in Resources */,
 				B3618E12280FD7760049C1A5 /* mock.json in Resources */,
@@ -254,6 +259,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B3BC0DDE28124BCB0014CE2C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
