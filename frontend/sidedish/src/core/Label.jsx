@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+const Label = ({ string, color, fontSize, backgroundColor, borderColor, padding }) => {
+  return (
+    <LabelBox backgroundColor={backgroundColor} borderColor={borderColor} padding={padding}>
+      <LabelText color={color} fontSize={fontSize}>
+        {string}
+      </LabelText>
+    </LabelBox>
+  );
+};
+
 const LabelBox = styled.div`
   display: inline-block;
   background-color: ${(props) => props.backgroundColor};
@@ -13,15 +23,5 @@ const LabelText = styled.div`
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
 `;
-
-const Label = ({ string, color, fontSize, backgroundColor, borderColor, padding }) => {
-  return (
-    <LabelBox backgroundColor={backgroundColor} borderColor={borderColor} padding={padding}>
-      <LabelText color={color} fontSize={fontSize}>
-        {string}
-      </LabelText>
-    </LabelBox>
-  );
-};
 
 export default Label;

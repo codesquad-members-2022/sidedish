@@ -39,8 +39,7 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",
-    "styled-component": "^2.8.0",
+    "styled-components": "^5.3.5",
     "styled-reset": "^4.3.4"
-  },
-  "homepage": "https://bukim0329.github.io/sidedish/"
+  }
 }
