@@ -1,5 +1,12 @@
 spring:
   config:
     activate:
-      on-profile: application-local.yml
+      import: application-local.yml
 
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG
