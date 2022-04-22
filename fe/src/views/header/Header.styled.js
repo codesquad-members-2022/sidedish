@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { applyFlex } from '../helper/utils';
+import { applyFlex } from '../../helper/utils';
 
 export const GnbMenu = styled.li`
   margin-right: 24px;
