@@ -13,11 +13,14 @@ repositories {
 
 dependencies {
 
-    /* Spring-Boot*/
+    /* Spring-Boot */
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     /* Spring-Data-JDBC */
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.6.6'
+
+    /* Spring-Validation */
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.6'
 
     /* Mysql */
     runtimeOnly 'mysql:mysql-connector-java'

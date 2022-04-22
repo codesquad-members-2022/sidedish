@@ -1,17 +1,19 @@
 package com.terria.sidedish.api;
 
 import com.terria.sidedish.dto.response.ExhibitionResponse;
+import com.terria.sidedish.error.ErrorCode;
+import com.terria.sidedish.error.ErrorResponse;
+import com.terria.sidedish.error.ExhibitionRunTimeException;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 
 @Api(tags = "ExhibitionController")
 @RestController
@@ -22,23 +24,21 @@ public class ExhibitionController {
     private final ExhibitionService exhibitionService;
 
     @ApiOperation(
-            value = "특정 기획전에 속한 카테고리 조회",
-            notes = "특정 기획전에 속한 카테고리를 조회한다.",
+            value = "특정 기획전에 속한 데이터(카테고리, 반찬 카드) 조회",
+            notes = "특정 기획전에 속한 데이터(카테고리, 반찬 카드)를 조회한다.",
             produces = "application/json",
-            response = ResponseEntity.class
+            response = ExhibitionResponse.class
     )
-    @ApiResponses({
-            @ApiResponse(
-                    code = 200,
-                    message = "조회 성공"
-            ),
-            @ApiResponse(
-                    code = 500,
-                    message = "서버 에러"
-            )
-    })
     @GetMapping("/{exhibitionId}")
-    public ResponseEntity<ExhibitionResponse> getByExhibitionId(@PathVariable long exhibitionId) {
+    public ResponseEntity<ExhibitionResponse> getByExhibitionId(
+            @PathVariable @Validated @Positive @Min(1) long exhibitionId) {
+
         return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
+    }
+
+    @ExceptionHandler(ExhibitionRunTimeException.class)
+    private ResponseEntity<ErrorResponse> handleCardRuntimeException(ExhibitionRunTimeException e) {
+        ErrorCode errorCode = e.getErrorCode();
+        return new ResponseEntity<>(ErrorResponse.of(errorCode), errorCode.getStatus());
     }
 }
