@@ -28,45 +28,23 @@ class MenuInfoView: UIView {
         return stackView
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "오리주물럭"
-        return label
-    }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "맛있는 오리주물럭"
-        return label
-    }()
-    
-    private let priceView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+    private let titleLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let priceView = UIView()
+
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
-        label.text = "12,300"
         return label
     }()
     
     private let salePriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
-        label.text = "15,000"
         return label
     }()
     
-    private let badgeView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let badgeView = UIView()
     
     private let badgeStackView: UIStackView = {
         let stackView = UIStackView()
@@ -88,41 +66,10 @@ class MenuInfoView: UIView {
         self.badgeStackView.spacing = attribute.badgeStackViewSpacing
         
         layout()
-        setBadge(["런칭특가"]) // 임시
-        
-        salePriceLabel.attributedText = salePriceLabel.text?.strikeThrough()
-    
     }
     
     @available(*, unavailable) required init?(coder: NSCoder) {
         fatalError("Init with coder is unavailable")
-    }
-    
-    private func setBadge(_ badges: [String]?) {
-        badges?.forEach { badge in
-            let paddingLabel = makeBadge()
-            paddingLabel.text = badge
-            switch badge {
-            case "이벤트특가":
-                paddingLabel.backgroundColor = .primary3
-            case "런칭특가":
-                paddingLabel.backgroundColor = .primary1
-            default:
-                paddingLabel.backgroundColor = .primary3
-            }
-            badgeStackView.addArrangedSubview(paddingLabel)
-            badgeStackView.trailingAnchor.constraint(equalTo: paddingLabel.trailingAnchor).isActive = true
-        }
-    }
-    
-    private func makeBadge() -> PaddingLabel {
-        let paddingLabel = PaddingLabel()
-        paddingLabel.padding = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-        paddingLabel.font = .systemFont(ofSize: 12, weight: .bold)
-        paddingLabel.textColor = .white
-        paddingLabel.clipsToBounds = true
-        paddingLabel.layer.cornerRadius = 12
-        return paddingLabel
     }
     
     private func layout() {
@@ -153,5 +100,52 @@ class MenuInfoView: UIView {
             badgeStackView.bottomAnchor.constraint(equalTo: badgeView.bottomAnchor),
             badgeStackView.leadingAnchor.constraint(equalTo: badgeView.leadingAnchor)
         ])
+    }
+}
+
+extension MenuInfoView {
+    func changeTitleLabel(text: String) {
+        titleLabel.text = text
+    }
+    
+    func changeDescriptionLabel(text: String) {
+        descriptionLabel.text = text
+    }
+    
+    func changePriceLabel(text: String) {
+        priceLabel.text = text
+    }
+    
+    func changeSalePriceLabel(text: String) {
+        salePriceLabel.attributedText = text.strikeThrough()
+    }
+    
+    func changeSaleBadge(_ badges: [String]?) {
+        badgeView.isHidden = (badges == nil)
+        
+        badges?.forEach { badge in
+            let paddingLabel = makeBadge()
+            paddingLabel.text = badge
+            switch badge {
+            case "이벤트특가":
+                paddingLabel.backgroundColor = .primary3
+            case "런칭특가":
+                paddingLabel.backgroundColor = .primary1
+            default:
+                paddingLabel.backgroundColor = .primary3
+            }
+            badgeStackView.addArrangedSubview(paddingLabel)
+            badgeStackView.trailingAnchor.constraint(equalTo: paddingLabel.trailingAnchor).isActive = true
+        }
+    }
+    
+    private func makeBadge() -> PaddingLabel {
+        let paddingLabel = PaddingLabel()
+        paddingLabel.padding = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        paddingLabel.font = .systemFont(ofSize: 12, weight: .bold)
+        paddingLabel.textColor = .white
+        paddingLabel.clipsToBounds = true
+        paddingLabel.layer.cornerRadius = 12
+        return paddingLabel
     }
 }

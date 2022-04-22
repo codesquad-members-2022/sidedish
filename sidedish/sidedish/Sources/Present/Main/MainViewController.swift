@@ -82,23 +82,27 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.identifier, for: indexPath) as? CustomCollectionCell else {
             return UICollectionViewCell()
         }
-        
+
         DispatchQueue.main.async {
             guard let menuData = self.model[indexPath] else {
                 return
             }
-            print(menuData)
+              
+            cell.changeTitleLabel(text: menuData.title)
+            cell.changeDescriptionLabel(text: menuData.description)
+            cell.changePriceLabel(text: menuData.price)
+            cell.changeSalePriceLabel(text: menuData.salePrice ?? "")
+            cell.changeSaleBadge(menuData.badge)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             if kind == UICollectionView.elementKindSectionHeader {
-                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader else {
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader, let sideMenu = Sidedish.Menu(rawValue: indexPath.section) else {
                     return UICollectionReusableView()
                 }
-                
-                headerView.changeTitle(text: "모두가 좋아하는 든든한 메인요리")
+                headerView.changeTitle(text: sideMenu.headerTitle)
                 return headerView
             }
             return UICollectionReusableView()

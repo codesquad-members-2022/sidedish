@@ -38,12 +38,18 @@ extension Sidedish {
         var index: Int {
             switch self {
             case .main: return 0
-            case .side: return 1
-            case .soup: return 2
+            case .soup: return 1
+            case .side: return 2
+            }
+        }
+        
+        var headerTitle: String {
+            switch self {
+            case .main: return "모두가 좋아하는\n든든한 메인 요리"
+            case .soup: return "정성이 담긴\n뜨끈뜨끈 국물 요리"
+            case .side: return "식탁을 풍성하게 하는 정갈한 밑반찬"
             }
         }
     }
-    
-        // swiftlint:disable force_unwrapping
-    static let dummy = Sidedish(hash: "HBDEF", image: URL(string: "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg")!, title: "오리 주물럭_반조리", deliveryType: ["새벽배송", "전국택배"], description: "감칠맛 나는 매콤한 양념", price: "15,800원", salePrice: "12,640원", badge: ["런칭특가"])
+
 }
