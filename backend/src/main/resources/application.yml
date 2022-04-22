@@ -1,16 +1,3 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test
-    username: suntory
-    password: tksxhfl
-
-  sql:
-    init:
-      schema-locations: classpath:schema.sql
-      data-locations: classpath:data.sql
-      mode: always
-
-logging:
-  level.com.codesquad.sidedish.item: debug
-  level.sql: debug
+  profiles:
+    default: ${profile}
