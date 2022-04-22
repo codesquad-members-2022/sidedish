@@ -10,7 +10,7 @@ class Ordering{
     private var foodMap: [Category:[String:Food]] = [:]
     private (set) var selectedMenu: Food?
     private var orderingCount: Int = 0
-    private let jsonHandler = JSONHandler()
+    private let jsonHandler: JSONHandlable
     var foodCount: Int{
         var count = 0
         for category in foodMap.keys{
@@ -24,6 +24,7 @@ class Ordering{
         for category in Category.allCases {
             foodMap[category] = [String:Food]()
         }
+        jsonHandler = JSONHandler()
     }
     
     var sum: Int{

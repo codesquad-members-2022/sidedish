@@ -1,8 +1,8 @@
 import Foundation
 
 //아래 클래스에 대한 프로토콜을 구성해서, 추상타입을 채택한 구체타입을 사용할 예정
-final class JSONHandler{
-    
+struct JSONHandler: JSONHandlable{
+
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     
@@ -14,3 +14,4 @@ final class JSONHandler{
         return try? encoder.encode(object)
     }
 }
+
