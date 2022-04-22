@@ -1,9 +1,6 @@
 package com.sidedish.api.categories;
 
-import com.sidedish.domain.Badge;
-import com.sidedish.domain.Category;
-import com.sidedish.domain.CategoryType;
-import com.sidedish.domain.Item;
+import com.sidedish.domain.*;
 import com.sidedish.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -66,7 +63,7 @@ public class initDB {
 
     private static void createItem(Category mainCategory, String name, String detailtype) {
         Item newItem = new Item(name, "반찬 설명", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), "html");
+                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
         mainCategory.saveItem(newItem);
     }
 }

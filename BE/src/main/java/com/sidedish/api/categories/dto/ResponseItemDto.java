@@ -1,6 +1,7 @@
 package com.sidedish.api.categories.dto;
 
 import com.sidedish.domain.Badge;
+import com.sidedish.domain.Images;
 import com.sidedish.domain.Item;
 
 import java.math.BigDecimal;
@@ -17,7 +18,7 @@ public class ResponseItemDto {
     private Badge badge;
     private BigDecimal discountPrice;
     private BigDecimal rewardPoint;
-    private String image;
+    private Images images;
 
     public ResponseItemDto(Item item) {
         this.id = item.getId();
@@ -27,6 +28,6 @@ public class ResponseItemDto {
         this.badge = item.getBadge();
         this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)));
         this.rewardPoint = item.getRewardPoint();
-        this.image = item.getImage();
+        this.images = item.getImage();
     }
 }

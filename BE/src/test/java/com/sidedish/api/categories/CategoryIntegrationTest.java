@@ -1,9 +1,6 @@
 package com.sidedish.api.categories;
 
-import com.sidedish.domain.Badge;
-import com.sidedish.domain.Category;
-import com.sidedish.domain.CategoryType;
-import com.sidedish.domain.Item;
+import com.sidedish.domain.*;
 import com.sidedish.repository.CategoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -60,7 +57,7 @@ class CategoryIntegrationTest {
 
     private void createMainItem(Category mainCategory, String name, String desc) {
         Item newItem = new Item(name, desc, BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
+                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
         mainCategory.saveItem(newItem);
     }
 
@@ -98,7 +95,15 @@ class CategoryIntegrationTest {
                                 headerWithName(HttpHeaders.CONTENT_TYPE).description("Content type")
                         ),
                         relaxedResponseFields(
-                                fieldWithPath("_links.self").description("link of main type item")
+                                fieldWithPath("_links.self").description("link of main type item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].id").description("id of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].title").description("title of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].description").description("description of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].price").description("price of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].badge").description("Event name of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].discountPrice").description("discountPrice of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].rewardPoint").description("rewardPoint of item"),
+                                fieldWithPath("_embedded.responseItemDtoList[0].images").description("images of item")
                         )
                 ));
     }

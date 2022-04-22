@@ -1,6 +1,7 @@
 package com.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
@@ -22,12 +23,14 @@ public class Item {
     private String detailType;
     private int quantity;
     private BigDecimal rewardPoint;
-    private String image;
+
+    @Embedded.Nullable
+    private Images images;
     private Long category;
 
     private Set<OrderRef> orders = new HashSet<>();
 
-    public Item(String title, String description, BigDecimal price, double discountRate, Badge badge, String detailType, int quantity, BigDecimal rewardPoint, String image) {
+    public Item(String title, String description, BigDecimal price, double discountRate, Badge badge, String detailType, int quantity, BigDecimal rewardPoint, Images images) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -36,7 +39,7 @@ public class Item {
         this.detailType = detailType;
         this.quantity = quantity;
         this.rewardPoint = rewardPoint;
-        this.image = image;
+        this.images = images;
     }
 
     void addOrders(Order order) {
@@ -85,8 +88,8 @@ public class Item {
         return rewardPoint;
     }
 
-    public String getImage() {
-        return image;
+    public Images getImage() {
+        return images;
     }
 
     @Override
@@ -101,7 +104,6 @@ public class Item {
                 ", detailType='" + detailType + '\'' +
                 ", quantity=" + quantity +
                 ", rewardPoint=" + rewardPoint +
-                ", image='" + image + '\'' +
                 ", orders=" + orders +
                 '}';
     }
