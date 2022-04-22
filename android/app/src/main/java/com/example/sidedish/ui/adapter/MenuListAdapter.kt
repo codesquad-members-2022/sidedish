@@ -50,7 +50,7 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
             }
 
             is MenuListViewHolder -> {
-                holder.bind(getItem(position))
+                holder.bind(getItem(position-1))
             }
         }
     }
@@ -60,6 +60,10 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
             0 -> HEADER
             else -> ITEM
         }
+    }
+
+    override fun getItemCount(): Int {
+        return currentList.size + 1
     }
 
     object DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Body>() {

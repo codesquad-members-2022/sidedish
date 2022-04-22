@@ -9,10 +9,7 @@ import com.example.sidedish.data.Body
 import com.example.sidedish.data.Detail
 import com.example.sidedish.data.MenuListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -60,8 +57,14 @@ class MenuListViewModel @Inject constructor(
     }
 
     fun loadFoodDetail(key: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _selectedFoodDetail.postValue(repository.getSelectedFoodDetail(key))
+        kotlin.runCatching {
+            viewModelScope.launch {
+                _selectedFoodDetail.value = withContext(Dispatchers.IO) {
+                    repository.getSelectedFoodDetail(key)
+                } ?: throw Exception("network error")
+            }
+        }.onFailure {
+            error.value = "네트워크 연결 실패"
         }
     }
 
