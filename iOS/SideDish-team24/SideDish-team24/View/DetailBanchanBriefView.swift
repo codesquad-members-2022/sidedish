@@ -1,7 +1,7 @@
 import UIKit
 
 class DetailBanchanBriefView: UIView {
-
+    
     // 스크롤 뷰(좌우)
     private var dishImage: UIImageView = {
         let imageView = UIImageView()
@@ -82,19 +82,22 @@ class DetailBanchanBriefView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layout()
+        self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.layout()
+        self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
     }
     
-    private func layout() {
+}
+
+private extension DetailBanchanBriefView {
+    func layoutDishImage() {
         self.addSubview(self.dishImage)
         self.addSubview(self.breifStackView)
         self.addSubview(self.specialPrice)
@@ -103,32 +106,34 @@ class DetailBanchanBriefView: UIView {
             self.dishImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.dishImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.dishImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
-            
+        ])
+    }
+    
+    func layoutBreifStackView() {
+        self.breifStackView.addArrangedSubview(self.dishTitle)
+        self.breifStackView.addArrangedSubview(self.dishDescription)
+        self.breifStackView.addArrangedSubview(self.prices)
+        
+        NSLayoutConstraint.activate([
             self.breifStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.breifStackView.topAnchor.constraint(equalTo: self.dishImage.bottomAnchor),
-            self.breifStackView.bottomAnchor.constraint(equalTo: self.specialPrice.topAnchor),
-            
+        ])
+    }
+    
+    func layoutPriceStackView() {
+        self.prices.addArrangedSubview(self.discountPrice)
+        self.prices.addArrangedSubview(self.normalPrice)
+        self.prices.addArrangedSubview(self.blank)
+        
+        NSLayoutConstraint.activate([
+            self.specialPrice.topAnchor.constraint(equalTo: self.breifStackView.bottomAnchor),
             self.specialPrice.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
             self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
             self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
         
-    }
-    
-    private func layoutBreifStackView() {
-        self.breifStackView.addArrangedSubview(self.dishTitle)
-        self.breifStackView.addArrangedSubview(self.dishDescription)
-        self.breifStackView.addArrangedSubview(self.prices)
-    }
-    
-    private func layoutPriceStackView() {
-        self.prices.addArrangedSubview(self.discountPrice)
-        self.prices.addArrangedSubview(self.normalPrice)
-        self.prices.addArrangedSubview(self.blank)
-        
         self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()
     }
-
 }

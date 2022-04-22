@@ -1,7 +1,7 @@
 import UIKit
 
 class OrderCountSectionView: UIView {
-
+    
     private var countTitle: UILabel = {
         let label = UILabel.customLabel("수량", UIColor.dishLightGrey)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -15,7 +15,7 @@ class OrderCountSectionView: UIView {
     }()
     
     private var buttons: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fill
@@ -65,8 +65,10 @@ class OrderCountSectionView: UIView {
         self.layoutCounter()
         self.layoutButtons()
     }
-    
-    private func layoutCountTitle() {
+}
+
+private extension OrderCountSectionView {
+    func layoutCountTitle() {
         self.addSubview(countTitle)
         
         NSLayoutConstraint.activate([
@@ -76,7 +78,7 @@ class OrderCountSectionView: UIView {
         ])
     }
     
-    private func layoutCounter() {
+    func layoutCounter() {
         self.addSubview(counter)
         
         NSLayoutConstraint.activate([
@@ -86,7 +88,7 @@ class OrderCountSectionView: UIView {
         ])
     }
     
-    private func layoutButtons() {
+    func layoutButtons() {
         self.addSubview(buttons)
         self.buttons.addArrangedSubview(minusButton)
         self.buttons.addArrangedSubview(separator)

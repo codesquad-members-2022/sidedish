@@ -17,15 +17,15 @@ class BriefBanchanReusableView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layout()
+        layoutTitle()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        layout()
+        layoutTitle()
     }
     
-    private func layout() {
+    private func layoutTitle() {
         self.addSubview(self.title)
         NSLayoutConstraint.activate([
             self.title.topAnchor.constraint(equalTo: self.topAnchor),

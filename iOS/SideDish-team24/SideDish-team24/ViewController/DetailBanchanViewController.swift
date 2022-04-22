@@ -20,13 +20,14 @@ class DetailBanchanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.layout()
+        self.layoutScollView()
+        self.layoutInnerView()
     }
     
 }
 
 private extension DetailBanchanViewController {
-    func layout() {
+    func layoutScollView() {
         let safeArea = self.view.safeAreaLayoutGuide
         self.view.addSubview(scrollView)
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +39,10 @@ private extension DetailBanchanViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
         
+        
+    }
+    
+    func layoutInnerView() {
         self.scrollView.addSubview(innerView)
         self.innerView.translatesAutoresizingMaskIntoConstraints = false
         
