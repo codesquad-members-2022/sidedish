@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
         self.collectionView.delegate = self
     }
     private func registerDishCell() {
-        let nib = UINib(nibName: "DishCell", bundle: nil)
+        let nib = UINib(nibName: DishCell.identifier, bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: DishCell.identifier)
     }
 }
@@ -42,11 +42,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView
+            guard let headerView = collectionView
                 .dequeueReusableSupplementaryView(
-                    ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader
-            headerView?.setup()
-            return headerView!
+                    ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader else {
+                        return UICollectionReusableView()
+                    }
+            headerView.setup()
+            return headerView
         default:
             assert(false, "invalid element Type")
         }
@@ -59,7 +61,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = 126
+        let upperSpacing: CGFloat = 15
+        let lowerSpacing: CGFloat = 15
+        let height: CGFloat = SectionHeader.labelHeight + upperSpacing + lowerSpacing
         return CGSize(width: width, height: height)
     }
     // MARK: - Collection View 를 Table View 처럼 사용하도록 설정

@@ -10,6 +10,7 @@ import UIKit
 class SectionHeader: UICollectionReusableView {
 
     static let cellId = "homeHeaderView"
+    static let labelHeight: CGFloat = 96
     @IBOutlet weak var label: UILabel!
 
     public func setup() {
