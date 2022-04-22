@@ -1,12 +1,65 @@
 import { useState } from "react";
 import "./Header.css";
+import styled from "styled-components";
+
+const HeaderFoodList = styled.ul`
+    display: ${(props) => (props.isVisible ? "flex" : "none")};
+    flex-direction: column;
+    gap: 8px;
+`;
+
+function NavItem(props) {
+    const items = props.navItem.items.map((item) => (
+        <li key={item.id} className="header__food-item">
+            {item.title}
+        </li>
+    ));
+
+    return (
+        <li key={props.navItem.id} className="header__food">
+            <p className="header__food-title">{props.navItem.title}</p>
+            <HeaderFoodList isVisible={props.isVisible}>{items}</HeaderFoodList>
+        </li>
+    );
+}
 
 function Header() {
     const [isVisible, setVisibility] = useState(false);
     const showMenu = () => setVisibility(true);
     const hideMenu = () => setVisibility(false);
-    const foodListClassName =
-        "header__food-list" + (isVisible ? "" : " hidden");
+    const headerList = [
+        {
+            id: 0,
+            title: "든든한 메인요리",
+            items: [
+                { id: 0, title: "육류 요리" },
+                { id: 1, title: "해산물 요리" },
+            ],
+        },
+        {
+            id: 1,
+            title: "뜨끈한 국물요리",
+            items: [{ id: 0, title: "국/탕/찌개" }],
+        },
+        {
+            id: 2,
+            title: "정갈한 밑반찬",
+            items: [
+                { id: 0, title: "나물/무침" },
+                { id: 1, title: "조림/볶음" },
+                { id: 2, title: "절임/장아찌" },
+            ],
+        },
+    ];
+
+    const navList = headerList.map((navItem) => (
+        <NavItem
+            key={navItem.id}
+            className="header__food"
+            navItem={navItem}
+            isVisible={isVisible}
+        />
+    ));
 
     return (
         <header>
@@ -18,37 +71,7 @@ function Header() {
                         onMouseOver={showMenu}
                         onMouseOut={hideMenu}
                     >
-                        <li className="header__food">
-                            <p className="header__food-title">
-                                든든한 메인요리
-                            </p>
-                            <ul className={foodListClassName}>
-                                <li className="header__food-item">육류 요리</li>
-                                <li className="header__food-item">
-                                    해산물 요리
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="header__food">
-                            <p className="header__food-title">
-                                뜨끈한 국물요리
-                            </p>
-                            <ul className={foodListClassName}>
-                                <li className="header__food-item">
-                                    국/탕/찌개
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="header__food">
-                            <p className="header__food-title">정갈한 밑반찬</p>
-                            <ul className={foodListClassName}>
-                                <li className="header__food-item">나물/무침</li>
-                                <li className="header__food-item">조림/볶음</li>
-                                <li className="header__food-item">
-                                    절임/장아찌
-                                </li>
-                            </ul>
-                        </li>
+                        {navList}
                     </ul>
                     <ul className="header__icons">
                         <li className="header__icon-item">
