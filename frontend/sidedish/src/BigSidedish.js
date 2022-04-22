@@ -21,38 +21,44 @@ const EventBadge = styled.span`
     padding: 6px 8px;
     border-radius: 25px;
     margin-top: 22px;
+    margin-right: 8px;
     background-color: ${(props) =>
         props.eventName === "런칭특가" ? "#ff8e14" : "#6dd028"};
 `;
 
 function SidedishCard(props) {
     const dishData = props.dishData;
-    const eventBadge = dishData.event_badge;
+    const eventBadges = dishData.eventBadges;
 
     let clientPrice;
     let originalPrice;
-    let eventTag;
+    let eventTags;
 
-    if (Object.keys(eventBadge).length) {
-        const saledPrice = (dishData.price * (100 - eventBadge.discount)) / 100;
+    if (eventBadges) {
+        const saledPrice =
+            dishData.price * ((100 - eventBadges[0].discount) / 100);
 
         clientPrice = <Price isClientPrice={true}>{saledPrice}원</Price>;
         originalPrice = <Price isClientPrice={false}>{dishData.price}원</Price>;
-        eventTag = (
-            <EventBadge eventName={eventBadge.event_name}>
-                {eventBadge.event_name}
+        eventTags = eventBadges.map((eventBadge) => (
+            <EventBadge
+                key={eventBadge.eventBadgeId}
+                eventName={eventBadge.eventBadgeName}
+            >
+                {eventBadge.eventBadgeName}
             </EventBadge>
-        );
+        ));
     } else {
         clientPrice = <Price isClientPrice={true}>{dishData.price}원</Price>;
     }
 
     return (
-        <li className="big-sidedish__card" key={dishData.dish_id}>
+        <li className="big-sidedish__card">
             <div className="big-sidedish__card-img-container">
                 <img
+                    alt={dishData.title}
                     className="big-sidedish__card-img"
-                    src={dishData.image_url}
+                    src={dishData.imagePath}
                 />
             </div>
             <div className="big-sidedish__card-item">
@@ -70,38 +76,21 @@ function SidedishCard(props) {
                         </>
                     </div>
                 </div>
-                {eventTag}
+                {eventTags}
             </div>
         </li>
     );
 }
 
-function SidedishCards() {
-    const [sidedishCards, setSidedishCards] = useState([]);
-    useEffect(() => {
-        const getData = async (url) => {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                const dishesData = await response.json();
-                const dishes = dishesData.data.dishes;
+function SidedishCards(props) {
+    // 목데이터가 덜 완성돼서 데이터가 없는 경우를 처리해주었습니다.
+    if (!props.sidedishData.dishes) {
+        return;
+    }
 
-                const sidedischCards = dishes.map((dish) => (
-                    <SidedishCard dishData={dish} />
-                ));
-
-                setSidedishCards(sidedischCards);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        getData(
-            "https://273b4433-0674-40c4-9d88-6ab939cd01f8.mock.pstmn.io/api/dish?festival=%ED%92%8D%EC%84%B1%ED%95%9C-%EA%B3%A0%EA%B8%B0-%EB%B0%98%EC%B0%AC&page=1"
-        );
-    }, []);
-
+    const sidedishCards = props.sidedishData.dishes.map((dish) => (
+        <SidedishCard key={dish.dishId} dishData={dish} />
+    ));
     return <ul className="big-sidedish__cards">{sidedishCards}</ul>;
 }
 
@@ -117,21 +106,14 @@ const MenuItem = styled.li`
 `;
 
 function TabMenu(props) {
-    const tabMenu = [
-        "풍성한 고기 반찬",
-        "편리한 반찬 세트",
-        "맛있는 제철 요리",
-        "우리 아이 영양 반찬",
-    ];
-
-    const tabMenuTemplate = tabMenu.map((menuName, idx) => {
+    const tabMenuTemplate = props.tabMenu.map((tab, idx) => {
         return (
             <MenuItem
                 isCurrTab={idx === props.currTab}
-                key={idx}
+                key={tab.id}
                 onClick={() => props.onChangeTab(idx)}
             >
-                {menuName}
+                {tab.name}
             </MenuItem>
         );
     });
@@ -141,9 +123,40 @@ function TabMenu(props) {
 
 function BigSidedish() {
     const [currTab, setTab] = useState(0);
+    const [bigSidedishData, setBigSidedishData] = useState(null);
     const changeTab = (index) => {
         setTab(index);
     };
+
+    useEffect(() => {
+        const getData = async (url) => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+
+                const data = await response.json();
+                setBigSidedishData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getData(
+            "https://273b4433-0674-40c4-9d88-6ab939cd01f8.mock.pstmn.io/api/categories?festival=한-번-주문하면-두-번-반하는-반찬"
+        );
+    }, []);
+
+    if (!bigSidedishData) {
+        return;
+    }
+
+    const tabMenu = bigSidedishData.map((sidedish) => {
+        return {
+            id: sidedish.categoryId,
+            name: sidedish.categoryName,
+        };
+    });
 
     return (
         <div className="big-sidedish">
@@ -151,9 +164,13 @@ function BigSidedish() {
                 <h2 className="big-sidedish__title">
                     한 번 주문하면 두 번 반하는 반찬
                 </h2>
-                <TabMenu currTab={currTab} onChangeTab={changeTab} />
+                <TabMenu
+                    currTab={currTab}
+                    tabMenu={tabMenu}
+                    onChangeTab={changeTab}
+                />
             </div>
-            <SidedishCards />
+            <SidedishCards sidedishData={bigSidedishData[currTab]} />
         </div>
     );
 }
