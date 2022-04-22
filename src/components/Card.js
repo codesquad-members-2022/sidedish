@@ -5,7 +5,6 @@ import Infos from './Infos';
 import { maxWidthBody } from '../css/variables';
 
 const Card = ({ cardInfo, length }) => {
-  console.log(length);
   const { title, image } = cardInfo;
 
   return (
