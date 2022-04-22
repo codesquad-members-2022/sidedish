@@ -177,8 +177,8 @@ function ProductDetail({ dishes }) {
       <ProductImages>
         <MainImage src={dishes.images[0]} ref={mainImage}></MainImage>
         <SubImages>
-          {dishes.images.map(src => (
-            <SubImage src={src} onMouseEnter={changeImage}></SubImage>
+          {dishes.images.map((src, index) => (
+            <SubImage key={index} src={src} onMouseEnter={changeImage}></SubImage>
           ))}
         </SubImages>
       </ProductImages>

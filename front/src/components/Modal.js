@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import ProductDetail from './ProductDetail';
+import RelatedProduct from './RelatedProduct';
 
 const ModalWrap = styled.div`
   position: fixed;
@@ -41,7 +42,7 @@ const PopupCloseButton = styled.button`
 `;
 
 function Modal({ dishes }) {
-  // const relatedDishes = dishes.related_dishes;
+  const relatedDishes = dishes.related_dishes;
   const modal = useRef();
   function closeModal() {
     modal.current.style = 'display:none';
@@ -53,6 +54,7 @@ function Modal({ dishes }) {
           <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
         </PopupCloseButtonWrap>
         <ProductDetail dishes={dishes}></ProductDetail>
+        <RelatedProduct dishes={relatedDishes}></RelatedProduct>
       </PopupBox>
     </ModalWrap>
   );
