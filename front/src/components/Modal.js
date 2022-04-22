@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const ModalWrap = styled.div`
@@ -38,13 +38,18 @@ const PopupCloseButton = styled.button`
   line-height: 26px;
   color: #777777;
 `;
+
 function Modal({ dishes }) {
   // const relatedDishes = dishes.related_dishes;
+  const modal = useRef();
+  function closeModal() {
+    modal.current.style = 'display:none';
+  }
   return (
-    <ModalWrap>
+    <ModalWrap ref={modal}>
       <PopupBox>
         <PopupCloseButtonWrap>
-          <PopupCloseButton>닫기</PopupCloseButton>
+          <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
         </PopupCloseButtonWrap>
         <ProductDetail dishes={dishes}></ProductDetail>
       </PopupBox>

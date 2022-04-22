@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 const DishDetail = styled.div`
   width: 860px;
@@ -18,6 +18,7 @@ const MainImage = styled.img`
   width: 392px;
   height: 392px;
   margin-bottom: 8px;
+  background-size: cover;
 `;
 const SubImages = styled.div`
   width: 100%;
@@ -158,6 +159,7 @@ const OrderButton = styled.button`
   font-size: 18px;
 `;
 function ProductDetail({ dishes }) {
+  const mainImage = useRef(dishes.images[0]);
   const [amount, setAmount] = useState(1);
   function addAmount() {
     setAmount(amount + 1);
@@ -165,13 +167,18 @@ function ProductDetail({ dishes }) {
   function decreaseAmount() {
     if (amount > 1) setAmount(amount - 1);
   }
+
+  function changeImage({ target }) {
+    mainImage.current.src = target.src;
+  }
+
   return (
     <DishDetail>
       <ProductImages>
-        <MainImage src={dishes.images[0]}></MainImage>
+        <MainImage src={mainImage} ref={mainImage}></MainImage>
         <SubImages>
           {dishes.images.map(src => (
-            <SubImage src={src}></SubImage>
+            <SubImage src={src} onMouseEnter={changeImage}></SubImage>
           ))}
         </SubImages>
       </ProductImages>

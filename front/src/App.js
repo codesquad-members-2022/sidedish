@@ -39,8 +39,8 @@ const dishes = {
   stock: 100,
   images: [
     'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-    'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-    'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
+    'http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg',
+    'http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg',
   ],
   related_dishes: [
     {
