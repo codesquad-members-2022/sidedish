@@ -45,8 +45,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
         cell.addViews()
         cell.setLayout()
+        
         let category = Category.allCases[indexPath.section]
         let index = indexPath.row
+        if let food = ordering[index, category] {
+            cell.receiveFood(food: food)
+        }
         return cell
     }
 }
