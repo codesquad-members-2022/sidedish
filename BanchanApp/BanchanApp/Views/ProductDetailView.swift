@@ -25,8 +25,14 @@ class ProductDetailView: UIView {
         super.init(coder: coder)
         setup()
     }
-    
+        
     private func setup() {
+        title.applySemiBold()
+        menuDescription.applyColorGray()
+        salePrice.applySemiBold()
+        normalPrice?.applyColorGray()
+        normalPrice?.applyStrikethoroughStyle()
+        
         title.text = "오리 주물럭_반조리"
         menuDescription.text = "감칠맛 나는 매콤한 양념"
         normalPrice?.text = "12,640원"
@@ -41,15 +47,6 @@ class ProductDetailView: UIView {
         badges.axis = .horizontal
         badges.spacing = 5
         badges.distribution = .fillProportionally
-        
-        title.font = .systemFont(ofSize: 14, weight: .semibold)
-        menuDescription.font = .systemFont(ofSize: 14)
-        menuDescription.textColor = .systemGray2
-        salePrice.font = .systemFont(ofSize: 14, weight: .semibold)
-        normalPrice?.font = .systemFont(ofSize: 14)
-        normalPrice?.textColor = .systemGray2
-        
-        normalPrice?.applyStrikethoroughStyle()
         
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
         if let normalPrice = normalPrice {
@@ -86,6 +83,15 @@ extension UILabel {
             attributeString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributeString.length))
             self.attributedText = attributeString
         }
+    }
+    
+    func applySemiBold() {
+        self.font = .systemFont(ofSize: 14, weight: .semibold)
+    }
+    
+    func applyColorGray() {
+        self.font = .systemFont(ofSize: 14)
+        self.textColor = .systemGray2
     }
     
 }
