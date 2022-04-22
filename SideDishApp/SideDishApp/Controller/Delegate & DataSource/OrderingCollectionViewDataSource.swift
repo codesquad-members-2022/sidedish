@@ -41,6 +41,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.Identifier.orderingViewCell, for: indexPath) as? OrderingCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
         return configure(cell: cell, at: indexPath.item)
     }
     
