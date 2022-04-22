@@ -63,7 +63,7 @@ final class NetworkManager {
             
             // handling DecodingError
             do {
-                let deleteCase: Any = "DELETE"
+                let deleteCase: Any = HTTPMethod.delete.description
                 if urlRequest.httpMethod == HTTPMethod.delete.description {
                     return completion(.success(deleteCase as? T ?? nil))
                 }
