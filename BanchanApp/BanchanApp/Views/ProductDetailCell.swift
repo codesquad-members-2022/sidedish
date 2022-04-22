@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductDetailCell: UICollectionViewCell {
-    
+
     private let image: UIImageView = UIImageView()
     private let info: ProductDetailView = ProductDetailView()
 
@@ -26,14 +26,14 @@ class ProductDetailCell: UICollectionViewCell {
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 10
         image.image = UIImage(systemName: "cart.circle")
-        
+
         let stackView: UIStackView = UIStackView(arrangedSubviews: [image, info])
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.distribution = .fill
         stackView.alignment = .center
         self.addSubview(stackView)
-        
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         image.translatesAutoresizingMaskIntoConstraints = false
         info.translatesAutoresizingMaskIntoConstraints = false

@@ -8,7 +8,7 @@
 import UIKit
 
 class Header: UICollectionReusableView {
-    
+
     let title: UILabel = UILabel()
 
     override init(frame: CGRect) {
@@ -34,5 +34,5 @@ class Header: UICollectionReusableView {
             title.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -24)
         ])
     }
-    
+
 }
