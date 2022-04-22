@@ -13,11 +13,11 @@ export default function MoreButton(props) {
 }
 
 MoreButton.defaultProps = {
-  value: '',
+  value: ''
 };
 
 const Wrap = styled.button({
   padding: '16px 24px 16px 24px',
   border: `1px solid ${COLOR.GREY4}`,
-  'background-color': COLOR.WHITE,
+  'background-color': COLOR.WHITE
 });

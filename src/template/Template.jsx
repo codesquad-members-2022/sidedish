@@ -168,9 +168,9 @@ const TemplateSubTitle = styled.span`
 
 const Row = styled.div({
   display: 'flex',
-  gap: '30px',
+  gap: '30px'
 });
 
 const Wrap = styled.div({
-  padding: '30px',
+  padding: '30px'
 });

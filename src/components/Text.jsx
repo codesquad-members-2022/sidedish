@@ -18,14 +18,14 @@ Text.defaultProps = {
   family: FAMILY.BASE,
   color: COLOR.BLACK,
   line: '',
-  value: '',
+  value: ''
 };
 
 const SPAN = styled.span({
   display: 'block',
-  fontSize: (props) => (SIZE[props.size] ? SIZE[props.size] : props.size),
-  fontWeight: (props) => (WEIGHT[props.weight] ? WEIGHT[props.weight] : props.weight),
-  fontFamily: (props) => (FAMILY[props.family] ? FAMILY[props.family] : props.family),
-  color: (props) => (COLOR[props.color] ? COLOR[props.color] : props.color),
-  textDecoration: (props) => (props.line ? 'line-through' : ''),
+  fontSize: props => (SIZE[props.size] ? SIZE[props.size] : props.size),
+  fontWeight: props => (WEIGHT[props.weight] ? WEIGHT[props.weight] : props.weight),
+  fontFamily: props => (FAMILY[props.family] ? FAMILY[props.family] : props.family),
+  color: props => (COLOR[props.color] ? COLOR[props.color] : props.color),
+  textDecoration: props => (props.line ? 'line-through' : '')
 });

@@ -11,16 +11,16 @@ export default function Header() {
   const iconButtons = {
     search: {
       width: '24px',
-      height: '24px',
+      height: '24px'
     },
     user: {
       width: '22px',
-      height: '22px',
+      height: '22px'
     },
     cart: {
       width: '27px',
-      height: '28px',
-    },
+      height: '28px'
+    }
   };
 
   return (
@@ -34,7 +34,7 @@ export default function Header() {
             <Gnb>
               <Text size="MEDIUM" value={gnbName} />
               <SubGnbList subGnbVisible={subGnbVisible}>
-                {subGnbNames[gnbIndex].map((subGnbName) => (
+                {subGnbNames[gnbIndex].map(subGnbName => (
                   <SubGnb>
                     <a href="http://localhost:3000/">
                       <Text value={subGnbName} />
@@ -47,7 +47,7 @@ export default function Header() {
         </GnbList>
       </GnbWrap>
       <MyUtils>
-        {Object.keys(iconButtons).map((iconName) => (
+        {Object.keys(iconButtons).map(iconName => (
           <li>
             <IconButton icon={iconName} width={iconButtons[iconName].width} height={iconButtons[iconName].hieght} />
           </li>
@@ -59,43 +59,43 @@ export default function Header() {
 
 Header.defaultProps = {
   value: '',
-  disabled: false,
+  disabled: false
 };
 
 const Wrap = styled.header({
   display: 'flex',
   gap: '40px',
   padding: '30px 80px 16px',
-  borderBottom: `1px solid ${COLOR.BLACK}`,
+  borderBottom: `1px solid ${COLOR.BLACK}`
 });
 
 const Logo = styled.h1({
   marginTop: '-14px',
-  lineHeight: 1.1,
+  lineHeight: 1.1
 });
 
 const GnbWrap = styled.nav({
-  flex: '1 0 0',
+  flex: '1 0 0'
 });
 
 const GnbList = styled.ul({
   display: 'flex',
-  gap: '24px',
+  gap: '24px'
 });
 
 const Gnb = styled.li({
-  cursor: 'pointer',
+  cursor: 'pointer'
 });
 
 const MyUtils = styled.ul({
   display: 'flex',
-  gap: '15px',
+  gap: '15px'
 });
 
 const SubGnbList = styled.ul({
-  maxHeight: (props) => (props.subGnbVisible ? '100%' : 0),
+  maxHeight: props => (props.subGnbVisible ? '100%' : 0),
   transition: 'max-height .15s ease-in-out',
-  overflow: 'hidden',
+  overflow: 'hidden'
 });
 
 const SubGnb = styled.li`

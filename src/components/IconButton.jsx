@@ -44,9 +44,9 @@ IconButton.defaultProps = {
   icon: null,
   width: '24px',
   height: '24px',
-  fill: COLOR.BLACK,
+  fill: COLOR.BLACK
 };
 
 const Wrap = styled.a({
-  padding: '10px',
+  padding: '10px'
 });

@@ -13,12 +13,12 @@ export default function TabButton(props) {
 }
 
 TabButton.defaultProps = {
-  value: '',
+  value: ''
 };
 
 const Wrap = styled.div({
   width: 'fit-content',
   height: '48px',
-  borderBottom: (props) => (props.isSelected ? `2px solid ${COLOR.BLACK}` : ''),
-  cursor: 'pointer',
+  borderBottom: props => (props.isSelected ? `2px solid ${COLOR.BLACK}` : ''),
+  cursor: 'pointer'
 });

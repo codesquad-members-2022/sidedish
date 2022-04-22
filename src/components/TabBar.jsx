@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import TabButton from "./TabButton";
+import React from 'react';
+import styled from 'styled-components';
+import TabButton from './TabButton';
 
 export default function TabBar(props) {
   const { tabNames } = props;
@@ -21,6 +21,6 @@ TabBar.defaultProps = {
 };
 
 const Wrap = styled.div({
-  display: "flex",
-  gap: "32px",
+  display: 'flex',
+  gap: '32px',
 });

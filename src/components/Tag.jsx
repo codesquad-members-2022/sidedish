@@ -13,14 +13,14 @@ export default function Tag(props) {
 }
 
 Tag.defaultProps = {
-  type: '이벤트특가',
+  type: '이벤트특가'
 };
 
 const PillShape = styled.div({
   width: 'fit-content',
   padding: '6px 16px 6px 16px',
   'border-radius': '15px',
-  'background-color': (props) => getColorByType(props.type),
+  'background-color': props => getColorByType(props.type)
 });
 
 function getColorByType(type) {

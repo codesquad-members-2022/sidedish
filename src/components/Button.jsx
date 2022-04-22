@@ -14,7 +14,7 @@ export default function Button(props) {
 
 Button.defaultProps = {
   value: '',
-  disabled: false,
+  disabled: false
 };
 
 const Wrap = styled.button`
