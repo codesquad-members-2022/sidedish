@@ -4,13 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todo.sidedish.common.Constants.MAIN_DISH
-import com.example.todo.sidedish.common.Constants.SIDE_DISH
-import com.example.todo.sidedish.common.Constants.SOUP_DISH
-import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.Repository
 import com.example.todo.sidedish.ui.common.Event
+import com.example.todo.sidedish.domain.model.DishType
+import com.example.todo.sidedish.domain.model.DishType.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,9 +19,9 @@ class MenuViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val items =
-        mutableMapOf<String, List<Menu>?>(MAIN_DISH to null, SOUP_DISH to null, SIDE_DISH to null)
-    private val _menus = MutableLiveData<Map<String, List<Menu>?>>()
-    val menus: LiveData<Map<String, List<Menu>?>> = _menus
+        mutableMapOf<DishType, List<Menu>?>(MAIN_DISH to null, SOUP_DISH to null, SIDE_DISH to null)
+    private val _menus = MutableLiveData<Map<DishType, List<Menu>?>>()
+    val menus: LiveData<Map<DishType, List<Menu>?>> = _menus
 
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
@@ -38,43 +36,33 @@ class MenuViewModel @Inject constructor(
         _openMenuEvent.value= Event(menu)
     }
 
-    fun getMenus() {
-        viewModelScope.launch {
-            launch {
-                when (val result = menuRepository.getMain()) {
-                    is Result.Success -> {
-                        items[MAIN_DISH] = result.data
-                        _menus.value = items
-                    }
-                    is Result.Error -> {
-                        _errorMessage.value = result.message
-                    }
-                }
-            }
 
-            launch {
-                when (val result = menuRepository.getSoup()) {
-                    is Result.Success -> {
-                        items[SOUP_DISH] = result.data
-                        _menus.value = items
-                    }
-                    is Result.Error -> {
-                        _errorMessage.value = result.message
-                    }
+    private fun getMenus() = viewModelScope.launch {
+        launch {
+            menuRepository.getMain()
+                .onSuccess {
+                    items[MAIN_DISH] = it
+                    _menus.value = items
                 }
-            }
+                .onFailure { error -> _errorMessage.value = error.message }
+        }
 
-            launch {
-                when (val result = menuRepository.getSide()) {
-                    is Result.Success -> {
-                        items[SIDE_DISH] = result.data
-                        _menus.value = items
-                    }
-                    is Result.Error -> {
-                        _errorMessage.value = result.message
-                    }
+        launch {
+            menuRepository.getSoup()
+                .onSuccess {
+                    items[SOUP_DISH] = it
+                    _menus.value = items
                 }
-            }
+                .onFailure { error -> _errorMessage.value = error.message }
+        }
+
+        launch {
+            menuRepository.getSide()
+                .onSuccess {
+                    items[SIDE_DISH] = it
+                    _menus.value = items
+                }
+                .onFailure { error -> _errorMessage.value = error.message }
         }
     }
 }

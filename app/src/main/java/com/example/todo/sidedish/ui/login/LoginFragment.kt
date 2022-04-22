@@ -30,24 +30,21 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var loginBinding: FragmentLoginBinding
-    private lateinit var gso: GoogleSignInOptions
-    private lateinit var gsc: GoogleSignInClient
+    private val gso: GoogleSignInOptions by lazy { GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build() }
+    private val gsc: GoogleSignInClient by lazy { GoogleSignIn.getClient(parentContext, gso) }
     private lateinit var googleLoginLauncher: ActivityResultLauncher<Intent>
     private lateinit var parentContext: Context
     private lateinit var navigator: NavController
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        loginBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        loginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         return loginBinding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
-        gsc = GoogleSignIn.getClient(parentContext, gso)
-        gsc.signOut()
         navigator = Navigation.findNavController(view)
         registerLoginLauncher()
         loginBinding.signInButton.setOnClickListener {
@@ -61,23 +58,21 @@ class LoginFragment : Fragment() {
         super.onAttach(context)
     }
 
-    private fun registerLoginLauncher() { googleLoginLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-        { result: ActivityResult ->
+    private fun registerLoginLauncher() {
+        googleLoginLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == RESULT_OK) {
                 val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-                try {
+                kotlin.runCatching {
                     val account = task.getResult(ApiException::class.java)
-                    val pref = this.activity?.getSharedPreferences("userName", AppCompatActivity.MODE_PRIVATE)
-                    //displayName을 sharedPreference 저장
-                    val edit = pref?.edit() // 수정모드
-                    edit?.putString("name", account.displayName) // 값 넣기
-                    edit?.apply()
+                    requireActivity().getSharedPreferences("userName", AppCompatActivity.MODE_PRIVATE).edit().apply {
+                        putString("name", account.displayName)
+                        apply()
+                    }
                     signIn()
-                } catch (e: ApiException) {
+                }.onFailure {
                     Snackbar.make(this.requireView(), "Google Login API Error", Snackbar.LENGTH_LONG).show()
                 }
-            }
-            else{
+            } else {
                 Snackbar.make(this.requireView(), "Failed To Google Login", Snackbar.LENGTH_LONG).show()
             }
         }

@@ -1,8 +1,5 @@
 package com.example.todo.sidedish.data.repository
 
-import com.example.todo.sidedish.common.Constants.NETWORK_ERROR_MESSAGE
-import com.example.todo.sidedish.common.Constants.STATUS_CODE_GET_SUCCESS
-import com.example.todo.sidedish.common.Result
 import com.example.todo.sidedish.data.dto.toMenu
 import com.example.todo.sidedish.data.dto.toMenuDetail
 import com.example.todo.sidedish.domain.model.Menu
@@ -16,33 +13,24 @@ class MenuRepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun getMain(): Result<List<Menu>> {
-        val response = onBanDataSource.getMain()
-        val mainMenus = response.body
-            ?.map { it.toMenu() }
-        if (response.statusCode == STATUS_CODE_GET_SUCCESS) {
-            return Result.Success(mainMenus)
+        return kotlin.runCatching {
+            val response = onBanDataSource.getMain()
+            response.dish.map { it.toMenu() }
         }
-        return Result.Error(NETWORK_ERROR_MESSAGE, null)
     }
 
     override suspend fun getSoup(): Result<List<Menu>> {
-        val response = onBanDataSource.getSoup()
-        val soupMenus = response.body
-            ?.map { it.toMenu() }
-        if (response.statusCode == STATUS_CODE_GET_SUCCESS) {
-            return Result.Success(soupMenus)
+        return kotlin.runCatching {
+            val response = onBanDataSource.getSoup()
+            response.dish.map { it.toMenu() }
         }
-        return Result.Error(NETWORK_ERROR_MESSAGE, null)
     }
 
     override suspend fun getSide(): Result<List<Menu>> {
-        val response = onBanDataSource.getSide()
-        val sideMenus = response.body
-            ?.map { it.toMenu() }
-        if (response.statusCode == STATUS_CODE_GET_SUCCESS) {
-            return Result.Success(sideMenus)
+        return kotlin.runCatching {
+            val response = onBanDataSource.getSide()
+            response.dish.map { it.toMenu() }
         }
-        return Result.Error(NETWORK_ERROR_MESSAGE, null)
     }
 
     override suspend fun getDetail(detailHash: String): MenuDetail {

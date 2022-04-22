@@ -3,13 +3,15 @@ package com.example.todo.sidedish.ui.menu
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todo.sidedish.common.Constants.VIEW_TYPE_HEADER
-import com.example.todo.sidedish.common.Constants.VIEW_TYPE_ITEM
 import com.example.todo.sidedish.databinding.ItemHeaderBinding
 import com.example.todo.sidedish.databinding.ItemMenuBinding
+import com.example.todo.sidedish.domain.model.DishType
 import com.example.todo.sidedish.domain.model.Header
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.model.MenuItem
+
+const val VIEW_TYPE_HEADER = 0
+const val VIEW_TYPE_ITEM = 1
 
 class MenuAdapter(private val viewModel: MenuViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -45,7 +47,7 @@ class MenuAdapter(private val viewModel: MenuViewModel) : RecyclerView.Adapter<R
         }
     }
 
-    fun submitHeaderAndItemList(items: Map<String, List<Menu>?>) {
+    fun submitHeaderAndItemList(items: Map<DishType, List<Menu>?>) {
         val menuItems = mutableListOf<MenuItem>()
         items.entries.forEach { entry ->
             val header = Header(entry.key)
