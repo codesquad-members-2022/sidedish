@@ -19,7 +19,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         with(binding.viewpagerProductDetail) {
             adapter = ProductDetailImageAdapter().apply {
-                viewModel.imageImageList.observe(this@ProductDetailActivity) { image ->
+                viewModel.imageTitleImageList.observe(this@ProductDetailActivity) { image ->
                     submitList(image)
                 }
             }

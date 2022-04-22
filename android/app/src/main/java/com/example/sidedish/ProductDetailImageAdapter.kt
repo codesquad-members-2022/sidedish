@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sidedish.databinding.ItemPorductDetailImageBinding
 
 class ProductDetailImageAdapter :
-    ListAdapter<ProductDetailImageList, ProductDetailImageAdapter.ProductDetailImageViewHolder>(
+    ListAdapter<ProductDetailTitleImageList, ProductDetailImageAdapter.ProductDetailImageViewHolder>(
         ProductDetailImageDiffCallback
     ) {
 
@@ -30,24 +30,24 @@ class ProductDetailImageAdapter :
 
     class ProductDetailImageViewHolder(private val binding: ItemPorductDetailImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(productDetailImageList: ProductDetailImageList) {
-            binding.image = productDetailImageList
+        fun bind(productDetailTitleImageList: ProductDetailTitleImageList) {
+            binding.image = productDetailTitleImageList
             binding.executePendingBindings()
         }
     }
 }
 
-object ProductDetailImageDiffCallback : DiffUtil.ItemCallback<ProductDetailImageList>() {
+object ProductDetailImageDiffCallback : DiffUtil.ItemCallback<ProductDetailTitleImageList>() {
     override fun areItemsTheSame(
-        oldItem: ProductDetailImageList,
-        newItem: ProductDetailImageList
+        oldItem: ProductDetailTitleImageList,
+        newItem: ProductDetailTitleImageList
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: ProductDetailImageList,
-        newItem: ProductDetailImageList
+        oldItem: ProductDetailTitleImageList,
+        newItem: ProductDetailTitleImageList
     ): Boolean {
         return oldItem == newItem
     }
