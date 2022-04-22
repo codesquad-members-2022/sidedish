@@ -13,6 +13,7 @@ export const Main = props => {
     <MainWrapper>
       <BestProducts />
       <CategoryList
+        categories={props.categories}
         loadedCategories={props.loadedCategories}
         setLoadedCategories={props.setLoadedCategories}
       />

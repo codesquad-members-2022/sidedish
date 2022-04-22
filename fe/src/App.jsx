@@ -26,7 +26,7 @@ function App() {
       .then(
         data => {
           const obj = {
-            id: firstCategoryTitle,
+            id: firstCategoryId,
             title: firstCategoryTitle,
             content: data.content,
           };
@@ -43,6 +43,7 @@ function App() {
       {categories && <Header categories={categories} />}
       {loadedCategories && (
         <Main
+          categories={categories}
           loadedCategories={loadedCategories}
           setLoadedCategories={setLoadedCategories}
         />

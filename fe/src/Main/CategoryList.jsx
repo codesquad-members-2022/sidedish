@@ -3,11 +3,9 @@ import Colors from '../Constants/Colors';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
-const CategoryListWrapper = styled.ul`
-  margin-top: 56px;
-`;
+const CategoryListWrapper = styled.ul``;
 
-const MoreButtonWrapper = styled.div`
+const MoreButtonWrapper = styled.li`
   width: 100%;
   display: flex;
   margin: 56px 0;
@@ -47,16 +45,28 @@ export const CategoryList = props => {
   };
 
   useEffect(() => {
-    console.log(props.loadedCategories);
-  }, []);
+    if (!moreButtonClicked) return;
+    // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
+    const categoryIds = props.categories.map(category => category.id);
+    const loadedCategoryId = props.loadedCategories[0].id;
+    const unloadedCategoryIds = categoryIds.filter(
+      id => id !== loadedCategoryId
+    );
+    const requests = unloadedCategoryIds.map(id => fetch(`/category/${id}`));
 
-  // useEffect(() => {
-  //   if (!moreButtonClicked) return;
-  //   // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
-  //   fetch('/')
-  //     .then(() => {})
-  //     .then(() => {});
-  // }, [moreButtonClicked]);
+    Promise.all(requests)
+      .then(responses =>
+        Promise.all(responses.map(response => response.json()))
+      )
+      .then(dataArr => {
+        const parsedData = dataArr.map((categoryData, idx) => ({
+          id: unloadedCategoryIds[idx],
+          title: dataArr[idx].content[0].mainCategory,
+          content: dataArr[idx].content,
+        }));
+        props.setLoadedCategories([...props.loadedCategories, ...parsedData]);
+      });
+  }, [moreButtonClicked]);
 
   return (
     <CategoryListWrapper>
