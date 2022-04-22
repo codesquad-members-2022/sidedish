@@ -11,6 +11,7 @@ import {
   SpecialTab,
   CardContainer,
 } from './Special.style';
+import tabData from '../data/specialTab.js';
 
 const Special = () => {
   const [data, setData] = useState([]);
@@ -39,18 +40,17 @@ const Special = () => {
           <SpecialTitle>한 번 주문하면 두 번 반하는 반찬</SpecialTitle>
         </SpecialTitleBox>
         <SpecialTabBar>
-          <SpecialTab onClick={() => handleTabClick(0)} isSelected={tabNum === 0 ? true : false}>
-            풍성한 고기 반찬
-          </SpecialTab>
-          <SpecialTab onClick={() => handleTabClick(1)} isSelected={tabNum === 1 ? true : false}>
-            편리한 반찬 세트
-          </SpecialTab>
-          <SpecialTab onClick={() => handleTabClick(2)} isSelected={tabNum === 2 ? true : false}>
-            맛있는 제철 요리
-          </SpecialTab>
-          <SpecialTab onClick={() => handleTabClick(3)} isSelected={tabNum === 3 ? true : false}>
-            우리 아이 영양 반찬
-          </SpecialTab>
+          {tabData.map((v, i) => {
+            return (
+              <SpecialTab
+                key={i}
+                onClick={() => handleTabClick(v.index)}
+                isSelected={tabNum === v.index ? true : false}
+              >
+                {v.name}
+              </SpecialTab>
+            );
+          })}
         </SpecialTabBar>
       </SpecialHeader>
       <CardContainer>
