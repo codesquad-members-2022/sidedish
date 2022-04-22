@@ -83,9 +83,9 @@ function SidedishCard(props) {
 }
 
 function SidedishCards(props) {
-    // 목데이터가 덜 완성돼서 데이터가 없는 경우를 처리해주었습니다.
+    // 목데이터가 덜 완성돼서 임시로 데이터가 없는 경우를 처리해주었습니다.
     if (!props.sidedishData.dishes) {
-        return;
+        return <p>{props.sidedishData.categoryName}</p>;
     }
 
     const sidedishCards = props.sidedishData.dishes.map((dish) => (
