@@ -2,7 +2,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    let detailView = DetailView()
+    private let detailView = DetailView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
