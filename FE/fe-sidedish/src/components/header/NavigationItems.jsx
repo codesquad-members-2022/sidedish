@@ -1,7 +1,7 @@
 import { Category, CategoryTitle, CategoryMenuList } from "./Header.style";
-import CategoryMenuItems from "./CategoryMenuItems";
+import NavigationMenuItems from "./NavigationMenuItems";
 
-const CategoryItems = ({ isOpen, categoriesData }) => {
+const NavigationItems = ({ isOpen, categoriesData }) => {
   return categoriesData.map(_getCategory(isOpen));
 };
 
@@ -12,9 +12,9 @@ const _getCategory =
       <Category key={id}>
         <CategoryTitle>{categoryTitle}</CategoryTitle>
         <CategoryMenuList isOpen={isOpen}>
-          {isOpen ? <CategoryMenuItems categoryMenus={categoryMenus} /> : ""}
+          {isOpen ? <NavigationMenuItems categoryMenus={categoryMenus} /> : ""}
         </CategoryMenuList>
       </Category>
     );
 
-export default CategoryItems;
+export default NavigationItems;

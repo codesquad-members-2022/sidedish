@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { CategoryMenu } from "./Header.style";
 
-const CategoryMenuItems = ({ categoryMenus }) => {
+const NavigationMenuItems = ({ categoryMenus }) => {
   return categoryMenus.map(_getCategoryMenuItem);
 };
 
@@ -11,4 +11,4 @@ const _getCategoryMenuItem = ({ id, menu }) => (
   </CategoryMenu>
 );
 
-export default CategoryMenuItems;
+export default NavigationMenuItems;
