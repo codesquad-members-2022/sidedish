@@ -1,18 +1,18 @@
-import {goodsData} from '../data/goods.js';
+import {bestGoodsData} from '../data/bestGoods.js';
 
 function TabList({tabState, setTabState}) {
-  const tabStateHandler = ({target}) => {
+  const handleTabState = ({target}) => {
     setTabState(prevState => {
       return {...prevState, category: target.title};
     });
   };
 
-  return goodsData.map(element => (
+  return bestGoodsData.map(element => (
     <li
       className={tabState === element.tab.title ? 'selected' : ''}
       key={element.id}
       title={element.tab.title}
-      onClick={tabStateHandler}
+      onClick={handleTabState}
     >
       {element.tab.title}
     </li>
