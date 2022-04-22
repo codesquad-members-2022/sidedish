@@ -1,9 +1,14 @@
 package com.example.be.domain.dish;
 
+import com.example.be.domain.Image;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 @Table("dish")
 public class Dish {
     @Id
@@ -17,6 +22,9 @@ public class Dish {
     private String thumbnail;
     private DishStatus dishStatus;
     private Long categoryId;
+
+    @MappedCollection(idColumn = "image_id", keyColumn = "image_id")
+    private List<Image> dishes = new ArrayList<>();
 
     public Dish(Long dishId, String name, String description, BigDecimal normalPrice, BigDecimal salePrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, Long categoryId) {
         this.dishId = dishId;
