@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import com.codesquad.sidedish.item.domain.Item;
-
+@Table("ORDERS")
 public class Order {
 
     @Id
@@ -16,15 +16,21 @@ public class Order {
     @Column("ORDER_DATE")
     private LocalDateTime orderDate;
 
-    private Item item;
+    @Column("ITEM_ID")
+    private Integer itemId;
 
-    private boolean cancelled;
+    @Column("USER_ID")
+    private Integer userId;
 
-    public Order(Integer id, Integer amount, LocalDateTime orderDate, Item item, boolean cancelled) {
+    private Boolean cancelled;
+
+    public Order(Integer id, Integer amount, LocalDateTime orderDate, Integer itemId, Integer userId,
+        Boolean cancelled) {
         this.id = id;
         this.amount = amount;
         this.orderDate = orderDate;
-        this.item = item;
+        this.itemId = itemId;
+        this.userId = userId;
         this.cancelled = cancelled;
     }
 
@@ -40,15 +46,28 @@ public class Order {
         return orderDate;
     }
 
-    public Item getItem() {
-        return item;
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public boolean isCancelled() {
-        return cancelled;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+
+    public static Order from(Integer amount, LocalDateTime orderDate, Integer itemId, Integer userId) {
+        return new Order(null, amount, orderDate, itemId, userId, false);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+            "id=" + id +
+            ", amount=" + amount +
+            ", orderDate=" + orderDate +
+            ", itemId=" + itemId +
+            ", userId=" + userId +
+            ", cancelled=" + cancelled +
+            '}';
     }
 }

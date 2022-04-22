@@ -1,10 +1,6 @@
-package com.codesquad.sidedish.order.domain;
-
-import java.util.HashSet;
-import java.util.Set;
+package com.codesquad.sidedish.user.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 
 public class User {
 
@@ -12,9 +8,6 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-
-    @MappedCollection(idColumn = "USER_ID")
-    private Set<Order> orders = new HashSet<>();
 
     public User(Integer id, String username, String password) {
         this.id = id;
