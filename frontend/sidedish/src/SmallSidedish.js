@@ -13,6 +13,7 @@ function SmallSidedishCard() {
             .then((res) => res.json())
             .then(
                 (result) => {
+                    console.log(result);
                     setIsLoaded(true);
                     setItems(result);
                 },
@@ -22,35 +23,6 @@ function SmallSidedishCard() {
                 }
             );
     }, []);
-
-    const Image = ({ img }) => {
-        return (
-            <div className="small-sidedish__card-img-container">
-                <img className="small-sidedish__card-img" src={img} />
-            </div>
-        );
-    };
-    const cardItemText = (text) => {
-        return <h3 className="small-sidedish__card-name">{text}</h3>;
-    };
-    const cardItemDescription = (des) => {
-        return <p className="small-sidedish__card-description">{des}</p>;
-    };
-    const cardItemPrices = (pre, cur) => {
-        return (
-            <div className="small-sidedish__card-prices">
-                <span className="small-sidedish__card-price--default">
-                    {pre}
-                </span>
-                <span className="small-sidedish__card-price--option">
-                    {cur}
-                </span>
-            </div>
-        );
-    };
-    const cardTagLaunch = (lan) => {
-        return <span className="small-sidedish__card-tag--launch">{lan}</span>;
-    };
 
     const SmallCard = ({ img, text, des, pre, cur, lan }) => {
         return (
@@ -81,16 +53,16 @@ function SmallSidedishCard() {
 
     return (
         <>
-            {items.data.dishes.map((dish) => {
+            {items.data.map((dish) => {
                 return (
                     <>
                         <SmallCard
-                            img={dish.image_url}
+                            img={dish.imagePath}
                             text={dish.title}
                             des={dish.description}
                             pre={dish.price}
                             cur={dish.price}
-                            lan={dish.event_badge.event_name}
+                            lan={dish.eventBadges.eventBadgeName}
                         />
                     </>
                 );
@@ -100,47 +72,6 @@ function SmallSidedishCard() {
 }
 
 function SmallSidedish() {
-    // const [dish, setDish] = useState({
-    //     items: [],
-    //     DataisLoaded: false,
-    // });
-    // const componentDidMount = () =>
-    //     fetch(
-    //         "https://273b4433-0674-40c4-9d88-6ab939cd01f8.mock.pstmn.io/api/dish?section=정갈한-밑반찬&flat=true&page=1"
-    //     )
-    //         .then((res) => res.json())
-    //         .then((json) => {
-    //             dish.setDish({
-    //                 items: json,
-    //                 DataisLoaded: true,
-    //             });
-    //         });
-    // const render = () => {
-    //     const { DataisLoaded, items } = dish;
-    //     if (!DataisLoaded)
-    //         return (
-    //             <div>
-    //                 <h3>please wait some time...</h3>
-    //             </div>
-    //         );
-
-    // if (error) {
-    //     return <div>Error: {error.message}</div>;
-    // } else if (!isLoaded) {
-    //     return <div>Loading...</div>;
-    // } else {
-    //     return (
-    //         <ul>
-    //             {items.map((item) => (
-    //                 <li key={item.dishes}>
-    //                     {item.title}
-    //                     {item.description}
-    //                 </li>
-    //             ))}
-    //         </ul>
-    //     );
-    // }
-
     return (
         <div className="small-sidedish">
             <div className="small-sidedish__header">
@@ -152,6 +83,5 @@ function SmallSidedish() {
         </div>
     );
 }
-// }
 
 export default SmallSidedish;
