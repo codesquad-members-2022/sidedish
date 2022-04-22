@@ -17,10 +17,10 @@ struct CategorySectionViewModel {
 
 struct ProductCollectionViewModel {
 
-    var categoryManager = CategoryManager()
-    var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
+    private let categoryManager = CategoryManager()
+    private var imageCache = NSCache<NSURL, UIImage>()
 
-    var imageCache = NSCache<NSURL, UIImage>()
+    public var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
     func countProduct(section: Int) -> Int {
         self.cellViewModels.value[section].productVM.count
@@ -35,28 +35,30 @@ struct ProductCollectionViewModel {
         return categoryVM.productVM[indexPath.item]
     }
 
-    func fetch() {
+    func fetchCategories() {
         var temp = [CategorySectionViewModel]()
 
         let dispatchGroup = DispatchGroup()
 
         for type in ProductType.allCases {
             dispatchGroup.enter()
+
             categoryManager.fetchCategory(of: type) { category in
                 let productCellVMs = category.product.compactMap { product in
-                    ProductCellViewModel(title: product.title, description: product.description, imageURL: product.imageURL, originalPrice: product.originalPrice, salePrice: product.salePrice, badge: product.badge)
+                    ProductCellViewModel(product: product)
                 }
-                let categorySectionVM = CategorySectionViewModel(type: .main, productVM: productCellVMs)
+                
+                let categorySectionVM = CategorySectionViewModel(type: type, productVM: productCellVMs)
+                
                 temp.append(categorySectionVM)
+
                 dispatchGroup.leave()
             }
         }
 
         dispatchGroup.notify(queue: .global(), work: DispatchWorkItem {
-            print("Async done")
             cellViewModels.value = temp
         })
-
     }
 
     func fetchImage(from url: URL, then completion: @escaping (UIImage?) -> Void) {

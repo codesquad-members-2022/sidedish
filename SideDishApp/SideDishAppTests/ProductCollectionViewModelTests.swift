@@ -49,5 +49,4 @@ class ProductCollectionViewModelTests: XCTestCase {
             promise.fulfill()
         }
     }
-
 }
