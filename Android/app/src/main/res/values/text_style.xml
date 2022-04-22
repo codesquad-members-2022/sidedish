@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text_Large_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Text_Medium_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text_Medium_Regular.Grey2">
+        <item name="android:textColor">@color/Grey2</item>
+    </style>
+
+    <style name="Text_Medium_Light_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text_Medium_Light_Regular.Grey2">
+        <item name="android:textColor">@color/Grey2</item>
+    </style>
+
+    <style name="Text_Small_Regular">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text_Small_Regular.Grey2">
+        <item name="android:textColor">@color/Grey2</item>
+    </style>
+
+    <style name="Caption">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text_Large_Bold">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text_Medium_Bold">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text_Medium_Bold.Grey2">
+        <item name="android:textColor">@color/Grey2</item>
+    </style>
+
+    <style name="Text_Small_Bold">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text_Food_Content">
+        <item name="android:textColor">@color/Grey2</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text_Badge_launching">
+        <item name="android:textColor">@color/Primary3</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>

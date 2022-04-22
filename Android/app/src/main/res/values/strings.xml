@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SideDish</string>
+    <string name="btn_text_github_login">GitHub로 로그인</string>
+    <string name="btn_text_google_login">Google로 로그인</string>
+    <string name="appbar_title">Ordering</string>
+    <string name="header_main">모두가 좋아하는 \n든든한 메인요리</string>
+
+    <string name="text_tag_launching">런칭특가</string>
+    <string name="text_tag_event">이벤트특가</string>
+    <string name="currency">%s원</string>
+    <string name="detail_point">적립금</string>
+    <string name="detail_delivery_info">배송정보</string>
+</resources>
