@@ -12,7 +12,6 @@ const App = () => {
   const [extended, setExtended] = useState(false);
   const cats = useCategories(extended);
   const themes = useSpecialCategories(extended);
-  console.log(cats, themes);
   return (
     <>
       {cats && themes && (

@@ -60,7 +60,6 @@ const SlideButtons = styled.div``;
 
 export const CardList = ({ size, id, special = false }) => {
   const categoryData = useFetch(id, special);
-  console.log(size, id, special);
   return (
     <>
       {categoryData && (
