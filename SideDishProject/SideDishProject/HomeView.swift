@@ -27,12 +27,12 @@ class HomeView: UIView{
         layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView?.register(DishCollectionViewCell.self, forCellWithReuseIdentifier: DishCollectionViewCell.identifier)
-        collectionView?.register(DishComentHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DishComentHeaderView.identifier)
+        collectionView?.register(DishCommentHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DishCommentHeaderView.identifier)
         collectionView?.alwaysBounceVertical = true
         guard let collectionView = collectionView else {
             return
         }
-        layout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 100)
+        layout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 120)
         addSubview(collectionView)
         setUIConstraint()
     }

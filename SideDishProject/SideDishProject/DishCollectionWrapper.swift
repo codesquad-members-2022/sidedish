@@ -11,8 +11,13 @@ import UIKit
 class DishCollectionWrapper: NSObject{
     
     private var dishes: [DishCategory : [Product]] = [:]
+    private var dishComments: [String] = []
     func setDishes(dishes: [DishCategory : [Product]]){
         self.dishes = dishes
+    }
+    
+    func setDishComments(dishComments: [String]){
+        self.dishComments = dishComments
     }
 }
 extension DishCollectionWrapper: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -35,7 +40,8 @@ extension DishCollectionWrapper: UICollectionViewDelegate, UICollectionViewDataS
         if (kind == UICollectionView.elementKindSectionHeader) {
             // Create Header
             
-            guard let headerView : DishComentHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DishComentHeaderView.identifier, for: indexPath) as? DishComentHeaderView else { return UICollectionReusableView() }
+            guard let headerView : DishCommentHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DishCommentHeaderView.identifier, for: indexPath) as? DishCommentHeaderView else { return UICollectionReusableView() }
+            headerView.setCommentLabel(text: dishComments[indexPath.section])
             return headerView
         }
         return UICollectionReusableView()

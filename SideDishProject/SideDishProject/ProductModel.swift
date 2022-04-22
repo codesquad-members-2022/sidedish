@@ -34,11 +34,12 @@ class ProductModel{
         dishes[.soupDish] = products.filter{$0.category == .soupDish}
         dishes[.sideDish] = products.filter{$0.category == .sideDish}
         delegate?.updateAllDishes(dishes: dishes)
+        delegate?.updateDishComment(comments: ["모두가 좋아하는\n든든한 메인 요리", "정성이 담긴\n뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는\n정갈한 밑반찬"])
     }
-    
 }
 
 protocol ProductModelDelegate: AnyObject{
+    func updateDishComment(comments: [String])
     func updateAllDishes(dishes: [DishCategory : [Product]])
     func updateFail(error: Error)
 }

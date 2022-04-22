@@ -38,6 +38,10 @@ class HomeViewController: UIViewController {
     
 }
 extension HomeViewController: ProductModelDelegate{
+    func updateDishComment(comments: [String]) {
+        dishCollectionWrapper.setDishComments(dishComments: comments)
+    }
+    
     func updateAllDishes(dishes: [DishCategory : [Product]]) {
         dishCollectionWrapper.setDishes(dishes: dishes)
     }
