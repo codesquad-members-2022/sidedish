@@ -23,6 +23,7 @@ import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -83,6 +84,8 @@ class CategoryIntegrationTest {
                 .andExpect(jsonPath("_links.prev-page").exists())
                 .andExpect(jsonPath("_links.next-page").exists())
                 .andDo(document("search-main",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
                         links(
                                 linkWithRel("self").description("link to self"),
                                 linkWithRel("prev-page").description("link to prev page"),
