@@ -7,6 +7,7 @@ import HoverInfo from '../images/HoverInfo.png';
 export default function Card(props) {
   const { size, imageURL, title, desc, curPrice, prevPrice, tags } = props;
   const [isHoverImg, setHoverImg] = useState(false);
+  const isSmall = size === 'SMALL';
   return (
     <Wrap size={size}>
       <A>
@@ -16,7 +17,7 @@ export default function Card(props) {
         </ImgWrap>
         {getSpaceBySize()}
         {getTitle()}
-        {getDescription()}
+        {getDescriptionBySize()}
         <Prices>
           <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
           <Text size="BASE" weight="REGULAR" color="GREY3" value={prevPrice} line />
@@ -27,35 +28,29 @@ export default function Card(props) {
   );
 
   function getTitle() {
-    if (size === 'SMALL') {
+    if (isSmall) {
       return <Text value={title} />;
     }
     return <Text size="MEDIUM" weight="MEDIUM" value={title} />;
   }
 
   function getHoverImgBySize() {
-    if (size === 'SMALL') return '';
+    if (isSmall) return null;
     return <HoverImg isHoverImg={isHoverImg} />;
   }
 
   function getSpaceBySize() {
-    if (size === 'SMALL') {
-      return '';
-    }
+    if (isSmall) return null;
     return <Space />;
   }
 
-  function getDescription() {
-    if (size === 'SMALL') {
-      return '';
-    }
+  function getDescriptionBySize() {
+    if (isSmall) return null;
     return <Text size="BASE" weight="REGULAR" color="GREY2" value={desc} />;
   }
 
   function getTags() {
-    if (size === 'SMALL') {
-      return '';
-    }
+    if (isSmall) return null;
     return tags.map(tag => <Tag type={tag} />);
   }
 }
@@ -71,6 +66,19 @@ const Wrap = styled.div({
   flexDirection: 'column',
   gap: '8px'
 });
+
+function getWidthBySize(size) {
+  const CARD_SIZE = {
+    LARGE: '411px',
+    MEDIUM: '302px',
+    SMALL: '160px'
+  };
+  try {
+    return CARD_SIZE[size];
+  } catch (error) {
+    throw new Error('카드의 사이즈가 올바르지 않습니다.', error);
+  }
+}
 
 const A = styled.a({
   cursor: 'pointer',
@@ -108,16 +116,3 @@ const HoverImg = styled.div({
   alignSelf: 'end',
   display: props => (props.isHoverImg ? 'block' : 'none')
 });
-
-function getWidthBySize(size) {
-  if (size === 'LARGE') {
-    return '411px';
-  }
-  if (size === 'MEDIUM') {
-    return '302px';
-  }
-  if (size === 'SMALL') {
-    return '160px';
-  }
-  throw new Error('카드의 사이즈가 올바르지 않습니다.');
-}
