@@ -5,7 +5,6 @@
 //  Created by 김동준 on 2022/04/19.
 //
 
-import Foundation
 import UIKit
 
 class HomeView: UIView{

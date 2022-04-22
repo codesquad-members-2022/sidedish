@@ -5,7 +5,6 @@
 //  Created by 김동준 on 2022/04/20.
 //
 
-import Foundation
 import UIKit
 
 class DishCollectionViewCell: UICollectionViewCell{
@@ -13,7 +12,6 @@ class DishCollectionViewCell: UICollectionViewCell{
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        print("disappear from view")
     }
     
     private lazy var view = UIView()
@@ -129,9 +127,7 @@ class DishCollectionViewCell: UICollectionViewCell{
     
     func setProperties(product: Product){
         dishTitleLabel.text = product.name
-        descriptionTitleLabel.text = product.description
-        priceLabel.text = "\(product.price)"
-        print("setting")
+        descriptionTitleLabel.text = product.desc
         if product.event.contains(.none) {
            setNonEventUIConstraint()
         }else{
