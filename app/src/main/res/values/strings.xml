@@ -1,10 +1,29 @@
 <resources>
-    <string name="app_name">Ordering</string>
+    <string name="app_name">sidedish</string>
     <string name="label_event">이벤트특가</string>
     <string name="label_launch">런칭특가</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_order_complete">해당 상품을\n주문했습니다.</string>
     <string name="label_order_cancel">주문 수량을\n확인해주세요.</string>
     <string name="label_ok">확인</string>
+
+    <string name="label_menu_detail_title">오리주물럭_반조리</string>
+    <string name="label_menu_detail_subtitle">감칠맛 나는 매콤한 양념</string>
+    <string name="label_menu_detail_discountPrice">12,640원</string>
+    <string name="label_menu_detail_originPrice">15,800</string>
+    <string name="label_menu_sub_eventBtn_title">런칭특가</string>
+    <string name="label_menu_detail_point">적립금</string>
+    <string name="label_menu_detail_point_value">126원</string>
+    <string name="label_menu_detail_delivery_info">배송정보</string>
+    <string name="label_menu_detail_delivery_info_value">서울 경기 새벽배송, 전국 택배 배송</string>
+    <string name="label_menu_detail_delivery_price">배달비</string>
+    <string name="label_menu_detail_delivery_price_value">2500원(40,000원 이상 주문시 무료)</string>
+    <string name="label_menu_detail_order_count">수량</string>
+    <string name="label_menu_detail_order_count_value">1</string>
+    <string name="label_menu_detail_total_price">총 주문금액</string>
+    <string name="label_menu_detail_total_price_value">12,640원</string>
+    <string name="label_menu_detail_order_btn_title">주문하기</string>
+
 </resources>
