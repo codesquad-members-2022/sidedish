@@ -8,7 +8,6 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import java.util.Set;
 
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category {
 
