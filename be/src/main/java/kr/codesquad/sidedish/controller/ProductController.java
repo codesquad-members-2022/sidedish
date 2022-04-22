@@ -7,8 +7,13 @@ import kr.codesquad.sidedish.dto.DetailProductInfo;
 import kr.codesquad.sidedish.dto.ProductDTO;
 import kr.codesquad.sidedish.dto.RequestProduct;
 import kr.codesquad.sidedish.dto.SimpleProductInfo;
+import kr.codesquad.sidedish.response.BasicResponse;
+import kr.codesquad.sidedish.response.CommonCode;
+import kr.codesquad.sidedish.response.CommonResponse;
 import kr.codesquad.sidedish.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,9 +35,9 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@GetMapping("/{dishType}/{sideDishType}")
-	public List<SimpleProductInfo> loadListByType(@PathVariable String dishType,
+	public ResponseEntity<CommonResponse<List<SimpleProductInfo>>> loadListByType(
+		@PathVariable String dishType,
 		@PathVariable String sideDishType) {
-
 		List<ProductDTO> dtoList = productService.loadListByType(dishType, sideDishType);
 
 		List<SimpleProductInfo> simpleDtoList = new ArrayList<>();
@@ -39,23 +45,27 @@ public class ProductController {
 			SimpleProductInfo simpleDto = SimpleProductInfo.from(dtoList.get(i));
 			simpleDtoList.add(simpleDto);
 		}
-
-		return simpleDtoList;
+		return new CommonResponse(CommonCode.SUCCESS, simpleDtoList).toResponseEntity();
 	}
+
 
 	/**
 	 * 상품 세부 정보 불러오기
 	 */
+	@ResponseBody
 	@GetMapping("/details/{id}")
-	public DetailProductInfo loadDetails(@PathVariable Integer id) {
-		return DetailProductInfo.from(productService.findById(id));
+	public ResponseEntity<CommonResponse<DetailProductInfo>> loadDetails(@PathVariable Integer id) {
+		return new CommonResponse(CommonCode.SUCCESS,
+			DetailProductInfo.from(productService.findById(id))).toResponseEntity();
 	}
 
 	/**
 	 * 주문 넣기
 	 */
 	@PostMapping("/orders")
-	public void ordered(@RequestBody RequestProduct requestProduct) {
+	public ResponseEntity<CommonResponse> ordered(@RequestBody RequestProduct requestProduct) {
 		productService.ordered(requestProduct);
+
+		return new CommonResponse(CommonCode.SUCCESS).toResponseEntity();
 	}
 }
