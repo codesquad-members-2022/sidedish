@@ -11,18 +11,18 @@ import Prices from './Prices';
 
 const Card = ({ cardSize, dish }) => {
 
-  const { name, description, image, price, discountedPrice, badges } = dish;
+  const { menuName, description, image, originalPrice, saledPrice, event } = dish;
 
   return (
     <Container>
       <ImageContainer>
-        <Image src={image} alt={name} cardSize={`${cardSize}`} />
+        <Image src={image} alt={menuName} cardSize={`${cardSize}`} />
         <DeliveryBadge />
       </ImageContainer>
-      <Title>{name}</Title>
+      <Title>{menuName}</Title>
       <Description>{description}</Description>
-      <Prices discountedPrice={discountedPrice} price={price} />
-      {badges?.length && <Badges badges={badges} />}
+      <Prices originalPrice={originalPrice} saledPrice={saledPrice} />
+      {event.length && <Badges badges={event} />}
     </Container>
   );
 };

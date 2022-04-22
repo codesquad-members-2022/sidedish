@@ -1,16 +1,16 @@
 import React from "react";
 import Card from '../card/Card';
 import SmallCard from '../card/SmallCard';
-import dishes from '../../data/dishes';
+import { dish3 } from '../../data/dishes';
 
 const Main = () => {
   return (
     <>
-      {dishes.map(dish => {
-        return <Card key={dish.id} dish={dish} />
+      {dish3.map(dish => {
+        return <Card key={dish.menuId} dish={dish} />
       })}
-      {dishes.map(dish => {
-        return <SmallCard key={dish.id} {...dish} />
+      {dish3.map(dish => {
+        return <SmallCard key={dish.menuId} {...dish} />
       })}
     </>
   );

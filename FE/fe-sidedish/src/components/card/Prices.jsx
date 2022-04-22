@@ -1,11 +1,12 @@
 import { MainPrice, PriceContainer, SubPrice } from './Card.style';
 import { formatPrice } from '../../utils';
 
-const Prices = ({ discountedPrice, price }) => {
+const Prices = ({ originalPrice, saledPrice }) => {
+
   return (
     <PriceContainer>
-      {discountedPrice && <MainPrice>{formatPrice(discountedPrice)}원</MainPrice>}
-      {discountedPrice ? <SubPrice>{formatPrice(price)}원</SubPrice> : <MainPrice>{formatPrice(price)}원</MainPrice>}
+      {saledPrice ? <MainPrice>{formatPrice(saledPrice)}원</MainPrice> : ''}
+      {saledPrice ? <SubPrice>{formatPrice(originalPrice)}원</SubPrice> : <MainPrice>{formatPrice(originalPrice)}원</MainPrice>}
     </PriceContainer>
   )
 }
