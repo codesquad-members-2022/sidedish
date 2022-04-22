@@ -1,8 +1,5 @@
 import { rest } from 'msw';
 
-const getRoot = rest.get('/', (req, res, ctx) => {
-  return res(ctx.status(200), ctx.json({}));
-});
 const getEvents = rest.get('/events', (req, res, ctx) => {
   return res(
     ctx.status(200),
@@ -33,7 +30,7 @@ const getEvent = [
   rest.get('/events/:id', (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.delay(200),
+      ctx.delay(0),
       ctx.json({
         content: [
           {
@@ -129,7 +126,8 @@ const getCategory = [
             discountPolicy: 'event',
             discountRate: 0.15,
             morningDelivery: false,
-            image: '//thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/ce6a/4c25169c893104ca85c12d95f73865135d4944e7d5c403117d7baa93d8af.jpg',
+            image:
+              '//thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/ce6a/4c25169c893104ca85c12d95f73865135d4944e7d5c403117d7baa93d8af.jpg',
           },
           {
             id: 3,
@@ -161,4 +159,9 @@ const getCategory = [
   }),
 ];
 
-export const handlers = [getEvents, ...getEvent, getRoot, getCategories, ...getCategory];
+export const handlers = [
+  getEvents,
+  ...getEvent,
+  getCategories,
+  ...getCategory,
+];
