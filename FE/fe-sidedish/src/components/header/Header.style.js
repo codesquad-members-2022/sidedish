@@ -17,6 +17,10 @@ const Title = styled.h2`
   font-family: "Outfit";
   font-weight: ${({ theme }) => theme.fontWeight.heavy};
   font-size: ${({ theme }) => theme.fontSize.display};
+  a {
+    display: block;
+    color: ${({ theme }) => theme.color.black};
+  }
 `;
 
 const CategoryList = styled.ul`

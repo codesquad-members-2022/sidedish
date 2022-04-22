@@ -1,22 +1,17 @@
 import iconMenusData from "../../data/iconMenus";
 import categoriesData from "../../data/categories";
-import {
-  Container,
-  Wrapper,
-  Title,
-  CategoryList,
-  IconMenuList,
-} from "./Header.style";
+import HeaderTitle from "./HeaderTitle";
 import CategoryItems from "./CategoryItems";
 import IconMenuItems from "./IconMenuItems";
+import { Container, Wrapper, CategoryList, IconMenuList } from "./Header.style";
 
 const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>Ordering</Title>
         <CategoryList>
           <CategoryItems categoriesData={categoriesData} />
+        <HeaderTitle title={"Ordering"} href={"/"} />
         </CategoryList>
         <IconMenuList>
           <IconMenuItems iconMenusData={iconMenusData} />
