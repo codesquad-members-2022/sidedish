@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
 @Api(tags = "ExhibitionController")
@@ -30,7 +31,7 @@ public class ExhibitionController {
     )
     @GetMapping("/{exhibitionId}")
     public ResponseEntity<ExhibitionResponse> getByExhibitionId(
-            @PathVariable @Validated @Positive long exhibitionId) {
+            @PathVariable @Validated @Positive @Min(1) long exhibitionId) {
 
         return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
     }
