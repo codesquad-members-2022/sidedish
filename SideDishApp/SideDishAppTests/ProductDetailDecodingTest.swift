@@ -52,9 +52,9 @@ class ProductDetailDecordingTest: XCTestCase {
         let point = "78원"
         let priceCount = 1
         let priceValue = "7,800원"
-        XCTAssertEqual(prodcutDetail.data.point.krwFormat, point)
+        XCTAssertEqual(prodcutDetail.data.point.priceTag, point)
         XCTAssertEqual(prodcutDetail.data.prices.count, priceCount)
-        XCTAssertEqual(prodcutDetail.data.prices.first!.krwFormat, priceValue)
+        XCTAssertEqual(prodcutDetail.data.prices.first!.priceTag, priceValue)
     }
 
 }
