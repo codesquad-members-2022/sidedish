@@ -66,14 +66,14 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
-    func setPropertiesValue(_ image: String, _ cardTitle: String, _ cardBody: String, _ normalPrice: String, _ salePrice: String?, _ badgeList: [Badge]?) {
-        cardTitleLabel.text = cardTitle
-        cardBodyLabel.text = cardBody
-        normalPriceLabel.text = normalPrice
-        if let salePrice = salePrice {
+    func setPropertiesValue(mainCard: MainCard) {
+        cardTitleLabel.text = mainCard.title
+        cardBodyLabel.text = mainCard.description
+        normalPriceLabel.text = mainCard.normalPrice
+        if let salePrice = mainCard.salePrice {
             salePriceLabel.text = salePrice
         }
-        if let badgeList = badgeList {
+        if let badgeList = mainCard.badgeList {
             if badgeList.contains(.eventPrice),
                badgeList.contains(.launchingPrice) {
                 configureEventLabelAndBadgeLabelConstraint()

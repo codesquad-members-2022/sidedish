@@ -154,7 +154,7 @@
         <!--FirstSectionViewController-->
         <scene sceneID="SwR-Ni-xDI">
             <objects>
-                <viewController id="iGG-Gn-fRw" userLabel="FirstSectionViewController" customClass="FirstSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iGG-Gn-fRw" userLabel="FirstSectionViewController" customClass="MainDescriptionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eWS-yL-8vB">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -175,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="2001.5384615384614" y="-142.18009478672985"/>
         </scene>
-        <!--Second Section View Controller-->
+        <!--Sub Description View Controller-->
         <scene sceneID="aPo-O7-E8E">
             <objects>
-                <viewController id="ZOK-MW-p1m" customClass="SecondSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZOK-MW-p1m" customClass="SubDescriptionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2WA-cZ-wEq">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="74"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="2002" y="84"/>
         </scene>
-        <!--Third Section View Controller-->
+        <!--Order View Controller-->
         <scene sceneID="MsT-ek-Yhu">
             <objects>
-                <viewController id="mKr-iP-6LT" customClass="ThirdSectionViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mKr-iP-6LT" customClass="OrderViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eXG-Fu-2Vh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

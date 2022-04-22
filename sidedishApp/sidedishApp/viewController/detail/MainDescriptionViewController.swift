@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstSectionViewController: UIViewController {
+class MainDescriptionViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         var label = UILabel()
@@ -68,7 +68,7 @@ class FirstSectionViewController: UIViewController {
     }
 }
 
-private extension FirstSectionViewController {
+private extension MainDescriptionViewController {
     func setAllProperties() {
         configureTitle()
         configureSubLabel()
