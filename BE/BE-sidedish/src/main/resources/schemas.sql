@@ -54,3 +54,13 @@ CREATE TABLE `orderFrom` (
      `order_fee` int NOT NULL,
      PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+
+-- 이벤트 배지
+
+CREATE TABLE IF NOT EXISTS `sidedish`.`SIDEDISH_EVENT_BADGE`
+(
+     `BADGE_ID` BIGINT NOT NULL AUTO_INCREMENT,
+     `BADGE_TITLE` VARCHAR(10) NOT NULL COMMENT '런칭특가, 이벤트특가...',
+    PRIMARY KEY (`BADGE_ID`)
+) ENGINE = InnoDB;
