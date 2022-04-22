@@ -54,6 +54,7 @@ function Header() {
 
     const navList = headerList.map((navItem) => (
         <NavItem
+            key={navItem.id}
             className="header__food"
             navItem={navItem}
             isVisible={isVisible}
