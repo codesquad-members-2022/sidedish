@@ -46,8 +46,8 @@ class BanchanListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let viewController = UIStoryboard(name: "BanchanDetailViewController", bundle: nil)
-            .instantiateInitialViewController() else { return }
+
+        let viewController = BanchanDetailViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
