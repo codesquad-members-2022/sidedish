@@ -15,7 +15,7 @@ struct ProductCellViewModel {
     let salePrice: Money<KRW>
     let badge: [Badge]?
 
-    init(title: String, description: String, imageURL: URL, originalPrice: Money?, salePrice: Money, badge: [Badge]?) {
+    init(title: String, description: String, imageURL: URL, originalPrice: Money<KRW>?, salePrice: Money<KRW>, badge: [Badge]?) {
         self.title = title
         self.description = description
         self.imageURL = imageURL

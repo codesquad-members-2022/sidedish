@@ -12,18 +12,19 @@ import UIKit
 
 struct CategorySectionViewModel {
     var type: ProductType
-    var productVM: [ProductCellViewModel]
+    var productViewModel: [ProductCellViewModel]
 }
 
 struct ProductCollectionViewModel {
 
     private let categoryManager = CategoryManager()
     private var imageCache = NSCache<NSURL, UIImage>()
+    private let categoryType = [0: ProductType.main, 1: ProductType.soup, 2: ProductType.side]
 
     public var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
     func countProduct(section: Int) -> Int {
-        self.cellViewModels.value[section].productVM.count
+        self.cellViewModels.value[section].productViewModel.count
     }
 
     func countSection() -> Int {
@@ -31,8 +32,10 @@ struct ProductCollectionViewModel {
     }
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
-        let categoryVM = cellViewModels.value[indexPath.section]
-        return categoryVM.productVM[indexPath.item]
+        let targetType = categoryType[indexPath.item]
+        guard let index = cellViewModels.value.firstIndex(where: {$0.type == targetType}) else {return nil}
+        let targetCellViewModel = cellViewModels.value[index]
+        return targetCellViewModel.productViewModel[indexPath.item]
     }
 
     func fetchCategories() {
@@ -47,9 +50,9 @@ struct ProductCollectionViewModel {
                 let productCellVMs = category.product.compactMap { product in
                     ProductCellViewModel(product: product)
                 }
-                
-                let categorySectionVM = CategorySectionViewModel(type: type, productVM: productCellVMs)
-                
+
+                let categorySectionVM = CategorySectionViewModel(type: type, productViewModel: productCellVMs)
+
                 temp.append(categorySectionVM)
 
                 dispatchGroup.leave()

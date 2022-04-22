@@ -55,6 +55,8 @@
 		B7F90BA12811D32C0067E4FE /* MainCollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90BA02811D32C0067E4FE /* MainCollectionViewSectionHeader.swift */; };
 		B7F90BA8281246300067E4FE /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F90BA6281246300067E4FE /* MainCollectionViewCell.swift */; };
 		B7F90BA9281246300067E4FE /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F90BA7281246300067E4FE /* MainCollectionViewCell.xib */; };
+		B7F90BAA281258DC0067E4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFE483E280D5AE200F23DCE /* Assets.xcassets */; };
+		B7F90BAB28125B9E0067E4FE /* 1155_ZIP_P_0081_T.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7F90B61281006F00067E4FE /* 1155_ZIP_P_0081_T.jpg */; };
 		BCFE4836280D5AE100F23DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4835280D5AE100F23DCE /* AppDelegate.swift */; };
 		BCFE4838280D5AE100F23DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4837280D5AE100F23DCE /* SceneDelegate.swift */; };
 		BCFE483A280D5AE100F23DCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4839280D5AE100F23DCE /* MainViewController.swift */; };
@@ -459,6 +461,7 @@
 				B7F90B46280FD69A0067E4FE /* mockProductDetailData.json in Resources */,
 				BCFE4842280D5AE200F23DCE /* LaunchScreen.storyboard in Resources */,
 				B7F90B31280E89520067E4FE /* mockProductData.json in Resources */,
+				B7F90BAB28125B9E0067E4FE /* 1155_ZIP_P_0081_T.jpg in Resources */,
 				BCFE483F280D5AE200F23DCE /* Assets.xcassets in Resources */,
 				B7F90BA9281246300067E4FE /* MainCollectionViewCell.xib in Resources */,
 				BCFE483D280D5AE100F23DCE /* Main.storyboard in Resources */,
@@ -471,6 +474,7 @@
 			files = (
 				B7F90B3F280FCC340067E4FE /* mockProductDetailData.json in Resources */,
 				B7F90B2F280E86E10067E4FE /* mockProductData.json in Resources */,
+				B7F90BAA281258DC0067E4FE /* Assets.xcassets in Resources */,
 				B7F90B62281006F00067E4FE /* 1155_ZIP_P_0081_T.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
