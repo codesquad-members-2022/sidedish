@@ -1,13 +1,13 @@
-import styled, {css} from "styled-components";
-import {DiscountTag} from "./DiscountTag";
-import {useState} from "react";
-import {SIZES, thumbnailSize} from "../convention";
+import styled, { css } from "styled-components";
+import { DiscountTag } from "./DiscountTag";
+import { useState } from "react";
+import { SIZES, thumbnailSize } from "../convention";
 
 const CardWrapper = styled.div`
   ${(props) =>
-          css`
-            width: ${thumbnailSize[props.size]}px;
-          `}
+    css`
+      width: ${thumbnailSize[props.size]}px;
+    `}
 `;
 
 const ProductImage = styled.div`
@@ -25,11 +25,11 @@ const ProductInfo = styled.div`
 
 const ProductName = styled.div`
   ${(props) =>
-          props.size === SIZES.small
-                  ? `font-weight: 500;
+    props.size === SIZES.small
+      ? `font-weight: 500;
             line-height: 26px;
         `
-                  : `font-weight: 400;
+      : `font-weight: 400;
             line-height: 24px;
         `}
 `;
@@ -60,23 +60,31 @@ const ProductPrice = styled.span`
   color: #bcbcbc;
 `;
 
-export const ProductCard = ({size, primary_image, name, description, discount, final_price, price}) => {
-    const [hover, setHover] = useState(false);
+export const ProductCard = ({
+  size,
+  primary_image,
+  name,
+  description,
+  discount,
+  final_price,
+  price,
+}) => {
+  const [hover, setHover] = useState(false);
 
-    return (
-        <CardWrapper>
-            <ProductImage size={size} src={primary_image}></ProductImage>
-            <ProductInfo>
-                <ProductName size={size}>{name}</ProductName>
-                {size !== SIZES.small && (
-                    <ProductDescription>{description}</ProductDescription>
-                )}
-                <ProductPriceWrapper>
-                    <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
-                    <ProductPrice>{price + "원" || ""}</ProductPrice>
-                </ProductPriceWrapper>
-            </ProductInfo>
-            <DiscountTag discount={discount}/>
-        </CardWrapper>
-    );
+  return (
+    <CardWrapper>
+      <ProductImage size={size} src={primary_image}></ProductImage>
+      <ProductInfo>
+        <ProductName size={size}>{name}</ProductName>
+        {size !== SIZES.small && (
+          <ProductDescription>{description}</ProductDescription>
+        )}
+        <ProductPriceWrapper>
+          <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
+          <ProductPrice>{price + "원" || ""}</ProductPrice>
+        </ProductPriceWrapper>
+      </ProductInfo>
+      <DiscountTag discount={discount} />
+    </CardWrapper>
+  );
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {useEffect, useState} from "react";
-import {CardList} from "./CardList";
-import {SIZES} from "../convention";
+import { useEffect, useState } from "react";
+import { CardList } from "./CardList";
+import { SIZES } from "../convention";
 
 const Wrapper = styled.div`
   padding: 56px 80px;
@@ -48,24 +48,23 @@ const TabItem = styled.li`
   ${(props) => props.selected && `border-bottom: 1px solid black;`}
 `;
 
-export const BestProduct = ({themes}) => {
+export const BestProduct = ({ themes }) => {
+  const [selected, setSelected] = useState(themes[0].id);
 
-    const [selected, setSelected] = useState(themes[0].id);
-
-    return (
-        <Wrapper>
-            <TitleWrapper>
-                <TitleBadge>기획전</TitleBadge>
-                <Title>한 번 주문하면 두 번 반하는 반찬</Title>
-            </TitleWrapper>
-            <TabBar>
-                {themes.map((theme) => (
-                    <TabItem key={theme.id} selected={selected === theme.id}>
-                        {theme.name}
-                    </TabItem>
-                ))}
-            </TabBar>
-            <CardList size={SIZES.large} special={true} id={selected}></CardList>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <TitleWrapper>
+        <TitleBadge>기획전</TitleBadge>
+        <Title>한 번 주문하면 두 번 반하는 반찬</Title>
+      </TitleWrapper>
+      <TabBar>
+        {themes.map((theme) => (
+          <TabItem key={theme.id} selected={selected === theme.id}>
+            {theme.name}
+          </TabItem>
+        ))}
+      </TabBar>
+      <CardList size={SIZES.large} special={true} id={selected}></CardList>
+    </Wrapper>
+  );
 };
