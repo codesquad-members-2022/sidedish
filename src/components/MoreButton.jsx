@@ -19,5 +19,5 @@ MoreButton.defaultProps = {
 const Wrap = styled.button({
   padding: '16px 24px 16px 24px',
   border: `1px solid ${COLOR.GREY4}`,
-  'background-color': COLOR.WHITE
+  backgroundColor: COLOR.WHITE
 });

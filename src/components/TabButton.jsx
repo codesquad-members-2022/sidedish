@@ -16,7 +16,7 @@ TabButton.defaultProps = {
   value: ''
 };
 
-const Wrap = styled.div({
+const Wrap = styled.button({
   width: 'fit-content',
   height: '48px',
   borderBottom: props => (props.isSelected ? `2px solid ${COLOR.BLACK}` : ''),

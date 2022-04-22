@@ -19,8 +19,8 @@ Tag.defaultProps = {
 const PillShape = styled.div({
   width: 'fit-content',
   padding: '6px 16px 6px 16px',
-  'border-radius': '15px',
-  'background-color': props => getColorByType(props.type)
+  borderRadius: '15px',
+  backgroundColor: props => getColorByType(props.type)
 });
 
 function getColorByType(type) {
