@@ -32,8 +32,16 @@ struct Sidedish: Decodable {
 }
 
 extension Sidedish {
-    enum `Type` {
+    enum Menu: Int, CaseIterable {
         case main, soup, side
+        
+        var index: Int {
+            switch self {
+            case .main: return 0
+            case .side: return 1
+            case .soup: return 2
+            }
+        }
     }
     
         // swiftlint:disable force_unwrapping

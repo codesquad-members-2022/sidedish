@@ -8,9 +8,9 @@
 import Combine
 import Foundation
 
-class SidedishRepositoryImpl: NetworkRepository<SidedishTarget>, SidedishRepository {
+class SidedishRepositoryImpl: NetworkRepository<SidedishEndPoint>, SidedishRepository {
     
-    func loadMenu(_ type: Sidedish.`Type`) -> AnyPublisher<ApiResult<[Sidedish], SessionError>, Never> {
+    func loadMenu(_ type: Sidedish.Menu) -> AnyPublisher<ApiResult<[Sidedish], SessionError>, Never> {
         request(.loadMenu(type))
             .map { $0.decode(SidedishAPIResult.self) }
             .map { result -> ApiResult<[Sidedish], SessionError> in

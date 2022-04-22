@@ -8,7 +8,7 @@ import Combine
 import UIKit
 
 class MainViewController: UIViewController {
-    private let model: MainViewModelBinding = MainViewModel()
+    private let model: MainViewModelProtocol = MainViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     private var underLineView: UIView = {
@@ -35,20 +35,21 @@ class MainViewController: UIViewController {
         bind()
         attritbute()
         layout()
-    
-        model.action.loadData.send() // loadData 호출 (이벤트가 발생했다!)
 
+        model.action.loadMain.send()
+        model.action.loadSide.send()
+        model.action.loadSoup.send()
     }
     
     private func bind() {
         collectionView.delegate = self
         collectionView.dataSource = self
-//        model.state.loadedData
-//            .sink { index in
-//                print(index)
-//                self.collectionView.reloadData()
-//            } .store(in: &cancellables)
         
+        model.state.loadedData
+            .receive(on: DispatchQueue.main)
+            .sink { type in
+                self.collectionView.reloadSections(IndexSet(integer: type.index))
+            }.store(in: &cancellables)
     }
     
     private func attritbute() {
@@ -84,10 +85,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return UICollectionViewCell()
         }
         
-        cell.changeImage(name: "testimage") // 임시데이터)
-        cell.changeTitleLabel(text: "오리 주물럭_반조리")
-        cell.changeDescriptionLabel(text: "감질맛 나는 매콤한 양념")
-        cell.changePriceLabel(text: "12,640원")
+        DispatchQueue.main.async {
+            guard let menuData = self.model[indexPath] else {
+                return
+            }
+            print(menuData)
+        }
         return cell
     }
     
@@ -96,6 +99,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader else {
                     return UICollectionReusableView()
                 }
+                
                 headerView.changeTitle(text: "모두가 좋아하는 든든한 메인요리")
                 return headerView
             }

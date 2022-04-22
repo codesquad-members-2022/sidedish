@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum SidedishTarget: BaseTarget {
-    case loadMenu(_ type: Sidedish.`Type`)
+enum SidedishEndPoint: EndPoint {
+    case loadMenu(_ type: Sidedish.Menu)
     case loadDetail(_ hash: String)
 }
 
-extension SidedishTarget {
+extension SidedishEndPoint {
     var path: String {
         switch self {
         case .loadMenu(let type):
@@ -28,10 +28,10 @@ extension SidedishTarget {
             return nil
         }
     }
-    var method: String {
+    var method: HTTPMethod {
         switch self {
         case .loadMenu, .loadDetail:
-            return "GET"
+            return .get
         }
     }
 }

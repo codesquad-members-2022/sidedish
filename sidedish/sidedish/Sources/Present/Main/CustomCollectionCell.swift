@@ -17,68 +17,20 @@ class CustomCollectionCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
-//        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
-//        imageView.layer.shadowOpacity = 0.1
-//        imageView.layer.shadowRadius = 3
-//        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.image = UIImage(named: "testimage")
         return imageView
     }()
     
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 4
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .bold)
-        label.textColor = .black
-        return label
-    }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .grey2
-        label.numberOfLines = 3
-        return label
-    }()
-    
-    private let priceLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .bold)
-        label.textAlignment = .left
-        label.textColor = .black
-        return label
-    }()
-    
-    private let salePriceLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14)
-        label.textAlignment = .left
-        label.textColor = .grey2
-        return label
-    }()
-    
-    private let badgeView: UIView = {
-        let view = UIView()
+    private let menuInfoView: MenuInfoView = {
+        let attribute = MenuInfoAttribute(stackViewSpacing: 4,
+                                          titleFont: .systemFont(ofSize: 15, weight: .bold), titleTextColor: .black,
+                                          discriptionFont: .systemFont(ofSize: 14, weight: .regular), discriptionTextColor: .grey2,
+                                          priceFont: .systemFont(ofSize: 14, weight: .bold), priceTextColor: .black,
+                                          salePriceFont: .systemFont(ofSize: 14), salePriceTextColor: .grey2,
+                                          badgeStackViewSpacing: 4)
+        let view = MenuInfoView(attribute: attribute)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }()
-
-    private let badgeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .primary1
-        button.setTitle("런칭특가", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
-        button.layer.cornerRadius = 12
-        return button
     }()
     
     override init(frame: CGRect) {
@@ -93,15 +45,7 @@ class CustomCollectionCell: UICollectionViewCell {
 
     private func layout() {
         contentView.addSubview(imageView)
-        contentView.addSubview(stackView)
-        
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(priceLabel)
-        stackView.addArrangedSubview(salePriceLabel)
-        stackView.addArrangedSubview(badgeView)
-        
-        badgeView.addSubview(badgeButton)
+        contentView.addSubview(menuInfoView)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -109,33 +53,9 @@ class CustomCollectionCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: imageSize),
             imageView.heightAnchor.constraint(equalToConstant: imageSize),
             
-            stackView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            stackView.bottomAnchor.constraint(equalTo: badgeView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            badgeView.heightAnchor.constraint(equalTo: badgeButton.heightAnchor),
-            
-            badgeButton.widthAnchor.constraint(equalToConstant: 77),
-            badgeButton.heightAnchor.constraint(equalToConstant: 24)
+            menuInfoView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            menuInfoView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            menuInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
-    }
-}
-
-extension CustomCollectionCell {
-    func changeImage(name: String) {
-        imageView.image = UIImage(named: "\(name)")
-    }
-    
-    func changeTitleLabel(text: String) {
-        titleLabel.text = text
-    }
-    
-    func changeDescriptionLabel(text: String) {
-        descriptionLabel.text = text
-    }
-    
-    func changePriceLabel(text: String) {
-        priceLabel.text = text
     }
 }

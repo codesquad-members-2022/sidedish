@@ -1,5 +1,5 @@
 //
-//  BaseTarget.swift
+//  EndPoint.swift
 //  Signup
 //
 //  Created by seongha shin on 2022/03/28.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol BaseTarget {
+protocol EndPoint {
     var parameter: [String: Any]? { get }
     var path: String { get }
-    var method: String { get }
+    var method: HTTPMethod { get }
 }
 
-extension BaseTarget {
+extension EndPoint {
     var baseURL: URL? {
         URL(string: "https://api.codesquad.kr/onban")
     }

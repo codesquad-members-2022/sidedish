@@ -8,14 +8,8 @@
 import Combine
 import Foundation
 
-class NetworkRepository<Target: BaseTarget> {
+class NetworkRepository<Target: EndPoint> {
     private var provider: URLSessionProvider?
-    
-    func request(_ target: Target, isSucccess: Bool) -> AnyPublisher<NetworkResult, Never> {
-        let session = MockURLSession.shared
-        session.isRequestSuccess = isSucccess
-        return request(target, session: session)
-    }
     
     func request(_ target: Target, session: URLSessionProtocol = URLSession.shared ) -> AnyPublisher<NetworkResult, Never> {
         provider = URLSessionProvider(session: session)
@@ -25,7 +19,7 @@ class NetworkRepository<Target: BaseTarget> {
         }
         
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = target.method
+        urlRequest.httpMethod = target.method.value
         urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
 
         if let param = target.parameter,
