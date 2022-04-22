@@ -8,7 +8,7 @@
 import UIKit
 
 class ThirdSectionViewController: UIViewController{
-    private var countLabel: UILabel = {
+    private lazy var countLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
@@ -16,7 +16,7 @@ class ThirdSectionViewController: UIViewController{
         label.text = "수량"
         return label
     }()
-    private var countText: UILabel = {
+    private lazy var countText: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
@@ -24,26 +24,26 @@ class ThirdSectionViewController: UIViewController{
         label.text = "1"
         return label
     }()
-    private var countStepper: UIStepper = {
+    private lazy var countStepper: UIStepper = {
         var stepper = UIStepper()
         stepper.layer.cornerRadius = 7.92
         return stepper
     }()
-    private var sectionUpper: UILabel = {
+    private lazy var sectionUpper: UILabel = {
         var label = UILabel()
         label.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
         return label
     }()
-    private var sectionCenter: UILabel = {
+    private lazy var sectionCenter: UILabel = {
         var label = UILabel()
         label.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
         return label
     }()
-    private var accountView: UIView = {
+    private lazy var accountView: UIView = {
         var view = UIView()
         return view
     }()
-    private var accountLabel: UILabel = {
+    private lazy var accountLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
@@ -51,7 +51,7 @@ class ThirdSectionViewController: UIViewController{
         label.text = "총 주문금액"
         return label
     }()
-    private var accountText: UILabel = {
+    private lazy var accountText: UILabel = {
         var label = UILabel()
         label.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 32)
@@ -59,7 +59,7 @@ class ThirdSectionViewController: UIViewController{
         label.text = "12,640원"
         return label
     }()
-    private var orderButton: UIButton = {
+    private lazy var orderButton: UIButton = {
         var button = UIButton()
         button.layer.backgroundColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
         button.layer.cornerRadius = 12
