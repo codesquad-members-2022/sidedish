@@ -39,7 +39,7 @@ public class CategoryController {
     @GetMapping("/{type}")
     public CollectionModel<ItemResource> getCategoriesByType(@PathVariable CategoryType type, @RequestParam Long pageId) {
 
-        List<Item> items = itemService.findUnitPageById(type, pageId);
+        List<Item> items = itemService.findUnitPageById(type.getTypeNumber(), pageId);
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
 
         CollectionModel<ItemResource> responseMainType = CollectionModel.of(itemResources);

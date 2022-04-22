@@ -1,6 +1,5 @@
 package com.sidedish.service;
 
-import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
 import com.sidedish.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +15,10 @@ public class ItemService {
     public static final int PAGE_UNIT = 4;
     private final ItemRepository itemRepository;
 
-    public List<Item> findUnitPageById(CategoryType type, Long pageId) {
+    public List<Item> findUnitPageById(Long typeNumber, Long pageId) {
         int startPage = pageId.intValue() - 1;
         PageRequest pageable = PageRequest.of(startPage, PAGE_UNIT);
-        return itemRepository.findByCategoryType(type, pageable);
+        return itemRepository.findByCategory(typeNumber, pageable);
     }
 
     public List<Item> findItemByDetailType(String type) {

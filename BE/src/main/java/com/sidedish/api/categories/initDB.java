@@ -34,38 +34,39 @@ public class initDB {
         public void init(){
             Category mainCategory = new Category(CategoryType.MAIN);
             Category sidedishCategory = new Category(CategoryType.SIDE);
+            Category soupCategory = new Category(CategoryType.SOUP);
 
-            createItem(mainCategory, "고기1", "풍성한고기반찬", CategoryType.MAIN);
-            createItem(mainCategory, "고기2", "풍성한고기반찬", CategoryType.MAIN);
-            createItem(mainCategory, "고기3", "풍성한고기반찬", CategoryType.MAIN);
-            createItem(mainCategory, "고기4", "풍성한고기반찬", CategoryType.MAIN);
-            createItem(mainCategory, "고기5", "풍성한고기반찬", CategoryType.MAIN);
-            createItem(mainCategory, "고기6", "풍성한고기반찬", CategoryType.MAIN);
+            createItem(mainCategory, "고기1", "풍성한고기반찬");
+            createItem(mainCategory, "고기2", "풍성한고기반찬");
+            createItem(mainCategory, "고기3", "풍성한고기반찬");
+            createItem(mainCategory, "고기4", "풍성한고기반찬");
+            createItem(mainCategory, "고기5", "풍성한고기반찬");
+            createItem(mainCategory, "고기6", "풍성한고기반찬");
 
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
 
-            createItem(mainCategory, "콩나물1", "편리한반찬세트", CategoryType.SIDE);
-            createItem(mainCategory, "콩나물2", "편리한반찬세트", CategoryType.SIDE);
-            createItem(mainCategory, "콩나물3", "편리한반찬세트", CategoryType.SIDE);
-            createItem(mainCategory, "콩나물4", "편리한반찬세트", CategoryType.SIDE);
+            createItem(sidedishCategory, "콩나물1", "편리한반찬세트");
+            createItem(sidedishCategory, "콩나물2", "편리한반찬세트");
+            createItem(sidedishCategory, "콩나물3", "편리한반찬세트");
+            createItem(sidedishCategory, "콩나물4", "편리한반찬세트");
+            createItem(sidedishCategory, "꼬막무침1", "맛있는제철요리");
+            createItem(sidedishCategory, "꼬막무침2", "맛있는제철요리");
+            createItem(sidedishCategory, "꼬막무침3", "맛있는제철요리");
+            createItem(sidedishCategory, "꼬막무침4", "맛있는제철요리");
 
-            createItem(mainCategory, "꼬막무침1", "맛있는제철요리", CategoryType.SIDE);
-            createItem(mainCategory, "꼬막무침2", "맛있는제철요리", CategoryType.SIDE);
-            createItem(mainCategory, "꼬막무침3", "맛있는제철요리", CategoryType.SIDE);
-            createItem(mainCategory, "꼬막무침4", "맛있는제철요리", CategoryType.SIDE);
-
-            createItem(mainCategory, "햄가득 부대찌개", "우리아이영양반찬", CategoryType.SOUP);
-            createItem(mainCategory, "햄가득 부대찌개", "우리아이영양반찬", CategoryType.SOUP);
-            createItem(mainCategory, "햄가득 부대찌개", "우리아이영양반찬", CategoryType.SOUP);
-            createItem(mainCategory, "햄가득 부대찌개", "우리아이영양반찬", CategoryType.SOUP);
 
             categoryRepository.save(mainCategory);
+            categoryRepository.save(soupCategory);
             categoryRepository.save(sidedishCategory);
         }
     }
 
-    private static void createItem(Category mainCategory, String name, String detailtype, CategoryType type) {
+    private static void createItem(Category mainCategory, String name, String detailtype) {
         Item newItem = new Item(name, "반찬 설명", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), "html", type);
+                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), "html");
         mainCategory.saveItem(newItem);
     }
 }

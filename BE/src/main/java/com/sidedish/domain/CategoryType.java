@@ -1,15 +1,15 @@
 package com.sidedish.domain;
 
 public enum CategoryType {
-    MAIN("main"), SIDE("side"), SOUP("side");
+    MAIN(1L), SOUP(2L), SIDE(3L);
 
-    private String name;
+    private Long typeNumber;
 
-    CategoryType(String name) {
-        this.name = name;
+    CategoryType(Long typeNumber) {
+        this.typeNumber = typeNumber;
     }
 
-    public String getName() {
-        return name;
+    public Long getTypeNumber() {
+        return typeNumber;
     }
 }
