@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         setSideRv()
         setBtnGitHub()
 
-        viewModel.getMenu()
     }
 
     private fun setBtnGitHub() {
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             binding.clMain.visibility = View.VISIBLE
 
             // 로그인 후 가정
-            rvTest()
+            viewModel.getMainUIMenu()
         }
     }
 
@@ -77,9 +76,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun rvTest() {
+   /* private fun rvTest() {
         viewModel.addMainListTest()
         viewModel.addSoupListTest()
         viewModel.addSideListTest()
-    }
+    }*/
 }
