@@ -2,11 +2,13 @@ package com.sidedish.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
+@AllArgsConstructor
 @Getter
 @Table("sidedish")
 public class SideDish {

@@ -1,10 +1,12 @@
 package com.sidedish.domain;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+@AllArgsConstructor
 @Table("image_file")
 public class ImageFile {
 
