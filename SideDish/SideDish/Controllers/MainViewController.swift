@@ -29,8 +29,6 @@ class MainViewController: UIViewController {
             foodCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             foodCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
-        
     }
 }
 
@@ -45,12 +43,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .red
+        cell.addViews()
+        cell.setLayout()
         let category = Category.allCases[indexPath.section]
         let index = indexPath.row
-        if let food = ordering[index, category] {
-            print(food) // 모델 잘 가져오는 것 - 확인하기 위해 작성함.
-        }
         return cell
     }
 }
