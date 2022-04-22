@@ -1,11 +1,13 @@
 import React from "react";
-import Category from '../category/Category';
-import { dish10 } from '../../data/dishes';
+import Exhibition from "../exhibition/Exhibition";
+import Category from "../category/Category";
+import { dish10 } from "../../data/dishes";
 
 const Main = () => {
   return (
     <>
-      <Category { ...dish10 } />
+      <Exhibition />
+      <Category {...dish10} />
     </>
   );
 };
