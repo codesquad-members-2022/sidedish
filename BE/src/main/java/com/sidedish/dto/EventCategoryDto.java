@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public class EventCategoryDto {
 
-    private Long id;
+    private Integer id;
     private String name;
 
-    public EventCategoryDto(Long eventCategoryId, String eventCategoryName) {
+    public EventCategoryDto(Integer eventCategoryId, String eventCategoryName) {
         this.id = eventCategoryId;
         this.name = eventCategoryName;
     }

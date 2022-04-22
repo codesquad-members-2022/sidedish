@@ -1,9 +1,9 @@
 package com.sidedish.service;
 
 import com.sidedish.domain.Event;
-import com.sidedish.domain.EventCategory;
 import com.sidedish.dto.EventCategoryDto;
 import com.sidedish.dto.EventCategoryListDto;
+import com.sidedish.mapper.EventCategoryMapper;
 import com.sidedish.repository.EventCategoryRepository;
 import com.sidedish.repository.EventRepository;
 import java.util.List;
@@ -19,11 +19,12 @@ public class EventCategoryService {
     private final EventCategoryRepository eventCategoryRepository;
 
     public EventCategoryListDto getEventCategories() {
+        EventCategoryMapper mapper = new EventCategoryMapper();
         for (Event event : eventRepository.findAll()) {
             if (event.isProgressFlag()) {
                 String eventName = event.getName();
                 List<EventCategoryDto> eventCategories = eventCategoryRepository.findAllByEventId(event.getId())
-                    .stream().map(EventCategory::convertToDto).collect(Collectors.toList());
+                    .stream().map(mapper::convertToDto).collect(Collectors.toList());
 
                 return new EventCategoryListDto(eventName, eventCategories);
             }

@@ -7,7 +7,7 @@ import lombok.Getter;
 public class EventCategoryListDto {
 
     private String eventName;
-    List<EventCategoryDto> eventCategories;
+    private List<EventCategoryDto> eventCategories;
 
     public EventCategoryListDto(String eventName, List<EventCategoryDto> eventCategories) {
         this.eventName = eventName;
