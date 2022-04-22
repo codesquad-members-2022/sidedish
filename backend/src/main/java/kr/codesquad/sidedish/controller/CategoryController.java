@@ -16,6 +16,6 @@ public class CategoryController {
 
     @GetMapping
     public CategoryListResponse listCategories() {
-        return categoryService.readAll();
+        return new CategoryListResponse(categoryService.readAll());
     }
 }

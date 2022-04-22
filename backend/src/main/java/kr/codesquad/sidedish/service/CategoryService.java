@@ -1,6 +1,5 @@
 package kr.codesquad.sidedish.service;
 
-import kr.codesquad.sidedish.controller.dto.CategoryListResponse;
 import kr.codesquad.sidedish.domain.Category;
 import kr.codesquad.sidedish.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +15,9 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public CategoryListResponse readAll() {
-        List<Category> categories = StreamSupport
+    public List<Category> readAll() {
+        return StreamSupport
                 .stream(categoryRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
-        return new CategoryListResponse(categories);
     }
 }
