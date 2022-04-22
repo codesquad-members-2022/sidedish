@@ -8,7 +8,7 @@ import {
   StyledImg,
   StyledP,
   StyledWrapper,
-} from '../styles/Card';
+} from './Card.styled';
 
 export function Card({ product }) {
   return (
