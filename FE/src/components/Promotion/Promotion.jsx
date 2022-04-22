@@ -2,11 +2,12 @@ import "./Promotion.scss";
 import React, { useState } from "react";
 
 export function Promotion() {
+  const [cards, setCards] = useState([]);
   return (
     <section className="promotion-section">
       <PromotionHeader />
-      <PromotionBar />
-      <MenuSection className="menu-section" />
+      <PromotionBar dataName={"best"} setCards={setCards} />
+      <PromotionSection cards={cards} />
     </section>
   );
 }
@@ -22,36 +23,107 @@ function PromotionHeader() {
   );
 }
 
-function PromotionBar() {
+function PromotionBar({ dataName, setCards }) {
+  // const [dataID, setDataID] = useState(1);
   return (
     <nav className="promotion-bar">
-      <li className="promotion-bar__category">풍성한 고기 반찬</li>
-      <li className="promotion-bar__category">편리한 반찬 세트</li>
-      <li className="promotion-bar__category">맛있는 제철 요리</li>
-      <li className="promotion-bar__category">우리 아이 영양 반찬</li>
+      <li
+        className="promotion-bar__category"
+        data_id={1}
+        onClick={({ target }) => {
+          const dataID = target.getAttribute("data_id");
+          // setDataID(dataID);
+          updateCards(dataName, dataID, setCards);
+        }}
+      >
+        풍성한 고기 반찬
+      </li>
+      <li
+        className="promotion-bar__category"
+        data_id={2}
+        onClick={({ target }) => {
+          const dataID = target.getAttribute("data_id");
+          // setDataID(dataID);
+          updateCards(dataName, dataID, setCards);
+        }}
+      >
+        편리한 반찬 세트
+      </li>
+      <li
+        className="promotion-bar__category"
+        data_id={3}
+        onClick={({ target }) => {
+          const dataID = target.getAttribute("data_id");
+          // setDataID(dataID);
+          updateCards(dataName, dataID, setCards);
+        }}
+      >
+        맛있는 제철 요리
+      </li>
+      <li
+        className="promotion-bar__category"
+        data_id={4}
+        onClick={({ target }) => {
+          const dataID = target.getAttribute("data_id");
+          // setDataID(dataID);
+          updateCards(dataName, dataID, setCards);
+        }}
+      >
+        우리 아이 영양 반찬
+      </li>
     </nav>
   );
 }
 
-function MenuSection() {
-  return (
-    <section className="menu-section">
-      <article className="menu-article">
+function updateCards(dataName, dataID, setCards) {
+  async function fetchData() {
+    const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item?${dataName}_id=${dataID}`;
+    const response = await fetch(DATA_URL);
+    const data = await response.json();
+    setCards(data);
+  }
+  fetchData();
+}
+
+function PromotionSection({ cards }) {
+  const menuArticles = cards.map((card, index) => {
+    return (
+      <article className="menu-article" key={`article${index}`}>
         <figure className="menu-article__figure">
-          <img
-            width="411px"
-            height="411px"
-            src="https://user-images.githubusercontent.com/92678171/164159697-1c8ef07a-141e-464b-b4e5-bb73e2119535.png"
-          ></img>
+          <img src={card.main_image}></img>
         </figure>
-        <p className="menu-article__title">오리 주물럭</p>
-        <p className="menu-article__detail">맛있는 오리고기와 오징어의 조합</p>
-        <div className="menu-article__prices">
-          <span className="menu-article__price-now">12640</span>
-          <span className="menu-article__price-previous">15800</span>
+        <div className="menu-article__description">
+          <p className="menu-article__title">{card.item_name}</p>
+          <p className="menu-article__detail">{card.description}</p>
+          <div className="menu-article__prices">
+            {card.dc_price && (
+              <span className="menu-article__price-now">{card.dc_price}</span>
+            )}
+            <span
+              className={
+                card.dc_price
+                  ? "menu-article__price-previous"
+                  : "menu-article__price-now"
+              }
+            >
+              {card.or_price}
+            </span>
+          </div>
         </div>
-        <label className="menu-article__label">런칭특가</label>
+        <Label labelID={card.label_id} />
       </article>
-    </section>
-  );
+    );
+  });
+
+  return <section className="menu-section">{menuArticles}</section>;
+}
+
+function Label({ labelID }) {
+  if (labelID === 1) {
+    return <label className="menu-article__label1">런칭특가</label>;
+  } else if (labelID === 2) {
+    return <label className="menu-article__label2">이벤트특가</label>;
+  } else if (labelID === 3) {
+    return "";
+  }
 }
