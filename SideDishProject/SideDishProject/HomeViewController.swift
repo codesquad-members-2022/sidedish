@@ -8,7 +8,7 @@
 import UIKit
 import Toaster
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
     private var productRepository: ProductRepository?
     private lazy var homeView = HomeView(frame: view.frame)

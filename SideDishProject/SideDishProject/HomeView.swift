@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeView: UIView{
+final class HomeView: UIView{
     private var collectionView: UICollectionView?
     
     override init(frame: CGRect) {

@@ -10,7 +10,7 @@ protocol ProductRepository {
     func fetchOne(id: UniqueID, completion: @escaping (Result<Product, ProductRepositoryError>) -> Void)
 }
 
-class MockProductRepository: ProductRepository {
+final class MockProductRepository: ProductRepository {
     
     private let products: [Product]
     

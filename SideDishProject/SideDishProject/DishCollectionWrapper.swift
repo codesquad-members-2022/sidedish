@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DishCollectionWrapper: NSObject{
+final class DishCollectionWrapper: NSObject{
     
     private var dishes: [DishCategory : [Product]] = [:]
     private var dishComments: [String] = []

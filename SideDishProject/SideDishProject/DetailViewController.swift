@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController{
+final class DetailViewController: UIViewController{
     private var productRepository: ProductRepository?
     
     override func viewDidLoad() {

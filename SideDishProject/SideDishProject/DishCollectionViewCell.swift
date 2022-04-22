@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DishCollectionViewCell: UICollectionViewCell{
+final class DishCollectionViewCell: UICollectionViewCell{
     static let identifier = "DishCollectionViewCell"
     
     override func prepareForReuse() {
@@ -127,7 +127,7 @@ class DishCollectionViewCell: UICollectionViewCell{
     
     func setProperties(product: Product){
         dishTitleLabel.text = product.name
-        descriptionTitleLabel.text = product.desc
+        descriptionTitleLabel.text = product.description
         if product.event.contains(.none) {
            setNonEventUIConstraint()
         }else{

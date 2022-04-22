@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DishCommentHeaderView: UICollectionReusableView{
+final class DishCommentHeaderView: UICollectionReusableView{
     static let identifier = "DishCommentHeaderView"
     
     private lazy var dishTitleLabel: UILabel = {
