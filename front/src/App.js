@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Modal from './components/Modal';
+import Event from './components/Event';
 import GlobalStyles from './GlobalStyles';
 
 const categories = [
@@ -80,6 +81,7 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <Modal dishes={dishes}></Modal>
       <Header categories={categories}></Header>
+      <Event></Event>
     </div>
   );
 }
