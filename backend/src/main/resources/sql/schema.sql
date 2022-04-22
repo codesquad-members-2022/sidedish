@@ -10,28 +10,16 @@ CREATE TABLE `user`
     PRIMARY KEY (github_id)
 );
 
-DROP TABLE IF EXISTS event_badge;
-
-CREATE TABLE event_badge
-(
-    event_badge_id   INT            NOT NULL AUTO_INCREMENT COMMENT 'event_badge 테이블의 레코드를 식별하기 위한 ID',
-    event_badge_name VARCHAR(50)    NOT NULL COMMENT '이벤트 뱃지의 이름',
-    discount         DECIMAL(10, 2) NOT NULL COMMENT '이벤트 뱃지의 할인율',
-    PRIMARY KEY (event_badge_id)
-);
-
 DROP TABLE IF EXISTS dish;
 
 CREATE TABLE dish
 (
     dish_id        INT          NOT NULL AUTO_INCREMENT COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
-    event_badge_id INT COMMENT 'event_badge 테이블의 레코드를 식별하기 위한 ID',
     title          VARCHAR(100) NOT NULL COMMENT '반찬의 이름',
     description    VARCHAR(255) COMMENT '반찬에 대한 설명',
     price          INT          NOT NULL COMMENT '반찬의 정가',
     stock          INT          NOT NULL DEFAULT 0 COMMENT '반찬 보유 재고',
-    PRIMARY KEY (dish_id),
-    FOREIGN KEY (event_badge_id) REFERENCES event_badge (event_badge_id)
+    PRIMARY KEY (dish_id)
 );
 
 DROP TABLE IF EXISTS dish_image;
@@ -70,24 +58,24 @@ CREATE TABLE delivery
     PRIMARY KEY (delivery_id)
 );
 
-DROP TABLE IF EXISTS delivery_order;
+DROP TABLE IF EXISTS order_delivery;
 
-CREATE TABLE delivery_order
+CREATE TABLE order_delivery
 (
     order_id    INT NOT NULL COMMENT 'order 테이블의 레코드를 식별하기 위한 ID',
     delivery_id INT NOT NULL COMMENT 'delivery 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_delivery_order PRIMARY KEY (order_id, delivery_id),
+    CONSTRAINT PK_order_delivery PRIMARY KEY (order_id, delivery_id),
     FOREIGN KEY (order_id) REFERENCES `order` (order_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id)
 );
 
-DROP TABLE IF EXISTS delivery_dish;
+DROP TABLE IF EXISTS dish_delivery;
 
-CREATE TABLE delivery_dish
+CREATE TABLE dish_delivery
 (
     dish_id     INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
     delivery_id INT NOT NULL COMMENT 'delivery 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_delivery_dish PRIMARY KEY (dish_id, delivery_id),
+    CONSTRAINT PK_dish_delivery PRIMARY KEY (dish_id, delivery_id),
     FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id)
 );
@@ -113,6 +101,27 @@ CREATE TABLE dish_category
     CONSTRAINT PK_dish_category PRIMARY KEY (dish_id, category_id),
     FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
     FOREIGN KEY (category_id) REFERENCES category (category_id)
+);
+
+DROP TABLE IF EXISTS event_badge;
+
+CREATE TABLE event_badge
+(
+    event_badge_id   INT            NOT NULL AUTO_INCREMENT COMMENT 'event_badge 테이블의 레코드를 식별하기 위한 ID',
+    event_badge_name VARCHAR(50)    NOT NULL COMMENT '이벤트 뱃지의 이름',
+    discount         DECIMAL(10, 2) NOT NULL COMMENT '이벤트 뱃지의 할인율',
+    PRIMARY KEY (event_badge_id)
+);
+
+DROP TABLE IF EXISTS dish_event_badge;
+
+CREATE TABLE dish_event_badge
+(
+    dish_id        INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
+    event_badge_id INT NOT NULL COMMENT 'event_badge 테이블의 레코드를 식별하기 위한 ID',
+    CONSTRAINT PK_dish_event_badge PRIMARY KEY (dish_id, event_badge_id),
+    FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
+    FOREIGN KEY (event_badge_id) REFERENCES event_badge (event_badge_id)
 );
 
 DROP TABLE IF EXISTS dish_recommend;
