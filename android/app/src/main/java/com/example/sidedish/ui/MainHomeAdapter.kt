@@ -10,7 +10,8 @@ import com.example.sidedish.R
 import com.example.sidedish.databinding.ItemMenuDataBinding
 import com.example.sidedish.model.Products
 
-class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
+class MainHomeAdapter :
+    ListAdapter<Products, MainHomeAdapter.MainHomeHolder>(MainHomeAdapterDiffCallback) {
 
     override fun onBindViewHolder(holder: MainHomeHolder, position: Int) {
         val item = getItem(position)
@@ -26,16 +27,16 @@ class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
         ).let {
             MainHomeHolder(it)
         }
-}
 
-class MainHomeHolder(private val binding: ItemMenuDataBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(menuList: Products) {
-        binding.menuData = menuList
+    class MainHomeHolder(private val binding: ItemMenuDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(menuList: Products) {
+            binding.menuData = menuList
+        }
     }
 }
 
-private val diffUtil = object : DiffUtil.ItemCallback<Products>() {
+object MainHomeAdapterDiffCallback : DiffUtil.ItemCallback<Products>() {
     override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
         return oldItem.productId == newItem.productId
     }
