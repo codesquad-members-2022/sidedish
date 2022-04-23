@@ -4,8 +4,8 @@ import StyledNav from "./Nav.styled";
 
 const Nav = ({ state: { handleMouseEvent, checkIsOpen } }) => {
   return (
-    <StyledNav>
-      <Menu state={{ handleMouseEvent, checkIsOpen }} />
+    <StyledNav onMouseEnter={handleMouseEvent} onMouseLeave={handleMouseEvent}>
+      <Menu isOpen={checkIsOpen()} />
     </StyledNav>
   );
 };
