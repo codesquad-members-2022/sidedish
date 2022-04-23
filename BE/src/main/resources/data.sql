@@ -1,4 +1,4 @@
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('[프렙] 해산물 빠에야', '메뉴설명1', 10000, 'MAIN', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bab-main01.png');
@@ -10,7 +10,7 @@ VALUES (1, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bab-main01
        (1, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bab-detail02.png', false),
        (1, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bab-detail03.png', false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('설렁탕', '메뉴설명2', 10000, 'MAIN', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bonesoup-main01.png');
@@ -24,7 +24,7 @@ VALUES (2, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bonesoup-m
        (2, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bonesoup-detail03.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('부대찌개', '메뉴설명3', 10000, 'MAIN', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/budae-main01.png');
@@ -36,7 +36,7 @@ VALUES (3, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/budae-main
        (3, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/budae-detail02.png', false),
        (3, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/budae-detail03.png', false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('닭볶음탕', '메뉴설명4', 10000, 'MAIN', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/spicychicken-main01.png');
@@ -53,7 +53,7 @@ VALUES (4, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/spicychick
        (4, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/spicychicken-detail03.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('육개장', '메뉴설명5', 10000, 'MAIN', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/yukgaejang-main01.png');
@@ -66,7 +66,7 @@ VALUES (5, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/yukgaejang
        (5, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/yukgaejang-detail02.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('곰국', '메뉴설명6', 10000, 'SOUP', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/bearsoup-main01.png');
@@ -78,7 +78,7 @@ VALUES (6, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/bearsoup-m
        (6, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/bearsoup-detail02.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('삼계탕', '메뉴설명7', 10000, 'SOUP', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/chickensoup-main01.png');
@@ -95,7 +95,7 @@ VALUES (7, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/chickensou
        (7, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/chickensoup-detail03.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('낙지 연포탕', '메뉴설명8', 10000, 'SOUP', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/octopus-main01.png');
@@ -107,7 +107,7 @@ VALUES (8, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/octopus-ma
        (8, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/octopus-detail02.png', false),
        (8, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/octopus-detail03.png', false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('미역국', '메뉴설명9', 10000, 'SOUP', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/seaweedsoup-main01.png');
@@ -122,7 +122,7 @@ VALUES (9, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/seaweedsou
        (9, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/seaweedsoup-detail02.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('순대국', '메뉴설명10', 10000, 'SOUP', 'NONE', 2500, 40000, 1, 50,
         'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/main/sundaesoup-main01.png');
@@ -137,7 +137,7 @@ VALUES (10, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/sundaesou
        (10, 'https://s3.ap-northeast-2.amazonaws.com/www.jerry.io/soup/sundaesoup-detail02.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('계란찜', '메뉴설명11', 10000, 'SIDE', 'NONE', 2500, 40000, 1, 50,
         'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/egg-main01.png');
@@ -148,7 +148,7 @@ VALUES (11, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/egg-main01.
        (11, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/egg-detail01.png', false),
        (11, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/egg-detail02.png', false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('황태채무침', '메뉴설명12', 10000, 'SIDE', 'NONE', 2500, 40000, 1, 50,
         'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/hwangtae-main01.png');
@@ -159,7 +159,7 @@ VALUES (12, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/hwangtae-ma
        (12, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/hwangtae-detail02.png', false),
        (12, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/hwangtae-detail03.png', false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('버섯볶음', '메뉴설명13', 10000, 'SIDE', 'NONE', 2500, 40000, 1, 50,
         'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/mushroom-main01.png');
@@ -171,7 +171,7 @@ VALUES (13, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/mushroom-ma
        (13, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/mushroom-detail02.png', false),
        (13, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/mushroom-detail03.png', false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('동그랑땡', '메뉴설명14', 10000, 'SIDE', 'NONE', 2500, 40000, 1, 50,
         'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/roundmeat-main01.png');
@@ -186,7 +186,7 @@ VALUES (14, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/roundmeat-m
        (14, 'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/roundmeat-detail03.png',
         false);
 
-INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_min,
+INSERT INTO menu (name, description, price, menu_type, sale_type, fee, free_shipping_starting_price,
                   delivery_info, stock, image_path)
 VALUES ('시그니처반찬3종', '메뉴설명15', 10000, 'SIDE', 'NONE', 2500, 40000, 1, 50,
         'https://banchan-26.s3.ap-northeast-2.amazonaws.com/side/signature-main01.png');
