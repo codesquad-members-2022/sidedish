@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import DishContainer from 'Main/Dish/DishContainer';
 
 const CategoryButtonWrapper = styled.article`
   text-align: center;
@@ -14,10 +16,25 @@ const CategeoryButton = styled.button`
 `;
 
 const DishCategoryAllButton = () => {
+  const [open, setOpen] = useState(true);
+
+  const onClick = () => {
+    return setOpen(false);
+  };
+
   return (
-    <CategoryButtonWrapper>
-      <CategeoryButton onClick={(e) => console.log(e.target)}>모든 카테고리 보기</CategeoryButton>
-    </CategoryButtonWrapper>
+    <>
+      {open ? (
+        <CategoryButtonWrapper>
+          <CategeoryButton onClick={onClick}>모든 카테고리 보기</CategeoryButton>
+        </CategoryButtonWrapper>
+      ) : (
+        <>
+          <DishContainer></DishContainer>
+          <DishContainer></DishContainer>
+        </>
+      )}
+    </>
   );
 };
 

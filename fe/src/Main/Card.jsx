@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import CardDeliveryInfo from 'Main/CardDeliveryInfo';
 
 const CardItem = styled.div`
   margin-right: 24px;
+  cursor: pointer;
+`;
+
+const CardImgWrapper = styled.div`
+  position: relative;
 `;
 
 const CardItemImg = styled.img`
@@ -76,21 +83,29 @@ const CardItemTag = styled.p`
 `;
 
 const Card = ({ item, imageSize }) => {
+  const [hover, setHover] = useState(false);
+  const setPrice = (price) => Number(price).toLocaleString();
+
+  const onMouseOver = () => setHover(true);
+
+  const onMouseOut = () => setHover(false);
+
   return (
     <CardItem>
-      <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
+      <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+        <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
+        <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
+      </CardImgWrapper>
       <CardItemInfo>
         <p className="item__title">{item.title}</p>
         <p className="item__desc">{item.desc}</p>
         {item.salePrice ? (
           <>
-            <span className="item__default-price">{Number(item.salePrice).toLocaleString()}원</span>
-            <span className="item__normal-price">
-              {Number(item.normalPrice).toLocaleString()}원
-            </span>
+            <span className="item__default-price">{setPrice(item.salePrice)}원</span>
+            <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
           </>
         ) : (
-          <span className="item__default-price">{Number(item.normalPrice).toLocaleString()}원</span>
+          <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
         )}
       </CardItemInfo>
       {item.tag ? <CardItemTag tag={item.tag}>{item.tag}</CardItemTag> : ''}
