@@ -102,7 +102,8 @@ const HoverInfoWrapper = styled.div`
   z-index: 2;
   transition: opacity 150ms;
 
-  div {
+  .separator {
+    border: 0;
     border-bottom: 1px solid ${Colors.BLACK};
     margin: 8px 0;
   }
@@ -153,7 +154,7 @@ const HoverInfo = () => {
   return (
     <HoverInfoWrapper className={'fonts-md-bold hover-info'}>
       <p>새벽 배송</p>
-      <div />
+      <hr className={"separator"} />
       <p>전국 택배</p>
     </HoverInfoWrapper>
   );
