@@ -1,7 +1,9 @@
+import styled from 'styled-components';
+
+import Colors from '@Constants/Colors';
+
 import { MenuList } from './MenuList';
 import { UserButtons } from './UserButtons';
-import styled from 'styled-components';
-import Colors from '../Constants/Colors';
 
 const HeaderWrapper = styled.header`
   width: 1440px;
@@ -29,7 +31,7 @@ export const Header = props => {
   return (
     <HeaderWrapper>
       <Logo>
-        <img src={'logo.svg'} alt={'로고'} />
+        <img src={'logo.svg'} alt="로고" />
       </Logo>
       <HeaderUI>
         <MenuList categories={props.categories} />
