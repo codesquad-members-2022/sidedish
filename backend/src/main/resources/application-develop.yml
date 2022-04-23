@@ -4,7 +4,6 @@ spring:
     url: jdbc:mysql://localhost:3306/test
     username: suntory
     password: tksxhfl
-
   sql:
     init:
       schema-locations: classpath:schema.sql

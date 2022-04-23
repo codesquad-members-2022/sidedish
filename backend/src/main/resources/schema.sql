@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS USER;
 -- -----------------------------------------------------
 -- Table `test`.`CATEGORY`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `test`.`CATEGORY` (
+CREATE TABLE IF NOT EXISTS CATEGORY (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NAME` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`ID`))
@@ -17,7 +17,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `test`.`ITEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `test`.`ITEM` (
+CREATE TABLE IF NOT EXISTS ITEM (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CATEGORY_ID` INT NOT NULL,
   `NAME` VARCHAR(45) NOT NULL,
@@ -31,14 +31,14 @@ CREATE TABLE IF NOT EXISTS `test`.`ITEM` (
   INDEX `fk_ITEM_CATEGORY1_idx` (`CATEGORY_ID` ASC) VISIBLE,
   CONSTRAINT `fk_ITEM_CATEGORY1`
     FOREIGN KEY (`CATEGORY_ID`)
-    REFERENCES `test`.`CATEGORY` (`ID`))
+    REFERENCES `CATEGORY` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 -- -----------------------------------------------------
 -- Table `test`.`USER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `test`.`USER` (
+CREATE TABLE IF NOT EXISTS USER (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `USERNAME` VARCHAR(45) NOT NULL,
   `PASSWORD` VARCHAR(45) NOT NULL,
@@ -49,7 +49,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `test`.`ORDER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `test`.`ORDERS` (
+CREATE TABLE IF NOT EXISTS ORDERS (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `USER_ID` INT NOT NULL,
   `ITEM_ID` INT NOT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `test`.`ORDERS` (
   INDEX `fk_ORDERS_ITEM1_idx` (`ITEM_ID` ASC) VISIBLE,
   CONSTRAINT `fk_ORDER_USER`
     FOREIGN KEY (`USER_ID`)
-    REFERENCES `test`.`USER` (`ID`),
+    REFERENCES `USER` (`ID`),
   CONSTRAINT `fk_ORDERS_ITEM1`
     FOREIGN KEY (`ITEM_ID`)
-    REFERENCES `test`.`ITEM` (`ID`)
+    REFERENCES `ITEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -73,7 +73,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `test`.`ITEM_IMAGE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `test`.`ITEM_IMAGE` (
+CREATE TABLE IF NOT EXISTS ITEM_IMAGE (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ITEM_ID` INT NOT NULL,
   `IMAGE_LINK` VARCHAR(500) NOT NULL,
@@ -81,6 +81,6 @@ CREATE TABLE IF NOT EXISTS `test`.`ITEM_IMAGE` (
   INDEX `fk_ITEM_IMAGE_ITEM1_idx` (`ITEM_ID` ASC) VISIBLE,
   CONSTRAINT `fk_ITEM_IMAGE_ITEM1`
     FOREIGN KEY (`ITEM_ID`)
-    REFERENCES `test`.`ITEM` (`ID`))
+    REFERENCES `ITEM` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
