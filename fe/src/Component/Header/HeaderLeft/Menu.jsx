@@ -22,7 +22,7 @@ const Menu = ({ isOpen }) => {
 };
 
 Menu.propTypes = {
-  isOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 SubMenu.propTypes = {

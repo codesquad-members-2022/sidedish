@@ -2,16 +2,18 @@ import PropTypes from "prop-types";
 import Menu from "./Menu";
 import StyledNav from "./Nav.styled";
 
-const Nav = ({ state: { handleMouseEvent, checkIsOpen } }) => {
+const Nav = ({ state: { handleMouseEvent, isSubMenuOpen } }) => {
   return (
     <StyledNav onMouseEnter={handleMouseEvent} onMouseLeave={handleMouseEvent}>
-      <Menu isOpen={checkIsOpen()} />
+      <Menu isOpen={isSubMenuOpen} />
     </StyledNav>
   );
 };
 
 Nav.propTypes = {
-  state: PropTypes.objectOf(PropTypes.func).isRequired,
+  state: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.func, PropTypes.bool])
+  ).isRequired,
 };
 
 export default Nav;
