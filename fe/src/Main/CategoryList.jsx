@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Colors from '../Constants/Colors';
+import Colors from '@Constants/Colors';
 
 import { Category } from './Category';
 
