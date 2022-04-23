@@ -27,8 +27,8 @@ export const Menu = ({ category, subMenuOpen }) => {
       <span>{category.main}</span>
       {subMenuOpen ? (
         <SubMenuList className={'fonts-sm'}>
-          {category.subs.map((sub, idx) => (
-            <li key={idx}>{sub}</li>
+          {category.subs.map((sub) => (
+            <li key={category.id}>{sub}</li>
           ))}
         </SubMenuList>
       ) : null}
