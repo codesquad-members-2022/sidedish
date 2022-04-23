@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { MenuDatas } from "../../../MockData/MockData";
-import SubMenuUl from "./Menu.Styled";
+import { MainMenuUl, SubMenuUl } from "./Menu.Styled";
 
 const SubMenu = ({ subMenuDatas }) => {
   const subMenuList = subMenuDatas.map((subMenuData) => (
@@ -15,16 +15,22 @@ const Menu = ({ state: { handleMouseEvent, checkIsOpen } }) => {
     return checkIsOpen() ? <SubMenu subMenuDatas={subMenu} /> : null;
   };
 
-  return MenuDatas.map(({ id, name, subMenu }) => (
-    <li
-      key={id}
-      onMouseEnter={handleMouseEvent}
-      onMouseLeave={handleMouseEvent}
-    >
+  const MainMenu = MenuDatas.map(({ id, name, subMenu }) => (
+    <li key={id}>
       {name}
       {subMenuContents(subMenu)}
     </li>
   ));
+
+  return (
+    <MainMenuUl onMouseEnter={handleMouseEvent} onMouseLeave={handleMouseEvent}>
+      {MainMenu}
+    </MainMenuUl>
+  );
+};
+
+Menu.propTypes = {
+  state: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 SubMenu.propTypes = {

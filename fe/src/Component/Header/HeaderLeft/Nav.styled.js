@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-const StyledUl = styled.ul`
-  display: flex;
-
-  li {
-    cursor: pointer;
-
-    &:not(:last-child) {
-      margin-right: 24px;
-    }
-  }
-`;
-
 const StyledNav = styled.nav`
   font-family: "Noto Sans KR";
   font-weight: 400;
@@ -21,4 +9,4 @@ const StyledNav = styled.nav`
   margin-left: 40px;
 `;
 
-export { StyledUl, StyledNav };
+export default StyledNav;

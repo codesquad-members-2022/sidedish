@@ -7,6 +7,7 @@ const HeaderLeft = ({ state: { handleMouseEvent, checkIsOpen } }) => {
     <NavArea>
       <h1>Ordering</h1>
       <Nav state={{ handleMouseEvent, checkIsOpen }} />
+      {/* TODO: submenu를 이 위치로 옮기기 */}
     </NavArea>
   );
 };

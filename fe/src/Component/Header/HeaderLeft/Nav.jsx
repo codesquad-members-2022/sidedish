@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import Menu from "./Menu";
-import { StyledNav, StyledUl } from "./Nav.styled";
+import StyledNav from "./Nav.styled";
 
 const Nav = ({ state: { handleMouseEvent, checkIsOpen } }) => {
   return (
     <StyledNav>
-      <StyledUl>
-        <Menu state={{ handleMouseEvent, checkIsOpen }} />
-      </StyledUl>
+      <Menu state={{ handleMouseEvent, checkIsOpen }} />
     </StyledNav>
   );
 };
