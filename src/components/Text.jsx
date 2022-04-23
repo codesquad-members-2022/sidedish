@@ -1,36 +1,31 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { SIZE, WEIGHT } from "../variable/font";
-import COLOR from "../variable/color";
+import React from 'react';
+import styled from 'styled-components';
+import { SIZE, WEIGHT, FAMILY } from '../variable/font';
+import COLOR from '../variable/color';
 
-function Text(props) {
-  const { size, weight, color, value } = props;
+export default function Text(props) {
+  const { size, weight, family, color, value } = props;
   return (
-    <SPAN size={size} weight={weight} color={color}>
+    <SPAN size={size} weight={weight} family={family} color={color}>
       {value}
     </SPAN>
   );
 }
 
-Text.propTypes = {
-  size: PropTypes.string,
-  weight: PropTypes.string,
-  color: PropTypes.string,
-  value: PropTypes.string,
-};
-
 Text.defaultProps = {
   size: SIZE.BASE,
   weight: WEIGHT.REGULAR,
+  family: FAMILY.BASE,
   color: COLOR.BLACK,
-  value: "",
+  line: '',
+  value: ''
 };
 
 const SPAN = styled.span({
-  "font-size": (props) => SIZE[props.size],
-  "font-weight": (props) => WEIGHT[props.weight],
-  color: (props) => COLOR[props.color],
+  display: 'block',
+  fontSize: props => SIZE[props.size] || props.size,
+  fontWeight: props => WEIGHT[props.weight] || props.weight,
+  fontFamily: props => FAMILY[props.family] || props.family,
+  color: props => COLOR[props.color] || props.color,
+  textDecoration: props => (props.line ? 'line-through' : '')
 });
-
-export default Text;
