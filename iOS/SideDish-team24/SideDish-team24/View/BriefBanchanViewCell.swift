@@ -82,52 +82,59 @@ class BriefBanchanViewCell: UICollectionViewCell {
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.layout()
+        super.init(frame:  frame)
+        self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.layout()
+        self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
     }
-    
-    private func layout() {
+}
+
+private extension BriefBanchanViewCell {
+    func layoutDishImage() {
         self.addSubview(self.dishImage)
-        self.addSubview(self.breifStackView)
-        self.addSubview(self.specialPrice)
+        
         NSLayoutConstraint.activate([
             self.dishImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.dishImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.dishImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
-            
+        ])
+    }
+    
+    func layoutBreifStackView() {
+        self.addSubview(self.breifStackView)
+        
+        self.breifStackView.addArrangedSubview(self.dishTitle)
+        self.breifStackView.addArrangedSubview(self.dishDescription)
+        self.breifStackView.addArrangedSubview(self.prices)
+        
+        NSLayoutConstraint.activate([
             self.breifStackView.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
-            self.breifStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -CGFloat.defaultInset),
+            self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -CGFloat.defaultInset),
             self.breifStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset),
-            self.breifStackView.bottomAnchor.constraint(equalTo: self.specialPrice.topAnchor, constant: -CGFloat.defaultInset),
-            
+        ])
+    }
+    
+    func layoutPriceStackView() {
+        self.addSubview(self.specialPrice)
+        
+        self.prices.addArrangedSubview(self.discountPrice)
+        self.prices.addArrangedSubview(self.normalPrice)
+        
+        NSLayoutConstraint.activate([
+            self.specialPrice.topAnchor.constraint(equalTo: self.breifStackView.bottomAnchor, constant: CGFloat.defaultInset),
             self.specialPrice.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
             self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
             self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
             self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
         ])
-        
-    }
-    
-    private func layoutBreifStackView() {
-        self.breifStackView.addArrangedSubview(self.dishTitle)
-        self.breifStackView.addArrangedSubview(self.dishDescription)
-        self.breifStackView.addArrangedSubview(self.prices)
-    }
-    
-    private func layoutPriceStackView() {
-        self.prices.addArrangedSubview(self.discountPrice)
-        self.prices.addArrangedSubview(self.normalPrice)
-        self.prices.addArrangedSubview(self.blank)
         
         self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()
     }

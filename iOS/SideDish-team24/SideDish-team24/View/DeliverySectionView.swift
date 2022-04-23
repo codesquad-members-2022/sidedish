@@ -30,40 +30,47 @@ class DeliverySectionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layout()
-        self.setSections()
+        self.layoutTitleSection()
+        self.layoutInformationSection()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.layout()
-        self.setSections()
+        self.layoutTitleSection()
+        self.layoutInformationSection()
     }
     
-    private func layout() {
+}
+
+private extension DeliverySectionView {
+    func layoutTitleSection() {
         self.addSubview(titleSection)
-        self.addSubview(informationSection)
+        
+        self.titleSection.addArrangedSubview(self.reserveTitle)
+        self.titleSection.addArrangedSubview(self.deliveryTitle)
+        self.titleSection.addArrangedSubview(self.deliveryFeeTitle)
         
         NSLayoutConstraint.activate([
             self.titleSection.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.titleSection.topAnchor.constraint(equalTo: self.topAnchor),
             self.titleSection.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.titleSection.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+        ])
+    }
+    
+    func layoutInformationSection() {
+        self.addSubview(informationSection)
+        
+        self.informationSection.addArrangedSubview(self.reserve)
+        self.informationSection.addArrangedSubview(self.deliveryInformation)
+        self.informationSection.addArrangedSubview(self.deliveryFee)
+        
+        NSLayoutConstraint.activate([
             self.informationSection.leadingAnchor.constraint(equalTo: self.titleSection.trailingAnchor, constant: CGFloat.defaultInset),
             self.informationSection.topAnchor.constraint(equalTo: self.topAnchor),
             self.informationSection.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.informationSection.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
-        
-    }
-    
-    private func setSections() {
-        self.titleSection.addArrangedSubview(self.reserveTitle)
-        self.titleSection.addArrangedSubview(self.deliveryTitle)
-        self.titleSection.addArrangedSubview(self.deliveryFeeTitle)
-        self.informationSection.addArrangedSubview(self.reserve)
-        self.informationSection.addArrangedSubview(self.deliveryInformation)
-        self.informationSection.addArrangedSubview(self.deliveryFee)
     }
     
 }

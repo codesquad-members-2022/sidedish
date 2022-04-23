@@ -16,16 +16,18 @@ class DetailBanchanViewController: UIViewController {
     
     private let banchanBrief = DetailBanchanBriefView()
     private let deliverySection = DeliverySectionView()
+    private let counterSection = OrderCountSectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.layout()
+        self.layoutScollView()
+        self.layoutInnerView()
     }
     
 }
 
 private extension DetailBanchanViewController {
-    func layout() {
+    func layoutScollView() {
         let safeArea = self.view.safeAreaLayoutGuide
         self.view.addSubview(scrollView)
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,17 +39,22 @@ private extension DetailBanchanViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
         
+        
+    }
+    
+    func layoutInnerView() {
         self.scrollView.addSubview(innerView)
         self.innerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.innerView.addArrangedSubview(banchanBrief)
         self.innerView.addArrangedSubview(deliverySection)
+        self.innerView.addArrangedSubview(counterSection)
         NSLayoutConstraint.activate([
             self.innerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             self.innerView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            self.innerView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            self.innerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            self.innerView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: CGFloat.defaultInset),
+            self.innerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -CGFloat.defaultInset),
+            self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -CGFloat.defaultInset*2),
             self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height),
         ])
     }

@@ -9,8 +9,6 @@ class BriefBanchanViewController: UIViewController, UIGestureRecognizerDelegate 
         
         self.registerCollectionView()
     }
-    
-    
 }
 
 private extension BriefBanchanViewController {

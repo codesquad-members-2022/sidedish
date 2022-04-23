@@ -7,6 +7,8 @@ extension UIColor {
     static let dishWhite = UIColor(rgb: 0xFFFFFF)
     static let dishBlue = UIColor(rgb: 0x0066D6)
     static let dishSkyBlue = UIColor(rgb: 0x80BCFF)
+    static let dishGrey4 = UIColor(rgb: 0xF5F5F7)
+    static let dishGrey3 = UIColor(rgb: 0xE0E0E0)
     
     convenience init(red: Int, green: Int, blue: Int, alpha: CGFloat = 1.0) {
         assert(red >= 0 && red <= 255, "Invalid red component")
