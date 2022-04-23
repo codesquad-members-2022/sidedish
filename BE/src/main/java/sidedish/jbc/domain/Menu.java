@@ -10,18 +10,18 @@ public class Menu {
 	private String name;
 	private String description;
 	private int price;
-	private String menuType;
-	private String saleType;
+	private MenuType menuType;
+	private SaleType saleType;
 	private int fee;
 	private int freeShippingMin;
 	private String deliveryInfo;
 	private int stock;
-	private Integer imageId;
+	private String imagePath;
 
 	@PersistenceConstructor
 	public Menu(Long id, String name, String description, int price,
-		String menuType, String saleType, int fee, int freeShippingMin,
-		String deliveryInfo, int stock, Integer imageId) {
+		MenuType menuType, SaleType saleType, int fee, int freeShippingMin,
+		String deliveryInfo, int stock, String imagePath) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -32,12 +32,12 @@ public class Menu {
 		this.freeShippingMin = freeShippingMin;
 		this.deliveryInfo = deliveryInfo;
 		this.stock = stock;
-		this.imageId = imageId;
+		this.imagePath = imagePath;
 	}
 
-	public Menu(String name, String description, int price, String menuType,
-		String saleType, int fee, int freeShippingMin, String deliveryInfo, int stock,
-		Integer imageId) {
+	public Menu(String name, String description, int price, MenuType menuType,
+		SaleType saleType, int fee, int freeShippingMin, String deliveryInfo, int stock,
+		String imagePath) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -47,7 +47,7 @@ public class Menu {
 		this.freeShippingMin = freeShippingMin;
 		this.deliveryInfo = deliveryInfo;
 		this.stock = stock;
-		this.imageId = imageId;
+		this.imagePath = imagePath;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class Menu {
 			", freeShippingMin=" + freeShippingMin +
 			", deliveryInfo='" + deliveryInfo + '\'' +
 			", stock=" + stock +
-			", imageId=" + imageId +
+			", imagePath=" + imagePath +
 			'}';
 	}
 }

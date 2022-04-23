@@ -11,8 +11,9 @@ import sidedish.jbc.dto.MenuResponse;
 
 public interface MenuRepository extends CrudRepository<Menu, Integer> {
 
+	// 타입에 대한 홈페이지 뷰를 내리는 것
 	@Query(
-		"select menu.id, name, description, price, menu_type, sale_type, image_path from menu left join image on menu.image_id = image.id where menu_type = :type")
+		"select menu.id, name, description, price, menu_type, sale_type, image_path from menu where menu_type = :type")
 	List<MenuResponse> findAllByType(@Param("type") MenuType type);
 
 	@Query("select name, description, price, sale_type, delivery_info, fee, free_shipping_min from menu where id = :menuId")

@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`menu` (
     `free_shipping_min`     INT             NOT NULL    COMMENT '무료배송 기준 최소주문 금액',
     `delivery_info`         VARCHAR(45)     NOT NULL    COMMENT '배송 정보 (서울경기 당일배송)',
     `stock`                 INT             NOT NULL    COMMENT '재고',
-    `image_id`              INT             NOT NULL    COMMENT '대표 이미지 ID',
+    `image_path`            VARCHAR(1000)   NOT NULL    COMMENT '대표 이미지 ID',
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
