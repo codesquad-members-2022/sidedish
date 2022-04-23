@@ -7,9 +7,10 @@ const GlobalStyles = createGlobalStyle`
         background: none;
         border:none;
 }
-    *{
+    div {
         font-family: 'Noto Sans KR';
         font-style: normal;
+        font-weight: 500;
 }
 `;
 

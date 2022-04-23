@@ -42,7 +42,6 @@ const ProductName = styled.div`
   margin-bottom: 16px;
 `;
 const PrimeCost = styled.div`
-  font-weight: 500;
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 8px;
@@ -61,13 +60,12 @@ const Badge = styled.div`
   place-content: center center;
   background: #ff8e14;
   border-radius: 999px;
-  font-weight: 500;
+
   font-size: 12px;
   line-height: 18px;
   color: #ffffff;
 `;
 const Price = styled.div`
-  font-weight: 500;
   font-size: 20px;
   line-height: 30px;
 `;
@@ -124,7 +122,6 @@ const MinusButton = styled.button`
   color: #777777;
 `;
 const Amount = styled.div`
-  font-weight: 500;
   font-size: 16px;
   display: grid;
   place-content: center center;
@@ -143,7 +140,6 @@ const TotalCostTitle = styled.div`
   color: #777777;
 `;
 const TotalCost = styled.div`
-  font-weight: 500;
   font-size: 20px;
   line-height: 30px;
 `;
@@ -197,7 +193,7 @@ function ProductDetail({ dishes }) {
           </InfoTitles>
           <InfoDetails>
             <Point>{(dishes.discount_price * dishes.mileage_ratio).toLocaleString()}원</Point>
-            <Delivery>{dishes.early_delivery ? '서울 경기 새벽배송' : ''}전국 택배 배송</Delivery>
+            <Delivery>{dishes.early_delivery ? '서울 경기 새벽배송, ' : ''}전국 택배 배송</Delivery>
             <DeliveryPrice>{dishes.delivery_price.toLocaleString()}원</DeliveryPrice>
           </InfoDetails>
         </Info>
