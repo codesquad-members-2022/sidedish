@@ -4,8 +4,8 @@ import { Header } from '@Header';
 import { Main } from '@Main';
 
 function App() {
-  const [categories, setCategories] = useState(null);
-  const [loadedCategories, setLoadedCategories] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [loadedCategories, setLoadedCategories] = useState([]);
 
   useEffect(() => {
     fetch('/categories')
@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!categories) return;
+    if (!categories.length) return;
     const firstCategoryIndex = 0;
     const firstCategoryId = categories[firstCategoryIndex].id;
     const firstCategoryTitle = categories[firstCategoryIndex].main;
@@ -43,7 +43,7 @@ function App() {
   return (
     <>
       {categories && <Header categories={categories} />}
-      {loadedCategories && (
+      {loadedCategories.length && (
         <Main
           categories={categories}
           loadedCategories={loadedCategories}
