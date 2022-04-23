@@ -1,15 +1,17 @@
-package com.example.sidedish
+package com.example.sidedish.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.sidedish.R
+import com.example.sidedish.ui.common.ViewModelFactory
 import com.example.sidedish.databinding.ActivityProductDetailBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ProductDetailActivity : AppCompatActivity() {
 
-    private val viewModel: ProductDetailViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel: ProductDetailViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: ActivityProductDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +21,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         with(binding.viewpagerProductDetail) {
             adapter = ProductDetailImageAdapter().apply {
-                viewModel.imageTitleImageList.observe(this@ProductDetailActivity) { image ->
+                viewModel.representImage.observe(this@ProductDetailActivity) { image ->
                     submitList(image)
                 }
             }

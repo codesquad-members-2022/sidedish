@@ -9,7 +9,7 @@
 <!--    android:name=".HiltApplication"-->
     <!-- .HiltApplication을 받아서 hilt Apllication 적용-->
     <application
-        android:name=".HiltApplication"
+        android:name=".ui.common.HiltApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProductDetailActivity"
+            android:name=".ui.ProductDetailActivity"
             android:exported="false" />
     </application>
 

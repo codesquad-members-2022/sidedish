@@ -28,6 +28,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Subtitle1.black.30">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="Subtitle1.black.32">
         <item name="android:textSize">32sp</item>
     </style>

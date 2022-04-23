@@ -1,10 +1,11 @@
-package com.example.sidedish
+package com.example.sidedish.ui.common
 
 import android.graphics.Paint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.sidedish.ui.common.GlideApp
 
 @BindingAdapter("updateImage")
 fun updateImage(view: ImageView, imageUrl: String) {

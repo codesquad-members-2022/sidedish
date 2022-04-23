@@ -1,9 +1,9 @@
-package com.example.sidedish
+package com.example.sidedish.repository
 
-import retrofit2.Response
+import com.example.sidedish.network.ApiService
 import javax.inject.Inject
 
-//Apiservice를 주입받음
+// Apiservice 를 주입받음
 class Repository
 @Inject
 constructor(private val apiService: ApiService){

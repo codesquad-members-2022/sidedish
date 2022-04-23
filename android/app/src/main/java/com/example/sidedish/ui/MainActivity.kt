@@ -1,10 +1,12 @@
-package com.example.sidedish
+package com.example.sidedish.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.sidedish.ui.MainHomeAdapter
+import com.example.sidedish.R
 import com.example.sidedish.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package com.example.sidedish
+package com.example.sidedish.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sidedish.databinding.ItemPorductDetailImageBinding
+import com.example.sidedish.model.RepresentImages
 
 class ProductDetailImageAdapter :
-    ListAdapter<ProductDetailTitleImageList, ProductDetailImageAdapter.ProductDetailImageViewHolder>(
+    ListAdapter<RepresentImages, ProductDetailImageAdapter.ProductDetailImageViewHolder>(
         ProductDetailImageDiffCallback
     ) {
 
@@ -30,24 +31,24 @@ class ProductDetailImageAdapter :
 
     class ProductDetailImageViewHolder(private val binding: ItemPorductDetailImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(productDetailTitleImageList: ProductDetailTitleImageList) {
-            binding.image = productDetailTitleImageList
+        fun bind(representImages: RepresentImages) {
+            binding.image = representImages
             binding.executePendingBindings()
         }
     }
 }
 
-object ProductDetailImageDiffCallback : DiffUtil.ItemCallback<ProductDetailTitleImageList>() {
+object ProductDetailImageDiffCallback : DiffUtil.ItemCallback<RepresentImages>() {
     override fun areItemsTheSame(
-        oldItem: ProductDetailTitleImageList,
-        newItem: ProductDetailTitleImageList
+        oldItem: RepresentImages,
+        newItem: RepresentImages
     ): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.imageId == newItem.imageId
     }
 
     override fun areContentsTheSame(
-        oldItem: ProductDetailTitleImageList,
-        newItem: ProductDetailTitleImageList
+        oldItem: RepresentImages,
+        newItem: RepresentImages
     ): Boolean {
         return oldItem == newItem
     }

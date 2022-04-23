@@ -1,4 +1,4 @@
-package com.example.sidedish
+package com.example.sidedish.model
 
 data class MenuData(
     val count: Int,

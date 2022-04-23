@@ -7,13 +7,13 @@
 
         <variable
             name="contents"
-            type="com.example.sidedish.ProductDetailContents" />
+            type="com.example.sidedish.model.DetailImages" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProductDetailActivity">
+        tools:context=".ui.ProductDetailActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_product_detail_title"

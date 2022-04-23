@@ -8,7 +8,7 @@
 
         <variable
             name="menuData"
-            type="com.example.sidedish.Products" />
+            type="com.example.sidedish.model.Products" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

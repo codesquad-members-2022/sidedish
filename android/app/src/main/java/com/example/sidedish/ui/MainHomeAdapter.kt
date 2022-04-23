@@ -1,4 +1,4 @@
-package com.example.sidedish
+package com.example.sidedish.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sidedish.R
 import com.example.sidedish.databinding.ItemMenuDataBinding
+import com.example.sidedish.model.Products
 
 class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
 
