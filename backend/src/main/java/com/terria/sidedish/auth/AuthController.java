@@ -1,6 +1,6 @@
 package com.terria.sidedish.auth;
 
-import com.terria.sidedish.dto.auth.GithubUser;
+import com.terria.sidedish.domain.Member;
 import com.terria.sidedish.service.GithubAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ public class AuthController {
     private final GithubAuthService loginService;
 
     @GetMapping("/github/callback")
-    public GithubUser login(String code) {
+    public Member login(String code) {
         return loginService.login(code);
     }
 }

@@ -1,14 +1,11 @@
 package com.terria.sidedish.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.terria.sidedish.domain.Member;
 import lombok.Getter;
-import org.springframework.data.annotation.Id;
 
 @Getter
 public class GithubUser {
-
-    @Id
-    private long id;
 
     @JsonProperty("login")
     private String userId;
@@ -25,11 +22,14 @@ public class GithubUser {
         this.provider = provider;
     }
 
+    public Member toEntity() {
+        return new Member(0, userId, Provider.of(provider), email, name);
+    }
+
     @Override
     public String toString() {
         return "GithubUser{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
+                "userId='" + userId + '\'' +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", provider='" + provider + '\'' +

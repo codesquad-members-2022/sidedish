@@ -13,11 +13,11 @@ public enum Provider {
         this.server = server;
     }
 
-    public static String of(String server) {
+    public static Provider of(String server) {
         return Arrays.stream(Provider.values())
                 .filter(provider -> provider.server.equals(server))
                 .findFirst()
-                .orElse(UNKNOWN).server;
+                .orElse(UNKNOWN);
     }
 
     @Override

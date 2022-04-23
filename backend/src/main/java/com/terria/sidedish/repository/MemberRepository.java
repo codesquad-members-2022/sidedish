@@ -2,15 +2,14 @@ package com.terria.sidedish.repository;
 
 
 import com.terria.sidedish.domain.Member;
+import com.terria.sidedish.dto.auth.Provider;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
 public interface MemberRepository extends CrudRepository<Member, Long> {
 
-    Optional<Member> findByEmail(String email);
+    Optional<Member> findByUserIdAndProvider(String userId, Provider provider);
 
-    boolean existsByEmail(String email);
+    boolean existsByUserIdAndProvider(String userId, Provider provider);
 }

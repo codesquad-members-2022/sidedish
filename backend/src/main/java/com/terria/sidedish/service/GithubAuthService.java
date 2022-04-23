@@ -1,11 +1,13 @@
 package com.terria.sidedish.service;
 
+import com.terria.sidedish.domain.Member;
 import com.terria.sidedish.dto.auth.GithubAccessToken;
 import com.terria.sidedish.dto.auth.GithubUser;
 import com.terria.sidedish.dto.auth.Provider;
 import com.terria.sidedish.error.GithubOAuthException;
 import com.terria.sidedish.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
@@ -18,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static com.terria.sidedish.error.ErrorCode.GITHUB_USER_ERROR;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @PropertySource(value = "classpath:oauth.properties", ignoreResourceNotFound = true)
@@ -31,8 +34,22 @@ public class GithubAuthService {
     @Value("${oauth.github.clientSecret}")
     private String clientSecret;
 
-    public GithubUser login(String code) {
-        return requestUserInfo(requestAccessToken(code));
+    public Member login(String code) {
+        GithubUser githubUser = requestUserInfo(requestAccessToken(code));
+
+        String userId = githubUser.getUserId();
+        Provider provider = Provider.of(githubUser.getProvider());
+
+        if (!memberRepository.existsByUserIdAndProvider(userId, provider)) {
+            memberRepository.save(githubUser.toEntity());
+        }
+
+        Member newMember = memberRepository.findByUserIdAndProvider(userId, provider)
+                .orElseThrow();
+
+        log.info("Member: {}", newMember);
+
+        return newMember;
     }
 
     private GithubAccessToken requestAccessToken(String code) {
@@ -76,7 +93,7 @@ public class GithubAuthService {
         }
 
         GithubUser githubUser = response.getBody();
-        githubUser.setProvider(Provider.of(response.getHeaders().getFirst("Server")));
+        githubUser.setProvider(response.getHeaders().getFirst("Server"));
 
         return githubUser;
     }
