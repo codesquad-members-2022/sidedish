@@ -2,7 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private let ordering = Ordering()
+    private var ordering: Ordering?
     
     private lazy var foodCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ordering = Ordering(repository: Repository())
         navigationItem.title = "Ordering"
         setFoodCollectionView()
         setLayout()
@@ -41,21 +42,18 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return ordering.categoryCount
+        return ordering?.categoryCount ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let ordering = ordering else { return 0 }
         let category = ordering.getCategoryWithIndex(index: section)
         return ordering.getFoodCount(category: category)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
-        cell.addViews()
-        cell.setLayout()
-        
-        let category = Category.allCases[indexPath.section]
-       
+        guard let ordering = ordering,
+              let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
         let index = indexPath.row
         if let food = ordering[index, category] {

@@ -1,10 +1,16 @@
 import Foundation
 
 class Ordering{
-    private var foodMap: [Category:[String:Food]] = [:]
+    private var foodMap: [Category:[String:Food]] = {
+        var map: [Category:[String:Food]] = [:]
+        for category in Category.allCases {
+            map[category] = [String:Food]()
+        }
+        return map
+    }()
     private (set) var selectedMenu: Food?
     private var orderingCount: Int = 0
-    private var repository: RepositoryApplicable = Repository()
+    private var repository: RepositoryApplicable
     var foodCount: Int{
         var count = 0
         for category in foodMap.keys{
@@ -17,11 +23,9 @@ class Ordering{
     }
     var deliveryMoney: Int = 2500
     
-    init(){
-        for category in Category.allCases {
-            foodMap[category] = [String:Food]()
-        }
-        repository.delegate = self
+    init(repository: RepositoryApplicable){
+        self.repository = repository
+        self.repository.delegate = self
         getSampleFoodList()
     }
     
