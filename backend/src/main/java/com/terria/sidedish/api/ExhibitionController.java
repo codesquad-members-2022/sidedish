@@ -3,7 +3,7 @@ package com.terria.sidedish.api;
 import com.terria.sidedish.dto.response.ExhibitionResponse;
 import com.terria.sidedish.error.ErrorCode;
 import com.terria.sidedish.error.ErrorResponse;
-import com.terria.sidedish.error.ExhibitionRunTimeException;
+import com.terria.sidedish.error.ExhibitionException;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,8 +36,8 @@ public class ExhibitionController {
         return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
     }
 
-    @ExceptionHandler(ExhibitionRunTimeException.class)
-    private ResponseEntity<ErrorResponse> handleCardRuntimeException(ExhibitionRunTimeException e) {
+    @ExceptionHandler(ExhibitionException.class)
+    private ResponseEntity<ErrorResponse> handleCardRuntimeException(ExhibitionException e) {
         ErrorCode errorCode = e.getErrorCode();
         return new ResponseEntity<>(ErrorResponse.of(errorCode), errorCode.getStatus());
     }

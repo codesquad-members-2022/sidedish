@@ -3,7 +3,7 @@ package com.terria.sidedish.error;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ExhibitionRunTimeException extends RuntimeException {
+public class ExhibitionException extends RuntimeException {
 
     private final ErrorCode errorCode;
 

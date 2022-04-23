@@ -14,4 +14,13 @@ public class GithubAccessToken {
 
     @JsonProperty("scope")
     private String scope;
+
+    @Override
+    public String toString() {
+        return "GithubAccessToken{" +
+                "accessToken='" + accessToken + '\'' +
+                ", tokenType='" + tokenType + '\'' +
+                ", scope='" + scope + '\'' +
+                '}';
+    }
 }

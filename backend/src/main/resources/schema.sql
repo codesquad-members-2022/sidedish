@@ -81,7 +81,8 @@ create table side_dish_has_discount_event
 create table member
 (
     id       bigint primary key auto_increment,
+    userId   varchar(100) not null comment '사용자 아이디',
     email    varchar(100) not null comment '이메일',
-    password varchar(100) comment '비밀번호'
+    provider varchar(100) not null comment '리소스 서버'
 );
 
