@@ -1,6 +1,7 @@
-import { Header } from './Header/Header';
-import { Main } from './Main/Main';
 import { useState, useEffect } from 'react';
+
+import { Header } from '@Header';
+import { Main } from '@Main';
 
 function App() {
   const [categories, setCategories] = useState(null);
@@ -19,8 +20,9 @@ function App() {
 
   useEffect(() => {
     if (!categories) return;
-    const firstCategoryId = categories[0].id;
-    const firstCategoryTitle = categories[0].main;
+    const firstCategoryIndex = 0;
+    const firstCategoryId = categories[firstCategoryIndex].id;
+    const firstCategoryTitle = categories[firstCategoryIndex].main;
     fetch(`/category/${firstCategoryId}`)
       .then(response => response.json())
       .then(
