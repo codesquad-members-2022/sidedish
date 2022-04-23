@@ -11,18 +11,18 @@ public class DetailMenuResponse {
 	private String saleType;
 	private String deliveryInfo;
 	private int fee;
-	private int freeShippingMin;
+	private int freeShippingStartingPrice;
 	private List<String> mainImage;
 	private List<String> detailImage;
 
-	public DetailMenuResponse(DetailMenuInfo menuInfo, List<DetailMenuImages> menuImages) {
+	public DetailMenuResponse(DetailMenu menuInfo, List<DetailMenuImages> menuImages) {
 		this.name = menuInfo.getName();
 		this.description = menuInfo.getDescription();
 		this.price = menuInfo.getPrice();
 		this.saleType = menuInfo.getSaleType();
 		this.deliveryInfo = menuInfo.getDeliveryInfo();
 		this.fee = menuInfo.getFee();
-		this.freeShippingMin = menuInfo.getFreeShippingMin();
+		this.freeShippingStartingPrice = menuInfo.getFreeShippingStartingPrice();
 		this.mainImage = menuImages.stream()
 			.filter(DetailMenuImages::isMain)
 			.map(DetailMenuImages::getImagePath)
@@ -57,8 +57,8 @@ public class DetailMenuResponse {
 		return fee;
 	}
 
-	public int getFreeShippingMin() {
-		return freeShippingMin;
+	public int getFreeShippingStartingPrice() {
+		return freeShippingStartingPrice;
 	}
 
 	public List<String> getMainImage() {

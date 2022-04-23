@@ -11,9 +11,6 @@ public class OrderRequest {
 	private int fee;
 	private int quantity;
 
-	private OrderRequest() {
-	}
-
 	public OrderRequest(int userId, String menuName, int menuPrice, int fee, int quantity) {
 		this.userId = userId;
 		this.menuName = menuName;

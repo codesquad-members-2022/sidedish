@@ -1,6 +1,6 @@
 package sidedish.jbc.dto;
 
-public class DetailMenuInfo {
+public class DetailMenu {
 
 	private String name;
 	private String description;
@@ -8,17 +8,17 @@ public class DetailMenuInfo {
 	private String saleType;
 	private String deliveryInfo;
 	private int fee;
-	private int freeShippingMin;
+	private int freeShippingStartingPrice;
 
-	public DetailMenuInfo(String name, String description, int price, String saleType,
-		String deliveryInfo, int fee, int freeShippingMin) {
+	public DetailMenu(String name, String description, int price, String saleType,
+		String deliveryInfo, int fee, int freeShippingStartingPrice) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.saleType = saleType;
 		this.deliveryInfo = deliveryInfo;
 		this.fee = fee;
-		this.freeShippingMin = freeShippingMin;
+		this.freeShippingStartingPrice = freeShippingStartingPrice;
 	}
 
 	public String getName() {
@@ -45,7 +45,7 @@ public class DetailMenuInfo {
 		return fee;
 	}
 
-	public int getFreeShippingMin() {
-		return freeShippingMin;
+	public int getFreeShippingStartingPrice() {
+		return freeShippingStartingPrice;
 	}
 }
