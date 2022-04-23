@@ -1,0 +1,110 @@
+.promotion-header {
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  margin-bottom: 25px;
+
+  &__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 42px;
+    border: 2px solid black;
+    border-radius: 999px;
+    background-color: #f8f7f7;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 16px;
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
+
+.promotion-bar {
+  display: flex;
+  padding: 0 80px;
+  gap: 32px;
+
+  &__category {
+    padding-bottom: 16px;
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 550;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+.is-clicked {
+  border-bottom: 2px solid black;
+}
+
+.menu-section {
+  display: flex;
+  padding: 30px 80px;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  gap: 24px;
+}
+
+$article: menu-article;
+
+.#{$article} {
+  .#{$article}__description {
+    margin: 16px 0;
+  }
+  .#{$article}__figure {
+    width: 411px;
+    height: 411px;
+  }
+  .#{$article}__title {
+    font-size: 16px;
+    font-weight: 550;
+    margin-bottom: 8px;
+  }
+  .#{$article}__detail {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .#{$article}__prices {
+    margin-bottom: 8px;
+  }
+  .#{$article}__price-now {
+    font-size: 16px;
+    font-weight: 550;
+    margin-right: 8px;
+  }
+  .#{$article}__price-previous {
+    font-size: 14px;
+    color: #bcbcbc;
+    text-decoration: line-through;
+  }
+  .#{$article}__label1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 30px;
+    border-radius: 999px;
+    background-color: #ff8e14;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+  .#{$article}__label2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 87px;
+    height: 30px;
+    border-radius: 999px;
+    background-color: #6dd028;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+}
