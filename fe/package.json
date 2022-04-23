@@ -45,8 +45,13 @@
           "pathGroups": [
             {
               "pattern": "@**",
-              "group": "internal",
-              "position": "before"
+              "group": "external",
+              "position": "after"
+            },
+            {
+              "pattern": "@*/*",
+              "group": "external",
+              "position": "after"
             }
           ],
           "pathGroupsExcludedImportTypes": ["builtin"]
