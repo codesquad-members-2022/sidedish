@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sidedish.jbc.domain.MenuType;
 import sidedish.jbc.dto.DetailMenuResponse;
 import sidedish.jbc.dto.MenuResponse;
 import sidedish.jbc.dto.OrderRequest;
@@ -41,7 +42,7 @@ public class MenuController {
 	@GetMapping("/{type}")
 	@ResponseBody
 	public List<MenuResponse> findMenu(
-		@ApiParam(name = "type", value = "요청할 메뉴 타입(예: soup)", required = true) @PathVariable("type") String type) {
+		@ApiParam(name = "type", value = "요청할 메뉴 타입(예: soup)", required = true) @PathVariable("type") MenuType type) {
 		return menuService.findMenu(type);
 	}
 
