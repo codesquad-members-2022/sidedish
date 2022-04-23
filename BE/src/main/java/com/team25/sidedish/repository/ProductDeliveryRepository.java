@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductDeliveryRepository extends CrudRepository<Delivery, Long> {
 
-    @Query("SELECT D.ID, D.REGION, D.TYPE, D.FREE_PRICE, D.FEE "
+    @Query("SELECT D.ID, D.REGION, D.TYPE "
             + "FROM DELIVERY AS D"
             + " JOIN"
             + " ("
