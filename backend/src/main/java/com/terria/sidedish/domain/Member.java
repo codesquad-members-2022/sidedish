@@ -10,7 +10,6 @@ public class Member {
 
     @Id
     private long id;
-    private String userId;
+    private String email;
     private String password;
-    private String name;
 }

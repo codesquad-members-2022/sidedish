@@ -8,6 +8,7 @@ drop table if exists side_dish;
 drop table if exists side_dish_image;
 drop table if exists discount_event;
 drop table if exists side_dish_has_discount_event;
+drop table if exists member;
 
 set
 foreign_key_checks = 1;
@@ -76,3 +77,11 @@ create table side_dish_has_discount_event
 
     foreign key (side_dish_id) references side_dish (id)
 );
+
+create table member
+(
+    id       bigint primary key auto_increment,
+    email    varchar(100) not null comment '이메일',
+    password varchar(100) comment '비밀번호'
+);
+
