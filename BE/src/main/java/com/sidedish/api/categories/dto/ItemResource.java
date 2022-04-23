@@ -8,9 +8,9 @@ import org.springframework.hateoas.server.core.Relation;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @Relation(collectionRelation = "mains", itemRelation = "main")
-public class ItemResource extends EntityModel<Item> {
+public class ItemResource extends EntityModel<ResponseItemDto> {
     public ItemResource(Item content) {
-        super(content);
+        super(new ResponseItemDto(content));
         add(linkTo(CategoryController.class).slash(content.getId()).withSelfRel());
     }
 }

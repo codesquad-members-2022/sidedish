@@ -1,6 +1,7 @@
 package com.sidedish.api.categories.dto;
 
 import com.sidedish.domain.Badge;
+import com.sidedish.domain.Images;
 import com.sidedish.domain.Item;
 
 import java.math.BigDecimal;
@@ -8,19 +9,25 @@ import java.math.BigDecimal;
 import lombok.Getter;
 
 @Getter
-public class ResponseCategoryTypeDto {
+public class ResponseItemDto {
 
+    private Long id;
     private String title;
     private String description;
     private BigDecimal price;
     private Badge badge;
     private BigDecimal discountPrice;
+    private BigDecimal rewardPoint;
+    private Images images;
 
-    public ResponseCategoryTypeDto(Item item) {
+    public ResponseItemDto(Item item) {
+        this.id = item.getId();
         this.title = item.getTitle();
         this.description = item.getDescription();
         this.price = item.getPrice();
-        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate())));
         this.badge = item.getBadge();
+        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)));
+        this.rewardPoint = item.getRewardPoint();
+        this.images = item.getImage();
     }
 }

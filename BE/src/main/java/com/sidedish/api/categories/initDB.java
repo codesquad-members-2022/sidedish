@@ -1,12 +1,8 @@
 package com.sidedish.api.categories;
 
-import com.sidedish.domain.Badge;
-import com.sidedish.domain.Category;
-import com.sidedish.domain.CategoryType;
-import com.sidedish.domain.Item;
+import com.sidedish.domain.*;
 import com.sidedish.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,35 +31,39 @@ public class initDB {
         public void init(){
             Category mainCategory = new Category(CategoryType.MAIN);
             Category sidedishCategory = new Category(CategoryType.SIDE);
+            Category soupCategory = new Category(CategoryType.SOUP);
 
-            Item newItem1 = new Item("고기1", "맛있는 고기1", BigDecimal.valueOf(10000),
-                    10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
+            createItem(mainCategory, "고기1", "풍성한고기반찬");
+            createItem(mainCategory, "고기2", "풍성한고기반찬");
+            createItem(mainCategory, "고기3", "풍성한고기반찬");
+            createItem(mainCategory, "고기4", "풍성한고기반찬");
+            createItem(mainCategory, "고기5", "풍성한고기반찬");
+            createItem(mainCategory, "고기6", "풍성한고기반찬");
 
-            Item newItem2 = new Item("고기2", "맛있는 고기2", BigDecimal.valueOf(10000),
-                    10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+            createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
 
-            Item newItem3 = new Item("고기3", "맛있는 고기3", BigDecimal.valueOf(10000),
-                    10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), "html");
+            createItem(sidedishCategory, "콩나물1", "편리한반찬세트");
+            createItem(sidedishCategory, "콩나물2", "편리한반찬세트");
+            createItem(sidedishCategory, "콩나물3", "편리한반찬세트");
+            createItem(sidedishCategory, "콩나물4", "편리한반찬세트");
+            createItem(sidedishCategory, "꼬막무침1", "맛있는제철요리");
+            createItem(sidedishCategory, "꼬막무침2", "맛있는제철요리");
+            createItem(sidedishCategory, "꼬막무침3", "맛있는제철요리");
+            createItem(sidedishCategory, "꼬막무침4", "맛있는제철요리");
 
-            mainCategory.saveItem(newItem1);
-            mainCategory.saveItem(newItem2);
-            mainCategory.saveItem(newItem3);
-
-            Item newItem4 = new Item("콩나물1", "맛있는 콩나물1", BigDecimal.valueOf(10000),
-                    10.0, Badge.EVENT, "풍성한 콩나물 반찬", 10, BigDecimal.valueOf(100), "html");
-
-            Item newItem5 = new Item("콩나물2", "맛있는 콩나물2", BigDecimal.valueOf(10000),
-                    10.0, Badge.EVENT, "풍성한 콩나물 반찬", 10, BigDecimal.valueOf(100), "html");
-
-            Item newItem6 = new Item("콩나물3", "맛있는 콩나물3", BigDecimal.valueOf(10000),
-                    10.0, Badge.EVENT, "풍성한 콩나물 반찬", 10, BigDecimal.valueOf(100), "html");
-
-            sidedishCategory.saveItem(newItem4);
-            sidedishCategory.saveItem(newItem5);
-            sidedishCategory.saveItem(newItem6);
 
             categoryRepository.save(mainCategory);
+            categoryRepository.save(soupCategory);
             categoryRepository.save(sidedishCategory);
         }
+    }
+
+    private static void createItem(Category mainCategory, String name, String detailtype) {
+        Item newItem = new Item(name, "반찬 설명", BigDecimal.valueOf(10000),
+                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+        mainCategory.saveItem(newItem);
     }
 }

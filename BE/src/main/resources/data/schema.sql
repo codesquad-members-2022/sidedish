@@ -14,8 +14,8 @@ DROP TABLE IF EXISTS items;
 CREATE TABLE items
 (
     id            BIGINT AUTO_INCREMENT,
-    category      BIGINT ,
-    category_key  BIGINT references category (id),
+    category      BIGINT references category (id),
+    category_key  BIGINT,
     title         VARCHAR(64)  NOT NULL,
     description   VARCHAR(255) NOT NULL,
     price         DECIMAL      NOT NULL,
@@ -24,7 +24,9 @@ CREATE TABLE items
     detail_type   VARCHAR(32),
     quantity      BIGINT       NOT NULL,
     reward_point  DECIMAL      NOT NULL,
-    image         VARCHAR(64)  NOT NULL,
+    main_url      VARCHAR(255) NOT NULL,
+    side_one      VARCHAR(255) NOT NULL,
+    side_two      VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -41,7 +43,7 @@ DROP TABLE IF EXISTS item_order;
 
 CREATE TABLE item_order
 (
-    item BIGINT,
+    item   BIGINT,
     orders BIGINT,
     primary key (item, orders)
 );

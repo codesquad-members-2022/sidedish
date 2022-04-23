@@ -10,9 +10,9 @@ import lombok.Getter;
 public class ResponseItems {
 
     private final CategoryType categoryType;
-    private final List<ResponseCategoryTypeDto> items;
+    private final List<ResponseItemDto> items;
 
-    public ResponseItems(CategoryType categoryType, List<ResponseCategoryTypeDto> items) {
+    public ResponseItems(CategoryType categoryType, List<ResponseItemDto> items) {
         this.categoryType = categoryType;
         this.items = items;
     }
