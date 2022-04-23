@@ -1,6 +1,7 @@
-import { Menu } from './Menu';
 import { useState } from 'react';
 import styled from 'styled-components';
+
+import { Menu } from './Menu';
 
 const MenuListWrapper = styled.ul`
   display: flex;

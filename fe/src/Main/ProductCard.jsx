@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
-import { DiscountBadge } from '../Badge/DiscountBadge';
-import Colors from '../Constants/Colors';
+
+import { DiscountBadge } from '@Badge/DiscountBadge';
+import Colors from '@Constants/Colors';
 
 const CardWrapper = styled.li`
   display: flex;

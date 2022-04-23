@@ -3,7 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@*": ["./src/*"]
+      "@Header/*": ["./src/Header/*"],
+      "@Main/*": ["./src/Main/*"],
+      "@Constants/*": ["./src/Constants/*"],
+      "@Badge/*": ["./src/Badge/*"]
     }
   },
   "exclude": ["node_modules"],

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Colors from '../Constants/Colors';
+
+import { CategoryBadge } from '@Badge/CategoryBadge';
+import Colors from '@Constants/Colors';
+
 import { ProductCard } from './ProductCard';
-import { CategoryBadge } from '../Badge/CategoryBadge';
 
 const BestProductWrapper = styled.div`
   display: flex;
