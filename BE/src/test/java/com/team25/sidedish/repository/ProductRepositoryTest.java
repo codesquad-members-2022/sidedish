@@ -24,6 +24,7 @@ class ProductRepositoryTest {
     private static final String PRODUCT_NAME = "아이템6";
     private static final int PRODUCT_PRICE = 21800;
     private static final String PRODUCT_DESCRIPTION = "설명1";
+    private static final String PRODUCT_THUMBNAIL_IMAGE_URL = "https://recipe1.ezmember.co.kr/cache/data/goods/19/10/43/1000003443/1000003443_detail_08.jpg";
     private static final int PRODUCT_STOCK = 600;
 
     @Autowired
@@ -64,6 +65,7 @@ class ProductRepositoryTest {
             assertThat(result.get().getName()).isEqualTo(PRODUCT_NAME);
             assertThat(result.get().getPrice()).isEqualTo(PRODUCT_PRICE);
             assertThat(result.get().getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
+            assertThat(result.get().getThumbnailImageUrl()).isEqualTo(PRODUCT_THUMBNAIL_IMAGE_URL);
             assertThat(result.get().getStock()).isEqualTo(PRODUCT_STOCK);
         }
 

@@ -6,17 +6,21 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 public class Product {
+
     @Id
     private Long id;
     private String name;
     private int price;
     private String description;
+    private String thumbnailImageUrl;
     private int stock;
 
-    public Product(String name, int price, String description, int stock) {
+    public Product(String name, int price, String description, String thumbnailImageUrl,
+        int stock) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.thumbnailImageUrl = thumbnailImageUrl;
         this.stock = stock;
     }
 
