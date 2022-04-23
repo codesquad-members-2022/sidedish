@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 @Getter
 public class Product {
 
+    private static double POINT_RATE = 0.01;
+
     @Id
     private Long id;
     private String name;
@@ -30,5 +32,13 @@ public class Product {
         }
         stock -= amountToDeliver;
         return stock;
+    }
+
+    public int getDiscountPrice(double discountRate) {
+        return (int) ((1-discountRate) * price);
+    }
+
+    public int getPoint(int price) {
+        return (int) (price * POINT_RATE);
     }
 }
