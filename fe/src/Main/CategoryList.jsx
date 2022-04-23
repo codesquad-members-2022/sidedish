@@ -1,28 +1,16 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Colors from '@Constants/Colors';
-
 import { Category } from './Category';
+
+import Colors from '@/Constants/Colors';
 
 const CategoryListWrapper = styled.ul``;
 
-const MoreButtonWrapper = styled.li`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin: 56px 0;
-
-  > span {
-    margin-bottom: 30px;
-  }
-`;
-
-const Button = styled.button`
+const MoreButton = styled.button`
+  display: block;
   padding: 16px 24px;
-  margin: 0 auto;
+  margin: 56px auto;
   border: 1px solid ${Colors.PALE_GREY};
   color: ${Colors.DARK_GREY};
   transition: all 200ms;
@@ -37,14 +25,11 @@ const Button = styled.button`
   }
 `;
 
-const MoreButton = ({ handleClick, retry }) => {
-  return (
-    <MoreButtonWrapper className={'fonts-lg'}>
-      {retry && <span>데이터를 불러오는데 오류가 발생했습니다.</span>}
-      <Button onClick={handleClick}>모든 카테고리 보기</Button>
-    </MoreButtonWrapper>
-  );
-};
+const LoadingErrorMessage = styled.span`
+  display: block;
+  margin-top: 100px;
+  text-align: center;
+`;
 
 export const CategoryList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
@@ -95,7 +80,16 @@ export const CategoryList = props => {
         );
       })}
       {!moreButtonClicked && (
-        <MoreButton handleClick={handleClickMoreButton} retry={retry} />
+        <li>
+          {retry && (
+            <LoadingErrorMessage className={'fonts-lg'}>
+              데이터를 불러오는데 오류가 발생했습니다.
+            </LoadingErrorMessage>
+          )}
+          <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
+            모든 카테고리 보기
+          </MoreButton>
+        </li>
       )}
     </CategoryListWrapper>
   );
