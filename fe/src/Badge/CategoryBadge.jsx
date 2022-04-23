@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Colors from '@Constants/Colors';
+import Colors from '@/Constants/Colors';
 
 const Badge = styled.button`
   padding: 8px 16px;
