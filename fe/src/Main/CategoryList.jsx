@@ -1,15 +1,23 @@
-import { Category } from './Category';
-import Colors from '../Constants/Colors';
-import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+import Colors from '../Constants/Colors';
+
+import { Category } from './Category';
 
 const CategoryListWrapper = styled.ul``;
 
 const MoreButtonWrapper = styled.li`
   width: 100%;
   display: flex;
-  margin: 56px 0;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 56px 0;
+
+  > span {
+    margin-bottom: 30px;
+  }
 `;
 
 const Button = styled.button`
@@ -29,9 +37,10 @@ const Button = styled.button`
   }
 `;
 
-const MoreButton = ({ handleClick }) => {
+const MoreButton = ({ handleClick, retry }) => {
   return (
     <MoreButtonWrapper className={'fonts-lg'}>
+      {retry && <span>데이터를 불러오는데 오류가 발생했습니다.</span>}
       <Button onClick={handleClick}>모든 카테고리 보기</Button>
     </MoreButtonWrapper>
   );
@@ -39,6 +48,7 @@ const MoreButton = ({ handleClick }) => {
 
 export const CategoryList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
+  const [retry, setRetry] = useState(false);
 
   const handleClickMoreButton = () => {
     setMoreButtonClicked(true);
@@ -47,6 +57,7 @@ export const CategoryList = props => {
   useEffect(() => {
     if (!moreButtonClicked) return;
     // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
+    // TODO: 실패한 데이터만 다시 불러올 수 있도록 고치기
     const categoryIds = props.categories.map(category => category.id);
     const loadedCategoryId = props.loadedCategories[0].id;
     const unloadedCategoryIds = categoryIds.filter(
@@ -55,9 +66,9 @@ export const CategoryList = props => {
     const requests = unloadedCategoryIds.map(id => fetch(`/category/${id}`));
 
     Promise.all(requests)
-      .then(responses =>
-        Promise.all(responses.map(response => response.json()))
-      )
+      .then(responses => {
+        return Promise.all(responses.map(response => response.json()));
+      })
       .then(dataArr => {
         const parsedData = dataArr.map((categoryData, idx) => ({
           id: unloadedCategoryIds[idx],
@@ -65,6 +76,10 @@ export const CategoryList = props => {
           content: dataArr[idx].content,
         }));
         props.setLoadedCategories([...props.loadedCategories, ...parsedData]);
+      })
+      .catch(() => {
+        setMoreButtonClicked(false);
+        setRetry(true);
       });
   }, [moreButtonClicked]);
 
@@ -79,7 +94,9 @@ export const CategoryList = props => {
           />
         );
       })}
-      {!moreButtonClicked && <MoreButton handleClick={handleClickMoreButton} />}
+      {!moreButtonClicked && (
+        <MoreButton handleClick={handleClickMoreButton} retry={retry} />
+      )}
     </CategoryListWrapper>
   );
 };
