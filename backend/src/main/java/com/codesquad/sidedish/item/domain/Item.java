@@ -1,14 +1,12 @@
 package com.codesquad.sidedish.item.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.MappedCollection;
-import org.springframework.data.relational.core.mapping.Table;
-
 import java.util.HashSet;
 import java.util.Set;
 
-@Table("ITEM")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+
 public class Item {
     @Id
     private Integer id;

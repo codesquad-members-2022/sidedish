@@ -6,15 +6,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("ORDERS")
+@Table("orders")
 public class Order {
 
     @Id
     private Integer id;
     private Integer amount;
 
-    @Column("ORDER_DATE")
-    private LocalDateTime orderDate;
+    @Column("ORDER_DATE_TIME")
+    private LocalDateTime orderDateTime;
 
     @Column("ITEM_ID")
     private Integer itemId;
@@ -22,16 +22,16 @@ public class Order {
     @Column("USER_ID")
     private Integer userId;
 
-    private Boolean cancelled;
+    private boolean isCancelled;
 
-    public Order(Integer id, Integer amount, LocalDateTime orderDate, Integer itemId, Integer userId,
-        Boolean cancelled) {
+    public Order(Integer id, Integer amount, LocalDateTime orderDateTime, Integer itemId, Integer userId,
+        boolean isCancelled) {
         this.id = id;
         this.amount = amount;
-        this.orderDate = orderDate;
+        this.orderDateTime = orderDateTime;
         this.itemId = itemId;
         this.userId = userId;
-        this.cancelled = cancelled;
+        this.isCancelled = isCancelled;
     }
 
     public Integer getId() {
@@ -42,8 +42,8 @@ public class Order {
         return amount;
     }
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
+    public LocalDateTime getOrderDateTime() {
+        return orderDateTime;
     }
 
     public Integer getItemId() {
@@ -54,20 +54,15 @@ public class Order {
         return userId;
     }
 
-
-    public static Order from(Integer amount, LocalDateTime orderDate, Integer itemId, Integer userId) {
-        return new Order(null, amount, orderDate, itemId, userId, false);
-    }
-
     @Override
     public String toString() {
         return "Order{" +
             "id=" + id +
             ", amount=" + amount +
-            ", orderDate=" + orderDate +
+            ", orderDateTime=" + orderDateTime +
             ", itemId=" + itemId +
             ", userId=" + userId +
-            ", cancelled=" + cancelled +
+            ", cancelled=" + isCancelled +
             '}';
     }
 }
