@@ -31,7 +31,7 @@ public class MenuController {
 		this.orderService = orderService;
 	}
 
-	@ApiOperation(value = "전체 메뉴 업데이트", notes = "모든 메뉴를 불러옵니다")
+	@ApiOperation(value = "전체 메뉴 요청", notes = "모든 메뉴를 불러옵니다")
 	@GetMapping
 	@ResponseBody
 	public List<MenuResponse> welcome() {
@@ -46,7 +46,7 @@ public class MenuController {
 		return menuService.findMenu(type);
 	}
 
-	@ApiOperation(value = "상세 화면 업데이트", notes = "지정된 id의 메뉴 상세정보를 불러옵니다.")
+	@ApiOperation(value = "상세 요청", notes = "지정된 id의 메뉴 상세정보를 불러옵니다.")
 	@GetMapping("/detail/{id}")
 	@ResponseBody
 	public DetailMenuResponse findDetailMenu(
