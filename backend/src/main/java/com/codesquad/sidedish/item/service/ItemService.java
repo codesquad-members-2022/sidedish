@@ -25,9 +25,9 @@ public class ItemService {
 
     public CategoryItemsDto findAll() {
         List<CategoryItemDto> categoryItemDtoList = new ArrayList<>();
-        List<Category> categoryList = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAll();
 
-        for (Category category : categoryList) {
+        for (Category category : categories) {
             String categoryName = category.getName();
             Set<Item> items = category.getItems();
 
@@ -37,9 +37,9 @@ public class ItemService {
         return new CategoryItemsDto(categoryItemDtoList);
     }
 
-    public DetailItemDto findById(int id) throws ItemIdNotFoundException {
+    public DetailItemDto findById(int id) {
         return categoryRepository.findByItemId(id)
-                .map(DetailItemDto::from)
-                .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
+            .map(item -> new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.getMainImageLink(), item.getItemImages()))
+            .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
     }
 }

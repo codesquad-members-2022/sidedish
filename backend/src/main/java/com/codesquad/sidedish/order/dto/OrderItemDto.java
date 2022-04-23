@@ -29,7 +29,6 @@ public class OrderItemDto {
     }
 
     public Order toEntity() {
-        return Order.from(amount, LocalDateTime.now(), itemId, userId);
+        return new Order(null, amount, LocalDateTime.now(), itemId, userId, false);
     }
-
 }

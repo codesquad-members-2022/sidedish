@@ -1,9 +1,8 @@
 package com.codesquad.sidedish.item.dto;
 
-import com.codesquad.sidedish.item.domain.Item;
-import com.codesquad.sidedish.item.domain.ItemImage;
-
 import java.util.Set;
+
+import com.codesquad.sidedish.item.domain.ItemImage;
 
 public class DetailItemDto {
     private Integer id;
@@ -15,7 +14,7 @@ public class DetailItemDto {
     private String mainImageLink;
     private Set<ItemImage> detailImageLink;
 
-    private DetailItemDto(Integer id, String discountPolicy, Integer discountRate, String description, String name, Integer price, String mainImageLink, Set<ItemImage> detailImageLink) {
+    public DetailItemDto(Integer id, String discountPolicy, Integer discountRate, String description, String name, Integer price, String mainImageLink, Set<ItemImage> detailImageLink) {
         this.id = id;
         this.discountPolicy = discountPolicy;
         this.discountRate = discountRate;
@@ -24,10 +23,6 @@ public class DetailItemDto {
         this.price = price;
         this.mainImageLink = mainImageLink;
         this.detailImageLink = detailImageLink;
-    }
-
-    public static DetailItemDto from(Item item) {
-        return new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.getMainImageLink(), item.getItemImages());
     }
 
     public Integer getId() {
