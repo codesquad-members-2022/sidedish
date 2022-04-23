@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ItemController {
     private static final Logger log = LoggerFactory.getLogger(ItemController.class);
+
     private final ItemService itemService;
 
     public ItemController(ItemService itemService) {
@@ -23,9 +24,8 @@ public class ItemController {
     }
 
     @GetMapping
-    public ResponseEntity<CategoryItemsDto> list() {
-        CategoryItemsDto categoryItemsDto = itemService.findAll();
-        return ResponseEntity.ok(categoryItemsDto);
+    public CategoryItemsDto itemList() {
+        return itemService.findAll();
     }
 
     @GetMapping("/{id}")
