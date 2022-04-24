@@ -2,19 +2,22 @@ import styled from 'styled-components';
 
 const UserActionButtonsWrapper = styled.div`
   padding-top: 12px;
+  display: flex;
+  flex-grow: 1;
   flex-shrink: 0;
-  
+  justify-content: flex-end;
+
   button:not(:last-child) {
     margin-right: 16px;
   }
-  
+
   img {
     display: block;
-    
+
     &:hover {
       opacity: 0.6;
     }
-    
+
     &:active {
       opacity: 0.3;
     }

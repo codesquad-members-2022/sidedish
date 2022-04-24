@@ -10,7 +10,6 @@ const MenuListWrapper = styled.ul`
   white-space: nowrap;
   overflow-x: auto;
   cursor: pointer;
-  flex-grow: 1;
   padding-top: 12px;
 `;
 
