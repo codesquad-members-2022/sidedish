@@ -9,6 +9,8 @@ class DetailBanchanBriefView: UIView {
         return imageView
     }()
     
+    var dishPrice: Int = 12640
+    
     private var dishTitle: UILabel = UILabel.customLabel("요리 제목", .dishBlack, 32, 400, true)
     private var dishDescription: UILabel = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 18)
     private var discountPrice: UILabel = UILabel.customLabel("12,640원", .dishBlack, 18, 600)
@@ -62,7 +64,7 @@ private extension DetailBanchanBriefView {
             self.dishImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.dishImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.dishImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.dishImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
+            self.dishImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1)
         ])
     }
     
@@ -74,7 +76,7 @@ private extension DetailBanchanBriefView {
         NSLayoutConstraint.activate([
             self.breifStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.breifStackView.topAnchor.constraint(equalTo: self.dishImage.bottomAnchor),
+            self.breifStackView.topAnchor.constraint(equalTo: self.dishImage.bottomAnchor)
         ])
     }
     
@@ -88,7 +90,7 @@ private extension DetailBanchanBriefView {
             self.specialPrice.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
             self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
-            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
         self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()

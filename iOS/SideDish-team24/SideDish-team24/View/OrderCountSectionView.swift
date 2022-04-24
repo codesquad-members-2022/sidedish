@@ -2,7 +2,7 @@ import UIKit
 
 class OrderCountSectionView: UIView {
     
-    @OrderCount private var count : Int {
+    @OrderCount private var count: Int {
         didSet {
             self.counter.text = "\(count)"
         }
@@ -79,7 +79,7 @@ private extension OrderCountSectionView {
         NSLayoutConstraint.activate([
             self.countTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.countTitle.topAnchor.constraint(equalTo: self.topAnchor),
-            self.countTitle.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.countTitle.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     
@@ -87,9 +87,9 @@ private extension OrderCountSectionView {
         self.addSubview(counter)
         
         NSLayoutConstraint.activate([
-            self.counter.leadingAnchor.constraint(greaterThanOrEqualTo: self.countTitle.trailingAnchor, constant:  10),
+            self.counter.leadingAnchor.constraint(greaterThanOrEqualTo: self.countTitle.trailingAnchor, constant: 10),
             self.counter.topAnchor.constraint(equalTo: self.topAnchor),
-            self.counter.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.counter.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     

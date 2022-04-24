@@ -1,5 +1,5 @@
 import CoreGraphics
 
 extension CGFloat {
-    static let defaultInset : CGFloat = 8
+    static let defaultInset: CGFloat = 8
 }

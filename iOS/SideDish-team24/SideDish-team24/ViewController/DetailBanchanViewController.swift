@@ -6,7 +6,7 @@ class DetailBanchanViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     
-    private let innerView : UIStackView = {
+    private let innerView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -40,7 +40,6 @@ private extension DetailBanchanViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
         
-        
     }
     
     func layoutInnerView() {
@@ -57,7 +56,7 @@ private extension DetailBanchanViewController {
             self.innerView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: CGFloat.defaultInset),
             self.innerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -CGFloat.defaultInset),
             self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -CGFloat.defaultInset*2),
-            self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height),
+            self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height)
         ])
     }
     

@@ -9,7 +9,7 @@ class DeliverySectionView: UIView {
     private let deliveryFeeTitle = UILabel.customLabel("배송비", .dishLightGrey, 14)
     private let deliveryFee = UILabel.customLabel("2,500원 (40,000원 이상 구매 시 무료)", .dishGrey, 14)
     
-    private let titleSection : UIStackView = {
+    private let titleSection: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -18,7 +18,7 @@ class DeliverySectionView: UIView {
         
         return stackView
     }()
-    private let informationSection : UIStackView = {
+    private let informationSection: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -54,7 +54,7 @@ private extension DeliverySectionView {
             self.titleSection.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.titleSection.topAnchor.constraint(equalTo: self.topAnchor),
             self.titleSection.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.titleSection.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+            self.titleSection.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2)
         ])
     }
     
@@ -69,7 +69,7 @@ private extension DeliverySectionView {
             self.informationSection.leadingAnchor.constraint(equalTo: self.titleSection.trailingAnchor, constant: CGFloat.defaultInset),
             self.informationSection.topAnchor.constraint(equalTo: self.topAnchor),
             self.informationSection.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.informationSection.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.informationSection.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
     

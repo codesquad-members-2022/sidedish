@@ -55,7 +55,7 @@ private extension BriefBanchanViewCell {
             self.dishImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.dishImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.dishImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
+            self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1)
         ])
     }
     
@@ -69,7 +69,7 @@ private extension BriefBanchanViewCell {
         NSLayoutConstraint.activate([
             self.breifStackView.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
             self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -CGFloat.defaultInset),
-            self.breifStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset),
+            self.breifStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset)
         ])
     }
     
@@ -84,7 +84,7 @@ private extension BriefBanchanViewCell {
             self.specialPrice.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
             self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
             self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
-            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
         ])
         
         self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()

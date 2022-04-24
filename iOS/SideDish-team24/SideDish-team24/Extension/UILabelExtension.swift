@@ -1,7 +1,7 @@
 import UIKit
 
 extension UILabel {
-    static func customLabel(_ title: String,_ color: UIColor,_ fontSize: CGFloat,_ fontWeight: CGFloat = 400,_ bold: Bool = false ) -> UILabel {
+    static func customLabel(_ title: String, _ color: UIColor, _ fontSize: CGFloat, _ fontWeight: CGFloat = 400, _ bold: Bool = false ) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = bold ? UIFont.boldSystemFont(ofSize: fontSize) : UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight(fontWeight))
@@ -10,7 +10,7 @@ extension UILabel {
         return label
     }
     
-    static func customBadge(_ title: String,_ backGroundColor: UIColor) -> UILabel {
+    static func customBadge(_ title: String, _ backGroundColor: UIColor) -> UILabel {
         let label = PaddingLabel(padding: UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16))
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(600))
