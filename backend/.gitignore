@@ -80,4 +80,8 @@ gradle-app.setting
 .gradletasknamecache
 
 # OAuth.properties
+<<<<<<< HEAD
 oauth.properties
+=======
+oauth.properties
+>>>>>>> 0d8fac3eb9d16dc9f6726bfd4cec2adab286922e
