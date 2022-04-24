@@ -2,10 +2,7 @@ package kr.codesquad.sidedish.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import kr.codesquad.sidedish.dto.DetailProductInfo;
-import kr.codesquad.sidedish.dto.ProductDTO;
-import kr.codesquad.sidedish.dto.RequestProduct;
-import kr.codesquad.sidedish.dto.SimpleProductInfo;
+import kr.codesquad.sidedish.service.ProductDTO;
 import kr.codesquad.sidedish.response.CommonCode;
 import kr.codesquad.sidedish.response.CommonResponse;
 import kr.codesquad.sidedish.service.ProductService;
@@ -29,13 +26,13 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@GetMapping("/{dishType}/{sideDishType}")
-	public ResponseEntity<CommonResponse<List<SimpleProductInfo>>> loadListByType(
+	public ResponseEntity<CommonResponse<List<ResponseSimpleProductInfo>>> loadListByType(
 		@PathVariable String dishType,
 		@PathVariable String sideDishType) {
 		List<ProductDTO> productDTOs = productService.loadListByType(dishType, sideDishType);
 
-		List<SimpleProductInfo> simpleDTOs = productDTOs.stream()
-			.map(p -> SimpleProductInfo.from(p))
+		List<ResponseSimpleProductInfo> simpleDTOs = productDTOs.stream()
+			.map(p -> ResponseSimpleProductInfo.from(p))
 			.collect(Collectors.toList());
 
 		return new CommonResponse(CommonCode.SUCCESS, simpleDTOs).toResponseEntity();
@@ -47,9 +44,9 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@GetMapping("/{id}/detail")
-	public ResponseEntity<CommonResponse<DetailProductInfo>> loadDetail(@PathVariable Integer id) {
+	public ResponseEntity<CommonResponse<ResponseDetailProductInfo>> loadDetail(@PathVariable Integer id) {
 		return new CommonResponse(CommonCode.SUCCESS,
-			DetailProductInfo.from(productService.findById(id))).toResponseEntity();
+			ResponseDetailProductInfo.from(productService.findById(id))).toResponseEntity();
 	}
 
 	/**
@@ -57,7 +54,7 @@ public class ProductController {
 	 */
 	@PostMapping("/orders")
 	public ResponseEntity<CommonResponse> order(@RequestBody RequestProduct requestProduct) {
-		productService.ordered(requestProduct);
+		productService.order(requestProduct);
 
 		return new CommonResponse(CommonCode.SUCCESS).toResponseEntity();
 	}

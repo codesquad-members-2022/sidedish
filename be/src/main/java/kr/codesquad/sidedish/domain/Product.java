@@ -1,7 +1,6 @@
 package kr.codesquad.sidedish.domain;
 
-import java.util.Arrays;
-import kr.codesquad.sidedish.dto.ProductDTO;
+import kr.codesquad.sidedish.service.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

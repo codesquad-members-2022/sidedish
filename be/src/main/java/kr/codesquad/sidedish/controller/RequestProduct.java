@@ -1,4 +1,4 @@
-package kr.codesquad.sidedish.dto;
+package kr.codesquad.sidedish.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

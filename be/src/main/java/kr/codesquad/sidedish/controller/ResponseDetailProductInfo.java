@@ -1,12 +1,12 @@
-package kr.codesquad.sidedish.dto;
+package kr.codesquad.sidedish.controller;
 
-import java.util.Arrays;
+import kr.codesquad.sidedish.service.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class DetailProductInfo {
+public class ResponseDetailProductInfo {
 
 	private Integer id;
 	private String name;
@@ -19,8 +19,8 @@ public class DetailProductInfo {
 	private String[] applyEvent;
 	private String[] imgUrl;
 
-	public static DetailProductInfo from(ProductDTO productDTO) {
-		return new DetailProductInfo(productDTO.getId(), productDTO.getName(),
+	public static ResponseDetailProductInfo from(ProductDTO productDTO) {
+		return new ResponseDetailProductInfo(productDTO.getId(), productDTO.getName(),
 			productDTO.getContent(), productDTO.getPrice(), productDTO.getDiscountPrice(),
 			productDTO.getQuantity(),
 			productDTO.getDishType(), productDTO.getSideDishType(), productDTO.getApplyEvent(),
