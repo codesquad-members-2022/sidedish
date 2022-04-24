@@ -5,3 +5,6 @@ export const myCartIcon = './icon/myCart-icon.svg';
 export const specialPromotionIcon = './icon/specialPromotion-icon.svg';
 export const eventLabelIcon = './icon/eventLabel-icon.svg';
 export const launchingLabelIcon = './icon/launchingLabel-icon.svg';
+export const deliveryIcon = './icon/delivery-icon.svg';
+export const prevButtonIcon = './icon/prevButton-icon.svg';
+export const nextButtonIcon = './icon/nextButton-icon.svg';
