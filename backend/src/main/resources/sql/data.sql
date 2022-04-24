@@ -90,42 +90,42 @@ VALUES ('서울 경기 새벽 배송');
 INSERT INTO delivery (detail)
 VALUES ('전국 택배 배송');
 
-INSERT INTO delivery_dish (dish_id, delivery_id)
+INSERT INTO dish_delivery (dish_id, delivery_id)
 VALUES (1, 1);
-INSERT INTO delivery_dish (dish_id, delivery_id)
+INSERT INTO dish_delivery (dish_id, delivery_id)
 VALUES (1, 2);
 
 -- category : festival
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (NULL, '한-번-주문하면-두-번-반하는-반찬', TRUE);
+VALUES (NULL, '한 번 주문하면 두 번 반하는 반찬', TRUE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (1, '풍성한-고기-반찬', NULL);
+VALUES (1, '풍성한 고기 반찬', TRUE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (1, '편리한 반찬-세트', NULL);
+VALUES (1, '편리한 반찬 세트', TRUE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (1, '맛있는-제철-요리', NULL);
+VALUES (1, '맛있는 제철 요리', TRUE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (1, '우리-아이-영양-반찬', NULL);
+VALUES (1, '우리 아이 영양 반찬', TRUE);
 
 -- category : section
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (NULL, '든든한-메인요리', FALSE);
+VALUES (NULL, '든든한 메인요리', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (NULL, '뜨끈한-국물요리', FALSE);
+VALUES (NULL, '뜨끈한 국물요리', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (NULL, '정갈한-밑반찬', FALSE);
+VALUES (NULL, '정갈한 밑반찬', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (6, '육류-요리', NULL);
+VALUES (6, '육류 요리', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (6, '해산물-요리', NULL);
+VALUES (6, '해산물 요리', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (7, '국-탕-찌개', NULL);
+VALUES (7, '국/탕/찌개', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (8, '나물-무침', NULL);
+VALUES (8, '나물/무침', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (8, '조림-볶음', NULL);
+VALUES (8, '조림/볶음', FALSE);
 INSERT INTO category (section_id, category_name, is_festival)
-VALUES (8, '절임-장아찌', NULL);
+VALUES (8, '절임/장아찌', FALSE);
 
 -- category with dish: festival
 INSERT INTO dish_category (dish_id, category_id)
@@ -172,35 +172,35 @@ INSERT INTO dish_category (dish_id, category_id)
 VALUES (16, 10);
 
 -- event badge
-INSERT INTO event_badge (event_name, discount)
+INSERT INTO event_badge (event_badge_name, discount)
 VALUES ('런칭특가', 20);
-INSERT INTO event_badge (event_name, discount)
+INSERT INTO event_badge (event_badge_name, discount)
 VALUES ('이벤트특가', 10);
 
 -- dish with event badge : 런칭특가
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (1, 1);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (4, 1);
 
 -- dish with event badge : 이벤트특가
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (2, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (5, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (6, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (7, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (8, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (11, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (12, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (13, 2);
-INSERT INTO dish_event (dish_id, event_id)
+INSERT INTO dish_event_badge (dish_id, event_badge_id)
 VALUES (15, 2);
 
 -- recommend
