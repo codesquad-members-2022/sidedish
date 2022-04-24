@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testSideDish;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:testdb/schema.sql
+      data-locations: classpath:testdb/data.sql
+  h2:
+    console:
+      enabled: true
+
+
+logging:
+  level:
+    sql: DEBUG
