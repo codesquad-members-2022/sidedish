@@ -3,66 +3,54 @@ import { useEffect, useState } from 'react';
 import { Header } from '@Header';
 import { Main } from '@Main';
 
+import { fetchData } from '@/Utils/Utils';
+
 const App = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [loadedCategoryProductList, setLoadedCategoryProductList] = useState(
     []
   );
+  const [error, setError] = useState(false);
 
-  const fetchCategoryList = async () => {
-    try {
-      const response = await fetch('/categories');
-      return await response.json();
-    } catch (err) {
-      // TODO: 에러 핸들링
-      console.error(err);
-      return [];
-    }
-  };
-
-  const fetchFirstCategoryProductList = async id => {
-    const fetchUrl = `/category/${id}`;
-    try {
-      const response = await fetch(fetchUrl);
-      return await response.json();
-    } catch (err) {
-      // TODO: 에러 핸들링
-      console.error(err);
-      return [];
-    }
-  };
-
-  const loadCategoryListAndFirstCategoryProductList = async () => {
-    const categoryListData = await fetchCategoryList();
+  const fetchInitialData = async () => {
+    const categoryListData = await fetchData('/categories');
     const firstCategoryIndex = 0;
     const { id: firstCategoryId, main: firstCategoryTitle } =
       categoryListData.content[firstCategoryIndex];
-    const firstCategoryProductListData = await fetchFirstCategoryProductList(
-      firstCategoryId
+    const firstCategoryProductListData = await fetchData(
+      `/category/${firstCategoryId}`
     );
     const firstCategoryProductList = {
       id: firstCategoryId,
       title: firstCategoryTitle,
       content: firstCategoryProductListData.content,
     };
-    setCategoryList(categoryListData.content);
-    setLoadedCategoryProductList([firstCategoryProductList]);
+    return [categoryListData.content, [firstCategoryProductList]];
   };
 
   useEffect(() => {
-    loadCategoryListAndFirstCategoryProductList();
+    fetchInitialData()
+      .then(([initialCategoryList, initialCategoryProductList]) => {
+        setCategoryList(initialCategoryList);
+        setLoadedCategoryProductList(initialCategoryProductList);
+      })
+      .catch(err => {
+        console.error(err);
+        setError(true);
+      });
   }, []);
 
   return (
     <>
-      <Header categories={categoryList} />
+      <Header categories={categoryList} error={error} />
       <Main
+        error={error}
         categories={categoryList}
         loadedCategories={loadedCategoryProductList}
         setLoadedCategories={setLoadedCategoryProductList}
       />
     </>
   );
-}
+};
 
 export default App;
