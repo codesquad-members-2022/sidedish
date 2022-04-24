@@ -32,13 +32,13 @@ public class ProductController {
 	public ResponseEntity<CommonResponse<List<SimpleProductInfo>>> loadListByType(
 		@PathVariable String dishType,
 		@PathVariable String sideDishType) {
-		List<ProductDTO> productDTOS = productService.loadListByType(dishType, sideDishType);
+		List<ProductDTO> productDTOs = productService.loadListByType(dishType, sideDishType);
 
-		List<SimpleProductInfo> simpleDTOS = productDTOS.stream()
+		List<SimpleProductInfo> simpleDTOs = productDTOs.stream()
 			.map(p -> SimpleProductInfo.from(p))
 			.collect(Collectors.toList());
 
-		return new CommonResponse(CommonCode.SUCCESS, simpleDTOS).toResponseEntity();
+		return new CommonResponse(CommonCode.SUCCESS, simpleDTOs).toResponseEntity();
 	}
 
 
@@ -47,7 +47,7 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@GetMapping("/details/{id}")
-	public ResponseEntity<CommonResponse<DetailProductInfo>> loadDetails(@PathVariable Integer id) {
+	public ResponseEntity<CommonResponse<DetailProductInfo>> loadDetail(@PathVariable Integer id) {
 		return new CommonResponse(CommonCode.SUCCESS,
 			DetailProductInfo.from(productService.findById(id))).toResponseEntity();
 	}
