@@ -40,11 +40,6 @@ export const BestProducts = () => {
   const [selectedTabId, setSelectedTabId] = useState(null);
   const [cardData, setCardData] = useState([]);
 
-  const onClickTab = event => {
-    const tabId = event.target.dataset.id;
-    setSelectedTabId(Number(tabId));
-  };
-
   useEffect(() => {
     fetch('/events')
       .then(body => body.json())
@@ -66,6 +61,10 @@ export const BestProducts = () => {
       });
   }, [selectedTabId]);
 
+  function setClickedTabId(data) {
+    setSelectedTabId(data);
+  }
+
   return (
     <BestProductWrapper>
       <Header>
@@ -78,7 +77,11 @@ export const BestProducts = () => {
         </Title>
       </Header>
 
-      <TabList onClickTab={onClickTab} tabData={tabList} />
+      <TabList
+        tabData={tabList}
+        selectedTabId={selectedTabId}
+        setClickedTabId={setClickedTabId}
+      />
 
       <ProductCardList>
         {cardData.map(productCardData => (

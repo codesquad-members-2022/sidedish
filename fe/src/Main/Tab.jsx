@@ -7,18 +7,31 @@ const StyledList = styled.li`
   padding: 16px;
   border-bottom: 1.5px solid transparent;
 
-  .selected {
-    border-color: ${Colors.BLACK};
-  }
-
   :hover {
     border-color: ${Colors.BLACK};
   }
 `;
 
-export const Tab = ({ tabData, onClickTab }) => {
+function checkSelected(tabClassName) {
+  if (tabClassName) {
+    return 'selected';
+  }
+  return null;
+}
+
+export const Tab = ({ tabData, setClickedTabId, TabClassName }) => {
+  const tabId = tabData.id;
+
+  const onClickTab = event => {
+    setClickedTabId(tabId);
+  };
+
   return (
-    <StyledList key={tabData.id} onClick={onClickTab}>
+    <StyledList
+      key={tabData.id}
+      onClick={onClickTab}
+      className={checkSelected(TabClassName)}
+    >
       {tabData.title}
     </StyledList>
   );

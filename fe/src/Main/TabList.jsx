@@ -9,9 +9,13 @@ const StyledTabList = styled.ul`
   border-bottom: 0.5px solid ${Colors.LIGHT_GREY};
   margin: 0 -80px;
   padding: 0 80px;
+
+  .selected {
+    border-color: ${Colors.BLACK};
+  }
 `;
 
-export const TabList = ({ tabData, onClickTab }) => {
+export const TabList = ({ tabData, setClickedTabId, selectedTabId }) => {
   if (!tabData) {
     return null;
   }
@@ -19,7 +23,12 @@ export const TabList = ({ tabData, onClickTab }) => {
   return (
     <StyledTabList>
       {tabData.map(tab => (
-        <Tab key={tab.id} tabData={tab} onClickTab={onClickTab} />
+        <Tab
+          key={tab.id}
+          tabData={tab}
+          setClickedTabId={setClickedTabId}
+          TabClassName={tab.id === selectedTabId ? 'selected' : null}
+        />
       ))}
     </StyledTabList>
   );
