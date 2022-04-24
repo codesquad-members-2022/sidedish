@@ -1,17 +1,34 @@
 package com.codesquad.sidedish.item.domain;
 
-public enum Category {
-    MAIN("모두가 좋아하는 든든한 메인요리"),
-    SOUP("정성이 담긴 뜨끈한 국물요리"),
-    SIDE("식탁을 풍성하게 하는 정갈한 밑반찬");
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.HashSet;
+import java.util.Set;
+
+@Table("CATEGORY")
+public class Category {
+    @Id
+    private final Integer id;
     private final String name;
+    @MappedCollection(idColumn = "CATEGORY_ID")
+    private Set<Item> items = new HashSet<>();
 
-    Category(String name) {
+    public Category(Integer id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Set<Item> getItems() {
+        return items;
     }
 }

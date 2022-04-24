@@ -1,7 +1,14 @@
 package com.codesquad.sidedish.item.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.HashSet;
+import java.util.Set;
+
+@Table("ITEM")
 public class Item {
     @Id
     private Integer id;
@@ -9,15 +16,22 @@ public class Item {
     private String description;
     private Integer price;
     private Integer stock;
-    private String imageLink;
+    @Column(value = "MAIN_IMAGE_LINK")
+    private String mainImageLink;
+    private String discountPolicy;
+    private Integer discountRate;
+    @MappedCollection(idColumn = "ITEM_ID")
+    private Set<ItemImage> itemImages = new HashSet<>();
 
-    public Item(Integer id, String name, String description, Integer price, Integer stock, String imageLink) {
+    public Item(Integer id, String name, String description, Integer price, Integer stock, String mainImageLink, String discountPolicy, Integer discountRate) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
-        this.imageLink = imageLink;
+        this.mainImageLink = mainImageLink;
+        this.discountPolicy = discountPolicy;
+        this.discountRate = discountRate;
     }
 
     public Integer getId() {
@@ -40,7 +54,34 @@ public class Item {
         return stock;
     }
 
-    public String getImageLink() {
-        return imageLink;
+    public String getMainImageLink() {
+        return mainImageLink;
+    }
+
+    public String getDiscountPolicy() {
+        return discountPolicy;
+    }
+
+    public Integer getDiscountRate() {
+        return discountRate;
+    }
+
+    public Set<ItemImage> getItemImages() {
+        return itemImages;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", mainImageLink='" + mainImageLink + '\'' +
+                ", discountPolicy='" + discountPolicy + '\'' +
+                ", discountRate=" + discountRate +
+                ", itemImages=" + itemImages +
+                '}';
     }
 }
