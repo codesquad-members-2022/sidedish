@@ -1,13 +1,13 @@
 import React from "react";
-import Card from '../card/Card';
-import dishes from '../../data/dishes';
+import Exhibition from "../exhibition/Exhibition";
+import Category from "../category/Category";
+import { dish10 } from "../../data/dishes";
 
 const Main = () => {
   return (
     <>
-      {dishes.map((dish, index) => {
-        return <Card key={index} dish={dish} />
-      })}
+      <Exhibition />
+      <Category {...dish10} />
     </>
   );
 };
