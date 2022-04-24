@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${USER_NAME}
+    password: ${USER_PASSWORD}
+  sql:
+    init:
+      data-locations:
+        - classpath:data.sql
+      schema-locations:
+        - classpath:schema.sql
+      mode: always
