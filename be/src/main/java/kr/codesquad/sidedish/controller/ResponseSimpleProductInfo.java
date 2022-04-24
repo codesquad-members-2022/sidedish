@@ -1,11 +1,12 @@
-package kr.codesquad.sidedish.dto;
+package kr.codesquad.sidedish.controller;
 
+import kr.codesquad.sidedish.service.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class SimpleProductInfo {
+public class ResponseSimpleProductInfo {
 
 	/**
 	 * 음식이름 음식설명 가격 할인가격 이벤트 이미지URL 하나
@@ -18,8 +19,8 @@ public class SimpleProductInfo {
 	private String[] applyEvent;
 	private String imgUrl;
 
-	public static SimpleProductInfo from(ProductDTO productDTO) {
-		return new SimpleProductInfo(productDTO.getId(), productDTO.getName(),
+	public static ResponseSimpleProductInfo from(ProductDTO productDTO) {
+		return new ResponseSimpleProductInfo(productDTO.getId(), productDTO.getName(),
 			productDTO.getContent(), productDTO.getPrice(), productDTO.getDiscountPrice(),
 			productDTO.getApplyEvent(), productDTO.getImgUrl()[0]);
 	}
