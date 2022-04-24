@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { ProductCard } from './ProductCard';
+import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Badge/CategoryBadge';
 import Colors from '@/Constants/Colors';
@@ -12,28 +13,6 @@ const BestProductWrapper = styled.div`
   margin: 0 -80px;
   border-bottom: 1px solid ${Colors.LIGHT_GREY};
   flex-direction: column;
-`;
-
-const TabList = styled.ul`
-  display: flex;
-
-  border-bottom: 0.5px solid ${Colors.LIGHT_GREY};
-  margin: 0 -80px;
-  padding: 0 80px;
-
-  li {
-    cursor: pointer;
-    padding: 16px;
-    border-bottom: 1.5px solid transparent;
-  }
-
-  li.selected {
-    border-color: ${Colors.BLACK};
-  }
-
-  li:hover {
-    border-color: ${Colors.BLACK};
-  }
 `;
 
 const Header = styled.div`
@@ -58,8 +37,13 @@ const BadgeWrapper = styled.div`
 
 export const BestProducts = () => {
   const [tabList, setTabList] = useState([]);
-  const [cardData, setCardData] = useState([]);
   const [selectedTabId, setSelectedTabId] = useState(null);
+  const [cardData, setCardData] = useState([]);
+
+  const onClickTab = event => {
+    const tabId = event.target.dataset.id;
+    setSelectedTabId(Number(tabId));
+  };
 
   useEffect(() => {
     fetch('/events')
@@ -71,18 +55,17 @@ export const BestProducts = () => {
   }, []);
 
   useEffect(() => {
-    if (!selectedTabId) return;
+    if (!selectedTabId) {
+      return;
+    }
+    console.log(tabList);
+
     fetch(`/events/${selectedTabId}`)
       .then(body => body.json())
       .then(data => {
         setCardData(data.content);
       });
   }, [selectedTabId]);
-
-  const onClickTab = event => {
-    const tabId = event.target.dataset.id;
-    setSelectedTabId(Number(tabId));
-  };
 
   return (
     <BestProductWrapper>
@@ -95,21 +78,16 @@ export const BestProducts = () => {
           한번 주문하면 두번 주문하는 반찬
         </Title>
       </Header>
-      <TabList>
-        {tabList.map(tab => (
-          <li
-            className={`fonts-lg ${selectedTabId === tab.id ? 'selected' : ''}`}
-            key={tab.id}
-            data-id={tab.id}
-            onClick={onClickTab}
-          >
-            {tab.title}
-          </li>
-        ))}
-      </TabList>
+
+      <TabList onClickTab={onClickTab} tabData={tabList} />
+
       <ProductCardList>
-        {cardData.map(data => (
-          <ProductCard size={''} data={data} key={data.id} />
+        {cardData.map(productCardData => (
+          <ProductCard
+            size={''}
+            data={productCardData}
+            key={productCardData.id}
+          />
         ))}
       </ProductCardList>
     </BestProductWrapper>
