@@ -6,7 +6,6 @@ import MypageSrc from '../images/Mypage.svg';
 import ShoppingCartSrc from '../images/Shopping-cart.svg';
 
 const StyledHeader = styled.header`
-  position: fixed;
   display: flex;
   border-bottom: 1px solid black;
   justify-content: space-between;

@@ -68,7 +68,7 @@ function Card({ size, item }) {
 }
 
 Card.defaultProps = {
-  sizd: 'large',
+  size: 'large',
   item: {
     id: 0,
     image: 'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',

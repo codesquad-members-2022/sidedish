@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Modal from './components/Modal';
+import Event from './components/Event';
 import GlobalStyles from './GlobalStyles';
 
 const categories = [
@@ -28,14 +29,19 @@ const dishes = {
   sub_category_id: 111,
   name: '오리 주물럭_반조리',
   content: '칠맛 나는 매콤한 양념',
+  badge_title: '한정특가',
   price: 15000,
-  discont_Ratio: 12640,
+  discount_price: 12600,
   mileage_ratio: 0.01,
   early_delivery: true,
   delivery_price: 2500,
   delevery_free_price: 40000,
   stock: 100,
-  image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
+  images: [
+    'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
+    'http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg',
+    'http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg',
+  ],
   related_dishes: [
     {
       related_name: '한돈 매콤 안심장조림',
@@ -75,6 +81,7 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <Modal dishes={dishes}></Modal>
       <Header categories={categories}></Header>
+      <Event></Event>
     </div>
   );
 }
