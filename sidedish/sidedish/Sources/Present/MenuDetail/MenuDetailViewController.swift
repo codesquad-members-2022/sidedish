@@ -88,7 +88,7 @@ class MenuDetailViewController: UIViewController {
         model.state.loadedDetail
             .receive(on: DispatchQueue.main)
             .sink { menu, detail in
-                self.title = detail.description
+                self.title = menu.title
                 self.infoView.changeTitleLabel(text: menu.title)
                 self.infoView.changeDescriptionLabel(text: menu.description)
                 self.infoView.changePriceLabel(text: menu.price)
