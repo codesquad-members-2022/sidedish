@@ -1,5 +1,6 @@
 package kr.codesquad.sidedish.repository;
 
+
 import kr.codesquad.sidedish.domain.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

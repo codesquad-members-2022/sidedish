@@ -1,8 +1,12 @@
 spring:
   config:
-    import: secret.yml
-  datasource:
-    url:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username:
-    password:
+    activate:
+      import: application-local.yml
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG

@@ -1,35 +1,43 @@
 package kr.codesquad.sidedish.dto;
 
-
+import kr.codesquad.sidedish.domain.DeliveryType;
 import kr.codesquad.sidedish.domain.DiscountPolicy;
 import kr.codesquad.sidedish.domain.Dish;
 
-import java.util.List;
-
 public class DishSimpleResponse {
+
+    private static final int MAIN_IMAGE_INDEX = 0;
 
     private final Long id;
     private final String name;
     private final String description;
-    private final List<String> images;
+    private final String image;
     private final int stock;
-    private final int price;
+    private final int normalPrice;
+    private final int discountPrice;
+    private final DeliveryType deliveryType;
     private final DiscountPolicy discountPolicy;
 
-    public DishSimpleResponse(Long id, String name, String description, List<String> images,
-                              int stock, int price, DiscountPolicy discountPolicy) {
+    public DishSimpleResponse(Long id, String name, String description, String image, int stock,
+        int normalPrice, int discountPrice, DeliveryType deliveryType,
+        DiscountPolicy discountPolicy) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.images = images;
+        this.image = image;
         this.stock = stock;
-        this.price = price;
+        this.normalPrice = normalPrice;
+        this.discountPrice = discountPrice;
+        this.deliveryType = deliveryType;
         this.discountPolicy = discountPolicy;
     }
-    public static DishSimpleResponse of(Dish dish, List<String> images) {
-        return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(), images,
-                dish.getStock(), dish.getPrice(), dish.getDiscountPolicy());
+
+    public static DishSimpleResponse of(Dish dish) {
+        return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(),
+                                    dish.getImageName(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
+                                    dish.getDeliveryType(), dish.getDiscountPolicy());
     }
+
 
     public Long getId() {
         return id;
@@ -43,16 +51,24 @@ public class DishSimpleResponse {
         return description;
     }
 
-    public List<String> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
     public int getStock() {
         return stock;
     }
 
-    public int getPrice() {
-        return price;
+    public int getNormalPrice() {
+        return normalPrice;
+    }
+
+    public int getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public DeliveryType getDeliveryType() {
+        return deliveryType;
     }
 
     public DiscountPolicy getDiscountPolicy() {
