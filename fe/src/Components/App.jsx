@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { Header } from '@Header';
-import { Main } from '@Main';
+import { Header } from '@Components/Header';
+import { Main } from '@Components/Main';
 
 import { fetchData } from '@/Utils/Utils';
 

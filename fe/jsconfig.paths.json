@@ -4,6 +4,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@*": ["./src/*"],
+      "@Components": ["./src/Components"],
       "@Header": ["./src/Header"],
       "@Main": ["./src/Main"]
     }
