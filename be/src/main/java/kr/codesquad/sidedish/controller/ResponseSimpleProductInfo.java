@@ -16,7 +16,7 @@ public class ResponseSimpleProductInfo {
 	private String content;
 	private Integer price;
 	private Integer discountPrice;
-	private String[] applyEvent;
+	private String applyEvent;
 	private String imgUrl;
 
 	public static ResponseSimpleProductInfo from(ProductDTO productDTO) {

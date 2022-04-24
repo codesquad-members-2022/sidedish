@@ -16,7 +16,7 @@ public class ResponseDetailProductInfo {
 	private Integer quantity;
 	private String dishType;
 	private String sideDishType;
-	private String[] applyEvent;
+	private String applyEvent;
 	private String[] imgUrl;
 
 	public static ResponseDetailProductInfo from(ProductDTO productDTO) {

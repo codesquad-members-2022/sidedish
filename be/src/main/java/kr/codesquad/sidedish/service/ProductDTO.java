@@ -15,6 +15,6 @@ public class ProductDTO {
 	private Integer quantity;
 	private String dishType;
 	private String sideDishType;
-	private String[] applyEvent;
+	private String applyEvent;
 	private String[] imgUrl;
 }
