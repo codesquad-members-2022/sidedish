@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd front_sidedish
+echo "[FE] Start script"
 
 git fetch
 remote=` git rev-parse origin/frontend`
@@ -19,4 +20,7 @@ git pull origin frontend
 
 echo "[FE] project rebuild"
 cd frontend/sidedish
+
+npm install
+
 npm run build
