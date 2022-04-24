@@ -2,7 +2,11 @@ import UIKit
 
 class OrderCountSectionView: UIView {
     
-    private var count = 1
+    @OrderCount private var count : Int {
+        didSet {
+            self.counter.text = "\(count)"
+        }
+    }
     
     private var countTitle: UILabel = {
         let label = UILabel.customLabel("수량", UIColor.dishLightGrey)
@@ -34,7 +38,6 @@ class OrderCountSectionView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.dishGrey4
-        button.isEnabled = false
         return button
     }()
     
@@ -73,18 +76,10 @@ class OrderCountSectionView: UIView {
 private extension OrderCountSectionView {
     @objc func plusButtonTouched(_ sender: UIButton) {
         self.count += 1
-        self.counter.text = "\(self.count)"
-        if self.count > 1 {
-            self.minusButton.isEnabled = true
-        }
     }
     
     @objc func minusButtonTouched(_ sender: UIButton) {
         self.count -= 1
-        self.counter.text = "\(self.count)"
-        if self.count == 1 {
-            self.minusButton.isEnabled = false
-        }
     }
     
     func layoutCountTitle() {
