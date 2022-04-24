@@ -135,7 +135,7 @@ extension MenuInfoView {
             case "런칭특가":
                 paddingLabel.backgroundColor = .primary1
             default:
-                paddingLabel.backgroundColor = .primary3
+                paddingLabel.backgroundColor = .primary2
             }
             badgeStackView.addArrangedSubview(paddingLabel)
         }
