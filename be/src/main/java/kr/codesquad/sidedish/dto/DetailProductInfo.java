@@ -26,20 +26,4 @@ public class DetailProductInfo {
 			productDTO.getDishType(), productDTO.getSideDishType(), productDTO.getApplyEvent(),
 			productDTO.getImgUrl());
 	}
-
-	@Override
-	public String toString() {
-		return "DetailProductInfo{" +
-			"id=" + id +
-			", name='" + name + '\'' +
-			", content='" + content + '\'' +
-			", price=" + price +
-			", discountPrice=" + discountPrice +
-			", quantity=" + quantity +
-			", dishType='" + dishType + '\'' +
-			", sideDishType='" + sideDishType + '\'' +
-			", applyEvent='" + applyEvent + '\'' +
-			", imgUrl=" + Arrays.toString(imgUrl) +
-			'}';
-	}
 }
