@@ -1,6 +1,6 @@
 package kr.codesquad.sidedish.domain;
 
-import kr.codesquad.sidedish.dto.ResponseProduct;
+import kr.codesquad.sidedish.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,26 +8,44 @@ import lombok.Getter;
 @Getter
 public class Product {
 
-	private final int id;
+	public static double LAUNCHING_DISCOUNT = 0.8;
+	public static double EVENT_DISCOUNT = 0.9;
+
+	private final Integer id;
 	private final String name;
 	private final String content;
 	private final int price;
-	private final int quantity;
+	private final Integer quantity;
 	private final String dishType;
 	private final String sideDishType;
 	private final String applyEvent;
 	private final String imgUrl;
 
-	public static Product updateQuantity(Product product, int quantity) {
+	public static Product updateQuantity(Product product, Integer quantity) {
 		return new Product(product.getId(), product.getName(), product.getContent(),
 			product.getPrice(), quantity,
 			product.getDishType(), product.getSideDishType(), product.getApplyEvent(),
 			product.getImgUrl());
 	}
 
-	public ResponseProduct createResponseProduct() {
-		return new ResponseProduct(id, name, content, price, quantity, dishType, sideDishType,
-			applyEvent, imgUrl);
+	public ProductDTO createDTO() {
+
+		int discountPrice = price;
+		if (applyEvent.equals("런칭특가")) {
+			// 20% 할인
+			discountPrice = (int) (price * LAUNCHING_DISCOUNT);
+		}
+		if (applyEvent.equals("이벤트특가")) {
+			// 10% 할인
+			discountPrice = (int) (price * EVENT_DISCOUNT);
+		}
+
+		String[] imgArray;
+		imgArray = imgUrl.split(",");
+
+		return new ProductDTO(id, name, content, price, discountPrice, quantity, dishType,
+			sideDishType,
+			applyEvent, imgArray);
 	}
 
 	public boolean isSameDishType(String dishType) {

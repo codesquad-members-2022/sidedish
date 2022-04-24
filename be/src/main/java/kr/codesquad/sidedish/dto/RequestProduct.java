@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class RequestProduct {
 
-	private int id;
-	private int quantity;
+	private Integer id;
+	private Integer quantity;
 }

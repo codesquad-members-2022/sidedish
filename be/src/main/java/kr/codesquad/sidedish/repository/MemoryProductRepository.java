@@ -16,7 +16,7 @@ public class MemoryProductRepository implements ProductRepository {
 	private static final AtomicInteger sequence = new AtomicInteger();
 
 	@Override
-	public Product findById(int id) {
+	public Product findById(Integer id) {
 		return store.get(id);
 	}
 
@@ -30,13 +30,13 @@ public class MemoryProductRepository implements ProductRepository {
 
 	@Override
 	public Product save(Product product) {
-		int id = sequence.incrementAndGet();
+		Integer id = sequence.incrementAndGet();
 
 		return null;
 	}
 
 	@Override
-	public Product updateQuantity(int id, Product product) {
+	public Product updateQuantity(Integer id, Product product) {
 		store.put(id, product);
 		return product;
 	}
