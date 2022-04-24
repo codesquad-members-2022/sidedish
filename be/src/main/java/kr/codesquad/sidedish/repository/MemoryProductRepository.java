@@ -29,13 +29,6 @@ public class MemoryProductRepository implements ProductRepository {
 	}
 
 	@Override
-	public Product save(Product product) {
-		Integer id = sequence.incrementAndGet();
-
-		return null;
-	}
-
-	@Override
 	public Product updateQuantity(Integer id, Product product) {
 		store.put(id, product);
 		return product;

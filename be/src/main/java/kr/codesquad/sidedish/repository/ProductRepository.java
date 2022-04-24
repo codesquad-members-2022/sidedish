@@ -9,8 +9,6 @@ public interface ProductRepository {
 
 	List<Product> loadListByType(String dishType, String sideDishType);
 
-	Product save(Product product);
-
 	Product updateQuantity(Integer id, Product product);
 
 	List<Product> findAll();
