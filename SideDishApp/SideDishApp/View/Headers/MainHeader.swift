@@ -12,7 +12,7 @@ class MainHeader: UICollectionReusableView {
     static let identifier = "MainHeader"
 
     static func nib() -> UINib {
-        return UINib(nibName: "MainHeader", bundle: nil)
+        return UINib(nibName: self.identifier, bundle: nil)
     }
 
     override func awakeFromNib() {

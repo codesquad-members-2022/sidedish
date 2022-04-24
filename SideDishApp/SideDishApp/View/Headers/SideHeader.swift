@@ -12,11 +12,12 @@ class SideHeader: UICollectionReusableView {
     static let identifier = "SideHeader"
 
     static func nib() -> UINib {
-        return UINib(nibName: "SideHeader", bundle: nil)
+        return UINib(nibName: self.identifier, bundle: nil)
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
     }
 
 }

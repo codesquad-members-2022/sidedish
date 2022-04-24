@@ -17,11 +17,26 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var productDescription: UILabel!
     @IBOutlet weak private var priceContainer: UIStackView!
     @IBOutlet weak private var salePrice: UILabel!
+    @IBOutlet weak var badgeContainer: UIStackView!
 
-    weak private var originalPrice: UILabel?
+    private lazy var originalPrice: UILabel = {
+        let label = UILabel()
+        label.textColor = .grey2
+        label.font = .smallRegular
+        return label
+    }()
+
+    private lazy var badges: [String: BadgeLabel] = {
+        var labels = [String: BadgeLabel]()
+        for label in Badge.allCases {
+            let badgeLabel = BadgeLabel(text: label.rawValue)
+            labels.updateValue(badgeLabel, forKey: label.rawValue)
+        }
+        return labels
+    }()
 
     static func nib() -> UINib {
-        return UINib(nibName: "MainCollectionViewCell", bundle: nil)
+        return UINib(nibName: self.identifier, bundle: nil)
     }
 
     override func awakeFromNib() {
@@ -37,9 +52,16 @@ extension MainCollectionViewCell {
         productDescription.text = product.description
         salePrice.text = product.salePrice.priceTag
         if let originalPrice = product.originalPrice {
-            self.originalPrice?.text = originalPrice.priceTag
+            configureOriginalPrice(text: originalPrice.priceTag)
         }
-        if let badge = product.badge {
+        if let detectedBadges = product.badge {
+            moveInfoContainerUpward()
+
+            detectedBadges.forEach({
+                let matchedBadge = self.badges[$0.rawValue]
+                badgeContainer.addArrangedSubview(matchedBadge ?? UILabel())
+
+            })
 
         }
 
@@ -48,13 +70,31 @@ extension MainCollectionViewCell {
 
     private func setStyle() {
         mainImage.layer.cornerRadius = 5
-        setOriginalPriceStyle()
+        productDescription.textColor = .systemGray2
+        priceContainer.spacing = 4
+        badgeContainer.spacing = 4
+        title.font = .smallBold
+        productDescription.font = .smallRegular
+        productDescription.textColor = .grey2
+        salePrice.font = .smallBold
+
     }
 
-    private func setOriginalPriceStyle() {
-        guard let originalPrice = self.originalPrice else {return}
-        originalPrice.textColor = .systemGray2
-        priceContainer.addArrangedSubview(originalPrice)
+    private func configureOriginalPrice(text: String) {
+        self.originalPrice.text = text
+        let attributeString = NSMutableAttributedString(string: text)
+          attributeString.addAttribute(.strikethroughStyle,
+                                        value: NSUnderlineStyle.single.rawValue,
+                                        range: NSRange(location: 0, length: attributeString.length))
+        self.originalPrice.attributedText = attributeString
+        priceContainer.addArrangedSubview(self.originalPrice)
+    }
+
+    private func moveInfoContainerUpward() {
+        self.infoContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.infoContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 13)
+        ])
     }
 
 }

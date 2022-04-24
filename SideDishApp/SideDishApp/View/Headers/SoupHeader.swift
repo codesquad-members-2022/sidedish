@@ -12,7 +12,7 @@ class SoupHeader: UICollectionReusableView {
     static let identifier = "SoupHeader"
 
     static func nib() -> UINib {
-        return UINib(nibName: "SoupHeader", bundle: nil)
+        return UINib(nibName: self.identifier, bundle: nil)
     }
 
     override func awakeFromNib() {

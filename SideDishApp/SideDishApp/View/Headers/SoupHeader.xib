@@ -13,78 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="653" height="187"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdy-KJ-uZ8">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정성이 담긴 뜨끈뜨끈 국물 요리" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdy-KJ-uZ8">
                     <rect key="frame" x="0.0" y="54" width="653" height="99"/>
-                    <attributedString key="attributedText">
-                        <fragment content="정성이">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
-                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content=" ">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="담긴">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
-                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content=" ">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="뜨끈뜨끈">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
-                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content=" ">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="국물">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
-                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content=" ">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="요리">
-                            <attributes>
-                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
-                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="32"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

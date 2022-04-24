@@ -49,8 +49,8 @@ extension MainCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
 
-//        cell.setImage()
-
+        guard let test = URL(string: "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg") else {return UICollectionViewCell()}
+        cell.configureCell(product: ProductCellViewModel(title: "오리 주물럭_반조리", description: "감칠맛 나는 매콤한 양념", imageURL: test, originalPrice: Money<KRW>("15,800원"), salePrice: Money<KRW>("12,640원"), badge: [Badge.eventDiscount, Badge.mainDiscount, Badge.launchDiscount]))
         return cell
     }
 
