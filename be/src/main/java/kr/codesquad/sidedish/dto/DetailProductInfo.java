@@ -11,12 +11,12 @@ public class DetailProductInfo {
 	private Integer id;
 	private String name;
 	private String content;
-	private int price;
-	private int discountPrice;
+	private Integer price;
+	private Integer discountPrice;
 	private Integer quantity;
 	private String dishType;
 	private String sideDishType;
-	private String applyEvent;
+	private String[] applyEvent;
 	private String[] imgUrl;
 
 	public static DetailProductInfo from(ProductDTO productDTO) {

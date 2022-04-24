@@ -1,5 +1,6 @@
 package kr.codesquad.sidedish.domain;
 
+import java.util.Arrays;
 import kr.codesquad.sidedish.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +9,15 @@ import lombok.Getter;
 @Getter
 public class Product {
 
+	public static double SUPER_SALE_NUM = 2;
 	public static double LAUNCHING_DISCOUNT = 0.8;
 	public static double EVENT_DISCOUNT = 0.9;
+	public static double SUPER_DISCOUNT = 0.7;
 
 	private final Integer id;
 	private final String name;
 	private final String content;
-	private final int price;
+	private final Integer price;
 	private final Integer quantity;
 	private final String dishType;
 	private final String sideDishType;
@@ -30,22 +33,32 @@ public class Product {
 
 	public ProductDTO createDTO() {
 
-		int discountPrice = price;
-		if (applyEvent.equals("런칭특가")) {
-			// 20% 할인
-			discountPrice = (int) (price * LAUNCHING_DISCOUNT);
-		}
-		if (applyEvent.equals("이벤트특가")) {
-			// 10% 할인
-			discountPrice = (int) (price * EVENT_DISCOUNT);
-		}
+		String[] events = applyEvent.split(",");
 
-		String[] imgArray;
-		imgArray = imgUrl.split(",");
+		int discountPrice = convertDiscountPrice(events, price);
+
+		String[] images;
+		images = imgUrl.split(",");
 
 		return new ProductDTO(id, name, content, price, discountPrice, quantity, dishType,
 			sideDishType,
-			applyEvent, imgArray);
+			events, images);
+	}
+
+	private int convertDiscountPrice(String[] events, int price) {
+		if (events.length == SUPER_SALE_NUM) {
+			// 30% 할인
+			return (int) (price * SUPER_DISCOUNT);
+		}
+		if (applyEvent.contains("런칭특가")) {
+			// 20% 할인
+			return (int) (price * LAUNCHING_DISCOUNT);
+		}
+		if (applyEvent.contains("이벤트특가")) {
+			// 10% 할인
+			return (int) (price * EVENT_DISCOUNT);
+		}
+		return price;
 	}
 
 	public boolean isSameDishType(String dishType) {

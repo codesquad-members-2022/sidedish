@@ -13,9 +13,9 @@ public class SimpleProductInfo {
 	private Integer id;
 	private String name;
 	private String content;
-	private int price;
-	private int discountPrice;
-	private String applyEvent;
+	private Integer price;
+	private Integer discountPrice;
+	private String[] applyEvent;
 	private String imgUrl;
 
 	public static SimpleProductInfo from(ProductDTO productDTO) {
