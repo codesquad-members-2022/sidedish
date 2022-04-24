@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Header } from '@Header';
 import { Main } from '@Main';
 
-function App() {
+const App = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [loadedCategoryProductList, setLoadedCategoryProductList] = useState(
     []
