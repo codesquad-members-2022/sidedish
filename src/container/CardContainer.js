@@ -4,19 +4,27 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { cardMargin, slideBtn } from '../css/variables';
-import { flexCenter } from '../css/mixins';
+import { color } from '../css/variables';
 
 const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
   const [curHeadCardOrder, setCurHeadCardOrder] = useState(1);
   const [slidingSize, setSlidingSize] = useState(0);
+  const [disabledNextBtn, setDisabledNextBtn] = useState(false);
 
-  const isOutOfSlide = (cardInfosLen) => {
-    return curHeadCardOrder + cardNum >= cardInfosLen;
+  const isOutOfSlide = (current, target) => {
+    return current >= target;
   };
 
   const handleClickNext = () => {
     const cardInfosLen = cardInfos.length;
-    if (isOutOfSlide(cardInfosLen)) return;
+    const nextHeadCardOrder = curHeadCardOrder + cardNum;
+    if (isOutOfSlide(curHeadCardOrder + cardNum, cardInfosLen)) return;
+
+    if (isOutOfSlide(nextHeadCardOrder + cardNum, cardInfosLen)) {
+      setDisabledNextBtn(true);
+    } else {
+      setDisabledNextBtn(false);
+    }
 
     const leakCardSize = cardInfosLen % cardNum;
     const isLastSlide =
@@ -46,8 +54,15 @@ const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
           </StyledCard>
         ))}
       </StyledCardContainer>
-      {hasButton && <StyledButton icon={'◀'} />}
-      {hasButton && <StyledButton icon={'▶'} onClick={handleClickNext} />}
+      {hasButton && <StyledButton icon={'◀'} isOutOfSlide={isOutOfSlide} />}
+      {hasButton && (
+        <StyledButton
+          icon={'▶'}
+          disabled={disabledNextBtn}
+          isOutOfSlide={isOutOfSlide}
+          onClick={handleClickNext}
+        />
+      )}
     </StyledSection>
   );
 };
@@ -72,6 +87,9 @@ const StyledButton = styled(Button)`
   margin: 210px ${slideBtn.margin}px 0 0;
   padding: 0px;
   height: 0px;
+  :disabled {
+    color: ${color.greyFour};
+  }
 `;
 
 export default CardContainer;

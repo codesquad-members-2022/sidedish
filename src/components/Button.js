@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import { flexCenter } from '../css/mixins';
 
-const Button = ({ className, icon, onClick }) => {
+const Button = ({ className, icon, disabled, onClick }) => {
   return (
-    <StyledButton className={className} onClick={onClick}>
+    <StyledButton disabled={disabled} className={className} onClick={onClick}>
       {icon}
     </StyledButton>
   );
