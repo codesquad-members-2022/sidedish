@@ -1,9 +1,11 @@
-import Header from './Header';
+import Header from './Header/Header';
+import Special from './Special/Special';
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <Special />
     </div>
   );
 }
