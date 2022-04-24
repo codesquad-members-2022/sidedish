@@ -2,17 +2,14 @@ package kr.codesquad.sidedish.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.dto.DetailProductInfo;
 import kr.codesquad.sidedish.dto.ProductDTO;
 import kr.codesquad.sidedish.dto.RequestProduct;
 import kr.codesquad.sidedish.dto.SimpleProductInfo;
-import kr.codesquad.sidedish.response.BasicResponse;
 import kr.codesquad.sidedish.response.CommonCode;
 import kr.codesquad.sidedish.response.CommonResponse;
 import kr.codesquad.sidedish.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/products")
+@RestController("/api/v1/products")
 public class ProductController {
 
 	private final ProductService productService;
