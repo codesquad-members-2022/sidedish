@@ -51,20 +51,4 @@ public class ExhibitionController {
 
         return exhibitionService.getByExhibitionId(exhibitionId);
     }
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    private ResponseEntity<ErrorResponse<List<String>>> handleConstraintViolationException(ConstraintViolationException e) {
-        List<String> messages = e.getConstraintViolations()
-                .stream()
-                .map(ConstraintViolation::getMessage)
-                .collect(Collectors.toList());
-
-        return new ResponseEntity<>(new ErrorResponse<>(messages), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ExhibitionException.class)
-    private ResponseEntity<ErrorResponse<String>> handleCardRuntimeException(ExhibitionException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
-    }
 }
