@@ -1,13 +1,12 @@
 import UIKit
 
 extension UILabel {
-    static let customLabel = { (title: String, color: UIColor) -> UILabel in
+    static func customLabel(_ title: String,_ color: UIColor,_ fontSize: CGFloat,_ fontWeight: CGFloat = 400,_ bold: Bool = false ) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
+        label.font = bold ? UIFont.boldSystemFont(ofSize: fontSize) : UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight(fontWeight))
         label.textColor = color
         label.text = title
-        
         return label
     }
 }

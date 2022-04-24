@@ -10,49 +10,29 @@ class DetailBanchanBriefView: UIView {
     }()
     
     private var dishTitle: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 32)
-        label.textColor = UIColor.dishBlack
-        label.text = "요리 제목"
+        let label = UILabel.customLabel("요리 제목", .dishBlack, 32, 400, true)
         return label
     }()
     
     private var dishDescription: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
-        label.text = "감질맛 나는 요리 설명"
+        let label = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 18)
         return label
     }()
     
     private var discountPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(600))
-        label.textColor = UIColor.dishBlack
-        label.text = "12,640원"
+        let label = UILabel.customLabel("12,640원", .dishBlack, 18, 600)
         return label
     }()
     
     private var normalPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
-        label.text = "15,800원"
+        let label = UILabel.customLabel("15,800원", .dishLightGrey, 16)
         return label
     }()
     
     private var specialPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel.customLabel("특가 정보", .dishWhite, 12, 600)
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(600))
-        label.textColor = UIColor.dishWhite
         label.backgroundColor = UIColor.dishBlue
-        label.text = "특가 정보"
         label.layer.cornerRadius = 13
         label.clipsToBounds = true
         return label

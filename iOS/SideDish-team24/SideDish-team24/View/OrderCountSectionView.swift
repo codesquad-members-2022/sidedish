@@ -9,14 +9,12 @@ class OrderCountSectionView: UIView {
     }
     
     private var countTitle: UILabel = {
-        let label = UILabel.customLabel("수량", UIColor.dishLightGrey)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel.customLabel("수량", .dishLightGrey, 14)
         return label
     }()
     
     private var counter: UILabel = {
-        let label = UILabel.customLabel("1", UIColor.dishGrey)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel.customLabel("1", .dishGrey, 14)
         return label
     }()
     

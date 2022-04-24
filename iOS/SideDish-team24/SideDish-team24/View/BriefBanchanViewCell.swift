@@ -11,49 +11,29 @@ class BriefBanchanViewCell: UICollectionViewCell {
     }()
     
     private var dishTitle: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.dishBlack
-        label.text = "요리 제목"
+        let label = UILabel.customLabel("요리제목", .dishBlack, 14)
         return label
     }()
     
     private var dishDescription: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
-        label.text = "감질맛 나는 요리 설명"
+        let label = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 14)
         return label
     }()
     
     private var discountPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(600))
-        label.textColor = UIColor.dishBlack
-        label.text = "12,640원"
+        let label = UILabel.customLabel("12,640원", .dishBlack, 14, 600)
         return label
     }()
     
     private var normalPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
-        label.text = "15,800원"
+        let label = UILabel.customLabel("15,800", .dishLightGrey, 14)
         return label
     }()
     
     private var specialPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel.customLabel("특가 정보", .dishWhite, 12, 600)
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(600))
-        label.textColor = UIColor.dishWhite
         label.backgroundColor = UIColor.dishBlue
-        label.text = "특가 정보"
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
         return label
@@ -75,14 +55,8 @@ class BriefBanchanViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    private var blank: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     override init(frame: CGRect) {
-        super.init(frame:  frame)
+        super.init(frame: frame)
         self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
