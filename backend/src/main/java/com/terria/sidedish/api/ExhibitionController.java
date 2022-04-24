@@ -3,19 +3,24 @@ package com.terria.sidedish.api;
 import com.terria.sidedish.dto.response.ExhibitionResponse;
 import com.terria.sidedish.error.ErrorCode;
 import com.terria.sidedish.error.ErrorResponse;
-import com.terria.sidedish.error.ExhibitionRunTimeException;
+import com.terria.sidedish.error.ExhibitionException;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Min;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Positive;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Api(tags = "ExhibitionController")
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/exhibitions")
@@ -30,15 +35,26 @@ public class ExhibitionController {
             response = ExhibitionResponse.class
     )
     @GetMapping("/{exhibitionId}")
-    public ResponseEntity<ExhibitionResponse> getByExhibitionId(
-            @PathVariable @Validated @Positive @Min(1) long exhibitionId) {
+    public ExhibitionResponse getByExhibitionId(
+            @PathVariable
+            @Positive(message = "기획전 아이디 입력값이 부적절합니다. (1. 일반 진열 상품, 2. 기획전: 한 번 주문하면 두 번 반하는 반찬)") long exhibitionId) {
 
-        return ResponseEntity.ok(exhibitionService.getByExhibitionId(exhibitionId));
+        return exhibitionService.getByExhibitionId(exhibitionId);
     }
 
-    @ExceptionHandler(ExhibitionRunTimeException.class)
-    private ResponseEntity<ErrorResponse> handleCardRuntimeException(ExhibitionRunTimeException e) {
+    @ExceptionHandler(ConstraintViolationException.class)
+    private ResponseEntity<ErrorResponse<List<String>>> handleConstraintViolationException(ConstraintViolationException e) {
+        List<String> messages = e.getConstraintViolations()
+                .stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(new ErrorResponse<>(messages), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ExhibitionException.class)
+    private ResponseEntity<ErrorResponse<String>> handleCardRuntimeException(ExhibitionException e) {
         ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(ErrorResponse.of(errorCode), errorCode.getStatus());
+        return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
     }
 }

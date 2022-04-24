@@ -9,7 +9,7 @@ import com.terria.sidedish.domain.entity.reference.SideDish;
 import com.terria.sidedish.dto.response.CategoryResponse;
 import com.terria.sidedish.dto.response.ExhibitionResponse;
 import com.terria.sidedish.dto.response.SideDishCardResponse;
-import com.terria.sidedish.error.ExhibitionRunTimeException;
+import com.terria.sidedish.error.ExhibitionException;
 import com.terria.sidedish.repository.DiscountEventRepository;
 import com.terria.sidedish.repository.ExhibitionRepository;
 import com.terria.sidedish.repository.SideDishRepository;
@@ -36,7 +36,7 @@ public class ExhibitionService {
     public ExhibitionResponse getByExhibitionId(long exhibitionId) {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
                 .orElseThrow(
-                        () -> new ExhibitionRunTimeException(EXHIBITION_VALIDATION_ERROR)
+                        () -> new ExhibitionException(EXHIBITION_VALIDATION_ERROR)
                 );
 
         List<CategoryResponse> categoryResponses = new ArrayList<>();
