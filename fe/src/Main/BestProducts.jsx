@@ -58,7 +58,6 @@ export const BestProducts = () => {
     if (!selectedTabId) {
       return;
     }
-    console.log(tabList);
 
     fetch(`/events/${selectedTabId}`)
       .then(body => body.json())

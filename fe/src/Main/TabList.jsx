@@ -12,8 +12,6 @@ const StyledTabList = styled.ul`
 `;
 
 export const TabList = ({ tabData, onClickTab }) => {
-  console.log(tabData);
-
   if (!tabData) {
     return null;
   }
