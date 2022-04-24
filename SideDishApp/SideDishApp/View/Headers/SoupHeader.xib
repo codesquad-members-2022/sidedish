@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+            <rect key="frame" x="0.0" y="0.0" width="653" height="187"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdy-KJ-uZ8">
+                    <rect key="frame" x="0.0" y="54" width="653" height="99"/>
+                    <attributedString key="attributedText">
+                        <fragment content="정성이">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
+                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="담긴">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
+                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="뜨끈뜨끈">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
+                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="국물">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
+                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="요리">
+                            <attributes>
+                                <color key="NSColor" red="0.030240686610341072" green="0.016913939267396927" blue="0.0045696059241890907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="32" name="AppleSDGothicNeo-Regular"/>
+                                <font key="NSOriginalFont" size="32" name="SFProDisplay-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="Wdy-KJ-uZ8" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="10" id="ITC-ks-dfg"/>
+                <constraint firstItem="Wdy-KJ-uZ8" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="qWb-rI-454"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Wdy-KJ-uZ8" secondAttribute="trailing" id="uio-5w-Zeu"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="Wdy-KJ-uZ8" secondAttribute="bottom" id="vuP-Yi-yT3"/>
+            </constraints>
+            <point key="canvasLocation" x="96.376811594202906" y="150.33482142857142"/>
+        </collectionReusableView>
+    </objects>
+</document>

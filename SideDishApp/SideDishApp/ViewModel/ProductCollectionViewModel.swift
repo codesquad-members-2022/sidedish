@@ -19,7 +19,6 @@ struct ProductCollectionViewModel {
 
     private let categoryManager = CategoryManager()
     private var imageCache = NSCache<NSURL, UIImage>()
-    private let categoryType = [0: ProductType.main, 1: ProductType.soup, 2: ProductType.side]
 
     public var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
@@ -32,7 +31,7 @@ struct ProductCollectionViewModel {
     }
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
-        let targetType = categoryType[indexPath.item]
+        let targetType = ProductType.allCases[indexPath.section]
         guard let index = cellViewModels.value.firstIndex(where: {$0.type == targetType}) else {return nil}
         let targetCellViewModel = cellViewModels.value[index]
         return targetCellViewModel.productViewModel[indexPath.item]
