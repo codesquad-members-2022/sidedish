@@ -1,25 +1,16 @@
 package com.terria.sidedish.api;
 
 import com.terria.sidedish.dto.response.ExhibitionResponse;
-import com.terria.sidedish.error.ErrorCode;
-import com.terria.sidedish.error.ErrorResponse;
-import com.terria.sidedish.error.ExhibitionException;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Positive;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Api(tags = "ExhibitionController")
 @Validated
