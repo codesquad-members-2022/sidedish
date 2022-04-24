@@ -6,6 +6,7 @@ import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Badge/CategoryBadge';
 import Colors from '@/Constants/Colors';
+import Fonts from '@/Constants/Fonts';
 
 const BestProductWrapper = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ export const BestProducts = () => {
           <CategoryBadge />
         </BadgeWrapper>
 
-        <Title className="fonts-display">
+        <Title className={Fonts.FONTS_DISPLAY}>
           한번 주문하면 두번 주문하는 반찬
         </Title>
       </Header>

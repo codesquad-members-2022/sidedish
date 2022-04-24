@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '@/Constants/Colors';
+import Fonts from '@/Constants/Fonts';
 
 const MenuWrapper = styled.li`
   margin-right: 24px;
@@ -26,8 +27,8 @@ export const Menu = ({ category, subMenuOpen }) => {
     <MenuWrapper>
       <span>{category.main}</span>
       {subMenuOpen ? (
-        <SubMenuList className={'fonts-sm'}>
-          {category.subs.map((sub) => (
+        <SubMenuList className={Fonts.FONTS_SM}>
+          {category.subs.map(sub => (
             <li key={category.id}>{sub}</li>
           ))}
         </SubMenuList>
