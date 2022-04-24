@@ -1,11 +1,23 @@
 import styled from 'styled-components';
 
-const UserButtonsWrapper = styled.div`
+const UserActionButtonsWrapper = styled.div`
   padding-top: 12px;
   flex-shrink: 0;
   
   button:not(:last-child) {
     margin-right: 16px;
+  }
+  
+  img {
+    display: block;
+    
+    &:hover {
+      opacity: 0.6;
+    }
+    
+    &:active {
+      opacity: 0.3;
+    }
   }
 `;
 
@@ -13,9 +25,9 @@ const SEARCH_ICON = 'Search.svg';
 const MYPAGE_ICON = 'Mypage.svg';
 const CART_ICON = 'Shopping-cart.svg';
 
-export const UserButtons = () => {
+export const UserActionButtons = () => {
   return (
-    <UserButtonsWrapper>
+    <UserActionButtonsWrapper>
       <button>
         <img src={SEARCH_ICON} alt="검색" />
       </button>
@@ -25,6 +37,6 @@ export const UserButtons = () => {
       <button>
         <img src={CART_ICON} alt="장바구니" />
       </button>
-    </UserButtonsWrapper>
+    </UserActionButtonsWrapper>
   );
 };

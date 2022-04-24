@@ -10,6 +10,8 @@ const MainWrapper = styled.main`
 `;
 
 export const Main = props => {
+  if (!props.loadedCategories.length) return null;
+
   return (
     <MainWrapper>
       <BestProducts />
