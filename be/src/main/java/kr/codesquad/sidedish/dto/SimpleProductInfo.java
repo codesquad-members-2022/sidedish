@@ -23,17 +23,4 @@ public class SimpleProductInfo {
 			productDTO.getContent(), productDTO.getPrice(), productDTO.getDiscountPrice(),
 			productDTO.getApplyEvent(), productDTO.getImgUrl()[0]);
 	}
-
-	@Override
-	public String toString() {
-		return "SimpleProductInfo{" +
-			"id=" + id +
-			", name='" + name + '\'' +
-			", content='" + content + '\'' +
-			", price=" + price +
-			", discountPrice=" + discountPrice +
-			", applyEvent='" + applyEvent + '\'' +
-			", imgUrl='" + imgUrl + '\'' +
-			'}';
-	}
 }
