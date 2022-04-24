@@ -46,7 +46,7 @@ public class ProductController {
 	 * 상품 세부 정보 불러오기
 	 */
 	@ResponseBody
-	@GetMapping("/details/{id}")
+	@GetMapping("/{id}/detail")
 	public ResponseEntity<CommonResponse<DetailProductInfo>> loadDetail(@PathVariable Integer id) {
 		return new CommonResponse(CommonCode.SUCCESS,
 			DetailProductInfo.from(productService.findById(id))).toResponseEntity();
