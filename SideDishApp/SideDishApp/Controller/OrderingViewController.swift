@@ -39,6 +39,7 @@ final class OrderingViewController: UIViewController {
         view.addSubview(orderingCollectionView)
         configureOrderingCollectionView()
         layoutOrderingCollectionView()
+        
     }
     
     private func configureView() {
@@ -80,16 +81,15 @@ final class OrderingViewController: UIViewController {
     
     private func setHeaderViewDelegate() {
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             let countOfSection = self.orderingCollectionView.numberOfSections
 
             for sectionIndex in 0..<countOfSection {
                 guard let sectionHeaderView = self.orderingCollectionView.supplementaryView(
                     forElementKind: UICollectionView.elementKindSectionHeader,
                     at: IndexPath(row: 0, section: sectionIndex)) as? SectionHeaderView else { return }
-
                 sectionHeaderView.delegate = self
-                sectionHeaderView.setSectionNumber(number: sectionIndex)
             }
         }
     }
@@ -109,6 +109,7 @@ extension OrderingViewController {
 }
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
+    
     func didSelectItem(index: IndexPath) {
         guard let item = collectionViewDataSource.getSelectedItem(at: index.item) else { return }
         
@@ -128,6 +129,7 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
 }
 
 extension OrderingViewController: SectionHeaderViewDelegate {
+    
     func didTapSectionHeader(section: SectionHeaderView, sectionNumber: Int) {
         let count = self.orderingCollectionView.numberOfItems(inSection: sectionNumber)
         section.setCountLabel(count: count)

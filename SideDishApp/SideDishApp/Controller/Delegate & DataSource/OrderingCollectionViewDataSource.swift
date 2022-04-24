@@ -22,7 +22,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        
+
         guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: Constant.Identifier.sectionHeaderView,
@@ -30,6 +30,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
         ) as? SectionHeaderView else { return UICollectionReusableView() }
         
         supplementaryView.setTitle(title: headers[indexPath.section])
+        supplementaryView.setSectionNumber(number: indexPath.section)
         return supplementaryView
     }
     
