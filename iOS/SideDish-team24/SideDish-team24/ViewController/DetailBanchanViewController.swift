@@ -17,6 +17,7 @@ class DetailBanchanViewController: UIViewController {
     private let banchanBrief = DetailBanchanBriefView()
     private let deliverySection = DeliverySectionView()
     private let counterSection = OrderCountSectionView()
+    private let orderSection = OrderSectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ private extension DetailBanchanViewController {
         self.innerView.addArrangedSubview(banchanBrief)
         self.innerView.addArrangedSubview(deliverySection)
         self.innerView.addArrangedSubview(counterSection)
+        self.innerView.addArrangedSubview(orderSection)
         NSLayoutConstraint.activate([
             self.innerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             self.innerView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
