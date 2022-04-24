@@ -1,7 +1,9 @@
+import styled from 'styled-components';
+
 import { MenuList } from './MenuList';
 import { UserButtons } from './UserButtons';
-import styled from 'styled-components';
-import Colors from '../Constants/Colors';
+
+import Colors from '@/Constants/Colors';
 
 const HeaderWrapper = styled.header`
   width: 1440px;
@@ -12,29 +14,30 @@ const HeaderWrapper = styled.header`
   align-items: flex-start;
 `;
 
-const Logo = styled.h1`
+const LogoWrapper = styled.a`
+  display: block;
   margin-right: 40px;
-  cursor: pointer;
+  
+  img {
+    display: block;
+    height: 100%;
+  }
 `;
 
-const HeaderUI = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  padding-top: 12px;
-`;
+const Logo = () => {
+  return (
+    <LogoWrapper href={'/'}>
+      <img src={'logo.svg'} alt="로고" />
+    </LogoWrapper>
+  )
+}
 
 export const Header = props => {
   return (
     <HeaderWrapper>
-      <Logo>
-        <img src={'logo.svg'} alt={'로고'} />
-      </Logo>
-      <HeaderUI>
-        <MenuList categories={props.categories} />
-        <UserButtons />
-      </HeaderUI>
+      <Logo />
+      <MenuList categories={props.categories} />
+      <UserButtons />
     </HeaderWrapper>
   );
 };

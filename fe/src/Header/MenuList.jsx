@@ -1,10 +1,15 @@
-import { Menu } from './Menu';
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { Menu } from './Menu';
+
 const MenuListWrapper = styled.ul`
-  display: flex;
+  display: inline-flex;
+  white-space: nowrap;
+  overflow-x: auto;
   cursor: pointer;
+  flex-grow: 1;
+  padding-top: 12px;
 `;
 
 export const MenuList = props => {

@@ -1,16 +1,27 @@
 import styled from 'styled-components';
-import Colors from '../Constants/Colors';
+
+import Colors from '@/Constants/Colors';
 
 const getBadgeName = type => {
-  if (type === 'launch') return '런칭특가';
-  if (type === 'event') return '이벤트특가';
-  throw Error('DiscountBadge type must be launch or event');
+  switch (type) {
+    case 'launch':
+      return '런칭특가';
+    case 'event':
+      return '이벤트특가';
+    default:
+      return '할인';
+  }
 };
 
 const getBadgeBackgroundColor = type => {
-  if (type === 'launch') return Colors.ORANGE;
-  if (type === 'event') return Colors.GREEN;
-  throw Error('DiscountBadge type must be launch or event');
+  switch (type) {
+    case 'launch':
+      return Colors.ORANGE;
+    case 'event':
+      return Colors.GREEN;
+    default:
+      return Colors.GREY;
+  }
 };
 
 const Badge = styled.button`

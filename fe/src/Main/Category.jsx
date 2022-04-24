@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ProductCard } from './ProductCard';
 
 const CategoryWrapper = styled.li`
@@ -20,6 +21,8 @@ const ProductCardList = styled.ul`
 `;
 
 export const Category = props => {
+  if (!props.cardData) return <></>
+
   return (
     <CategoryWrapper>
       <Header className={'fonts-xl-bold'}>{props.title}</Header>

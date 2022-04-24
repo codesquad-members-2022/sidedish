@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Colors from '../Constants/Colors';
+
+import Colors from '@/Constants/Colors';
 
 const Badge = styled.button`
   padding: 8px 16px;
@@ -8,6 +9,6 @@ const Badge = styled.button`
   background-color: ${Colors.PALE_GREY};
 `;
 
-export const CategoryBadge = ({ name }) => {
-  return <Badge className={'fonts-md'}>{name || '기획전'}</Badge>;
+export const CategoryBadge = ({ name = '기획전' }) => {
+  return <Badge className={'fonts-md'}>{name}</Badge>;
 };

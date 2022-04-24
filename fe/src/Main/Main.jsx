@@ -1,6 +1,7 @@
-import { CategoryList } from './CategoryList';
-import { BestProducts } from './BestProducts';
 import styled from 'styled-components';
+
+import { BestProducts } from './BestProducts';
+import { CategoryList } from './CategoryList';
 
 const MainWrapper = styled.main`
   width: 1440px;
