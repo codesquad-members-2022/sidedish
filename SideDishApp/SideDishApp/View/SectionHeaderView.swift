@@ -12,7 +12,7 @@ final class SectionHeaderView: UICollectionReusableView {
     private let identifier = Constant.Identifier.sectionHeaderView
     private let fontSize: CGFloat = 32.0
     private var sectionNumber: Int?
-    
+
     var delegate: SectionHeaderViewDelegate?
     
     private lazy var sectionStackView: UIStackView = {
@@ -60,14 +60,17 @@ final class SectionHeaderView: UICollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         setTitle(title: nil)
+        if isCountLableVisible() {
+            sectionCountLabel.removeFromSuperview()
+        }
     }
-    
+
     private func setGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapSectionHeaderView))
         self.addGestureRecognizer(gesture)
     }
     
-    @objc func tapSectionHeaderView() {
+    @objc private func tapSectionHeaderView() {
         showNumberOfItemInSection()
         guard let sectionNumber = sectionNumber else { return }
         delegate?.didTapSectionHeader(section: self, sectionNumber: sectionNumber)
