@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Gnb from './components/Gnb';
 import Menu from './components/Menu';
 import { flexBetween } from './css/mixins';
-import { slideBtn } from './css/variables';
 
 const Header = () => {
   const gnbInfo = [
@@ -44,7 +43,7 @@ const FlexBetween = styled.div`
 `;
 
 const Title = styled.h2`
-  margin: 18px 40px 20px ${slideBtn.size + slideBtn.margin}px;
+  margin: 18px 40px 20px 0;
   font-size: 40px;
   font-weight: 900;
 `;

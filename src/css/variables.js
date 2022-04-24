@@ -27,4 +27,8 @@ const maxWidthBody = {
   width: 1400,
 };
 
-export { color, fontSize, slideBtn, maxWidthBody };
+const cardMargin = {
+  right: 24,
+};
+
+export { color, fontSize, slideBtn, maxWidthBody, cardMargin };

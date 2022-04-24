@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { flexCenter } from '../css/mixins';
 import { slideBtn } from '../css/variables';
 
-const Button = ({ icon }) => {
-  return <StyledButton>{icon}</StyledButton>;
+const Button = ({ icon, onClick }) => {
+  return <StyledButton onClick={onClick}>{icon}</StyledButton>;
 };
 
 const StyledButton = styled.button`
