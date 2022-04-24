@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import Button from '../components/Button';
 import Card from '../components/Card';
-import { cardMargin } from '../css/variables';
+import { cardMargin, slideBtn } from '../css/variables';
+import { flexCenter } from '../css/mixins';
 
 const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
   const [curHeadCardOrder, setCurHeadCardOrder] = useState(1);
@@ -45,8 +46,8 @@ const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
           </StyledCard>
         ))}
       </StyledCardContainer>
-      {hasButton && <Button icon={'◀'} />}
-      {hasButton && <Button icon={'▶'} onClick={handleClickNext} />}
+      {hasButton && <StyledButton icon={'◀'} />}
+      {hasButton && <StyledButton icon={'▶'} onClick={handleClickNext} />}
     </StyledSection>
   );
 };
@@ -64,6 +65,13 @@ const StyledCardContainer = styled.ul`
 
 const StyledCard = styled.li`
   margin-right: ${cardMargin.right}px;
+`;
+
+const StyledButton = styled(Button)`
+  font-size: ${slideBtn.size}px;
+  margin: 210px ${slideBtn.margin}px 0 0;
+  padding: 0px;
+  height: 0px;
 `;
 
 export default CardContainer;
