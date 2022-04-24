@@ -8,15 +8,8 @@ class OrderCountSectionView: UIView {
         }
     }
     
-    private var countTitle: UILabel = {
-        let label = UILabel.customLabel("수량", .dishLightGrey, 14)
-        return label
-    }()
-    
-    private var counter: UILabel = {
-        let label = UILabel.customLabel("1", .dishGrey, 14)
-        return label
-    }()
+    private var countTitle: UILabel = UILabel.customLabel("수량", .dishLightGrey, 14)
+    private var counter: UILabel = UILabel.customLabel("1", .dishGrey, 14)
     
     private var buttons: UIStackView = {
         let stackView = UIStackView()

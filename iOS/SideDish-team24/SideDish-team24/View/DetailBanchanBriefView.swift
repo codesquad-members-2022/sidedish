@@ -9,34 +9,11 @@ class DetailBanchanBriefView: UIView {
         return imageView
     }()
     
-    private var dishTitle: UILabel = {
-        let label = UILabel.customLabel("요리 제목", .dishBlack, 32, 400, true)
-        return label
-    }()
-    
-    private var dishDescription: UILabel = {
-        let label = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 18)
-        return label
-    }()
-    
-    private var discountPrice: UILabel = {
-        let label = UILabel.customLabel("12,640원", .dishBlack, 18, 600)
-        return label
-    }()
-    
-    private var normalPrice: UILabel = {
-        let label = UILabel.customLabel("15,800원", .dishLightGrey, 16)
-        return label
-    }()
-    
-    private var specialPrice: UILabel = {
-        let label = UILabel.customLabel("특가 정보", .dishWhite, 12, 600)
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.dishBlue
-        label.layer.cornerRadius = 13
-        label.clipsToBounds = true
-        return label
-    }()
+    private var dishTitle: UILabel = UILabel.customLabel("요리 제목", .dishBlack, 32, 400, true)
+    private var dishDescription: UILabel = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 18)
+    private var discountPrice: UILabel = UILabel.customLabel("12,640원", .dishBlack, 18, 600)
+    private var normalPrice: UILabel = UILabel.customLabel("15,800원", .dishLightGrey, 16)
+    private var specialPrice: UILabel = UILabel.customBadge("특가 정보", .dishBlue)
     
     private var prices: UIStackView = {
         let stackView = UIStackView()
