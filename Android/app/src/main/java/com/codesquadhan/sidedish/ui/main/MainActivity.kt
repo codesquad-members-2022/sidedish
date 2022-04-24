@@ -9,7 +9,9 @@ import androidx.databinding.DataBindingUtil
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityMainBinding
 import com.codesquadhan.sidedish.ui.detail.DetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setSoupRv()
         setSideRv()
         setBtnGitHub()
+
     }
 
     private fun setBtnGitHub() {
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             binding.clMain.visibility = View.VISIBLE
 
             // 로그인 후 가정
-            rvTest()
+            viewModel.getMainUIMenu()
         }
     }
 
@@ -73,9 +76,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun rvTest() {
+   /* private fun rvTest() {
         viewModel.addMainListTest()
         viewModel.addSoupListTest()
         viewModel.addSideListTest()
-    }
+    }*/
 }

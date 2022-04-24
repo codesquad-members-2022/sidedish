@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="menu"
-            type="com.codesquadhan.sidedish.data.MenuData" />
+            name="mainResponseItem"
+            type="com.codesquadhan.sidedish.data.model.be.MainResponseItem" />
 
     </data>
 
@@ -172,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:text="@{@string/currency(menu.price)}"
+            android:text="@{@string/currency(mainResponseItem.price)}"
             app:layout_constraintBottom_toTopOf="@id/v_empty_3"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
             app:layout_constraintTop_toTopOf="@id/v_empty_3_1"
@@ -221,7 +221,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@{menu.description}"
+            android:text="@{mainResponseItem.description}"
             app:layout_constraintBottom_toTopOf="@id/v_empty_5"
             app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
@@ -250,7 +250,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@{menu.name}"
+            android:text="@{mainResponseItem.name}"
             app:layout_constraintBottom_toTopOf="@id/v_empty_6"
             app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.codesquadhan.sidedish.data.DetailImage
+import com.codesquadhan.sidedish.data.model.DetailImage
 import com.codesquadhan.sidedish.databinding.ItemDetailBinding
 
 class DetailAdapter : ListAdapter<DetailImage, DetailAdapter.DetailViewHolder>(diffUtil) {

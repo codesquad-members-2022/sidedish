@@ -1,18 +1,20 @@
 package com.codesquadhan.sidedish.ui.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.codesquadhan.sidedish.data.MenuData
+import com.codesquadhan.sidedish.data.model.MenuData
+import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 import com.codesquadhan.sidedish.databinding.ItemMainFoodBinding
 import com.codesquadhan.sidedish.databinding.ItemMainHeaderBinding
 import com.codesquadhan.sidedish.ui.constant.ViewType.FOOD_VIEW_TYPE
 import com.codesquadhan.sidedish.ui.constant.ViewType.HEADER_VIEW_TYPE
 import java.lang.RuntimeException
 
-class MainAdapter(private val itemClick : (id: Int)-> Unit) : ListAdapter<MenuData, RecyclerView.ViewHolder>(diffUtil) {
+class MainAdapter(private val itemClick : (id: Int)-> Unit) : ListAdapter<MainResponseItem, RecyclerView.ViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -29,7 +31,10 @@ class MainAdapter(private val itemClick : (id: Int)-> Unit) : ListAdapter<MenuDa
                     ItemMainFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 MainFoodViewHolder(binding)
             }
-            else -> throw RuntimeException("Invalid ViewHolder Type")
+            else -> {
+                Log.d("AppTest", "${viewType ?: -1}")
+                throw RuntimeException("Invalid ViewHolder Type")
+            }
         }
     }
 
@@ -50,32 +55,32 @@ class MainAdapter(private val itemClick : (id: Int)-> Unit) : ListAdapter<MenuDa
     class MainHeaderViewHolder(private val binding: ItemMainHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(menuData: MenuData) {
-            binding.menu = menuData
-            binding.tvMainHeader.text = menuData.headerText
+        fun bind(mainResponseItem: MainResponseItem) {
+            binding.mainResponseItem = mainResponseItem
+            binding.tvMainHeader.text = mainResponseItem.headerText
         }
     }
 
     class MainFoodViewHolder(private val binding: ItemMainFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(menuData: MenuData, itemClick: (id: Int) -> Unit) {
-            binding.menu = menuData
+        fun bind(mainResponseItem: MainResponseItem, itemClick: (id: Int) -> Unit) {
+            binding.mainResponseItem = mainResponseItem
 
             binding.root.setOnClickListener {
-                itemClick.invoke(menuData.id)
+                itemClick.invoke(mainResponseItem.id)
             }
         }
     }
 
     companion object {
 
-        val diffUtil = object : DiffUtil.ItemCallback<MenuData>() {
-            override fun areItemsTheSame(oldItem: MenuData, newItem: MenuData): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<MainResponseItem>() {
+            override fun areItemsTheSame(oldItem: MainResponseItem, newItem: MainResponseItem): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: MenuData, newItem: MenuData): Boolean {
+            override fun areContentsTheSame(oldItem: MainResponseItem, newItem: MainResponseItem): Boolean {
                 return oldItem == newItem
             }
         }
