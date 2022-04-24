@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { MenuList } from './MenuList';
-import { UserButtons } from './UserButtons';
+import { UserActionButtons } from './UserActionButtons';
 
 import Colors from '@/Constants/Colors';
 
@@ -39,7 +39,7 @@ export const Header = props => {
     <HeaderWrapper>
       <Logo />
       <MenuList categories={props.categories} />
-      <UserButtons />
+      <UserActionButtons />
     </HeaderWrapper>
   );
 };
