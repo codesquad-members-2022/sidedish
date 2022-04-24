@@ -7,9 +7,7 @@ import { fetchData } from '@/Utils/Utils';
 
 const App = () => {
   const [categoryList, setCategoryList] = useState([]);
-  const [loadedCategoryProductList, setLoadedCategoryProductList] = useState(
-    []
-  );
+  const [categoryProductList, setCategoryProductList] = useState([]);
   const [error, setError] = useState(false);
 
   const fetchInitialData = async () => {
@@ -32,7 +30,7 @@ const App = () => {
     fetchInitialData()
       .then(([initialCategoryList, initialCategoryProductList]) => {
         setCategoryList(initialCategoryList);
-        setLoadedCategoryProductList(initialCategoryProductList);
+        setCategoryProductList(initialCategoryProductList);
       })
       .catch(err => {
         console.error(err);
@@ -42,12 +40,12 @@ const App = () => {
 
   return (
     <>
-      <Header categories={categoryList} error={error} />
+      <Header categoryList={categoryList} error={error} />
       <Main
         error={error}
-        categories={categoryList}
-        loadedCategories={loadedCategoryProductList}
-        setLoadedCategories={setLoadedCategoryProductList}
+        categoryList={categoryList}
+        categoryProductList={categoryProductList}
+        setCategoryProductList={setCategoryProductList}
       />
     </>
   );

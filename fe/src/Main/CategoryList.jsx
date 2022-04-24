@@ -43,8 +43,8 @@ export const CategoryList = props => {
     if (!moreButtonClicked) return;
     // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
     // TODO: 실패한 데이터만 다시 불러올 수 있도록 고치기
-    const categoryIds = props.categories.map(category => category.id);
-    const loadedCategoryId = props.loadedCategories[0].id;
+    const categoryIds = props.categoryList.map(category => category.id);
+    const loadedCategoryId = props.categoryProductList[0].id;
     const unloadedCategoryIds = categoryIds.filter(
       id => id !== loadedCategoryId
     );
@@ -60,7 +60,10 @@ export const CategoryList = props => {
           title: dataArr[idx].content[0].mainCategory,
           content: dataArr[idx].content,
         }));
-        props.setLoadedCategories([...props.loadedCategories, ...parsedData]);
+        props.setCategoryProductList([
+          ...props.categoryProductList,
+          ...parsedData,
+        ]);
       })
       .catch(() => {
         setMoreButtonClicked(false);
@@ -70,7 +73,7 @@ export const CategoryList = props => {
 
   return (
     <CategoryListWrapper>
-      {props.loadedCategories.map(category => {
+      {props.categoryProductList.map(category => {
         return (
           <Category
             key={category.id}

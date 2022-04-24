@@ -10,15 +10,15 @@ const MainWrapper = styled.main`
 `;
 
 export const Main = props => {
-  if (!props.loadedCategories.length) return null;
+  if (!props.categoryProductList.length) return null;
 
   return (
     <MainWrapper>
       <BestProducts />
       <CategoryList
-        categories={props.categories}
-        loadedCategories={props.loadedCategories}
-        setLoadedCategories={props.setLoadedCategories}
+        categoryList={props.categoryList}
+        categoryProductList={props.categoryProductList}
+        setCategoryProductList={props.setCategoryProductList}
       />
     </MainWrapper>
   );
