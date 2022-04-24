@@ -17,7 +17,7 @@ const HeaderWrapper = styled.header`
 const LogoWrapper = styled.a`
   display: block;
   margin-right: 40px;
-  
+
   img {
     display: block;
     height: 100%;
@@ -29,10 +29,12 @@ const Logo = () => {
     <LogoWrapper href={'/'}>
       <img src={'logo.svg'} alt="로고" />
     </LogoWrapper>
-  )
-}
+  );
+};
 
 export const Header = props => {
+  if (!props.categories.length) return null;
+
   return (
     <HeaderWrapper>
       <Logo />
