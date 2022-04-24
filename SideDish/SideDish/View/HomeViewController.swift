@@ -47,11 +47,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                     ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader else {
                         return UICollectionReusableView()
                     }
-            headerView.setup()
+
+            headerView.setup(at: indexPath.section)
             return headerView
         default:
             assert(false, "invalid element Type")
         }
+    }
+    // MARK: - Cell 이 클릭되게 만듦
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("click index=\(indexPath.row)")
+        print("click section=\(indexPath.section)")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else { return }
+        // TODO: - 선택된 셀의 무엇을 보고 호출해야할까? -> Detail Hash
+        
     }
 }
 
