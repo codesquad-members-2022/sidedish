@@ -1,6 +1,6 @@
 package com.team34.sidedish.repository;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.team34.sidedish.domain.Member;
 import java.util.Optional;
@@ -19,6 +19,6 @@ class MemberRepositoryTest {
         Optional<Member> member = memberRepository.findById(1L);
         assertThat(member).isNotEmpty()
             .get()
-            .hasFieldOrPropertyWithValue("name", "dave");;
+            .hasFieldOrPropertyWithValue("name", "dave");
     }
 }
