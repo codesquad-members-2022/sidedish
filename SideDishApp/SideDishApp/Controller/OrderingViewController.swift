@@ -17,7 +17,7 @@ final class OrderingViewController: UIViewController {
     
     private var collectionViewLayout: UICollectionViewLayout {
         let itemHeight: CGFloat = 130.0
-        let headerHeigth: CGFloat = 140.0
+        let headerHeigth: CGFloat = 130.0
         
         let layout = UICollectionViewFlowLayout()
         let itemSize = CGSize(width: view.frame.width, height: itemHeight)
@@ -60,19 +60,40 @@ final class OrderingViewController: UIViewController {
     }
     
     private func getSideDishInfo() {
-        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { (result: Result<SideDishInfo?, NetworkError>) in
+        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
+            guard let self = self else { return }
             switch result {
             case .success(let success):
                 guard let menus = success?.body else { return }
                 self.collectionViewDataSource.fetch(dishes: menus)
+                self.setHeaderViewDelegate()
+                
                 DispatchQueue.main.async {
                     self.orderingCollectionView.reloadData()
                 }
+                
             case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")    
+                os_log(.error, "\(failure.localizedDescription)")
             }
         }
     }
+    
+    private func setHeaderViewDelegate() {
+        
+        DispatchQueue.main.async {
+            let countOfSection = self.orderingCollectionView.numberOfSections
+
+            for sectionIndex in 0..<countOfSection {
+                guard let sectionHeaderView = self.orderingCollectionView.supplementaryView(
+                    forElementKind: UICollectionView.elementKindSectionHeader,
+                    at: IndexPath(row: 0, section: sectionIndex)) as? SectionHeaderView else { return }
+
+                sectionHeaderView.delegate = self
+                sectionHeaderView.setSectionNumber(number: sectionIndex)
+            }
+        }
+    }
+    
 }
 
 // MARK: - View Layouts
@@ -88,7 +109,9 @@ extension OrderingViewController {
 }
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
-    func didSelectItem(item: Menu) {
+    func didSelectItem(index: IndexPath) {
+        guard let item = collectionViewDataSource.getSelectedItem(at: index.item) else { return }
+        
         networkManger.request(endpoint: EndPointCase.getDetail(hash: item.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
             switch result {
             case .success(let success):
@@ -98,9 +121,15 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
                 os_log(.error, "\(failure.localizedDescription)")
             }
         }
-        
-        let detailVC = DetailViewController(menu: item)
-        
+        let detailVC = DetailViewController()
+        detailVC.title = item.title
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension OrderingViewController: SectionHeaderViewDelegate {
+    func didTapSectionHeader(section: SectionHeaderView, sectionNumber: Int) {
+        let count = self.orderingCollectionView.numberOfItems(inSection: sectionNumber)
+        section.setCountLabel(count: count)
     }
 }
