@@ -56,7 +56,7 @@ public class ProductController {
 	 * 주문 넣기
 	 */
 	@PostMapping("/orders")
-	public ResponseEntity<CommonResponse> ordered(@RequestBody RequestProduct requestProduct) {
+	public ResponseEntity<CommonResponse> order(@RequestBody RequestProduct requestProduct) {
 		productService.ordered(requestProduct);
 
 		return new CommonResponse(CommonCode.SUCCESS).toResponseEntity();
