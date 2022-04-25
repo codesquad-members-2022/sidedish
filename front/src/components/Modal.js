@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import ProductDetail from './ProductDetail';
+<<<<<<< HEAD
 import RelatedProduct from './RelatedProduct';
+=======
+>>>>>>> 20453a3f14d2d0bb70491fa5d4b30b37292b9d6a
 
 const ModalWrap = styled.div`
   position: fixed;
@@ -42,7 +45,7 @@ const PopupCloseButton = styled.button`
 `;
 
 function Modal({ dishes }) {
-  const relatedDishes = dishes.related_dishes;
+  // const relatedDishes = dishes.related_dishes;
   const modal = useRef();
   function closeModal() {
     modal.current.style = 'display:none';

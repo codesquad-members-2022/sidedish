@@ -60,7 +60,6 @@ const Badge = styled.div`
   place-content: center center;
   background: #ff8e14;
   border-radius: 999px;
-
   font-size: 12px;
   line-height: 18px;
   color: #ffffff;
