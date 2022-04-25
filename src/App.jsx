@@ -5,10 +5,10 @@ import Sidedish from './Sidedish';
 import Template from './template/Template';
 
 export default function App() {
-  const [isTemplateMode, toggleTemplateMode] = useState(true);
+  const [isTemplateMode, setTemplateMode] = useState(true);
   function handleKeyDown(e) {
     if (e.key === '`') {
-      toggleTemplateMode(!isTemplateMode);
+      setTemplateMode(!isTemplateMode);
     }
   }
   return (
