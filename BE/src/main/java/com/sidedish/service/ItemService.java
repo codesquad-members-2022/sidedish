@@ -12,12 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemService {
 
-    public static final int PAGE_UNIT = 4;
     private final ItemRepository itemRepository;
 
-    public List<Item> findUnitPageById(Long typeNumber, Long pageId) {
+    public List<Item> findUnitPageById(Long typeNumber, Long pageId, int pageCount) {
         int startPage = pageId.intValue() - 1;
-        PageRequest pageable = PageRequest.of(startPage, PAGE_UNIT);
+        PageRequest pageable = PageRequest.of(startPage, pageCount);
         return itemRepository.findByCategory(typeNumber, pageable);
     }
 
