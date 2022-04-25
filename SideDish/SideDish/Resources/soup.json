@@ -3,7 +3,7 @@
   "body": [
     {
       "detail_hash": "H72C3",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
       "alt": "한돈 돼지 김치찌개",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "한돈 돼지 김치찌개",
@@ -14,7 +14,7 @@
     },
     {
       "detail_hash": "HA6EE",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_T.jpg",
       "alt": "된장찌개",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "된장찌개",
@@ -25,7 +25,7 @@
     },
     {
       "detail_hash": "H8CD0",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/213_ZIP_P_1008_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/213_ZIP_P_1008_T.jpg",
       "alt": "미역오이냉국",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "미역오이냉국",
@@ -36,7 +36,7 @@
     },
     {
       "detail_hash": "HE2E9",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/266_ZIP_P_1011_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/266_ZIP_P_1011_T.jpg",
       "alt": "동태찌개",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "동태찌개",
@@ -45,7 +45,7 @@
     },
     {
       "detail_hash": "HAA47",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/484_ZIP_P_1022_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/484_ZIP_P_1022_T.jpg",
       "alt": "감자국",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "감자국",
@@ -54,7 +54,7 @@
     },
     {
       "detail_hash": "H3254",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/659_ZIP_P_1029_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/659_ZIP_P_1029_T.jpg",
       "alt": "우리콩 강된장찌개",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "우리콩 강된장찌개",
@@ -63,7 +63,7 @@
     },
     {
       "detail_hash": "H26C7",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/818_ZIP_P_1033_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/818_ZIP_P_1033_T.jpg",
       "alt": "순한 오징어무국",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "순한 오징어무국",
@@ -72,7 +72,7 @@
     },
     {
       "detail_hash": "HFFF9",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/soup/842_ZIP_P_1035_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/soup/842_ZIP_P_1035_T.jpg",
       "alt": "맑은 동태구",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "맑은 동태국",
