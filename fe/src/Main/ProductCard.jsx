@@ -18,7 +18,7 @@ const CardWrapper = styled.li`
   ${({ size }) => {
     return size === 'md'
       ? css`
-          .image {
+          .CardImgContainer {
             width: 302px;
             height: 302px;
           }
@@ -29,7 +29,7 @@ const CardWrapper = styled.li`
             margin-right: 16px;
           }
 
-          .image {
+          .CardImgContainer {
             width: 160px;
             height: 160px;
           }
@@ -38,12 +38,12 @@ const CardWrapper = styled.li`
   }};
 `;
 
-const Image = styled.div`
+const CardImgContainer = styled.div`
   position: relative;
   width: 411px;
   height: 411px;
 
-  img {
+  .productCardImg {
     display: block;
     width: 100%;
     height: 100%;
@@ -121,11 +121,11 @@ export const ProductCard = ({
 }) => {
   return (
     <CardWrapper data-id={id} size={size}>
-      <Image className={'image'}>
+      <CardImgContainer className={'image'}>
         {morningDelivery && <HoverInfo />}
         <Mask className={'mask'} />
-        <img src={image} alt={'제품사진'} />
-      </Image>
+        <img className={'productCardImg'} src={image} alt={'제품사진'} />
+      </CardImgContainer>
       <Title className="fonts-md">{title}</Title>
       <Description className="fonts-sm">{description}</Description>
       <PriceWrapper>

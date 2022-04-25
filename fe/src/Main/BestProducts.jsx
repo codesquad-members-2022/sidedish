@@ -62,8 +62,8 @@ export const BestProducts = () => {
       });
   }, [selectedTabId]);
 
-  function setClickedTabId(data) {
-    setSelectedTabId(data);
+  function clickTab(clickedTabId) {
+    setSelectedTabId(clickedTabId);
   }
 
   return (
@@ -81,7 +81,7 @@ export const BestProducts = () => {
       <TabList
         tabData={tabList}
         selectedTabId={selectedTabId}
-        setClickedTabId={setClickedTabId}
+        clickTab={clickTab}
       />
 
       <ProductCardList>

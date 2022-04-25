@@ -15,19 +15,19 @@ const StyledTabList = styled.ul`
   }
 `;
 
-export const TabList = ({ tabData, setClickedTabId, selectedTabId }) => {
+export const TabList = ({ tabData, clickedTabId, selectedTabId }) => {
   if (!tabData) {
     return null;
   }
 
   return (
     <StyledTabList>
-      {tabData.map(tab => (
+      {tabData.map(BestProductTab => (
         <Tab
-          key={tab.id}
-          tabData={tab}
-          setClickedTabId={setClickedTabId}
-          TabClassName={tab.id === selectedTabId ? 'selected' : null}
+          key={BestProductTab.id}
+          tabData={BestProductTab}
+          clickedTabId={clickedTabId}
+          TabClassName={BestProductTab.id === selectedTabId ? 'selected' : null}
         />
       ))}
     </StyledTabList>
