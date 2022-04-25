@@ -49,8 +49,10 @@ public class MenuController {
 	@ApiOperation(value = "메뉴 주문", notes = "지정된 id의 메뉴를 주문합니다.")
 	@PostMapping("/detail/{id}")
 	public MenuOrderResponse makeOrder(
-		@RequestBody @ApiParam(name = "id", value = "상세 정보를 요청할 menu_id", required = true) OrderRequest orderRequest) {
-		return orderService.save(orderRequest);
+		@RequestBody @ApiParam(name = "id", value = "상세 정보를 요청할 menu_id", required = true) OrderRequest orderRequest,
+		@PathVariable("id") int menuId) {
+
+		return orderService.save(orderRequest, menuId);
 	}
 
 }

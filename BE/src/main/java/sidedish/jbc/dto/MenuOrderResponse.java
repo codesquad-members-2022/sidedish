@@ -1,5 +1,6 @@
 package sidedish.jbc.dto;
 
+import sidedish.jbc.domain.Menu;
 import sidedish.jbc.domain.MenuOrder;
 
 public class MenuOrderResponse {
@@ -12,14 +13,15 @@ public class MenuOrderResponse {
 	private int fee;
 	private int quantity;
 
-	public MenuOrderResponse(MenuOrder menuOrder) {
+	public MenuOrderResponse(MenuOrder menuOrder, Menu menu) {
 		this.userId = menuOrder.getUserId();
 		this.menuName = menuOrder.getMenuName();
 		this.price = menuOrder.getMenuPrice();
 		this.salePrice = price - price * menuOrder.getSaleType().getSalePercentage() / 100;
 		this.fee = menuOrder.getFee();
-		this.quantity = menuOrder.getQuantity();
+		this.quantity = menu.getStock() - menuOrder.getQuantity();
 	}
+
 
 	public int getUserId() {
 		return userId;

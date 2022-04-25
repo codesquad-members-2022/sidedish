@@ -1,6 +1,7 @@
 package sidedish.jbc.domain;
 
 import org.springframework.data.annotation.Id;
+import sidedish.jbc.dto.OrderRequest;
 
 public class MenuOrder {
 
@@ -27,6 +28,15 @@ public class MenuOrder {
 	public MenuOrder(int userId, String menuName, int menuPrice, SaleType saleType, int fee,
 		int quantity) {
 		this(null, userId, menuName, menuPrice, saleType, fee, quantity);
+	}
+
+	public MenuOrder(Menu menu, OrderRequest request) {
+		this.userId = request.getUserId();
+		this.menuName = menu.getName();
+		this.menuPrice = menu.getPrice();
+		this.saleType = menu.getSaleType();
+		this.fee = menu.getFee();
+		this.quantity = request.getQuantity();
 	}
 
 	public Integer getId() {

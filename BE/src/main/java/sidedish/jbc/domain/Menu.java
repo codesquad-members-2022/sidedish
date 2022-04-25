@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 public class Menu {
 
 	@Id
-	private Long id;
+	private Integer id;
 	private String name;
 	private String description;
 	private int price;
@@ -23,7 +23,7 @@ public class Menu {
 	private List<Image> images;
 
 	@PersistenceConstructor
-	public Menu(Long id, String name, String description, int price,
+	public Menu(Integer id, String name, String description, int price,
 		MenuType menuType, SaleType saleType, int fee, int freeShippingStartingPrice,
 		String deliveryInfo, Integer stock, String imagePath, List<Image> images) {
 		this.id = id;
@@ -42,6 +42,18 @@ public class Menu {
 
 	public String getName() {
 		return name;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public MenuType getMenuType() {
+		return menuType;
+	}
+
+	public String getImagePath() {
+		return imagePath;
 	}
 
 	public String getDescription() {
