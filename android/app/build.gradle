@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -35,9 +38,6 @@ android {
     }
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-
 dependencies {
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
@@ -71,5 +71,14 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.40"
+    kapt "com.google.dagger:hilt-android-compiler:2.40"
+
+    //hilt viewModel
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
 }

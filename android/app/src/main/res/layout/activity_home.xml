@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomeActivity">
+        tools:context=".ui.menu.HomeActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment_container"
@@ -19,7 +19,6 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:navGraph="@navigation/nav_graph"
             app:defaultNavHost="true"
-            tools:layout="@layout/fragment_home"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

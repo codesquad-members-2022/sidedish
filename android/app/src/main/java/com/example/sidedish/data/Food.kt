@@ -1,6 +1,5 @@
 package com.example.sidedish.data
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Food(
