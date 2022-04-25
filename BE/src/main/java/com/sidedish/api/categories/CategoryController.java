@@ -7,11 +7,14 @@ import com.sidedish.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -47,5 +50,10 @@ public class CategoryController {
         responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId+1, pageCount)).withRel("next-page"));
 
         return responseMainType;
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ResultDto> noSuchElementExceptionHandler(NoSuchElementException e) {
+        return ResponseEntity.badRequest().body(new ResultDto("pageException", e.getMessage()));
     }
 }
