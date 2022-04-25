@@ -170,6 +170,10 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         
         
     }
+    
+    func updateFoodImage(imageData: Data){
+        foodImageView.image = UIImage(data: imageData)
+    }
 }
 
 

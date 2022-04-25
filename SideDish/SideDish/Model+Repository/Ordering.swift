@@ -1,6 +1,5 @@
 import Foundation
 
-class Ordering{
 final class Ordering{
     private var foodMap: [Category:[String:Food]] = {
         var map: [Category:[String:Food]] = [:]
@@ -67,6 +66,11 @@ final class Ordering{
     
     func getFoodCountInCertainCategory(category: Category)-> Int{
        return foodMap[category]?.count ?? 0
+    }
+    
+    func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Data)->Void){
+        let url = EndPoint.mainImage(rawUrl: imageUrl)
+        repository.requestData(completionHandler: completionHandler, method: .get, contentType: .image, url: url)
     }
     
     subscript(index: Int = 0 , category: Category)->Food?{

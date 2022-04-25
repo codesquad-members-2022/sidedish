@@ -65,6 +65,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let index = indexPath.row
         if let food = ordering[index, category] {
             cell.receiveFood(food: food)
+            ordering.requesetFoodImage(imageUrl: food.imageUrl){ data in
+                cell.updateFoodImage(imageData: data)
+            }
         }
         return cell
     }
