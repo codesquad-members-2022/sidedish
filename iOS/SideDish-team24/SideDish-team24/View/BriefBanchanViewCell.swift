@@ -25,6 +25,7 @@ class BriefBanchanViewCell: UICollectionViewCell {
         self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
+        self.layoutSpecialPrice()
     }
     
     required init?(coder: NSCoder) {
@@ -32,6 +33,7 @@ class BriefBanchanViewCell: UICollectionViewCell {
         self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
+        self.layoutSpecialPrice()
     }
 }
 
@@ -62,20 +64,21 @@ private extension BriefBanchanViewCell {
     }
     
     func layoutPriceStackView() {
-        self.addSubview(self.specialPrice)
-        
         self.prices.addArrangedSubview(self.discountPrice)
         self.prices.addArrangedSubview(self.normalPrice)
         
-        NSLayoutConstraint.activate([
-            self.specialPrice.topAnchor.constraint(equalTo: self.breifStackView.bottomAnchor, constant: CGFloat.defaultInset),
-            self.specialPrice.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
-            self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
-            self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
-            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
-        ])
-        
         self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()
+    }
+    
+    func layoutSpecialPrice() {
+        self.addSubview(self.specialPrices)
+        
+        NSLayoutConstraint.activate([
+            self.specialPrices.topAnchor.constraint(equalTo: self.breifStackView.bottomAnchor, constant: CGFloat.defaultInset),
+            self.specialPrices.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
+            
+            self.specialPrices.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
+        ])
     }
     
 }
