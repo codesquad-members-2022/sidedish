@@ -18,7 +18,7 @@ class MainDescriptionViewController: UIViewController {
         return label
     }()
     
-    private lazy var subLabel: UILabel = {
+    private lazy var subtitleLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor.customColor(.grey2)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
@@ -91,14 +91,14 @@ private extension MainDescriptionViewController {
     }
     
     func configureSubLabel() {
-        self.view.addSubview(subLabel)
+        self.view.addSubview(subtitleLabel)
         
-        subLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            subLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
-            subLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            subLabel.widthAnchor.constraint(equalToConstant: 177),
-            subLabel.heightAnchor.constraint(equalToConstant: 24)
+            subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
+            subtitleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            subtitleLabel.widthAnchor.constraint(equalToConstant: 177),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
@@ -107,7 +107,7 @@ private extension MainDescriptionViewController {
         
         salePrice.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            salePrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8),
+            salePrice.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8),
             salePrice.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             salePrice.widthAnchor.constraint(equalToConstant: 74),
             salePrice.heightAnchor.constraint(equalToConstant: 24)
@@ -120,7 +120,7 @@ private extension MainDescriptionViewController {
         
         rawPrice.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            rawPrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8),
+            rawPrice.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8),
             rawPrice.leadingAnchor.constraint(equalTo: self.salePrice.trailingAnchor, constant: 8),
             rawPrice.widthAnchor.constraint(equalToConstant: 64),
             rawPrice.heightAnchor.constraint(equalToConstant: 24)
