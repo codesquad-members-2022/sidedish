@@ -118,15 +118,15 @@ extension MenuStackView {
 // MARK: - Providing Function
 
 extension MenuStackView {
-    func setMenuTitle(by text: String) {
+    func setTitle(by text: String) {
         titleLabel.text = text
     }
     
-    func setMenuDescription(by text: String) {
+    func setDescription(by text: String) {
         descriptionLabel.text = text
     }
     
-    func setMenuPrice(originPrice: String?, discountedPrice: String?) {
+    func setPrice(originPrice: String?, discountedPrice: String?) {
         guard let discountedPrice = discountedPrice else { return }
         
         if let originPrice = originPrice {

@@ -49,9 +49,9 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
     private func configure(cell: OrderingCollectionViewCell, at index: Int) -> OrderingCollectionViewCell {
         let dish = menus[index]
         cell.setDishImage(by: dish.image)
-        cell.menuStackView.setMenuTitle(by: dish.title)
-        cell.menuStackView.setMenuDescription(by: dish.description)
-        cell.menuStackView.setMenuPrice(originPrice: dish.n_price, discountedPrice: dish.s_price)
+        cell.menuStackView.setTitle(by: dish.title)
+        cell.menuStackView.setDescription(by: dish.description)
+        cell.menuStackView.setPrice(originPrice: dish.n_price, discountedPrice: dish.s_price)
         cell.menuStackView.setBadges(by: dish.badge)
         return cell
     }
