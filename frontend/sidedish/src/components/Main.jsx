@@ -4,7 +4,7 @@ import ItemCards from "./ItemCards";
 import Label from "../core/Label";
 import mockData from "../mockData";
 import carouselMockData from "../carouselMockData.json";
-import CONSTANTS from "../consts/constants";
+import { LABEL_ATTRIBUTES, CARD_LENGHTHS } from "../consts/constants";
 import Carousel from "./Carousel";
 import DivisionLine from "../core/Line";
 
@@ -41,13 +41,13 @@ const Main = () => {
     <>
       <MainContainer>
         <MainTitleContainer>
-          <Label {...CONSTANTS.EXHIBITION_LABEL_ATTRIBUTES} />
+          <Label {...LABEL_ATTRIBUTES.EXHIBITION} />
           <Title>한 번 주문하면 두 번 반하는 반찬</Title>
         </MainTitleContainer>
         {mainLnb}
-        <ItemCards dataState={dataState} len={CONSTANTS.BIG_CARD_LENGHTH} />
+          len={CARD_LENGHTHS.BIG}
         <DivisionLine height="1px" color="#EBEBEB" />
-        <Carousel carouselState={carouselState} len={CONSTANTS.SMALL_CARD_LENGTH} />
+        <Carousel carouselState={carouselState} len={CARD_LENGHTHS.SMALL} />
       </MainContainer>
     </>
   );

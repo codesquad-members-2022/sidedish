@@ -1,14 +1,10 @@
 import styled from "styled-components";
-import constants from "../consts/constants";
+import { LABEL_ATTRIBUTES } from "../consts/constants";
 import Label from "../core/Label";
 
 const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) => {
   const labelList = badge.map((string, ind) => {
-    return string === "런칭특가" ? (
-      <Label key={ind} {...constants.LAUNCH_LABEL_ATTRIBUTES} />
-    ) : (
-      <Label key={ind} {...constants.EVENT_LABEL_ATTRIBUTES} />
-    );
+    return string === "런칭특가" ? <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} /> : <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />;
   });
 
   return (
