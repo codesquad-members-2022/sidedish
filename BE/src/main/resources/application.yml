@@ -1,8 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/sidedish
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
-server:
-  port: 8080
+    url:
+    driver-class-name:
+    username: ${USERNAME}
+    password: ${PASSWORD}

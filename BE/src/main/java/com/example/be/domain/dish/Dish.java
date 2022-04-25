@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
+
 @Table("dish")
 public class Dish {
     @Id
@@ -15,10 +16,10 @@ public class Dish {
     private Badge badge;
     private DeliveryType deliveryType;
     private String thumbnail;
+    private int count;
     private DishStatus dishStatus;
-    private Long categoryId;
 
-    public Dish(Long dishId, String name, String description, BigDecimal normalPrice, BigDecimal salePrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, Long categoryId) {
+    public Dish(Long dishId, String name, String description, BigDecimal normalPrice, BigDecimal salePrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, int count) {
         this.dishId = dishId;
         this.name = name;
         this.description = description;
@@ -28,7 +29,7 @@ public class Dish {
         this.deliveryType = deliveryType;
         this.thumbnail = thumbnail;
         this.dishStatus = dishStatus;
-        this.categoryId = categoryId;
+        this.count = count;
     }
 
     public Long getDishId() {
@@ -67,23 +68,7 @@ public class Dish {
         return dishStatus;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    @Override
-    public String toString() {
-        return "Dish{" +
-                "dishId=" + dishId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", normalPrice=" + normalPrice +
-                ", salePrice=" + salePrice +
-                ", badge=" + badge +
-                ", deliveryType=" + deliveryType +
-                ", thumbnail='" + thumbnail + '\'' +
-                ", dishStatus=" + dishStatus +
-                ", categoryId=" + categoryId +
-                '}';
+    public int getCount() {
+        return count;
     }
 }

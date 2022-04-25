@@ -10,4 +10,5 @@ public class ExceptionHandler {
     public ResponseEntity<ErrorResult> businessException(BusinessException exception) {
         return new ResponseEntity<>(ErrorResult.create(exception.getBaseExceptionType()), exception.getBaseExceptionType().getHttpStatus());
     }
+
 }

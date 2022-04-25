@@ -1,6 +1,9 @@
 package com.example.be.controller.dish;
 
+import com.example.be.controller.dish.dto.DishDetailResponse;
 import com.example.be.controller.dish.dto.PlanningDataRequest;
+import com.example.be.controller.dish.dto.PlanningDataRequestByCategory;
+import com.example.be.repository.category.CategoryRepository;
 import com.example.be.service.dish.DishService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +35,8 @@ public class DishController {
 //    }
 
     @GetMapping("{id}")
-    public ResponseEntity<DishDetail> getDishDetail(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(new DishDetail(dishService.getDishDetail(id)), HttpStatus.OK);
+    public ResponseEntity<DishDetailResponse> getDishDetail(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(new DishDetailResponse(dishService.getDishDetail(id)), HttpStatus.OK);
     }
 
     @GetMapping("/test")

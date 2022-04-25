@@ -1,5 +1,6 @@
-package com.example.be.controller.exception;
+package com.example.be.controller.exception.dish;
 
+import com.example.be.controller.exception.BaseExceptionType;
 import org.springframework.http.HttpStatus;
 
 public enum DishTypeException implements BaseExceptionType {
