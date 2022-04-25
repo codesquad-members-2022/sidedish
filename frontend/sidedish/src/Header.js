@@ -2,6 +2,31 @@ import { useState } from "react";
 import "./Header.css";
 import styled from "styled-components";
 
+const headerList = [
+    {
+        id: 0,
+        title: "든든한 메인요리",
+        items: [
+            { id: 0, title: "육류 요리" },
+            { id: 1, title: "해산물 요리" },
+        ],
+    },
+    {
+        id: 1,
+        title: "뜨끈한 국물요리",
+        items: [{ id: 0, title: "국/탕/찌개" }],
+    },
+    {
+        id: 2,
+        title: "정갈한 밑반찬",
+        items: [
+            { id: 0, title: "나물/무침" },
+            { id: 1, title: "조림/볶음" },
+            { id: 2, title: "절임/장아찌" },
+        ],
+    },
+];
+
 const HeaderFoodList = styled.ul`
     display: ${(props) => (props.isVisible ? "flex" : "none")};
     flex-direction: column;
@@ -27,30 +52,6 @@ function Header() {
     const [isVisible, setVisibility] = useState(false);
     const showMenu = () => setVisibility(true);
     const hideMenu = () => setVisibility(false);
-    const headerList = [
-        {
-            id: 0,
-            title: "든든한 메인요리",
-            items: [
-                { id: 0, title: "육류 요리" },
-                { id: 1, title: "해산물 요리" },
-            ],
-        },
-        {
-            id: 1,
-            title: "뜨끈한 국물요리",
-            items: [{ id: 0, title: "국/탕/찌개" }],
-        },
-        {
-            id: 2,
-            title: "정갈한 밑반찬",
-            items: [
-                { id: 0, title: "나물/무침" },
-                { id: 1, title: "조림/볶음" },
-                { id: 2, title: "절임/장아찌" },
-            ],
-        },
-    ];
 
     const navList = headerList.map((navItem) => (
         <NavItem

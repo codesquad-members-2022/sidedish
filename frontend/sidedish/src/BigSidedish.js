@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./BigSidedish.css";
 import styled from "styled-components";
+import { API } from "./config";
 
 const Price = styled.span`
     font-weight: ${(props) => (props.isClientPrice ? "500" : "400")};
@@ -23,51 +24,61 @@ const EventBadge = styled.span`
     margin-top: 22px;
     margin-right: 8px;
     background-color: ${(props) =>
-        props.eventName === "런칭특가" ? "#ff8e14" : "#6dd028"};
+        props.eventBadgeColor === "orange"
+            ? "#ff8e14"
+            : "green"
+            ? "#6dd028"
+            : ""};
 `;
 
-function SidedishCard(props) {
-    const dishData = props.dishData;
-    const eventBadges = dishData.eventBadges;
+function EventBadges({ eventBadges }) {
+    return eventBadges.map((eventBadge) => (
+        <EventBadge
+            key={eventBadge.eventBadgeId}
+            eventBadgeColor={
+                eventBadge.eventBadgeName === "런칭특가" ? "orange" : "green"
+            }
+        >
+            {eventBadge.eventBadgeName}
+        </EventBadge>
+    ));
+}
 
-    let clientPrice;
-    let originalPrice;
-    let eventTags;
-
-    if (eventBadges) {
-        const saledPrice =
-            dishData.price * ((100 - eventBadges[0].discount) / 100);
-
-        clientPrice = <Price isClientPrice={true}>{saledPrice}원</Price>;
-        originalPrice = <Price isClientPrice={false}>{dishData.price}원</Price>;
-        eventTags = eventBadges.map((eventBadge) => (
-            <EventBadge
-                key={eventBadge.eventBadgeId}
-                eventName={eventBadge.eventBadgeName}
-            >
-                {eventBadge.eventBadgeName}
-            </EventBadge>
-        ));
-    } else {
-        clientPrice = <Price isClientPrice={true}>{dishData.price}원</Price>;
-    }
+function SidedishCard({ title, image, description, price, eventBadges }) {
+    const saledPrice = eventBadges
+        ? price * ((100 - eventBadges[0].discount) / 100)
+        : 0;
+    const clientPrice = (
+        <Price isClientPrice>
+            {eventBadges ? saledPrice.toLocaleString() : price.toLocaleString()}
+            원
+        </Price>
+    );
+    const originalPrice = eventBadges ? (
+        <Price isClientPrice={false}>{price.toLocaleString()}원</Price>
+    ) : (
+        ""
+    );
+    const eventTags = eventBadges ? (
+        <EventBadges eventBadges={eventBadges} />
+    ) : (
+        ""
+    );
 
     return (
         <li className="big-sidedish__card">
             <div className="big-sidedish__card-img-container">
                 <img
-                    alt={dishData.title}
+                    alt={title}
                     className="big-sidedish__card-img"
-                    src={dishData.imagePath}
+                    src={image}
                 />
             </div>
             <div className="big-sidedish__card-item">
                 <div className="big-sidedish__card-item--text">
-                    <h3 className="big-sidedish__card-name">
-                        {dishData.title}
-                    </h3>
+                    <h3 className="big-sidedish__card-name">{title}</h3>
                     <p className="big-sidedish__card-description">
-                        {dishData.description}
+                        {description}
                     </p>
                     <div className="big-sidedish__card-prices">
                         <>
@@ -82,15 +93,24 @@ function SidedishCard(props) {
     );
 }
 
-function SidedishCards(props) {
+function SidedishCards({ sidedishData }) {
     // 목데이터가 덜 완성돼서 임시로 데이터가 없는 경우를 처리해주었습니다.
-    if (!props.sidedishData.dishes) {
-        return <p>{props.sidedishData.categoryName}</p>;
+    if (!sidedishData.dishes) {
+        return <p>{sidedishData.categoryName}</p>;
     }
 
-    const sidedishCards = props.sidedishData.dishes.map((dish) => (
-        <SidedishCard key={dish.dishId} dishData={dish} />
-    ));
+    const sidedishCards = sidedishData.dishes.map((dish) => {
+        return (
+            <SidedishCard
+                key={dish.dishId}
+                title={dish.title}
+                image={dish.imagePath}
+                description={dish.description}
+                price={dish.price}
+                eventBadges={dish.eventBadges}
+            />
+        );
+    });
     return <ul className="big-sidedish__cards">{sidedishCards}</ul>;
 }
 
@@ -105,13 +125,13 @@ const MenuItem = styled.li`
     border-bottom: ${(props) => (props.isCurrTab ? "solid 2px black" : "")};
 `;
 
-function TabMenu(props) {
-    const tabMenuTemplate = props.tabMenu.map((tab, idx) => {
+function TabMenu({ currTab, tabMenu, onChangeTab }) {
+    const tabMenuTemplate = tabMenu.map((tab, idx) => {
         return (
             <MenuItem
-                isCurrTab={idx === props.currTab}
+                isCurrTab={idx === currTab}
                 key={tab.id}
-                onClick={() => props.onChangeTab(idx)}
+                onClick={() => onChangeTab(idx)}
             >
                 {tab.name}
             </MenuItem>
@@ -142,9 +162,8 @@ function BigSidedish() {
                 console.error(error);
             }
         };
-        getData(
-            "https://273b4433-0674-40c4-9d88-6ab939cd01f8.mock.pstmn.io/api/categories?festival=한-번-주문하면-두-번-반하는-반찬"
-        );
+
+        getData(API.FESTIVAL + "한-번-주문하면-두-번-반하는-반찬");
     }, []);
 
     if (!bigSidedishData) {
