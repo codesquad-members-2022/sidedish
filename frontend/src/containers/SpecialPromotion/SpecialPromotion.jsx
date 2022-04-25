@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {bestGoodsData} from '../data/bestGoods.js';
-import {specialPromotionIcon} from '../constants/iconPath.js';
-import {SideDish} from './SideDish.jsx';
-import {TabList} from './TabList.jsx';
-import '../../css/SpecialPromotion.css';
+import {bestGoodsData} from 'data';
+import {specialPromotionIcon} from 'constants';
+import {TabList, SideDish} from 'components';
+import './SpecialPromotion.css';
 
 function SpecialPromotion() {
   const [tabState, setTabState] = useState({category: '풍부한 고기 반찬'});

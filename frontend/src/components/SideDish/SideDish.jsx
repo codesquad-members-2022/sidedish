@@ -1,4 +1,4 @@
-import {GoodsBlock} from './GoodsBlock.jsx';
+import {GoodsBlock} from 'components';
 
 function SideDish({type, data, tabState}) {
   if (type === 'best') data = data.filter(element => element.tab.title === tabState)[0].tab.goods;

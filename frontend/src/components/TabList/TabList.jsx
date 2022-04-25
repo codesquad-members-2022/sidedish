@@ -1,4 +1,4 @@
-import {bestGoodsData} from '../data/bestGoods.js';
+import {bestGoodsData} from 'data';
 
 function TabList({tabState, setTabState}) {
   const handleTabState = ({target}) => {

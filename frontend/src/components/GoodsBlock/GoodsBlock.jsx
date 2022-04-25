@@ -1,26 +1,11 @@
 import React, {useState} from 'react';
-import {eventLabelIcon, launchingLabelIcon, deliveryIcon} from '../constants/iconPath.js';
-import '../../css/GoodsBlock.css';
+import {eventLabelIcon, launchingLabelIcon, deliveryIcon} from 'constants';
+import './GoodsBlock.css';
 
 function GoodsBlock({thumb, name, description, price, label}) {
   const [isHover, setIsHover] = useState(false);
   const [discountedPrice, regularPrice] = price.map(element => element.price);
   const [eventLabel, launchingLabel] = label.map(element => element.exist);
-  const eventLabelElement = eventLabel ? (
-    <img className="eventLabel" src={eventLabelIcon} alt="eventLabelIcon"></img>
-  ) : (
-    <></>
-  );
-  const launchingLabelElement = launchingLabel ? (
-    <img className="launchingLabel" src={launchingLabelIcon} alt="launchingLabelIcon"></img>
-  ) : (
-    <></>
-  );
-  const deliveryIconElement = isHover ? (
-    <img className="deliveryIcon" src={deliveryIcon} alt="deliveryIcon"></img>
-  ) : (
-    <></>
-  );
 
   return (
     <div className="goodsBlock">
@@ -30,7 +15,7 @@ function GoodsBlock({thumb, name, description, price, label}) {
         onMouseOut={() => setIsHover(false)}
       >
         <img className="thumb" src={thumb} alt="thumb"></img>
-        {deliveryIconElement}
+        {isHover && <img className="deliveryIcon" src={deliveryIcon} alt="deliveryIcon"></img>}
       </div>
       <section className="info">
         <h4 className="name"> {name}</h4>
@@ -41,8 +26,10 @@ function GoodsBlock({thumb, name, description, price, label}) {
         </div>
       </section>
       <div className="label">
-        {eventLabelElement}
-        {launchingLabelElement}
+        {eventLabel && <img className="eventLabel" src={eventLabelIcon} alt="eventLabelIcon"></img>}
+        {launchingLabel && (
+          <img className="launchingLabel" src={launchingLabelIcon} alt="launchingLabelIcon"></img>
+        )}
       </div>
     </div>
   );

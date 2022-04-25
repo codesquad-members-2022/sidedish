@@ -1,6 +1,4 @@
-import {Header} from './js/components/Header.jsx';
-import {SpecialPromotion} from './js/components/SpecialPromotion.jsx';
-import {SideDishContents} from './js/components/SideDishContents.jsx';
+import {Header, SpecialPromotion, SideDishContents} from 'containers';
 
 function App() {
   return (

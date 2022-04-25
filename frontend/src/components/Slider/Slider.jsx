@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {prevButtonIcon, nextButtonIcon} from '../constants/iconPath.js';
-import {SideDish} from './SideDish.jsx';
+import {prevButtonIcon, nextButtonIcon} from 'constants';
+import {SideDish} from 'components';
 
 function Slider({data}) {
   const [sliderState, setSliderState] = useState({clickedButton: '', list: ''});
@@ -25,7 +25,7 @@ function Slider({data}) {
 
     sliderState.list.style.transform = `translateX(${position}px)`;
     sliderState.list.style.transition = '0.2s ease-out';
-  }, [sliderState]);
+  }, [sliderState, position]);
 
   return (
     <div className="event-slider">

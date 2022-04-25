@@ -1,6 +1,6 @@
-import {goodsData} from '../data/goods.js';
-import {Slider} from './Slider.jsx';
-import '../../css/SideDishContentsList.css';
+import {goodsData} from 'data';
+import {Slider} from 'components';
+import './SideDishContentsList.css';
 
 function SideDishContentsList() {
   return goodsData.map(element => (

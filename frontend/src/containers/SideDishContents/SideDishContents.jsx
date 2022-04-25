@@ -1,5 +1,5 @@
-import {SideDishContentsList} from './SideDishContentsList.jsx';
-import '../../css/SideDishContents.css';
+import {SideDishContentsList} from 'components';
+import './SideDishContents.css';
 
 function SideDishContents() {
   return (

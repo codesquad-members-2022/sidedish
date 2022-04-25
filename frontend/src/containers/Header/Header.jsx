@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
-import {pageHeaderIcon} from '../constants/iconPath.js';
-import {category} from '../data/category.js';
-import {NavIcon} from './NavIcon.jsx';
-import '../../css/Header.css';
+import {pageHeaderIcon, searchIcon, userIcon, myCartIcon} from 'constants';
+import {category} from 'data';
+import {NavIcon} from 'components';
+import './Header.css';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const navIcons = [
+    {name: 'searchIcon', src: `${searchIcon}`},
+    {name: 'userIcon', src: `${userIcon}`},
+    {name: 'myCartIcon', src: `${myCartIcon}`},
+  ];
 
   const categoryList = category.map(element => (
     <li key={element.id} className="mainCategory">
@@ -30,7 +36,9 @@ function Header() {
           <ul className="categoryList">{categoryList}</ul>
         </div>
         <nav className="navBar">
-          <NavIcon />
+          {navIcons.map(nav => (
+            <NavIcon name={nav.name} src={nav.src} />
+          ))}
         </nav>
       </div>
     </header>
