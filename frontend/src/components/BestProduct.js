@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { CardList } from "./CardList";
 import { SIZES } from "../convention";
+import { custom_flex } from "../styles/global";
 
 const Wrapper = styled.div`
   padding: 56px 80px;
