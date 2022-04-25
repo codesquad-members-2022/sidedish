@@ -7,4 +7,16 @@ public class CategoryResponse {
     private Long id;
     private String name;
     private List<CategoryResponse> children;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<CategoryResponse> getChildren() {
+        return children;
+    }
 }
