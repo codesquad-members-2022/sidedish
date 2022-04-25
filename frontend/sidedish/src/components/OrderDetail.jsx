@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { makePriceFormat } from "../util/makePriceFormat";
 
 const DELIVERY_FEE_INDEX = 0;
 const DELIVERY_FEE_FREE_MIN = 1;
@@ -10,7 +11,7 @@ const OrderDetail = (/* props로 data 받음*/) => {
       <OrderDetailContainer>
         <OrderData>
           <OrderDataTitle>적립금</OrderDataTitle>
-          <OrderDataContents>{data.reserves}원</OrderDataContents>
+          <OrderDataContents>{makePriceFormat(data.reserves)}원</OrderDataContents>
         </OrderData>
         <OrderData>
           <OrderDataTitle>배송정보</OrderDataTitle>
@@ -19,7 +20,7 @@ const OrderDetail = (/* props로 data 받음*/) => {
         <OrderData>
           <OrderDataTitle>배송비</OrderDataTitle>
           <OrderDataContents>
-            {data.deliveryFee[DELIVERY_FEE_INDEX]}원 ({data.deliveryFee[DELIVERY_FEE_FREE_MIN]}원 이상 구매 시 무료)
+            {makePriceFormat(data.deliveryFee[DELIVERY_FEE_INDEX])}원 ({makePriceFormat(data.deliveryFee[DELIVERY_FEE_FREE_MIN])}원 이상 구매 시 무료)
           </OrderDataContents>
         </OrderData>
       </OrderDetailContainer>

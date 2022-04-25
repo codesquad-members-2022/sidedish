@@ -10,8 +10,8 @@ const PopupDetail = ({ cardClickState, setCardClickState }) => {
     ],
     title: "오리 주물럭_반조리",
     description: "감칠맛 나는 매콤한 양념",
-    n_price: "15,800원",
-    s_price: "12,640원",
+    n_price: 15800,
+    s_price: 12640,
     badge: ["런칭특가"],
   };
 

@@ -6,6 +6,7 @@ import OrderDetail from "./OrderDetail";
 import OrderNumber from "./OrderNumber";
 import OrderBtn from "./OrderBtn";
 import Blank from "../core/Blank";
+import { makePriceFormat } from "../util/makePriceFormat";
 
 const PopupOrderContents = ({ title, normalPrice, salePrice, badge }) => {
   const labelList = badge.map((string, ind) => {
@@ -15,15 +16,15 @@ const PopupOrderContents = ({ title, normalPrice, salePrice, badge }) => {
     <>
       <PopupOrderContentsContainer>
         <Title>{title}</Title>
-        <NormalPrice>{normalPrice}</NormalPrice>
+        <NormalPrice>{makePriceFormat(normalPrice)}원</NormalPrice>
         <SalePrice>
           {labelList}
-          {salePrice}
+          {makePriceFormat(salePrice)}원
         </SalePrice>
         <DivisionLine color="#EBEBEB" height="1px" />
-        <OrderDetail></OrderDetail>
+        <OrderDetail />
         <DivisionLine color="#EBEBEB" height="1px" />
-        <OrderNumber></OrderNumber>
+        <OrderNumber />
         <Blank />
         <OrderBtn></OrderBtn>
       </PopupOrderContentsContainer>

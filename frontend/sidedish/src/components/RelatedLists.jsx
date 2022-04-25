@@ -46,6 +46,7 @@ const RelatedListContainer = styled.div`
 
 const RelatedListHeader = styled.div`
   display: flex;
+  padding-bottom: 28px;
 `;
 
 const RelatedTitle = styled.div`

@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import MinusBtn from "../core/MinusBtn";
 import PlusBtn from "../core/PlusBtn";
+import { makePriceFormat } from "../util/makePriceFormat";
 
 const OrderNumber = () => {
   const price = 12640;
@@ -24,7 +25,7 @@ const OrderNumber = () => {
         </NumberChangeContainer>
         <TotalPriceContainer>
           <TotalPriceTitle>총 주문금액</TotalPriceTitle>
-          <TotalPrice>{price * wantedNumber}원</TotalPrice>
+          <TotalPrice>{makePriceFormat(price * wantedNumber)}원</TotalPrice>
         </TotalPriceContainer>
       </OrderNumberContainer>
     </>

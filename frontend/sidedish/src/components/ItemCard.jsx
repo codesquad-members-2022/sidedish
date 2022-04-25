@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { LABEL_ATTRIBUTES } from "../consts/constants";
 import Label from "../core/Label";
+import { makePriceFormat } from "../util/makePriceFormat";
 
 const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) => {
   const labelList = badge.map((string, ind) => {
@@ -13,8 +14,8 @@ const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) =
       <MenuTitle>{title}</MenuTitle>
       <MenuDescription>{description}</MenuDescription>
       <Price>
-        <SalePrice>{s_price}</SalePrice>
-        <MenuPrice>{n_price}</MenuPrice>
+        <SalePrice>{makePriceFormat(s_price)}원</SalePrice>
+        <MenuPrice>{makePriceFormat(n_price)}원</MenuPrice>
       </Price>
       {labelList}
     </Card>
