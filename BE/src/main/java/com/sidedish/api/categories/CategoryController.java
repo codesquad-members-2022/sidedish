@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -37,15 +36,15 @@ public class CategoryController {
     }
 
     @GetMapping("/{type}")
-    public CollectionModel<ItemResource> getCategoriesByType(@PathVariable CategoryType type, @RequestParam Long pageId) {
+    public CollectionModel<ItemResource> getItemsByCategory(@PathVariable CategoryType type, @RequestParam Long pageId) {
 
         List<Item> items = itemService.findUnitPageById(type.getTypeNumber(), pageId);
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
 
         CollectionModel<ItemResource> responseMainType = CollectionModel.of(itemResources);
-        responseMainType.add(linkTo(methodOn(CategoryController.class).getCategoriesByType(type, pageId)).withSelfRel());
-        responseMainType.add(linkTo(methodOn(CategoryController.class).getCategoriesByType(type,pageId-1)).withRel("prev-page"));
-        responseMainType.add(linkTo(methodOn(CategoryController.class).getCategoriesByType(type, pageId+1)).withRel("next-page"));
+        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId)).withSelfRel());
+        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type,pageId-1)).withRel("prev-page"));
+        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId+1)).withRel("next-page"));
 
         return responseMainType;
     }
