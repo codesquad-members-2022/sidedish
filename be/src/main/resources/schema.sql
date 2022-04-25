@@ -55,7 +55,6 @@ create table `order`
     id             bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
     item_id        bigint NOT NULL,
     order_quantity int    NOT NULL,
-    delivery_fee   boolean,
     total_price    int    NOT NULL,
     FOREIGN KEY (item_id) references item (id)
 );

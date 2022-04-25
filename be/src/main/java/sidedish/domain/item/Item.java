@@ -40,4 +40,12 @@ public class Item {
 		this.morningDelivery = morningDelivery;
 		this.images = images;
 	}
+
+	public boolean hasNotEnoughQuantity(int quantity) {
+		return this.quantity < quantity;
+	}
+
+	public void reduceQuantity(int quantity) {
+		this.quantity -= quantity;
+	}
 }

@@ -14,6 +14,7 @@ public class ResponseItemDto {
     private String title;
     private String description;
     private int price;
+    private int quantity;
     private double accumulate;
     private String discountPolicy;
     private double discountRate;
@@ -25,6 +26,7 @@ public class ResponseItemDto {
         this.title = item.getTitle();
         this.description = item.getDescription();
         this.price = item.getPrice();
+        this.quantity = item.getQuantity();
         this.accumulate = item.getAccumulate();
         this.discountPolicy = item.getDiscountPolicy();
         this.discountRate = item.getDiscountRate();

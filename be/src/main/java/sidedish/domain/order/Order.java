@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import sidedish.domain.item.Item;
+import sidedish.web.dto.order.RequestOrderDto;
 
 @Getter
 @NoArgsConstructor
@@ -12,8 +14,17 @@ public class Order {
 
     @Id
     private Long id;
-    private Long dishId;
+    private Long itemId;
     private int orderQuantity;
     private int totalPrice;
-    private boolean deliveryFee;
+
+    public Order(Item item, RequestOrderDto requestOrderDto) {
+        this.itemId = item.getId();
+        this.orderQuantity = requestOrderDto.getQuantity();
+        this.totalPrice = calculateTotalPrice(item.getPrice(), item.getDiscountRate(), orderQuantity);
+    }
+
+    private int calculateTotalPrice(int price, double discountRate,int quantity) {
+        return (int)(price * discountRate) * quantity;
+    }
 }
