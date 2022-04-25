@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { applyFlex } from '../helper/utils';
 
-function styleColorToEvent({ eventName }) {
+function applyEventStyleByEventName(eventName) {
   if (eventName === '런칭특가') {
     return css`
       width: 76px;
@@ -18,19 +18,53 @@ function styleColorToEvent({ eventName }) {
   }
 }
 
+function applyImgStyleByCardSize(size) {
+  if (size === 'large') {
+    return css`
+      width: 411px;
+      height: 411px;
+    `;
+  }
+  if (size === 'medium') {
+    return css`
+      width: 302px;
+      height: 302px;
+    `;
+  }
+  if (size === 'small') {
+    return css`
+      width: 160px;
+      height: 160px;
+    `;
+  }
+}
+
+function applyTitleStyleByCardSize(size) {
+  if (size === 'small') {
+    return css`
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      margin-top: 8px;
+      width: 160px;
+    `;
+  }
+  return css`
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 16px;
+  `;
+}
+
 export const StyledImg = styled.img`
-  width: 411px;
-  height: 411px;
+  ${({ size }) => applyImgStyleByCardSize(size)}
 `;
 
 export const StyledH2 = styled.h2`
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 26px;
-  letter-spacing: -0.008em;
+  ${({ size }) => applyTitleStyleByCardSize(size)}
   color: #3f3f3f;
-  margin-top: 16px;
 `;
 
 export const StyledP = styled.p`
@@ -38,7 +72,6 @@ export const StyledP = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  letter-spacing: -0.008em;
   color: #777777;
   margin: 8px 0;
 `;
@@ -77,7 +110,7 @@ export const StyledWrapper = styled.div`
 
 export const Event = styled.div`
   ${props => applyFlex(props)}
-  ${props => styleColorToEvent(props)}
+  ${({ eventName }) => applyEventStyleByEventName(eventName)}
   margin-right: 8px;
   border-radius: 999px;
 `;

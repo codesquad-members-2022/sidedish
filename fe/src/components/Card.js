@@ -10,23 +10,36 @@ import {
   StyledWrapper,
 } from './Card.styled';
 
-export function Card({ product }) {
+export function Card({ product, size }) {
   return (
     <CardWrapper>
-      <StyledImg src={product.src} />
-      <StyledH2>{product.title}</StyledH2>
-      <StyledP>{product.content}</StyledP>
+      <StyledImg src={product.src} size={size} />
+      <StyledH2 size={size}>{product.title}</StyledH2>
+      <CardContent content={product.content} size={size} />
       <PriceWrapper flex align="center">
         <CutPrice>{product.cutPrice}</CutPrice>
         <Price>{product.price}</Price>
       </PriceWrapper>
-      <EventWrapper events={product.events} />
+      <EventWrapper events={product.events} size={size} />
     </CardWrapper>
   );
 }
 
+function CardContent(props) {
+  const content = props.content;
+  const size = props.size;
+  if (size === 'small') {
+    return;
+  }
+  return <StyledP size={size}>{content}</StyledP>;
+}
+
 function EventWrapper(props) {
   const events = props.events;
+  const size = props.size;
+  if (size === 'small') {
+    return;
+  }
   if (!events) {
     return;
   }
