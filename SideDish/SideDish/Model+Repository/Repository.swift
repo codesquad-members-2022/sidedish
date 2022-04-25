@@ -1,5 +1,4 @@
 import Foundation
-import Alamofire
 
 final class Repository: RepositoryApplicable{
     
@@ -30,7 +29,7 @@ final class Repository: RepositoryApplicable{
         return data
     }
     
-    func requestData(completionHandler: @escaping (Data)->Void, method: HTTPMethod, contentType: ContentType, url: EndPoint){
+    func requestData(completionHandler: @escaping (Data)->Void, method: HttpMethod, contentType: ContentType, url: EndPoint){
         if let imageData = dataCache.getCacheData(key: url.urlString){
             completionHandler(imageData)
         }else{

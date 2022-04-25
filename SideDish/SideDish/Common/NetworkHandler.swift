@@ -32,6 +32,11 @@ enum EndPoint{
     }
 }
 
+enum HttpMethod{
+    case get
+    case post
+}
+
 struct NetworkHandler: NetworkHandlable{
     
     private let logger: Logger
@@ -41,9 +46,9 @@ struct NetworkHandler: NetworkHandlable{
         logger = Logger()
     }
     
-    func request(url: EndPoint, method: HTTPMethod, contentType: ContentType, completionHandler: @escaping (Data)->Void){
+    func request(url: EndPoint, method: HttpMethod, contentType: ContentType, completionHandler: @escaping (Data)->Void){
         AF.request(url.urlString,
-                          method: method,
+                          method: HTTPMethod(rawValue: "\(method)"),
                           parameters: nil,
                           encoding: URLEncoding.default,
                           headers: ["Content-Type":contentType.value])
@@ -51,10 +56,10 @@ struct NetworkHandler: NetworkHandlable{
         .responseData{response in
             switch response.result{
             case .success(let data):
+                completionHandler(data)
                 DispatchQueue.global().async {
                     delegate?.cachingDataRequested(url:url, data: data)
                 }
-                completionHandler(data)
             case .failure(let error):
                 logger.error("[Alamofire Response Error]\(error.localizedDescription)")
             }
