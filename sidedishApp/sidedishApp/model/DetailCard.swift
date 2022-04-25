@@ -11,12 +11,12 @@ struct DetailCard: Codable {
     private(set) var hash: String
     private(set) var data: DetailCardData
     
-    struct DetailCardData: Codable{
-        private(set) var topImage: String
-        private(set) var thumbImages: [String]
-        private(set) var productDescription, point, deliveryInfo, deliveryFee: String
-        private(set) var prices: [String]
-        private(set) var detailSection: [String]
+    struct DetailCardData: Codable {
+        var topImage: String
+        var thumbImages: [String]
+        var productDescription, point, deliveryInfo, deliveryFee: String
+        var prices: [String]
+        var detailSection: [String]
 
         enum CodingKeys: String, CodingKey {
             case topImage = "top_image"
