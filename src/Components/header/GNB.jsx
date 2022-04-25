@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { F_basic, Color } from '../../Assets/CommonStyle';
 import List from '../List';
@@ -12,11 +12,6 @@ const GNB_style = styled.nav`
     > li {
       position: relative;
       padding: 0 12px;
-
-      &:hover > a {
-        font-weight: 500;
-        color: ${Color.orange};
-      }
 
       ul {
         visibility: hidden;
@@ -39,10 +34,16 @@ const GNB_style = styled.nav`
     }
   }
 
-  &:hover > ul ul {
-    transition: 0.3s;
-    opacity: 1;
-    visibility: visible;
+  &.active {
+    > ul ul {
+      transition: 0.3s;
+      opacity: 1;
+      visibility: visible;
+    }
+    li:hover > a {
+      font-weight: 500;
+      color: ${Color.orange};
+    }
   }
 
   a {
@@ -50,53 +51,21 @@ const GNB_style = styled.nav`
   }
 `;
 
-const mouseHandler = ({ target }) => {
-  const header = target.closest('header');
-  header.classList.toggle('active');
-};
+const GNB = ({ list, isHover, setIsHover }) => {
+  const mouseHandler = () => {
+    setIsHover(!isHover);
+  };
 
-const GNB_LIST = [
-  {
-    title: '든든한 메인요리',
-    menu: [
-      {
-        title: '육류 요리',
-      },
-      {
-        title: '해산물 요리',
-      },
-    ],
-  },
-  {
-    title: '뜨끈한 국물요리',
-    menu: [
-      {
-        title: '국,탕,찌개',
-      },
-    ],
-  },
-  {
-    title: '정갈한 밑반찬',
-    menu: [
-      {
-        title: '나물/무침',
-      },
-      {
-        title: '조림/볶음',
-      },
-      {
-        title: '절임/장아찌',
-      },
-    ],
-  },
-];
-
-const GNB = () => {
-  const [GNB_MENU, setGNB_MENU] = useState(GNB_LIST);
+  useEffect(() => {
+    setIsHover(false);
+  }, []);
 
   return (
-    <GNB_style onMouseEnter={mouseHandler} onMouseLeave={mouseHandler}>
-      <List menu={GNB_MENU} />
+    <GNB_style
+      onMouseEnter={mouseHandler}
+      onMouseLeave={mouseHandler}
+      className={isHover ? 'active' : null}>
+      <List menu={list} />
     </GNB_style>
   );
 };
