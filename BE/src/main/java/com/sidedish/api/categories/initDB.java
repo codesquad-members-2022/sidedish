@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 
-
+@Component
 @RequiredArgsConstructor
 public class initDB {
 

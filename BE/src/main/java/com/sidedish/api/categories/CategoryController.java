@@ -1,5 +1,6 @@
 package com.sidedish.api.categories;
 
+import com.sidedish.api.ResultDto;
 import com.sidedish.api.categories.dto.ItemResource;
 import com.sidedish.api.categories.dto.ResponseItemDto;
 import com.sidedish.domain.CategoryType;
@@ -30,7 +31,7 @@ public class CategoryController {
 
     @ExceptionHandler
     public ResponseEntity<ResultDto> noSuchElementExceptionHandler(NoSuchElementException e) {
-        return ResponseEntity.badRequest().body(new ResultDto("pageException", e.getMessage()));
+        return ResponseEntity.badRequest().body(ResultDto.error(e));
     }
 
     @InitBinder
