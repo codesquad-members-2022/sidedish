@@ -12,7 +12,6 @@ import com.example.sidedish.data.MenuListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import kotlin.Exception
 
 @HiltViewModel
 class MenuListViewModel @Inject constructor(
@@ -40,7 +39,7 @@ class MenuListViewModel @Inject constructor(
     private val _price = MutableLiveData<Int>()
     val price: LiveData<Int> get() = _price
 
-    private var detailPrice: Int = 0
+    private val _detailPrice = MutableLiveData<Int>()
 
     init {
         load()
@@ -73,7 +72,6 @@ class MenuListViewModel @Inject constructor(
     }
 
     fun loadFoodDetail(key: String) {
-
         val ceh = CoroutineExceptionHandler { _, _ ->
             error.value = "네트워크 연결 실패"
         }
@@ -85,8 +83,6 @@ class MenuListViewModel @Inject constructor(
                 }
             }.onSuccess {
                 _selectedFoodDetail.value = it
-                detailPrice = it?.prices?.get(0)?.toInt() ?: 0
-                Log.d("ViewModel", "detailprice $detailPrice")
             }.onFailure {
                 throw NetworkErrorException("network error")
             }
@@ -99,19 +95,23 @@ class MenuListViewModel @Inject constructor(
     }
 
     fun subtractCount() {
-        if(count.value!! > 0) {
+        if (count.value!! > 0) {
             _count.value = (count.value)?.minus(1)
         }
         calculateTotalAmount()
     }
 
     private fun calculateTotalAmount() {
-        if(_count.value == 0) {
+        val regex = "[^0-9]".toRegex()
+        val priceString = _selectedFoodDetail?.value?.prices?.get(0)
+        val convertedPrice = priceString?.replace(regex, "")?.toInt()
+        _detailPrice.value = convertedPrice ?: 0
+
+        if (_count.value == 0) {
             _price.value = 0
         } else {
-
-            _price.value = _count.value?.times(detailPrice)
-            Log.d("ViewModel", "${_price.value}")
+            _price.value = _detailPrice.value?.let { _count.value?.times(it) }
+            Log.d("ViewModel", "pricevalue ${_price.value}")
         }
     }
 

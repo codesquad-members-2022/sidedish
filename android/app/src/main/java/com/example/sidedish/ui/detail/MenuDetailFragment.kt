@@ -56,6 +56,10 @@ class MenuDetailFragment : Fragment() {
                     submitList(imageList)
                 }
                 pagerDetailImage.adapter = adapter
+
+
+
+
             }
 
         }
