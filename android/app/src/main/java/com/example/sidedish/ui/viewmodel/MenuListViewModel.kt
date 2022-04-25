@@ -10,13 +10,13 @@ import com.example.sidedish.data.Detail
 import com.example.sidedish.data.MenuListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
 @HiltViewModel
 class MenuListViewModel @Inject constructor(
     private val repository: MenuListRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _mainMenuList = MutableLiveData<List<Body>>()
     val mainFoodList: LiveData<List<Body>> = _mainMenuList
@@ -38,33 +38,46 @@ class MenuListViewModel @Inject constructor(
     }
 
     private fun load() {
-        viewModelScope.launch {
-            try {
-                val menuList = listOf(
-                async(Dispatchers.IO) { repository.getMainFoodList() },
-                async(Dispatchers.IO) { repository.getSoupFoodList() },
-                async(Dispatchers.IO) { repository.getSideFoodList() }
-                ).awaitAll()
+        val supervisorJob = SupervisorJob()
 
+        val ceh = CoroutineExceptionHandler { _, _ ->
+            error.value = "네트워크 연결 실패"
+        }
+
+        viewModelScope.launch(supervisorJob + ceh) {
+            kotlin.runCatching {
+                listOf(
+                    async(Dispatchers.IO) { repository.getMainFoodList() },
+                    async(Dispatchers.IO) { repository.getSoupFoodList() },
+                    async(Dispatchers.IO) { repository.getSideFoodList() }
+                ).awaitAll()
+            }.onSuccess {
+                val menuList = it
                 _mainMenuList.value = menuList[0]
                 _soupMenuList.value = menuList[1]
                 _sideMenuList.value = menuList[2]
-            }catch (e: Exception) {
-                error.value = "네트워크 연결 실패"
+            }.onFailure {
+                throw NetworkErrorException("network error")
             }
-
         }
     }
 
     fun loadFoodDetail(key: String) {
-        kotlin.runCatching {
-            viewModelScope.launch {
-                _selectedFoodDetail.value = withContext(Dispatchers.IO) {
-                    repository.getSelectedFoodDetail(key)
-                } ?: throw Exception("network error")
-            }
-        }.onFailure {
+
+        val ceh = CoroutineExceptionHandler { _, _ ->
             error.value = "네트워크 연결 실패"
+        }
+
+        viewModelScope.launch(ceh) {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    repository.getSelectedFoodDetail(key)
+                }
+            }.onSuccess {
+                _selectedFoodDetail.value = it
+            }.onFailure {
+                throw NetworkErrorException("network error")
+            }
         }
     }
 
