@@ -6,8 +6,7 @@
 //
 
 import Foundation
-struct ProductDetail : Codable {
-    let hash : String
-    let data : DetailData
+struct ProductDetail: Codable {
+    let hash: String
+    let data: DetailData
 }
-

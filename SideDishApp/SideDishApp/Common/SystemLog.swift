@@ -12,7 +12,7 @@ enum SystemLog {
     static func fault(_ message: String) {
         Logger().fault("\(message, privacy: .public)")
     }
-    
+
     static func info(_ message: String) {
         Logger().info("\(message, privacy: .public)")
     }

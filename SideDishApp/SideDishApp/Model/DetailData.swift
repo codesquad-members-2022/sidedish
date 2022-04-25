@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct DetailData : Codable {
-    let topImageURL : URL
-    let thumbImagesURL : [URL]
-    let productDescription : String
-    let deliveryInfo : String
-    let deliveryFee : String
-    let detailSectionURL : [URL]
-    private let unCastedPrices : [String]
-    private let unCastedPoint : String
-     
+struct DetailData: Codable {
+    let topImageURL: URL
+    let thumbImagesURL: [URL]
+    let productDescription: String
+    let deliveryInfo: String
+    let deliveryFee: String
+    let detailSectionURL: [URL]
+    private let unCastedPrices: [String]
+    private let unCastedPoint: String
+
     enum CodingKeys: String, CodingKey {
            case topImageURL = "top_image"
            case thumbImagesURL = "thumb_images"
@@ -27,13 +27,13 @@ struct DetailData : Codable {
            case unCastedPrices = "prices"
            case unCastedPoint = "point"
     }
-    
-    var prices : [Money] {
+
+    var prices: [Money<KRW>] {
         unCastedPrices.map({Money($0)})
     }
-    
-    var point : Money {
+
+    var point: Money<KRW> {
         Money(unCastedPoint)
     }
-    
+
 }

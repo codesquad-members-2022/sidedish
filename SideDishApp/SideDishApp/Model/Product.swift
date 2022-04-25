@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct Response : Codable {
-    let statusCode : Int
-    let body : [Product]
+struct Response: Codable {
+    let statusCode: Int
+    let body: [Product]
 }
 
-struct Product : Codable {
-    let detailHash : String
-    let imageURL : URL
-    let alt : String
-    let title : String
-    let description : String
-    let deliveryType : [Delivery]
-    private let unCastedOriginalPrice : String?
-    private let unCastedSalePrice : String
-    let badge : [Badge]?
-        
+struct Product: Codable {
+    let detailHash: String
+    let imageURL: URL
+    let alt: String
+    let title: String
+    let description: String
+    let deliveryType: [Delivery]
+    private let unCastedOriginalPrice: String?
+    private let unCastedSalePrice: String
+    let badge: [Badge]?
+
     enum CodingKeys: String, CodingKey {
            case detailHash = "detail_hash"
            case imageURL = "image"
@@ -34,14 +34,13 @@ struct Product : Codable {
            case unCastedSalePrice = "s_price"
            case badge
        }
-    
-    var originalPrice : Money? {
-        guard let unCastedOriginalPrice = unCastedOriginalPrice else {return nil}
+
+    var originalPrice: Money<KRW>? {
         return Money(unCastedOriginalPrice)
     }
-    
-    var salePrice : Money {
+
+    var salePrice: Money<KRW> {
         Money(unCastedSalePrice)
     }
-    
+
 }
