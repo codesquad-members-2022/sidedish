@@ -1,6 +1,7 @@
 import "./Promotion.scss";
 import { useState, useEffect } from "react";
 import { categoryText } from "@/constant/constant";
+import { fetchData } from "@/util/util";
 
 export function Promotion() {
   const [dataID, setDataID] = useState(1);
@@ -73,13 +74,8 @@ function PromotionSection({ dataName, dataID }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item/best?${dataName}_id=${dataID}`;
-      const response = await fetch(DATA_URL);
-      const data = await response.json();
-      setCards(data);
-    }
-    fetchData();
+    const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item/best?${dataName}_id=${dataID}`;
+    fetchData(DATA_URL).then((data) => setCards(data));
   }, [dataID]);
 
   const menuArticles = cards.map((card, index) => {
