@@ -12,7 +12,6 @@ const ModalWrap = styled.div`
   height: 100vh;
   background-color: rgba(73, 68, 68, 0.5);
   z-index: 5;
-  /* display: none; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +46,10 @@ const PopupCloseButton = styled.button`
 function Modal({ dishes }) {
   // const relatedDishes = dishes.related_dishes;
   const modal = useRef();
-  function closeModal() {
+  function closeModal(e) {
+    if (e.target !== e.currentTarget) {
+      return;
+    } // 질문해보기!
     modal.current.style = 'display:none';
   }
   return (
