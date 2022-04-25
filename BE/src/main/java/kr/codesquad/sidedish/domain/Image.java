@@ -5,25 +5,25 @@ import org.springframework.data.annotation.Id;
 public class Image {
 
     @Id
-    private final Long image_id;
-    private final Long item_id;
-    private final String detail_images;
+    private final Long imageId;
+    private final Long itemId;
+    private final String detailImages;
 
-    public Image(Long image_id, Long item_id, String detail_images) {
-        this.image_id = image_id;
-        this.item_id = item_id;
-        this.detail_images = detail_images;
+    public Image(Long imageId, Long itemId, String detailImages) {
+        this.imageId = imageId;
+        this.itemId = itemId;
+        this.detailImages = detailImages;
     }
 
-    public Long getImage_id() {
-        return image_id;
+    public Long getImageId() {
+        return imageId;
     }
 
-    public Long getItem_id() {
-        return item_id;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public String getDetail_images() {
-        return detail_images;
+    public String getDetailImages() {
+        return detailImages;
     }
 }
