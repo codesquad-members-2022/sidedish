@@ -13,6 +13,13 @@ export const thumbnailSize = {
   medium: 302,
   small: 160,
 };
+
+export const cardNumPerPage = {
+  large: 3,
+  medium: 4,
+  small: 5
+};
+
 export const SIZES = {
   large: "large",
   medium: "medium",

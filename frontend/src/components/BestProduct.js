@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CardList } from "./CardList";
 import { SIZES } from "../convention";
+import { useFetch } from "../fetcher";
 
 const Wrapper = styled.div`
   padding: 56px 80px;
@@ -50,6 +51,7 @@ const TabItem = styled.li`
 
 export const BestProduct = ({ themes }) => {
   const [selected, setSelected] = useState(themes[0].id);
+  const categoryData = useFetch(selected, true);
 
   return (
     <Wrapper>
@@ -64,7 +66,7 @@ export const BestProduct = ({ themes }) => {
           </TabItem>
         ))}
       </TabBar>
-      <CardList size={SIZES.large} special={true} id={selected}></CardList>
+      <CardList products={categoryData?.products} cardSize={SIZES.large}></CardList>
     </Wrapper>
   );
 };

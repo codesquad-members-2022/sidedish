@@ -1,39 +1,10 @@
 import styled, { css } from "styled-components";
 import { ProductCard } from "./ProductCard";
-import { useEffect } from "react";
-import {
-  useCategories,
-  useFetch,
-  useProducts,
-  useSpecialCategories,
-} from "../fetcher";
+import { thumbnailSize } from "../convention";
 
-const CategoryTitle = styled.span`
-  ${(props) =>
-    props.size === "large" &&
-    css`
-      display: none;
-    `}
-
-  ${(props) =>
-    props.size === "medium" &&
-    css`
-      line-height: 38px;
-      font-size: 24px;
-    `}
-
-  ${(props) =>
-    props.size === "small" &&
-    css`
-      line-height: 30px;
-      font-size: 20px;
-    `}
-`;
-
-const ProductCardWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+const ShowingArea = styled.div`
   margin-top: 34px;
+  overflow: hidden;
   ${(props) =>
     props.size === "large" &&
     css`
@@ -56,30 +27,21 @@ const ProductCardWrapper = styled.div`
     `}
 `;
 
-const SlideButtons = styled.div``;
+const ProductCardsWrapper = styled.div`
+  display: flex;
+  transition: 0.4s;
+  transform: ${({ cardSize, firstCardIndex }) =>
+    `translateX(-${firstCardIndex * (24 + thumbnailSize[cardSize])}px)`};
+`;
 
-export const CardList = ({ size, id, special = false }) => {
-  const categoryData = useFetch(id, special);
+export const CardList = ({ products, cardSize, firstCardIndex = 0 }) => {
   return (
-    <>
-      {categoryData && (
-        <>
-          {!special && (
-            <CategoryTitle size={size}>
-              {categoryData["full_name"]}
-            </CategoryTitle>
-          )}
-          <ProductCardWrapper size={size}>
-            {categoryData.products.map((product) => (
-              <ProductCard
-                key={product.id}
-                size={size}
-                {...product}
-              ></ProductCard>
-            ))}
-          </ProductCardWrapper>
-        </>
-      )}
-    </>
+    <ShowingArea size={cardSize}>
+      <ProductCardsWrapper cardSize={cardSize} firstCardIndex={firstCardIndex}>
+        {products?.map((product) => (
+          <ProductCard key={product.id} cardSize={cardSize} {...product}></ProductCard>
+        ))}
+      </ProductCardsWrapper>
+    </ShowingArea>
   );
 };
