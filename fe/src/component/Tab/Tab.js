@@ -1,8 +1,8 @@
-import List from "./List";
 import Card from "../UI/Card";
 import CardsWrapper from "../UI/CardsWrapper";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
+import tapInforList from "../../constants/TapInforList";
 
 const TabList = styled.ul`
   display: flex;
@@ -11,28 +11,17 @@ const TabList = styled.ul`
 
 const TabListItem = styled.li`
   margin-right: 30px;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   cursor: pointer;
   &.active {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.black};
   }
 `;
 
 const Tab = () => {
-  const [infor, setInfor] = useState([
-    { id: 1, title: "풍성한 고기반찬" },
-    { id: 2, title: "편리한 반찬세트" },
-    { id: 3, title: "맛있는 제철요리" },
-    { id: 4, title: "우리 아이 영향 반찬" },
-  ]);
-
   const [cards, setCards] = useState([]);
   const [activeTab, setActiveTab] = useState(1);
-
-  useEffect(() => {
-    setActiveTab("1");
-  }, []);
 
   useEffect(() => {
     fetch("https://api.codesquad.kr/onban/main")
@@ -40,19 +29,19 @@ const Tab = () => {
       .then((data) => setCards(data.body[activeTab]));
   }, [activeTab]);
 
-  const onClickHandler = (event) => {
-    setActiveTab(event.target.id);
+  const onClickHandler = ({ target }) => {
+    setActiveTab(+target.id);
   };
 
   return (
     <>
       <TabList>
-        {infor.map((v) => {
+        {tapInforList.map((v) => {
           return (
             <TabListItem
               id={v.id}
               key={v.id}
-              className={v.id.toString() === activeTab ? "active" : ""}
+              className={v.id === activeTab ? "active" : ""}
               onClick={onClickHandler}
             >
               {v.title}
