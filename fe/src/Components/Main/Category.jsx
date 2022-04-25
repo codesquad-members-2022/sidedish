@@ -21,7 +21,7 @@ const ProductCardList = styled.ul`
 `;
 
 export const Category = props => {
-  if (!props.cardData) return <></>
+  if (!props.cardData) return <></>;
 
   return (
     <CategoryWrapper>

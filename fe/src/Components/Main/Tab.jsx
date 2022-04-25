@@ -22,7 +22,7 @@ function checkSelected(tabClassName) {
 export const Tab = ({ tabData, clickTab, TabClassName }) => {
   const tabId = tabData.id;
 
-  const onClickTab = event => {
+  const onClickTab = () => {
     clickTab(tabId);
   };
 

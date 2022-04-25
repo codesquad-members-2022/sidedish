@@ -33,12 +33,12 @@ const Logo = () => {
 };
 
 export const Header = props => {
-  if (!props.categories.length) return null;
+  if (!props.categoryList.length) return null;
 
   return (
     <HeaderWrapper>
       <Logo />
-      <MenuList categories={props.categories} />
+      <MenuList categoryList={props.categoryList} />
       <UserActionButtons />
     </HeaderWrapper>
   );

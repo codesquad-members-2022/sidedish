@@ -10,7 +10,6 @@ const MenuListWrapper = styled.ul`
   white-space: nowrap;
   overflow-x: auto;
   cursor: pointer;
-  flex-grow: 1;
   padding-top: 12px;
 `;
 
@@ -31,7 +30,7 @@ export const MenuList = props => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {props.categories.map(category => (
+      {props.categoryList.map(category => (
         <Menu key={category.id} category={category} subMenuOpen={subMenuOpen} />
       ))}
     </MenuListWrapper>
