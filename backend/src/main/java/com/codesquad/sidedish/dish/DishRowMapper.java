@@ -19,9 +19,8 @@ public class DishRowMapper implements RowMapper<Dish> {
             rs.getInt("category_id")
         );
         DishImage dishImage = new DishImage(
-            rs.getInt("dish_image_id"),
             rs.getString("image_path"),
-            null
+            rs.getInt("sequence")
         );
 
         if (rs.getInt("dish_image_id") != 0) {
