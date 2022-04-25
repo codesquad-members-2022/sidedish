@@ -1,4 +1,4 @@
-package team14.sidedish.menu.specialmenu;
+package team14.sidedish.specialmenu;
 
 import org.springframework.data.relational.core.mapping.Table;
 
