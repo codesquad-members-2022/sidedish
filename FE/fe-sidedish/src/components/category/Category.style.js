@@ -18,15 +18,8 @@ const Title = styled.h2`
   margin-bottom: 40px;
 `;
 
-const CardList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-`;
-
 export {
   Container,
   Wrapper,
   Title,
-  CardList,
 };

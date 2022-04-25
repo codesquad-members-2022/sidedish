@@ -1,4 +1,5 @@
 import * as S from './Card.style';
+import { CARD_SIZE } from '../../constants/card';
 import Badges from './Badges';
 import DeliveryBadge from './DeliveryBadge';
 import Prices from './Prices';
@@ -25,7 +26,7 @@ const Card = ({ cardSize, dish }) => {
 };
 
 Card.defaultProps = {
-  size: 'medium',
+  cardSize: CARD_SIZE.MEDIUM,
 };
 
 export default Card;

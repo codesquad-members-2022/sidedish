@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import { CARD_SIZE } from '../../constants/card';
 
 const EVENT = '이벤트특가';
-const LARGE = 'large';
-const SMALL = 'small';
 
 const Container = styled.div`
   display: block;
@@ -21,9 +20,9 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   display: block;
   width: ${({ cardSize }) =>
-          cardSize === LARGE ? '411px' :
-                  cardSize === SMALL ? '160px' : '302px'};
-  ${({ cardSize }) => cardSize === SMALL && 'margin-bottom: 8px'};
+          cardSize === CARD_SIZE.LARGE ? '411px' :
+                  cardSize === CARD_SIZE.SMALL ? '160px' : '302px'};
+  ${({ cardSize }) => cardSize === CARD_SIZE.SMALL && 'margin-bottom: 8px'};
 `;
 
 const RoundBadgeBackground = styled.div`
@@ -65,7 +64,7 @@ const RoundBadge = styled.div`
 
 const Title = styled.h3`
   color: ${({ theme }) => theme.color.grey1};
-  ${({ theme, cardSize }) => cardSize === SMALL && `font-size: ${theme.fontSize.small}`};
+  ${({ theme, cardSize }) => cardSize === CARD_SIZE.SMALL && `font-size: ${theme.fontSize.small}`};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   letter-spacing: -0.008em;
   margin-bottom: 8px;

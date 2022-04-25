@@ -20,8 +20,15 @@ const Button = styled.button`
   transform: translateY(-50%);
 `;
 
+const CardList = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+`;
+
 export {
   Container,
   Wrapper,
   Button,
+  CardList,
 };

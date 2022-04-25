@@ -1,6 +1,6 @@
 import * as S from './Category.style';
-import Card from '../card/Card';
-import Slider from '../slider/Slider';
+import { CARD_SIZE } from '../../constants/card';
+import Slide from '../slider/Slide';
 
 const Category = ({ category, categoryList }) => {
 
@@ -8,11 +8,7 @@ const Category = ({ category, categoryList }) => {
     <S.Container>
       <S.Wrapper>
         <S.Title>{category}</S.Title>
-        <Slider>
-          <S.CardList>
-            {categoryList.map(dish => <Card key={dish.menuId} dish={dish} />)}
-          </S.CardList>
-        </Slider>
+        <Slide cardSize={CARD_SIZE.MEDIUM} cardList={categoryList} />
       </S.Wrapper>
     </S.Container>
   );
