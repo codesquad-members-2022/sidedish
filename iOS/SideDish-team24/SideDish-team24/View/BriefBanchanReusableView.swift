@@ -31,4 +31,8 @@ class BriefBanchanReusableView: UICollectionReusableView {
             self.title.heightAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.defaultInset*12)
         ])
     }
+    
+    func setTitle(to string: String) {
+        self.title.text = string
+    }
 }

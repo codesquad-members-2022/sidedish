@@ -35,6 +35,26 @@ class BriefBanchanViewCell: UICollectionViewCell {
         self.layoutPriceStackView()
         self.layoutSpecialPrice()
     }
+    
+    func configure(image: UIImage) {
+        self.dishImage.image = image
+    }
+    
+    func configure(title: String, description: String) {
+        self.dishTitle.text = title
+        self.dishDescription.text = description
+        
+    }
+    
+    func configure(price: String, listPrice: String?) {
+        self.price.text = price
+        self.listPrice.text = listPrice
+    }
+    
+    func configure(specialBadge: String) {
+        self.specialPrices.addArrangedSubview(UILabel.customBadge("\(specialBadge)", .dishBlue))
+    }
+    
 }
 
 private extension BriefBanchanViewCell {
@@ -45,6 +65,7 @@ private extension BriefBanchanViewCell {
             self.dishImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.dishImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.dishImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
             self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1)
         ])
     }
@@ -64,10 +85,10 @@ private extension BriefBanchanViewCell {
     }
     
     func layoutPriceStackView() {
-        self.prices.addArrangedSubview(self.discountPrice)
-        self.prices.addArrangedSubview(self.normalPrice)
+        self.prices.addArrangedSubview(self.price)
+        self.prices.addArrangedSubview(self.listPrice)
         
-        self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()
+        self.listPrice.attributedText = self.listPrice.text?.strikeThrough()
     }
     
     func layoutSpecialPrice() {
@@ -75,9 +96,7 @@ private extension BriefBanchanViewCell {
         
         NSLayoutConstraint.activate([
             self.specialPrices.topAnchor.constraint(equalTo: self.breifStackView.bottomAnchor, constant: CGFloat.defaultInset),
-            self.specialPrices.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
-            
-            self.specialPrices.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
+            self.specialPrices.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset)
         ])
     }
     
