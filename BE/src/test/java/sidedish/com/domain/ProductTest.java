@@ -15,23 +15,25 @@ class ProductTest {
 	@DisplayName("Product 생성자")
 	class Describe_constructor {
 
-	    @Nested
-	    @DisplayName("만약 이벤트특가 Discount Policy가 주어진다면")
-	    class Context_with_event_discount_policy {
+		@Nested
+		@DisplayName("만약 이벤트특가 Discount Policy가 주어진다면")
+		class Context_with_event_discount_policy {
 
-	        @Test
-	        @DisplayName("20% 할인된 Product를 생성한다.")
-	        void It_returns_a_Product() {
+			@Test
+			@DisplayName("20% 할인된 Product를 생성한다.")
+			void It_returns_a_Product() {
 				DiscountPolicy discountPolicy = new DiscountPolicy("이벤트특가", 20);
 				Image image = new Image("https://louie.com/test.jpg");
+				DeliveryPolicy deliveryPolicy = new DeliveryPolicy("테스트", 2500L, 40000L);
 
-				Product sut = new Product(1L, discountPolicy, List.of(image), "김치찌개", "맛있어요",
+				Product sut = new Product(1L, discountPolicy, deliveryPolicy, List.of(image),
+					"김치찌개", "맛있어요",
 					10000, "soup", "meat");
 
 				assertThat(sut.getDiscountPolicy().getPolicyName()).isEqualTo("이벤트특가");
 				assertThat(sut.getFixedPrice()).isEqualTo(8000);
 			}
-	    }
+		}
 
 		@Nested
 		@DisplayName("만약 런칭특가 Discount Policy가 주어진다면")
@@ -42,8 +44,10 @@ class ProductTest {
 			void It_returns_a_Product() {
 				DiscountPolicy discountPolicy = new DiscountPolicy("런칭특가", 10);
 				Image image = new Image("https://louie.com/test.jpg");
+				DeliveryPolicy deliveryPolicy = new DeliveryPolicy("테스트", 2500L, 40000L);
 
-				Product sut = new Product(1L, discountPolicy, List.of(image), "김치찌개", "맛있어요",
+				Product sut = new Product(1L, discountPolicy, deliveryPolicy, List.of(image),
+					"김치찌개", "맛있어요",
 					10000, "soup", "meat");
 
 				assertThat(sut.getDiscountPolicy().getPolicyName()).isEqualTo("런칭특가");

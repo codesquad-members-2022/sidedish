@@ -82,4 +82,23 @@ class ProductsRepositoryTest  {
 		}
 	}
 
+	@Nested
+	@DisplayName("findById 메서드")
+	class Describe_findById {
+
+	    @Nested
+	    @DisplayName("만약 유효한 id가 주어진다면")
+	    class Context_with_valid_id {
+
+	        @Test
+	        @DisplayName("Product 객체를 리턴한다")
+	        void It_returns_product() {
+				ProductEntity sut = productsRepository.findById(1L).get();
+
+				assertThat(sut.getId()).isEqualTo(1);
+				assertThat(sut.getDeliveryPolicyId()).isEqualTo(1);
+			}
+	    }
+	}
+
 }

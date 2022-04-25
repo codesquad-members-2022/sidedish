@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
+import sidedish.com.domain.DeliveryPolicy;
 import sidedish.com.domain.DiscountPolicy;
 import sidedish.com.domain.Image;
 import sidedish.com.domain.Product;
+import sidedish.com.repository.entity.DeliveryPolicyEntity;
 import sidedish.com.repository.entity.DiscountPolicyEntity;
 import sidedish.com.repository.entity.ProductEntity;
 
@@ -14,38 +16,64 @@ import sidedish.com.repository.entity.ProductEntity;
 public class DomainEntityMapper {
 
 	public List<Product> toDomainFromProductsEntity(List<ProductEntity> productEntities,
-		List<DiscountPolicyEntity> discountPolicies) {
+		List<DiscountPolicyEntity> discountPolicyEntities,
+		List<DeliveryPolicyEntity> deliveryPolicyEntities) {
 		List<Product> products = new ArrayList<>();
 		for (ProductEntity productEntity : productEntities) {
-			Long discountPolicyId = productEntity.getDiscountPolicyId();
-			DiscountPolicyEntity discountPolicyEntity = searchDiscountPolicyById(
-				discountPolicies, discountPolicyId);
-
-			Product product = toDomainFromProductEntity(productEntity, discountPolicyEntity);
-			products.add(product);
+			products.add(toDomainFromProductEntity(productEntity, discountPolicyEntities,
+				deliveryPolicyEntities));
 		}
 		return products;
 	}
 
-	private DiscountPolicyEntity searchDiscountPolicyById(
-		List<DiscountPolicyEntity> discountPolicies, Long discountPolicyId) {
+	public Product toDomainFromProductEntity(ProductEntity productEntity,
+		List<DiscountPolicyEntity> discountPolicyEntities,
+		List<DeliveryPolicyEntity> deliveryPolicyEntities) {
+
+		DiscountPolicyEntity discountPolicyEntity = searchDiscountPolicyEntity(
+			discountPolicyEntities, productEntity);
+		DeliveryPolicyEntity deliveryPolicyEntity = searchDeliveryPolicyEntity(
+			deliveryPolicyEntities, productEntity);
+
+		Product product = createProduct(productEntity, discountPolicyEntity, deliveryPolicyEntity);
+
+		return product;
+	}
+
+	private DiscountPolicyEntity searchDiscountPolicyEntity(
+		List<DiscountPolicyEntity> discountPolicies, ProductEntity productEntity) {
 		for (DiscountPolicyEntity discountPolicyEntity : discountPolicies) {
-			if (discountPolicyEntity.isEqualsId(discountPolicyId)) {
+			if (discountPolicyEntity.isEqualsId(productEntity.getDiscountPolicyId())) {
 				return discountPolicyEntity;
 			}
 		}
 		return new DiscountPolicyEntity(null, null, 0);
 	}
 
-	private Product toDomainFromProductEntity(ProductEntity productEntity,
-		DiscountPolicyEntity discountPolicyEntity) {
-		DiscountPolicy discountPolicy = toDomainFromDiscountPolicyEntity(discountPolicyEntity);
+	private DeliveryPolicyEntity searchDeliveryPolicyEntity(
+		List<DeliveryPolicyEntity> deliveryPolicyEntities, ProductEntity productEntity) {
 
+		for (DeliveryPolicyEntity deliveryPolicyEntity : deliveryPolicyEntities) {
+			if (deliveryPolicyEntity.isEqualsId(productEntity.getDeliveryPolicyId())) {
+				return deliveryPolicyEntity;
+			}
+		}
+		return null;
+	}
+
+	public Product createProduct(ProductEntity productEntity,
+		DiscountPolicyEntity discountPolicyEntity,
+		DeliveryPolicyEntity deliveryPolicyEntity) {
+
+		DiscountPolicy discountPolicy = toDomainFromDiscountPolicyEntity(discountPolicyEntity);
+		DeliveryPolicy deliveryPolicy = toDomainFromDeliveryPolicyEntity(
+			deliveryPolicyEntity);
 		List<Image> images = toDomainFromImageEntity(productEntity);
 
 		return new Product(
 			productEntity.getId(),
 			discountPolicy,
+			deliveryPolicy,
 			images,
 			productEntity.getProductName(),
 			productEntity.getDescription(),
@@ -54,16 +82,25 @@ public class DomainEntityMapper {
 			productEntity.getBestCategory());
 	}
 
-	private List<Image> toDomainFromImageEntity(ProductEntity productEntity) {
-		return productEntity.getImageEntities().stream()
-			.map(imageEntity -> new Image(imageEntity.getImageUrl()))
-			.collect(Collectors.toList());
-	}
-
 	private DiscountPolicy toDomainFromDiscountPolicyEntity(
 		DiscountPolicyEntity discountPolicyEntity) {
 		return new DiscountPolicy(
 			discountPolicyEntity.getPolicyName(),
 			discountPolicyEntity.getDiscountRate());
+	}
+
+	private DeliveryPolicy toDomainFromDeliveryPolicyEntity(
+		DeliveryPolicyEntity deliveryPolicyEntity) {
+
+		return new DeliveryPolicy(
+			deliveryPolicyEntity.getDeliveryInfo(),
+			deliveryPolicyEntity.getDeliveryCharge(),
+			deliveryPolicyEntity.getFreeDeliveryOverAmount());
+	}
+
+	private List<Image> toDomainFromImageEntity(ProductEntity productEntity) {
+		return productEntity.getImageEntities().stream()
+			.map(imageEntity -> new Image(imageEntity.getImageUrl()))
+			.collect(Collectors.toList());
 	}
 }
