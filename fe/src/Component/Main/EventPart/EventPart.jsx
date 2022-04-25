@@ -4,10 +4,10 @@ import {
   StyledEventLogo,
   StyledEventTitle,
   StyledEventPart,
-} from "./EventPart.styled";
-import eventCategoriesApi from "../../../Service/eventCategoriesApi";
-import EventTab from "./EventTab/EventTab";
-import EventContents from "./EventContents/EventContents";
+} from "Component/Main/EventPart/EventPart.styled";
+import eventCategoriesApi from "Service/eventCategoriesApi";
+import EventTab from "Component/Main/EventPart/EventTab/EventTab";
+import EventContents from "Component/Main/EventPart/EventContents/EventContents";
 
 const EventPart = () => {
   const [name, setName] = useState("");
@@ -15,11 +15,11 @@ const EventPart = () => {
   const [selectedId, setSelectedId] = useState(1);
 
   const fetchEventCategories = async () => {
-    // const { eventName, eventCategories } =
-    const data = await eventCategoriesApi.getEventCategories();
+    const { eventName, eventCategories } =
+      await eventCategoriesApi.getEventCategories();
 
-    setName(data.eventName);
-    setCategories(data.eventCategories);
+    setName(eventName);
+    setCategories(eventCategories);
   };
 
   useEffect(() => {

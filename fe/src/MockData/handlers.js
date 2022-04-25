@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { event, categoryMenus } from "./MockData";
+import { event, categoryMenus } from "MockData/MockData";
 
 const handlers = [
   rest.get(`/api/event-categories/`, (req, res, ctx) => {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import StyledEventTab from "./EventTab.styled";
+import StyledEventTab from "Component/Main/EventPart/EventTab/EventTab.styled";
 
 const tabClickHandler = ({ target: { id } }, selectedId, setSelectedId) => {
   const targetId = Number(id);

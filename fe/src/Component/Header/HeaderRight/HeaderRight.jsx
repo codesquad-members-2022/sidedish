@@ -1,5 +1,5 @@
-import ButtonWrap from "./HeaderRight.styled";
-import { icons } from "../../../MockData/MockData";
+import ButtonWrap from "Component/Header/HeaderRight/HeaderRight.styled";
+import { icons } from "MockData/MockData";
 
 const Buttons = () => {
   return icons.map((icon) => (

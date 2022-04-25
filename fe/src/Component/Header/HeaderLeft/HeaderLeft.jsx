@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import Nav from "./Nav";
-import NavArea from "./HeaderLeft.styled";
+import Nav from "Component/Header/HeaderLeft/Nav";
+import NavArea from "Component/Header/HeaderLeft/HeaderLeft.styled";
 
 const HeaderLeft = ({ state }) => {
   return (
