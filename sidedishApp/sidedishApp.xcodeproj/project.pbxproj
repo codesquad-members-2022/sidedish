@@ -11,6 +11,7 @@
 		0037166B281641130052F690 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037166A281641130052F690 /* UIFontExtension.swift */; };
 		0037166E28164B2C0052F690 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037166D28164B2C0052F690 /* HTTPManager.swift */; };
 		00371670281682C30052F690 /* JSONConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037166F281682C30052F690 /* JSONConverter.swift */; };
+		0045439528168D57005DA649 /* SideDishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045439428168D57005DA649 /* SideDishManager.swift */; };
 		0068078F280D5195003C2808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068078E280D5195003C2808 /* AppDelegate.swift */; };
 		00680791280D5195003C2808 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680790280D5195003C2808 /* SceneDelegate.swift */; };
 		00680793280D5195003C2808 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680792280D5195003C2808 /* MainViewController.swift */; };
@@ -38,6 +39,7 @@
 		0037166A281641130052F690 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		0037166D28164B2C0052F690 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		0037166F281682C30052F690 /* JSONConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConverter.swift; sourceTree = "<group>"; };
+		0045439428168D57005DA649 /* SideDishManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishManager.swift; sourceTree = "<group>"; };
 		0068078B280D5195003C2808 /* sidedishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0068078E280D5195003C2808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00680790280D5195003C2808 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				009361E4280EE47400D0FF1A /* MainCard.swift */,
 				D24CF2272812484300677D3D /* DetailCard.swift */,
 				009361E6280EE4FB00D0FF1A /* Badge.swift */,
+				0045439428168D57005DA649 /* SideDishManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,
 				00371670281682C30052F690 /* JSONConverter.swift in Sources */,
 				009361E5280EE47400D0FF1A /* MainCard.swift in Sources */,
+				0045439528168D57005DA649 /* SideDishManager.swift in Sources */,
 				009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */,
 				009361E0280E637C00D0FF1A /* MainViewCardCell.swift in Sources */,
 			);
