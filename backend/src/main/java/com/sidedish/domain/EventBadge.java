@@ -5,7 +5,7 @@ public enum EventBadge {
 
 	private final double discountAmount;
 
-	EventBadge(double discountAmount) {
+	EventBadge(final double discountAmount) {
 		this.discountAmount = discountAmount;
 	}
 
