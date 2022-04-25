@@ -10,7 +10,7 @@ import sidedish.com.domain.Product;
 @Component
 public class ProductsDtoMapper {
 
-	public List<ProductBasicTypeResponse> toProductsMealTypeResponseFromDomain(
+	public List<ProductBasicTypeResponse> toProductsBasicTypeResponseFromDomain(
 		List<Product> products) {
 		return products.stream()
 			.map(this::toProductMealTypeResponseFromDomain)

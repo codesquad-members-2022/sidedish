@@ -1,5 +1,6 @@
 package sidedish.com.service;
 
+import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import sidedish.com.controller.ProductsDtoMapper;
@@ -44,7 +45,7 @@ public class ProductsService {
 
 		validProducts(products);
 
-		return productsDtoMapper.toProductsMealTypeResponseFromDomain(products);
+		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
 	}
 
 	private void validProducts(List<Product> products) {
@@ -66,4 +67,23 @@ public class ProductsService {
 		return productsDtoMapper.toProductDetailTypeFromDomain(products);
 	}
 
+	public List<ProductBasicTypeResponse> recommend() {
+		List<ProductEntity> productEntities = productsRepository.findAll();
+		List<DiscountPolicyEntity> discountPolicyEntities = discountPolicyRepository.findAll();
+		List<DeliveryPolicyEntity> deliveryPolicyEntities = deliveryPolicyRepository.findAll();
+
+		List<ProductEntity> recommendationProductEntity = recommendProducts(productEntities);
+
+		List<Product> recommendationProducts = domainEntityMapper.toDomainFromProductsEntity(
+			recommendationProductEntity,
+			discountPolicyEntities, deliveryPolicyEntities);
+
+		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(recommendationProducts);
+	}
+
+	private List<ProductEntity> recommendProducts(List<ProductEntity> productEntities) {
+		Collections.shuffle(productEntities);
+
+		return productEntities.subList(0, 11);
+	}
 }

@@ -33,4 +33,9 @@ public class ProductsController {
 	public ProductDetailTypeResponse findById(@PathVariable @Negative @NotNull Long id) {
 		 return productsService.findById(id);
 	}
+
+	@GetMapping("/recommendation")
+	public List<ProductBasicTypeResponse> recommend() {
+		return productsService.recommend();
+	}
 }

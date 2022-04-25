@@ -10,6 +10,9 @@ import sidedish.com.repository.entity.ProductEntity;
 @Repository
 public interface ProductsRepository extends CrudRepository<ProductEntity, Long> {
 
+	@Override
+	List<ProductEntity> findAll();
+
 	@Query("select id, discount_policy_id, delivery_policy_id, product_name, description, original_price, meal_category "
 		+ "from PRODUCT where meal_category = :mealType")
 	List<ProductEntity> findByMealType(@Param("mealType") String mealType);
