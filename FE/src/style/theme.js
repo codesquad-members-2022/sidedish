@@ -12,10 +12,6 @@ const fontWeight = {
   regular: 400,
 };
 
-const fontFamily = {
-  default: 'Noto Sans KR',
-};
-
 const colors = {
   black: '#1B1B1B',
   grey1: '#3F3F3F',
@@ -31,6 +27,5 @@ const colors = {
 export const theme = {
   fontSize,
   fontWeight,
-  fontFamily,
   colors,
 };
