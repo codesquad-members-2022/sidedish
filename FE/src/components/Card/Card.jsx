@@ -1,10 +1,33 @@
-import React from 'react';
-import { CardWrapper, SubTitle, Title, Thumbnail, PriceBox, SalePrice, Badge, DescriptionWrapper } from './Card.style';
+import React, { useState } from 'react';
+import {
+  CardWrapper,
+  SubTitle,
+  Title,
+  Thumbnail,
+  PriceBox,
+  SalePrice,
+  Badge,
+  DescriptionWrapper,
+  DeliveryIcon,
+} from './Card.style';
 
 const Card = ({ data, size }) => {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const handleThumbnailMouseOver = () => {
+    setIsMouseOver(!isMouseOver);
+  };
+
   return (
     <CardWrapper>
-      <Thumbnail src={data.thumbnail} size={size} />
+      <Thumbnail
+        src={data.thumbnail}
+        size={size}
+        onMouseOver={handleThumbnailMouseOver}
+        onMouseLeave={handleThumbnailMouseOver}
+      >
+        {isMouseOver && <DeliveryIcon />}
+      </Thumbnail>
       <DescriptionWrapper>
         <Title size={size}>{data.name}</Title>
         {size !== 'small' && <SubTitle>{data.description}</SubTitle>}

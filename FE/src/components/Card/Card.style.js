@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import { ReactComponent as Delivery } from 'assets/delivery.svg';
+
+const DeliveryIcon = styled(Delivery)`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`;
 
 const thumbnailSize = {
   large: '411px',
@@ -18,6 +25,11 @@ const Thumbnail = styled.div`
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+
+  :hover {
+    filter: brightness(90%);
+  }
 `;
 
 const Title = styled.h3`
@@ -59,4 +71,4 @@ const DescriptionWrapper = styled.div`
   margin: 16px 0;
 `;
 
-export { CardWrapper, Thumbnail, Title, SubTitle, PriceBox, SalePrice, Badge, DescriptionWrapper };
+export { CardWrapper, Thumbnail, Title, SubTitle, PriceBox, SalePrice, Badge, DescriptionWrapper, DeliveryIcon };
