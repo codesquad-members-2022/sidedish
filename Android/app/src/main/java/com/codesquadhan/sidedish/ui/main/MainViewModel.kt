@@ -12,6 +12,7 @@ import com.codesquadhan.sidedish.ui.constant.ViewType.HEADER_VIEW_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.lang.RuntimeException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,56 +22,26 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
     private val menuMainList = mutableListOf<MainResponseItem>()
     val menuMainListLd: LiveData<List<MainResponseItem>> = _menuMainListLd
 
-
     // 메인화면 세 가지 섹션 메뉴 가져오기
     fun getMainUIMenu(){
         viewModelScope.launch {
             menuMainList.clear()
-            
-            val mainResponse = async {  menuRepository.getMainMenu() }
-            val soupResponse = async {  menuRepository.getSoupMenu() }
-            val sideResponse = async {  menuRepository.getSideMenu() }
 
+            val mainResponse = async { menuRepository.getMainMenu() ?: throw RuntimeException("test") }
+            val soupResponse = async { menuRepository.getSoupMenu() ?: throw RuntimeException("test") }
+            val sideResponse = async { menuRepository.getSideMenu() ?: throw RuntimeException("test") }
 
-            if(mainResponse.await().isSuccessful){
-                mainResponse.await().body()?.let {
-                    menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "모두가 좋아하는\n든든한 메인 요리"))
-                    menuMainList.addAll(it)
-                    Log.d("AppTest", "${menuMainList}")
-                }
-                _menuMainListLd.value = menuMainList
-            }
-            else{
-                Log.d("AppTest", "메인 메뉴 조회 실패")
-            }
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "모두가 좋아하는\n든든한 메인 요리"))
+            menuMainList.addAll(mainResponse.await())
+            _menuMainListLd.value = menuMainList
 
-            if(sideResponse.await().isSuccessful){
-                sideResponse.await().body()?.let {
-                    menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬"))
-                    menuMainList.addAll(it)
-                    Log.d("AppTest", "${menuMainList}")
-                }
-                _menuMainListLd.value = menuMainList
-            }
-            else{
-                Log.d("AppTest", "사이드 메뉴 조회 실패")
-            }
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리"))
+            menuMainList.addAll(soupResponse.await())
+            _menuMainListLd.value = menuMainList
 
-            if(soupResponse.await().isSuccessful){
-                soupResponse.await().body()?.let {
-                    menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리"))
-                    menuMainList.addAll(it)
-                    Log.d("AppTest", "${menuMainList}")
-                }
-                _menuMainListLd.value = menuMainList
-            }
-            else{
-                Log.d("AppTest", "국물 메뉴 조회 실패")
-            }
-
-
-
-
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬"))
+            menuMainList.addAll(sideResponse.await())
+            _menuMainListLd.value = menuMainList
         }
     }
 }
