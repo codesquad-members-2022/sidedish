@@ -92,5 +92,3 @@ insert into dish_event (item_id, event_id)
 values (3, 3);
 insert into dish_event (item_id, event_id)
 values (4, 4);
-
-
