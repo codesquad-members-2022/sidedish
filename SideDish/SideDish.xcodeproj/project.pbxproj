@@ -59,6 +59,10 @@
 		51587FC16B542FE237BA1CAF /* Pods-SideDishTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishTests.release.xcconfig"; path = "Target Support Files/Pods-SideDishTests/Pods-SideDishTests.release.xcconfig"; sourceTree = "<group>"; };
 		58366F2461797F38FD359AF0 /* Pods_SideDishTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDishTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD207850604B2362E2CC3914 /* Pods_SideDish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B50782B52816866900445859 /* NetworkHandlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandlable.swift; sourceTree = "<group>"; };
+		B50782B62816866900445859 /* NetworkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
+		B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandlerDelegate.swift; sourceTree = "<group>"; };
+		B50782BB2816BA9C00445859 /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C37280E9A1500A49273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B50A0C39280E9A1700A49273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,7 +140,6 @@
 				36A023A027663643D534815A /* Pods-SideDishTests.debug.xcconfig */,
 				51587FC16B542FE237BA1CAF /* Pods-SideDishTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -166,7 +169,7 @@
 				37EBAE84281131EC000A941D /* Views */,
 				B5B0B84228110745005CE46B /* Controllers */,
 				B5B0B84128110737005CE46B /* Supportings */,
-				B50A0C5A280EF77E00A49273 /* Commmon */,
+				B50A0C5A280EF77E00A49273 /* Common */,
 				B50A0C44280EEE2F00A49273 /* Resources */,
 				376A6B97280EA77E0016F0CE /* Model+Repository */,
 				B50A0C36280E9A1500A49273 /* Main.storyboard */,
@@ -197,13 +200,17 @@
 			path = SideDishTests;
 			sourceTree = "<group>";
 		};
-		B50A0C5A280EF77E00A49273 /* Commmon */ = {
+		B50A0C5A280EF77E00A49273 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B50782B52816866900445859 /* NetworkHandlable.swift */,
+				B50782B62816866900445859 /* NetworkHandler.swift */,
+				B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */,
 				B50A0C5B280EF78E00A49273 /* JSONHandler.swift */,
 				B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */,
+				B50782BB2816BA9C00445859 /* DataCache.swift */,
 			);
-			path = Commmon;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		B511E0192813DA7A00B87FB7 /* Mock */ = {
@@ -419,17 +426,21 @@
 			files = (
 				376A6B99280EA78B0016F0CE /* Food.swift in Sources */,
 				B511E01B2813DA8900B87FB7 /* MockRepository.swift in Sources */,
+				B50782BC2816BA9C00445859 /* DataCache.swift in Sources */,
 				376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */,
 				B511E018281337B100B87FB7 /* RepositoryApplicable.swift in Sources */,
 				B511E00E28123ECE00B87FB7 /* JSONHandlable.swift in Sources */,
 				B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */,
+				B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */,
 				B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */,
+				B50782B82816866900445859 /* NetworkHandler.swift in Sources */,
 				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
 				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
 				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
 				B511E011281323A500B87FB7 /* Repository.swift in Sources */,
 				37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */,
 				B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */,
+				B50782B72816866900445859 /* NetworkHandlable.swift in Sources */,
 				B511E01628132AD500B87FB7 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
