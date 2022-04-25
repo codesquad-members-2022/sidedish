@@ -9,7 +9,6 @@ drop table if exists side_dish_image;
 drop table if exists discount_event;
 drop table if exists side_dish_has_discount_event;
 drop table if exists member;
-drop table if exists access_token;
 
 set
 foreign_key_checks = 1;
@@ -92,16 +91,4 @@ create table member
     scope        varchar(100) not null comment 'scope',
 
     unique (user_id, provider)
-);
-
-create table access_token
-(
-    id           bigint primary key auto_increment,
-    access_token varchar(100) not null comment 'access-token',
-    token_type   varchar(100) not null comment 'token_type',
-    scope        varchar(100) not null comment 'scope',
-
-    member_id    bigint,
-
-    foreign key (member_id) references member (id)
 );
