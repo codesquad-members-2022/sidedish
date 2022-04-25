@@ -13,7 +13,7 @@ final class ProductSceneContainer {
         switch sceneType{
         case .home:
             let viewController = HomeViewController.create(with: repository)
-            return RootNavigationController(rootViewController: viewController)
+            return UINavigationController(rootViewController: viewController)
         case .detail:
             return DetailViewController.create(with: repository)
         }

@@ -31,7 +31,7 @@ extension DishCollectionWrapper: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCollectionViewCell.identifier, for: indexPath) as? DishCollectionViewCell else { return UICollectionViewCell()}
         guard let product = dishes[DishCategory.allCases[indexPath.section]]?[indexPath.item] else { return cell }
-        cell.setProperties(product: product)
+        cell.updateUIProperty(with: product)
         return cell
     }
     

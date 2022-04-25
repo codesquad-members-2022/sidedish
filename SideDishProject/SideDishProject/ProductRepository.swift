@@ -5,36 +5,25 @@ enum ProductRepositoryError: Error {
 }
 
 protocol ProductRepository {
-    func fetchAll(completion: @escaping (Result<[Product], Error>) -> Void)
-    func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], Error>) -> Void)
+    func fetchAll(completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void)
+    func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void)
 }
 
-protocol ProductDetailRepository {
-    func fetchOne(id: UniqueID, completion: @escaping (Result<Product, ProductRepositoryError>) -> Void)
-}
-
-final class MockProductRepository: ProductRepository, ProductDetailRepository {
-    
+final class MockProductRepository {
     private let products: [Product]
     
     init() {
         self.products = MockProductFactory(makeCount: 10).makeRandomProducts()
     }
-    
-    func fetchAll(completion: @escaping (Result<[Product], Error>) -> Void) {
+}
+extension MockProductRepository: ProductRepository{
+
+    func fetchAll(completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void) {
         completion(.success(products))
     }
     
-    func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], Error>) -> Void) {
+    func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void){
         let filteredResults = self.products.filter{ $0.category == category }
         completion(.success(filteredResults))
     }
-    
-    func fetchOne(id: UniqueID, completion: @escaping (Result<Product, ProductRepositoryError>) -> Void) {
-        guard let result = self.products.filter({ $0.id == id }).first else {
-            return completion(.failure(.fetchError))
-        }
-        completion(.success(result))
-    }
 }
-
