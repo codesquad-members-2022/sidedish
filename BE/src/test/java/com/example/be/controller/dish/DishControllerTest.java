@@ -22,6 +22,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.be.domain.category.Country.KOREA;
+
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @ExtendWith(RestDocumentationExtension.class)
@@ -50,8 +52,8 @@ class DishControllerTest {
 
     private List<Dish> getDishes() {
         List<Dish> dishes = new ArrayList<>();
-        Dish dishA = new Dish("한식", "한국 전통음식", new BigDecimal(30000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10, null);
-        Dish dishB = new Dish("일식", "일본 전통음식", new BigDecimal(20000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10, null);
+        Dish dishA = new Dish("한식", "한국 전통음식", new BigDecimal(30000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10, 1L, null);
+        Dish dishB = new Dish("일식", "일본 전통음식", new BigDecimal(20000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10, 1L, null);
         dishes.add(dishA);
         dishes.add(dishB);
         return dishes;
@@ -59,8 +61,8 @@ class DishControllerTest {
 
     private List<SubCategory> getSubCategories() {
         List<SubCategory> subCategories = new ArrayList<>();
-        SubCategory subCategoryA = new SubCategory("국밥");
-        SubCategory subCategoryB = new SubCategory("어류");
+        SubCategory subCategoryA = new SubCategory("", KOREA);
+        SubCategory subCategoryB = new SubCategory("", KOREA);
         subCategories.add(subCategoryA);
         subCategories.add(subCategoryB);
         return subCategories;
@@ -69,7 +71,7 @@ class DishControllerTest {
     private Category getCategory() {
         List<Dish> dishes = getDishes();
         List<SubCategory> subCategories = getSubCategories();
-        return new Category("한국 전통음식", dishes, subCategories);
+        return new Category("한국 전통음식입니다.", subCategories);
     }
 
     @Test

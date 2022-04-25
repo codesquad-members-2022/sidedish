@@ -2,11 +2,12 @@ package com.example.be.domain.dish;
 
 import com.example.be.domain.image.Image;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,10 +28,11 @@ public class Dish {
     @JoinColumn(joinColumn = "categoryId")
     private Long categoryId;
 
-    @MappedCollection(idColumn = "dishId", keyColumn = "")
-    private List<Image> images = new ArrayList<>();
+    @MappedCollection(idColumn = "dishId", keyColumn = "dishId")
+    private List<Image> images;
 
-    public Dish(String name, String description, BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, int count, List<Image> images) {
+    @PersistenceConstructor
+    public Dish(String name, String description, BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, int count, Long categoryId, List<Image> images) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -39,7 +41,8 @@ public class Dish {
         this.thumbnail = thumbnail;
         this.dishStatus = dishStatus;
         this.count = count;
-        this.images = images;
+        this.categoryId = categoryId;
+        this.images = new LinkedList<>(images);
     }
 
     public Long getDishId() {

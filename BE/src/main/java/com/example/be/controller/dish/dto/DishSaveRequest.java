@@ -37,7 +37,7 @@ public class DishSaveRequest {
     }
 
     public Dish toEntity() {
-        return new Dish(name, description, normalPrice, badge, deliveryPriceOption, thumbnail, dishStatus, count, images);
+        return new Dish(name, description, normalPrice, badge, deliveryPriceOption, thumbnail, dishStatus, count, categoryId, images);
     }
 
     public String getName() {

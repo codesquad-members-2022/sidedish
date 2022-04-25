@@ -20,10 +20,12 @@ public class DishService {
 
     private final DishJdbcReadRepository dishJdbcReadRepository;
     private final DishRepository dishRepository;
+    private final InMemogryDatabase inMemogryDatabase;
 
-    public DishService(DishJdbcReadRepository dishJdbcReadRepository, DishRepository dishRepository) {
+    public DishService(DishJdbcReadRepository dishJdbcReadRepository, DishRepository dishRepository, InMemogryDatabase inMemogryDatabase) {
         this.dishJdbcReadRepository = dishJdbcReadRepository;
         this.dishRepository = dishRepository;
+        this.inMemogryDatabase = inMemogryDatabase;
     }
 
     @Transactional(readOnly = true)

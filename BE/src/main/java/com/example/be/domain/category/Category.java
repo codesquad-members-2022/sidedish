@@ -1,11 +1,11 @@
 package com.example.be.domain.category;
 
-import com.example.be.domain.dish.Dish;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Table("category")
@@ -13,30 +13,23 @@ public class Category {
 
     @Id
     private Long categoryId;
-    private String title;
+    private String description;
 
     @MappedCollection(idColumn = "category_id", keyColumn = "dish_id")
-    private List<Dish> dishes = new ArrayList<>();
+    private List<SubCategory> subCategories;
 
-    @MappedCollection(idColumn = "category_id", keyColumn = "dish_id")
-    private List<SubCategory> subCategories = new ArrayList<>();
-
-    public Category(String title, List<Dish> dishes, List<SubCategory> subCategories) {
-        this.title = title;
-        this.dishes = dishes;
-        this.subCategories = subCategories;
+    @PersistenceConstructor
+    public Category(String description, List<SubCategory> subCategories) {
+        this.description = description;
+        this.subCategories = new LinkedList<>(subCategories);
     }
 
     public Long getCategoryId() {
         return categoryId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public List<Dish> getDishes() {
-        return dishes;
+    public String getDescription() {
+        return description;
     }
 
     public List<SubCategory> getSubCategories() {

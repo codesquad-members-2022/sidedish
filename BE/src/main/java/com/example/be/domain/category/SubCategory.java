@@ -8,9 +8,11 @@ public class SubCategory {
 
     @Id
     private Long subCategoryId;
-    private String name;
+    private String descriptionDetail;
+    private Country country;
 
-    public SubCategory(String name) {
-        this.name = name;
+    public SubCategory(String descriptionDetail, Country country) {
+        this.descriptionDetail = descriptionDetail;
+        this.country = country;
     }
 }
