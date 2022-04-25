@@ -1,11 +1,12 @@
 package kr.codesquad.sidedish.domain;
 
 import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 public class Event {
- 
+
     @Id
     private Long id;
     private String name;
@@ -14,7 +15,7 @@ public class Event {
     private List<Dish> dishes;
 
     public Event(Long id, String name, String description,
-        List<Dish> dishes) {
+                 List<Dish> dishes) {
         this.id = id;
         this.name = name;
         this.description = description;

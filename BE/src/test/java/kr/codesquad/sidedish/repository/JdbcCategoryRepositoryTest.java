@@ -22,6 +22,7 @@ class JdbcCategoryRepositoryTest {
     void setUp() {
         category = new Category(null, "짱민", "짱");
     }
+
     @Test
     void test() {
 

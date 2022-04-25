@@ -36,7 +36,7 @@ public class DishDetailResponse {
 
     public static DishDetailResponse from(Dish dish) {
         return new DishDetailResponse(dish.getId(), dish.getName(), dish.getDescription(), dish.getPrice(),
-                dish.getDiscountPrice(),  dish.getPoint(), dish.getDiscountPolicy(),
+                dish.getDiscountPrice(), dish.getPoint(), dish.getDiscountPolicy(),
                 dish.getDeliveryType(), dish.getImages());
     }
 

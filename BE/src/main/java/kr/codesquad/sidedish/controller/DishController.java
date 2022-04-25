@@ -1,6 +1,7 @@
 package kr.codesquad.sidedish.controller;
 
 import java.util.List;
+
 import kr.codesquad.sidedish.dto.DishDetailResponse;
 import kr.codesquad.sidedish.dto.DishSimpleResponse;
 import kr.codesquad.sidedish.service.DishService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/dish")
+@RequestMapping("/dishes")
 public class DishController {
 
     private final DishService dishService;
@@ -29,11 +30,11 @@ public class DishController {
         return ResponseEntity.ok(one);
     }
 
-    @GetMapping("/paging")
-    public ResponseEntity<List<DishSimpleResponse>> paging(
-        @RequestParam("lastDishId") Long lastDishId,
-        @RequestParam("categoryId") Long categoryId) {
+    @GetMapping("/")
+    public ResponseEntity<List<DishSimpleResponse>> showPagedDishes(
+            @RequestParam("categoryId") Long categoryId,
+            @RequestParam("lastDishId") Long lastDishId) {
 
-        return ResponseEntity.ok(dishService.getNextDishes(lastDishId, categoryId));
+        return ResponseEntity.ok(dishService.findNextDishes(categoryId, lastDishId));
     }
 }

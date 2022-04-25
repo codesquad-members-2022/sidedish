@@ -19,8 +19,8 @@ public class DishSimpleResponse {
     private final DiscountPolicy discountPolicy;
 
     public DishSimpleResponse(Long id, String name, String description, String image, int stock,
-        int normalPrice, int discountPrice, DeliveryType deliveryType,
-        DiscountPolicy discountPolicy) {
+                              int normalPrice, int discountPrice, DeliveryType deliveryType,
+                              DiscountPolicy discountPolicy) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -34,8 +34,8 @@ public class DishSimpleResponse {
 
     public static DishSimpleResponse of(Dish dish) {
         return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(),
-                                    dish.getImageName(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
-                                    dish.getDeliveryType(), dish.getDiscountPolicy());
+                dish.getImageName(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
+                dish.getDeliveryType(), dish.getDiscountPolicy());
     }
 
 

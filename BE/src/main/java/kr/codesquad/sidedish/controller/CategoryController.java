@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping("/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -16,7 +17,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategorizedDishes> findCategorizedById(@PathVariable Long id) {
+    public ResponseEntity<CategorizedDishes> showCategorizedDishes(@PathVariable Long id) {
         CategorizedDishes categorizedDishes = categoryService.findDishesByCategoryId(id);
 
         return ResponseEntity.ok(categorizedDishes);

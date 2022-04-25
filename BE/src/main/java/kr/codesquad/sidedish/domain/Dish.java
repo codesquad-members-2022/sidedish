@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Dish {
 
-
     @Id
     private final Long id;
     private final Long categoryId;
@@ -23,8 +22,8 @@ public class Dish {
     private final double pointPercent;
 
     public Dish(Long id, Long categoryId, Long eventId, String name, String description, int stock,
-        int price, DeliveryType deliveryType,
-        DiscountPolicy discountPolicy, List<Image> images, double pointPercent) {
+                int price, DeliveryType deliveryType,
+                DiscountPolicy discountPolicy, List<Image> images, double pointPercent) {
         this.id = id;
         this.categoryId = categoryId;
         this.eventId = eventId;

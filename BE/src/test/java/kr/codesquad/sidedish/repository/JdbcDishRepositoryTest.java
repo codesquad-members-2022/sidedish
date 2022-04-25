@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 
 import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 
 import static org.assertj.core.api.Assertions.*;
@@ -26,12 +27,6 @@ class JdbcDishRepositoryTest {
     void find_dish_with_image() {
         Dish dish = jdbcDishRepository.findById(1L).orElseThrow();
 
-        assertThat(dish.getImages()).hasSize(3);
-        assertThat(dish.getCategoryId()).isEqualTo(1L);
-        assertThat(dish.getEventId()).isEqualTo(1L);
-        assertThat(dish.getImages().get(0).getName()).isEqualTo("짱민아침메인사진.jpg");
-        assertThat(dish.getImages().get(1).getName()).isEqualTo("짱민아침서브사진.jpg");
-        assertThat(dish.getImages().get(2).getName()).isEqualTo("짱민아침디테일사진.jpg");
         System.out.println(dish);
     }
 
@@ -53,7 +48,6 @@ class JdbcDishRepositoryTest {
         for (Dish dish : dishesByCategoryId) {
             System.out.println(dish);
         }
-
 
 
     }

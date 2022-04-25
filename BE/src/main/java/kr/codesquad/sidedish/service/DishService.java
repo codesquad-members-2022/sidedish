@@ -2,6 +2,7 @@ package kr.codesquad.sidedish.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.dto.DishDetailResponse;
 import kr.codesquad.sidedish.dto.DishSimpleResponse;
@@ -25,13 +26,13 @@ public class DishService {
         return DishDetailResponse.from(dish);
     }
 
-    public List<DishSimpleResponse> getNextDishes(Long lastDishId, Long categoryId) {
+    public List<DishSimpleResponse> findNextDishes(Long categoryId, Long lastDishId) {
         int currentPage = (int) (lastDishId / PAGE_SIZE);
         PageRequest p = PageRequest.of(currentPage, PAGE_SIZE);
 
         return jdbcDishRepository.findDishesByCategoryId(categoryId, p)
-            .stream().map(DishSimpleResponse::of)
-            .collect(Collectors.toList());
+                .stream().map(DishSimpleResponse::of)
+                .collect(Collectors.toList());
     }
 
 }
