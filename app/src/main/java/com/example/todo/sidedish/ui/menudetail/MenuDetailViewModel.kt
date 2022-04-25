@@ -10,12 +10,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class MenuDetailViewModel @Inject constructor(
     private val menuRepository: Repository
 ) : ViewModel() {
-
 
     private val detailInfo = MutableLiveData<MenuDetail>()
     val _detailInfo: LiveData<MenuDetail> = detailInfo

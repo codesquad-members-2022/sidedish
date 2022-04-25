@@ -3,7 +3,6 @@ package com.example.todo.sidedish.ui.menudetail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todo.sidedish.common.GlideApp
 import com.example.todo.sidedish.databinding.ItemViepagerBinding
 
 class ViewPagerAdapter() :RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>(){

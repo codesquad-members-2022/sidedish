@@ -40,7 +40,6 @@ class MenuDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.rvDetail.adapter= menuDetailAdapter
         binding.vpItemDetailImg.adapter= viewPagerAdapter
-
         registerOrderQuantityControlBtn()
         setMenuInfo()
 
@@ -86,7 +85,7 @@ class MenuDetailFragment : Fragment() {
     private fun setTotalPay(){
         val totalCount =  binding.tvOrderCountValue.text.toString().toInt()
         val menuPrice= splitMenuPrice(binding.tvMenuPrice.text.toString())
-        binding.tvTotalPayValue.text = "${totalCount*(menuPrice)}원"
+        binding.tvTotalPayValue.text = "${totalCount*(menuPrice)} 원"
     }
 
     private fun setMenuInfo(){
