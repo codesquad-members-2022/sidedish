@@ -33,29 +33,48 @@ const CarouselButtonWrapper = styled.div`
   ${({ dir }) => (dir === "left" ? "left: 36px" : "right: 36px")}
 `;
 
-const CarouselButton = ({ dir, onClick }) => (
-  <CarouselButtonWrapper dir={dir} onClick={onClick}>
-    {dir === "left" ? <LeftArrowIcon /> : <RightArrowIcon />}
+const CarouselButton = ({ dir, onBtnClick, isEndPage }) => (
+  <CarouselButtonWrapper dir={dir} onClick={onBtnClick}>
+    {dir === "left" ? <LeftArrowIcon isEndPage={isEndPage} /> : <RightArrowIcon isEndPage={isEndPage} />}
   </CarouselButtonWrapper>
 );
 
 export const Carousel = ({ categoryID, categoryName, size }) => {
   const [firstCardIndex, setfirstCardIndex] = useState(0);
+  const [isFirstPage, setIsFirstPage] = useState(true);
+  const [isLastPage, setIsLastPage] = useState(false);
   const categoryData = useFetch(categoryID);
 
   const moveSlide = (dir) => {
-    console.log("hi");
-    const newFirstCardIndex = firstCardIndex + cardNumPerPage[size];
+    const slideLength = categoryData.products.length;
+    const maxFirstCardIndex = slideLength - cardNumPerPage[size];
+    let newFirstCardIndex;
+    if (dir === "left") {
+      newFirstCardIndex = Math.max(firstCardIndex - cardNumPerPage[size], 0);
+    } else if (dir === "right") {
+      newFirstCardIndex = Math.min(firstCardIndex + cardNumPerPage[size], maxFirstCardIndex);
+    }
     setfirstCardIndex(newFirstCardIndex);
-    console.log(firstCardIndex);
+    checkPageRemain(newFirstCardIndex, maxFirstCardIndex);
+  };
+
+  const checkPageRemain = (firstCardIndex, maxFirstCardIndex) => {
+    if (firstCardIndex === 0) {
+      setIsFirstPage(true);
+    } else if (firstCardIndex === maxFirstCardIndex) {
+      setIsLastPage(true);
+    } else {
+      setIsFirstPage(false);
+      setIsLastPage(false);
+    }
   };
 
   return (
     <CarouselWrapper>
       <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
       <CardList products={categoryData?.products} cardSize={size} firstCardIndex={firstCardIndex} />
-      <CarouselButton onClick={moveSlide} dir={"left"} />
-      <CarouselButton onClick={moveSlide} dir={"right"} />
+      <CarouselButton onBtnClick={() => moveSlide("left")} dir={"left"} isEndPage={isFirstPage} />
+      <CarouselButton onBtnClick={() => moveSlide("right")} dir={"right"} isEndPage={isLastPage} />
     </CarouselWrapper>
   );
 };
