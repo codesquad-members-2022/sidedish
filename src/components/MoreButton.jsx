@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Text from './Text';
 import COLOR from '../variable/color';
 
-export default function MoreButton(props) {
-  const { value } = props;
+export default function MoreButton({ value }) {
   return (
     <Wrap>
       <Text size="X_LARGE" weight="REGULAR" value={value} />

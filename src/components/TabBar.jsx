@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TabButton from './TabButton';
 
-export default function TabBar(props) {
-  const { tabNames } = props;
+export default function TabBar({ tabNames }) {
   return <Wrap>{tabNames.map(getTabButton)}</Wrap>;
 }
 

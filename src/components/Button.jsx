@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Text from './Text';
 import COLOR from '../variable/color';
 
-export default function Button(props) {
-  const { value, disabled } = props;
+export default function Button({ value, disabled }) {
   return (
     <Wrap disabled={disabled}>
       <Text size="LARGE" color="OFF_WHITE" weight="BOLD" value={value} />

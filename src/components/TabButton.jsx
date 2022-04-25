@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import COLOR from '../variable/color';
 import Text from './Text';
 
-export default function TabButton(props) {
-  const { value, isSelected } = props;
+export default function TabButton({ value, isSelected }) {
   return (
     <Wrap isSelected={isSelected}>
       <Text size="X_LARGE" value={value} />

@@ -5,8 +5,7 @@ import Tag from './Tag';
 import Text from './Text';
 import HoverInfo from '../images/HoverInfo.png';
 
-export default function Card(props) {
-  const { size, imageURL, title, desc, curPrice, prevPrice, tags } = props;
+export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {
   const [isHoverImg, setHoverImg] = useState(false);
   const isSmall = size === 'SMALL';
   return (

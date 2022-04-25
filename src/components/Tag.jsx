@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Text from './Text';
 import COLOR from '../variable/color';
 
-export default function Tag(props) {
-  const { type } = props;
+export default function Tag({ type }) {
   return (
     <PillShape type={type}>
       <Text size="SMALL" color="WHITE" value={type} />

@@ -9,8 +9,7 @@ import { ReactComponent as Next } from '../images/icon_next.svg';
 import { ReactComponent as Plus } from '../images/icon_plus.svg';
 import { ReactComponent as Minus } from '../images/icon_minus.svg';
 
-function Icon(props) {
-  const { icon, width, height, fill } = props;
+function Icon({ icon, width, height, fill }) {
   switch (icon) {
     case 'search':
       return <Search width={width} height={height} fill={fill} stroke={fill} />;
@@ -31,8 +30,7 @@ function Icon(props) {
   }
 }
 
-export default function IconButton(props) {
-  const { icon, width, height, fill } = props;
+export default function IconButton({ icon, width, height, fill }) {
   return (
     <Wrap>
       <Icon icon={icon} width={width} height={height} fill={fill} />
