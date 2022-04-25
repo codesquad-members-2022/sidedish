@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 
 public enum InternalServerException implements BaseExceptionType {
 
-    INTERNAL_SERVER_ERROR(500, "서버 내부 문제가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+    INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 
     private final int errorCode;
     private final String message;
