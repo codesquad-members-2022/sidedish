@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Header } from "@/components/templates/Header/Header";
 import { Promotion } from "@/components/templates/Promotion/Promotion";
 =======
@@ -37,8 +38,11 @@ import { Header } from "./components/Header/Header";
 =======
 import { Header } from "@src/components/Header/Header";
 >>>>>>> e0194a0 ([#8] Refactor: import 경로 수정)
+=======
+import { Header } from "@/components/Header/Header";
+>>>>>>> 82dc859 (Chore: config의 절대경로 alias 수정)
 import "./App.scss";
-import { Promotion } from "@src/components/Promotion/Promotion";
+import { Promotion } from "@/components/Promotion/Promotion";
 
 function App() {
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import App from "@/App";
 =======
 import App from "./App";
@@ -16,6 +17,9 @@ import App from "@src/App";
 window.React = React;
 >>>>>>> 3caa9c6 ([#6] Chore: sass 모듈 추가, react 인식 불가 에러 해결)
 =======
+=======
+import App from "@/App";
+>>>>>>> 82dc859 (Chore: config의 절대경로 alias 수정)
 
 >>>>>>> b3671d9 ([#6] Chore: babel config에 `runtime: automatic' 추가)
 const root = ReactDOM.createRoot(document.getElementById("root"));

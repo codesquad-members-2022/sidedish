@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./Header.scss";
-import logo from "@src/assets/image/logo.svg";
-import cart from "@src/assets/image/cart.svg";
-import myPage from "@src/assets/image/myPage.svg";
-import search from "@src/assets/image/search.svg";
+import logo from "@/assets/image/logo.svg";
+import cart from "@/assets/image/cart.svg";
+import myPage from "@/assets/image/myPage.svg";
+import search from "@/assets/image/search.svg";
 
 function Logo() {
   return (
