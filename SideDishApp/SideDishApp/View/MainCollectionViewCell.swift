@@ -11,13 +11,13 @@ class MainCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MainCollectionViewCell"
 
-    @IBOutlet weak private var mainImage: UIImageView!
+    @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak private var infoContainer: UIStackView!
     @IBOutlet weak private var title: UILabel!
     @IBOutlet weak private var productDescription: UILabel!
     @IBOutlet weak private var priceContainer: UIStackView!
     @IBOutlet weak private var salePrice: UILabel!
-    @IBOutlet weak var badgeContainer: UIStackView!
+    @IBOutlet weak private var badgeContainer: UIStackView!
 
     private lazy var originalPrice: UILabel = {
         let label = UILabel()
@@ -47,7 +47,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 extension MainCollectionViewCell {
 
     func configureCell(product: ProductCellViewModel) {
-        mainImage.image = UIImage(named: "1155_ZIP_P_0081_T")
+        mainImage.image = UIImage(named: "ImagePlaceHolder")
         title.text = product.title
         productDescription.text = product.description
         salePrice.text = product.salePrice.priceTag

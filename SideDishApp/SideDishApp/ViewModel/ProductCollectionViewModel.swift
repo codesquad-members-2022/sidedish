@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import UIKit.UIImage
-import UIKit
+
 // This is going to represent single viewModel that drives productCollectionView
 
 struct CategorySectionViewModel {
@@ -18,7 +17,7 @@ struct CategorySectionViewModel {
 struct ProductCollectionViewModel {
 
     private let categoryManager = CategoryManager()
-    private var imageCache = NSCache<NSURL, UIImage>()
+    private var imageCache = NSCache<NSURL, NSData>()
 
     public var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
 
@@ -63,17 +62,17 @@ struct ProductCollectionViewModel {
         })
     }
 
-    func fetchImage(from url: URL, then completion: @escaping (UIImage?) -> Void) {
+    func fetchImage(from url: URL, then completion: @escaping (NSData?) -> Void) {
         if let image = imageCache.object(forKey: url as NSURL) {
             return completion(image)
         }
 
         categoryManager.fetchImageData(of: url) { data in
-            guard let data = data, let image = UIImage(data: data) else {
+            guard let data = data as? NSData else {
                 return completion(nil)
             }
-            imageCache.setObject(image, forKey: url as NSURL)
-            completion(image)
+            imageCache.setObject(data, forKey: url as NSURL)
+            completion(data)
         }
     }
 }

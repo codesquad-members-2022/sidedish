@@ -63,9 +63,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
-
-        cell.configureCell(product: viewModel[indexPath]!)
-
+        guard let productVM = viewModel[indexPath] else {return UICollectionViewCell()}
+        viewModel.fetchImage(from: productVM.imageURL) { nsData in
+            guard let nsData = nsData else { return }
+            DispatchQueue.main.async {
+                cell.mainImage.image = UIImage(data: Data(referencing: nsData))
+            }
+        }
+        cell.configureCell(product: productVM)
         return cell
     }
 
@@ -85,6 +90,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         default:
             return UICollectionReusableView()
         }
+
     }
 
 }
