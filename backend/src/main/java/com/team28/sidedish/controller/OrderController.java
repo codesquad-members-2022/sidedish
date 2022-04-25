@@ -46,11 +46,4 @@ public class OrderController {
         orderService.order(orderRequest.getProductId(), orderRequest.getQuantity());
         return ResponseEntity.noContent().build();
     }
-
-    @ExceptionHandler(value = IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e) {
-        ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
-
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
 }
