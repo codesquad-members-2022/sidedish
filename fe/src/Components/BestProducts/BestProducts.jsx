@@ -2,7 +2,8 @@ import { CategoryBadge } from '@Components/Badge/CategoryBadge';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { ProductCard } from './ProductCard';
+import { ProductCard } from '@Components/ProductCard';
+
 import { TabList } from './TabList';
 
 import Colors from '@/Constants/Colors';
@@ -12,7 +13,6 @@ import { fetchData } from '@/Utils/Utils';
 const BestProductWrapper = styled.div`
   display: flex;
   padding: 56px 80px;
-  margin: 0 -80px;
   border-bottom: 1px solid ${Colors.LIGHT_GREY};
   flex-direction: column;
 `;

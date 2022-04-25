@@ -1,9 +1,16 @@
+import {CategoryList} from "@Components/CategoryProducts/CategoryList";
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
+import {BestProducts} from "@Components/BestProducts";
 import { Header } from '@Components/Header';
-import { Main } from '@Components/Main';
 
 import { fetchData } from '@/Utils/Utils';
+
+const Root = styled.div`
+  width: 1440px;
+  margin: 0 auto;
+`
 
 const App = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -39,15 +46,15 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <Root>
       <Header categoryList={categoryList} error={error} />
-      <Main
-        error={error}
+      <BestProducts />
+      <CategoryList
         categoryList={categoryList}
         categoryProductList={categoryProductList}
         setCategoryProductList={setCategoryProductList}
       />
-    </>
+    </Root>
   );
 };
 

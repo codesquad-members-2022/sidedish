@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ProductCard } from './ProductCard';
+import { ProductCard } from '@Components/ProductCard';
 
 const CategoryWrapper = styled.li`
   width: 1280px;

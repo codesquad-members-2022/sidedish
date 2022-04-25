@@ -5,7 +5,9 @@ import { Category } from './Category';
 
 import Colors from '@/Constants/Colors';
 
-const CategoryListWrapper = styled.ul``;
+const CategoryListWrapper = styled.ul`
+  padding: 0 80px;
+`;
 
 const MoreButton = styled.button`
   display: block;

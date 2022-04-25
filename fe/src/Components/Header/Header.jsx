@@ -6,10 +6,9 @@ import { UserActionButtons } from './UserActionButtons';
 import Colors from '@/Constants/Colors';
 
 const HeaderWrapper = styled.header`
-  width: 1440px;
+  width: 100%;
   padding: 16px 80px;
   border-bottom: 1px solid ${Colors.BLACK};
-  margin: 0 auto;
   display: flex;
   align-items: flex-start;
 `;
