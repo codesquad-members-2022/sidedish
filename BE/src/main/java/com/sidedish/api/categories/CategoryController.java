@@ -1,6 +1,7 @@
 package com.sidedish.api.categories;
 
 import com.sidedish.api.categories.dto.ItemResource;
+import com.sidedish.api.categories.dto.ResponseItemDto;
 import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
 import com.sidedish.service.ItemService;
@@ -50,6 +51,14 @@ public class CategoryController {
         responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId+1, pageCount)).withRel("next-page"));
 
         return responseMainType;
+    }
+
+    @GetMapping("/{type}/detail")
+    public List<ResponseItemDto> getItemByDetailType(@PathVariable String type) {
+        log.info("type {}", type);
+        List<Item> findItems = itemService.findItemByDetailType(type);
+        log.info("findItems {}", findItems);
+        return findItems.stream().map(ResponseItemDto::new).limit(3).collect(Collectors.toList());
     }
 
     @ExceptionHandler
