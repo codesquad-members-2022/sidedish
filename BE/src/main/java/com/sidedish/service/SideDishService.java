@@ -1,6 +1,7 @@
 package com.sidedish.service;
 
 import com.sidedish.domain.SideDish;
+import com.sidedish.dto.SideDishDto;
 import com.sidedish.dto.SideDishListDto;
 import com.sidedish.mapper.SideDishMapper;
 import com.sidedish.repository.SideDishRepository;
@@ -17,13 +18,18 @@ public class SideDishService {
     private final SideDishRepository sideDishRepository;
 
     public SideDishListDto getSideDishList(Integer eventCategoryId) {
-        SideDishMapper mapper = new SideDishMapper();
         List<SideDish> sideDishes = sideDishRepository.findAllByEventCategoryId(eventCategoryId);
-        Collections.shuffle(sideDishes);
 
-        return new SideDishListDto(sideDishes.stream()
+        return new SideDishListDto(shuffleSideDishes(sideDishes));
+    }
+
+    private List<SideDishDto> shuffleSideDishes(List<SideDish> sideDishes) {
+        Collections.shuffle(sideDishes);
+        SideDishMapper mapper = new SideDishMapper();
+
+        return sideDishes.stream()
             .limit(3)
             .map(mapper::convertToDto)
-            .collect(Collectors.toList()));
+            .collect(Collectors.toList());
     }
 }

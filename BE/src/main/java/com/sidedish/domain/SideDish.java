@@ -33,7 +33,7 @@ public class SideDish {
     public String getMainImage() {
         String saveFileName = null;
         for (ImageFile imageFile : imageFiles) {
-            if (imageFile.hasMainImageType()) {
+            if (imageFile.isMainImageType()) {
                 saveFileName = imageFile.getSaveFileName();
             }
         }

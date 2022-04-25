@@ -10,6 +10,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("image_file")
 public class ImageFile {
 
+    private static final String MAIN_IMAGE_TYPE = "main";
+
     @Id
     private Integer id;
     private Integer sidedishId;
@@ -24,8 +26,8 @@ public class ImageFile {
     @Column("modified_datetime")
     private LocalDateTime modifiedDateTime;
 
-    public boolean hasMainImageType() {
-        return imageType.equals("main");
+    public boolean isMainImageType() {
+        return imageType.equals(MAIN_IMAGE_TYPE);
     }
 
     public String getSaveFileName() {
