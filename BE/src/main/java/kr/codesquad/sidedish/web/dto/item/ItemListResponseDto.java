@@ -4,67 +4,67 @@ import kr.codesquad.sidedish.domain.Item;
 
 public class ItemListResponseDto {
 
-    private Long item_id;
-    private String item_name;
+    private Long itemId;
+    private String itemName;
     private String description;
-    private Integer or_price;
-    private Integer dc_price;
-    private Integer label_id;
-    private String main_image;
-    private Integer delivery_id;
-    private Long best_id;
+    private Integer originalPrice;
+    private Integer discountPrice;
+    private Integer labelId;
+    private String mainImage;
+    private Integer deliveryId;
+    private Long bestId;
 
-    public ItemListResponseDto(Long item_id, String item_name, String description, Integer or_price, Integer dc_price, Integer label_id, String main_image, Integer delivery_id, Long best_id) {
-        this.item_id = item_id;
-        this.item_name = item_name;
+    public ItemListResponseDto(Long itemId, String itemName, String description, Integer originalPrice, Integer discountPrice, Integer labelId, String mainImage, Integer deliveryId, Long bestId) {
+        this.itemId = itemId;
+        this.itemName = itemName;
         this.description = description;
-        this.or_price = or_price;
-        this.dc_price = dc_price;
-        this.label_id = label_id;
-        this.main_image = main_image;
-        this.delivery_id = delivery_id;
-        this.best_id = best_id;
+        this.originalPrice = originalPrice;
+        this.discountPrice = discountPrice;
+        this.labelId = labelId;
+        this.mainImage = mainImage;
+        this.deliveryId = deliveryId;
+        this.bestId = bestId;
     }
 
     public static ItemListResponseDto of(Item item) {
-        return new ItemListResponseDto(item.getItem_id(), item.getItem_name(), item.getDescription(),
-                item.getOr_price(), item.getDc_price(), item.getLabel_id(), item.getMain_image(),
-                item.getDelivery_id(), item.getBest_id());
+        return new ItemListResponseDto(item.getItemId(), item.getItemName(), item.getDescription(),
+                item.getOriginalPrice(), item.getDiscountPrice(), item.getLabelId(), item.getMainImage(),
+                item.getDeliveryId(), item.getBestId());
     }
 
-    public Long getItem_id() {
-        return item_id;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public String getItem_name() {
-        return item_name;
+    public String getItemName() {
+        return itemName;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Integer getOr_price() {
-        return or_price;
+    public Integer getOriginalPrice() {
+        return originalPrice;
     }
 
-    public Integer getDc_price() {
-        return dc_price;
+    public Integer getDiscountPrice() {
+        return discountPrice;
     }
 
-    public Integer getLabel_id() {
-        return label_id;
+    public Integer getLabelId() {
+        return labelId;
     }
 
-    public String getMain_image() {
-        return main_image;
+    public String getMainImage() {
+        return mainImage;
     }
 
-    public Integer getDelivery_id() {
-        return delivery_id;
+    public Integer getDeliveryId() {
+        return deliveryId;
     }
 
-    public Long getBest_id() {
-        return best_id;
+    public Long getBestId() {
+        return bestId;
     }
 }
