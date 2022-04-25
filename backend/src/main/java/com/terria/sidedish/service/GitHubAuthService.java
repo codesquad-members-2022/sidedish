@@ -4,7 +4,9 @@ import com.terria.sidedish.domain.Member;
 import com.terria.sidedish.dto.auth.GitHubAccessToken;
 import com.terria.sidedish.dto.auth.GitHubUser;
 import com.terria.sidedish.dto.auth.Provider;
+import com.terria.sidedish.dto.response.MemberResponse;
 import com.terria.sidedish.error.GitHubOAuthException;
+import com.terria.sidedish.error.OAuthException;
 import com.terria.sidedish.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +20,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import static com.terria.sidedish.error.ErrorCode.GITHUB_USER_ERROR;
+import static com.terria.sidedish.error.ErrorCode.*;
 
 @Slf4j
 @Service
@@ -34,22 +36,23 @@ public class GitHubAuthService {
     @Value("${oauth.github.clientSecret}")
     private String clientSecret;
 
-    public Member login(String code) {
-        GitHubUser gitHubUser = requestUserInfo(requestAccessToken(code));
+    public MemberResponse login(String code) {
+        GitHubAccessToken gitHubAccessToken = requestAccessToken(code);
+        GitHubUser gitHubUser = requestUserInfo(gitHubAccessToken);
 
         String userId = gitHubUser.getUserId();
         Provider provider = Provider.of(gitHubUser.getProvider());
 
+        Member member = gitHubUser.toEntity();
+
         if (!memberRepository.existsByUserIdAndProvider(userId, provider)) {
-            memberRepository.save(gitHubUser.toEntity());
+            memberRepository.save(member);
         }
 
-        Member newMember = memberRepository.findByUserIdAndProvider(userId, provider)
-                .orElseThrow();
+        log.info("Member: {}", memberRepository.findByUserIdAndProvider(userId, provider)
+                .orElseThrow(() -> new OAuthException(NO_SUCH_MEMBER_ERROR)));
 
-        log.info("Member: {}", newMember);
-
-        return newMember;
+        return MemberResponse.from(member);
     }
 
     private GitHubAccessToken requestAccessToken(String code) {
@@ -89,11 +92,12 @@ public class GitHubAuthService {
                 );
 
         if (response.getStatusCode().isError() || response.getBody() == null) {
-            throw new GitHubOAuthException(GITHUB_USER_ERROR);
+            throw new GitHubOAuthException(EXHIBITION_VALIDATION_ERROR);
         }
 
         GitHubUser gitHubUser = response.getBody();
         gitHubUser.setProvider(response.getHeaders().getFirst("Server"));
+        gitHubUser.setAccessToken(accessToken);
 
         return gitHubUser;
     }

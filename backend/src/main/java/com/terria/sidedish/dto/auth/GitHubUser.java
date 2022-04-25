@@ -18,12 +18,23 @@ public class GitHubUser {
 
     private String provider;
 
+    private GitHubAccessToken gitHubAccessToken;
+
     public void setProvider(String provider) {
         this.provider = provider;
     }
 
+    public void setAccessToken(GitHubAccessToken gitHubAccessToken) {
+        this.gitHubAccessToken = gitHubAccessToken;
+    }
+
     public Member toEntity() {
-        return new Member(0, userId, Provider.of(provider), email, name);
+        return new Member(
+                0, userId, Provider.of(provider), email, name,
+                gitHubAccessToken.getAccessToken(),
+                gitHubAccessToken.getTokenType(),
+                gitHubAccessToken.getScope()
+        );
     }
 
     @Override

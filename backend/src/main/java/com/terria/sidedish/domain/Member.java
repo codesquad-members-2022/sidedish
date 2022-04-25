@@ -18,4 +18,8 @@ public class Member {
     private Provider provider;
     private String email;
     private String name;
+
+    private String accessToken;
+    private String tokenType;
+    private String scope;
 }
