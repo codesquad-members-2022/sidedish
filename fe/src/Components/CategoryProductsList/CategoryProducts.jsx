@@ -21,14 +21,12 @@ const ProductCardList = styled.ul`
 `;
 
 export const CategoryProducts = props => {
-  if (!props.cardData) return <></>;
-
   return (
     <CategoryProductsWrapper>
       <Header className={'fonts-xl-bold'}>{props.title}</Header>
       <ProductCardList>
-        {props.cardData.map(data => (
-          <ProductCard size={'md'} data={data} key={data.id} />
+        {props.categoryProductsData.map(categoryProductData => (
+          <ProductCard size={'md'} data={categoryProductData} key={categoryProductData.id} />
         ))}
       </ProductCardList>
     </CategoryProductsWrapper>

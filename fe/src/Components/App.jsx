@@ -14,6 +14,7 @@ const Root = styled.div`
 const App = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [categoryProductsList, setCategoryProductsList] = useState([]);
+  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
   const [error, setError] = useState(false);
 
   const fetchInitialData = async () => {
@@ -37,6 +38,7 @@ const App = () => {
       .then(([initialCategoryList, initialCategoryProductList]) => {
         setCategoryList(initialCategoryList);
         setCategoryProductsList(initialCategoryProductList);
+        setIsInitialDataLoaded(true);
       })
       .catch(err => {
         console.error(err);
@@ -52,6 +54,7 @@ const App = () => {
         categoryList={categoryList}
         categoryProductsList={categoryProductsList}
         setCategoryProductsList={setCategoryProductsList}
+        isInitialDataLoaded={isInitialDataLoaded}
       />
     </Root>
   );

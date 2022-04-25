@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { CategoryProducts } from './CategoryProducts';
 
 import Colors from '@/Constants/Colors';
+import { fetchData } from '@/Utils/Utils';
 
 const CategoryProductsListWrapper = styled.ul`
   padding: 0 80px;
@@ -50,21 +51,22 @@ export const CategoryProductsList = props => {
     const unloadedCategoryIds = categoryIds.filter(
       id => id !== loadedCategoryId
     );
-    const requests = unloadedCategoryIds.map(id => fetch(`/category/${id}`));
+    const requests = unloadedCategoryIds.map(id =>
+      fetchData(`/category/${id}`)
+    );
 
     Promise.all(requests)
-      .then(responses => {
-        return Promise.all(responses.map(response => response.json()));
-      })
-      .then(dataArr => {
-        const parsedData = dataArr.map((categoryData, idx) => ({
-          id: unloadedCategoryIds[idx],
-          title: dataArr[idx].content[0].mainCategory,
-          content: dataArr[idx].content,
-        }));
+      .then(categoryProductsListData => {
+        const categoryProductsList = categoryProductsListData.map(
+          (categoryProductsData, idx) => ({
+            id: unloadedCategoryIds[idx],
+            title: categoryProductsData.content[0].mainCategory,
+            content: categoryProductsData.content,
+          })
+        );
         props.setCategoryProductsList([
           ...props.categoryProductsList,
-          ...parsedData,
+          ...categoryProductsList,
         ]);
       })
       .catch(() => {
@@ -75,11 +77,11 @@ export const CategoryProductsList = props => {
 
   return (
     <CategoryProductsListWrapper>
-      {props.categoryProductsList.map(category => (
+      {props.categoryProductsList.map(categoryProducts => (
         <CategoryProducts
-          key={category.id}
-          title={category.title}
-          cardData={category.content}
+          key={categoryProducts.id}
+          title={categoryProducts.title}
+          categoryProductsData={categoryProducts.content}
         />
       ))}
       {!moreButtonClicked && (
@@ -89,9 +91,11 @@ export const CategoryProductsList = props => {
               데이터를 불러오는데 오류가 발생했습니다.
             </LoadingErrorMessage>
           )}
-          <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
-            모든 카테고리 보기
-          </MoreButton>
+          {props.isInitialDataLoaded && (
+            <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
+              모든 카테고리 보기
+            </MoreButton>
+          )}
         </li>
       )}
     </CategoryProductsListWrapper>
