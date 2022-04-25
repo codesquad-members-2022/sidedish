@@ -33,7 +33,7 @@ public class Menu {
 	private final int inventoryQuantity;
 
 	@MappedCollection(idColumn = "IMAGE_MENU_ID", keyColumn = "IMAGE_MENU_ID")
-	private final List<Image> images = new ArrayList<>();
+	private List<Image> images = new ArrayList<>();
 
 	/**
 	 *  type - DB
