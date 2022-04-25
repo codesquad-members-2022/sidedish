@@ -1,4 +1,4 @@
-import NotoSansKR from "fonts/NotoSansKR-Regular.otf";
+import NotoSansKR from "./NotoSansKR-Regular.otf";
 
 const fonts = `
 	@font-face {

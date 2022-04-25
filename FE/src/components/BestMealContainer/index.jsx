@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import styled, { css } from "styled-components";
@@ -11,26 +11,35 @@ function BestMealContainer() {
   const BEST_TITLE_BADGE = "기획전";
   const BEST_TITLE = "한 번 주문하면 두 번 반하는 반찬";
   const BEST_SUBTITLE = ["풍성한 고기 반찬", "편리한 반찬 세트", "맛있는 제철 요리", "우리 아이 영양 반찬"];
+
   const [meals, setMeals] = useState([]);
   const [tab, setTab] = useState(0);
-  const BestMealCards = () => meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />);
   console.log(tab);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=meat`, {
-          validateStatus: (status) => {
-            return status >= 200 && status < 300;
-          },
-        });
-        setMeals(data);
-      } catch (error) {
-        console.error(error);
-      }
+  // 저기
+  const fetchData = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=${tab}`, {
+        validateStatus: (status) => {
+          return status >= 200 && status < 300;
+        },
+      });
+      setMeals(data);
+    } catch (error) {
+      console.error(error);
     }
+  }, [tab]);
 
+  useEffect(() => {
+    // 여기
     fetchData();
   }, []);
+
+  const BestMealCards = () => meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />);
+  const Tabs = ({ subTitle, index }) => (
+    <Li key={subTitle} onClick={() => setTab(index)} isSelected={tab === index}>
+      {subTitle}
+    </Li>
+  );
 
   return (
     <Container>
@@ -40,9 +49,7 @@ function BestMealContainer() {
       </Header>
       <Nav>
         {BEST_SUBTITLE.map((subTitle, index) => (
-          <li key={subTitle.toString()} onClick={() => setTab(index)} isSelected={tab === index}>
-            {subTitle}
-          </li>
+          <Tabs subTitle={subTitle} index={index} />
         ))}
       </Nav>
       <CardContainer>{meals.length ? <BestMealCards /> : <Loader />}</CardContainer>
@@ -87,12 +94,18 @@ const Nav = styled.ul`
 
   li {
     cursor: pointer;
-    ${({ isSelected }) =>
-      isSelected &&
-      css`
-        color: red;
-      `}
   }
+`;
+
+const Li = styled.li`
+  cursor: pointer;
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      color: red;
+      background: darkblue;
+    `};
+  color: ${({ isSelected }) => isSelected && "red"};
 `;
 
 const CardContainer = styled.div`

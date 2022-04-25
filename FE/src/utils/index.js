@@ -1,5 +1,5 @@
 import { DEFAULT_MEAL_IMAGE } from "constants";
 
-export function setDefaultMealImage(imageUrl) {
+export function getMealImage(imageUrl) {
   return imageUrl || DEFAULT_MEAL_IMAGE;
 }
