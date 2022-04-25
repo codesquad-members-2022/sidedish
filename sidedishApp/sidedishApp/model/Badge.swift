@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum Badge {
-    case eventPrice
-    case launchingPrice
-    
-    var description: String {
-        switch self {
-        case .eventPrice:
-            return "이벤트특가"
-        case .launchingPrice:
-            return "런칭특가"
-        }
-    }
-}
+//enum Badge {
+//    case eventPrice
+//    case launchingPrice
+//    
+//    var description: String {
+//        switch self {
+//        case .eventPrice:
+//            return "이벤트특가"
+//        case .launchingPrice:
+//            return "런칭특가"
+//        }
+//    }
+//}

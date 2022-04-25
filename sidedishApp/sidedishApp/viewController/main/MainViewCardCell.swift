@@ -45,7 +45,7 @@ class MainViewCardCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.text = "이벤트특가"
         label.textColor = .white
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
+        label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.backgroundColor = UIColor.customColor(.primaryLight)
         label.layer.cornerRadius = 13
         label.textAlignment = .center
@@ -58,8 +58,21 @@ class MainViewCardCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.text = "런칭특가"
         label.textColor = .white
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
+        label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.backgroundColor = UIColor.customColor(.primaryDark)
+        label.layer.cornerRadius = 13
+        label.textAlignment = .center
+        label.baselineAdjustment = .alignCenters
+        return label
+    }()
+    
+    private let mainBadgeLabel: UILabel = {
+        var label = UILabel()
+        label.clipsToBounds = true
+        label.text = "메인특가"
+        label.textColor = .white
+        label.font = UIFont.customFont(.sfSemiboldEventLabel)
+        label.backgroundColor = UIColor.customColor(.primary)
         label.layer.cornerRadius = 13
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
@@ -84,12 +97,12 @@ class MainViewCardCell: UICollectionViewCell {
             salePriceLabel.text = salePrice
         }
         if let badgeList = mainCard.badgeList {
-            if badgeList.contains(.eventPrice),
-               badgeList.contains(.launchingPrice) {
+            if badgeList.contains("이벤트특가"),
+               badgeList.contains("런칭특가") {
                 configureEventLabelAndBadgeLabelConstraint()
-            } else if badgeList.contains(.eventPrice) {
+            } else if badgeList.contains("이벤트특가") {
                 configureEventBadgeLabelConstraint()
-            } else if badgeList.contains(.launchingPrice) {
+            } else if badgeList.contains("런칭특가") {
                 configureLaunchingBadgeLabelConstraint()
             }
         }

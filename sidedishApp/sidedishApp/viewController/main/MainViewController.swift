@@ -10,33 +10,28 @@ import Toaster
 
 class MainViewController: UIViewController {
     
-    private let factory = CardFactory()
-    private var mainCards = [MainCard]()
+    let sideDishManager = SideDishManager.shared
+    
+//    private let factory = CardFactory()
+//    private var mainCards = [MainCard]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let sampleMainCard = factory.createMainCard(detailHash: "HBDEF",
-                                                           imageURL: "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-                                                           title: "오리 주물럭_반조리",
-                                                           description: "감칠맛 나는 매콤한 양념",
-                                                           normalPrice: "15,800원",
-                                                           salePrice: "12,640원",
-                                                    bagdeList: [Badge.launchingPrice, Badge.eventPrice])
-        mainCards.append(sampleMainCard)
-        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(MainViewCardCell.self, forCellWithReuseIdentifier: MainViewCardCell.identifier)
         self.collectionView.register(MainViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewHeader.identifier)
+        
+        self.sideDishManager.getMainDishes()
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mainCards.count
+        return sideDishManager.mainDishes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -44,7 +39,7 @@ extension MainViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let card = mainCards[indexPath.item]
+        let card = sideDishManager.mainDishes[indexPath.item]
         cell.setPropertiesValue(mainCard: card)
         return cell
     }
@@ -67,5 +62,18 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션뷰 셀 사이즈 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 140)
+    }
+}
+
+private extension MainViewController { // 내부 호출 전용
+    func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.identifier), object: sideDishManager)
+        // self.sideDishManager.getMainDishes()
+    }
+    
+    @objc func setMainDish() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
