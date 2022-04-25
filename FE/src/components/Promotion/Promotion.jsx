@@ -1,5 +1,6 @@
 import "./Promotion.scss";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { categoryText } from "@/constant/constant";
 
 export function Promotion() {
   const [dataID, setDataID] = useState(1);
@@ -44,13 +45,6 @@ function PromotionCategory({
     </li>
   );
 }
-
-const categoryText = [
-  "풍성한 고기 반찬",
-  "편리한 반찬 세트",
-  "맛있는 제철 요리",
-  "우리 아이 영양 반찬",
-];
 
 function PromotionBar({ setDataID }) {
   const [clickedListID, setClickedListID] = useState(1);
