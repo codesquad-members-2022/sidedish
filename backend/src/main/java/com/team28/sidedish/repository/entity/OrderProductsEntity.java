@@ -7,7 +7,9 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @AllArgsConstructor
 @Table("ORDER_PRODUCTS")
-public class OrderItemEntity {
+public class OrderProductsEntity {
 
-
+    private Long orderId;
+    private Long productID;
+    private int quantity;
 }
