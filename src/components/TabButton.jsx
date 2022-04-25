@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from './Text';
+import Text from 'components/Text';
 
 export default function TabButton({ value, isSelected }) {
   return (

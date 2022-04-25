@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Tag from './Tag';
-import Text from './Text';
-import HoverInfo from '../images/HoverInfo.png';
+import Tag from 'components/Tag';
+import Text from 'components/Text';
+import HoverInfo from 'images/HoverInfo.png';
 
 export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {
   const [isHoverImg, setHoverImg] = useState(false);

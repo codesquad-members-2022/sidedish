@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Text from './Text';
-import IconButton from './IconButton';
+import Text from 'components/Text';
+import IconButton from 'components/IconButton';
 
 const GNB_INFO = [
   { GNB_NAME: '든든한 메인요리', SUB_GNB: ['육류 요리', '해산물 요리'] },

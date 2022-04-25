@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import styled from 'styled-components';
-import THEME from '../variable/theme';
+import THEME from 'variable/theme';
 
 export default function Text({ size, weight, family, color, value, line }) {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import theme from '../variable/theme';
-import Text from './Text';
+import theme from 'variable/theme';
+import Text from 'components/Text';
 
 export default function Tag({ type }) {
   return (
