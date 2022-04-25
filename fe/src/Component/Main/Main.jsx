@@ -1,5 +1,7 @@
+import EventPart from "./EventPart/EventPart";
+
 const Main = () => {
-  return <main>{}</main>;
+  return <EventPart />;
 };
 
 export default Main;

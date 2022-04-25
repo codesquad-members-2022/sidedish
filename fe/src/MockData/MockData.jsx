@@ -73,4 +73,64 @@ const icons = [
   },
 ];
 
-export { MenuDatas, icons };
+const event = {
+  eventName: "한 번 주문하면 두 번 반하는 반찬",
+  eventCategories: [
+    {
+      id: 1,
+      name: "풍성한 고기 반찬",
+    },
+    {
+      id: 2,
+      name: "편리한 반찬 세트",
+    },
+    {
+      id: 3,
+      name: "맛있는 제철 요리",
+    },
+    {
+      id: 4,
+      name: "우리 아이 영양 반찬",
+    },
+  ],
+};
+
+export const categoryMenus = {
+  sideDishes: [
+    {
+      id: 1,
+      name: "오리 주물럭_반조리",
+      description: "감칠맛 나는 매콤한 양념",
+      dawnDeliveryFlag: true,
+      wholeNationDeliveryFlag: true,
+      price: 15800,
+      discountType: "런칭특가",
+      discountRate: 20,
+      saveFileName: "img/1_ma_1.png",
+    },
+    {
+      id: 2,
+      name: "소갈비찜",
+      description: "촉촉하게 벤 양념이 일품",
+      dawnDeliveryFlag: false,
+      wholeNationDeliveryFlag: false,
+      price: 28900,
+      discountType: "이벤트특가",
+      discountRate: 10,
+      saveFileName: "img/2_ma_1.png",
+    },
+    {
+      id: 4,
+      name: "돼지불갈비",
+      description: "맛있어요!!",
+      dawnDeliveryFlag: false,
+      wholeNationDeliveryFlag: false,
+      price: 10000,
+      discountType: null,
+      discountRate: 0,
+      saveFileName: "img/4_ma_1.png",
+    },
+  ],
+};
+
+export { MenuDatas, icons, event };
