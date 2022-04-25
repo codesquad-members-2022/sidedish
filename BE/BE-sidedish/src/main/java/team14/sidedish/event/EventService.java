@@ -21,31 +21,31 @@ public class EventService {
 	 * @return
 	 */
 	public EventAndSalesDto read(List<Long> eventIds) {
-		List<OngoingEvent> ongoingEvents = eventRepository.findMenuOngoingByEventIdIn(eventIds);
-		return getEventAndSalesDto(ongoingEvents);
+		List<OngoingEventInfo> ongoingEventInfos = eventRepository.findMenuOngoingByEventIdIn(eventIds);
+		return getEventAndSalesDto(ongoingEventInfos);
 	}
 
 	/**
 	 * ERD 참고, 이벤트를 통해 할인서비스가 제공됩니다.
-	 * @param ongoingEvents
+	 * @param ongoingEventInfos
 	 * @return
 	 */
-	private EventAndSalesDto getEventAndSalesDto(List<OngoingEvent> ongoingEvents) {
-		List<Event> events = getEvents(ongoingEvents);
-		List<SalePolicy> salePolicies = getSalePolicies(ongoingEvents);
+	private EventAndSalesDto getEventAndSalesDto(List<OngoingEventInfo> ongoingEventInfos) {
+		List<Event> events = getEvents(ongoingEventInfos);
+		List<SalePolicy> salePolicies = getSalePolicies(ongoingEventInfos);
 		return new EventAndSalesDto(events, salePolicies);
 	}
 
-	private List<SalePolicy> getSalePolicies(List<OngoingEvent> ongoingEvents) {
-		return ongoingEvents.stream()
-			.map(ongoingEvent -> SalePolicy.of(ongoingEvent.getSaleTitle(), ongoingEvent.getSaleAmount(),
-				ongoingEvent.getEventId()))
+	private List<SalePolicy> getSalePolicies(List<OngoingEventInfo> ongoingEventInfos) {
+		return ongoingEventInfos.stream()
+			.map(ongoingEventInfo -> SalePolicy.of(ongoingEventInfo.getSaleTitle(), ongoingEventInfo.getSaleAmount(),
+				ongoingEventInfo.getEventId()))
 			.collect(Collectors.toList());
 	}
 
-	private List<Event> getEvents(List<OngoingEvent> ongoingEvents) {
-		return ongoingEvents.stream()
-			.map(ongoingEvent -> new Event(ongoingEvent.getEventId(), ongoingEvent.getEventTitle()))
+	private List<Event> getEvents(List<OngoingEventInfo> ongoingEventInfos) {
+		return ongoingEventInfos.stream()
+			.map(ongoingEventInfo -> new Event(ongoingEventInfo.getEventId(), ongoingEventInfo.getEventTitle()))
 			.collect(Collectors.toList());
 	}
 }
