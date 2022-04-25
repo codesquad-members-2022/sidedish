@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 import { HoverInfo } from './HoverInfo';
 
-const ProductThumbnail = styled.div`
+const ProductThumbnailWrapper = styled.div`
   position: relative;
   width: 411px;
   height: 411px;
 
-  .productImg {
+  .product-img {
     display: block;
     width: 100%;
     height: 100%;
@@ -37,12 +37,12 @@ const Mask = styled.div`
   transition: opacity 150ms;
 `;
 
-export const ProductThumbNail = ({ imgUrl, morningDelivery }) => {
+export const ProductThumbnail = ({ imgUrl, morningDelivery }) => {
   return (
-    <ProductThumbnail className={'product-thumbnail'}>
+    <ProductThumbnailWrapper className={'product-thumbnail'}>
       {morningDelivery && <HoverInfo />}
       <Mask className={'mask'} />
-      <img className={'productImg'} src={imgUrl} alt={'제품사진'} />
-    </ProductThumbnail>
+      <img className={'product-img'} src={imgUrl} alt={'제품사진'} />
+    </ProductThumbnailWrapper>
   );
 };

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { PriceTag } from './PriceTag';
-import { ProductThumbNail } from './Thumbnail';
+import { ProductThumbnail } from './ProductThumbnail';
 
 import { DiscountBadge } from '@/Components/Badge/DiscountBadge';
 import Colors from '@/Constants/Colors';
@@ -87,7 +87,7 @@ export const ProductCard = ({
 }) => {
   return (
     <ProductCardWrapper data-id={id} size={size}>
-      <ProductThumbNail imgUrl={image} morningDelivery={morningDelivery} />
+      <ProductThumbnail imgUrl={image} morningDelivery={morningDelivery} />
       <Title className={Fonts.FONTS_MD}>{title}</Title>
       <Description className={Fonts.FONTS_SM}>{description}</Description>
       <PriceWrapper>
