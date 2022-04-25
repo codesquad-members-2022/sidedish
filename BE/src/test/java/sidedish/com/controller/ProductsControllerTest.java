@@ -16,7 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
-import sidedish.com.controller.model.ProductMealTypeResponse;
+import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.domain.DeliveryPolicy;
 import sidedish.com.domain.DiscountPolicy;
 import sidedish.com.domain.Image;
@@ -62,7 +62,7 @@ class ProductsControllerTest {
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 	}
 
-	private List<ProductMealTypeResponse> createProductsMealTypeResponse() {
+	private List<ProductBasicTypeResponse> createProductsMealTypeResponse() {
 		List<Product> products = new ArrayList<>();
 
 		DiscountPolicy discountPolicy = new DiscountPolicy("이벤트특가", 20);

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
-import sidedish.com.controller.model.ProductMealTypeResponse;
+import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.service.ProductsService;
 
 @RestController
@@ -24,7 +24,7 @@ public class ProductsController {
 	}
 
 	@GetMapping
-	public List<ProductMealTypeResponse> findProductsMealType(
+	public List<ProductBasicTypeResponse> findProductsMealType(
 		@RequestParam @NotEmpty String meal) {
 		return productsService.findByMealType(meal);
 	}

@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import sidedish.com.controller.ProductsDtoMapper;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
-import sidedish.com.controller.model.ProductMealTypeResponse;
+import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.domain.Product;
 import sidedish.com.exception.NoSuchProductsException;
 import sidedish.com.repository.DeliveryPolicyRepository;
@@ -36,7 +36,7 @@ public class ProductsService {
 		this.domainEntityMapper = domainEntityMapper;
 	}
 
-	public List<ProductMealTypeResponse> findByMealType(String meal) {
+	public List<ProductBasicTypeResponse> findByMealType(String meal) {
 		List<Product> products = domainEntityMapper.toDomainFromProductsEntity(
 			productsRepository.findByMealType(meal),
 			discountPolicyRepository.findAll(),
