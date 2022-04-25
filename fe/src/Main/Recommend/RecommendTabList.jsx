@@ -9,7 +9,7 @@ const RecommendTabList = styled.div`
 `;
 
 const ThemeTabList = ({ items }) => {
-  const tabItems = items.data.map((item) => {
+  const tabItems = items.dishes.map((item) => {
     return <Card key={item.id} item={item} imageSize={'large'}></Card>;
   });
 

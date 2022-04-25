@@ -98,15 +98,15 @@ const Card = ({ item, imageSize }) => {
           <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
         </CardImgWrapper>
         <CardItemInfo>
-          <p className="item__title">{item.title}</p>
-          <p className="item__desc">{item.desc}</p>
-          {item.salePrice ? (
+          <p className="item__title">{item.name}</p>
+          <p className="item__desc">{item.description}</p>
+          {item.discountPrice ? (
             <>
-              <span className="item__default-price">{setPrice(item.salePrice)}원</span>
-              <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
+              <span className="item__default-price">{setPrice(item.discountPrice)}원</span>
+              <span className="item__normal-price">{setPrice(item.price)}원</span>
             </>
           ) : (
-            <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
+            <span className="item__default-price">{setPrice(item.price)}원</span>
           )}
         </CardItemInfo>
         {item.tag ? <CardItemTag tag={item.tag}>{item.tag}</CardItemTag> : ''}
