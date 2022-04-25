@@ -9,7 +9,7 @@ import { navCategory } from "@/constant/constant";
 function Logo() {
   return (
     <figure className="logo">
-      <img src={logo} />
+      <img src={logo} alt="logo" />
     </figure>
   );
 }
@@ -74,13 +74,13 @@ function Info() {
   return (
     <div className="info-container">
       <figure>
-        <img src={search} />
+        <img src={search} alt="search" />
       </figure>
       <figure>
-        <img src={myPage} />
+        <img src={myPage} alt="myPage" />
       </figure>
       <figure>
-        <img src={cart} />
+        <img src={cart} alt="cart" />
       </figure>
     </div>
   );
