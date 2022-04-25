@@ -7,14 +7,14 @@ public class ItemListResponseDto {
     private Long itemId;
     private String itemName;
     private String description;
-    private Integer originalPrice;
-    private Integer discountPrice;
+    private Long originalPrice;
+    private Long discountPrice;
     private Integer labelId;
     private String mainImage;
     private Integer deliveryId;
     private Long bestId;
 
-    public ItemListResponseDto(Long itemId, String itemName, String description, Integer originalPrice, Integer discountPrice, Integer labelId, String mainImage, Integer deliveryId, Long bestId) {
+    public ItemListResponseDto(Long itemId, String itemName, String description, Long originalPrice, Long discountPrice, Integer labelId, String mainImage, Integer deliveryId, Long bestId) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;
@@ -44,11 +44,11 @@ public class ItemListResponseDto {
         return description;
     }
 
-    public Integer getOriginalPrice() {
+    public Long getOriginalPrice() {
         return originalPrice;
     }
 
-    public Integer getDiscountPrice() {
+    public Long getDiscountPrice() {
         return discountPrice;
     }
 
