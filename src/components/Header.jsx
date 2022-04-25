@@ -4,24 +4,28 @@ import Text from './Text';
 import COLOR from '../variable/color';
 import IconButton from './IconButton';
 
+const GNB_INFO = [
+  { GNB_NAME: '든든한 메인요리', SUB_GNB: ['육류 요리', '해산물 요리'] },
+  { GNB_NAME: '뜨뜬한 국물요리', SUB_GNB: ['국/탕/찌개'] },
+  { GNB_NAME: '정갈한 밑반찬', SUB_GNB: ['나물/무침', '조림/볶음', '절임/장아찌'] }
+];
+const iconButtons = {
+  search: {
+    width: '24px',
+    height: '24px'
+  },
+  user: {
+    width: '22px',
+    height: '22px'
+  },
+  cart: {
+    width: '27px',
+    height: '28px'
+  }
+};
+
 export default function Header() {
   const [subGnbVisible, setSubGnbVisible] = useState(false);
-  const gnbNames = ['든든한 메인요리', '뜨뜬한 국물요리', '정갈한 밑반찬'];
-  const subGnbNames = [['육류 요리', '해산물 요리'], ['국/탕/찌개'], ['나물/무침', '조림/볶음', '절임/장아찌']];
-  const iconButtons = {
-    search: {
-      width: '24px',
-      height: '24px'
-    },
-    user: {
-      width: '22px',
-      height: '22px'
-    },
-    cart: {
-      width: '27px',
-      height: '28px'
-    }
-  };
 
   return (
     <Wrap>
@@ -30,12 +34,12 @@ export default function Header() {
       </Logo>
       <GnbWrap>
         <GnbList onMouseEnter={() => setSubGnbVisible(true)} onMouseLeave={() => setSubGnbVisible(false)}>
-          {gnbNames.map((gnbName, gnbIndex) => (
-            <Gnb>
-              <Text size="MEDIUM" value={gnbName} />
+          {GNB_INFO.map(({ GNB_NAME }, gnbIndex) => (
+            <Gnb key={`${GNB_NAME}_${gnbIndex}`}>
+              <Text size="MEDIUM" value={GNB_NAME} />
               <SubGnbList subGnbVisible={subGnbVisible}>
-                {subGnbNames[gnbIndex].map(subGnbName => (
-                  <SubGnb>
+                {GNB_INFO[gnbIndex].SUB_GNB.map((subGnbName, index) => (
+                  <SubGnb key={`${subGnbName}_${index}`}>
                     <a href="http://localhost:3000/">
                       <Text value={subGnbName} />
                     </a>
