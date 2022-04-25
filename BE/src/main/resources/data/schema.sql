@@ -25,8 +25,8 @@ CREATE TABLE items
     quantity      BIGINT       NOT NULL,
     reward_point  DECIMAL      NOT NULL,
     main_url      VARCHAR(255) NOT NULL,
-    side_one      VARCHAR(255) NOT NULL,
-    side_two      VARCHAR(255) NOT NULL,
+    side_one      VARCHAR(255) NOT NULL COMMENT '상세 페이지 조회 시 출력되는 사이드 이미지 중 첫번째를 저장하는 링크',
+    side_two      VARCHAR(255) NOT NULL COMMENT '상세 페이지 조회 시 출력되는 사이드 이미지 중 두번쨰를 저장하는 링크',
     PRIMARY KEY (id)
 );
 
