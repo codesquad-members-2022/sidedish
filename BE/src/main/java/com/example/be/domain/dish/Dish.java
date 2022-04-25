@@ -1,5 +1,6 @@
 package com.example.be.domain.dish;
 
+import com.example.be.domain.event.AbstractAggregateRootz;
 import com.example.be.domain.image.Image;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -11,9 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-
 @Table("dish")
-public class Dish {
+public class Dish extends AbstractAggregateRootz<Dish> {
     @Id
     private Long dishId;
     private String name;
@@ -28,7 +28,7 @@ public class Dish {
     @JoinColumn(joinColumn = "categoryId")
     private Long categoryId;
 
-    @MappedCollection(idColumn = "dishId", keyColumn = "dishId")
+    @MappedCollection(idColumn = "dish_id", keyColumn = "imageId")
     private List<Image> images;
 
     @PersistenceConstructor
