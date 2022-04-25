@@ -5,7 +5,7 @@ public enum MainCategory {
 
 	private final String name;
 
-	MainCategory(String name) {
+	MainCategory(final String name) {
 		this.name = name;
 	}
 
