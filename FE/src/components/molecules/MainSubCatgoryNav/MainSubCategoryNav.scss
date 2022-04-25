@@ -1,0 +1,18 @@
+.category-nav__main {
+  font-size: 16px;
+
+  span {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+}
+
+.category-nav__sub {
+  font-size: 14px;
+  margin-bottom: 8px;
+
+  &:hover {
+    text-decoration: underline;
+    color: #ff8e14;
+  }
+}
