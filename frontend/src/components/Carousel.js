@@ -5,6 +5,7 @@ import { CardList } from "./CardList";
 import { cardNumPerPage } from "../convention";
 import { LeftArrowIcon } from "../icons/LeftArrowIcon";
 import { RightArrowIcon } from "../icons/RightArrowIcon";
+import { HorizontalLine } from "./HorizontalLine";
 
 const CarouselWrapper = styled.div`
   padding: 56px 80px;
@@ -71,6 +72,7 @@ export const Carousel = ({ categoryID, categoryName, size }) => {
 
   return (
     <CarouselWrapper>
+      <HorizontalLine position={"top"} color={"Grey4"} />
       <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
       <CardList products={categoryData?.products} cardSize={size} firstCardIndex={firstCardIndex} />
       <CarouselButton onBtnClick={() => moveSlide("left")} dir={"left"} isEndPage={isFirstPage} />

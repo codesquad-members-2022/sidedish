@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const MenuWrapper = styled.li`
   ${({ theme }) => theme.custom_flex("column", "flex-start")}
-  margin: 12px;
+  margin: 0px 12px;
 `;
 
 const Title = styled.span`

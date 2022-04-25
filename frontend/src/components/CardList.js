@@ -29,7 +29,7 @@ const ShowingArea = styled.div`
 
 const ProductCardsWrapper = styled.div`
   display: flex;
-  transition: 0.4s;
+  transition: 0.4s ease-out;
   transform: ${({ cardSize, firstCardIndex }) =>
     `translateX(-${firstCardIndex * (24 + thumbnailSize[cardSize])}px)`};
 `;

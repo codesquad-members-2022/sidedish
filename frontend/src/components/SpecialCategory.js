@@ -3,25 +3,25 @@ import { useState } from "react";
 import { CardList } from "./CardList";
 import { SIZES } from "../convention";
 import { useFetch } from "../fetcher";
+import { custom_flex, custom_font } from "../styles/global";
+import { HorizontalLine } from "./HorizontalLine";
 
 const Wrapper = styled.div`
-  padding: 56px 80px;
+  margin: 56px 0px;
 `;
 
 const TitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  ${custom_flex("row", "center")}
 `;
 
 const TitleBadge = styled.div`
+  ${custom_font("Noto Sans KR", 16, 500, 26)}
   border: 2px solid #1b1b1b;
   box-sizing: border-box;
   border-radius: 999px;
   background: #f8f7f7;
   margin-right: 16px;
-  padding: 8px 16px;
-  font-weight: 500;
-  line-height: 26px;
+  padding: 8px 16px; ;
 `;
 
 const Title = styled.div`
@@ -32,6 +32,7 @@ const Title = styled.div`
 `;
 
 const TabBar = styled.ul`
+  position: relative;
   margin-top: 24px;
   display: flex;
 `;
@@ -46,11 +47,11 @@ const TabItem = styled.li`
   align-items: center;
   text-align: center;
   letter-spacing: -0.008em;
-  ${(props) => props.selected && `border-bottom: 1px solid black;`}
+  ${(props) => props.selected && `border-bottom: 2px solid black;`}
 `;
 
-export const BestProduct = ({ themes }) => {
-  const [selected, setSelected] = useState(themes[0].id);
+export const SpecialCategory = ({ specialCategories }) => {
+  const [selected, setSelected] = useState(specialCategories[0].id);
   const categoryData = useFetch(selected, true);
 
   return (
@@ -60,11 +61,16 @@ export const BestProduct = ({ themes }) => {
         <Title>한 번 주문하면 두 번 반하는 반찬</Title>
       </TitleWrapper>
       <TabBar>
-        {themes.map((theme) => (
-          <TabItem key={theme.id} selected={selected === theme.id}>
-            {theme.name}
+        {specialCategories.map((specialCategory) => (
+          <TabItem
+            key={specialCategory.id}
+            selected={selected === specialCategory.id}
+            onClick={() => setSelected(specialCategory.id)}
+          >
+            {specialCategory.name}
           </TabItem>
         ))}
+        <HorizontalLine color={"Grey4"} />
       </TabBar>
       <CardList products={categoryData?.products} cardSize={SIZES.large}></CardList>
     </Wrapper>
