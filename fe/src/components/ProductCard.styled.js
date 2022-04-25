@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { applyFlex } from '../helper/utils';
 
-function applyEventStyleByEventName(eventName) {
-  if (eventName === '런칭특가') {
+function applyEventStyleByEventId(eventId) {
+  if (eventId === 2) {
     return `
       width: 76px;
       height: 30px;
       background: #ff8e14;
     `;
   }
-  if (eventName === '이벤트특가') {
+  if (eventId === 1) {
     return `
       width: 87px;
       height: 30px;
@@ -110,7 +110,7 @@ export const StyledWrapper = styled.div`
 
 export const Event = styled.div`
   ${({ flex, justify, align }) => applyFlex({ flex, justify, align })}
-  ${({ eventName }) => applyEventStyleByEventName(eventName)}
+  ${({ eventId }) => applyEventStyleByEventId(eventId)}
   margin-right: 8px;
   border-radius: 999px;
 `;
