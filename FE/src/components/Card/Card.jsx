@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardWrapper, SubTitle, Title, Thumbnail, PriceBox, SalePrice, Badge, DescriptionWrapper } from './Card.syle';
+import { CardWrapper, SubTitle, Title, Thumbnail, PriceBox, SalePrice, Badge, DescriptionWrapper } from './Card.style';
 
 const Card = ({ data }) => {
   return (
