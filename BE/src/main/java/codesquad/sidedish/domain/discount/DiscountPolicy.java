@@ -13,7 +13,6 @@ public class DiscountPolicy {
     private String name;
     private double discountRate;
 
-    @Builder
     public DiscountPolicy(String name, double discountRate) {
         this.name = name;
         this.discountRate = discountRate;
@@ -26,7 +25,7 @@ public class DiscountPolicy {
         this.discountRate = discountRate;
     }
 
-    public void initDiscountPolicy(Long discountPolicyId) {
+    public void initDiscountPolicyId(Long discountPolicyId) {
         this.discountPolicyId = discountPolicyId;
     }
 
