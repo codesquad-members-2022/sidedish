@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="menuViewModel"
+            type="com.example.sidedish.ui.viewmodel.MenuListViewModel" />
+
+        <variable
             name="foodDetail"
             type="com.example.sidedish.data.Detail" />
 
@@ -218,6 +222,7 @@
                     android:layout_marginStart="122dp"
                     android:backgroundTint="@color/white"
                     android:elevation="0dp"
+                    android:onClick="@{()->menuViewModel.subtractCount()}"
                     android:src="@drawable/ic_minus_vector"
                     app:backgroundTint="@color/white" />
 
@@ -229,7 +234,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:padding="10dp"
-                    android:text="1" />
+                    android:text="@{String.valueOf(menuViewModel.count)}" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fb_order_more"
@@ -238,6 +243,7 @@
                     android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:elevation="0dp"
+                    android:onClick="@{()->menuViewModel.addCount()}"
                     android:src="@drawable/ic_baseline_add_24"
                     app:backgroundTint="@color/white" />
 
@@ -281,7 +287,7 @@
                     android:layout_gravity="right|center"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    android:text="@{(foodDetail.prices[1] == null) ? foodDetail.prices[0] : foodDetail.prices[1]}"
+                    android:text="@{String.valueOf(menuViewModel.price)}"
                     android:textSize="32sp"
                     android:textStyle="bold" />
 

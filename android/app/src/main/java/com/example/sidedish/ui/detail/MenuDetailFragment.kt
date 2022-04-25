@@ -57,6 +57,12 @@ class MenuDetailFragment : Fragment() {
                 }
                 pagerDetailImage.adapter = adapter
             }
+
+        }
+
+        with(binding) {
+            lifecycleOwner = this@MenuDetailFragment
+            menuViewModel = viewModel
         }
     }
 }
