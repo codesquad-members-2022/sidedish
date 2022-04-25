@@ -7,6 +7,7 @@ import com.codesquad.sidedish.item.dto.CategoryItemDto;
 import com.codesquad.sidedish.item.dto.CategoryItemsDto;
 import com.codesquad.sidedish.item.dto.DetailItemDto;
 import com.codesquad.sidedish.item.dto.ItemDto;
+import com.codesquad.sidedish.item.exception.CategoryIdNotFoundException;
 import com.codesquad.sidedish.item.exception.ItemIdNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,14 @@ public class ItemService {
 
     public DetailItemDto findById(int id) {
         return categoryRepository.findByItemId(id)
-            .map(item -> new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.getMainImageLink(), item.getItemImages()))
-            .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
+                .map(item -> new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.getMainImageLink(), item.getItemImages()))
+                .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
+    }
+
+    public CategoryItemDto findByCategory(int categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new CategoryIdNotFoundException("존재하지 않는 카테고리입니다."));
+        Set<Item> items = category.getItems();
+        return new CategoryItemDto(category.getName(), items.stream().map(ItemDto::from).collect(Collectors.toList()));
     }
 }
