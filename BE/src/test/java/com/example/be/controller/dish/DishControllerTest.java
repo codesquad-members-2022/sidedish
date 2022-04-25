@@ -50,8 +50,8 @@ class DishControllerTest {
 
     private List<Dish> getDishes() {
         List<Dish> dishes = new ArrayList<>();
-        Dish dishA = new Dish("한식", "한국 전통음식", new BigDecimal(30000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10);
-        Dish dishB = new Dish("일식", "일본 전통음식", new BigDecimal(20000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10);
+        Dish dishA = new Dish("한식", "한국 전통음식", new BigDecimal(30000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10, null);
+        Dish dishB = new Dish("일식", "일본 전통음식", new BigDecimal(20000L), Badge.EVENT, DeliveryPriceOption.FREE, "www.naver.com", DishStatus.IN_STOCK, 10, null);
         dishes.add(dishA);
         dishes.add(dishB);
         return dishes;

@@ -22,7 +22,7 @@ public class DishDetailResponse {
         this.dishId = dish.getDishId();
         this.name = dish.getName();
         this.description = dish.getDescription();
-        this.normalPrice = dish.getNormalPrice();
+        this.normalPrice = dish.getPrice();
         this.badge = dish.getBadge();
         this.deliveryPriceOption = dish.getDeliveryType();
         this.thumbnail = dish.getThumbnail();

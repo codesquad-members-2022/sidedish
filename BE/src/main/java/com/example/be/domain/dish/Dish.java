@@ -1,9 +1,13 @@
 package com.example.be.domain.dish;
 
+import com.example.be.domain.image.Image;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -13,22 +17,29 @@ public class Dish {
     private Long dishId;
     private String name;
     private String description;
-    private BigDecimal normalPrice;
+    private BigDecimal price;
     private Badge badge;
     private DeliveryPriceOption deliveryPriceOption;
     private String thumbnail;
     private int count;
     private DishStatus dishStatus;
 
-    public Dish(String name, String description, BigDecimal normalPrice, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, int count) {
+    @JoinColumn(joinColumn = "categoryId")
+    private Long categoryId;
+
+    @MappedCollection(idColumn = "dishId", keyColumn = "")
+    private List<Image> images = new ArrayList<>();
+
+    public Dish(String name, String description, BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, int count, List<Image> images) {
         this.name = name;
         this.description = description;
-        this.normalPrice = normalPrice;
+        this.price = price;
         this.badge = badge;
         this.deliveryPriceOption = deliveryPriceOption;
         this.thumbnail = thumbnail;
         this.dishStatus = dishStatus;
         this.count = count;
+        this.images = images;
     }
 
     public Long getDishId() {
@@ -43,8 +54,8 @@ public class Dish {
         return description;
     }
 
-    public BigDecimal getNormalPrice() {
-        return normalPrice;
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public Badge getBadge() {
