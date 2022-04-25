@@ -46,16 +46,12 @@ object NetworkModule {
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.RUNTIME)
-    annotation class RemoteMenuDataSource
-
     @Singleton
-    @RemoteMenuDataSource
     @Provides
     fun provideMenuDataSource(apiClient: ApiClient): MenuListDataSource {
         return MenuListDataSource(apiClient)
     }
+
 }
 
 
@@ -66,7 +62,7 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideRepository(
-        @AppModule.RemoteMenuDataSource menuListDataSource: MenuListDataSource
+        menuListDataSource: MenuListDataSource
     ): MenuListRepository {
         return MenuListRepository(menuListDataSource)
     }

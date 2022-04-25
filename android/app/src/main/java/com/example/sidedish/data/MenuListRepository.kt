@@ -23,7 +23,7 @@ class MenuListRepository @Inject constructor(private val dataSource: DataSource)
         return dataSource.getFoodDetail(hashId).getBodyOrThrow()?.data
     }
 
-    private fun <T : Any> Response<T>.getBodyOrThrow(): T? {
+    private fun <T> Response<T>.getBodyOrThrow(): T? {
         return if(this.isSuccessful) this.body() else throw java.lang.RuntimeException("network fail")
     }
 
