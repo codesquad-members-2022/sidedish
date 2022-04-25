@@ -5,7 +5,7 @@ import com.terria.sidedish.domain.Member;
 import lombok.Getter;
 
 @Getter
-public class GithubUser {
+public class GitHubUser {
 
     @JsonProperty("login")
     private String userId;
@@ -28,7 +28,7 @@ public class GithubUser {
 
     @Override
     public String toString() {
-        return "GithubUser{" +
+        return "GitHubUser{" +
                 "userId='" + userId + '\'' +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +

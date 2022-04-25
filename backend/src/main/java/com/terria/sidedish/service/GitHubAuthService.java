@@ -1,10 +1,10 @@
 package com.terria.sidedish.service;
 
 import com.terria.sidedish.domain.Member;
-import com.terria.sidedish.dto.auth.GithubAccessToken;
-import com.terria.sidedish.dto.auth.GithubUser;
+import com.terria.sidedish.dto.auth.GitHubAccessToken;
+import com.terria.sidedish.dto.auth.GitHubUser;
 import com.terria.sidedish.dto.auth.Provider;
-import com.terria.sidedish.error.GithubOAuthException;
+import com.terria.sidedish.error.GitHubOAuthException;
 import com.terria.sidedish.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ import static com.terria.sidedish.error.ErrorCode.GITHUB_USER_ERROR;
 @Service
 @RequiredArgsConstructor
 @PropertySource(value = "classpath:oauth.properties", ignoreResourceNotFound = true)
-public class GithubAuthService {
+public class GitHubAuthService {
 
     private final MemberRepository memberRepository;
 
@@ -35,13 +35,13 @@ public class GithubAuthService {
     private String clientSecret;
 
     public Member login(String code) {
-        GithubUser githubUser = requestUserInfo(requestAccessToken(code));
+        GitHubUser gitHubUser = requestUserInfo(requestAccessToken(code));
 
-        String userId = githubUser.getUserId();
-        Provider provider = Provider.of(githubUser.getProvider());
+        String userId = gitHubUser.getUserId();
+        Provider provider = Provider.of(gitHubUser.getProvider());
 
         if (!memberRepository.existsByUserIdAndProvider(userId, provider)) {
-            memberRepository.save(githubUser.toEntity());
+            memberRepository.save(gitHubUser.toEntity());
         }
 
         Member newMember = memberRepository.findByUserIdAndProvider(userId, provider)
@@ -52,7 +52,7 @@ public class GithubAuthService {
         return newMember;
     }
 
-    private GithubAccessToken requestAccessToken(String code) {
+    private GitHubAccessToken requestAccessToken(String code) {
         String url = "https://github.com/login/oauth/access_token";
 
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
@@ -63,38 +63,38 @@ public class GithubAuthService {
         params.add("client_secret", clientSecret);
         params.add("code", code);
 
-        ResponseEntity<GithubAccessToken> response = new RestTemplate().
+        ResponseEntity<GitHubAccessToken> response = new RestTemplate().
                 postForEntity(
                         url,
                         new HttpEntity<>(params, headers),
-                        GithubAccessToken.class
+                        GitHubAccessToken.class
                 );
 
         return response.getBody();
     }
 
-    private GithubUser requestUserInfo(GithubAccessToken accessToken) {
+    private GitHubUser requestUserInfo(GitHubAccessToken accessToken) {
         String url = "https://api.github.com/user";
 
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Accept", "application/vnd.github.v3+json");
         headers.add("Authorization", accessToken.getTokenType() + " " + accessToken.getAccessToken());
 
-        ResponseEntity<GithubUser> response = new RestTemplate().
+        ResponseEntity<GitHubUser> response = new RestTemplate().
                 exchange(
                         url,
                         HttpMethod.GET,
                         new HttpEntity<>(headers),
-                        GithubUser.class
+                        GitHubUser.class
                 );
 
         if (response.getStatusCode().isError() || response.getBody() == null) {
-            throw new GithubOAuthException(GITHUB_USER_ERROR);
+            throw new GitHubOAuthException(GITHUB_USER_ERROR);
         }
 
-        GithubUser githubUser = response.getBody();
-        githubUser.setProvider(response.getHeaders().getFirst("Server"));
+        GitHubUser gitHubUser = response.getBody();
+        gitHubUser.setProvider(response.getHeaders().getFirst("Server"));
 
-        return githubUser;
+        return gitHubUser;
     }
 }

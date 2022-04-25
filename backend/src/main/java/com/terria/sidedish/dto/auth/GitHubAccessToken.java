@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class GithubAccessToken {
+public class GitHubAccessToken {
 
     @JsonProperty("access_token")
     private String accessToken;
@@ -17,7 +17,7 @@ public class GithubAccessToken {
 
     @Override
     public String toString() {
-        return "GithubAccessToken{" +
+        return "GitHubAccessToken{" +
                 "accessToken='" + accessToken + '\'' +
                 ", tokenType='" + tokenType + '\'' +
                 ", scope='" + scope + '\'' +
