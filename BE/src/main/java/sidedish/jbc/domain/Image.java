@@ -9,17 +9,17 @@ public class Image {
 	private Long id;
 	private long menuId;
 	private String imagePath;
-	private Integer isMainImage;
+	private boolean isMainImage;
 
 	@PersistenceConstructor
-	public Image(Long id, long menuId, String imagePath, Integer isMainImage) {
+	public Image(Long id, long menuId, String imagePath, boolean isMainImage) {
 		this.id = id;
 		this.menuId = menuId;
 		this.imagePath = imagePath;
 		this.isMainImage = isMainImage;
 	}
 
-	public Image(long menuId, String imagePath, Integer isMainImage) {
+	public Image(long menuId, String imagePath, boolean isMainImage) {
 		this.menuId = menuId;
 		this.imagePath = imagePath;
 		this.isMainImage = isMainImage;
@@ -37,7 +37,7 @@ public class Image {
 		return imagePath;
 	}
 
-	public Integer getIsMainImage() {
+	public boolean getIsMainImage() {
 		return isMainImage;
 	}
 

@@ -2,6 +2,8 @@ package sidedish.jbc.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import sidedish.jbc.domain.Image;
+import sidedish.jbc.domain.Menu;
 import sidedish.jbc.domain.SaleType;
 
 public class DetailMenuResponse {
@@ -16,21 +18,21 @@ public class DetailMenuResponse {
 	private List<String> mainImage;
 	private List<String> detailImage;
 
-	public DetailMenuResponse(DetailMenu menuInfo, List<DetailMenuImages> menuImages) {
-		this.name = menuInfo.getName();
-		this.description = menuInfo.getDescription();
-		this.price = menuInfo.getPrice();
-		this.saleType = menuInfo.getSaleType();
-		this.deliveryInfo = menuInfo.getDeliveryInfo();
-		this.fee = menuInfo.getFee();
-		this.freeShippingStartingPrice = menuInfo.getFreeShippingStartingPrice();
-		this.mainImage = menuImages.stream()
-			.filter(DetailMenuImages::isMain)
-			.map(DetailMenuImages::getImagePath)
+	public DetailMenuResponse(Menu menu) {
+		this.name = menu.getName();
+		this.description = menu.getDescription();
+		this.price = menu.getPrice();
+		this.saleType = menu.getSaleType();
+		this.deliveryInfo = menu.getDeliveryInfo();
+		this.fee = menu.getFee();
+		this.freeShippingStartingPrice = menu.getFreeShippingStartingPrice();
+		mainImage = menu.getImages().stream()
+			.filter(Image::getIsMainImage)
+			.map(Image::getImagePath)
 			.collect(Collectors.toList());
-		this.detailImage = menuImages.stream()
-			.filter(c -> !c.isMain())
-			.map(DetailMenuImages::getImagePath)
+		detailImage = menu.getImages().stream()
+			.filter(image -> !image.getIsMainImage())
+			.map(Image::getImagePath)
 			.collect(Collectors.toList());
 	}
 

@@ -1,6 +1,5 @@
 package sidedish.jbc.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -12,23 +11,21 @@ public class Menu {
 	private Long id;
 	private String name;
 	private String description;
-	private Integer price;
+	private int price;
 	private MenuType menuType;
 	private SaleType saleType;
-	private Integer fee;
-	private Integer freeShippingStartingPrice;
+	private int fee;
+	private int freeShippingStartingPrice;
 	private String deliveryInfo;
 	private Integer stock;
 	private String imagePath;
-
 	@MappedCollection(idColumn = "MENU_ID", keyColumn = "ID")
 	private List<Image> images;
 
 	@PersistenceConstructor
-	public Menu(Long id, String name, String description, Integer price,
-		MenuType menuType, SaleType saleType, Integer fee, Integer freeShippingStartingPrice,
+	public Menu(Long id, String name, String description, int price,
+		MenuType menuType, SaleType saleType, int fee, int freeShippingStartingPrice,
 		String deliveryInfo, Integer stock, String imagePath, List<Image> images) {
-		System.out.println("메뉴 생성자 호출");
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -43,37 +40,34 @@ public class Menu {
 		this.images = images;
 	}
 
-	public Menu(Long id, String name, String description, Integer price,
-		MenuType menuType, SaleType saleType, Integer fee, Integer freeShippingStartingPrice,
-		String deliveryInfo, Integer stock, String imagePath) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.menuType = menuType;
-		this.saleType = saleType;
-		this.fee = fee;
-		this.freeShippingStartingPrice = freeShippingStartingPrice;
-		this.deliveryInfo = deliveryInfo;
-		this.stock = stock;
-		this.imagePath = imagePath;
+	public String getName() {
+		return name;
 	}
 
-	@Override
-	public String toString() {
-		return "Menu{" +
-			"id=" + id +
-			", name='" + name + '\'' +
-			", description='" + description + '\'' +
-			", price=" + price +
-			", menuType=" + menuType +
-			", saleType=" + saleType +
-			", fee=" + fee +
-			", freeShippingStartingPrice=" + freeShippingStartingPrice +
-			", deliveryInfo='" + deliveryInfo + '\'' +
-			", stock=" + stock +
-			", imagePath='" + imagePath + '\'' +
-			", imageTest=" + images +
-			'}';
+	public String getDescription() {
+		return description;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public SaleType getSaleType() {
+		return saleType;
+	}
+
+	public int getFee() {
+		return fee;
+	}
+
+	public int getFreeShippingStartingPrice() {
+		return freeShippingStartingPrice;
+	}
+
+	public String getDeliveryInfo() {
+		return deliveryInfo;
+	}
+	public List<Image> getImages() {
+		return images;
 	}
 }

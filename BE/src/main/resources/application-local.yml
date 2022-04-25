@@ -11,3 +11,6 @@ spring:
       schema-locations:
         - classpath:schema.sql
       mode: always
+logging:
+  level:
+    sql: debug

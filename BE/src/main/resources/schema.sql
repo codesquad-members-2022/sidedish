@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`image` (
     `id`            INT             NOT NULL     AUTO_INCREMENT      COMMENT '이미지 PK',
     `menu_id`       INT             NOT NULL     COMMENT '메뉴 정보',
     `image_path`    VARCHAR(1000)   NOT NULL     COMMENT '이미지 PATH',
-    `is_main_image` TINYINT         NOT NULL     COMMENT '메인 이미지와 상세 이미지 판단',
+    `is_main_image` BOOLEAN         NOT NULL     COMMENT '메인 이미지와 상세 이미지 판단',
     PRIMARY KEY (`id`),
     INDEX `fk_image_menu_idx` (`menu_id` ASC) VISIBLE,
     CONSTRAINT `fk_image_menu`
