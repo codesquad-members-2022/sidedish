@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Szb-PP-tgk" customClass="MainCollectionView" customModule="SideDishApp" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Szb-PP-tgk">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DN3-AR-Z0z">
                                     <size key="itemSize" width="127" height="128"/>
@@ -51,6 +51,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dBs-Kz-9aS"/>
+                    <connections>
+                        <outlet property="mainCollectionView" destination="Szb-PP-tgk" id="ALd-z4-bhu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uti-N3-dtG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
