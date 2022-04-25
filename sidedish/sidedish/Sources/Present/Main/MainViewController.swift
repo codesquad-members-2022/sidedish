@@ -21,8 +21,10 @@ class MainViewController: UIViewController {
     private var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 110)
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.identifier)
@@ -73,8 +75,8 @@ class MainViewController: UIViewController {
             
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
@@ -107,6 +109,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.changePriceLabel(text: menuData.price)
             cell.changeSalePriceLabel(text: menuData.salePrice ?? "")
             cell.changeSaleBadge(menuData.badge)
+            cell.changeBackgroundColor(indexPath.section.isMultiple(of: 2) ? .white : .grey4)
         }
         return cell
     }
@@ -117,13 +120,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 return UICollectionReusableView()
             }
             headerView.changeTitle(text: sideMenu.headerTitle)
+            headerView.changeBackgroundColor(indexPath.section.isMultiple(of: 2) ? .white : .grey4)
             return headerView
         }
         return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: collectionView.frame.width, height: 130)
+        let size = CGSize(width: collectionView.frame.width, height: 138)
         return size
     }
     
