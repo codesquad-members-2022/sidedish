@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName
 
 data class MenuDetailDto(
     @SerializedName("data")
-    val `data`: Data,
+    val `data`: DetailInfo,
     @SerializedName("hash")
     val hash: String
 )
 
-data class Data(
+data class DetailInfo(
 
     @SerializedName("top_image")
     val topImage: String,
@@ -30,7 +30,7 @@ data class Data(
     val detailSection: List<String>
 )
 
-fun Data.toMenuDetail(): MenuDetail {
+fun DetailInfo.toMenuDetail(): MenuDetail {
     return if(prices.size>1){
         MenuDetail(topImage, thumbImages, productDescription, point, deliveryInfo, deliveryFee, prices[0], prices[1], detailSection )
     }

@@ -33,9 +33,11 @@ class MenuRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getDetail(detailHash: String): MenuDetail {
+    override suspend fun getDetail(detailHash: String): Result<MenuDetail> {
         val response = onBanDataSource.getDetail(detailHash)
-        return response.data.toMenuDetail()
+        return kotlin.runCatching {
+            response.data.toMenuDetail()
+        }
     }
 
 
