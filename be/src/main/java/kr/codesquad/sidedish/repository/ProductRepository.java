@@ -15,9 +15,12 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 	@Query("SELECT * FROM PRODUCT WHERE id = :id")
 	Optional<Product> findById(@Param("id") Integer id);
 
+	@Query("SELECT * FROM PRODUCT WHERE dish_type = :dishType")
+	List<Product> loadDishListByType(@Param("dishType") String dishType);
+
 	@Query("SELECT * FROM PRODUCT WHERE dish_type = :dishType AND side_dish_type = :sideDishType")
-	List<Product> loadListByType(@Param("dishType") String dishType,
-		@Param("sideDishType") String sideDishType);
+	List<Product> loadSideDishListByType(@Param("dishType") String dishType,
+									 @Param("sideDishType") String sideDishType);
 
 	@Modifying
 	@Query("UPDATE PRODUCT SET quantity = :quantity WHERE id = :id")

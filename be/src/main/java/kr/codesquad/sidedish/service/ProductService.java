@@ -2,9 +2,14 @@ package kr.codesquad.sidedish.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import kr.codesquad.sidedish.domain.DishType;
 import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.controller.RequestProduct;
+import kr.codesquad.sidedish.domain.SideDishType;
+import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.repository.ProductRepository;
+import kr.codesquad.sidedish.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +26,23 @@ public class ProductService {
 			.collect(Collectors.toList());
 	}
 
-	public List<ProductDTO> loadListByType(String dishType, String sideDishType) {
-		return productRepository.loadListByType(dishType, sideDishType).stream()
+	public List<ProductDTO> loadDishListByType(DishType dishType) {
+		return productRepository.loadDishListByType(dishType.getType()).stream()
 			.map(Product::createDTO)
 			.collect(Collectors.toList());
+	}
+
+	public List<ProductDTO> loadSideDishListByType(DishType dishType, SideDishType sideDishType) {
+		checkDishTypeIsSide(dishType);
+		return productRepository.loadSideDishListByType(dishType.getType(), sideDishType.getType()).stream()
+				.map(Product::createDTO)
+				.collect(Collectors.toList());
+	}
+
+	private void checkDishTypeIsSide(DishType dishType) {
+		if (DishType.SIDE != dishType) {
+			throw new CustomException(ErrorCode.SIDE_DISH_ONLY_ALLOWED);
+		}
 	}
 
 	public ProductDTO findById(Integer id) {
