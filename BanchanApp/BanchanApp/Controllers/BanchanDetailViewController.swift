@@ -16,14 +16,18 @@ class BanchanDetailViewController: UIViewController {
     // MARK: - Container View(Vertical Scroll View)
     private lazy var containerScrollView: UIScrollView = {
         let scroll = UIScrollView()
+
         scroll.showsHorizontalScrollIndicator = false
+
         return scroll
     }()
 
 	private lazy var productDescriptionImageStack: UIStackView = {
 		let stack = UIStackView()
+
 		stack.axis = .vertical
 		stack.distribution = .fillProportionally
+
 		return stack
 	}()
 
@@ -36,14 +40,17 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var productDetailStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .vertical
-        stack.spacing = 8
         stack.distribution = .fillEqually
+		stack.alignment = .leading
+
         return stack
     }()
 
     private lazy var deliveryInformationContainerStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .horizontal
         stack.spacing = 16
         stack.distribution = .fillProportionally
@@ -53,6 +60,7 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var deliveryInformationCategoryStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .vertical
         stack.spacing = 16
         stack.distribution = .fillEqually
@@ -62,6 +70,7 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var deliveryInformationCategoryValueStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .vertical
         stack.spacing = 16
         stack.distribution = .fillEqually
@@ -71,22 +80,36 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var pointLabel: UILabel = {
         let label = UILabel()
+
+		label.font = .textSmallRegular
+		label.textColor = .gray1
+
         return label
     }()
 
     private lazy var deliveryInformationLabel: UILabel = {
         let label = UILabel()
+
+		label.font = .textSmallRegular
+		label.textColor = .gray1
+
         return label
     }()
 
     private lazy var deliveryFeeLabel: UILabel = {
         let label = UILabel()
+
+		label.font = .textSmallRegular
+		label.textColor = .gray1
+
         return label
     }()
 
     private lazy var totalPriceLabel: PriceTag = {
         let label = PriceTag()
+
         label.price = "15,000원"
+
         return label
     }()
 
@@ -99,6 +122,7 @@ class BanchanDetailViewController: UIViewController {
             primaryAction: UIAction(handler: self.handleOnTapOrderButton)
         )
 
+		button.titleLabel?.font = .textMediumBold
         button.setTitle("주문하기", for: .normal)
 
         return button
@@ -173,15 +197,32 @@ class BanchanDetailViewController: UIViewController {
 
         let productTitleLabel = UILabel()
         let productSubtitleLabel = UILabel()
-        let productPriceLabel = UILabel()
+        let salePrice = UILabel()
+		let originPrice = UILabel()
 
         productTitleLabel.text = "오리 주물럭 반조리"
+		productTitleLabel.font = .textLargeRegular
         productSubtitleLabel.text = "감칠맛 나는 매콤한 양념"
-        productPriceLabel.text = "12,640원 15,800원"
+		productSubtitleLabel.font = .textMediumRegular
+		productSubtitleLabel.textColor = .gray2
+
+        salePrice.text = "12,640원"
+		salePrice.font = .textMediumBold
+		salePrice.textColor = .gray1
+
+		originPrice.text = "15,800원"
+		originPrice.font = .textSmallRegular
+		originPrice.textColor = .gray2
+		originPrice.applyStrikethoroughStyle()
 
         self.productDetailStack.addArrangedSubview(productTitleLabel)
         self.productDetailStack.addArrangedSubview(productSubtitleLabel)
-        self.productDetailStack.addArrangedSubview(productPriceLabel)
+
+		let priceStack = UIStackView(arrangedSubviews: ([salePrice, originPrice]))
+		priceStack.axis = .horizontal
+		priceStack.spacing = 8
+
+        self.productDetailStack.addArrangedSubview(priceStack)
     }
 
     private func configureDeliveryInformationView() {
@@ -201,8 +242,16 @@ class BanchanDetailViewController: UIViewController {
         let deliveryFeeCategory = UILabel()
 
         pointCategory.text = "적립금"
+		pointCategory.font = .textSmallRegular
+		pointCategory.textColor = .gray2
+
         deliveryInformationCategory.text = "배송정보"
+		deliveryInformationCategory.font = .textSmallRegular
+		deliveryInformationCategory.textColor = .gray2
+
         deliveryFeeCategory.text = "배송비"
+		deliveryFeeCategory.font = .textSmallRegular
+		deliveryFeeCategory.textColor = .gray2
 
         self.deliveryInformationCategoryStack.addArrangedSubview(pointCategory)
         self.deliveryInformationCategoryStack.addArrangedSubview(deliveryInformationCategory)

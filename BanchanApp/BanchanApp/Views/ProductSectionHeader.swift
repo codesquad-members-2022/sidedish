@@ -26,7 +26,8 @@ class ProductSectionHeader: UICollectionReusableView {
     private func setup() {
         self.addSubview(title)
         title.numberOfLines = 0
-        title.font = .systemFont(ofSize: 32)
+		title.font = .textLargeRegular
+		title.textColor = .gray1
         title.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([

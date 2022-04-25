@@ -35,8 +35,8 @@ class ProductDetailView: UIView {
 
         title.text = "오리 주물럭_반조리"
         menuDescription.text = "감칠맛 나는 매콤한 양념"
-        normalPrice?.text = "12,640원"
-        salePrice.text = "15,800원"
+        salePrice.text = "12,640원"
+		normalPrice?.text = "15,800원"
         badgeList.forEach {
 			let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
             badge.text = $0
@@ -50,6 +50,7 @@ class ProductDetailView: UIView {
 
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
         if let normalPrice = normalPrice {
+			normalPrice.applyStrikethoroughStyle()
             priceStackView.addArrangedSubview(normalPrice)
         }
 

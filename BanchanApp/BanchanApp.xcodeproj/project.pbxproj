@@ -22,6 +22,7 @@
 		E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */; };
 		E4BA18BE2816479E00C19349 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */; };
 		E4BA18C22816578700C19349 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18C12816578700C19349 /* UIColor+Extension.swift */; };
+		E4BA18C62816A0DB00C19349 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18C52816A0DB00C19349 /* UIFont+Extension.swift */; };
 		E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */; };
 		E4C6B778280CFA7D001C14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */; };
 		E4C6B77A280CFA7D001C14F7 /* BanchanListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B779280CFA7D001C14F7 /* BanchanListViewController.swift */; };
@@ -51,6 +52,7 @@
 		E4BA18BF2816489B00C19349 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E4BA18C0281648F700C19349 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		E4BA18C12816578700C19349 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		E4BA18C52816A0DB00C19349 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E4C6B779280CFA7D001C14F7 /* BanchanListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanListViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				E4A5143A28124C490056C953 /* UILabel+Extension.swift */,
 				E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */,
 				E4BA18C12816578700C19349 /* UIColor+Extension.swift */,
+				E4BA18C52816A0DB00C19349 /* UIFont+Extension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				6FCDA440280E964900EB8DF6 /* ProductDetailCell.swift in Sources */,
 				E4A5143B28124C490056C953 /* UILabel+Extension.swift in Sources */,
 				E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */,
+				E4BA18C62816A0DB00C19349 /* UIFont+Extension.swift in Sources */,
 				E4BA18BE2816479E00C19349 /* UIImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
