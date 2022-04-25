@@ -48,7 +48,7 @@ function Modal({ dishes }) {
     modal.current.style = 'display:none';
   }
   return (
-    <ModalWrap ref={modal}>
+    <ModalWrap ref={modal} onClick={closeModal}>
       <PopupBox>
         <PopupCloseButtonWrap>
           <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
