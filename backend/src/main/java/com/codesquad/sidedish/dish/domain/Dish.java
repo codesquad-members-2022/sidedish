@@ -22,7 +22,7 @@ public class Dish {
     private final Integer price;
     private final Integer stock;
 
-    // relation
+    // entity mapping
     @Transient
     private List<EventBadge> eventBadges;
     @Transient

@@ -1,6 +1,6 @@
 package com.codesquad.sidedish.event_badge.domain;
 
-import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -18,6 +18,7 @@ public class EventBadge {
     private String eventBadgeName;
     private Float discount;
 
-    @MappedCollection(idColumn = "event_badge_id", keyColumn = "event_badge_id")
-    private List<DishEventBadge> dishEventBadges;
+    @MappedCollection(idColumn = "event_badge_id")
+    private Set<DishRef> dishRef;
+
 }

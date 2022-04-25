@@ -2,16 +2,14 @@ package com.codesquad.sidedish.event_badge.domain;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @ToString
-public class DishEventBadge {
+@Table("dish_event_badge")
+public class DishRef {
 
-    @Id
-    @Column("dish_id")
     private Integer dishId;
-
     private Integer eventBadgeId;
+
 }
