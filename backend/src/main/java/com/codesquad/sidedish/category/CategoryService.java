@@ -1,10 +1,10 @@
 package com.codesquad.sidedish.category;
 
 import com.codesquad.sidedish.dish.DishRepository;
+import com.codesquad.sidedish.dish.DishUtil;
 import com.codesquad.sidedish.dish.domain.Dish;
 import com.codesquad.sidedish.event_badge.EventBadgeRepository;
 import com.codesquad.sidedish.event_badge.domain.EventBadge;
-import com.codesquad.sidedish.util.MapperUtil;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,7 +23,7 @@ public class CategoryService {
         List<Category> categories = categoryRepository.findBySectionName(sectionName);
         List<Dish> dishes = dishRepository.findBySectionName(sectionName);
         List<EventBadge> eventBadges = eventBadgeRepository.findAll();
-        MapperUtil.mapEventBadges(dishes, eventBadges);
+        DishUtil.mapEventBadges(dishes, eventBadges);
 
         Map<Integer, List<Dish>> dishMap = dishes.stream()
             .collect(Collectors.groupingBy(Dish::getCategoryId));
