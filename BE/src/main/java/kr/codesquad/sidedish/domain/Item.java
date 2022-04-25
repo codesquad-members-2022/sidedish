@@ -9,16 +9,16 @@ public class Item {
     private final Long categoryId;
     private final String itemName;
     private final String description;
-    private final Integer originalPrice;
-    private final Integer discountPrice;
-    private Integer stock;
+    private final Long originalPrice;
+    private final Long discountPrice;
     private final Integer labelId;
     private final String mainImage;
     private final Integer deliveryId;
     private final Long bestId;
+    private Integer stock;
 
-    public Item(Long itemId, Long categoryId, String itemName, String description, Integer originalPrice,
-                Integer discountPrice, Integer stock, Integer labelId, String mainImage, Integer deliveryId, Long bestId) {
+    public Item(Long itemId, Long categoryId, String itemName, String description, Long originalPrice,
+                Long discountPrice, Integer stock, Integer labelId, String mainImage, Integer deliveryId, Long bestId) {
         this.itemId = itemId;
         this.categoryId = categoryId;
         this.itemName = itemName;
@@ -48,11 +48,11 @@ public class Item {
         return description;
     }
 
-    public Integer getOriginalPrice() {
+    public Long getOriginalPrice() {
         return originalPrice;
     }
 
-    public Integer getDiscountPrice() {
+    public Long getDiscountPrice() {
         return discountPrice;
     }
 
