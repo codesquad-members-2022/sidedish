@@ -46,7 +46,9 @@ class FoodCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.backgroundColor = UIColor(red: 0.502, green: 0.737, blue: 1, alpha: 1)
         label.textColor = .white
-        label.layer.cornerRadius = 100
+        label.layer.cornerRadius = 13
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
         label.text = "이벤트특가"
         return label
     }()
@@ -102,14 +104,16 @@ class FoodCell: UICollectionViewCell {
         self.contentView.addSubview(salePriceLabel)
         salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
         salePriceLabel.topAnchor.constraint(equalTo: originPriceLabel.topAnchor).isActive = true
-        salePriceLabel.leadingAnchor.constraint(equalTo: originPriceLabel.trailingAnchor).isActive = true
+        salePriceLabel.leadingAnchor.constraint(equalTo: originPriceLabel.trailingAnchor, constant: 4).isActive = true
         salePriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
+        self.contentView.addSubview(eventLabel)
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventLabel.widthAnchor.constraint(equalToConstant: 89).isActive = true
+        eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         eventLabel.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
         eventLabel.leadingAnchor.constraint(equalTo: originPriceLabel.leadingAnchor).isActive = true
-        eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        eventLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 13).isActive = true
+        eventLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13).isActive = true
     }
     
 }

@@ -9,8 +9,8 @@ import Foundation
 
 class JsonConvertor{
     
-    func mockLoad(){
-        let fileName = "mock"
+    func mockLoad(file: String){
+        let fileName = file
         let type = "json"
         
         guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: type) else { return  }
