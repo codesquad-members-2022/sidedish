@@ -2,6 +2,8 @@ package com.example.be.common.token.jwt;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,7 +15,7 @@ public class PayLoad {
     private static final String EXPIRATION_TIME = "exp";
     private static final String NOT_BEFORE = "nbf";
     private static final String ISSUED_AT = "2022-04-26";
-    private static final String JWT_ID = "ja12fo=93mfasfjo1234";
+    private static final String JWT_ID = hash();
     private static final String TOKEN_DELIMETER = ",";
 
     // TODO 추후 long으로 변경
@@ -43,6 +45,18 @@ public class PayLoad {
                 .append("nbf:").append(NOT_BEFORE).append(TOKEN_DELIMETER)
                 .append("iat:").append(ISSUED_AT).append(TOKEN_DELIMETER)
                 .append("jti:").append(JWT_ID).toString();
+    }
+
+    private static String hash() {
+        String message = "codesquad";
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        messageDigest.update(message.getBytes());
+        return messageDigest.digest().toString();
     }
 
 }
