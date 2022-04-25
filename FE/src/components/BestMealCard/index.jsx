@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { setDefaultMealImage } from "util";
+import { setDefaultMealImage } from "utils";
 
-const BestMealCardStyled = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -15,7 +15,7 @@ const CardImage = styled.img`
 function BestMealCard({ meal }) {
   const { image, productName, description, fixedPrice, originalPrice, event } = meal;
   return (
-    <BestMealCardStyled>
+    <Container>
       <CardImage src={setDefaultMealImage(image)} alt={productName} />
       <h3>{productName}</h3>
       <span>{description}</span>
@@ -24,7 +24,7 @@ function BestMealCard({ meal }) {
         {originalPrice === fixedPrice ? null : <span>{fixedPrice}</span>}
       </div>
       <div>{event}</div>
-    </BestMealCardStyled>
+    </Container>
   );
 }
 

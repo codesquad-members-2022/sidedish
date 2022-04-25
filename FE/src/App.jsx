@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import BestMealContainer from "components/BestMealContainer";
 import MealContainer from "components/MealContainer";
-import { MOCK_SERVER_URL } from "constant";
+import { MOCK_SERVER_URL } from "constants";
 
 function App() {
   const [meals, setMeals] = useState({

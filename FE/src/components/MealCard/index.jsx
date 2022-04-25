@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { setDefaultMealImage } from "util";
+import { setDefaultMealImage } from "utils";
 
 // TODO: style.js로 분리하기
 const MealCardStyled = styled.li`
