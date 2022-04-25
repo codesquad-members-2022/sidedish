@@ -19,11 +19,11 @@ function checkSelected(tabClassName) {
   return null;
 }
 
-export const Tab = ({ tabData, clickedTabId, TabClassName }) => {
+export const Tab = ({ tabData, clickTab, TabClassName }) => {
   const tabId = tabData.id;
 
   const onClickTab = event => {
-    clickedTabId(tabId);
+    clickTab(tabId);
   };
 
   return (
