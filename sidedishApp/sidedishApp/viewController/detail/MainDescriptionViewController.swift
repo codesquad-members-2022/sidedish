@@ -12,7 +12,7 @@ class MainDescriptionViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor.customColor(.black)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 32)
+        label.font = UIFont.customFont(.sfRegularTitle)
         label.baselineAdjustment = .alignCenters
         label.text = "오리 주물럭_반조리"
         return label
@@ -21,7 +21,7 @@ class MainDescriptionViewController: UIViewController {
     private lazy var subtitleLabel: UILabel = {
         var label = UILabel()
         label.textColor = UIColor.customColor(.grey2)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
+        label.font = UIFont.customFont(.sfRegularSubtitle)
         label.baselineAdjustment = .alignCenters
         label.text = "감칠맛 나는 매콤한 양념"
         return label
@@ -30,7 +30,7 @@ class MainDescriptionViewController: UIViewController {
     private lazy var salePrice: UILabel = {
         var label = UILabel()
         label.textColor = UIColor.customColor(.grey1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
+        label.font = UIFont.customFont(.sfSemiboldSalePrice)
         label.baselineAdjustment = .alignCenters
         label.text = "12,640원"
         return label
@@ -39,7 +39,7 @@ class MainDescriptionViewController: UIViewController {
     private lazy var rawPrice: UILabel = {
         var label = UILabel()
         label.textColor = UIColor.customColor(.grey2)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        label.font = UIFont.customFont(.sfRegularRawPrice)
         return label
     }()
     
@@ -49,7 +49,7 @@ class MainDescriptionViewController: UIViewController {
         label.backgroundColor = UIColor.customColor(.primaryDark)
         label.layer.cornerRadius = 10
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
+        label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
         label.text = "런칭특가"
