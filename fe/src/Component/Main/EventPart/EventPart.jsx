@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   StyledEventDesc,
@@ -6,25 +5,25 @@ import {
   StyledEventTitle,
   StyledEventPart,
 } from "./EventPart.styled";
+import eventCategoriesApi from "../../../Service/eventCategoriesApi";
 import EventTab from "./EventTab/EventTab";
 import EventContents from "./EventContents/EventContents";
 
 const EventPart = () => {
-  const [name, setName] = useState(null);
-  const [categories, setCategories] = useState(null);
+  const [name, setName] = useState("");
+  const [categories, setCategories] = useState([]);
   const [selectedId, setSelectedId] = useState(1);
 
-  async function getData() {
-    await axios("/api/event-categories")
-      .then(({ data }) => {
-        setName(data.eventName);
-        setCategories(data.eventCategories);
-      })
-      .catch((error) => console.error(error));
-  }
+  const fetchEventCategories = async () => {
+    // const { eventName, eventCategories } =
+    const data = await eventCategoriesApi.getEventCategories();
+
+    setName(data.eventName);
+    setCategories(data.eventCategories);
+  };
 
   useEffect(() => {
-    getData();
+    fetchEventCategories();
   }, []);
 
   return (

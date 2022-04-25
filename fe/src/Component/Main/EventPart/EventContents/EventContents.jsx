@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import axios from "axios";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import EventCardPrice from "./EventCardPrice";
+import eventCategoriesApi from "../../../../Service/eventCategoriesApi";
 
 const StyledEventCards = styled.ul`
   border-top: solid #ebebeb 1px;
@@ -58,16 +58,15 @@ const StyledEventCards = styled.ul`
 const EventContents = ({ selectedId }) => {
   const [sideDishes, setSideDishes] = useState(null);
 
-  async function getData() {
-    await axios(`/${selectedId}`)
-      .then(({ data }) => {
-        setSideDishes(data.sideDishes);
-      })
-      .catch((error) => console.error(error));
-  }
+  const fetchCurCategorySideDishes = async (eventCategoryId) => {
+    const responseData = await eventCategoriesApi.getSideDishes(
+      eventCategoryId
+    );
+    setSideDishes(responseData.sideDishes);
+  };
 
   useEffect(() => {
-    getData();
+    fetchCurCategorySideDishes(selectedId);
   }, [selectedId]);
 
   if (!sideDishes) return null;
