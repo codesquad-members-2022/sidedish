@@ -16,9 +16,14 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        let repository = Repository(networkHandler: NetworkHandler(), jsonHandler: JSONHandler(), dataCache: DataCache())
+        ordering = Ordering(repository: repository)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ordering = Ordering(repository: Repository())
         navigationItem.title = "Ordering"
         setFoodCollectionView()
         setLayout()
