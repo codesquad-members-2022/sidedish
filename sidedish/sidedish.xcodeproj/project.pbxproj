@@ -21,6 +21,15 @@
 		E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B128129D67009627A1 /* ResourceRepository.swift */; };
 		E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */; };
 		E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B52812A001009627A1 /* NetworkRepository.swift */; };
+		E0D380BD28168661009627A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0D380BC28168661009627A1 /* GoogleService-Info.plist */; };
+		E0D380BF2816C0B7009627A1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380BE2816C0B7009627A1 /* LoginViewModel.swift */; };
+		E0D380C22816C2C0009627A1 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380C12816C2C0009627A1 /* LoginRepository.swift */; };
+		E0D380C42816CC6D009627A1 /* LoginRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380C32816CC6D009627A1 /* LoginRepositoryImpl.swift */; };
+		E0D380C62816CC98009627A1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380C52816CC98009627A1 /* User.swift */; };
+		E0D380C82816CDC5009627A1 /* UserDefaultPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380C72816CDC5009627A1 /* UserDefaultPropertyWrapper.swift */; };
+		E0D380CC2816CFD4009627A1 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380CB2816CFD4009627A1 /* Container.swift */; };
+		E0D380CE2816D01E009627A1 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380CD2816D01E009627A1 /* UserStore.swift */; };
+		E0D380D22816D467009627A1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380D12816D467009627A1 /* Token.swift */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
 		E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */; };
 		E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EDD5A2280CF94700DBF9C6 /* Assets.xcassets */; };
@@ -62,6 +71,15 @@
 		E0D380B128129D67009627A1 /* ResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepository.swift; sourceTree = "<group>"; };
 		E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepositoryImpl.swift; sourceTree = "<group>"; };
 		E0D380B52812A001009627A1 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		E0D380BC28168661009627A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E0D380BE2816C0B7009627A1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		E0D380C12816C2C0009627A1 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		E0D380C32816CC6D009627A1 /* LoginRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryImpl.swift; sourceTree = "<group>"; };
+		E0D380C52816CC98009627A1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E0D380C72816CDC5009627A1 /* UserDefaultPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultPropertyWrapper.swift; sourceTree = "<group>"; };
+		E0D380CB2816CFD4009627A1 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		E0D380CD2816D01E009627A1 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		E0D380D12816D467009627A1 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +153,32 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		E0D380C02816C2B5009627A1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E0D380C12816C2C0009627A1 /* LoginRepository.swift */,
+				E0D380C32816CC6D009627A1 /* LoginRepositoryImpl.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E0D380C92816CFAF009627A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0FAAA55280ED0C400B36F4D /* PaddingLabel.swift */,
+				733D58432810F603007FC36F /* MenuInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0D380CA2816CFB8009627A1 /* PropertyWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				E0D380C72816CDC5009627A1 /* UserDefaultPropertyWrapper.swift */,
+			);
+			path = PropertyWrapper;
+			sourceTree = "<group>";
+		};
 		E0EDD58D280CF94700DBF9C6 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +233,7 @@
 		E0EDD5B1280D17B800DBF9C6 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				E0D380BC28168661009627A1 /* GoogleService-Info.plist */,
 				E0EDD5A7280CF94700DBF9C6 /* Info.plist */,
 			);
 			path = Configuration;
@@ -209,6 +254,8 @@
 			children = (
 				E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */,
 				E0FAAA4E280E867900B36F4D /* MenuDetail.swift */,
+				E0D380C52816CC98009627A1 /* User.swift */,
+				E0D380D12816D467009627A1 /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,8 +282,10 @@
 		E0EDD5B6280D185100DBF9C6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E0FAAA55280ED0C400B36F4D /* PaddingLabel.swift */,
-				733D58432810F603007FC36F /* MenuInfoView.swift */,
+				E0D380CA2816CFB8009627A1 /* PropertyWrapper */,
+				E0D380C92816CFAF009627A1 /* View */,
+				E0D380CB2816CFD4009627A1 /* Container.swift */,
+				E0D380CD2816D01E009627A1 /* UserStore.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -256,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */,
+				E0D380BE2816C0B7009627A1 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -263,6 +313,7 @@
 		E0FAAA2F280D881900B36F4D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				E0D380C02816C2B5009627A1 /* Login */,
 				E0D380B028129D09009627A1 /* Images */,
 				7345C9A7280E538400F89135 /* Sidedish */,
 				E0FAAA31280D881900B36F4D /* Base */,
@@ -326,6 +377,7 @@
 				E0EDD593280CF94700DBF9C6 /* Frameworks */,
 				E0EDD594280CF94700DBF9C6 /* Resources */,
 				E0EDD5AE280D002800DBF9C6 /* swiftLint */,
+				950868C2718BA703B9CF5B9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -375,12 +427,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */,
+				E0D380BD28168661009627A1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		950868C2718BA703B9CF5B9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sidedish/Pods-sidedish-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sidedish/Pods-sidedish-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sidedish/Pods-sidedish-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9EE110FB36CAB8547AB1007D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,26 +503,33 @@
 				73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */,
 				7345C9B1280EA0CA00F89135 /* CustomCollectionCell.swift in Sources */,
 				733D58442810F603007FC36F /* MenuInfoView.swift in Sources */,
+				E0D380CE2816D01E009627A1 /* UserStore.swift in Sources */,
 				E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */,
 				E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */,
 				E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */,
 				733D58422810EF1F007FC36F /* HTTPMethod.swift in Sources */,
+				E0D380D22816D467009627A1 /* Token.swift in Sources */,
 				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
 				E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */,
 				E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */,
 				E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */,
+				E0D380BF2816C0B7009627A1 /* LoginViewModel.swift in Sources */,
 				E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */,
 				E0FAAA5E280F120900B36F4D /* MenuOrderView.swift in Sources */,
 				E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */,
+				E0D380C22816C2C0009627A1 /* LoginRepository.swift in Sources */,
+				E0D380C62816CC98009627A1 /* User.swift in Sources */,
 				E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */,
 				7345C9A9280E53AE00F89135 /* SidedishRepository.swift in Sources */,
 				733D584628112E96007FC36F /* String+Extension.swift in Sources */,
 				7345C9A6280E522D00F89135 /* SidedishEndPoint.swift in Sources */,
 				7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */,
 				E0FAAA4F280E867900B36F4D /* MenuDetail.swift in Sources */,
+				E0D380C82816CDC5009627A1 /* UserDefaultPropertyWrapper.swift in Sources */,
 				E0FAAA42280D883200B36F4D /* EndPoint.swift in Sources */,
 				E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */,
 				E0FAAA5A280EEC9500B36F4D /* MenuAmountView.swift in Sources */,
+				E0D380C42816CC6D009627A1 /* LoginRepositoryImpl.swift in Sources */,
 				7345C9AB280E543200F89135 /* SidedishRepositoryImpl.swift in Sources */,
 				E0FAAA3E280D881900B36F4D /* SessionError.swift in Sources */,
 				E0FAAA3F280D881900B36F4D /* URLSessionProvider.swift in Sources */,
@@ -460,6 +537,7 @@
 				E0FAAA4B280E85C000B36F4D /* NetworkResult.swift in Sources */,
 				E0EDD5BC280D513700DBF9C6 /* MainViewController.swift in Sources */,
 				E0FAAA52280EC9B300B36F4D /* ThumbnailImageView.swift in Sources */,
+				E0D380CC2816CFD4009627A1 /* Container.swift in Sources */,
 				E0FAAA43280D883200B36F4D /* ApiResult.swift in Sources */,
 				7345C9A4280E4B4100F89135 /* MainViewModel.swift in Sources */,
 			);

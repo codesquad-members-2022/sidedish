@@ -8,5 +8,6 @@ target 'sidedish' do
   # Pods for sidedish
 
  pod 'SwiftLint'
-
+ pod 'FirebaseAuth'
+ pod 'GoogleSignIn'
 end
