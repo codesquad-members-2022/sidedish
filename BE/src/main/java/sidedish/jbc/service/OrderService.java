@@ -2,6 +2,7 @@ package sidedish.jbc.service;
 
 import org.springframework.stereotype.Service;
 import sidedish.jbc.domain.MenuOrder;
+import sidedish.jbc.dto.MenuOrderResponse;
 import sidedish.jbc.dto.OrderRequest;
 import sidedish.jbc.repository.OrderRepository;
 
@@ -14,7 +15,7 @@ public class OrderService {
 		this.orderRepository = orderRepository;
 	}
 
-	public MenuOrder save(OrderRequest request) {
-		return orderRepository.save(request.toEntity());
+	public MenuOrderResponse save(OrderRequest request) {
+		return new MenuOrderResponse(orderRepository.save(request.toEntity()));
 	}
 }
