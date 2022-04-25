@@ -3,6 +3,7 @@ package sidedish.com.acceptancetest;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,22 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-
-/**
- * 인수테스트 1 : 프로튼엔드가 특정 음식 타입 조회를 하게 해주세요
- * <p>
- * 성공 1 GET /api/products?meal={value} 일 때
- * <p>
- * Response - 200 OK - JSON return
- * <p>
- * 실패 1 : 유효하지 않은 value
- * <p>
- * Response - 400 BadRequest - JSON 리턴
- * <p>
- * 실패 2 : meal=value가 없는 경우
- * <p>
- * Response - 400 BadRequest - JSON 리턴
- */
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DisplayName("Product 인수테스트")
@@ -77,4 +62,53 @@ class ProductsAcceptanceTest {
 		.then()
 			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
+
+	@Test
+	void 만약_유효한_product_id가_주어졌을때_음식_상세조회_성공() {
+		given()
+			.accept(MediaType.APPLICATION_JSON_VALUE)
+
+		.when()
+			.get("api/products/5")
+
+		.then()
+			.statusCode(HttpStatus.OK.value())
+			.body("id", equalTo(5))
+			.body("images", hasSize(1))
+			.body("productName", equalTo("한돈 돼지 김치찌개"))
+			.body("description", equalTo("김치찌개에는 역시 돼지고기"))
+			.body("event", equalTo("이벤트특가"))
+			.body("fixedPrice", equalTo(7440))
+			.body("originalPrice", equalTo(9300))
+			.body("mileage", equalTo(74))
+			.body("deliveryInfo", equalTo("서울 경기 새벽 배송, 전국 택배 배송"))
+			.body("deliveryCharge", equalTo(2500))
+			.body("freeDeliveryOverAmount", equalTo(40000));
+
+	}
+
+	@Test
+	void 만약_유요하지않은_product_id가_주어졌을때_음식_상세조회_실패() {
+		given()
+			.accept(MediaType.APPLICATION_JSON_VALUE)
+
+			.when()
+			.get("api/products/-1")
+
+			.then()
+			.statusCode(HttpStatus.NOT_FOUND.value());
+	}
+
+	@Test
+	void 만약_유요한_product_id지만_해당_id음식_존재하지_않는경우_상세조회_실패() {
+		given()
+			.accept(MediaType.APPLICATION_JSON_VALUE)
+
+			.when()
+			.get("api/products/999999")
+
+			.then()
+			.statusCode(HttpStatus.NOT_FOUND.value());
+	}
+
 }

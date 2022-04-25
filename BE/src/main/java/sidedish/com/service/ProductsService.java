@@ -3,27 +3,35 @@ package sidedish.com.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import sidedish.com.controller.ProductsDtoMapper;
+import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.controller.model.ProductMealTypeResponse;
 import sidedish.com.domain.Product;
 import sidedish.com.exception.NoSuchProductsException;
+import sidedish.com.repository.DeliveryPolicyRepository;
 import sidedish.com.repository.DiscountPolicyRepository;
 import sidedish.com.repository.DomainEntityMapper;
 import sidedish.com.repository.ProductsRepository;
+import sidedish.com.repository.entity.DeliveryPolicyEntity;
+import sidedish.com.repository.entity.DiscountPolicyEntity;
+import sidedish.com.repository.entity.ProductEntity;
 
 @Service
 public class ProductsService {
 
 	private final ProductsRepository productsRepository;
 	private final DiscountPolicyRepository discountPolicyRepository;
+	private final DeliveryPolicyRepository deliveryPolicyRepository;
 	private final ProductsDtoMapper productsDtoMapper;
 	private final DomainEntityMapper domainEntityMapper;
 
 	public ProductsService(ProductsRepository productsRepository,
 		DiscountPolicyRepository discountPolicyRepository,
+		DeliveryPolicyRepository deliveryPolicyRepository,
 		ProductsDtoMapper productsDtoMapper,
 		DomainEntityMapper domainEntityMapper) {
 		this.productsRepository = productsRepository;
 		this.discountPolicyRepository = discountPolicyRepository;
+		this.deliveryPolicyRepository = deliveryPolicyRepository;
 		this.productsDtoMapper = productsDtoMapper;
 		this.domainEntityMapper = domainEntityMapper;
 	}
@@ -31,7 +39,8 @@ public class ProductsService {
 	public List<ProductMealTypeResponse> findByMealType(String meal) {
 		List<Product> products = domainEntityMapper.toDomainFromProductsEntity(
 			productsRepository.findByMealType(meal),
-			discountPolicyRepository.findAll());
+			discountPolicyRepository.findAll(),
+			deliveryPolicyRepository.findAll());
 
 		validProducts(products);
 
@@ -43,4 +52,18 @@ public class ProductsService {
 			throw new NoSuchProductsException();
 		}
 	}
+
+	public ProductDetailTypeResponse findById(Long id) {
+
+		ProductEntity productEntity = productsRepository.findById(id).orElseThrow(() ->
+			new NoSuchProductsException());
+		List<DiscountPolicyEntity> discountPolicyEntities = discountPolicyRepository.findAll();
+		List<DeliveryPolicyEntity> deliveryPolicyEntities = deliveryPolicyRepository.findAll();
+
+		Product products = domainEntityMapper.toDomainFromProductEntity(productEntity,
+			discountPolicyEntities, deliveryPolicyEntities);
+
+		return productsDtoMapper.toProductDetailTypeFromDomain(products);
+	}
+
 }
