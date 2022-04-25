@@ -3,7 +3,6 @@ package kr.codesquad.sidedish.controller;
 import java.util.List;
 
 import kr.codesquad.sidedish.dto.DishDetailResponse;
-import kr.codesquad.sidedish.dto.DishRecommendation;
 import kr.codesquad.sidedish.dto.DishSimpleResponse;
 import kr.codesquad.sidedish.service.DishService;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +30,11 @@ public class DishController {
         return ResponseEntity.ok(one);
     }
 
-    @GetMapping("/{id}/recommend")
-    public ResponseEntity<List<DishRecommendation>> showRecommendation(@PathVariable Long id) {
-        return ResponseEntity.ok(dishService.findDishRecommendations(id));
+    @GetMapping("/")
+    public ResponseEntity<List<DishSimpleResponse>> showPagedDishes(
+            @RequestParam("categoryId") Long categoryId,
+            @RequestParam("lastDishId") Long lastDishId) {
+
+        return ResponseEntity.ok(dishService.findNextDishes(categoryId, lastDishId));
     }
 }

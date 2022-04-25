@@ -15,14 +15,9 @@ public interface JdbcDishRepository extends CrudRepository<Dish, Long> {
 
     @Modifying
     @Query("update dish set is_deleted = true where id = :id")
-    boolean delete(@Param("id") Long id);
+    public boolean delete(@Param("id") Long id);
 
-    List<Dish> findDishesByCategoryId(Long categoryId, PageRequest pageRequest);
+    public List<Dish> findDishesByCategoryId(Long categoryId);
 
-    @Modifying
-    @Query("update dish set stock = stock - :quantity where id = :id")
-    boolean updateStock(@Param("id") Long id, @Param("quantity") int quantity);
-
-    @Query("select * from dish where category_id != :categoryId order by rand() limit 3")
-    List<Dish> findDishesByOtherCategoryId(@Param("categoryId") Long categoryId);
+    public List<Dish> findDishesByCategoryId(Long categoryId, PageRequest pageRequest);
 }

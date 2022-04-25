@@ -26,27 +26,29 @@ class JdbcDishRepositoryTest {
     @Test
     void find_dish_with_image() {
         Dish dish = jdbcDishRepository.findById(1L).orElseThrow();
+
+        System.out.println(dish);
     }
 
     @Test
     void find_dishes_with_image() {
         List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(1L);
+
+        for (Dish dish1 : dishesByCategoryId) {
+            System.out.println(dish1);
+        }
     }
 
     @Test
     void findDishesByCategoryId2() {
 
-        PageRequest pageRequest = PageRequest.of(0, 4);
+        PageRequest p = PageRequest.of(0, 4);
 
-        List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(1L, pageRequest);
-    }
-
-    @Test
-    void findDishesByOtherCategoryId() {
-
-        List<Dish> dishesByOtherCategoryId = jdbcDishRepository.findDishesByOtherCategoryId(1L);
-        for (Dish dish : dishesByOtherCategoryId) {
+        List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(1L, p);
+        for (Dish dish : dishesByCategoryId) {
             System.out.println(dish);
         }
+
+
     }
 }

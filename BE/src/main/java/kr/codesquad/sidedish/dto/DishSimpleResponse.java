@@ -4,8 +4,6 @@ import kr.codesquad.sidedish.domain.DeliveryType;
 import kr.codesquad.sidedish.domain.DiscountPolicy;
 import kr.codesquad.sidedish.domain.Dish;
 
-import java.util.Objects;
-
 public class DishSimpleResponse {
 
     private static final int MAIN_IMAGE_INDEX = 0;
@@ -21,8 +19,8 @@ public class DishSimpleResponse {
     private final DiscountPolicy discountPolicy;
 
     public DishSimpleResponse(Long id, String name, String description, String image, int stock,
-        int normalPrice, int discountPrice, DeliveryType deliveryType,
-        DiscountPolicy discountPolicy) {
+                              int normalPrice, int discountPrice, DeliveryType deliveryType,
+                              DiscountPolicy discountPolicy) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,9 +34,8 @@ public class DishSimpleResponse {
 
     public static DishSimpleResponse of(Dish dish) {
         return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(),
-            dish.getImagePath(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(),
-            dish.getDiscountPrice(),
-            dish.getDeliveryType(), dish.getDiscountPolicy());
+                dish.getImageName(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
+                dish.getDeliveryType(), dish.getDiscountPolicy());
     }
 
 
@@ -76,22 +73,5 @@ public class DishSimpleResponse {
 
     public DiscountPolicy getDiscountPolicy() {
         return discountPolicy;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DishSimpleResponse that = (DishSimpleResponse) o;
-        return getId().equals(that.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
     }
 }
