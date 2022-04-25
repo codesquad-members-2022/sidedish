@@ -1,7 +1,7 @@
 package com.codesquad.sidedish.dish.dto;
 
 import com.codesquad.sidedish.dish.domain.Dish;
-import com.codesquad.sidedish.dish.domain.DishImage;
+import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -14,12 +14,11 @@ public class DishResponse {
     private final String description;
     private final Integer price;
     private final Integer stock;
-
-    // dish image
     private final String imagePath;
 
+    private final List<DiscountResponse> discounts;
+
     public static DishResponse from(Dish dish) {
-        DishImage dishImage = dish.getDishImage();
 
         return new DishResponse(
             dish.getId(),
@@ -27,7 +26,8 @@ public class DishResponse {
             dish.getDescription(),
             dish.getPrice(),
             dish.getStock(),
-            dishImage != null ? dishImage.getImagePath() : null
+            ImageResponse.getFirstPath(dish.getDishImages()),
+            DiscountResponse.from(dish.getDishDiscounts())
         );
     }
 
