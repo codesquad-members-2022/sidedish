@@ -29,3 +29,5 @@ export const CARD_LENGHTHS = {
   BIG: "441px",
   SMALL: "320px",
 };
+
+export const NUM_OF_CARD_ON_DISPLAY = 4;

@@ -62,7 +62,14 @@ const Main = () => {
           len={CARD_LENGHTHS.BIG}
         />
         <DivisionLine height="1px" color="#EBEBEB" />
-        <Carousel cardClickState={cardClickState} setCardClickState={setCardClickState} carouselState={carouselState} len={CARD_LENGHTHS.SMALL} />
+        <Carousel
+          cardClickState={cardClickState}
+          setCardClickState={setCardClickState}
+          carouselCards={carouselMockData.carouselCardData}
+          cardLength={CARD_LENGHTHS.SMALL}
+          cardCount={NUM_OF_CARD_ON_DISPLAY}
+          cardPadding={CARD_PADDING}
+        />
         <Popup
           cardClickState={cardClickState}
           setCardClickState={setCardClickState}
