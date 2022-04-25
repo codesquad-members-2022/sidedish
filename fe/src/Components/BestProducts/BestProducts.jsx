@@ -50,7 +50,7 @@ export const BestProducts = () => {
       .catch(err => {
         //TODO: 에러 핸들링
         console.error(err);
-      })
+      });
   }, []);
 
   useEffect(() => {
@@ -58,16 +58,18 @@ export const BestProducts = () => {
       return;
     }
 
-    fetch(`/event/${selectedTabId}`)
-      .then(body => body.json())
-      .then(data => {
-        setCardData(data.content);
+    fetchData(`/event/${selectedTabId}`)
+      .then(selectedTabProductsData => {
+        setCardData(selectedTabProductsData.content);
+      })
+      .catch(err => {
+        console.error(err);
       });
   }, [selectedTabId]);
 
-  const onClickTab = (clickedTabId) => () => {
+  const onClickTab = clickedTabId => () => {
     setSelectedTabId(clickedTabId);
-  }
+  };
 
   return (
     <BestProductWrapper>
