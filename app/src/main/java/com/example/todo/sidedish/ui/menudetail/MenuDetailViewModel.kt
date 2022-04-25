@@ -19,14 +19,22 @@ class MenuDetailViewModel @Inject constructor(
 
     private val detailInfo = MutableLiveData<MenuDetail>()
     val _detailInfo: LiveData<MenuDetail> = detailInfo
-    private val thumbImages = MutableLiveData<List<String>>()
-    val _thumbImages: LiveData<List<String>> = thumbImages
+    private val thumbnailImages = MutableLiveData<List<String>>()
+    val _thumbnailImages: LiveData<List<String>> = thumbnailImages
 
-
-    fun getDetail(hash:String) {
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+    
+    fun getDetail(hash: String) {
         viewModelScope.launch {
-            detailInfo.value = menuRepository.getDetail(hash)
-            thumbImages.value = detailInfo.value?.thumbnailImages
+            menuRepository.getDetail(hash)
+                .onSuccess {
+                    detailInfo.value = it
+                    thumbnailImages.value = it.thumbnailImages
+                }
+                .onFailure { error ->
+                    _errorMessage.value = error.message
+                }
         }
     }
 }
