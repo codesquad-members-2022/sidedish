@@ -18,6 +18,7 @@
 		024D59D92812430F007E2727 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59D82812430F007E2727 /* DetailView.swift */; };
 		024D59DF281688E1007E2727 /* DishDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59DE281688E1007E2727 /* DishDetail.swift */; };
 		024D59E1281689A9007E2727 /* DetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59E0281689A9007E2727 /* DetailData.swift */; };
+		024D59E928169265007E2727 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59E828169265007E2727 /* NetworkError.swift */; };
 		0279B33F280FDB9E00DDBA6E /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0279B33D280FDB9E00DDBA6E /* DishCell.swift */; };
 		0279B340280FDB9E00DDBA6E /* DishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0279B33E280FDB9E00DDBA6E /* DishCell.xib */; };
 		02F119CA28102B0E00B9B6A7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F119C928102B0E00B9B6A7 /* DetailViewController.swift */; };
@@ -82,6 +83,7 @@
 		024D59D82812430F007E2727 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		024D59DE281688E1007E2727 /* DishDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetail.swift; sourceTree = "<group>"; };
 		024D59E0281689A9007E2727 /* DetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailData.swift; sourceTree = "<group>"; };
+		024D59E828169265007E2727 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0279B33D280FDB9E00DDBA6E /* DishCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishCell.swift; sourceTree = "<group>"; };
 		0279B33E280FDB9E00DDBA6E /* DishCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DishCell.xib; sourceTree = "<group>"; };
 		02F119C928102B0E00B9B6A7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				024D59D12811216B007E2727 /* Font.swift */,
+				024D59E828169265007E2727 /* NetworkError.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				024D59E928169265007E2727 /* NetworkError.swift in Sources */,
 				2A50C19A280D55F400AFF2F7 /* AppDelegate.swift in Sources */,
 				2A50C1A4280D55F400AFF2F7 /* SideDish.xcdatamodeld in Sources */,
 				024D59E1281689A9007E2727 /* DetailData.swift in Sources */,
