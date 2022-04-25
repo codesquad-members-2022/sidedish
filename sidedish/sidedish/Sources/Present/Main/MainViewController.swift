@@ -112,14 +112,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-            if kind == UICollectionView.elementKindSectionHeader {
-                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader, let sideMenu = Sidedish.Menu(rawValue: indexPath.section) else {
-                    return UICollectionReusableView()
-                }
-                headerView.changeTitle(text: sideMenu.headerTitle)
-                return headerView
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader, let sideMenu = Sidedish.Menu(rawValue: indexPath.section) else {
+                return UICollectionReusableView()
             }
-            return UICollectionReusableView()
+            headerView.changeTitle(text: sideMenu.headerTitle)
+            return headerView
+        }
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
