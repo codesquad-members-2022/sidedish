@@ -26,6 +26,6 @@ public class CategoryController {
         if (sectionName != null) {
             return categoryService.groupDishBySection(sectionName.replace("-", " "));
         }
-        return null;
+        return List.of();
     }
 }

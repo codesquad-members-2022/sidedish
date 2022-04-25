@@ -22,10 +22,10 @@ public class Dish {
     private final Integer stock;
 
     @MappedCollection(idColumn = "dish_id")
-    Set<DishDiscount> dishDiscounts = new HashSet<>();
+    private final Set<DishDiscount> dishDiscounts = new HashSet<>();
 
     @MappedCollection(idColumn = "dish_id")
-    Set<DishImage> dishImages = new HashSet<>();
+    private final Set<DishImage> dishImages = new HashSet<>();
 
     public Dish(Integer id, String title, String description, Integer price, Integer stock) {
         this.id = id;

@@ -26,6 +26,6 @@ public class DishController {
         if (categoryName != null) {
             return dishService.findDishByCategory(categoryName.replace("-", " "));
         }
-        return null;
+        return new Slice<>();
     }
 }

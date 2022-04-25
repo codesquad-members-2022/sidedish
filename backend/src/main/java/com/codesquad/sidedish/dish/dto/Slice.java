@@ -9,6 +9,11 @@ public class Slice<T> {
     private final List<T> data;
     private final Boolean hasNext;
 
+    public Slice() {
+        this.data = List.of();
+        this.hasNext = false;
+    }
+
     public Slice(List<T> data) {
         // TODO : slice 구현
         this.data = data;
