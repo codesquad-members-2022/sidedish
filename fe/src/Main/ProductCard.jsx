@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
 
+import { HoverInfo } from './HoverInfo';
+import { PriceTag } from './PriceTag';
+
 import { DiscountBadge } from '@/Badge/DiscountBadge';
 import Colors from '@/Constants/Colors';
 
@@ -15,7 +18,7 @@ const CardWrapper = styled.li`
   ${({ size }) => {
     return size === 'md'
       ? css`
-          .image {
+          .CardImgContainer {
             width: 302px;
             height: 302px;
           }
@@ -26,7 +29,7 @@ const CardWrapper = styled.li`
             margin-right: 16px;
           }
 
-          .image {
+          .CardImgContainer {
             width: 160px;
             height: 160px;
           }
@@ -35,12 +38,12 @@ const CardWrapper = styled.li`
   }};
 `;
 
-const Image = styled.div`
+const CardImgContainer = styled.div`
   position: relative;
   width: 411px;
   height: 411px;
 
-  img {
+  .productCardImg {
     display: block;
     width: 100%;
     height: 100%;
@@ -70,43 +73,13 @@ const Description = styled.span`
   color: ${Colors.GREY};
 `;
 
-const ListPrice = styled.span`
-  display: block;
-  padding: 4px 0;
-`;
-
 const BadgeWrapper = styled.div`
   margin-top: 16px;
-`;
-
-const OriginalPrice = styled.div`
-  margin-left: 8px;
-  color: ${Colors.LIGHT_GREY};
-  text-decoration: line-through;
 `;
 
 const PriceWrapper = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const HoverInfoWrapper = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  border: 1px solid black;
-  padding: 40px 42px;
-  border-radius: 999px;
-  background-color: ${Colors.OFF_WHITE};
-  opacity: 0;
-  z-index: 2;
-  transition: opacity 150ms;
-
-  .separator {
-    border: 0;
-    border-bottom: 1px solid ${Colors.BLACK};
-    margin: 8px 0;
-  }
 `;
 
 const Mask = styled.div`
@@ -121,23 +94,6 @@ const Mask = styled.div`
   transition: opacity 150ms;
 `;
 
-const Price = ({ priceData: { price, discountPolicy, discountRate } }) => {
-  if (!discountPolicy) {
-    return <ListPrice>{price.toLocaleString()} 원</ListPrice>;
-  }
-
-  const discountPrice = discountPolicy ? price - price * discountRate : null;
-
-  return (
-    <>
-      {<ListPrice>{discountPrice.toLocaleString()} 원</ListPrice>}
-      <OriginalPrice className="fonts-xs">
-        {price.toLocaleString()} 원
-      </OriginalPrice>
-    </>
-  );
-};
-
 const PolicyBadge = ({ priceData: discountPolicy }) => {
   if (!discountPolicy) {
     return;
@@ -147,16 +103,6 @@ const PolicyBadge = ({ priceData: discountPolicy }) => {
     <BadgeWrapper>
       <DiscountBadge type={discountPolicy} />
     </BadgeWrapper>
-  );
-};
-
-const HoverInfo = () => {
-  return (
-    <HoverInfoWrapper className={'fonts-md-bold hover-info'}>
-      <p>새벽 배송</p>
-      <hr className={"separator"} />
-      <p>전국 택배</p>
-    </HoverInfoWrapper>
   );
 };
 
@@ -175,19 +121,19 @@ export const ProductCard = ({
 }) => {
   return (
     <CardWrapper data-id={id} size={size}>
-      <Image className={'image'}>
-        {morningDelivery && size !== 'sm' && <HoverInfo />}
+      <CardImgContainer className={'image'}>
+        {morningDelivery && <HoverInfo />}
         <Mask className={'mask'} />
-        <img src={image} alt={'제품사진'} />
-      </Image>
+        <img className={'productCardImg'} src={image} alt={'제품사진'} />
+      </CardImgContainer>
       <Title className="fonts-md">{title}</Title>
       <Description className="fonts-sm">{description}</Description>
       <PriceWrapper>
-        <Price
+        <PriceTag
           priceData={{
-            price: price,
-            discountRate: discountRate,
-            discountPolicy: discountPolicy,
+            price,
+            discountRate,
+            discountPolicy,
           }}
         />
       </PriceWrapper>

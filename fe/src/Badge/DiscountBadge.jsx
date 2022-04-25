@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '@/Constants/Colors';
+import Fonts from '@/Constants/Fonts';
 
 const getBadgeName = type => {
   switch (type) {
@@ -35,7 +36,7 @@ const Badge = styled.button`
 export const DiscountBadge = ({ type }) => {
   return (
     <Badge
-      className={'fonts-sm'}
+      className={Fonts.FONTS_SM}
       backgroundColor={getBadgeBackgroundColor(type)}
     >
       {getBadgeName(type)}

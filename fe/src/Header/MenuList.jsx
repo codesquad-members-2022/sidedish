@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { Menu } from './Menu';
 
+import Fonts from '@/Constants/Fonts';
+
 const MenuListWrapper = styled.ul`
   display: inline-flex;
   white-space: nowrap;
@@ -25,7 +27,7 @@ export const MenuList = props => {
 
   return (
     <MenuListWrapper
-      className={'fonts-md'}
+      className={Fonts.FONTS_MD}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
