@@ -13,34 +13,20 @@ const Root = styled.div`
 
 const App = () => {
   const [categoryList, setCategoryList] = useState([]);
-  const [categoryProductsList, setCategoryProductsList] = useState([]);
-  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
   const [error, setError] = useState(false);
 
   const fetchInitialData = async () => {
     const categoryListData = await fetchData('/categories');
-    const firstCategoryIndex = 0;
-    const { id: firstCategoryId, main: firstCategoryTitle } =
-      categoryListData.content[firstCategoryIndex];
-    const firstCategoryProductListData = await fetchData(
-      `/category/${firstCategoryId}`
-    );
-    const firstCategoryProductList = {
-      id: firstCategoryId,
-      title: firstCategoryTitle,
-      content: firstCategoryProductListData.content,
-    };
-    return [categoryListData.content, [firstCategoryProductList]];
+    return categoryListData.content;
   };
 
   useEffect(() => {
     fetchInitialData()
-      .then(([initialCategoryList, initialCategoryProductList]) => {
+      .then((initialCategoryList) => {
         setCategoryList(initialCategoryList);
-        // setCategoryProductsList(initialCategoryProductList);
-        setIsInitialDataLoaded(true);
       })
       .catch(err => {
+        // TODO: 에러핸들링
         console.error(err);
         setError(true);
       });
@@ -52,9 +38,6 @@ const App = () => {
       <BestProducts />
       <CategoryProductsList
         categoryList={categoryList}
-        categoryProductsList={categoryProductsList}
-        setCategoryProductsList={setCategoryProductsList}
-        isInitialDataLoaded={isInitialDataLoaded}
       />
     </Root>
   );

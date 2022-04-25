@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { CategoryProducts } from './CategoryProducts';
 
 import Colors from '@/Constants/Colors';
-import { fetchData } from '@/Utils/Utils';
 
 const CategoryProductsListWrapper = styled.ul`
   padding: 0 80px;
@@ -13,7 +12,7 @@ const CategoryProductsListWrapper = styled.ul`
 const MoreButton = styled.button`
   display: block;
   padding: 16px 24px;
-  margin: 56px auto;
+  margin: 56px auto 150px;
   border: 1px solid ${Colors.PALE_GREY};
   color: ${Colors.DARK_GREY};
   transition: all 200ms;
@@ -28,102 +27,38 @@ const MoreButton = styled.button`
   }
 `;
 
-const LoadingErrorMessage = styled.span`
-  display: block;
-  margin-top: 100px;
-  text-align: center;
-`;
-
 export const CategoryProductsList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
-  const [retry, setRetry] = useState(false);
-  const [categoryProductsIdList, setCategoryProductsIdList] = useState([]);
+  const [loadedCategoryProductsIdList, setloadedCategoryProductsIdList] = useState([]);
 
   const handleClickMoreButton = () => {
     setMoreButtonClicked(true);
+    const allCategoryProductsIdList = props.categoryList.map(category => category.id);
+    const unloadedCategoryProductsIdList = allCategoryProductsIdList.filter(
+      id => !loadedCategoryProductsIdList.includes(id)
+    );
+    setloadedCategoryProductsIdList([
+      ...loadedCategoryProductsIdList,
+      ...unloadedCategoryProductsIdList,
+    ]);
   };
-
-  /*  useEffect(() => {
-    if (!moreButtonClicked) return;
-    // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
-    // TODO: 실패한 데이터만 다시 불러올 수 있도록 고치기
-    const categoryIds = props.categoryList.map(category => category.id);
-    const loadedCategoryId = props.categoryProductsList[0].id;
-    const unloadedCategoryIds = categoryIds.filter(
-      id => id !== loadedCategoryId
-    );
-    const requests = unloadedCategoryIds.map(id =>
-      fetchData(`/category/${id}`)
-    );
-
-    Promise.all(requests)
-      .then(categoryProductsListData => {
-        const categoryProductsList = categoryProductsListData.map(
-          (categoryProductsData, idx) => ({
-            id: unloadedCategoryIds[idx],
-            title: categoryProductsData.content[0].mainCategory,
-            content: categoryProductsData.content,
-          })
-        );
-        props.setCategoryProductsList([
-          ...props.categoryProductsList,
-          ...categoryProductsList,
-        ]);
-      })
-      .catch(() => {
-        setMoreButtonClicked(false);
-        setRetry(true);
-      });
-  }, [moreButtonClicked]);*/
 
   useEffect(() => {
     if (!props.categoryList.length) return;
     const firstCategoryIdx = 0;
     const firstCategoryId = props.categoryList[firstCategoryIdx].id;
-    setCategoryProductsIdList([firstCategoryId]);
+    setloadedCategoryProductsIdList([firstCategoryId]);
   }, [props.categoryList]);
 
   return (
-    // <CategoryProductsListWrapper>
-    //   {props.categoryProductsList.map(categoryProducts => (
-    //     <CategoryProducts
-    //       key={categoryProducts.id}
-    //       title={categoryProducts.title}
-    //       categoryProductsData={categoryProducts.content}
-    //     />
-    //   ))}
-    //   {!moreButtonClicked && (
-    //     <li>
-    //       {retry && (
-    //         <LoadingErrorMessage className={'fonts-lg'}>
-    //           데이터를 불러오는데 오류가 발생했습니다.
-    //         </LoadingErrorMessage>
-    //       )}
-    //       {props.isInitialDataLoaded && (
-    //         <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
-    //           모든 카테고리 보기
-    //         </MoreButton>
-    //       )}
-    //     </li>
-    //   )}
-    // </CategoryProductsListWrapper>
     <CategoryProductsListWrapper>
-      {categoryProductsIdList.map(categoryId => (
+      {loadedCategoryProductsIdList.map(categoryId => (
         <CategoryProducts key={categoryId} categoryId={categoryId} />
       ))}
       {!moreButtonClicked && (
-        <li>
-          {retry && (
-            <LoadingErrorMessage className={'fonts-lg'}>
-              데이터를 불러오는데 오류가 발생했습니다.
-            </LoadingErrorMessage>
-          )}
-          {props.isInitialDataLoaded && (
-            <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
-              모든 카테고리 보기
-            </MoreButton>
-          )}
-        </li>
+        <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
+          모든 카테고리 보기
+        </MoreButton>
       )}
     </CategoryProductsListWrapper>
   );
