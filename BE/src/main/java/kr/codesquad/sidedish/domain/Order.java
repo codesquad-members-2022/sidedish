@@ -18,24 +18,4 @@ public class Order {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public Integer getTotalPrice() {
-        return totalPrice;
-    }
 }

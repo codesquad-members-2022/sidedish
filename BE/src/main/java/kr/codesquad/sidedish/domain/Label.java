@@ -12,12 +12,4 @@ public class Label {
         this.labelId = labelId;
         this.labelName = labelName;
     }
-
-    public Long getLabelId() {
-        return labelId;
-    }
-
-    public String getLabelName() {
-        return labelName;
-    }
 }

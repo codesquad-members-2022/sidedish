@@ -12,12 +12,4 @@ public class Category {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
 }

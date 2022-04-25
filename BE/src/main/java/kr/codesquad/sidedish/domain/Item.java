@@ -11,7 +11,7 @@ public class Item {
     private final String description;
     private final Integer originalPrice;
     private final Integer discountPrice;
-    private final Integer stock;
+    private Integer stock;
     private final Integer labelId;
     private final String mainImage;
     private final Integer deliveryId;

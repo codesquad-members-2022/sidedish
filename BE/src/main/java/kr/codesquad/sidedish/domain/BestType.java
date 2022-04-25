@@ -12,12 +12,4 @@ public class BestType {
         this.bestId = bestId;
         this.bestName = bestName;
     }
-
-    public Long getBestId() {
-        return bestId;
-    }
-
-    public String getBestName() {
-        return bestName;
-    }
 }

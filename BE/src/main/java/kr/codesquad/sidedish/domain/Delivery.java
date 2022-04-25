@@ -12,12 +12,4 @@ public class Delivery {
         this.deliveryId = deliveryId;
         this.deliveryName = deliveryName;
     }
-
-    public Long getDeliveryId() {
-        return deliveryId;
-    }
-
-    public String getDeliveryName() {
-        return deliveryName;
-    }
 }

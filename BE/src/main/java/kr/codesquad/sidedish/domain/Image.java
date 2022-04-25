@@ -14,16 +14,4 @@ public class Image {
         this.itemId = itemId;
         this.detailImages = detailImages;
     }
-
-    public Long getImageId() {
-        return imageId;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public String getDetailImages() {
-        return detailImages;
-    }
 }
