@@ -1,6 +1,7 @@
 package com.sidedish.repository;
 
 
+import com.sidedish.domain.CategoryType;
 import com.sidedish.domain.Item;
 
 import org.springframework.data.jdbc.repository.query.Query;
