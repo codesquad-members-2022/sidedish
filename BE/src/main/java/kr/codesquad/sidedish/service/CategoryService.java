@@ -9,6 +9,7 @@ import kr.codesquad.sidedish.dto.DishSimpleResponse;
 import kr.codesquad.sidedish.repository.JdbcCategoryRepository;
 import kr.codesquad.sidedish.repository.JdbcDishRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -23,17 +24,12 @@ public class CategoryService {
         this.jdbcCategoryRepository = jdbcCategoryRepository;
     }
 
-    public List<Dish> findAll() {
-        List<Dish> dishes = new ArrayList<>();
-        jdbcDishRepository.findAll().forEach(dishes::add);
-        return dishes;
-    }
-
+    @Transactional(readOnly = true)
     public CategorizedDishes findDishesByCategoryId(Long categoryId) {
         Category category = jdbcCategoryRepository.findById(categoryId).orElseThrow();
         List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(category.getId());
         List<DishSimpleResponse> dishSimpleResponses = dishesByCategoryId.stream()
-                .map(dish -> DishSimpleResponse.of(dish)).collect(Collectors.toList());
+                .map(DishSimpleResponse::of).collect(Collectors.toList());
 
         return new CategorizedDishes(category, dishSimpleResponses);
     }
