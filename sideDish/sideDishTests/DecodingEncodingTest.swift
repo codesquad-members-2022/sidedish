@@ -11,17 +11,22 @@ import XCTest
 class DecodingEncodingTest: XCTestCase {
     
     let dummyFoodTestData: Data? = {
-        guard let url = Bundle.main.url(forResource: "mock", withExtension: "json") else { return nil }
+        guard let url = Bundle.main.url(forResource: "main", withExtension: "json") else { return nil }
         guard let dummyJSONData = try? Data(contentsOf: url) else { return nil }
         return dummyJSONData
     }()
-    
+
     let decoder = JSONDecoder()
-    
+
     func testFoodJSONParsing() throws {
-        guard let dummyFoodJSONData = dummyFoodTestData else { return }
+        let fileName = "main"
+        let type = "json"
         
-        let foods = try self.decoder.decode([Food].self, from: dummyFoodJSONData)
-        XCTAssertTrue(foods.count > 0)
+        guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: type) else { return }
+        let data = try Data(contentsOf: fileLocation)
+        let result = try JSONDecoder().decode(Response.self, from: data)
+        
+        XCTAssertTrue(result.body.count > 0)
     }
+    
 }

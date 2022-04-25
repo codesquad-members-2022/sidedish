@@ -72,6 +72,18 @@ class FoodCell: UICollectionViewCell {
         return imageView
     }()
     
+    func setDomainFood(data: Food){
+        titleLabel.text = data.title
+        bodyLabel.text = data.description
+        originPriceLabel.text = data.originPrice
+        salePriceLabel.text = data.salePrice
+        if let event = data.badge {
+            eventLabel.text = event.joined(separator: ",")
+        } else { eventLabel.text = "" }
+        myImageView.load(url: data.image)
+        
+    }
+    
     // MARK: Label configure
     
     func configureLayout(){
