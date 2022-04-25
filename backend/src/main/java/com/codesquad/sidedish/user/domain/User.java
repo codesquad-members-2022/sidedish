@@ -6,24 +6,39 @@ public class User {
 
     @Id
     private Integer id;
+    private String oauthId;
     private String username;
-    private String password;
+    private String email;
 
-    public User(Integer id, String username, String password) {
-        this.id = id;
+    public User(String oauthId, String username, String email) {
+        this.oauthId = oauthId;
         this.username = username;
-        this.password = password;
+        this.email = email;
     }
 
     public Integer getId() {
         return id;
     }
 
+    public String getOauthId() {
+        return oauthId;
+    }
+
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+            "id=" + id +
+            ", oauthId='" + oauthId + '\'' +
+            ", username='" + username + '\'' +
+            ", email='" + email + '\'' +
+            '}';
     }
 }
