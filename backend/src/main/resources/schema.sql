@@ -1,4 +1,16 @@
+set
+foreign_key_checks = 0;
+
+drop table if exists category;
 drop table if exists exhibition;
+drop table if exists category_has_side_dish;
+drop table if exists side_dish;
+drop table if exists side_dish_image;
+drop table if exists discount_event;
+drop table if exists side_dish_has_discount_event;
+
+set
+foreign_key_checks = 1;
 
 create table exhibition
 (
@@ -6,96 +18,61 @@ create table exhibition
     title varchar(100) not null comment '기획전 이름'
 );
 
-drop table if exists category;
-
 create table category
 (
     id            bigint primary key auto_increment,
     title         varchar(100) not null comment '카테고리 이름',
-    parent        bigint default 0 comment '상위 카테고리',
-    exhibition_id bigint default 0 comment '기획전 아이디'
+    exhibition_id bigint default 1 comment '기획전 아이디',
+
+    foreign key (exhibition_id) references exhibition (id)
 );
 
-drop table if exists side_dish;
-
-create table side_dish
-(
-    id           bigint primary key auto_increment,
-    name         varchar(100) not null comment '반찬 이름',
-    description  int comment '반찬 설명',
-    price        int comment '정상가격',
-    accrual_rate decimal comment '적립율'
-);
-
-drop table if exists category_to_side_dish;
-
-create table category_to_side_dish
+create table category_has_side_dish
 (
     category_id  bigint,
     side_dish_id bigint,
 
-    primary key (category_id, side_dish_id)
+    primary key (category_id, side_dish_id),
+
+    foreign key (category_id) references category (id)
 );
 
+create table side_dish
+(
+    id                  bigint primary key auto_increment,
+    name                varchar(100) not null comment '반찬 이름',
+    description         varchar(100) comment '반찬 설명',
+    price               int comment '정상가격',
+    accrual_rate        decimal(2, 2) comment '적립률',
 
-drop table if exists side_dish_image;
+    shipping_info       varchar(100) default '서울 경기 새벽 배송, 전국 택배 배송' comment '배송정보',
+    shipping_fee        int          default 2500 comment '배송료',
+    exemption_condition int          default 40000 comment '배송비 면제 조건'
+);
 
 create table side_dish_image
 (
     id           bigint primary key auto_increment,
-    image_url    varchar(100) not null comment '이미지 URL',
+    image_url    varchar(255) default 'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/noimage.png' comment '이미지 URL',
     image_seq    int comment '이미지 순서',
-    side_dish_id bigint comment '반찬 아이디'
-);
+    side_dish_id bigint comment '반찬 아이디',
 
-drop table if exists discount_event;
+    foreign key (side_dish_id) references side_dish (id)
+);
 
 create table discount_event
 (
     id            bigint primary key auto_increment,
     title         varchar(100) not null comment '할인 이벤트 이름',
-    discount_rate decimal comment '할인율'
+    discount_rate decimal(2, 2) comment '할인율'
 );
 
-drop table if exists side_dish_to_discount_event;
-
-create table side_dish_to_discount_event
+create table side_dish_has_discount_event
 (
     side_dish_id      bigint,
     discount_event_id bigint,
 
-    primary key (side_dish_id, discount_event_id)
-);
+    primary key (side_dish_id, discount_event_id),
 
-drop table if exists shipping;
-
-create table shipping
-(
-    id                  bigint primary key auto_increment,
-    type                varchar(100) not null comment '배송 정보',
-    fee                 int          not null comment '배송료',
-    exemption_condition int          not null comment '배송비 면제 조건'
-);
-
-drop table if exists order_sheet;
-
-create table order_sheet
-(
-    id           bigint primary key auto_increment,
-    quantity     int      not null comment '배송 정보',
-    total_amount decimal  not null comment '배송료',
-    created_at   datetime not null comment '배송비 면제 조건',
-    side_dish_id bigint   not null comment '배송 정보',
-    member_id    bigint   not null comment '배송료',
-    shipping_id  bigint   not null comment '배송비 면제 조건'
-);
-
-drop table if exists member;
-
-create table member
-(
-    id       bigint primary key auto_increment,
-    user_id  varchar(100) not null comment '회원 아이디',
-    password varchar(100) comment '비밀번호',
-    name     varchar(100) comment '회원 이름'
+    foreign key (side_dish_id) references side_dish (id)
 );
