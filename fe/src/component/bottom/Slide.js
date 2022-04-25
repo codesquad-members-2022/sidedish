@@ -14,6 +14,7 @@ const SlideTitle = styled.h5`
 const SlideWrapper = styled.div`
   position: absolute;
   width: 1280px;
+
   height: 450px;
   overflow: hidden;
   margin-left: 40px;
@@ -38,11 +39,19 @@ const Slide = () => {
   }, []);
 
   const [isrightBtnActive, setIsRightBtnActive] = useState(true);
+  const [isleftBtnActive, setIsLeftBtnActive] = useState(true);
+
   const onClickHandler = () => {
-    // const all = -(slideInfo.length * 310) + 4 * 310;
-    setX((prev) => (prev - 310 > -2000 ? prev - 310 : prev));
-    x - 310 > -2000 ? setIsRightBtnActive(true) : setIsRightBtnActive(false);
+    const all = -(slideInfo.length * 312) + 4 * 312;
+    setX((prev) => (prev - 312 >= all ? prev - 312 : prev));
+    x - 312 >= all ? setIsRightBtnActive(true) : setIsRightBtnActive(false);
   };
+
+  const onClickHandler2 = () => {
+    setX((prev) => (prev + 312 <= 0 ? prev + 312 : prev));
+    x === 0 ? setIsLeftBtnActive(false) : setIsLeftBtnActive(true);
+  };
+
   return (
     <>
       <SlideTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SlideTitle>;
@@ -67,7 +76,9 @@ const Slide = () => {
       </SlideWrapper>
       <SlideIcon
         onSaveClickedDirection={onClickHandler}
-        isRight={isrightBtnActive}
+        onSaveClickedDirection2={onClickHandler2}
+        isright={isrightBtnActive}
+        isleft={isleftBtnActive}
       />
     </>
   );

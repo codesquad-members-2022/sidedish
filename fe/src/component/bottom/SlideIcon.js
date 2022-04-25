@@ -9,7 +9,7 @@ const StyledleftIcon = styled(leftIcon)`
   position: absolute;
   left: 15px;
   top: 100%;
-  color: blue;
+  color: ${({ isleft }) => (isleft ? "black" : "red")};
 `;
 
 const StyledrightIcon = styled(rightIcon)`
@@ -17,7 +17,7 @@ const StyledrightIcon = styled(rightIcon)`
   position: absolute;
   top: 100%;
   left: 1330px;
-  color: ${({ isRight }) => (isRight ? "black" : "red")};
+  color: ${({ isright }) => (isright ? "black" : "red")};
 `;
 
 const svgStyles = ({ height, width }) => {
@@ -27,12 +27,16 @@ const svgStyles = ({ height, width }) => {
   `;
 };
 
-const SlideIcon = ({ onSaveClickedDirection, isRight }) => {
-  console.log(isRight);
+const SlideIcon = ({
+  onSaveClickedDirection,
+  onSaveClickedDirection2,
+  isright,
+  isleft,
+}) => {
   return (
     <>
-      <StyledleftIcon />
-      <StyledrightIcon onClick={onSaveClickedDirection} isRight={isRight} />
+      <StyledleftIcon onClick={onSaveClickedDirection2} isleft={isleft} />
+      <StyledrightIcon onClick={onSaveClickedDirection} isright={isright} />
     </>
   );
 };
