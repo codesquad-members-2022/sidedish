@@ -24,7 +24,17 @@ public class OrderService {
 		Menu menu = menuRepository.findAllById(menuId).orElseThrow();
 		MenuOrder menuOrder = new MenuOrder(menu, request);
 
-		return new MenuOrderResponse(orderRepository.save(menuOrder), menu);
-		// TODO: 메뉴 레포에 수량 업데이트하기
+		int remainStock = menu.getStock() - menuOrder.getQuantity();
+
+		if (remainStock < 0) {
+			throw new IllegalStateException("재고가 부족합니다.");
+		}
+		MenuOrderResponse menuOrderResponse = new MenuOrderResponse(orderRepository.save(menuOrder), menu);
+		Menu updateMenu = new Menu(menu, remainStock);
+		System.out.println("updateMenu: " + updateMenu);
+//		menuRepository.save(updateMenu);
+		menuRepository.updateStock(menuId, remainStock);
+
+		return menuOrderResponse;
 	}
 }

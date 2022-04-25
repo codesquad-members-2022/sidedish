@@ -2,6 +2,7 @@ package sidedish.jbc.repository;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +19,7 @@ public interface MenuRepository extends CrudRepository<Menu, Integer> {
 
 	Optional<Menu> findAllById(int id);
 
+	@Modifying
+	@Query("update menu set stock = :stock where id = :id")
+	boolean updateStock(@Param("id") Integer id, @Param("stock") int stock);
 }

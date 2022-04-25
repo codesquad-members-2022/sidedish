@@ -40,6 +40,11 @@ public class Menu {
 		this.images = images;
 	}
 
+	public Menu(Menu menu, int remainStock) {
+		this(menu.getId(), menu.getName(), menu.getDescription(), menu.getPrice(), menu.getMenuType(), menu.getSaleType(), menu.getFee(), menu.getFreeShippingStartingPrice(), menu.getDeliveryInfo(),
+			remainStock, menu.getImagePath(), menu.getImages());
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -86,5 +91,23 @@ public class Menu {
 
 	public List<Image> getImages() {
 		return images;
+	}
+
+	@Override
+	public String toString() {
+		return "Menu{" +
+			"id=" + id +
+			", name='" + name + '\'' +
+			", description='" + description + '\'' +
+			", price=" + price +
+			", menuType=" + menuType +
+			", saleType=" + saleType +
+			", fee=" + fee +
+			", freeShippingStartingPrice=" + freeShippingStartingPrice +
+			", deliveryInfo='" + deliveryInfo + '\'' +
+			", stock=" + stock +
+			", imagePath='" + imagePath + '\'' +
+			", images=" + images +
+			'}';
 	}
 }
