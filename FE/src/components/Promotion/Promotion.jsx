@@ -74,7 +74,7 @@ function PromotionSection({ dataName, dataID }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item/best?${dataName}_id=${dataID}`;
+    const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/item/event?${dataName}Id=${dataID}`;
     fetchData(DATA_URL).then((data) => setCards(data));
   }, [dataID]);
 
