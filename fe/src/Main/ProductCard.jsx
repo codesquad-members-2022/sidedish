@@ -18,7 +18,7 @@ const CardWrapper = styled.li`
   ${({ size }) => {
     return size === 'md'
       ? css`
-          .CardImgContainer {
+          .image {
             width: 302px;
             height: 302px;
           }
@@ -29,7 +29,7 @@ const CardWrapper = styled.li`
             margin-right: 16px;
           }
 
-          .CardImgContainer {
+          .image {
             width: 160px;
             height: 160px;
           }
