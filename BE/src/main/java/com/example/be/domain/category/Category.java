@@ -18,9 +18,9 @@ public class Category {
     @MappedCollection(idColumn = "category_id", keyColumn = "dish_id")
     private List<Dish> dishes = new ArrayList<>();
 
-    public List<Dish> getDishes() {
-        return dishes;
-    }
+//    @MappedCollection(idColumn = "category_id", keyColumn = "dish_id")
+//    private List<SubCategory> subCategories = new ArrayList<>();
+
 
     public Long getCategoryId() {
         return categoryId;
@@ -30,4 +30,7 @@ public class Category {
         return title;
     }
 
+    public List<Dish> getDishes() {
+        return dishes;
+    }
 }

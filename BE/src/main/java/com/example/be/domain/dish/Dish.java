@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 
 @Table("dish")
@@ -64,5 +65,22 @@ public class Dish {
 
     public int getCount() {
         return count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dish dish = (Dish) o;
+        return Objects.equals(dishId, dish.dishId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dishId);
+    }
+
+    public void changeName(String description) {
+        this.description = description;
     }
 }

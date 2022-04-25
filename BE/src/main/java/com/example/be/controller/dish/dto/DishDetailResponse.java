@@ -17,7 +17,6 @@ public class DishDetailResponse {
     private DeliveryPriceOption deliveryPriceOption;
     private String thumbnail;
     private DishStatus dishStatus;
-    private Long categoryId;
 
     public DishDetailResponse(Dish dish) {
         this.dishId = dish.getDishId();
@@ -62,7 +61,4 @@ public class DishDetailResponse {
         return dishStatus;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
 }

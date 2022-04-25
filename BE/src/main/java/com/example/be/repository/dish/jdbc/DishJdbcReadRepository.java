@@ -34,7 +34,6 @@ public class DishJdbcReadRepository {
                     DeliveryPriceOption.valueOf(rs.getString("delivery_type")),
                     rs.getString("thumbnail"),
                     DishStatus.valueOf(rs.getString("dish_status")),
-                    rs.getLong("category_id"),
                     rs.getString("title")
             );
 }

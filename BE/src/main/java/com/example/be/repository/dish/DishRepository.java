@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface DishRepository extends CrudRepository<Dish, Long> {
 
-    @Query("SELECT dish.*, category.* FROM dish JOIN category ON dish.category_id = category.category_id")
+    @Query("SELECT dish.dish_id, dish.name, dish.description, dish.normal_price, dish.badge, dish.delivery_price_option, " +
+            "dish.thumbnail, dish.dish_status, dish.category_id, dish.count, category.category_id, category.title " +
+            "FROM dish JOIN category ON dish.category_id = category.category_id")
     List<PlanningDataRequest> getPlanningData();
 }

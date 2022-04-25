@@ -12,22 +12,20 @@ public class PlanningDataRequest {
     private String description;
     private BigDecimal normalPrice;
     private String badge;
-    private String deliveryType;
+    private String deliveryPriceOption;
     private String thumbnail;
     private String dishStatus;
-    private Long categoryId;
     private String title;
 
-    public PlanningDataRequest(Long dishId, String name, String description, BigDecimal normalPrice, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, Long categoryId, String title) {
+    public PlanningDataRequest(Long dishId, String name, String description, BigDecimal normalPrice, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, String title) {
         this.dishId = dishId;
         this.name = name;
         this.description = description;
         this.normalPrice = normalPrice;
         this.badge = badge.name();
-        this.deliveryType = deliveryPriceOption.name();
+        this.deliveryPriceOption = deliveryPriceOption.name();
         this.thumbnail = thumbnail;
         this.dishStatus = dishStatus.name();
-        this.categoryId = categoryId;
         this.title = title;
     }
 
@@ -51,8 +49,8 @@ public class PlanningDataRequest {
         return badge;
     }
 
-    public String getDeliveryType() {
-        return deliveryType;
+    public String getDeliveryPriceOption() {
+        return deliveryPriceOption;
     }
 
     public String getThumbnail() {
@@ -61,10 +59,6 @@ public class PlanningDataRequest {
 
     public String getDishStatus() {
         return dishStatus;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
     }
 
     public String getTitle() {
