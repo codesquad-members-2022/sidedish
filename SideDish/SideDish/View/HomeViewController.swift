@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         self.collectionView.register(nib, forCellWithReuseIdentifier: DishCell.identifier)
     }
 }
-
+// TODO: 모델 구현되면 갈아 엎어야함
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -31,6 +31,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
                     return UICollectionViewCell()
                 }
+        // TODO: - 팩토리 메서드 패턴으로, 셀.configure
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -60,7 +61,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         print("click section=\(indexPath.section)")
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else { return }
         // TODO: - 선택된 셀의 무엇을 보고 호출해야할까? -> Detail Hash
-        
+        // TODO: - DetailView(hash: String) 으로 할 수 있도록, 이니셜라이저를 편집해야하나요?
+//        let nextVC = DetailView(hash: String)
+//        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
