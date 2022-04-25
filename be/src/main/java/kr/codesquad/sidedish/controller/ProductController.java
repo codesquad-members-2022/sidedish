@@ -26,7 +26,7 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@GetMapping("/{dishType}/{sideDishType}")
-	public ResponseEntity<CommonResponse<List<ResponseSimpleProductInfo>>> loadListByType(
+	public ResponseEntity<CommonResponse> loadListByType(
 		@PathVariable String dishType,
 		@PathVariable String sideDishType) {
 		List<ProductDTO> productDTOs = productService.loadListByType(dishType, sideDishType);
@@ -35,18 +35,17 @@ public class ProductController {
 			.map(p -> ResponseSimpleProductInfo.from(p))
 			.collect(Collectors.toList());
 
-		return new CommonResponse(CommonCode.SUCCESS, simpleDTOs).toResponseEntity();
+		return createResponseWithData(CommonCode.SUCCESS, simpleDTOs).toResponseEntity();
 	}
-
 
 	/**
 	 * 상품 세부 정보 불러오기
 	 */
 	@ResponseBody
 	@GetMapping("/{id}/detail")
-	public ResponseEntity<CommonResponse<ResponseDetailProductInfo>> loadDetail(@PathVariable Integer id) {
-		return new CommonResponse(CommonCode.SUCCESS,
-			ResponseDetailProductInfo.from(productService.findById(id))).toResponseEntity();
+	public ResponseEntity<CommonResponse> loadDetail(@PathVariable Integer id) {
+		return createResponseWithData(CommonCode.SUCCESS, ResponseDetailProductInfo.from(productService.findById(id)))
+				.toResponseEntity();
 	}
 
 	/**
@@ -56,6 +55,14 @@ public class ProductController {
 	public ResponseEntity<CommonResponse> order(@RequestBody RequestProduct requestProduct) {
 		productService.order(requestProduct);
 
-		return new CommonResponse(CommonCode.SUCCESS).toResponseEntity();
+		return createResponse(CommonCode.SUCCESS).toResponseEntity();
+	}
+
+	private CommonResponse createResponse(CommonCode commonCode) {
+		return new CommonResponse(commonCode);
+	}
+
+	private CommonResponse createResponseWithData(CommonCode commonCode, Object data) {
+		return new CommonResponse(commonCode, data);
 	}
 }

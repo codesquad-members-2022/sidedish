@@ -3,9 +3,9 @@ package kr.codesquad.sidedish.response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class CommonResponse<T> extends BasicResponse {
+public class CommonResponse extends BasicResponse {
 
-	private T data;
+	private Object data;
 
 	public CommonResponse(CommonCode commonCode) {
 		this.statusCode = commonCode.getHttpStatus().value();
@@ -13,7 +13,7 @@ public class CommonResponse<T> extends BasicResponse {
 		this.message = commonCode.getDetail();
 	}
 
-	public CommonResponse(CommonCode commonCode, T data) {
+	public CommonResponse(CommonCode commonCode, Object data) {
 		this.statusCode = commonCode.getHttpStatus().value();
 		this.statusName = commonCode.getHttpStatus().name();
 		this.message = commonCode.getDetail();
@@ -26,7 +26,7 @@ public class CommonResponse<T> extends BasicResponse {
 			.body(this);
 	}
 
-	public T getData() {
+	public Object getData() {
 		return data;
 	}
 }
