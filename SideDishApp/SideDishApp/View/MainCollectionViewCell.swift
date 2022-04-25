@@ -55,7 +55,7 @@ extension MainCollectionViewCell {
             configureOriginalPrice(text: originalPrice.priceTag)
         }
         if let detectedBadges = product.badge {
-            moveInfoContainerUpward()
+//            moveInfoContainerUpward()
 
             detectedBadges.forEach({
                 let matchedBadge = self.badges[$0.rawValue]
@@ -77,8 +77,8 @@ extension MainCollectionViewCell {
         productDescription.sizeToFit()
         productDescription.font = .smallRegular
         productDescription.textColor = .grey2
-        productDescription.adjustsFontSizeToFitWidth = false
-        productDescription.lineBreakMode = .byTruncatingTail
+//        productDescription.adjustsFontSizeToFitWidth = false
+//        productDescription.lineBreakMode = .byTruncatingTail
         salePrice.font = .smallBold
     }
 
@@ -92,11 +92,11 @@ extension MainCollectionViewCell {
         priceContainer.addArrangedSubview(self.originalPrice)
     }
 
-    private func moveInfoContainerUpward() {
-        self.infoContainer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.infoContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 13)
-        ])
-    }
+//    private func moveInfoContainerUpward() {
+//        self.infoContainer.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            self.infoContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 13)
+//        ])
+//    }
 
 }

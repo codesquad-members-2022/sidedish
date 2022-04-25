@@ -44,11 +44,8 @@ class MainViewController: UIViewController {
             guard let categoryVM = viewModel.categoryVMs[type] else {return}
             categoryVM.bind { _ in
                 DispatchQueue.main.async {
-
                     let targetIndex = IndexSet(integer: type.index)
-                    self.mainCollectionView.performBatchUpdates({
                         self.mainCollectionView.reloadSections(targetIndex)
-                    }, completion: nil)
                 }
             }
         })
