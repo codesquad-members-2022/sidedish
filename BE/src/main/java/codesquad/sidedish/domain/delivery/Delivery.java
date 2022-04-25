@@ -2,14 +2,19 @@ package codesquad.sidedish.domain.delivery;
 
 import codesquad.sidedish.domain.address.Address;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@EqualsAndHashCode
+@ToString
 public class Delivery {
     private Long deliveryId;
     private int deliveryFee;
-    DeliveryType deliveryType;
-    Address address;
+    private DeliveryType deliveryType;
+    private Address address;
 
-    @Builder
     public Delivery(int deliveryFee, DeliveryType deliveryType, Address address) {
         this.deliveryFee = deliveryFee;
         this.deliveryType = deliveryType;
@@ -22,5 +27,9 @@ public class Delivery {
         this.deliveryFee = deliveryFee;
         this.deliveryType = deliveryType;
         this.address = address;
+    }
+
+    public void initDeliveryId(Long deliveryId) {
+        this.deliveryId = deliveryId;
     }
 }
