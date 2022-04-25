@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { LoadingSpinner } from "@/Components/LoadingSpinner";
 import { ProductCard } from '@/Components/ProductCard';
 
 const CategoryProductsWrapper = styled.li`
@@ -19,12 +20,6 @@ const Header = styled.header`
 const ProductCardList = styled.ul`
   display: flex;
   justify-content: flex-start;
-`;
-
-const Loading = styled.li`
-  padding: 80px;
-  font-size: 40px;
-  text-align: center;
 `;
 
 const useFetch = url => {
@@ -56,7 +51,7 @@ export const CategoryProducts = props => {
   const categoryId = props.categoryId;
   const [categoryProductsData, isLoaded] = useFetch(`/category/${categoryId}`);
 
-  if (!isLoaded) return <Loading>Loading...</Loading>;
+  if (!isLoaded) return <LoadingSpinner />;
   const parsedCategoryProductsData = parse(categoryProductsData);
 
   return (
