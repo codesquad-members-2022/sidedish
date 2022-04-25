@@ -37,7 +37,7 @@ class BanchanListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCell.identifier, for: indexPath)
         return cell
     }
 
@@ -48,7 +48,7 @@ class BanchanListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? ProductSectionHeader else { return UICollectionReusableView() }
+		guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProductSectionHeader.identifier, for: indexPath) as? ProductSectionHeader else { return UICollectionReusableView() }
         header.title.text = headerItem[indexPath.section]
         return header
     }

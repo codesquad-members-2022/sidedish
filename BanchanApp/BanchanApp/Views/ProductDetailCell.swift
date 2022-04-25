@@ -9,6 +9,8 @@ import UIKit
 
 class ProductDetailCell: UICollectionViewCell {
 
+	static let identifier = "ProductDetailCell"
+
     private let image: UIImageView = UIImageView()
     private let info: ProductDetailView = ProductDetailView()
 

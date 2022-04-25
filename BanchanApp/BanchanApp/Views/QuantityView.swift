@@ -82,7 +82,7 @@ class QuantityView: UIView {
     }
 
     private func configureUI() {
-        let borderColor = UIColor(named: "Gray3") ?? .systemGray3
+		let borderColor: UIColor = .gray3 ?? .systemGray3
 
         self.addTopBorder(with: borderColor, andWidth: 1)
         self.addBottomBorder(with: borderColor, andWidth: 1)

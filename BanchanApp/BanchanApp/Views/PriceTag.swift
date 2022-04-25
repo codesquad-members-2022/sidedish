@@ -39,11 +39,11 @@ class PriceTag: UILabel {
 
 		let titleFontSize: CGFloat = 18
 		let priceFontSize: CGFloat = 32
-		
+
 		let titleFont = UIFont.systemFont(ofSize: titleFontSize, weight: .semibold)
 
         let titleAttribute: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "Gray2") ?? UIColor.black,
+			.foregroundColor: .gray2 ?? UIColor.black,
             .font: titleFont,
 			.baselineOffset: titleFont.xHeight / 2
         ]

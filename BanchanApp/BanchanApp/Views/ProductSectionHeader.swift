@@ -9,6 +9,8 @@ import UIKit
 
 class ProductSectionHeader: UICollectionReusableView {
 
+	static let identifier = "ProductSectionHeader"
+
     let title: UILabel = UILabel()
 
     override init(frame: CGRect) {
