@@ -15,11 +15,11 @@ class HomeViewController: UIViewController {
         self.collectionView.delegate = self
     }
     private func registerDishCell() {
-        let nib = UINib(nibName: "DishCell", bundle: nil)
+        let nib = UINib(nibName: DishCell.identifier, bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: DishCell.identifier)
     }
 }
-
+// TODO: 모델 구현되면 갈아 엎어야함
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -31,6 +31,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
                     return UICollectionViewCell()
                 }
+        // TODO: - 팩토리 메서드 패턴으로, 셀.configure
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -42,14 +43,27 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView
+            guard let headerView = collectionView
                 .dequeueReusableSupplementaryView(
-                    ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader
-            headerView?.setup()
-            return headerView!
+                    ofKind: kind, withReuseIdentifier: SectionHeader.cellId, for: indexPath) as? SectionHeader else {
+                        return UICollectionReusableView()
+                    }
+
+            headerView.setup(at: indexPath.section)
+            return headerView
         default:
             assert(false, "invalid element Type")
         }
+    }
+    // MARK: - Cell 이 클릭되게 만듦
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("click index=\(indexPath.row)")
+        print("click section=\(indexPath.section)")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else { return }
+        // TODO: - 선택된 셀의 무엇을 보고 호출해야할까? -> Detail Hash
+        // TODO: - DetailView(hash: String) 으로 할 수 있도록, 이니셜라이저를 편집해야하나요?
+//        let nextVC = DetailView(hash: String)
+//        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
@@ -59,7 +73,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = 126
+        let upperSpacing: CGFloat = 15
+        let lowerSpacing: CGFloat = 15
+        let height: CGFloat = SectionHeader.labelHeight + upperSpacing + lowerSpacing
         return CGSize(width: width, height: height)
     }
     // MARK: - Collection View 를 Table View 처럼 사용하도록 설정
