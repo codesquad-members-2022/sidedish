@@ -16,6 +16,8 @@
 		5BD52B56280E7F4C002099B7 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD52B55280E7F4C002099B7 /* FoodCell.swift */; };
 		5BD52B7D2812556B002099B7 /* sideDishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD52B7C2812556B002099B7 /* sideDishTests.swift */; };
 		5BD52B8428125581002099B7 /* DecodingEncodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD52B8328125581002099B7 /* DecodingEncodingTest.swift */; };
+		B31F15D2281688BB0011C217 /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31F15D1281688BB0011C217 /* FoodManager.swift */; };
+		B31F15D5281693A60011C217 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31F15D4281693A60011C217 /* UIImageView.swift */; };
 		B33A2F6228162E6000ED6584 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = B33A2F6128162E6000ED6584 /* main.json */; };
 		B33A2F6628162EC700ED6584 /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = B33A2F6528162EC700ED6584 /* soup.json */; };
 		B33A2F6828162ED200ED6584 /* side.json in Resources */ = {isa = PBXBuildFile; fileRef = B33A2F6728162ED200ED6584 /* side.json */; };
@@ -52,6 +54,8 @@
 		5BD52B8328125581002099B7 /* DecodingEncodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingEncodingTest.swift; sourceTree = "<group>"; };
 		6D8ADE459F4E54FDA6F417E4 /* Pods-sideDish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sideDish.debug.xcconfig"; path = "Target Support Files/Pods-sideDish/Pods-sideDish.debug.xcconfig"; sourceTree = "<group>"; };
 		9CEA27B30E68EDF4122627E5 /* Pods-sideDish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sideDish.release.xcconfig"; path = "Target Support Files/Pods-sideDish/Pods-sideDish.release.xcconfig"; sourceTree = "<group>"; };
+		B31F15D1281688BB0011C217 /* FoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
+		B31F15D4281693A60011C217 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		B33A2F6128162E6000ED6584 /* main.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 		B33A2F6528162EC700ED6584 /* soup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
 		B33A2F6728162ED200ED6584 /* side.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		5BD52B3C280D5DD5002099B7 /* sideDish */ = {
 			isa = PBXGroup;
 			children = (
+				B31F15D3281693940011C217 /* Extension */,
 				5BD52B57280FF4C4002099B7 /* JSON */,
 				5BD52B54280D5E22002099B7 /* Resource */,
 				5BD52B53280D5DEA002099B7 /* Model */,
@@ -137,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				B3618E0F280FD2A00049C1A5 /* Food.swift */,
+				B31F15D1281688BB0011C217 /* FoodManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +184,14 @@
 				9CEA27B30E68EDF4122627E5 /* Pods-sideDish.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B31F15D3281693940011C217 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B31F15D4281693A60011C217 /* UIImageView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D52524C94C86D4085E926A12 /* Frameworks */ = {
@@ -356,12 +370,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3618E10280FD2A00049C1A5 /* Food.swift in Sources */,
+				B31F15D5281693A60011C217 /* UIImageView.swift in Sources */,
 				5BD52B42280D5DD5002099B7 /* MainViewController.swift in Sources */,
 				B3618E16280FE40C0049C1A5 /* JsonConvertor.swift in Sources */,
 				B3618E0B280E81020049C1A5 /* CollectionHeaderView.swift in Sources */,
 				5BD52B56280E7F4C002099B7 /* FoodCell.swift in Sources */,
 				5BD52B3E280D5DD5002099B7 /* AppDelegate.swift in Sources */,
 				5BD52B40280D5DD5002099B7 /* SceneDelegate.swift in Sources */,
+				B31F15D2281688BB0011C217 /* FoodManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

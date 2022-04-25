@@ -10,10 +10,9 @@ import Toaster
 
 class MainViewController: UIViewController {
     
-    let dummyData = [["오리주물럭, 잡채, 소갈비찜, 간장 코다리조림"],
-                     ["한돈 돼지 김치찌개", "된장찌개", "미역 오이냉국"],
-                     ["새콤달콤 오징어무침", "호두 멸치볶음", "한돈 매콤 안심장조림"]]
     let dummyHeaderData = ["모두가 좋아하는 든든한 메인 요리", "정성이 담긴 뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    
+    var foodManager: FoodManager = FoodManager()
     
     private var collectionView: UICollectionView = {
         let tempCollcetion = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 32, height: 500), collectionViewLayout: UICollectionViewFlowLayout())
@@ -56,7 +55,15 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        switch section{
+        
+        case 0: return foodManager.mainFood?.count ?? 0
+        case 1: return foodManager.soupFood?.count ?? 0
+        case 2: return foodManager.sideFood?.count ?? 0
+        default:
+            return 10
+        }
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -65,6 +72,18 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as? FoodCell else { return UICollectionViewCell() }
+        
+        if indexPath.section == 0{
+            guard let main = foodManager.mainFood else { return UICollectionViewCell()}
+            cell.setDomainFood(data: main[indexPath.item])
+        } else if indexPath.section == 1 {
+            guard let soup = foodManager.soupFood else { return UICollectionViewCell()}
+            cell.setDomainFood(data: soup[indexPath.item])
+        } else {
+            guard let side = foodManager.sideFood else { return UICollectionViewCell()}
+            cell.setDomainFood(data: side[indexPath.item])
+        }
+        
         return cell
     }
     
