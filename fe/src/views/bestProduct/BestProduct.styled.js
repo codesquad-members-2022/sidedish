@@ -22,6 +22,8 @@ export const TitleWrapper = styled.div`
 
 export const StyledBestProduct = styled.div`
   margin-top: 56px;
+  padding-bottom: 56px;
+  border-bottom: solid 1px #ebebeb;
 `;
 
 export const BestProductHeader = styled.div`
@@ -42,7 +44,7 @@ export const TapBar = styled.ul`
   margin-top: 24px;
 `;
 
-export const StyledLi = styled.li`
+export const TapMenuLi = styled.li`
   margin-right: 32px;
   padding-bottom: 17px;
   font-style: normal;
@@ -51,6 +53,7 @@ export const StyledLi = styled.li`
   line-height: 30px;
   color: #bdbdbd;
   border-bottom: 1px solid white;
+  cursor: pointer;
   ${props => {
     if (props.curTap === props['data-menu-id']) {
       return css`

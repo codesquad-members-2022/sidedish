@@ -27,3 +27,16 @@ export const icons = {
 
 export const gnbMenus = ['든든한 메인요리', '뜨끈한 국물요리', '정갈한 밑반찬'];
 export const gnbSubMenus = [['육류 요리', '해산물 요리'], ['국/탕/찌개'], ['나물/무침', '조림/볶음', '절임/장아찌']];
+
+export const buttonIcons = {
+  left: (
+    <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18L1 10L9 2" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round" />
+    </svg>
+  ),
+  right: (
+    <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 18L10 10L2 2" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round" />
+    </svg>
+  ),
+};

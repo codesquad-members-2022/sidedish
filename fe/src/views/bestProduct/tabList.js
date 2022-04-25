@@ -8,7 +8,7 @@ export function TapList(props) {
   return (
     <StyledDiv flex>
       {props.tapList.map((product, idx) => (
-        <Card product={product} key={idx} />
+        <Card product={product} key={idx} size="large" />
       ))}
     </StyledDiv>
   );
