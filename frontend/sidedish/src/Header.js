@@ -1,6 +1,72 @@
 import { useState } from "react";
-import "./Header.css";
-import styled from "styled-components";
+import "./Header.style.js";
+import {
+    HeaderContainer,
+    HeaderInnerContainer,
+    HeaderTitle,
+    HeaderNav,
+    HeaderNavList,
+    HeaderIcons,
+    HeaderIcon,
+    HeaderFoodList,
+    HeaderFoodTitle,
+    HeaderFoodItem,
+} from "./Header.style";
+
+function NavItem(props) {
+    const items = props.navItem.items.map((item) => (
+        <HeaderFoodItem key={item.id}>{item.title}</HeaderFoodItem>
+    ));
+
+    return (
+        <li key={props.navItem.id} className="header__food">
+            <HeaderFoodTitle>{props.navItem.title}</HeaderFoodTitle>
+            <HeaderFoodList isVisible={props.isVisible}>{items}</HeaderFoodList>
+        </li>
+    );
+}
+
+function NavList({ isVisible }) {
+    const navList = headerList.map((navItem) => (
+        <NavItem
+            key={navItem.id}
+            className="header__food"
+            navItem={navItem}
+            isVisible={isVisible}
+        />
+    ));
+
+    return navList;
+}
+
+function IconList() {
+    const iconList = icons.map((icon, idx) => (
+        <HeaderIcon key={idx}>{icon}</HeaderIcon>
+    ));
+    return iconList;
+}
+
+function Header() {
+    const [isVisible, setVisibility] = useState(false);
+    const showMenu = () => setVisibility(true);
+    const hideMenu = () => setVisibility(false);
+
+    return (
+        <HeaderContainer>
+            <HeaderInnerContainer>
+                <HeaderTitle>Ordering</HeaderTitle>
+                <HeaderNav>
+                    <HeaderNavList onMouseOver={showMenu} onMouseOut={hideMenu}>
+                        <NavList isVisible={isVisible} />
+                    </HeaderNavList>
+                    <HeaderIcons>
+                        <IconList />
+                    </HeaderIcons>
+                </HeaderNav>
+            </HeaderInnerContainer>
+        </HeaderContainer>
+    );
+}
 
 const headerList = [
     {
@@ -27,101 +93,43 @@ const headerList = [
     },
 ];
 
-const HeaderFoodList = styled.ul`
-    display: ${(props) => (props.isVisible ? "flex" : "none")};
-    flex-direction: column;
-    gap: 8px;
-`;
-
-function NavItem(props) {
-    const items = props.navItem.items.map((item) => (
-        <li key={item.id} className="header__food-item">
-            {item.title}
-        </li>
-    ));
-
-    return (
-        <li key={props.navItem.id} className="header__food">
-            <p className="header__food-title">{props.navItem.title}</p>
-            <HeaderFoodList isVisible={props.isVisible}>{items}</HeaderFoodList>
-        </li>
-    );
-}
-
-function Header() {
-    const [isVisible, setVisibility] = useState(false);
-    const showMenu = () => setVisibility(true);
-    const hideMenu = () => setVisibility(false);
-
-    const navList = headerList.map((navItem) => (
-        <NavItem
-            key={navItem.id}
-            className="header__food"
-            navItem={navItem}
-            isVisible={isVisible}
+const icons = [
+    <svg
+        className="header__icon-search h-6 w-6"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
-    ));
-
-    return (
-        <header>
-            <div className="header">
-                <h1 className="header__title">Ordering</h1>
-                <nav className="header__nav">
-                    <ul
-                        className="header__nav-list"
-                        onMouseOver={showMenu}
-                        onMouseOut={hideMenu}
-                    >
-                        {navList}
-                    </ul>
-                    <ul className="header__icons">
-                        <li className="header__icon-item">
-                            <svg
-                                className="header__icon-search h-6 w-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                />
-                            </svg>
-                        </li>
-                        <li className="header__icon-item">
-                            <a href="/">
-                                <svg
-                                    className="header__icon-user h-5 w-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                            </a>
-                        </li>
-                        <li className="header__icon-item">
-                            <svg
-                                className="header__icon-cart h-5 w-5"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                            </svg>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-    );
-}
+    </svg>,
+    <a href="/">
+        <svg
+            className="header__icon-user h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+        >
+            <path
+                fillRule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clipRule="evenodd"
+            />
+        </svg>
+    </a>,
+    <svg
+        className="header__icon-cart h-5 w-5"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+    </svg>,
+];
 
 export default Header;
