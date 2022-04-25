@@ -1,4 +1,10 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const Inner = styled.div`
+  max-width: 1440px;
+  padding: 0 80px;
+  margin: 0 auto;
+`;
 
 const F_basic = css`
   display: flex;
@@ -26,4 +32,4 @@ const Color = {
   orange: '#FF8E14',
 };
 
-export { F_basic, F_basicCenter, F_BtweenCenter, Color };
+export { Inner, F_basic, F_basicCenter, F_BtweenCenter, Color };
