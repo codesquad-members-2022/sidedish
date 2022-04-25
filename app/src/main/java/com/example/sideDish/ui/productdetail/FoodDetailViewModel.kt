@@ -12,9 +12,6 @@ class FoodDetailViewModel(private val repository: FoodRepository, hash: String) 
 
     val orderCount = MutableLiveData<Int>(0)
 
-    init {
-        getDetail(hash)
-    }
     fun getDetail(hash: String) {
         _detail.value = repository.getFoodDetail(hash)
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import com.example.sideDish.R
 import com.example.sideDish.ui.productdetail.FoodDetailViewModel
 
@@ -14,8 +15,7 @@ class Stepper(context: Context, attrs: AttributeSet) :
     lateinit var plus: ImageButton
     lateinit var value: TextView
     lateinit var minus: ImageButton
-    var viewModel: FoodDetailViewModel? = null
-    var count: Int = 0
+    lateinit var orderCount: MutableLiveData<Int>
 
     init {
         LayoutInflater.from(context).inflate(R.layout.stepper, this, true)
@@ -23,15 +23,12 @@ class Stepper(context: Context, attrs: AttributeSet) :
         value = findViewById(R.id.text_view_stepper_value)
         minus = findViewById(R.id.button_stepper_minus)
 
-        value.text = count.toString()
-
         plus.setOnClickListener {
-            viewModel?.orderCount?.value = viewModel?.orderCount?.value?.plus(1)
+            orderCount.value = orderCount.value?.plus(1)
         }
         minus.setOnClickListener {
-            viewModel?.orderCount?.value = viewModel?.orderCount?.value?.minus(1)
+            orderCount?.value = orderCount?.value?.minus(1)
         }
     }
-
 
 }

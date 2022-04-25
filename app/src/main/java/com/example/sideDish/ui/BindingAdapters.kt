@@ -14,12 +14,3 @@ fun setImage(view: ImageView, url: String?) {
     }
 }
 
-@BindingAdapter("count")
-fun setCount(view: Stepper, count: Int) {
-    view.count = count
-}
-
-@BindingAdapter("viewModel")
-fun setViewModel(view: Stepper, viewModel: FoodDetailViewModel) {
-    view.viewModel = viewModel
-}
