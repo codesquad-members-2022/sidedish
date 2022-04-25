@@ -7,8 +7,8 @@ export function TabList({ tabList }) {
   }
   return (
     <StyledDiv flex>
-      {tabList.map((product, idx) => (
-        <ProductCard product={product} key={`${product}-${idx}`} size="large" />
+      {tabList.map(product => (
+        <ProductCard product={product} key={product.sideDishId} size="large" />
       ))}
     </StyledDiv>
   );

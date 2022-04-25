@@ -40,3 +40,7 @@ export const buttonIcons = {
     </svg>
   ),
 };
+
+export const API = {
+  exhibitions: `http://54.180.92.20:8080/api/exhibitions/2`,
+};
