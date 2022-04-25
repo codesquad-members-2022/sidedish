@@ -1,12 +1,11 @@
-package com.codesquad.sidedish.category;
+package com.codesquad.sidedish.category.domain;
 
-import com.codesquad.sidedish.dish.domain.Dish;
-import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 @Getter
 @ToString
@@ -20,11 +19,7 @@ public class Category {
     private String categoryName;
     private Boolean isFestival;
 
-    // relation
-    @Transient
-    private List<Dish> dishes;
+    @MappedCollection(idColumn = "category_id")
+    private Set<DishRef> dishes;
 
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
-    }
 }
