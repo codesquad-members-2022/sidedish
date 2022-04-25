@@ -1,12 +1,12 @@
-import Header from './Header/Header';
-import Special from './Special/Special';
+import Header from 'components/Header/Header';
+import Special from 'components/Special/Special';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
       <Special />
-    </div>
+    </>
   );
 }
 
