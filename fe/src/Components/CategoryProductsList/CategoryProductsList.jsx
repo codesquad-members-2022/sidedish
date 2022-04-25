@@ -37,12 +37,13 @@ const LoadingErrorMessage = styled.span`
 export const CategoryProductsList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
   const [retry, setRetry] = useState(false);
+  const [categoryProductsIdList, setCategoryProductsIdList] = useState([]);
 
   const handleClickMoreButton = () => {
     setMoreButtonClicked(true);
   };
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (!moreButtonClicked) return;
     // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
     // TODO: 실패한 데이터만 다시 불러올 수 있도록 고치기
@@ -73,16 +74,42 @@ export const CategoryProductsList = props => {
         setMoreButtonClicked(false);
         setRetry(true);
       });
-  }, [moreButtonClicked]);
+  }, [moreButtonClicked]);*/
+
+  useEffect(() => {
+    if (!props.categoryList.length) return;
+    const firstCategoryIdx = 0;
+    const firstCategoryId = props.categoryList[firstCategoryIdx].id;
+    setCategoryProductsIdList([firstCategoryId]);
+  }, [props.categoryList]);
 
   return (
+    // <CategoryProductsListWrapper>
+    //   {props.categoryProductsList.map(categoryProducts => (
+    //     <CategoryProducts
+    //       key={categoryProducts.id}
+    //       title={categoryProducts.title}
+    //       categoryProductsData={categoryProducts.content}
+    //     />
+    //   ))}
+    //   {!moreButtonClicked && (
+    //     <li>
+    //       {retry && (
+    //         <LoadingErrorMessage className={'fonts-lg'}>
+    //           데이터를 불러오는데 오류가 발생했습니다.
+    //         </LoadingErrorMessage>
+    //       )}
+    //       {props.isInitialDataLoaded && (
+    //         <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
+    //           모든 카테고리 보기
+    //         </MoreButton>
+    //       )}
+    //     </li>
+    //   )}
+    // </CategoryProductsListWrapper>
     <CategoryProductsListWrapper>
-      {props.categoryProductsList.map(categoryProducts => (
-        <CategoryProducts
-          key={categoryProducts.id}
-          title={categoryProducts.title}
-          categoryProductsData={categoryProducts.content}
-        />
+      {categoryProductsIdList.map(categoryId => (
+        <CategoryProducts key={categoryId} categoryId={categoryId} />
       ))}
       {!moreButtonClicked && (
         <li>

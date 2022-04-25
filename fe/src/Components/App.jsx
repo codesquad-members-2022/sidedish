@@ -37,7 +37,7 @@ const App = () => {
     fetchInitialData()
       .then(([initialCategoryList, initialCategoryProductList]) => {
         setCategoryList(initialCategoryList);
-        setCategoryProductsList(initialCategoryProductList);
+        // setCategoryProductsList(initialCategoryProductList);
         setIsInitialDataLoaded(true);
       })
       .catch(err => {

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { ProductCard } from '@/Components/ProductCard';
@@ -20,13 +21,56 @@ const ProductCardList = styled.ul`
   justify-content: flex-start;
 `;
 
+const Loading = styled.li`
+  padding: 80px;
+  font-size: 40px;
+  text-align: center;
+`;
+
+const useFetch = url => {
+  const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(v => {
+        setData(v);
+        setIsLoaded(true);
+      });
+  }, [url]);
+
+  return [data, isLoaded];
+};
+
+const parse = categoryProductsData => {
+  const title = categoryProductsData.content[0].mainCategory;
+  return {
+    title,
+    content: categoryProductsData.content,
+  };
+};
+
 export const CategoryProducts = props => {
+  const categoryId = props.categoryId;
+  const [categoryProductsData, isLoaded] = useFetch(`/category/${categoryId}`);
+
+  if (!isLoaded) return <Loading>Loading...</Loading>;
+  const parsedCategoryProductsData = parse(categoryProductsData);
+
   return (
     <CategoryProductsWrapper>
-      <Header className={'fonts-xl-bold'}>{props.title}</Header>
+      <Header className={'fonts-xl-bold'}>
+        {parsedCategoryProductsData.title}
+      </Header>
       <ProductCardList>
-        {props.categoryProductsData.map(categoryProductData => (
-          <ProductCard size={'md'} data={categoryProductData} key={categoryProductData.id} />
+        {parsedCategoryProductsData.content.map(categoryProductData => (
+          <ProductCard
+            size={'md'}
+            data={categoryProductData}
+            key={categoryProductData.id}
+          />
         ))}
       </ProductCardList>
     </CategoryProductsWrapper>
