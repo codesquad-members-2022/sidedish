@@ -1,11 +1,10 @@
-import { CategoryBadge } from '@Components/Badge/CategoryBadge';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { ProductCard } from '@Components/ProductCard';
-
 import { TabList } from './TabList';
 
+import { CategoryBadge } from '@/Components/Badge/CategoryBadge';
+import { ProductCard } from '@/Components/ProductCard';
 import Colors from '@/Constants/Colors';
 import Fonts from '@/Constants/Fonts';
 import { fetchData } from '@/Utils/Utils';
