@@ -10,7 +10,7 @@ extension String {
     }
 
     func toPrice() -> String {
-        var price = self
+        var price = String(self.reversed())
         var splittedPrice = [String]()
         let offset = 3
 
@@ -18,14 +18,14 @@ extension String {
             let startPoint = price.startIndex
             let endPoint = price.index(startPoint, offsetBy: offset)
 
-            splittedPrice.append(String(price[startPoint..<endPoint]))
+            splittedPrice.append(String(price[startPoint..<endPoint].reversed()))
             price.removeSubrange(startPoint..<endPoint)
 
             if price.count <= offset {
-                splittedPrice.append(price)
+                splittedPrice.append(String(price.reversed()))
             }
         }
 
-        return splittedPrice.joined(separator: ",")
+        return splittedPrice.reversed().joined(separator: ",") + "원"
     }
 }
