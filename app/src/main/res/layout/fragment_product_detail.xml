@@ -263,8 +263,6 @@
 
                 <com.example.sideDish.ui.Stepper
                     android:id="@+id/stepper"
-                    android:count="@{viewModel.orderCount}"
-                    viewModel="@{viewModel}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
