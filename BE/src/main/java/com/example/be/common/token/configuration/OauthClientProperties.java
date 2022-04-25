@@ -1,4 +1,4 @@
-package com.example.be.common.token;
+package com.example.be.common.token.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
@@ -14,14 +14,23 @@ public class OauthClientProperties {
 
     private final Map<String, Provider> provider = new HashMap<>();
 
-    public OauthClientProperties() {}
+    public OauthClientProperties() {
+    }
 
     public Map<String, Registration> getRegistration() {
         return registration;
     }
 
+    public Registration getRegistrationAttribute(String key) {
+        return registration.get(key);
+    }
+
     public Map<String, Provider> getProvider() {
         return provider;
+    }
+
+    public Provider getProviderAttribute(String key) {
+        return provider.get(key);
     }
 
     public static class Registration {

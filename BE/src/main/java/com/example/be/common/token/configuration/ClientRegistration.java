@@ -1,4 +1,4 @@
-package com.example.be.common.token;
+package com.example.be.common.token.configuration;
 
 public class ClientRegistration {
     private final String scope;
@@ -7,6 +7,10 @@ public class ClientRegistration {
     private final String clientId;
     private final String clientSecret;
     private final String redirectUrl;
+
+    public static ClientRegistration bind(OauthClientProperties.Registration registration, OauthClientProperties.Provider provider) {
+        return new ClientRegistration(null, provider.getTokenUri(), provider.getUserInfoUri(), registration.getClientId(), registration.getClientSecret(), registration.getRedirectUri());
+    }
 
     public ClientRegistration(String scope, String tokenUrl, String userInfoUrl, String clientId, String clientSecret, String redirectUrl) {
         this.scope = scope;

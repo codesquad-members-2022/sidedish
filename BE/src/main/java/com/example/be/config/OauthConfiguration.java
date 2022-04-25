@@ -1,6 +1,6 @@
 package com.example.be.config;
 
-import com.example.be.common.token.OauthClientProperties;
+import com.example.be.common.token.configuration.OauthClientProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
