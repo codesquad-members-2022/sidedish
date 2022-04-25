@@ -2,28 +2,32 @@ package sidedish.jbc.dto;
 
 
 import sidedish.jbc.domain.MenuOrder;
+import sidedish.jbc.domain.SaleType;
 
 public class OrderRequest {
 
 	private int userId;
 	private String menuName;
-	private int menuPrice; // 할인 적용된 가격
+	private int menuPrice;
+	private SaleType saleType;
 	private int fee;
 	private int quantity;
 
 	public OrderRequest() {
 	}
 
-	public OrderRequest(int userId, String menuName, int menuPrice, int fee, int quantity) {
+	public OrderRequest(int userId, String menuName, int menuPrice,
+		SaleType saleType, int fee, int quantity) {
 		this.userId = userId;
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
+		this.saleType = saleType;
 		this.fee = fee;
 		this.quantity = quantity;
 	}
 
 	public MenuOrder toEntity() {
-		return new MenuOrder(userId, menuName, menuPrice, fee, quantity);
+		return new MenuOrder(userId, menuName, menuPrice, saleType, fee, quantity);
 	}
 
 	public int getUserId() {
@@ -44,5 +48,9 @@ public class OrderRequest {
 
 	public int getQuantity() {
 		return quantity;
+	}
+
+	public SaleType getSaleType() {
+		return saleType;
 	}
 }

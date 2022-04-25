@@ -9,6 +9,7 @@ public class MenuResponse {
 	private String name;
 	private String description;
 	private int price;
+	private int salePrice;
 	private MenuType menuType;
 	private SaleType saleType;
 	private String imagePath;
@@ -19,6 +20,7 @@ public class MenuResponse {
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.salePrice = price - price * saleType.getSalePercentage() / 100;
 		this.menuType = menuType;
 		this.saleType = saleType;
 		this.imagePath = imagePath;
@@ -50,6 +52,10 @@ public class MenuResponse {
 
 	public String getImagePath() {
 		return imagePath;
+	}
+
+	public int getSalePrice() {
+		return salePrice;
 	}
 
 	@Override

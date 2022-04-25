@@ -11,6 +11,7 @@ public class DetailMenuResponse {
 	private String name;
 	private String description;
 	private int price;
+	private int salePrice;
 	private SaleType saleType;
 	private String deliveryInfo;
 	private int fee;
@@ -24,6 +25,7 @@ public class DetailMenuResponse {
 		this.description = menu.getDescription();
 		this.price = menu.getPrice();
 		this.saleType = menu.getSaleType();
+		this.salePrice = price - price * saleType.getSalePercentage() / 100;
 		this.deliveryInfo = menu.getDeliveryInfo();
 		this.fee = menu.getFee();
 		this.freeShippingStartingPrice = menu.getFreeShippingStartingPrice();
@@ -36,6 +38,10 @@ public class DetailMenuResponse {
 			.filter(image -> !image.getIsMainImage())
 			.map(Image::getImagePath)
 			.collect(Collectors.toList());
+	}
+
+	public int getSalePrice() {
+		return salePrice;
 	}
 
 	public String getName() {

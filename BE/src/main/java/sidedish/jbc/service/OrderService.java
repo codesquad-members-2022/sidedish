@@ -1,7 +1,6 @@
 package sidedish.jbc.service;
 
 import org.springframework.stereotype.Service;
-import sidedish.jbc.domain.MenuOrder;
 import sidedish.jbc.dto.MenuOrderResponse;
 import sidedish.jbc.dto.OrderRequest;
 import sidedish.jbc.repository.OrderRepository;

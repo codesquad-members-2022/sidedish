@@ -9,21 +9,24 @@ public class MenuOrder {
 	private int userId;
 	private String menuName;
 	private int menuPrice;
+	private SaleType saleType;
 	private int fee;
 	private int quantity;
 
-	public MenuOrder(Integer id, int userId, String menuName, int menuPrice, int fee,
-		int quantity) {
+	public MenuOrder(Integer id, int userId, String menuName, int menuPrice,
+		SaleType saleType, int fee, int quantity) {
 		this.id = id;
 		this.userId = userId;
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
+		this.saleType = saleType;
 		this.fee = fee;
 		this.quantity = quantity;
 	}
 
-	public MenuOrder(int userId, String menuName, int menuPrice, int fee, int quantity) {
-		this(null, userId, menuName, menuPrice, fee, quantity);
+	public MenuOrder(int userId, String menuName, int menuPrice, SaleType saleType, int fee,
+		int quantity) {
+		this(null, userId, menuName, menuPrice, saleType, fee, quantity);
 	}
 
 	public Integer getId() {
@@ -48,5 +51,9 @@ public class MenuOrder {
 
 	public int getQuantity() {
 		return quantity;
+	}
+
+	public SaleType getSaleType() {
+		return saleType;
 	}
 }
