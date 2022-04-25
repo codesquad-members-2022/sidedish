@@ -37,7 +37,16 @@ class ProductDetailFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
-        binding.stepper.orderCount = viewModel.orderCount
+        viewModel.getDetail("hash")
+
+        setFoodInfoDummy()
+        registerStepper()
+        registerViewpager()
+
+        return binding.root
+    }
+
+    private fun setFoodInfoDummy() {
         //dummy
         binding.foodInfo = Item.FoodInfo(
             "초계국수_쿠킹박스",
@@ -50,6 +59,10 @@ class ProductDetailFragment : Fragment() {
             "11,800원",
             "초계국수_쿠킹박스"
         )
+    }
+
+    private fun registerStepper() {
+        binding.stepper.orderCount = viewModel.orderCount
 
         viewModel.orderCount.observe(viewLifecycleOwner) {
             binding.stepper.value.text = it.toString()
@@ -60,11 +73,9 @@ class ProductDetailFragment : Fragment() {
                     )
                 }"
         }
+    }
 
-        viewModel.detail.observe(viewLifecycleOwner) {
-            binding.viewPager.adapter = ImageSliderAdapter(it.thumbImageUrls)
-            binding.detail = it
-        }
+    private fun registerViewpager() {
         binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -74,11 +85,11 @@ class ProductDetailFragment : Fragment() {
                     "${position + 1}/${viewModel.detail.value?.thumbImageUrls?.size}"
             }
         })
-        return binding.root
+
+        viewModel.detail.observe(viewLifecycleOwner) {
+            binding.viewPager.adapter = ImageSliderAdapter(it.thumbImageUrls)
+            binding.detail = it
+        }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt("lastFragment", 1)
-    }
 }
