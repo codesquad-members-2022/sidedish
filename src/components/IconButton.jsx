@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
 import COLOR from '../variable/color';
@@ -10,24 +11,17 @@ import { ReactComponent as Plus } from '../images/icon_plus.svg';
 import { ReactComponent as Minus } from '../images/icon_minus.svg';
 
 function Icon({ icon, width, height, fill }) {
-  switch (icon) {
-    case 'search':
-      return <Search width={width} height={height} fill={fill} stroke={fill} />;
-    case 'user':
-      return <User width={width} height={height} fill={fill} stroke={fill} />;
-    case 'cart':
-      return <Cart width={width} height={height} fill={fill} stroke={fill} />;
-    case 'prev':
-      return <Prev width={width} height={height} fill={fill} stroke={fill} />;
-    case 'next':
-      return <Next width={width} height={height} fill={fill} stroke={fill} />;
-    case 'plus':
-      return <Plus width={width} height={height} fill={fill} stroke={fill} />;
-    case 'minus':
-      return <Minus width={width} height={height} fill={fill} stroke={fill} />;
-    default:
-      return null;
-  }
+  const svgInfo = { icon, width, height, fill, stroke: fill };
+  const Icons = {
+    search: <Search {...svgInfo} />,
+    user: <User {...svgInfo} />,
+    cart: <Cart {...svgInfo} />,
+    prev: <Prev {...svgInfo} />,
+    next: <Next {...svgInfo} />,
+    plus: <Plus {...svgInfo} />,
+    minus: <Minus {...svgInfo} />
+  };
+  return Icons[icon];
 }
 
 export default function IconButton({ icon, width, height, fill }) {
