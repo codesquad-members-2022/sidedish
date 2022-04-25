@@ -15,8 +15,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.controller.model.ProductBasicTypeResponse;
+import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.domain.DeliveryPolicy;
 import sidedish.com.domain.DiscountPolicy;
 import sidedish.com.domain.Image;
@@ -82,11 +82,11 @@ class ProductsControllerTest {
 		products.add(
 			new Product(5L, discountPolicy, deliveryPolicy,
 				List.of(new Image("http://kukukukukukukukuku.com/test.jpg")),
-				"한돈 돼지 김치찌개", "김치찌개에는 역시 돼지고기", 8370, "soup", "meat"));
+				"한돈 돼지 김치찌개", "김치찌개에는 역시 돼지고기", 8370, 100, "soup", "meat"));
 		products.add(
 			new Product(6L, discountPolicy, deliveryPolicy,
 				List.of(new Image("http://kukukukukukukukuku.com/test2.jpg")),
-				"하하하 테스트 음식", "맛있어요", 8370, "main", "soup"));
+				"하하하 테스트 음식", "맛있어요", 8370, 100, "main", "soup"));
 
 		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
 	}

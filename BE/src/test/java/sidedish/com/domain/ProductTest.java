@@ -28,7 +28,7 @@ class ProductTest {
 
 				Product sut = new Product(1L, discountPolicy, deliveryPolicy, List.of(image),
 					"김치찌개", "맛있어요",
-					10000, "soup", "meat");
+					10000, 100, "soup", "meat");
 
 				assertThat(sut.getDiscountPolicy().getPolicyName()).isEqualTo("이벤트특가");
 				assertThat(sut.getFixedPrice()).isEqualTo(8000);
@@ -48,7 +48,7 @@ class ProductTest {
 
 				Product sut = new Product(1L, discountPolicy, deliveryPolicy, List.of(image),
 					"김치찌개", "맛있어요",
-					10000, "soup", "meat");
+					10000, 100, "soup", "meat");
 
 				assertThat(sut.getDiscountPolicy().getPolicyName()).isEqualTo("런칭특가");
 				assertThat(sut.getFixedPrice()).isEqualTo(9000);

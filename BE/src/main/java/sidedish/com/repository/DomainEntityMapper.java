@@ -35,9 +35,7 @@ public class DomainEntityMapper {
 		DeliveryPolicyEntity deliveryPolicyEntity = searchDeliveryPolicyEntity(
 			deliveryPolicyEntities, productEntity);
 
-		Product product = createProduct(productEntity, discountPolicyEntity, deliveryPolicyEntity);
-
-		return product;
+		return createProduct(productEntity, discountPolicyEntity, deliveryPolicyEntity);
 	}
 
 	private DiscountPolicyEntity searchDiscountPolicyEntity(
@@ -78,6 +76,7 @@ public class DomainEntityMapper {
 			productEntity.getProductName(),
 			productEntity.getDescription(),
 			productEntity.getOriginalPrice(),
+			productEntity.getStockQuantity(),
 			productEntity.getMealCategory(),
 			productEntity.getBestCategory());
 	}
