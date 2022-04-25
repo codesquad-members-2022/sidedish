@@ -31,9 +31,12 @@ public class ProductService {
 		return productRepository.findById(id).get().createDTO();
 	}
 
-	public void order(RequestProduct requestProduct) {
-		Product originProduct = productRepository.findById(requestProduct.getId()).get();
-		Product updateProduct = Product.updateQuantity(originProduct, requestProduct.getQuantity());
-		productRepository.updateQuantity(requestProduct.getId(), updateProduct);
+	public Product order(RequestProduct requestProduct) {
+		//Product originProduct = productRepository.findById(requestProduct.getId()).get();
+		//Product updateProduct = Product.updateQuantity(originProduct, requestProduct.getQuantity());
+		//productRepository.updateQuantity(requestProduct.getId(), updateProduct);
+
+		return productRepository.updateQuantity(requestProduct.getId(),
+			requestProduct.getQuantity());
 	}
 }

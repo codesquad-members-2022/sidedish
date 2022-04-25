@@ -2,11 +2,13 @@ package kr.codesquad.sidedish.domain;
 
 import kr.codesquad.sidedish.service.ProductDTO;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 
 @AllArgsConstructor
 @Getter
+@Data
 public class Product {
 
 	@Id
@@ -40,7 +42,6 @@ public class Product {
 	}
 
 	private int convertDiscountPrice(String applyEvent, int price) {
-
 		Discount discount = Discount.setSaleType(applyEvent);
 
 		return (int) (price * discount.getValue());
