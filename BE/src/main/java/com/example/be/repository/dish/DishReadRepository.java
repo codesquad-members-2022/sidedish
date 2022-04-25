@@ -30,7 +30,6 @@ public class DishReadRepository {
                     rs.getString("name"),
                     rs.getString("description"),
                     rs.getBigDecimal("normal_price"),
-                    rs.getBigDecimal("sale_price"),
                     Badge.valueOf(rs.getString("badge")),
                     DeliveryType.valueOf(rs.getString("delivery_type")),
                     rs.getString("thumbnail"),

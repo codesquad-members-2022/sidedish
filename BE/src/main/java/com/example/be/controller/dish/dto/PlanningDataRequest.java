@@ -11,7 +11,6 @@ public class PlanningDataRequest {
     private String name;
     private String description;
     private BigDecimal normalPrice;
-    private BigDecimal salePrice;
     private String badge;
     private String deliveryType;
     private String thumbnail;
@@ -19,12 +18,11 @@ public class PlanningDataRequest {
     private Long categoryId;
     private String title;
 
-    public PlanningDataRequest(Long dishId, String name, String description, BigDecimal normalPrice, BigDecimal salePrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, Long categoryId, String title) {
+    public PlanningDataRequest(Long dishId, String name, String description, BigDecimal normalPrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, Long categoryId, String title) {
         this.dishId = dishId;
         this.name = name;
         this.description = description;
         this.normalPrice = normalPrice;
-        this.salePrice = salePrice;
         this.badge = badge.name();
         this.deliveryType = deliveryType.name();
         this.thumbnail = thumbnail;
@@ -47,10 +45,6 @@ public class PlanningDataRequest {
 
     public BigDecimal getNormalPrice() {
         return normalPrice;
-    }
-
-    public BigDecimal getSalePrice() {
-        return salePrice;
     }
 
     public String getBadge() {
