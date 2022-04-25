@@ -43,15 +43,9 @@ public class ProductsService {
 			discountPolicyRepository.findAll(),
 			deliveryPolicyRepository.findAll());
 
-		validProducts(products);
+		validateProducts(products);
 
 		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
-	}
-
-	private void validProducts(List<Product> products) {
-		if (products.isEmpty()) {
-			throw new NoSuchProductsException();
-		}
 	}
 
 	public ProductDetailTypeResponse findById(Long id) {
@@ -81,12 +75,29 @@ public class ProductsService {
 		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(recommendationProducts);
 	}
 
+	public List<ProductBasicTypeResponse> findAllByBestCategory(String category) {
+		List<ProductEntity> productEntities =productsRepository.findAllByBestCategory(category);
+		List<DiscountPolicyEntity> discountPolicyEntities = discountPolicyRepository.findAll();
+		List<DeliveryPolicyEntity> deliveryPolicyEntities = deliveryPolicyRepository.findAll();
+
+		List<Product> products = domainEntityMapper.toDomainFromProductsEntity(productEntities,
+			discountPolicyEntities,
+			deliveryPolicyEntities);
+
+		validateProducts(products);
+
+		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
+	}
+
+	private void validateProducts(List<Product> products) {
+		if (products.isEmpty()) {
+			throw new NoSuchProductsException();
+		}
+	}
+
 	private List<ProductEntity> recommendProducts(List<ProductEntity> productEntities) {
 		Collections.shuffle(productEntities);
 
 		return productEntities.subList(0, 11);
-	}
-	public List<ProductBasicTypeResponse> findAllByBestCategory(String meat) {
-		return null;
 	}
 }

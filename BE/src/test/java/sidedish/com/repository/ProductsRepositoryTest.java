@@ -101,4 +101,68 @@ class ProductsRepositoryTest  {
 	    }
 	}
 
+	@Nested
+	@DisplayName("findAllByBestCategory(String Category) 메서드")
+	class Describe_findAllByBestCategory {
+
+		@Nested
+		@DisplayName("만약 category가 유효한 meat로 주어진다면")
+		class Context_with__category_is_meat {
+
+			@Test
+			@DisplayName("category가 meat인 모든 Product의 List를 반환한다")
+			void It_returns_products_best_category_meat() {
+				List<ProductEntity> result = productsRepository.findAllByBestCategory("meat");
+				ProductEntity sut = result.get(0);
+
+				assertThat(result.size()).isEqualTo(3);
+				assertThat(sut.getBestCategory()).isEqualTo("meat");
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 category가 유효한 easy로 주어진다면")
+		class Context_with__category_is_easy {
+
+			@Test
+			@DisplayName("category가 easy인 모든 Product의 List를 반환한다")
+			void It_returns_products_best_category_easy() {
+				List<ProductEntity> result = productsRepository.findAllByBestCategory("easy");
+				ProductEntity sut = result.get(0);
+
+				assertThat(result.size()).isEqualTo(3);
+				assertThat(sut.getBestCategory()).isEqualTo("easy");
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 category가 유효한 season으로 주어진다면")
+		class Context_with__category_is_season {
+
+			@Test
+			@DisplayName("category가 season인 모든 Product의 List를 반환한다")
+			void It_returns_products_best_category_season() {
+				List<ProductEntity> result = productsRepository.findAllByBestCategory("season");
+				ProductEntity sut = result.get(0);
+
+				assertThat(result.size()).isEqualTo(2);
+				assertThat(sut.getBestCategory()).isEqualTo("season");
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 category가 유효한 kids으로 주어진다면")
+		class Context_with__category_is_kids {
+
+			@Test
+			@DisplayName("category가 kids인 모든 Product의 List를 반환한다")
+			void It_returns_products_best_category_kids() {
+				List<ProductEntity> result = productsRepository.findAllByBestCategory("kids");
+				ProductEntity sut = result.get(0);
+
+				assertThat(result.size()).isEqualTo(2);
+				assertThat(sut.getBestCategory()).isEqualTo("kids");
+			}
+		}
+	}
 }
