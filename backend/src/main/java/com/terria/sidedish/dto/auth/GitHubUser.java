@@ -2,6 +2,7 @@ package com.terria.sidedish.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.terria.sidedish.domain.Member;
+import com.terria.sidedish.domain.entity.aggregate.AccessToken;
 import lombok.Getter;
 
 @Getter
@@ -29,12 +30,7 @@ public class GitHubUser {
     }
 
     public Member toEntity() {
-        return new Member(
-                0, userId, Provider.of(provider), email, name,
-                gitHubAccessToken.getAccessToken(),
-                gitHubAccessToken.getTokenType(),
-                gitHubAccessToken.getScope()
-        );
+        return new Member(0, userId, Provider.of(provider), email, name, AccessToken.of(gitHubAccessToken));
     }
 
     @Override

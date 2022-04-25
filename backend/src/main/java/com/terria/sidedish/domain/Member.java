@@ -1,10 +1,12 @@
 package com.terria.sidedish.domain;
 
+import com.terria.sidedish.domain.entity.aggregate.AccessToken;
 import com.terria.sidedish.dto.auth.Provider;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 @Getter
 @AllArgsConstructor
@@ -19,7 +21,18 @@ public class Member {
     private String email;
     private String name;
 
-    private String accessToken;
-    private String tokenType;
-    private String scope;
+    @Embedded.Nullable
+    private AccessToken accessToken;
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", provider=" + provider +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", accessToken=" + accessToken +
+                '}';
+    }
 }
