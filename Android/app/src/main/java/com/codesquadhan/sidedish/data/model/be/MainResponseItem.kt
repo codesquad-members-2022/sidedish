@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName
 
 data class MainResponseItem(
     @SerializedName("description")
-    val description: String,
+    val description: String = "",
     @SerializedName("id")
-    val id: Int,
+    val id: Int = -1,
     @SerializedName("imagePath")
-    val imagePath: String,
+    val imagePath: String = "",
     @SerializedName("menuType")
-    val menuType: String,
+    val menuType: String = "",
     @SerializedName("name")
-    val name: String,
+    val name: String = "",
     @SerializedName("price")
-    val price: Int,
+    val price: Int = -1,
     @SerializedName("saleType")
-    val saleType: String,
-    val viewType: Int = 0,
-    val headerText: String? = ""
+    val saleType: String = "",
+    val viewType: Int = 2,
+    val headerText: String = ""
 )

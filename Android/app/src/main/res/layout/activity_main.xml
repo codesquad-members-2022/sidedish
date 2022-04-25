@@ -74,43 +74,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsv_product"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-               >
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_main"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@color/White"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_soup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_main"
-                        android:background="@color/Grey4"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_side"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_soup"
-                        android:background="@color/White"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.core.widget.NestedScrollView>
+                android:background="@color/White"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

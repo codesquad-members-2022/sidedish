@@ -17,8 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var mainAdapter: MainAdapter
-    private lateinit var soupAdapter: MainAdapter
-    private lateinit var sideAdapter: MainAdapter
+
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -27,10 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         setMainRv()
-        setSoupRv()
-        setSideRv()
         setBtnGitHub()
-
     }
 
     private fun setBtnGitHub() {
@@ -51,22 +47,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSoupRv() {
-        soupAdapter = makeMainAdapter()
-        binding.rvSoup.adapter = soupAdapter
-        viewModel.menuSoupListLd.observe(this) {
-            soupAdapter.submitList(it.toList())
-        }
-    }
-
-    private fun setSideRv() {
-        sideAdapter = makeMainAdapter()
-        binding.rvSide.adapter = sideAdapter
-        viewModel.menuSideListLd.observe(this) {
-            sideAdapter.submitList(it.toList())
-        }
-    }
-
 
     private fun makeMainAdapter(): MainAdapter {
         return MainAdapter { it ->
@@ -76,9 +56,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-   /* private fun rvTest() {
-        viewModel.addMainListTest()
-        viewModel.addSoupListTest()
-        viewModel.addSideListTest()
-    }*/
 }
