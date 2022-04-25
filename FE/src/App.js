@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Header } from "@/components/templates/Header/Header";
 import { Promotion } from "@/components/templates/Promotion/Promotion";
 =======
@@ -42,7 +43,11 @@ import { Header } from "@src/components/Header/Header";
 import { Header } from "@/components/Header/Header";
 >>>>>>> 82dc859 (Chore: config의 절대경로 alias 수정)
 import "./App.scss";
+=======
+import { Header } from "@/components/templates/Header/Header";
+>>>>>>> 0847aee ([#31] Feat: Header 컴포넌트에 Atomic Design Pattern 적용)
 import { Promotion } from "@/components/Promotion/Promotion";
+import "./App.scss";
 
 function App() {
   return (
