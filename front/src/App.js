@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import Header from './components/Header';
 import Modal from './components/Modal';
 import Event from './components/Event';
 import GlobalStyles from './GlobalStyles';
 import CategoryMenu from './components/CategoryMenu';
+import Alert from './components/Alert';
 
 const categories = [
   {
@@ -77,12 +79,20 @@ const dishes = {
   ],
 };
 function App() {
+  const [alert, setAlert] = useState({ show: false, message: '' });
+  function showAlert(message) {
+    setAlert({ show: true, message });
+  }
+  function hideAlert() {
+    setAlert({ show: false, message: '' });
+  }
   return (
     <div className="App">
       <GlobalStyles></GlobalStyles>
       <Header categories={categories}></Header>
       <Event></Event>
       <CategoryMenu></CategoryMenu>
+      {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
     </div>
   );
 }
