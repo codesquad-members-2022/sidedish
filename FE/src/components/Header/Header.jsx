@@ -4,6 +4,7 @@ import logo from "@/assets/image/logo.svg";
 import cart from "@/assets/image/cart.svg";
 import myPage from "@/assets/image/myPage.svg";
 import search from "@/assets/image/search.svg";
+import { navCategory } from "@/constant/constant";
 
 function Logo() {
   return (
@@ -12,24 +13,6 @@ function Logo() {
     </figure>
   );
 }
-
-const navCategory = [
-  {
-    id: "main1",
-    mainCategory: "든든한 메인요리",
-    subCategory: ["육류 요리", "해산물 요리"],
-  },
-  {
-    id: "main2",
-    mainCategory: "뜨끈한 국물요리",
-    subCategory: ["국/탕/찌개"],
-  },
-  {
-    id: "main3",
-    mainCategory: "정갈한 밑반찬",
-    subCategory: ["나물/무침", "조림/볶음", "절임/장아찌"],
-  },
-];
 
 function MainCategoryNav({ setIsShown }) {
   const mainNav = navCategory.map((nav) => (
