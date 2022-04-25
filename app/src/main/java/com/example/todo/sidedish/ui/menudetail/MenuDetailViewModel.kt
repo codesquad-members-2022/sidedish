@@ -24,7 +24,7 @@ class MenuDetailViewModel @Inject constructor(
 
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
-    
+
     fun getDetail(hash: String) {
         viewModelScope.launch {
             menuRepository.getDetail(hash)

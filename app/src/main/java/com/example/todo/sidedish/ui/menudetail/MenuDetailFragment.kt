@@ -49,7 +49,7 @@ class MenuDetailFragment : Fragment() {
             binding.detail = it
             menuDetailAdapter.submitDetailImages(it.detailImages)
         }
-        viewModel._thumbImages.observe(viewLifecycleOwner){thumbs->
+        viewModel._thumbnailImages.observe(viewLifecycleOwner){thumbs->
             viewPagerAdapter.submitThumbnails(thumbs)
             binding.vpItemDetailImg.orientation= ViewPager2.ORIENTATION_HORIZONTAL
         }
