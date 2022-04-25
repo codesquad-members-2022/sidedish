@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 
 
 @RequiredArgsConstructor
-@Component
 public class initDB {
 
     private final InitService initService;

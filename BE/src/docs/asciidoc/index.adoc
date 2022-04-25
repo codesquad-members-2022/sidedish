@@ -2,7 +2,7 @@ ifndef::snippets[]
 :snippets: ../../../build/generated-snippets
 endif::[]
 = Shine & 검봉 REST API Guide
-Shine;
+
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -14,6 +14,8 @@ Shine;
 
 [[overview]]
 = 개요
+
+반찬 서비스 구현 과정에서 API self-descriptive 를 위한 문서
 
 [[overview-http-verbs]]
 == HTTP 동사
@@ -83,7 +85,14 @@ operation::index[snippets='response-body,http-response,links']
 [[categories-query]]
 === 단건 Item 조회
 
-단일 Item에 대한 조회시 사용한다.
+`GET` 단일 Item에 대한 조회시 사용한다.
+
+include::{snippets}/search-single/response-fields.adoc[]
+include::{snippets}/search-single/curl-request.adoc[]
+include::{snippets}/search-single/http-response.adoc[]
+include::{snippets}/search-single/response-headers.adoc[]
+include::{snippets}/search-single/response-body.adoc[]
+include::{snippets}/search-single/links.adoc[]
 
 [[categories-query-list]]
 === 해당 카테고리 목록 조회

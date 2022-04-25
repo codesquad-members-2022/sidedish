@@ -24,7 +24,8 @@ import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.li
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedResponseFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -45,20 +46,39 @@ class CategoryIntegrationTest {
     @BeforeEach
     void init() {
         Category mainCategory = new Category(CategoryType.MAIN);
+        Category sidedishCategory = new Category(CategoryType.SIDE);
+        Category soupCategory = new Category(CategoryType.SOUP);
 
-        createMainItem(mainCategory, "고기1", "맛있는 고기1"); // page1
-        createMainItem(mainCategory, "고기2", "맛있는 고기2"); // page1
-        createMainItem(mainCategory, "고기3", "맛있는 고기3"); // page1
-        createMainItem(mainCategory, "고기4", "맛있는 고기4"); // page1
-        createMainItem(mainCategory, "고기5", "맛있는 고기5"); // page2
-        createMainItem(mainCategory, "고기6", "맛있는 고기6"); // page2
+        createItem(mainCategory, "고기1", "풍성한고기반찬");
+        createItem(mainCategory, "고기2", "풍성한고기반찬");
+        createItem(mainCategory, "고기3", "풍성한고기반찬");
+        createItem(mainCategory, "고기4", "풍성한고기반찬");
+        createItem(mainCategory, "고기5", "풍성한고기반찬");
+        createItem(mainCategory, "고기6", "풍성한고기반찬");
+
+        createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+        createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+        createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+        createItem(soupCategory, "햄가득 부대찌개", "우리아이영양반찬");
+
+        createItem(sidedishCategory, "콩나물1", "편리한반찬세트");
+        createItem(sidedishCategory, "콩나물2", "편리한반찬세트");
+        createItem(sidedishCategory, "콩나물3", "편리한반찬세트");
+        createItem(sidedishCategory, "콩나물4", "편리한반찬세트");
+        createItem(sidedishCategory, "꼬막무침1", "맛있는제철요리");
+        createItem(sidedishCategory, "꼬막무침2", "맛있는제철요리");
+        createItem(sidedishCategory, "꼬막무침3", "맛있는제철요리");
+        createItem(sidedishCategory, "꼬막무침4", "맛있는제철요리");
+
 
         categoryRepository.save(mainCategory);
+        categoryRepository.save(soupCategory);
+        categoryRepository.save(sidedishCategory);
     }
 
-    private void createMainItem(Category mainCategory, String name, String desc) {
-        Item newItem = new Item(name, desc, BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+    private static void createItem(Category mainCategory, String name, String detailtype) {
+        Item newItem = new Item(name, "반찬 설명", BigDecimal.valueOf(10000),
+                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
         mainCategory.saveItem(newItem);
     }
 
@@ -67,7 +87,7 @@ class CategoryIntegrationTest {
     void find_main_category_use_pageId_test() throws Exception {
         // given
         ResultActions requestThenResult = mockMvc.
-                perform(get("/api/categories/main?pageId=1")
+                perform(get("/api/categories/main?pageId=1&pageCount=4")
                         .contentType(MediaType.APPLICATION_JSON)
                 );
 
@@ -107,6 +127,48 @@ class CategoryIntegrationTest {
                                 fieldWithPath("_embedded.responseItemDtoList[0].discountPrice").description("discountPrice of item"),
                                 fieldWithPath("_embedded.responseItemDtoList[0].rewardPoint").description("rewardPoint of item"),
                                 fieldWithPath("_embedded.responseItemDtoList[0].images").description("images of item")
+                        )
+                ));
+    }
+
+    @Test
+    @DisplayName("단건의 아이템을 조회 해오는 테스트")
+    public void find_single_item_test() throws Exception {
+        //given
+        Category mainCategory = new Category(CategoryType.MAIN);
+        Item newItem = new Item("소불고기", "반찬 설명", BigDecimal.valueOf(10000),
+                10.0, Badge.EVENT, "풍성한고기반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+        mainCategory.saveItem(newItem);
+        categoryRepository.save(mainCategory);
+        Long itemId = newItem.getId();
+
+        // when & then
+        ResultActions requestThenResult = mockMvc.perform(get("/api/categories/items/" + itemId)
+                .accept(MediaTypes.HAL_JSON_VALUE));
+
+        requestThenResult.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
+                .andExpect(jsonPath("_links.self").exists())
+                .andDo(document("search-single",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        links(
+                                linkWithRel("self").description("link to self")
+                        ),
+                        responseHeaders(
+                                headerWithName(HttpHeaders.CONTENT_TYPE).description("Content type")
+                        ),
+                        relaxedResponseFields(
+                                fieldWithPath("_links.self").description("link of main type item"),
+                                fieldWithPath("id").description("id of item"),
+                                fieldWithPath("title").description("title of item"),
+                                fieldWithPath("description").description("description of item"),
+                                fieldWithPath("price").description("price of item"),
+                                fieldWithPath("badge").description("badge of item"),
+                                fieldWithPath("discountPrice").description("discountPrice of item"),
+                                fieldWithPath("rewardPoint").description("rewardPoint of item"),
+                                fieldWithPath("images").description("images of item")
                         )
                 ));
     }

@@ -16,20 +16,26 @@ import java.util.NoSuchElementException;
 public class ItemService {
 
     public static final String NOT_FOUND_PAGE_EXCEPTION = "존재하지 않는 페이지 입니다.";
+    public static final String NOT_FOUND_ITEM_EXCEPTION = "존재하지 않는 아이템 입니다.";
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
 
     public List<Item> findUnitPageById(CategoryType type, Long pageId, int pageCount) {
-        Long categoeyId = categoryRepository.findCategoeyId(type);
+        Long categoryId = categoryRepository.findCategoeyId(type);
         int startPage = pageId.intValue() - 1;
-        if (startPage <= 0) {
+        if (startPage < 0) {
             throw new NoSuchElementException(NOT_FOUND_PAGE_EXCEPTION);
         }
         PageRequest pageable = PageRequest.of(startPage, pageCount);
-        return itemRepository.findByCategory(categoeyId, pageable);
+        return itemRepository.findByCategory(categoryId, pageable);
     }
 
     public List<Item> findItemByDetailType(String type) {
         return itemRepository.findByDetailType(type);
+    }
+
+    public Item findItemById(Long id) {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException(NOT_FOUND_ITEM_EXCEPTION));
     }
 }

@@ -8,7 +8,6 @@ import com.sidedish.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +27,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class CategoryController {
 
     private final ItemService itemService;
+
+    @ExceptionHandler
+    public ResponseEntity<ResultDto> noSuchElementExceptionHandler(NoSuchElementException e) {
+        return ResponseEntity.badRequest().body(new ResultDto("pageException", e.getMessage()));
+    }
 
     @InitBinder
     private void initBinder(final WebDataBinder webdataBinder) {
@@ -61,8 +65,10 @@ public class CategoryController {
         return findItems.stream().map(ResponseItemDto::new).limit(3).collect(Collectors.toList());
     }
 
-    @ExceptionHandler
-    public ResponseEntity<ResultDto> noSuchElementExceptionHandler(NoSuchElementException e) {
-        return ResponseEntity.badRequest().body(new ResultDto("pageException", e.getMessage()));
+    @GetMapping("/items/{itemId}")
+    public ItemResource getSingleItem(@PathVariable Long itemId) {
+        Item findItem = itemService.findItemById(itemId);
+        ItemResource itemResource = new ItemResource(findItem);
+        return itemResource;
     }
 }
