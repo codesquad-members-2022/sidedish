@@ -2,10 +2,9 @@ package sidedish.jbc.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import sidedish.jbc.domain.Menu;
 import sidedish.jbc.domain.MenuType;
-import sidedish.jbc.dto.DetailMenuImages;
 import sidedish.jbc.dto.DetailMenu;
+import sidedish.jbc.dto.DetailMenuImages;
 import sidedish.jbc.dto.DetailMenuResponse;
 import sidedish.jbc.dto.MenuResponse;
 import sidedish.jbc.repository.ImageRepository;
@@ -21,11 +20,6 @@ public class MenuService {
 		ImageRepository imageRepository) {
 		this.menuRepository = menuRepository;
 		this.imageRepository = imageRepository;
-	}
-
-	public List<MenuResponse> findAll() {
-		Iterable<Menu> all = menuRepository.findAll();
-		return null;
 	}
 
 	public List<MenuResponse> findMenu(MenuType type) {

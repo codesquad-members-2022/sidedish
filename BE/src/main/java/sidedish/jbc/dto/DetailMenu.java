@@ -1,16 +1,18 @@
 package sidedish.jbc.dto;
 
+import sidedish.jbc.domain.SaleType;
+
 public class DetailMenu {
 
 	private String name;
 	private String description;
 	private int price;
-	private String saleType;
+	private SaleType saleType;
 	private String deliveryInfo;
 	private int fee;
 	private int freeShippingStartingPrice;
 
-	public DetailMenu(String name, String description, int price, String saleType,
+	public DetailMenu(String name, String description, int price, SaleType saleType,
 		String deliveryInfo, int fee, int freeShippingStartingPrice) {
 		this.name = name;
 		this.description = description;
@@ -33,7 +35,7 @@ public class DetailMenu {
 		return price;
 	}
 
-	public String getSaleType() {
+	public SaleType getSaleType() {
 		return saleType;
 	}
 

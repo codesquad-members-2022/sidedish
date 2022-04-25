@@ -2,13 +2,14 @@ package sidedish.jbc.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import sidedish.jbc.domain.SaleType;
 
 public class DetailMenuResponse {
 
 	private String name;
 	private String description;
 	private int price;
-	private String saleType;
+	private SaleType saleType;
 	private String deliveryInfo;
 	private int fee;
 	private int freeShippingStartingPrice;
@@ -27,7 +28,7 @@ public class DetailMenuResponse {
 			.filter(DetailMenuImages::isMain)
 			.map(DetailMenuImages::getImagePath)
 			.collect(Collectors.toList());
-		this.detailImage =  menuImages.stream()
+		this.detailImage = menuImages.stream()
 			.filter(c -> !c.isMain())
 			.map(DetailMenuImages::getImagePath)
 			.collect(Collectors.toList());
@@ -45,7 +46,7 @@ public class DetailMenuResponse {
 		return price;
 	}
 
-	public String getSaleType() {
+	public SaleType getSaleType() {
 		return saleType;
 	}
 

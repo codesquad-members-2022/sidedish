@@ -1,17 +1,20 @@
 package sidedish.jbc.dto;
 
+import sidedish.jbc.domain.MenuType;
+import sidedish.jbc.domain.SaleType;
+
 public class MenuResponse {
 
 	private long id;
 	private String name;
 	private String description;
 	private int price;
-	private String menuType;
-	private String saleType;
+	private MenuType menuType;
+	private SaleType saleType;
 	private String imagePath;
 
-	public MenuResponse(long id, String name, String description, int price, String menuType,
-		String saleType, String imagePath) {
+	public MenuResponse(long id, String name, String description, int price, MenuType menuType,
+		SaleType saleType, String imagePath) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -37,11 +40,11 @@ public class MenuResponse {
 		return price;
 	}
 
-	public String getMenuType() {
+	public MenuType getMenuType() {
 		return menuType;
 	}
 
-	public String getSaleType() {
+	public SaleType getSaleType() {
 		return saleType;
 	}
 

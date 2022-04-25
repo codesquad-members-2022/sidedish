@@ -4,15 +4,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.util.List;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sidedish.jbc.domain.MenuOrder;
 import sidedish.jbc.domain.MenuType;
 import sidedish.jbc.dto.DetailMenuResponse;
 import sidedish.jbc.dto.MenuOrderResponse;
@@ -34,16 +32,10 @@ public class MenuController {
 		this.orderService = orderService;
 	}
 
-	@ApiOperation(value = "전체 메뉴 요청", notes = "모든 메뉴를 불러옵니다")
-	@GetMapping
-	public List<MenuResponse> welcome() {
-		return menuService.findAll();
-	}
-
 	@ApiOperation(value = "특정 메뉴 타입 요청", notes = "지정된 타입의 메뉴들을 불러옵니다")
-	@GetMapping("/{type}")
+	@GetMapping
 	public List<MenuResponse> findMenu(
-		@ApiParam(name = "type", value = "요청할 메뉴 타입(예: soup)", required = true) @PathVariable("type") MenuType type) {
+		@ApiParam(name = "type", value = "요청할 메뉴 타입(예: soup)", required = true) @RequestParam("type") MenuType type) {
 		return menuService.findMenu(type);
 	}
 
