@@ -1,6 +1,7 @@
 package sidedish.jbc.repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,6 @@ public interface MenuRepository extends CrudRepository<Menu, Integer> {
 	List<MenuResponse> findAllByType(@Param("type") MenuType type);
 
 	@Query("select name, description, price, sale_type, delivery_info, fee, free_shipping_starting_price from menu where id = :menuId")
-	DetailMenu findDetailMenu(@Param("menuId") int menuId);
+	Optional<DetailMenu> findDetailMenu(@Param("menuId") int menuId);
 
 }

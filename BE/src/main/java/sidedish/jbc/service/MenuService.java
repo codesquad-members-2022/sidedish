@@ -33,8 +33,8 @@ public class MenuService {
 	}
 
 	public DetailMenuResponse findDetailMenu(int menuId) {
-		DetailMenu detailMenu = menuRepository.findDetailMenu(menuId);
-		List<DetailMenuImages> imageInfo = imageRepository.findInfoByMenuId(menuId);
+		DetailMenu detailMenu = menuRepository.findDetailMenu(menuId).orElseThrow();
+		List<DetailMenuImages> imageInfo = imageRepository.findByMenuId(menuId);
 		return new DetailMenuResponse(detailMenu, imageInfo);
 	}
 }

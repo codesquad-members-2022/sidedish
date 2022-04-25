@@ -10,6 +10,6 @@ import sidedish.jbc.dto.DetailMenuImages;
 public interface ImageRepository extends CrudRepository<Image, Integer> {
 
 	@Query("select image_path, is_main_image from image where menu_id = :menuId")
-	List<DetailMenuImages> findInfoByMenuId(@Param("menuId") int menuId);
+	List<DetailMenuImages> findByMenuId(@Param("menuId") int menuId);
 
 }
