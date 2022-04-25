@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Ordering"
+        self.title = "온반"
         let navigationBar = navigationController?.navigationBar
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.shadowColor = .black
@@ -65,6 +65,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = self.mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
 
         cell.configureCell(product: viewModel[indexPath]!)
+
         return cell
     }
 

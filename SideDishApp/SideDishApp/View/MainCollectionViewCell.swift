@@ -74,10 +74,12 @@ extension MainCollectionViewCell {
         priceContainer.spacing = 4
         badgeContainer.spacing = 4
         title.font = .smallBold
+        productDescription.sizeToFit()
         productDescription.font = .smallRegular
         productDescription.textColor = .grey2
+        productDescription.adjustsFontSizeToFitWidth = false
+        productDescription.lineBreakMode = .byTruncatingTail
         salePrice.font = .smallBold
-
     }
 
     private func configureOriginalPrice(text: String) {
