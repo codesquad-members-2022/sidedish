@@ -86,4 +86,7 @@ public class ProductsService {
 
 		return productEntities.subList(0, 11);
 	}
+	public List<ProductBasicTypeResponse> findAllByBestCategory(String meat) {
+		return null;
+	}
 }
