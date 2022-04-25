@@ -8,6 +8,6 @@ import java.util.List;
 public interface EventRepository extends CrudRepository<Event, Long> {
 	@Query("select a.EVENT_ID, a.EVENT_TITLE, b.SALE_TITLE, b.SALE_AMOUNT from SIDEDISH_EVENTS a\n"
 		+ "inner join SIDEDISH_SALE_POLICY b on a.EVENT_ID = b.EVENT_ID where a.EVENT_ID in (:eventId)")
-	List<OngoingEvent> findMenuOngoingByEventIdIn(List<Long> eventId);
+	List<OngoingEventInfo> findMenuOngoingByEventIdIn(List<Long> eventId);
 }
 
