@@ -1,6 +1,6 @@
 import "./Promotion.scss";
 import { useState, useEffect } from "react";
-import { categoryText } from "@/constant/constant";
+import { categoryText, labelTitles } from "@/constant/constant";
 import { fetchData } from "@/util/util";
 
 export function Promotion() {
@@ -111,11 +111,10 @@ function PromotionSection({ dataName, dataID }) {
 }
 
 function Label({ labelID }) {
-  if (labelID === 1) {
-    return <label className="menu-article__label1">런칭특가</label>;
-  } else if (labelID === 2) {
-    return <label className="menu-article__label2">이벤트특가</label>;
-  } else if (labelID === 3) {
-    return "";
-  }
+  if (labelID > labelTitles.length) return "";
+  return (
+    <label className={`menu-article__label${labelID}`}>
+      {labelTitles[labelID - 1]}
+    </label>
+  );
 }

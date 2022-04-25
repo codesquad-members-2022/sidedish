@@ -22,3 +22,5 @@ export const categoryText = [
   "맛있는 제철 요리",
   "우리 아이 영양 반찬",
 ];
+
+export const labelTitles = ["런칭특가", "이벤트특가"];
