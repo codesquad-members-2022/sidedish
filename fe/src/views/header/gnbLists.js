@@ -1,8 +1,6 @@
 import { GnbMenu, GnbSubMenu, GnbSubMenuWrapper } from './Header.styled';
 
-export function GnbLists(props) {
-  const { isSubMenuOpen, gnbMenus, gnbSubMenus } = props;
-
+export function GnbLists({ isSubMenuOpen, gnbMenus, gnbSubMenus, onMouseEnter }) {
   function handleMouseEnterSubMenu(e) {
     e.target.style.textDecoration = 'underline';
     e.target.style.color = '#1e88e5';
@@ -14,18 +12,17 @@ export function GnbLists(props) {
   }
 
   if (isSubMenuOpen) {
-    return gnbMenus.map((v, i) => (
-      <GnbMenu key={i}>
-        {v}
+    return gnbMenus.map((gnbMenu, menuIdx) => (
+      <GnbMenu key={`${gnbMenu}-${menuIdx}`}>
+        {gnbMenu}
         <GnbSubMenuWrapper>
-          {gnbSubMenus[i].map((v, i) => (
+          {gnbSubMenus[menuIdx].map((gnbSubMenu, subMenuIdx) => (
             <GnbSubMenu
-              key={i}
+              key={`${gnbSubMenu}-${subMenuIdx}`}
               onMouseEnter={handleMouseEnterSubMenu}
               onMouseLeave={handleMouseLeaveSubMenu}
-              className="gnbSubMenu"
             >
-              {v}
+              {gnbSubMenu}
             </GnbSubMenu>
           ))}
         </GnbSubMenuWrapper>
@@ -33,9 +30,9 @@ export function GnbLists(props) {
     ));
   }
 
-  return gnbMenus.map((v, i) => (
-    <GnbMenu key={i} onMouseEnter={props.onMouseEnter}>
-      {v}
+  return gnbMenus.map((gnbMenu, menuIdx) => (
+    <GnbMenu key={`${gnbMenu}-${menuIdx}`} onMouseEnter={onMouseEnter}>
+      {gnbMenu}
     </GnbMenu>
   ));
 }

@@ -11,7 +11,7 @@ export function Category() {
       <CategoryCardWrapper flex>
         <LeftButton>{buttonIcons.left}</LeftButton>
         {categoryData.map((product, idx) => {
-          return <ProductCard product={product} size="small" key={idx}></ProductCard>;
+          return <ProductCard product={product} size="medium" key={idx}></ProductCard>;
         })}
         <RightButton>{buttonIcons.right}</RightButton>
       </CategoryCardWrapper>

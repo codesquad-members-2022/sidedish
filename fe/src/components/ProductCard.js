@@ -25,18 +25,14 @@ export function ProductCard({ product, size }) {
   );
 }
 
-function CardContent(props) {
-  const content = props.content;
-  const size = props.size;
+function CardContent({ content, size }) {
   if (size === 'small') {
     return;
   }
   return <StyledP size={size}>{content}</StyledP>;
 }
 
-function EventWrapper(props) {
-  const events = props.events;
-  const size = props.size;
+function EventWrapper({ events, size }) {
   if (size === 'small') {
     return;
   }
@@ -47,7 +43,7 @@ function EventWrapper(props) {
     <StyledWrapper flex>
       {events.map((eventName, idx) => {
         return (
-          <Event key={idx} flex align="center" justify="center" eventName={eventName}>
+          <Event key={`${eventName}-${idx}`} flex align="center" justify="center" eventName={eventName}>
             {eventName}
           </Event>
         );

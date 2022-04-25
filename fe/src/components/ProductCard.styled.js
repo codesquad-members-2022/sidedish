@@ -1,16 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { applyFlex } from '../helper/utils';
 
 function applyEventStyleByEventName(eventName) {
   if (eventName === '런칭특가') {
-    return css`
+    return `
       width: 76px;
       height: 30px;
       background: #ff8e14;
     `;
   }
   if (eventName === '이벤트특가') {
-    return css`
+    return `
       width: 87px;
       height: 30px;
       background: #6dd028;
@@ -20,19 +20,19 @@ function applyEventStyleByEventName(eventName) {
 
 function applyImgStyleByCardSize(size) {
   if (size === 'large') {
-    return css`
+    return `
       width: 411px;
       height: 411px;
     `;
   }
   if (size === 'medium') {
-    return css`
+    return `
       width: 302px;
       height: 302px;
     `;
   }
   if (size === 'small') {
-    return css`
+    return `
       width: 160px;
       height: 160px;
     `;
@@ -41,7 +41,7 @@ function applyImgStyleByCardSize(size) {
 
 function applyTitleStyleByCardSize(size) {
   if (size === 'small') {
-    return css`
+    return `
       font-weight: 400;
       font-size: 14px;
       line-height: 24px;
@@ -49,7 +49,7 @@ function applyTitleStyleByCardSize(size) {
       width: 160px;
     `;
   }
-  return css`
+  return `
     font-weight: 500;
     font-size: 16px;
     line-height: 26px;
@@ -77,7 +77,7 @@ export const StyledP = styled.p`
 `;
 
 export const PriceWrapper = styled.div`
-  ${props => applyFlex(props)}
+  ${({ flex, align }) => applyFlex({ flex, align })}
   font-family: 'Noto Sans KR';
   font-style: normal;
 `;
@@ -101,7 +101,7 @@ export const Price = styled.div`
 `;
 
 export const StyledWrapper = styled.div`
-  ${props => applyFlex(props)}
+  ${({ flex }) => applyFlex({ flex })}
   margin-top:16px;
   color: #fff;
   font-weight: 500;
@@ -109,7 +109,7 @@ export const StyledWrapper = styled.div`
 `;
 
 export const Event = styled.div`
-  ${props => applyFlex(props)}
+  ${({ flex, justify, align }) => applyFlex({ flex, justify, align })}
   ${({ eventName }) => applyEventStyleByEventName(eventName)}
   margin-right: 8px;
   border-radius: 999px;
