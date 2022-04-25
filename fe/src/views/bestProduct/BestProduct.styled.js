@@ -22,6 +22,8 @@ export const TitleWrapper = styled.div`
 
 export const StyledBestProduct = styled.div`
   margin-top: 56px;
+  padding-bottom: 56px;
+  border-bottom: solid 1px #ebebeb;
 `;
 
 export const BestProductHeader = styled.div`
