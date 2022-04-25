@@ -26,7 +26,7 @@ public class ItemController {
         return ResponseEntity.ok(itemService.findItemByCategoryId(categoryId));
     }
 
-    @GetMapping("/best")
+    @GetMapping("/event")
     public List<ItemListResponseDto> getItemByBestId (@RequestParam int bestId) {
         return itemService.findByBestId(bestId);
     }
