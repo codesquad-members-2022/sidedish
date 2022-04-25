@@ -596,7 +596,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint autocorrect\"\n";
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
 		B7F90B96281126570067E4FE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

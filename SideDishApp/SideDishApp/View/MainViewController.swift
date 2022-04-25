@@ -15,26 +15,32 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "온반"
-        let navigationBar = navigationController?.navigationBar
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.shadowColor = .black
-        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
-
+        configureNavigationBar()
+        setCollectionViewLayout()
         configureCollectionView()
         registerViews()
         bindViewModel()
     }
 
+    private func configureNavigationBar() {
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.shadowColor = .black
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+    }
+
+    private func setCollectionViewLayout() {
+        mainCollectionView.collectionViewLayout = CollectionViewLayoutFactory.createMainLayout()
+    }
+    
+    private func configureCollectionView() {
+        mainCollectionView.delegate = self
+        mainCollectionView.dataSource = self
+    }
+
     private func registerViews() {
         mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
         mainCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
-    }
-
-    private func configureCollectionView() {
-        self.mainCollectionView.collectionViewLayout = CollectionViewLayoutFactory.createMainLayout()
-        self.mainCollectionView.delegate = self
-        self.mainCollectionView.dataSource = self
     }
 
     private func bindViewModel() {
@@ -64,7 +70,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
+        let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
         guard let productVM = viewModel[indexPath] else {return UICollectionViewCell()}
         viewModel.fetchImage(from: productVM.imageURL) { nsData in
             guard let nsData = nsData else { return }
@@ -84,7 +90,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let productType = ProductType.allCases[indexPath.section]
         header.setTitle(text: productType.title)
         return header
-
     }
 
 }

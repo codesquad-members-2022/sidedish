@@ -14,12 +14,12 @@ class ProductCollectionViewModelTests: XCTestCase {
     func testFetch() throws {
         let promise = XCTestExpectation(description: "Section View Model fetched")
 
-        productCollectionViewModel.cellViewModels.bind { sectionVM in
-            XCTAssertTrue(sectionVM.count == 3)
+        productCollectionViewModel.categoryVMs[.main]?.bind { sectionVM in
+            XCTAssertTrue(sectionVM?.productVMs.count == 8)
             promise.fulfill()
         }
 
-        productCollectionViewModel.fetchCategories()
+        productCollectionViewModel.fetchAllCategories()
 
         wait(for: [promise], timeout: 1)
     }

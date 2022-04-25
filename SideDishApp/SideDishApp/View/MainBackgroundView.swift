@@ -13,17 +13,17 @@ class MainBackgroundView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        setStyle()
     }
 
     required init?(coder: NSCoder) {
-        fatalError("not implemented")
+        super.init(coder: coder)
     }
 }
 
 extension MainBackgroundView {
-    func configure() {
-        backgroundColor = .secondarySystemBackground
+    func setStyle() {
+        backgroundColor = .grey4
     }
 
 }

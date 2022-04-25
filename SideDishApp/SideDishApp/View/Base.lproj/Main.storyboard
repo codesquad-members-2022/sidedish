@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--온반-->
         <scene sceneID="h13-9h-0ch">
             <objects>
                 <viewController id="kA2-T3-sGb" customClass="MainViewController" customModule="SideDishApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,7 +50,7 @@
                             <constraint firstItem="Szb-PP-tgk" firstAttribute="top" secondItem="iG3-c0-AEw" secondAttribute="top" id="vZL-dh-T4U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dBs-Kz-9aS"/>
+                    <navigationItem key="navigationItem" title="온반" id="dBs-Kz-9aS"/>
                     <connections>
                         <outlet property="mainCollectionView" destination="Szb-PP-tgk" id="ALd-z4-bhu"/>
                     </connections>

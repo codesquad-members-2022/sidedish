@@ -26,11 +26,11 @@ class MainCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    private lazy var badges: [String: BadgeLabel] = {
-        var labels = [String: BadgeLabel]()
+    private lazy var badges: [Badge: BadgeLabel] = {
+        var labels = [Badge: BadgeLabel]()
         for label in Badge.allCases {
             let badgeLabel = BadgeLabel(text: label.rawValue)
-            labels.updateValue(badgeLabel, forKey: label.rawValue)
+            labels.updateValue(badgeLabel, forKey: label)
         }
         return labels
     }()
@@ -51,52 +51,56 @@ extension MainCollectionViewCell {
         title.text = product.title
         productDescription.text = product.description
         salePrice.text = product.salePrice.priceTag
+
         if let originalPrice = product.originalPrice {
             configureOriginalPrice(text: originalPrice.priceTag)
+            priceContainer.addArrangedSubview(self.originalPrice)
         }
+
         if let detectedBadges = product.badge {
-//            moveInfoContainerUpward()
-
             detectedBadges.forEach({
-                let matchedBadge = self.badges[$0.rawValue]
+                let matchedBadge = self.badges[$0]
                 badgeContainer.addArrangedSubview(matchedBadge ?? UILabel())
-
             })
-
         }
-
         setStyle()
     }
 
     private func setStyle() {
+        setImage()
+        setContainers()
+        setFont()
+    }
+
+    private func setImage() {
         mainImage.layer.cornerRadius = 5
-        productDescription.textColor = .systemGray2
+    }
+
+    private func setContainers() {
         priceContainer.spacing = 4
         badgeContainer.spacing = 4
+    }
+
+    private func setFont() {
+        productDescription.textColor = .systemGray2
         title.font = .smallBold
-        productDescription.sizeToFit()
         productDescription.font = .smallRegular
         productDescription.textColor = .grey2
-//        productDescription.adjustsFontSizeToFitWidth = false
-//        productDescription.lineBreakMode = .byTruncatingTail
         salePrice.font = .smallBold
     }
 
     private func configureOriginalPrice(text: String) {
         self.originalPrice.text = text
+        let attributeString = setStrikeThroughAttribute(text: text)
+        self.originalPrice.attributedText = attributeString
+    }
+
+    private func setStrikeThroughAttribute(text: String) -> NSMutableAttributedString {
         let attributeString = NSMutableAttributedString(string: text)
           attributeString.addAttribute(.strikethroughStyle,
                                         value: NSUnderlineStyle.single.rawValue,
                                         range: NSRange(location: 0, length: attributeString.length))
-        self.originalPrice.attributedText = attributeString
-        priceContainer.addArrangedSubview(self.originalPrice)
+        return attributeString
     }
-
-//    private func moveInfoContainerUpward() {
-//        self.infoContainer.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            self.infoContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 13)
-//        ])
-//    }
 
 }
