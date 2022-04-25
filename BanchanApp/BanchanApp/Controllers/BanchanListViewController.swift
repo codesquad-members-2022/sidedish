@@ -16,10 +16,6 @@ class BanchanListViewController: UICollectionViewController {
         setCollectionLayout()
     }
 
-    private func configureUI() {
-
-    }
-
     private func setCollectionLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let width = view.frame.width
@@ -52,7 +48,7 @@ class BanchanListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? Header else { return UICollectionReusableView() }
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? ProductSectionHeader else { return UICollectionReusableView() }
         header.title.text = headerItem[indexPath.section]
         return header
     }

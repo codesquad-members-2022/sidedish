@@ -23,7 +23,7 @@ class BadgeLabel: UILabel {
 		self.textAlignment = .center
 		self.layer.masksToBounds = true
 		self.layer.cornerCurve = .continuous
-		self.layer.cornerRadius = 15
+		self.setCornerRadius(ratio: 1.7)
 	}
 
 	override func drawText(in rect: CGRect) {

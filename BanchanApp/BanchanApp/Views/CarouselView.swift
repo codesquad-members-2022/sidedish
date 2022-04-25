@@ -16,6 +16,7 @@ protocol CarouselViewDataSource: AnyObject {
 }
 
 class CarouselView: UIView {
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 
@@ -46,7 +47,7 @@ class CarouselView: UIView {
 
     private var itemView = UIView.self
 
-    var delegate: CarouselViewDataSource? {
+    weak var delegate: CarouselViewDataSource? {
         didSet {
             self.reloadData()
         }
@@ -116,9 +117,11 @@ class CarouselView: UIView {
     func register(item: UIView.Type) {
         self.itemView = item
     }
+
 }
 
 extension CarouselView: UIScrollViewDelegate {
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetX = self.scrollView.contentOffset.x
         let width = self.scrollView.frameLayoutGuide.layoutFrame.width
@@ -126,4 +129,5 @@ extension CarouselView: UIScrollViewDelegate {
 
         self.pageControl.currentPage = Int(pageIndex)
     }
+
 }

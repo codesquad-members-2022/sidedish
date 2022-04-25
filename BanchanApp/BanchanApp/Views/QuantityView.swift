@@ -12,6 +12,7 @@ protocol QuantityViewDelegate: AnyObject {
 }
 
 class QuantityView: UIView {
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -42,7 +43,7 @@ class QuantityView: UIView {
     }()
 
     // MARK: - Properties
-    var delegate: QuantityViewDelegate?
+    weak var delegate: QuantityViewDelegate?
 
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -109,4 +110,5 @@ class QuantityView: UIView {
         self.quantityStepper.value = value
         self.quantityLabel.text = self.convertQuantityValueToFormattedString(with: value)
     }
+
 }

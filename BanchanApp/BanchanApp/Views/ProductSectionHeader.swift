@@ -1,5 +1,5 @@
 //
-//  Header.swift
+//  ProductSectionHeader.swift
 //  BanchanApp
 //
 //  Created by Se Eun Lee on 2022/04/19.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Header: UICollectionReusableView {
+class ProductSectionHeader: UICollectionReusableView {
 
     let title: UILabel = UILabel()
 

@@ -12,6 +12,7 @@ protocol BanchanViewControllerDelegate: AnyObject {
 }
 
 class BanchanDetailViewController: UIViewController {
+
     // MARK: - Container View(Vertical Scroll View)
     private lazy var containerScrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -27,7 +28,7 @@ class BanchanDetailViewController: UIViewController {
 	}()
 
     // MARK: - Carousel View
-    private lazy var carouselView = CarouselView()
+    private lazy var productImageCarouselView = CarouselView()
     private lazy var containerContentView = UIView()
 
     // MARK: - Order View
@@ -85,7 +86,7 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var totalPriceLabel: PriceTag = {
         let label = PriceTag()
-        label.price = 15000
+        label.price = "15,000원"
         return label
     }()
 
@@ -104,7 +105,7 @@ class BanchanDetailViewController: UIViewController {
     }()
 
     // MARK: - Properties
-    var delegate: BanchanViewControllerDelegate?
+    weak var delegate: BanchanViewControllerDelegate?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -112,7 +113,7 @@ class BanchanDetailViewController: UIViewController {
 		self.view.backgroundColor = .systemBackground
 
         self.configureUI()
-        self.carouselView.delegate = self
+        self.productImageCarouselView.delegate = self
         self.quantityView.delegate = self
     }
 
@@ -129,12 +130,12 @@ class BanchanDetailViewController: UIViewController {
         self.containerScrollView.addSubview(self.containerContentView)
         self.containerScrollView.fill(inView: self.view.safeAreaLayoutGuide)
         self.containerContentView.fill(inView: self.containerScrollView.contentLayoutGuide)
-        self.containerContentView.setWidth(self.containerScrollView.frameLayoutGuide.layoutFrame.width)
+		self.containerContentView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor).isActive = true
     }
 
     private func configureCarouselView() {
-        self.containerContentView.addSubview(self.carouselView)
-        self.carouselView.anchor(
+        self.containerContentView.addSubview(self.productImageCarouselView)
+        self.productImageCarouselView.anchor(
             top: self.containerContentView.topAnchor,
             leading: self.containerContentView.leadingAnchor,
             trailing: self.containerContentView.trailingAnchor,
@@ -146,7 +147,7 @@ class BanchanDetailViewController: UIViewController {
     private func configureOrderView() {
         self.containerContentView.addSubview(self.orderView)
         self.orderView.anchor(
-            top: self.carouselView.bottomAnchor,
+            top: self.productImageCarouselView.bottomAnchor,
             leading: self.containerContentView.leadingAnchor,
             trailing: self.containerContentView.trailingAnchor,
             paddingTop: 24,
@@ -280,7 +281,10 @@ class BanchanDetailViewController: UIViewController {
 			group.enter()
 
 			URLSession.shared.dataTask(with: url) { data, _, error in
-				guard let data = data, error == nil else { return }
+				guard let data = data, error == nil else {
+					group.leave()
+					return
+				}
 
 				group.leave()
 				images.append(data)
@@ -289,15 +293,14 @@ class BanchanDetailViewController: UIViewController {
 
 		group.notify(queue: .main) { [weak self] in
 			for data in images {
-				guard let image = UIImage(data: data) else { return }
+				guard let image = UIImage(data: data), let ratio = image.getAspectRatio() else { return }
+
 				let imageView = UIImageView(image: image)
-				let width = Double(image.size.width)
-				let height = Double(image.size.height)
-				let ratio = width/height
 
 				imageView.contentMode = .scaleAspectFit
 
 				self?.productDescriptionImageStack.addArrangedSubview(imageView)
+
 				imageView.translatesAutoresizingMaskIntoConstraints = false
 				imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: ratio).isActive = true
 			}
@@ -323,13 +326,16 @@ extension BanchanDetailViewController: CarouselViewDataSource {
         // TODO: get total image count from ViewModel
         return 4
     }
+
 }
 
 extension BanchanDetailViewController: QuantityViewDelegate {
+
     func quantityViewDidChangeValue(value: Double) {
         // TODO: Update ViewModel
         // 1. Update quantity to ViewModel
         // 2. Get point from ViewModel
         // 3. Update point Label
     }
+
 }

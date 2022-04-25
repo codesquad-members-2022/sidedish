@@ -8,13 +8,14 @@
 import UIKit
 
 class PriceTag: UILabel {
+
     var tagName: String = "총 주문금액" {
         didSet {
             self.configureUI()
         }
     }
 
-    var price: Int = 0 {
+    var price: String = "0원" {
         didSet {
             self.configureUI()
         }
@@ -36,26 +37,29 @@ class PriceTag: UILabel {
         let padding = NSTextAttachment()
         padding.bounds.size = CGSize(width: 24, height: 0)
 
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        let formattedNumber = numberFormatter.string(from: NSNumber(value: self.price)) ?? "0"
+		let titleFontSize: CGFloat = 18
+		let priceFontSize: CGFloat = 32
+		
+		let titleFont = UIFont.systemFont(ofSize: titleFontSize, weight: .semibold)
 
         let titleAttribute: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(named: "Gray2") ?? UIColor.black,
-            .font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-            .baselineOffset: (32 - 18) / 3
+            .font: titleFont,
+			.baselineOffset: titleFont.xHeight / 2
         ]
 
         let priceAttribute: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black,
-            .font: UIFont.systemFont(ofSize: 32, weight: .semibold)
+            .font: UIFont.systemFont(ofSize: priceFontSize, weight: .semibold)
         ]
 
         let attributedText = NSMutableAttributedString(string: self.tagName, attributes: titleAttribute)
-        let priceText = NSMutableAttributedString(string: "\(String(describing: formattedNumber))원", attributes: priceAttribute)
+		let priceText = NSMutableAttributedString(string: "\(self.price)", attributes: priceAttribute)
 
         attributedText.insert(NSAttributedString(attachment: padding), at: attributedText.length)
         attributedText.append(priceText)
+
         self.attributedText = attributedText
     }
+
 }

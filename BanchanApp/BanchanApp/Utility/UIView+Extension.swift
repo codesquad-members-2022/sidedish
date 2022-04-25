@@ -8,6 +8,7 @@
 import UIKit.UIView
 
 extension UIView {
+
     // MARK: - AutoLayout
     func setHeight(_ value: CGFloat) {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -201,4 +202,11 @@ extension UIView {
 
         self.addSubview(border)
     }
+
+	func setCornerRadius(ratio: Double) {
+		let width = max(self.intrinsicContentSize.width, self.frame.width)
+		let height = max(self.intrinsicContentSize.height, self.frame.height)
+
+		self.layer.cornerRadius = min(width, height) * ratio
+	}
 }
