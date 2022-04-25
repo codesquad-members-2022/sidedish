@@ -60,7 +60,7 @@ public class Menu {
 			", menuType=" + menuType +
 			", saleType=" + saleType +
 			", fee=" + fee +
-			", freeShippingMin=" + freeShippingStartingPrice +
+			", freeShippingStartingPrice=" + freeShippingStartingPrice +
 			", deliveryInfo='" + deliveryInfo + '\'' +
 			", stock=" + stock +
 			", imagePath=" + imagePath +
