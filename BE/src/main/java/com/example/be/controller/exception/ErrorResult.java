@@ -1,16 +1,24 @@
 package com.example.be.controller.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
+
 public class ErrorResult {
 
     private static final int SERVER_ERROR_CODE = 500;
-    private static final String SERVER_ERROR_MESSAGE = "서버 내부 문제입니다.";
+    private static final String SERVER_ERROR_MESSAGE = "서버 내부 오류입니다.";
 
     private int code;
     private String message;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private LocalDateTime time;
+
     public ErrorResult(int code, String message) {
         this.code = code;
         this.message = message;
+        this.time = LocalDateTime.now();
     }
 
     public ErrorResult() {
@@ -30,6 +38,10 @@ public class ErrorResult {
 
     public String getMessage() {
         return message;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
     }
 }
 
