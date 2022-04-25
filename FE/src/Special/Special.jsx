@@ -42,11 +42,7 @@ const Special = () => {
         <SpecialTabBar>
           {tabData.map((v, i) => {
             return (
-              <SpecialTab
-                key={i}
-                onClick={() => handleTabClick(v.index)}
-                isSelected={tabNum === v.index ? true : false}
-              >
+              <SpecialTab key={i} onClick={() => handleTabClick(v.index)} isSelected={tabNum === v.index}>
                 {v.name}
               </SpecialTab>
             );
