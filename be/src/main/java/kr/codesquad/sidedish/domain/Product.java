@@ -3,11 +3,13 @@ package kr.codesquad.sidedish.domain;
 import kr.codesquad.sidedish.service.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.data.annotation.Id;
 
 @AllArgsConstructor
 @Getter
 public class Product {
 
+	@Id
 	private final Integer id;
 	private final String name;
 	private final String content;
@@ -39,9 +41,9 @@ public class Product {
 
 	private int convertDiscountPrice(String applyEvent, int price) {
 
-		Discount discount = Discount.valueOf(applyEvent);
+		Discount discount = Discount.setSaleType(applyEvent);
 
-		return (int) discount.setSaleType("할인특가").getValue();
+		return (int) (price * discount.getValue());
 	}
 
 	public boolean isSameDishType(String dishType) {
