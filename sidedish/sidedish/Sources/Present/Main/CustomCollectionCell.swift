@@ -49,7 +49,7 @@ class CustomCollectionCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             imageView.widthAnchor.constraint(equalToConstant: imageSize),
             imageView.heightAnchor.constraint(equalToConstant: imageSize),
             
@@ -86,5 +86,9 @@ extension CustomCollectionCell {
     
     func changeSaleBadge(_ badges: [String]?) {
         menuInfoView.changeSaleBadge(badges)
+    }
+    
+    func changeBackgroundColor(_ color: UIColor) {
+        backgroundColor = color
     }
 }

@@ -34,8 +34,8 @@ class CollectionViewHeader: UICollectionReusableView {
     private func layout() {
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: topAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor),
-            title.widthAnchor.constraint(equalToConstant: frame.width),
+            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             title.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
@@ -44,5 +44,9 @@ class CollectionViewHeader: UICollectionReusableView {
 extension CollectionViewHeader {
     func changeTitle(text: String) {
         title.text = text
+    }
+    
+    func changeBackgroundColor(_ color: UIColor) {
+        backgroundColor = color
     }
 }
