@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../components/Card';
-import { fetchData } from '../utils/utils';
+import Card from 'components/Card/Card';
+import { fetchData } from 'utils/utils';
 import {
   SpecialContainer,
   SpecialBadge,
@@ -11,23 +11,24 @@ import {
   SpecialTab,
   CardContainer,
 } from './Special.style';
-import tabData from '../data/specialTab.js';
+import tabData from 'data/specialTab.js';
 
 const Special = () => {
   const [data, setData] = useState([]);
   const [tabNum, setTabNum] = useState(0);
 
   useEffect(() => {
-    fetchTabData();
-  }, []);
+    fetchTabData(tabNum);
+  }, [tabNum]);
 
   const handleTabClick = tabNum => {
     setTabNum(tabNum);
-    fetchTabData();
+    // fetchTabData(tabNum);
   };
 
-  const fetchTabData = async () => {
-    const TEST_URL = 'http://3.39.42.204/api/dishes';
+  const fetchTabData = async tabNum => {
+    // const TEST_URL = `http://3.39.42.204/api/dishes/${tabNum}`;
+    const TEST_URL = `http://3.39.42.204/api/dishes`;
     const data = await fetchData(TEST_URL);
     setData(data.response.slice(0, 3));
   };
