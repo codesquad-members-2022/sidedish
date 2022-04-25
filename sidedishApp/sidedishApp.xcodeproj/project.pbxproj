@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00371669281634CC0052F690 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00371668281634CC0052F690 /* UIColorExtension.swift */; };
+		0037166B281641130052F690 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037166A281641130052F690 /* UIFontExtension.swift */; };
 		0068078F280D5195003C2808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068078E280D5195003C2808 /* AppDelegate.swift */; };
 		00680791280D5195003C2808 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680790280D5195003C2808 /* SceneDelegate.swift */; };
 		00680793280D5195003C2808 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00680792280D5195003C2808 /* MainViewController.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00371668281634CC0052F690 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		0037166A281641130052F690 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		0068078B280D5195003C2808 /* sidedishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0068078E280D5195003C2808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00680790280D5195003C2808 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00371667281634920052F690 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				00371668281634CC0052F690 /* UIColorExtension.swift */,
+				0037166A281641130052F690 /* UIFontExtension.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		00680782280D5194003C2808 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +105,7 @@
 			children = (
 				0068078E280D5195003C2808 /* AppDelegate.swift */,
 				00680790280D5195003C2808 /* SceneDelegate.swift */,
+				00371667281634920052F690 /* util */,
 				00EAA567281243EA00CC013C /* viewController */,
 				00680794280D5195003C2808 /* Main.storyboard */,
 				009361E3280EE40F00D0FF1A /* model */,
@@ -288,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00371669281634CC0052F690 /* UIColorExtension.swift in Sources */,
 				D2ADF625280E9D7900507878 /* SubDescriptionViewController.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
@@ -297,6 +312,7 @@
 				D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */,
 				009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */,
 				D24CF2282812484300677D3D /* DetailCard.swift in Sources */,
+				0037166B281641130052F690 /* UIFontExtension.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
 				009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */,

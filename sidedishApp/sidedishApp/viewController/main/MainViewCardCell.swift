@@ -46,7 +46,7 @@ class MainViewCardCell: UICollectionViewCell {
         label.text = "이벤트특가"
         label.textColor = .white
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
-        label.backgroundColor = UIColor(red: 127 / 255, green: 188 / 255, blue: 255 / 255, alpha: 1)
+        label.backgroundColor = UIColor.customColor(.primaryLight)
         label.layer.cornerRadius = 13
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
@@ -59,7 +59,7 @@ class MainViewCardCell: UICollectionViewCell {
         label.text = "런칭특가"
         label.textColor = .white
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
-        label.backgroundColor = UIColor(red: 1 / 255, green: 102 / 255, blue: 214 / 255, alpha: 1)
+        label.backgroundColor = UIColor.customColor(.primaryDark)
         label.layer.cornerRadius = 13
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
