@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.Repository
-import com.example.todo.sidedish.ui.common.Event
 import com.example.todo.sidedish.domain.model.DishType
 import com.example.todo.sidedish.domain.model.DishType.*
+import com.example.todo.sidedish.domain.model.Menu
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,14 +25,8 @@ class MenuViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    private val _openMenuEvent= MutableLiveData<Event<Menu>>()
-    val openMenuEvent:LiveData<Event<Menu>> = _openMenuEvent
     init {
         getMenus()
-    }
-
-    fun openMenuDetail(menu:Menu){
-        _openMenuEvent.value= Event(menu)
     }
 
 

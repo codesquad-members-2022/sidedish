@@ -7,7 +7,7 @@ data class MenuDetail(
     val point:String,
     val deliveryInfo: String,
     val deliveryFee:String,
-    val nPrice: String?,
+    val originPrice: String?,
     val sPrice: String,
     val detailImages:List<String>,
 )
