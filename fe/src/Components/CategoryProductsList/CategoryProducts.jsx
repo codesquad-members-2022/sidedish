@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { ProductCard } from '@/Components/ProductCard';
 
-const CategoryWrapper = styled.li`
+const CategoryProductsWrapper = styled.li`
   width: 1280px;
   margin-top: 56px;
 
@@ -20,17 +20,17 @@ const ProductCardList = styled.ul`
   justify-content: flex-start;
 `;
 
-export const Category = props => {
+export const CategoryProducts = props => {
   if (!props.cardData) return <></>;
 
   return (
-    <CategoryWrapper>
+    <CategoryProductsWrapper>
       <Header className={'fonts-xl-bold'}>{props.title}</Header>
       <ProductCardList>
         {props.cardData.map(data => (
           <ProductCard size={'md'} data={data} key={data.id} />
         ))}
       </ProductCardList>
-    </CategoryWrapper>
+    </CategoryProductsWrapper>
   );
 };

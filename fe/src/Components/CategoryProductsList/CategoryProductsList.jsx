@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Category } from './Category';
+import { CategoryProducts } from './CategoryProducts';
 
 import Colors from '@/Constants/Colors';
 
-const CategoryListWrapper = styled.ul`
+const CategoryProductsListWrapper = styled.ul`
   padding: 0 80px;
 `;
 
@@ -33,7 +33,7 @@ const LoadingErrorMessage = styled.span`
   text-align: center;
 `;
 
-export const CategoryList = props => {
+export const CategoryProductsList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
   const [retry, setRetry] = useState(false);
 
@@ -46,7 +46,7 @@ export const CategoryList = props => {
     // Promise.all 로 남은 카테고리 모두 가져온 뒤 update
     // TODO: 실패한 데이터만 다시 불러올 수 있도록 고치기
     const categoryIds = props.categoryList.map(category => category.id);
-    const loadedCategoryId = props.categoryProductList[0].id;
+    const loadedCategoryId = props.categoryProductsList[0].id;
     const unloadedCategoryIds = categoryIds.filter(
       id => id !== loadedCategoryId
     );
@@ -62,8 +62,8 @@ export const CategoryList = props => {
           title: dataArr[idx].content[0].mainCategory,
           content: dataArr[idx].content,
         }));
-        props.setCategoryProductList([
-          ...props.categoryProductList,
+        props.setCategoryProductsList([
+          ...props.categoryProductsList,
           ...parsedData,
         ]);
       })
@@ -74,16 +74,14 @@ export const CategoryList = props => {
   }, [moreButtonClicked]);
 
   return (
-    <CategoryListWrapper>
-      {props.categoryProductList.map(category => {
-        return (
-          <Category
-            key={category.id}
-            title={category.title}
-            cardData={category.content}
-          />
-        );
-      })}
+    <CategoryProductsListWrapper>
+      {props.categoryProductsList.map(category => (
+        <CategoryProducts
+          key={category.id}
+          title={category.title}
+          cardData={category.content}
+        />
+      ))}
       {!moreButtonClicked && (
         <li>
           {retry && (
@@ -96,6 +94,6 @@ export const CategoryList = props => {
           </MoreButton>
         </li>
       )}
-    </CategoryListWrapper>
+    </CategoryProductsListWrapper>
   );
 };
