@@ -1,9 +1,9 @@
-import { DiscountBadge } from '@Components/Badge/DiscountBadge';
 import styled, { css } from 'styled-components';
 
 import { HoverInfo } from './HoverInfo';
 import { PriceTag } from './PriceTag';
 
+import { DiscountBadge } from '@/Components/Badge/DiscountBadge';
 import Colors from '@/Constants/Colors';
 
 const CardWrapper = styled.li`

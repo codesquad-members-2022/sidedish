@@ -54,7 +54,9 @@
               "position": "after"
             }
           ],
-          "pathGroupsExcludedImportTypes": ["builtin"]
+          "pathGroupsExcludedImportTypes": [
+            "builtin"
+          ]
         }
       ]
     }
