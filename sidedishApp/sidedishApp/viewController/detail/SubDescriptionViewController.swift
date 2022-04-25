@@ -13,6 +13,7 @@ class SubDescriptionViewController: UIViewController {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "적립금"
+        label.textColor = UIColor.customColor(.grey2)
         return label
     }()
     
@@ -20,6 +21,7 @@ class SubDescriptionViewController: UIViewController {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "126원"
+        label.textColor = UIColor.customColor(.grey1)
         return label
     }()
     
@@ -27,6 +29,7 @@ class SubDescriptionViewController: UIViewController {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "배송정보"
+        label.textColor = UIColor.customColor(.grey2)
         return label
     }()
     
@@ -34,6 +37,7 @@ class SubDescriptionViewController: UIViewController {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "서울 경기 새벽 배송, 전국 택배 배송"
+        label.textColor = UIColor.customColor(.grey1)
         return label
     }()
     
@@ -41,6 +45,7 @@ class SubDescriptionViewController: UIViewController {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "배송비"
+        label.textColor = UIColor.customColor(.grey2)
         return label
     }()
     
@@ -48,6 +53,7 @@ class SubDescriptionViewController: UIViewController {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
         label.text = "2,500원 (40,000원 이상 구매 시 무료)"
+        label.textColor = UIColor.customColor(.grey1)
         return label
     }()
     

@@ -11,7 +11,7 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
+        label.textColor = UIColor.customColor(.black)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 32)
         label.baselineAdjustment = .alignCenters
         label.text = "오리 주물럭_반조리"
@@ -20,7 +20,7 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var subLabel: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
+        label.textColor = UIColor.customColor(.grey2)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
         label.baselineAdjustment = .alignCenters
         label.text = "감칠맛 나는 매콤한 양념"
@@ -29,7 +29,7 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var salePrice: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
+        label.textColor = UIColor.customColor(.grey1)
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
         label.baselineAdjustment = .alignCenters
         label.text = "12,640원"
@@ -38,7 +38,7 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var rawPrice: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
+        label.textColor = UIColor.customColor(.grey2)
         label.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         return label
     }()
@@ -46,7 +46,7 @@ class MainDescriptionViewController: UIViewController {
     private lazy var eventLabel: UILabel = {
         var label = UILabel()
         label.clipsToBounds = true
-        label.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.839, alpha: 1)
+        label.backgroundColor = UIColor.customColor(.primaryDark)
         label.layer.cornerRadius = 10
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
@@ -58,7 +58,7 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var sectionBottom: UILabel = {
         var label = UILabel()
-        label.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
+        label.layer.backgroundColor = UIColor.customColor(.grey3).cgColor
         return label
     }()
     

@@ -33,23 +33,23 @@ extension UIColor {
     static func customColor(_ name: CustomColor) -> UIColor {
         switch name {
         case .primaryDark:
-            return UIColor(red: 0, green: 102, blue: 214)
+            return #colorLiteral(red: 0, green: 0.4911711216, blue: 0.8711194396, alpha: 1)
         case .primary:
-            return UIColor(red: 0, green: 122, blue: 255)
+            return #colorLiteral(red: 0, green: 0.5694641471, blue: 1, alpha: 1)
         case .primaryLight:
-            return UIColor(red: 128, green: 188, blue: 255)
+            return #colorLiteral(red: 0.5680068731, green: 0.7893167138, blue: 1, alpha: 1)
         case .black:
-            return UIColor(red: 1, green: 1, blue: 1)
+            return #colorLiteral(red: 0.003166666953, green: 0.003166666487, blue: 0.003166666953, alpha: 1)
         case .grey1:
-            return UIColor(red: 79, green: 79, blue: 79)
+            return #colorLiteral(red: 0.3830943704, green: 0.3830943704, blue: 0.3830943704, alpha: 1)
         case .grey2:
-            return UIColor(red: 130, green: 130, blue: 130)
+            return #colorLiteral(red: 0.5815095305, green: 0.5815094709, blue: 0.5815094709, alpha: 1)
         case .grey3:
-            return UIColor(red: 224, green: 224, blue: 224)
+            return #colorLiteral(red: 0.9022675753, green: 0.9022675753, blue: 0.9022675753, alpha: 1)
         case .grey4:
-            return UIColor(red: 245, green: 245, blue: 247)
+            return #colorLiteral(red: 0.9688242078, green: 0.9690207839, blue: 0.9750978351, alpha: 1)
         case .white:
-            return UIColor(red: 255, green: 255, blue: 255)
+            return #colorLiteral(red: 1, green: 0.9999999404, blue: 0.9999999404, alpha: 1)
         }
     }
 }
