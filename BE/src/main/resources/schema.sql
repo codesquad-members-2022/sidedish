@@ -1,5 +1,5 @@
 -- member Table
-# DROP TABLE IF EXISTS member;
+DROP TABLE IF EXISTS dish_image,category_dish,orders,category,dish,member;
 
 CREATE TABLE if not exists member
 (
@@ -14,7 +14,6 @@ CREATE TABLE if not exists member
 ALTER TABLE member COMMENT '회원';
 
 -- dish Table
-# DROP TABLE IF EXISTS dish;
 
 CREATE TABLE if not exists dish
 (
@@ -34,7 +33,6 @@ CREATE TABLE if not exists dish
 ALTER TABLE dish COMMENT '반찬';
 
 -- category Table
-# DROP TABLE IF EXISTS category;
 
 CREATE TABLE if not exists category
 (
@@ -50,7 +48,6 @@ CREATE TABLE if not exists category
 ALTER TABLE category COMMENT '카테고리';
 
 -- orders Table
-# DROP TABLE IF EXISTS orders;
 
 CREATE TABLE if not exists orders
 (
@@ -67,7 +64,6 @@ CREATE TABLE if not exists orders
 ALTER TABLE orders COMMENT '주문';
 
 -- category_dish Table
-# DROP TABLE IF EXISTS category_dish;
 
 CREATE TABLE if not exists category_dish
 (
@@ -82,7 +78,6 @@ CREATE TABLE if not exists category_dish
 ALTER TABLE category_dish COMMENT '카테고리반찬';
 
 -- dish_image Table
-# DROP TABLE IF EXISTS dish_image;
 
 CREATE TABLE if not exists dish_image
 (
