@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Text from './Text';
-import COLOR from '../variable/color';
 import IconButton from './IconButton';
 
 const GNB_INFO = [
@@ -70,7 +69,7 @@ const Wrap = styled.header({
   display: 'flex',
   gap: '40px',
   padding: '30px 80px 16px',
-  borderBottom: `1px solid ${COLOR.BLACK}`
+  borderBottom: `1px solid ${({ theme }) => theme.COLOR.BLACK[100]}`
 });
 
 const Logo = styled.h1({

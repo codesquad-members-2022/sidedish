@@ -1,7 +1,7 @@
+/* eslint-disable no-console */
 import React from 'react';
 import styled from 'styled-components';
-import { SIZE, WEIGHT, FAMILY } from '../variable/font';
-import COLOR from '../variable/color';
+import THEME from '../variable/theme';
 
 export default function Text({ size, weight, family, color, value, line }) {
   return (
@@ -12,19 +12,24 @@ export default function Text({ size, weight, family, color, value, line }) {
 }
 
 Text.defaultProps = {
-  size: SIZE.BASE,
-  weight: WEIGHT.REGULAR,
-  family: FAMILY.BASE,
-  color: COLOR.BLACK,
+  size: THEME.FONT.SIZE.BASE,
+  weight: THEME.FONT.WEIGHT.REGULAR,
+  family: THEME.FONT.FAMILY.BASE,
+  color: THEME.COLOR.BLACK[100],
   line: '',
   value: ''
 };
 
 const SPAN = styled.span({
   display: 'block',
-  fontSize: props => SIZE[props.size] || props.size,
-  fontWeight: props => WEIGHT[props.weight] || props.weight,
-  fontFamily: props => FAMILY[props.family] || props.family,
-  color: props => COLOR[props.color] || props.color,
-  textDecoration: props => (props.line ? 'line-through' : '')
+  fontSize: ({ theme, size }) => theme.FONT.SIZE[size] || size,
+  fontWeight: ({ theme, weight }) => theme.FONT.WEIGHT[weight] || weight,
+  fontFamily: ({ theme, family }) => theme.FONT.FAMILY[family] || family,
+  color: ({ theme, color }) => getColorStyle(theme, color),
+  textDecoration: props => (props.line ? 'line-through' : 'none')
 });
+
+function getColorStyle(theme, color) {
+  const [colorName, scale] = color.split('_');
+  return scale ? theme.COLOR[colorName][scale] : colorName;
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import COLOR from '../variable/color';
 import Text from './Text';
 
 export default function TabButton({ value, isSelected }) {
@@ -18,6 +17,6 @@ TabButton.defaultProps = {
 const Wrap = styled.button({
   width: 'fit-content',
   height: '48px',
-  borderBottom: props => (props.isSelected ? `2px solid ${COLOR.BLACK}` : ''),
+  borderBottom: ({ isSelected, theme }) => (isSelected ? `2px solid ${theme.COLOR.BLACK[100]}` : '0'),
   cursor: 'pointer'
 });

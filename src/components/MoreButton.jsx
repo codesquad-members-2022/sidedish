@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Text from './Text';
-import COLOR from '../variable/color';
 
 export default function MoreButton({ value }) {
   return (
@@ -17,6 +16,6 @@ MoreButton.defaultProps = {
 
 const Wrap = styled.button({
   padding: '16px 24px 16px 24px',
-  border: `1px solid ${COLOR.GREY4}`,
-  backgroundColor: COLOR.WHITE
+  border: `1px solid ${({ theme }) => theme.COLOR.GREY[400]}`,
+  backgroundColor: ({ theme }) => theme.COLOR.WHITE[100]
 });

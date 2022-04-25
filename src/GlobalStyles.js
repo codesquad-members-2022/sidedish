@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import COLOR from './variable/color';
-import { SIZE, WEIGHT, FAMILY } from './variable/font';
+import THEME from './variable/theme';
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -119,12 +118,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    font: ${WEIGHT.REGULAR} ${SIZE.BASE}/1.4 ${FAMILY.BASE};
+    font: ${THEME.FONT.WEIGHT.REGULAR} ${THEME.FONT.SIZE.BASE}/1.4 ${THEME.FONT.FAMILY.BASE};
   }
 
   body {
     width: 100%;
-    color: ${COLOR.BLACK};
+    color: ${THEME.COLOR.BLACK[100]};
     letter-spacing: -0.4px;
   }
 

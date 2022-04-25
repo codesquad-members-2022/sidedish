@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Text from './Text';
-import COLOR from '../variable/color';
 
 export default function Button({ value, disabled }) {
   return (
     <Wrap disabled={disabled}>
-      <Text size="LARGE" color="OFF_WHITE" weight="BOLD" value={value} />
+      <Text size="LARGE" color="WHITE_200" weight="BOLD" value={value} />
     </Wrap>
   );
 }
@@ -20,14 +19,14 @@ const Wrap = styled.button`
   width: 100%;
   max-width: 440px;
   padding: 0 15px;
-  background: ${COLOR.BLACK};
-  color: ${COLOR.WHITE};
+  background: ${({ theme }) => theme.COLOR.BLACK[100]};
+  color: ${({ theme }) => theme.COLOR.WHITE[100]};
   line-height: 58px;
   &:hover {
-    background: ${COLOR.GREY1};
+    background: ${({ theme }) => theme.COLOR.GREY[100]};
   }
   &:disabled {
-    background: ${COLOR.GREY3};
+    background: ${({ theme }) => theme.COLOR.GREY[300]};
     cursor: default;
   }
 `;

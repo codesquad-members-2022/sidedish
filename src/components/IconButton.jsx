@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
-import COLOR from '../variable/color';
 import { ReactComponent as Search } from '../images/icon_search.svg';
 import { ReactComponent as User } from '../images/icon_user.svg';
 import { ReactComponent as Cart } from '../images/icon_cart.svg';
@@ -9,6 +8,7 @@ import { ReactComponent as Prev } from '../images/icon_prev.svg';
 import { ReactComponent as Next } from '../images/icon_next.svg';
 import { ReactComponent as Plus } from '../images/icon_plus.svg';
 import { ReactComponent as Minus } from '../images/icon_minus.svg';
+import THEME from '../variable/theme';
 
 function Icon({ icon, width, height, fill }) {
   const svgInfo = { icon, width, height, fill, stroke: fill };
@@ -36,7 +36,7 @@ IconButton.defaultProps = {
   icon: null,
   width: '24px',
   height: '24px',
-  fill: COLOR.BLACK
+  fill: THEME.COLOR.BLACK[100]
 };
 
 const Wrap = styled.a({

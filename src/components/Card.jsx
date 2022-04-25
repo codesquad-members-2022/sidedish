@@ -20,7 +20,7 @@ export default function Card({ size, imageURL, title, desc, curPrice, prevPrice,
         {Description()}
         <Prices>
           <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
-          <Text size="BASE" weight="REGULAR" color="GREY3" value={prevPrice} line />
+          <Text size="BASE" weight="REGULAR" color="GREY_300" value={prevPrice} line />
         </Prices>
       </A>
       <TagWrap>{Tags()}</TagWrap>
@@ -46,7 +46,7 @@ export default function Card({ size, imageURL, title, desc, curPrice, prevPrice,
 
   function Description() {
     if (isSmall) return null;
-    return <Text size="BASE" weight="REGULAR" color="GREY2" value={desc} />;
+    return <Text size="BASE" weight="REGULAR" color="GREY_200" value={desc} />;
   }
 
   function Tags() {
