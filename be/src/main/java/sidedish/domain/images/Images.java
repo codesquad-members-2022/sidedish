@@ -12,7 +12,6 @@ public class Images {
 
 	@Id
 	private Long id;
-	private Long itemId;
 	private String url;
 	private boolean mainStatus;
 }

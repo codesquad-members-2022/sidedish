@@ -21,6 +21,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final ItemRepository itemRepository;
     private final DtoMapper mapper;
+
     public List<MainCategory> findCategories() {
         return Lists.newArrayList(categoryRepository.findAll());
     }
