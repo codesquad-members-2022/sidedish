@@ -15,7 +15,4 @@ public class ProductImageEntity {
     private String imagePath;
     private boolean representYn;
     private int sequence;
-
-    // N-1 연관관계 매핑
-    private Long productId;
 }
