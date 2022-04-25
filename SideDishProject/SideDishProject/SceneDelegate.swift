@@ -14,21 +14,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = ProductSceneContainer.makeRoot(repository: MockProductRepository())
+            window.rootViewController = ProductSceneContainer.makeViewController(sceneType: .home, repository: MockProductRepository())
             self.window = window
             window.makeKeyAndVisible()
         }
     }
 }
 
-final class ProductSceneContainer {
-    static func makeRoot(repository: ProductRepository) -> UIViewController {
-        let viewController = HomeViewController.create(with: repository)
-        return RootNavigationController(rootViewController: viewController)
-    }
-    
-    static func makeDetail(repository: ProductRepository) -> UIViewController {
-        return DetailViewController.create(with: repository)
-    }
-    
-}
+

@@ -7,15 +7,18 @@ enum ProductRepositoryError: Error {
 protocol ProductRepository {
     func fetchAll(completion: @escaping (Result<[Product], Error>) -> Void)
     func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], Error>) -> Void)
+}
+
+protocol ProductDetailRepository {
     func fetchOne(id: UniqueID, completion: @escaping (Result<Product, ProductRepositoryError>) -> Void)
 }
 
-class MockProductRepository: ProductRepository {
+final class MockProductRepository: ProductRepository, ProductDetailRepository {
     
     private let products: [Product]
     
     init() {
-        self.products = ProductFactory().makeRandomProducts(count: 3)
+        self.products = MockProductFactory(makeCount: 10).makeRandomProducts()
     }
     
     func fetchAll(completion: @escaping (Result<[Product], Error>) -> Void) {
@@ -34,3 +37,4 @@ class MockProductRepository: ProductRepository {
         completion(.success(result))
     }
 }
+
