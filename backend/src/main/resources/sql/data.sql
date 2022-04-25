@@ -85,15 +85,10 @@ INSERT INTO dish_image (dish_id, image_path)
 VALUES (16, 'https://bit.ly/3xKYvgR');
 
 -- delivery
-INSERT INTO delivery (detail)
-VALUES ('서울 경기 새벽 배송');
-INSERT INTO delivery (detail)
-VALUES ('전국 택배 배송');
-
-INSERT INTO dish_delivery (dish_id, delivery_id)
-VALUES (1, 1);
-INSERT INTO dish_delivery (dish_id, delivery_id)
-VALUES (1, 2);
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (1, 'D001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (1, 'D002');
 
 -- category : festival
 INSERT INTO category (section_id, category_name, is_festival)
@@ -171,37 +166,31 @@ VALUES (15, 9);
 INSERT INTO dish_category (dish_id, category_id)
 VALUES (16, 10);
 
--- event badge
-INSERT INTO event_badge (event_badge_name, discount)
-VALUES ('런칭특가', 20);
-INSERT INTO event_badge (event_badge_name, discount)
-VALUES ('이벤트특가', 10);
-
 -- dish with event badge : 런칭특가
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (1, 1);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (4, 1);
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (1, 'DC001');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (4, 'DC001');
 
 -- dish with event badge : 이벤트특가
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (2, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (5, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (6, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (7, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (8, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (11, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (12, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (13, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (15, 2);
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (2, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (5, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (6, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (7, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (8, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (11, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (12, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (13, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (15, 'DC002');
 
 -- recommend
 INSERT INTO dish_recommend (recommender_id, recommendee_id)

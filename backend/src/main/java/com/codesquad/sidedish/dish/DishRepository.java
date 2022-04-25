@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 public interface DishRepository extends CrudRepository<Dish, Integer> {
 
     @Query(value = "select d.dish_id, d.title, d.description, d.price, d.stock,"
-        + " di.dish_image_id, di.image_path, dc.category_id"
+        + " di.dish_image_id, di.image_path, di.sequence, dc.category_id"
         + " from dish d"
         + " left outer join dish_image di on d.dish_id = di.dish_id and di.sequence = 1"
         + " join dish_category dc on d.dish_id = dc.dish_id"
@@ -20,7 +20,7 @@ public interface DishRepository extends CrudRepository<Dish, Integer> {
     List<Dish> findBySectionName(@Param("section_name") String sectionName);
 
     @Query(value = "select d.dish_id, d.title, d.description, d.price, d.stock,"
-        + " di.dish_image_id, di.image_path, dc.category_id"
+        + " di.dish_image_id, di.image_path, di.sequence, dc.category_id"
         + " from dish d"
         + " left outer join dish_image di on d.dish_id = di.dish_id and di.sequence = 1"
         + " join dish_category dc on d.dish_id = dc.dish_id"

@@ -1,7 +1,5 @@
 package com.codesquad.sidedish.dish.domain;
 
-import com.codesquad.sidedish.event_badge.domain.EventBadge;
-import java.util.List;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -16,17 +14,19 @@ public class Dish {
     @Column(value = "dish_id")
     private Integer id;
 
-    private final Integer categoryId;
-    private final String title;
-    private final String description;
-    private final Integer price;
-    private final Integer stock;
+    private String title;
+    private String description;
+    private Integer price;
+    private Integer stock;
 
-    // relation
+    // 연관관계 수동 매핑 필드
     @Transient
-    private List<EventBadge> eventBadges;
+    private Integer categoryId;
     @Transient
     private DishImage dishImage;
+
+    private Dish() {
+    }
 
     public Dish(Integer id, String title, String description, Integer price, Integer stock,
         Integer categoryId) {
@@ -36,10 +36,6 @@ public class Dish {
         this.price = price;
         this.stock = stock;
         this.categoryId = categoryId;
-    }
-
-    public void setEventBadges(List<EventBadge> eventBadges) {
-        this.eventBadges = eventBadges;
     }
 
     public void setDishImage(DishImage dishImage) {
