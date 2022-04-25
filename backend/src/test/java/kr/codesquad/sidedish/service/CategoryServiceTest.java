@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,6 +21,7 @@ class CategoryServiceTest {
     private CategoryService categoryService;
 
     @Test
+    @Transactional
     @DisplayName("테스트 DB에서 카테고리 목록을 조회하면 3개의 카테고리가 조회되어야 한다.")
     void readAll_categoryCount() {
         List<Category> categories = categoryService.readAll();
@@ -28,6 +30,7 @@ class CategoryServiceTest {
     }
 
     @Test
+    @Transactional
     @DisplayName("테스트 DB에서 카테고리 목록을 조회하면 각각 2개, 1개, 3개의 서브카테고리가 조회되어야 한다.")
     void readAll_subCategoryCount() {
         List<Category> categories = categoryService.readAll();

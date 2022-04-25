@@ -16,10 +16,7 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    @Transactional(readOnly = true)
     public List<Category> readAll() {
-        return StreamSupport
-                .stream(categoryRepository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+        return categoryRepository.findAll();
     }
 }
