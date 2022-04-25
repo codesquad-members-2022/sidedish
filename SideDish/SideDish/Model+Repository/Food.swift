@@ -1,17 +1,6 @@
 import Foundation
 
-/*
- - 고유번호
-   - 이미지 주소
-   - 이름(alt)
-   - 설명
-   - 제목(title)
-   - 정가
-   - 특가
-   - 특가정보
- */
-
-struct Food {
+struct Food: Codable {
     
     private (set) var detailHash: String
     private (set) var alt: String
@@ -21,10 +10,19 @@ struct Food {
     private let deliveryInformation: [String]
     private let title: String
     private let imageUrl: String
-    private let badges: [String]
-}
-
-extension Food: Codable {
+    private (set) var badges: [String]
+    
+    init(detailHash: String, alt: String, foodDescription: String, normalPrice: String, specialPrice: String, deliveryInformation: [String], title: String, imageUrl: String, badges: [String]){
+        self.detailHash = detailHash
+        self.alt = alt
+        self.foodDescription = foodDescription
+        self.normalPrice = normalPrice
+        self.specialPrice = specialPrice
+        self.deliveryInformation = deliveryInformation
+        self.title = title
+        self.imageUrl = imageUrl
+        self.badges = badges
+    }
     
     enum CodingKeys: String, CodingKey {
         case detailHash = "detail_hash"
@@ -50,4 +48,6 @@ extension Food: Codable {
         badges = (try? container.decode([String].self, forKey: .badges)) ?? []
         imageUrl = try container.decode(String.self, forKey: .imageUrl)
     }
+
 }
+

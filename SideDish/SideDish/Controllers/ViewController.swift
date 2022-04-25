@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     private let ordering = Ordering()
     

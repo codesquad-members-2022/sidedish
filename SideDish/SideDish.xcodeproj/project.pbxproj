@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		376A6B99280EA78B0016F0CE /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
 		376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
-		B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C30280E9A1500A49273 /* AppDelegate.swift */; };
-		B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C32280E9A1500A49273 /* SceneDelegate.swift */; };
-		B50A0C35280E9A1500A49273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C34280E9A1500A49273 /* ViewController.swift */; };
+		37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */; };
 		B50A0C38280E9A1500A49273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C36280E9A1500A49273 /* Main.storyboard */; };
 		B50A0C3A280E9A1700A49273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C39280E9A1700A49273 /* Assets.xcassets */; };
 		B50A0C3D280E9A1700A49273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C3B280E9A1700A49273 /* LaunchScreen.storyboard */; };
@@ -22,6 +20,22 @@
 		B50A0C59280EF19B00A49273 /* OrderingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
 		B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
 		B50A0C5E280FF1E700A49273 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* Response.swift */; };
+		B511E00E28123ECE00B87FB7 /* JSONHandlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */; };
+		B511E011281323A500B87FB7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E010281323A500B87FB7 /* Repository.swift */; };
+		B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E0132813269400B87FB7 /* RepositoryDelegate.swift */; };
+		B511E01628132AD500B87FB7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01528132AD500B87FB7 /* Category.swift */; };
+		B511E018281337B100B87FB7 /* RepositoryApplicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E017281337B100B87FB7 /* RepositoryApplicable.swift */; };
+		B511E01B2813DA8900B87FB7 /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01A2813DA8900B87FB7 /* MockRepository.swift */; };
+		B511E01D2813E2F900B87FB7 /* JSONHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */; };
+		B5B0B8312810FA87005CE46B /* JSONHandler.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
+		B5B0B8322810FA87005CE46B /* Food.swift in Resources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
+		B5B0B8332810FA87005CE46B /* Ordering.swift in Resources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
+		B5B0B8342810FA87005CE46B /* Response.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* Response.swift */; };
+		B5B0B8352810FA87005CE46B /* FoodTest.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C51280EEEB000A49273 /* FoodTest.swift */; };
+		B5B0B8362810FA87005CE46B /* OrderingTest.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
+		B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83B281106EB005CE46B /* AppDelegate.swift */; };
+		B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83D281106ED005CE46B /* SceneDelegate.swift */; };
+		B5B0B84028110726005CE46B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83F28110726005CE46B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +51,8 @@
 /* Begin PBXFileReference section */
 		376A6B98280EA78B0016F0CE /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		376A6B9A280EA8040016F0CE /* Ordering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordering.swift; sourceTree = "<group>"; };
+		37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B50A0C30280E9A1500A49273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B50A0C32280E9A1500A49273 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B50A0C34280E9A1500A49273 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B50A0C37280E9A1500A49273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B50A0C39280E9A1700A49273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B50A0C3C280E9A1700A49273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +65,16 @@
 		B50A0C58280EF19B00A49273 /* OrderingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTest.swift; sourceTree = "<group>"; };
 		B50A0C5B280EF78E00A49273 /* JSONHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
 		B50A0C5D280FF1E700A49273 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandlable.swift; sourceTree = "<group>"; };
+		B511E010281323A500B87FB7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		B511E0132813269400B87FB7 /* RepositoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDelegate.swift; sourceTree = "<group>"; };
+		B511E01528132AD500B87FB7 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B511E017281337B100B87FB7 /* RepositoryApplicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryApplicable.swift; sourceTree = "<group>"; };
+		B511E01A2813DA8900B87FB7 /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
+		B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandlerTest.swift; sourceTree = "<group>"; };
+		B5B0B83B281106EB005CE46B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B5B0B83D281106ED005CE46B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B5B0B83F28110726005CE46B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,14 +95,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		376A6B97280EA77E0016F0CE /* Model */ = {
+		376A6B97280EA77E0016F0CE /* Model+Repository */ = {
 			isa = PBXGroup;
 			children = (
+				B511E0192813DA7A00B87FB7 /* Mock */,
 				376A6B98280EA78B0016F0CE /* Food.swift */,
 				376A6B9A280EA8040016F0CE /* Ordering.swift */,
 				B50A0C5D280FF1E700A49273 /* Response.swift */,
+				B511E010281323A500B87FB7 /* Repository.swift */,
+				B511E0132813269400B87FB7 /* RepositoryDelegate.swift */,
+				B511E017281337B100B87FB7 /* RepositoryApplicable.swift */,
+				B511E01528132AD500B87FB7 /* Category.swift */,
 			);
-			path = Model;
+			path = "Model+Repository";
+			sourceTree = "<group>";
+		};
+		37EBAE84281131EC000A941D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B50A0C24280E9A1500A49273 = {
@@ -104,12 +139,12 @@
 		B50A0C2F280E9A1500A49273 /* SideDish */ = {
 			isa = PBXGroup;
 			children = (
+				37EBAE84281131EC000A941D /* Views */,
+				B5B0B84228110745005CE46B /* Controllers */,
+				B5B0B84128110737005CE46B /* Supportings */,
 				B50A0C5A280EF77E00A49273 /* Commmon */,
 				B50A0C44280EEE2F00A49273 /* Resources */,
-				376A6B97280EA77E0016F0CE /* Model */,
-				B50A0C30280E9A1500A49273 /* AppDelegate.swift */,
-				B50A0C32280E9A1500A49273 /* SceneDelegate.swift */,
-				B50A0C34280E9A1500A49273 /* ViewController.swift */,
+				376A6B97280EA77E0016F0CE /* Model+Repository */,
 				B50A0C36280E9A1500A49273 /* Main.storyboard */,
 				B50A0C39280E9A1700A49273 /* Assets.xcassets */,
 				B50A0C3B280E9A1700A49273 /* LaunchScreen.storyboard */,
@@ -133,6 +168,7 @@
 			children = (
 				B50A0C51280EEEB000A49273 /* FoodTest.swift */,
 				B50A0C58280EF19B00A49273 /* OrderingTest.swift */,
+				B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */,
 			);
 			path = SideDishTests;
 			sourceTree = "<group>";
@@ -141,8 +177,34 @@
 			isa = PBXGroup;
 			children = (
 				B50A0C5B280EF78E00A49273 /* JSONHandler.swift */,
+				B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */,
 			);
 			path = Commmon;
+			sourceTree = "<group>";
+		};
+		B511E0192813DA7A00B87FB7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B511E01A2813DA8900B87FB7 /* MockRepository.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		B5B0B84128110737005CE46B /* Supportings */ = {
+			isa = PBXGroup;
+			children = (
+				B5B0B83B281106EB005CE46B /* AppDelegate.swift */,
+				B5B0B83D281106ED005CE46B /* SceneDelegate.swift */,
+			);
+			path = Supportings;
+			sourceTree = "<group>";
+		};
+		B5B0B84228110745005CE46B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B5B0B83F28110726005CE46B /* MainViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +288,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B0B8312810FA87005CE46B /* JSONHandler.swift in Resources */,
+				B5B0B8322810FA87005CE46B /* Food.swift in Resources */,
+				B5B0B8332810FA87005CE46B /* Ordering.swift in Resources */,
+				B5B0B8342810FA87005CE46B /* Response.swift in Resources */,
+				B5B0B8352810FA87005CE46B /* FoodTest.swift in Resources */,
+				B5B0B8362810FA87005CE46B /* OrderingTest.swift in Resources */,
 				B50A0C49280EEE4900A49273 /* side.json in Resources */,
 				B50A0C3D280E9A1700A49273 /* LaunchScreen.storyboard in Resources */,
 				B50A0C3A280E9A1700A49273 /* Assets.xcassets in Resources */,
@@ -249,13 +317,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B50A0C35280E9A1500A49273 /* ViewController.swift in Sources */,
 				376A6B99280EA78B0016F0CE /* Food.swift in Sources */,
+				B511E01B2813DA8900B87FB7 /* MockRepository.swift in Sources */,
 				376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */,
-				B50A0C31280E9A1500A49273 /* AppDelegate.swift in Sources */,
+				B511E018281337B100B87FB7 /* RepositoryApplicable.swift in Sources */,
+				B511E00E28123ECE00B87FB7 /* JSONHandlable.swift in Sources */,
 				B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */,
-				B50A0C33280E9A1500A49273 /* SceneDelegate.swift in Sources */,
+				B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */,
+				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
+				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
 				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
+				B511E011281323A500B87FB7 /* Repository.swift in Sources */,
+				37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */,
+				B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */,
+				B511E01628132AD500B87FB7 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B511E01D2813E2F900B87FB7 /* JSONHandlerTest.swift in Sources */,
 				B50A0C52280EEEB000A49273 /* FoodTest.swift in Sources */,
 				B50A0C59280EF19B00A49273 /* OrderingTest.swift in Sources */,
 			);
@@ -422,6 +498,7 @@
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SideDish/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SideDish;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -450,6 +527,7 @@
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SideDish/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SideDish;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
