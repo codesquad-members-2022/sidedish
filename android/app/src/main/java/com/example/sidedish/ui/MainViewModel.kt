@@ -10,10 +10,6 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
-    var mainMenuCount: Int? = 0
-    var soupMenuCount: Int? = 0
-    var sideDishCount: Int? = 0
-
     private val _mainMenu = MutableLiveData<List<Products>>()
     val mainMenu: LiveData<List<Products>>
         get() = _mainMenu
@@ -34,15 +30,12 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         viewModelScope.launch {
             mainRepository.loadMainMenu().let {
                 _mainMenu.value = it?.products
-                mainMenuCount = it?.count
             }
             mainRepository.loadSoupMenu().let {
                 _soupMenu.value = it?.products
-                soupMenuCount=  it?.count
             }
             mainRepository.loadSideDish().let {
                 _sideDish.value = it?.products
-                sideDishCount = it?.count
             }
         }
     }
