@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { flexCenter } from '../css/mixins';
-
 const Button = ({ className, icon, disabled, onClick }) => {
   return (
     <StyledButton disabled={disabled} className={className} onClick={onClick}>
@@ -12,7 +10,6 @@ const Button = ({ className, icon, disabled, onClick }) => {
 };
 
 const StyledButton = styled.button`
-  ${flexCenter}
   cursor: pointer;
   border: none;
   background-color: transparent;

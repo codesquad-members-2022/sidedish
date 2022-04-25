@@ -17,10 +17,8 @@ const Card = ({ cardInfo, cardNum }) => {
 };
 
 const Img = styled.img`
-  width: ${({ cardNum }) =>
-    Math.floor(maxWidthBody.width / cardNum) - cardMargin.right}px;
-  height: ${({ cardNum }) =>
-    Math.floor(maxWidthBody.width / cardNum) - cardMargin.right}px;
+  width: ${({ cardNum }) => Math.floor(maxWidthBody.width / cardNum) - 43}px;
+  height: ${({ cardNum }) => Math.floor(maxWidthBody.width / cardNum) - 43}px;
 `;
 
 export default Card;
