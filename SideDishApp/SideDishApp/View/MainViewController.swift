@@ -27,10 +27,8 @@ class MainViewController: UIViewController {
     }
 
     private func registerViews() {
-        self.mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
-        self.mainCollectionView.register(MainHeader.nib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainHeader.identifier)
-        self.mainCollectionView.register(SideHeader.nib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SideHeader.identifier)
-        self.mainCollectionView.register(SoupHeader.nib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SoupHeader.identifier)
+        mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        mainCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
     }
 
     private func configureCollectionView() {
@@ -81,19 +79,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     // MARK: Section Header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        let section = indexPath.section
+        let header = mainCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier, for: indexPath) as! HeaderView
 
-        switch section {
-        case 0:
-            return self.mainCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainHeader.identifier, for: indexPath)
-        case 1:
-            return self.mainCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SoupHeader.identifier, for: indexPath)
-        case 2:
-            return self.mainCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SideHeader.identifier, for: indexPath)
-
-        default:
-            return UICollectionReusableView()
-        }
+        let productType = ProductType.allCases[indexPath.section]
+        header.setTitle(text: productType.title)
+        return header
 
     }
 
