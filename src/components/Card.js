@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Infos from './Infos';
 import { maxWidthBody } from '../css/variables';
-import { cardMargin } from '../css/variables';
 
 const Card = ({ cardInfo, cardNum }) => {
   const { title, image } = cardInfo;

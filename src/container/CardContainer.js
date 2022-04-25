@@ -3,19 +3,20 @@ import styled from 'styled-components';
 
 import Button from '../components/Button';
 import Card from '../components/Card';
-import { cardMargin, slideBtn } from '../css/variables';
+import { slideBtn } from '../css/variables';
 import { color } from '../css/variables';
 
 const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
   const [curHeadCardOrder, setCurHeadCardOrder] = useState(1);
   const [slidingSize, setSlidingSize] = useState(0);
-  const [disabledPrevBtn, setDisabledPrevBtn] = useState(false);
+  const [disabledPrevBtn, setDisabledPrevBtn] = useState(true);
   const [disabledNextBtn, setDisabledNextBtn] = useState(false);
 
   const handleClickPrev = () => {
     const prevOrder = curHeadCardOrder - cardNum;
     const isLeakNFirstSlide = prevOrder >= -2 && prevOrder < 1;
     const isBelowHead = isLeakNFirstSlide || prevOrder === 1;
+
     if (isBelowHead) {
       setDisabledPrevBtn(true);
     } else {
@@ -39,30 +40,34 @@ const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
 
   const handleClickNext = () => {
     const cardInfosLen = cardInfos.length;
-    const nextHeadCardOrder = curHeadCardOrder + cardNum;
+    const showingHeadCardOrder = curHeadCardOrder + cardNum;
 
-    const isOverTail =
-      nextHeadCardOrder >= cardInfosLen ||
-      nextHeadCardOrder + 1 >= cardInfosLen;
-    if (isOverTail) {
+    const leakCardSize = cardInfosLen % cardNum;
+    const isUndividedLastSlide =
+      (showingHeadCardOrder - 1) / cardNum ===
+      Math.floor(cardInfosLen / cardNum);
+
+    if (
+      isUndividedLastSlide ||
+      showingHeadCardOrder + cardNum === cardInfosLen + 1
+    ) {
       setDisabledNextBtn(true);
     } else {
       setDisabledNextBtn(false);
     }
     setDisabledPrevBtn(false);
 
-    const leakCardSize = cardInfosLen % cardNum;
-    const isLastSlide =
-      (curHeadCardOrder + cardNum - 1) / cardNum ===
-      Math.floor(cardInfosLen / cardNum);
     setCurHeadCardOrder(
-      isLastSlide ? curHeadCardOrder + leakCardSize : curHeadCardOrder + cardNum
+      isUndividedLastSlide
+        ? curHeadCardOrder + leakCardSize
+        : showingHeadCardOrder
     );
 
     const moveDefault = 100;
-    const nextSlidingSize = isLastSlide
+    const nextSlidingSize = isUndividedLastSlide
       ? Math.floor(moveDefault * (leakCardSize / cardNum))
       : moveDefault;
+
     setSlidingSize(slidingSize - nextSlidingSize);
   };
 
