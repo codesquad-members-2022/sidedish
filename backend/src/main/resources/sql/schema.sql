@@ -64,7 +64,7 @@ CREATE TABLE order_delivery
 (
     order_id    INT NOT NULL COMMENT 'order 테이블의 레코드를 식별하기 위한 ID',
     delivery_id INT NOT NULL COMMENT 'delivery 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_order_delivery PRIMARY KEY (order_id, delivery_id),
+    PRIMARY KEY (order_id, delivery_id),
     FOREIGN KEY (order_id) REFERENCES `order` (order_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id)
 );
@@ -75,7 +75,7 @@ CREATE TABLE dish_delivery
 (
     dish_id     INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
     delivery_id INT NOT NULL COMMENT 'delivery 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_dish_delivery PRIMARY KEY (dish_id, delivery_id),
+    PRIMARY KEY (dish_id, delivery_id),
     FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
     FOREIGN KEY (delivery_id) REFERENCES delivery (delivery_id)
 );
@@ -98,7 +98,7 @@ CREATE TABLE dish_category
 (
     dish_id     INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
     category_id INT NOT NULL COMMENT 'category 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_dish_category PRIMARY KEY (dish_id, category_id),
+    PRIMARY KEY (dish_id, category_id),
     FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
     FOREIGN KEY (category_id) REFERENCES category (category_id)
 );
@@ -119,7 +119,7 @@ CREATE TABLE dish_event_badge
 (
     dish_id        INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
     event_badge_id INT NOT NULL COMMENT 'event_badge 테이블의 레코드를 식별하기 위한 ID',
-    CONSTRAINT PK_dish_event_badge PRIMARY KEY (dish_id, event_badge_id),
+    PRIMARY KEY (dish_id, event_badge_id),
     FOREIGN KEY (dish_id) REFERENCES dish (dish_id),
     FOREIGN KEY (event_badge_id) REFERENCES event_badge (event_badge_id)
 );
@@ -130,7 +130,7 @@ CREATE TABLE dish_recommend
 (
     recommender_id INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID - 추천 요청',
     recommendee_id INT NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID - 추천 응답',
-    CONSTRAINT PK_dish_recommend PRIMARY KEY (recommender_id, recommendee_id),
+    PRIMARY KEY (recommender_id, recommendee_id),
     FOREIGN KEY (recommender_id) REFERENCES dish (dish_id),
     FOREIGN KEY (recommendee_id) REFERENCES dish (dish_id)
 );
