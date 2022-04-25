@@ -1,4 +1,4 @@
-package com.example.be.controller.exception.dish;
+package com.example.be.controller.exception;
 
 import com.example.be.controller.exception.BaseExceptionType;
 import org.springframework.http.HttpStatus;

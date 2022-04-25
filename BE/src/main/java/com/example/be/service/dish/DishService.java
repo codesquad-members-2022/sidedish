@@ -2,7 +2,7 @@ package com.example.be.service.dish;
 
 import com.example.be.controller.dish.dto.PlanningDataRequest;
 import com.example.be.controller.exception.BusinessException;
-import com.example.be.controller.exception.dish.DishTypeException;
+import com.example.be.controller.exception.DishTypeException;
 import com.example.be.domain.dish.Dish;
 import com.example.be.repository.dish.DishRepository;
 import com.example.be.repository.dish.jdbc.DishJdbcReadRepository;

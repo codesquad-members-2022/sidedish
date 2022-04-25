@@ -1,5 +1,6 @@
-package com.example.be.controller.exception;
+package com.example.be.controller.exception.common;
 
+import com.example.be.controller.exception.BaseExceptionType;
 import org.springframework.http.HttpStatus;
 
 public enum InternalServerException implements BaseExceptionType {

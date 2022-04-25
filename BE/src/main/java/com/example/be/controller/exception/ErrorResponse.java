@@ -28,6 +28,11 @@ public class ErrorResponse {
         return new ErrorResponse(baseExceptionType.getErrorCode(), baseExceptionType.getMessage());
     }
 
+    static ErrorResponse createAboutNullPointException(NullPointerException nullPointerException) {
+        return new ErrorResponse(SERVER_ERROR_CODE, SERVER_ERROR_MESSAGE);
+    }
+
+    // TODO. NullPoint를 따로 잡는 것이 좋은 방법일까? 에 대한 질문
     static ErrorResponse unResolved(Exception exception) {
         return new ErrorResponse(SERVER_ERROR_CODE, SERVER_ERROR_MESSAGE);
     }

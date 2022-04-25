@@ -67,6 +67,10 @@ public class Dish {
         return count;
     }
 
+    public void changeName(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,7 +84,4 @@ public class Dish {
         return Objects.hash(dishId);
     }
 
-    public void changeName(String description) {
-        this.description = description;
-    }
 }
