@@ -9,8 +9,8 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <HeaderTemplate></HeaderTemplate>
-        <MainContainer></MainContainer>
+        <HeaderTemplate />
+        <MainContainer />
       </ThemeProvider>
     </>
   );

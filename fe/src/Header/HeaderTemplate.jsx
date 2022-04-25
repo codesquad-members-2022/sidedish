@@ -49,18 +49,18 @@ const IconTemplate = styled.div`
 `;
 
 export default function Template() {
-  const [open, setOpen] = useState(false);
+  const [subCategoryOpen, setSubCategoryOpen] = useState(false);
 
   const onMouseOver = () => {
-    setOpen(true);
+    setSubCategoryOpen(true);
   };
 
   const onMouseOut = () => {
-    setOpen(false);
+    setSubCategoryOpen(false);
   };
 
   const categoryList = CATEGORY_TEXTS.map((category, index) => {
-    return <HeaderCategory open={open} key={index} category={category}></HeaderCategory>;
+    return <HeaderCategory open={subCategoryOpen} key={index} category={category}></HeaderCategory>;
   });
 
   const iconList = () => {
@@ -74,7 +74,7 @@ export default function Template() {
   };
 
   return (
-    <HeaderTemplate open={open}>
+    <HeaderTemplate open={subCategoryOpen}>
       <HeaderWrapper>
         <HeaderLogo>Ordering</HeaderLogo>
         <HeaderInnerTemplate>

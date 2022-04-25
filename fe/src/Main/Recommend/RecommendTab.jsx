@@ -5,7 +5,6 @@ import { RECOMMEND_ITEMS } from 'MockData/dummyData';
 
 const RecommendTabBar = styled.ul`
   ${({ theme }) => theme.flexLayout.default};
-  list-style: none;
 `;
 
 const RecommendTabBarItem = styled.li`

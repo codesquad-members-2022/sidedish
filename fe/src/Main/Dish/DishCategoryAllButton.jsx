@@ -16,22 +16,22 @@ const CategeoryButton = styled.button`
 `;
 
 const DishCategoryAllButton = () => {
-  const [open, setOpen] = useState(true);
+  const [allCategopryOpen, setAllCategoryOpen] = useState(true);
 
   const onClick = () => {
-    return setOpen(false);
+    setAllCategoryOpen(false);
   };
 
   return (
     <>
-      {open ? (
+      {allCategopryOpen ? (
         <CategoryButtonWrapper>
           <CategeoryButton onClick={onClick}>모든 카테고리 보기</CategeoryButton>
         </CategoryButtonWrapper>
       ) : (
         <>
-          <DishContainer></DishContainer>
-          <DishContainer></DishContainer>
+          <DishContainer />
+          <DishContainer />
         </>
       )}
     </>

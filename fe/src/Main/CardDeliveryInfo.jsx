@@ -33,7 +33,7 @@ export default function CardDeliveryInfo({ infos, hover }) {
   return (
     <CardDelivery hover={hover}>
       <DeliveryText>{firstInfo}</DeliveryText>
-      {secondInfo && <Divider></Divider>}
+      {secondInfo && <Divider />}
       <DeliveryText>{secondInfo}</DeliveryText>
     </CardDelivery>
   );

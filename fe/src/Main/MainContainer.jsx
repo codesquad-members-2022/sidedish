@@ -12,9 +12,9 @@ const Main = styled.main`
 const MainContainer = () => {
   return (
     <Main>
-      <RecommendProduct></RecommendProduct>
-      <DishContainer></DishContainer>
-      <DishCategoryAllButton></DishCategoryAllButton>
+      <RecommendProduct />
+      <DishContainer />
+      <DishCategoryAllButton />
     </Main>
   );
 };
