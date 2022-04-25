@@ -29,7 +29,7 @@ const MoreButton = styled.button`
 
 export const CategoryProductsList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
-  const [loadedCategoryProductsIdList, setloadedCategoryProductsIdList] = useState([]);
+  const [loadedCategoryProductsIdList, setLoadedCategoryProductsIdList] = useState([]);
 
   const handleClickMoreButton = () => {
     setMoreButtonClicked(true);
@@ -37,7 +37,7 @@ export const CategoryProductsList = props => {
     const unloadedCategoryProductsIdList = allCategoryProductsIdList.filter(
       id => !loadedCategoryProductsIdList.includes(id)
     );
-    setloadedCategoryProductsIdList([
+    setLoadedCategoryProductsIdList([
       ...loadedCategoryProductsIdList,
       ...unloadedCategoryProductsIdList,
     ]);
@@ -47,7 +47,7 @@ export const CategoryProductsList = props => {
     if (!props.categoryList.length) return;
     const firstCategoryIdx = 0;
     const firstCategoryId = props.categoryList[firstCategoryIdx].id;
-    setloadedCategoryProductsIdList([firstCategoryId]);
+    setLoadedCategoryProductsIdList([firstCategoryId]);
   }, [props.categoryList]);
 
   return (
