@@ -2,20 +2,24 @@ INSERT INTO discount_policy (discount_rate, policy_name)
 VALUES (10, '런칭특가'),
        (20, '이벤트특가');
 
-INSERT INTO product (discount_policy_id, product_name, description, original_price, meal_category,
+INSERT INTO delivery_policy (delivery_info, delivery_charge, free_delivery_over_amount)
+VALUES ('서울 경기 새벽 배송, 전국 택배 배송', 2500, 40000);
+
+INSERT INTO product (discount_policy_id, delivery_policy_id, product_name, description,
+                     original_price, meal_category,
                      best_category)
-VALUES (1, '오리주물럭', '감칠맛 나는 매콤한 양념', 15800, 'main', 'meat'),
-       (2, '잡채', '탱글한 면과 맛깔진 고명이 가득', 12900, 'main', null),
-       (2, '소갈비찜', '촉촉하게 밴 양념이 일품', 28900, 'main', 'meat'),
-       (null, '간장 코다리조림', '쫀득한 코다리를 국내산 간장소스로맛있게 조렸어요', 14900, 'main', 'season'),
-       (2, '한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', 9300, 'soup', 'meat'),
-       (2, '된장찌개', '특별하지 않아서 더 좋은 우리맛', 8800, 'soup', 'easy'),
-       (2, '미역오이냉국', '여름엔 시원한 냉국이 최고', 7800, 'soup', 'season'),
-       (null, '동태찌개', '겨울철 보양식으로 안성맞춤', 12000, 'soup', null),
-       (1, '새콤달콤 오징어무침', '국내산 오징어를 새콤달콤하게', 7500, 'side', 'kids'),
-       (2, '호두 멸치볶음', '잔명치와 호두가 만나 짭쪼름하지만 고소하게!', 5800, 'side', 'kids'),
-       (2, '한동 매콤 안심장조림', '촉촉하게 밴 양념이 일품', 6900, 'side', 'easy'),
-       (2, '야채 어묵볶음', '첨가물 없는 순수어묵과 야채와 만남', 4900, 'side', 'easy');
+VALUES (1, 1, '오리주물럭', '감칠맛 나는 매콤한 양념', 15800, 'main', 'meat'),
+       (2, 1, '잡채', '탱글한 면과 맛깔진 고명이 가득', 12900, 'main', null),
+       (2, 1, '소갈비찜', '촉촉하게 밴 양념이 일품', 28900, 'main', 'meat'),
+       (null, 1, '간장 코다리조림', '쫀득한 코다리를 국내산 간장소스로맛있게 조렸어요', 14900, 'main', 'season'),
+       (2, 1, '한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', 9300, 'soup', 'meat'),
+       (2, 1, '된장찌개', '특별하지 않아서 더 좋은 우리맛', 8800, 'soup', 'easy'),
+       (2, 1, '미역오이냉국', '여름엔 시원한 냉국이 최고', 7800, 'soup', 'season'),
+       (null, 1, '동태찌개', '겨울철 보양식으로 안성맞춤', 12000, 'soup', null),
+       (1, 1, '새콤달콤 오징어무침', '국내산 오징어를 새콤달콤하게', 7500, 'side', 'kids'),
+       (2, 1, '호두 멸치볶음', '잔명치와 호두가 만나 짭쪼름하지만 고소하게!', 5800, 'side', 'kids'),
+       (2, 1, '한동 매콤 안심장조림', '촉촉하게 밴 양념이 일품', 6900, 'side', 'easy'),
+       (2, 1, '야채 어묵볶음', '첨가물 없는 순수어묵과 야채와 만남', 4900, 'side', 'easy');
 
 
 INSERT INTO product_image (product_id, image_url)
