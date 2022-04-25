@@ -1,6 +1,7 @@
 package com.team28.sidedish.controller.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 @Schema(description = "상품 상세조회 결과")
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProductDetailResponse {
 
     @Schema(description = "상품 id")
@@ -40,18 +42,15 @@ public class ProductDetailResponse {
     private String eventInfo;
 
     public static ProductDetailResponse from(ProductResponse product, List<ProductImageResponse> allImages, int stock) {
-        ProductDetailResponse detail = new ProductDetailResponse();
-        detail.productId = product.getProductId();
-        detail.productName = product.getProductName();
-        detail.description = product.getDescription();
-        detail.representImages = getRepresentImages(allImages);
-        detail.detailImages = getDetailsImage(allImages);
-        detail.price = product.getPrice();
-        detail.discountPrice = product.getDiscountPrice();
-        detail.stockQuantity = stock;
-        detail.eventInfo = product.getDiscountName();
-
-        return detail;
+        return new ProductDetailResponse(product.getProductId(),
+                product.getProductName(),
+                product.getDescription(),
+                getRepresentImages(allImages),
+                getDetailsImage(allImages),
+                product.getPrice(),
+                product.getDiscountPrice(),
+                stock,
+                product.getDiscountName());
     }
 
     private static List<ProductImageResponse> getRepresentImages(List<ProductImageResponse> images) {
