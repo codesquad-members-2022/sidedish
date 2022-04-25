@@ -10,9 +10,9 @@ TabBar.defaultProps = {
   tabNames: []
 };
 
-function getTabButton(tabName, i) {
-  const isFirstTabButton = i === 0;
-  return <TabButton value={tabName} isSelected={isFirstTabButton} />;
+function getTabButton(tabName, index) {
+  const isFirstTabButton = index === 0;
+  return <TabButton key={`${tabName}_${index}`} value={tabName} isSelected={isFirstTabButton} />;
 }
 
 const Wrap = styled.div({
