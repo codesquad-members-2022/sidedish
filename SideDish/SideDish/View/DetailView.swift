@@ -100,6 +100,7 @@ class DetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.preferredMaxLayoutWidth = 57
         label.textAlignment = .center
+        label.text = "0"
         return label
     }()
 
@@ -116,6 +117,7 @@ class DetailView: UIView {
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.text = "원"
         return label
     }()
 
