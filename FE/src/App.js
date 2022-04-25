@@ -1,6 +1,6 @@
-import { Header } from "@/components/Header/Header";
-import "./App.scss";
+import { Header } from "@/components/templates/Header/Header";
 import { Promotion } from "@/components/Promotion/Promotion";
+import "./App.scss";
 
 function App() {
   return (
