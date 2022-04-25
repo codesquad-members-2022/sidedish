@@ -1,7 +1,7 @@
-import EventPart from "Component/Main/EventPart/EventPart";
+import EventArea from "Component/Main/EventArea/EventArea";
 
 const Main = () => {
-  return <EventPart />;
+  return <EventArea />;
 };
 
 export default Main;

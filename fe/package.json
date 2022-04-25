@@ -43,7 +43,8 @@
       "linebreak-style": 0,
       "operator-linebreak": 0,
       "implicit-arrow-linebreak": 0,
-      "import/no-unresolved": "off"
+      "import/no-unresolved": "off",
+      "object-curly-newline": 0
     }
   },
   "browserslist": {

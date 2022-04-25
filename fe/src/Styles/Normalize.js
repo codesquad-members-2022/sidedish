@@ -8,6 +8,10 @@ const Normalize = createGlobalStyle`
     line-height: 50px;
   }
 
+  h2 {
+  ${({ theme: { boldFonts } }) => boldFonts.xxLarge}
+  }
+
   button {
     cursor: pointer;
   }

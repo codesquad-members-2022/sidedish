@@ -1,27 +1,30 @@
 import PropTypes from "prop-types";
-import StyledEventTab from "Component/Main/EventPart/EventTab/EventTab.styled";
-
-const tabClickHandler = ({ target: { id } }, selectedId, setSelectedId) => {
-  const targetId = Number(id);
-  if (targetId !== selectedId) setSelectedId(targetId);
-};
+import EventTabUl from "Component/Main/EventArea/EventTab/EventTab.styled";
 
 const EventTab = ({ state: { categories, selectedId, setSelectedId } }) => {
   if (!categories) return null;
 
-  const eventList = categories.map((category) => (
-    <li key={category.id} id={category.id}>
-      {category.name}
+  const handleTabClick = ({ target: { id } }) => {
+    const targetId = Number(id);
+    if (targetId !== selectedId) setSelectedId(targetId);
+  };
+
+  const eventList = categories.map(({ id, name }) => (
+    <li
+      key={id}
+      id={id}
+      onClick={handleTabClick}
+      onKeyUp={handleTabClick}
+      role="tab"
+    >
+      {name}
     </li>
   ));
 
   return (
-    <StyledEventTab
-      id={selectedId}
-      onClick={(event) => tabClickHandler(event, selectedId, setSelectedId)}
-    >
+    <EventTabUl id={selectedId} role="tablist">
       {eventList}
-    </StyledEventTab>
+    </EventTabUl>
   );
 };
 

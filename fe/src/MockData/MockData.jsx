@@ -95,7 +95,7 @@ const event = {
   ],
 };
 
-export const categoryMenus = {
+const categoryMenus = {
   sideDishes: [
     {
       id: 1,
@@ -133,4 +133,4 @@ export const categoryMenus = {
   ],
 };
 
-export { MenuDatas, icons, event };
+export { MenuDatas, icons, event, categoryMenus };

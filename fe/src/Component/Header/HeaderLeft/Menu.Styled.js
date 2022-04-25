@@ -11,8 +11,7 @@ const MainMenuUl = styled.ul`
 
 const SubMenuUl = styled.ul`
   font-family: "Noto Sans KR";
-  font-size: 14px;
-  line-height: 24px;
+  ${({ theme: { regularFonts } }) => regularFonts.small}
   padding-top: 15px;
   position: absolute;
 

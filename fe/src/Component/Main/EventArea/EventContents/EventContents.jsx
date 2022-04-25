@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import EventCardPrice from "Component/Main/EventPart/EventContents/EventCardPrice";
+import EventCardPrice from "Component/Main/EventArea/EventContents/EventCardPrice";
 import eventCategoriesApi from "Service/eventCategoriesApi";
 
 const StyledEventCards = styled.ul`
@@ -56,7 +56,7 @@ const StyledEventCards = styled.ul`
 `;
 
 const EventContents = ({ selectedId }) => {
-  const [sideDishes, setSideDishes] = useState(null);
+  const [sideDishes, setSideDishes] = useState([]);
 
   const fetchCurCategorySideDishes = async (eventCategoryId) => {
     const responseData = await eventCategoriesApi.getSideDishes(
@@ -69,7 +69,7 @@ const EventContents = ({ selectedId }) => {
     fetchCurCategorySideDishes(selectedId);
   }, [selectedId]);
 
-  if (!sideDishes) return null;
+  // if (!sideDishes.length) return null;
 
   const eventCards = sideDishes.map((sideDish) => {
     const {

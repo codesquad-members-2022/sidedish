@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import {
-  StyledEventDesc,
-  StyledEventLogo,
-  StyledEventTitle,
-  StyledEventPart,
-} from "Component/Main/EventPart/EventPart.styled";
+  EventWrapper,
+  EventTitle,
+} from "Component/Main/EventArea/EventArea.styled";
 import eventCategoriesApi from "Service/eventCategoriesApi";
-import EventTab from "Component/Main/EventPart/EventTab/EventTab";
-import EventContents from "Component/Main/EventPart/EventContents/EventContents";
 
-const EventPart = () => {
+import EventTab from "Component/Main/EventArea/EventTab/EventTab";
+import EventContents from "Component/Main/EventArea/EventContents/EventContents";
+
+const EventArea = () => {
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedId, setSelectedId] = useState(1);
@@ -27,15 +26,15 @@ const EventPart = () => {
   }, []);
 
   return (
-    <StyledEventPart>
-      <StyledEventTitle>
-        <StyledEventLogo>기획전</StyledEventLogo>
-        <StyledEventDesc>{name}</StyledEventDesc>
-      </StyledEventTitle>
+    <EventWrapper>
+      <EventTitle>
+        <span className="logo">기획전</span>
+        <h2>{name}</h2>
+      </EventTitle>
       <EventTab state={{ categories, selectedId, setSelectedId }} />
       <EventContents selectedId={selectedId} />
-    </StyledEventPart>
+    </EventWrapper>
   );
 };
 
-export default EventPart;
+export default EventArea;
