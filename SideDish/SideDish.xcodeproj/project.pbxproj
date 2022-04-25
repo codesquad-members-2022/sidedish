@@ -15,6 +15,7 @@
 		B50782B82816866900445859 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782B62816866900445859 /* NetworkHandler.swift */; };
 		B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */; };
 		B50782BC2816BA9C00445859 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782BB2816BA9C00445859 /* DataCache.swift */; };
+		B50782BE2816C45300445859 /* DataCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782BD2816C45300445859 /* DataCacheable.swift */; };
 		B50A0C38280E9A1500A49273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C36280E9A1500A49273 /* Main.storyboard */; };
 		B50A0C3A280E9A1700A49273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C39280E9A1700A49273 /* Assets.xcassets */; };
 		B50A0C3D280E9A1700A49273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C3B280E9A1700A49273 /* LaunchScreen.storyboard */; };
@@ -67,6 +68,7 @@
 		B50782B62816866900445859 /* NetworkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandlerDelegate.swift; sourceTree = "<group>"; };
 		B50782BB2816BA9C00445859 /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
+		B50782BD2816C45300445859 /* DataCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCacheable.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C37280E9A1500A49273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B50A0C39280E9A1700A49273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				B50A0C5B280EF78E00A49273 /* JSONHandler.swift */,
 				B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */,
 				B50782BB2816BA9C00445859 /* DataCache.swift */,
+				B50782BD2816C45300445859 /* DataCacheable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				376A6B99280EA78B0016F0CE /* Food.swift in Sources */,
 				B511E01B2813DA8900B87FB7 /* MockRepository.swift in Sources */,
 				B50782BC2816BA9C00445859 /* DataCache.swift in Sources */,
+				B50782BE2816C45300445859 /* DataCacheable.swift in Sources */,
 				376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */,
 				B511E018281337B100B87FB7 /* RepositoryApplicable.swift in Sources */,
 				B511E00E28123ECE00B87FB7 /* JSONHandlable.swift in Sources */,
