@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     private var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 110)
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
