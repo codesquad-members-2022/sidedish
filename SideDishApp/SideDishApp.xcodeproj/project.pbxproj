@@ -413,6 +413,7 @@
 				BCFE4845280D5AE200F23DCE /* Frameworks */,
 				BCFE4846280D5AE200F23DCE /* Resources */,
 				BE96EBAE2FF18ACBAF180DF6 /* [CP] Embed Pods Frameworks */,
+				B7549BFE281634DA0024F206 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -604,6 +605,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B7549BFE281634DA0024F206 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint autocorrect\"\n";
 		};
 		B7F90B96281126570067E4FE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
