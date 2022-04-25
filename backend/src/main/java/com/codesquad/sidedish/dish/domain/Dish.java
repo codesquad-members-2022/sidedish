@@ -1,10 +1,12 @@
 package com.codesquad.sidedish.dish.domain;
 
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 @Getter
 @ToString
@@ -14,32 +16,23 @@ public class Dish {
     @Column(value = "dish_id")
     private Integer id;
 
-    private String title;
-    private String description;
-    private Integer price;
-    private Integer stock;
+    private final String title;
+    private final String description;
+    private final Integer price;
+    private final Integer stock;
 
-    // 연관관계 수동 매핑 필드
-    @Transient
-    private Integer categoryId;
-    @Transient
-    private DishImage dishImage;
+    @MappedCollection(idColumn = "dish_id")
+    Set<DishDiscount> dishDiscounts = new HashSet<>();
 
-    private Dish() {
-    }
+    @MappedCollection(idColumn = "dish_id")
+    Set<DishImage> dishImages = new HashSet<>();
 
-    public Dish(Integer id, String title, String description, Integer price, Integer stock,
-        Integer categoryId) {
+    public Dish(Integer id, String title, String description, Integer price, Integer stock) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.stock = stock;
-        this.categoryId = categoryId;
-    }
-
-    public void setDishImage(DishImage dishImage) {
-        this.dishImage = dishImage;
     }
 
 }
