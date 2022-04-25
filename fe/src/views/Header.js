@@ -5,15 +5,14 @@ import { useState } from 'react';
 import { StyledDiv, StyledH1, StyledHeader, StyledInnerDiv, StyledUl } from './header/Header.styled.js';
 
 function Header() {
-  const [isSubMenuOpen, setisSubMenuOpen] = useState(false);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
   return (
     <StyledHeader
       flex
       onMouseLeave={() => {
-        setisSubMenuOpen(false);
+        setIsSubMenuOpen(false);
       }}
-      className="Header"
     >
       <StyledH1>Ordering</StyledH1>
       <StyledUl flex>
@@ -21,9 +20,7 @@ function Header() {
           gnbMenus={gnbMenus}
           gnbSubMenus={gnbSubMenus}
           isSubMenuOpen={isSubMenuOpen}
-          onMouseEnter={() => {
-            setisSubMenuOpen(true);
-          }}
+          onMouseEnter={() => setIsSubMenuOpen(true)}
         />
       </StyledUl>
       <StyledDiv>

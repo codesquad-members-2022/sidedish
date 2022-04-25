@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { applyFlex } from '../../helper/utils';
 
 export const CategoryBadge = styled.div`
@@ -17,7 +17,7 @@ export const CategoryBadge = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  ${props => applyFlex(props)}
+  ${({ flex, align }) => applyFlex({ flex, align })}
 `;
 
 export const StyledBestProduct = styled.div`
@@ -39,12 +39,12 @@ export const Title = styled.h1`
   line-height: 58px;
 `;
 
-export const TapBar = styled.ul`
-  ${props => applyFlex(props)};
+export const TabBar = styled.ul`
+  ${({ flex }) => applyFlex({ flex })}
   margin-top: 24px;
 `;
 
-export const TapMenuLi = styled.li`
+export const TabMenuLi = styled.li`
   margin-right: 32px;
   padding-bottom: 17px;
   font-style: normal;
@@ -55,8 +55,8 @@ export const TapMenuLi = styled.li`
   border-bottom: 1px solid white;
   cursor: pointer;
   ${props => {
-    if (props.curTap === props['data-menu-id']) {
-      return css`
+    if (props.curTab === props['data-menu-id']) {
+      return `
         color: #000;
       `;
     }
@@ -64,7 +64,7 @@ export const TapMenuLi = styled.li`
 `;
 
 export const StyledDiv = styled.div`
-  ${props => applyFlex(props)}
+  ${({ flex }) => applyFlex({ flex })}
   margin-top: 34px;
   padding: 0 80px;
 `;

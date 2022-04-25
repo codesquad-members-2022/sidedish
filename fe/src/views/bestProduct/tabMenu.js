@@ -1,20 +1,20 @@
-import { TapMenuLi } from './BestProduct.styled';
+import { TabMenuLi } from './BestProduct.styled';
 
-export function TapMenu(props) {
+export function TabMenu(props) {
   if (!props.menus) {
     return ``;
   }
 
   return props.menus.map(menu => (
-    <TapMenuLi
+    <TabMenuLi
       data-menu-id={menu.id}
       key={menu.id}
       onMouseEnter={e => props.onMouseEnter(e)}
       onMouseLeave={e => props.onMouseLeave(e)}
-      curTap={props.curTap}
-      onClick={e => props.onClick(e, props.setCurTap)}
+      curTab={props.curTab}
+      onClick={e => props.onClick(e, props.setCurTab)}
     >
       {menu.title}
-    </TapMenuLi>
+    </TabMenuLi>
   ));
 }

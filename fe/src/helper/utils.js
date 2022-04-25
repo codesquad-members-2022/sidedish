@@ -1,6 +1,4 @@
-import { css } from 'styled-components';
-
-function getFlexString({ justify, align, direction }) {
+function getFlexTemplate({ justify, align, direction }) {
   justify = justify || 'start';
   align = align || 'stretch';
   direction = direction || 'row';
@@ -12,11 +10,10 @@ function getFlexString({ justify, align, direction }) {
   `;
 }
 
-export function applyFlex(props) {
+export function applyFlex({ flex, justify, align, direction }) {
   return (
-    props.flex &&
-    css`
-      ${getFlexString(props)}
+    flex &&
+    `${getFlexTemplate({ justify, align, direction })}
     `
   );
 }

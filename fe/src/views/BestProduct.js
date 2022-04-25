@@ -1,35 +1,37 @@
 import { useEffect, useState } from 'react';
-import { bestProductTapDatas } from '../helper/mock';
-import { TapMenu } from './bestProduct/tabMenu.js';
-import { TapList } from './bestProduct/tabList';
+import { bestProductTabDatas } from '../helper/mock';
+import { TabMenu } from './bestProduct/tabMenu.js';
+import { TabList } from './bestProduct/tabList';
 import {
   BestProductHeader,
   CategoryBadge,
   StyledBestProduct,
-  TapBar,
+  TabBar,
   Title,
   TitleWrapper,
 } from './bestProduct/BestProduct.styled';
 
 export function BestProduct() {
-  const [bestProductTap, setBestProductTap] = useState(null);
-  const [tapList, setTapList] = useState(null);
-  const [curTap, setCurTap] = useState(null);
+  const [bestProductTab, setBestProductTab] = useState(null);
+  const [tabList, setTabList] = useState(null);
+  const [curTab, setCurTab] = useState(null);
   useEffect(() => {
-    const tapMenus = [
+    const tabMenus = [
       { title: '풍성한 고기반찬', id: 0 },
       { title: '편리한 반찬 세트', id: 1 },
       { title: '맛있는 제철 요리', id: 2 },
       { title: '우리 아이 영양 반찬', id: 3 },
     ];
-    setBestProductTap(tapMenus);
-    setCurTap(0);
+    setBestProductTab(tabMenus);
+    setCurTab(0);
   }, []);
 
   useEffect(() => {
-    if (!bestProductTap) return;
-    setTapList(bestProductTapDatas[curTap]);
-  }, [bestProductTap, curTap]);
+    if (curTab === null) {
+      return;
+    }
+    setTabList(bestProductTabDatas[curTab]);
+  }, [curTab]);
 
   return (
     <StyledBestProduct>
@@ -38,29 +40,29 @@ export function BestProduct() {
           <CategoryBadge>기획전</CategoryBadge>
           <Title>한 번 주문하면 두 번 반하는 반찬</Title>
         </TitleWrapper>
-        <TapBar flex>
-          <TapMenu
-            menus={bestProductTap}
-            onMouseEnter={handleTapMouseEnter}
-            onMouseLeave={handleTapMouseLeave}
-            onClick={handleTapClick}
-            curTap={curTap}
-            setCurTap={setCurTap}
+        <TabBar flex>
+          <TabMenu
+            menus={bestProductTab}
+            onMouseEnter={handleTabMouseEnter}
+            onMouseLeave={handleTabMouseLeave}
+            onClick={handleTabClick}
+            curTab={curTab}
+            setCurTab={setCurTab}
           />
-        </TapBar>
+        </TabBar>
       </BestProductHeader>
-      <TapList tapList={tapList} />
+      <TabList tabList={tabList} />
     </StyledBestProduct>
   );
 }
 
-function handleTapMouseEnter(e) {
+function handleTabMouseEnter(e) {
   e.target.style.borderColor = 'black';
 }
-function handleTapMouseLeave(e) {
+function handleTabMouseLeave(e) {
   e.target.style.borderColor = 'white';
 }
 
-function handleTapClick(e, setCurTap) {
-  setCurTap(Number(e.target.dataset.menuId));
+function handleTabClick(e, setCurTab) {
+  setCurTab(Number(e.target.dataset.menuId));
 }

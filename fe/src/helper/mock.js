@@ -1,5 +1,5 @@
 const targetId = 0;
-const bestProductTapDataOne = [
+const bestProductTabDataOne = [
   {
     src: '/img/' + targetId + '/오리주물럭.png',
     title: '오리주물럭',
@@ -26,7 +26,7 @@ const bestProductTapDataOne = [
   },
 ];
 
-const bestProductTapDataTwo = [
+const bestProductTabDataTwo = [
   {
     src: '/img/' + targetId + '/소갈비찜.png',
     title: '소갈비찜',
@@ -53,7 +53,7 @@ const bestProductTapDataTwo = [
   },
 ];
 
-const bestProductTapDataThree = [
+const bestProductTabDataThree = [
   {
     src: '/img/' + targetId + '/쭈꾸 한돈 제육볶음.png',
     title: '쭈꾸미 한돈 제육볶음_반조리',
@@ -80,7 +80,7 @@ const bestProductTapDataThree = [
   },
 ];
 
-const bestProductTapDataFour = [
+const bestProductTabDataFour = [
   {
     src: '/img/' + targetId + '/소갈비찜.png',
     title: '소갈비찜',
@@ -108,11 +108,11 @@ const bestProductTapDataFour = [
   },
 ];
 
-export const bestProductTapDatas = [
-  bestProductTapDataOne,
-  bestProductTapDataTwo,
-  bestProductTapDataThree,
-  bestProductTapDataFour,
+export const bestProductTabDatas = [
+  bestProductTabDataOne,
+  bestProductTabDataTwo,
+  bestProductTabDataThree,
+  bestProductTabDataFour,
 ];
 
 export const categoryData = [

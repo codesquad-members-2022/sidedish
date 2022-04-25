@@ -35,23 +35,22 @@ export const StyledH1 = styled.h1`
 `;
 
 export const StyledDiv = styled.div`
-  ${props => applyFlex(props)}
   margin-top: 30px;
 `;
 
 export const StyledInnerDiv = styled.div`
-  ${props => applyFlex(props)}
+  ${({ flex, align }) => applyFlex({ flex, align })}
 `;
 
 export const StyledUl = styled.ul`
-  ${props => applyFlex(props)}
+  ${({ flex }) => applyFlex({ flex })}
   margin-top: 30px;
   flex-grow: 1;
   margin-bottom: 10px;
 `;
 
 export const StyledHeader = styled.header`
-  ${props => applyFlex(props)}
+  ${({ flex }) => applyFlex({ flex })}
   padding: 0 80px;
   border-bottom: solid 1px;
 `;
