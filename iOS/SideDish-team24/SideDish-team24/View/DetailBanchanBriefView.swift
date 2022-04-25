@@ -9,8 +9,6 @@ class DetailBanchanBriefView: UIView {
         return imageView
     }()
     
-    var dishPrice: Int = 12640
-    
     private var dishTitle: UILabel = UILabel.customLabel("요리 제목", .dishBlack, 32, 400, true)
     private var dishDescription: UILabel = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 18)
     private var discountPrice: UILabel = UILabel.customLabel("12,640원", .dishBlack, 18, 600)

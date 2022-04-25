@@ -10,15 +10,20 @@ class BriefBanchanViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var dishTitle: UILabel = UILabel.customLabel("요리제목", .dishBlack, 14)
+    private var dishTitle: UILabel = UILabel.customLabel("요리 제목", .dishBlack, 14)
     private var dishDescription: UILabel = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 14)
-    private var discountPrice: UILabel = UILabel.customLabel("12,640원", .dishBlack, 14, 600)
-    private var normalPrice: UILabel = UILabel.customLabel("15,800", .dishLightGrey, 14)
-    private var specialPrice: UILabel = UILabel.customBadge("특가정보", .dishBlue)
+    private var price: UILabel = UILabel.customLabel("판매가", .dishBlack, 14, 600)
+    private var listPrice: UILabel = UILabel.customLabel("정가", .dishLightGrey, 14)
     
     private var breifStackView: UIStackView = UIStackView.customStackView(.vertical, .fillEqually)
     private var specialPrices: UIStackView = UIStackView.customStackView(.horizontal, .fillEqually)
-    private var prices: UIStackView = UIStackView.customStackView(.horizontal, .fillProportionally)
+    private var prices: UIStackView = UIStackView.customStackView(.horizontal, .fill)
+    
+    override func prepareForReuse() {
+        specialPrices.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -34,6 +34,7 @@ private extension BriefBanchanViewController {
             guard let tappedCell = self.briefBanchanList.cellForItem(at: tappedIndexPath) as? BriefBanchanViewCell else { return }
             
             guard let detailView = self.storyboard?.instantiateViewController(withIdentifier: "detailBanchanViewController") as? DetailBanchanViewController else { return }
+            detailView.title = "something"
             self.navigationController?.pushViewController(detailView, animated: true)
         }
     }
