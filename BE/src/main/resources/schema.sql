@@ -30,10 +30,12 @@ create table item
     description        varchar(255),
     price              int,
     discount_policy_id bigint,
-    item_section         varchar(10),
+    item_section_id    bigint,
     stock              int,
     primary key (item_id),
-    CONSTRAINT item_discount_constraint FOREIGN KEY (discount_policy_id) REFERENCES discount_policy (discount_policy_id) on delete cascade on update cascade
+    CONSTRAINT item_discount_constraint FOREIGN KEY (discount_policy_id) REFERENCES discount_policy (discount_policy_id) on delete cascade on update cascade,
+    CONSTRAINT item_section_constraint FOREIGN KEY (item_section_id) REFERENCES item_section (item_section_id) on delete cascade on update cascade
+
 );
 
 create table delivery
@@ -66,7 +68,14 @@ create table item_image (
     item_image_id bigint auto_increment,
     item_id bigint,
     item_image_sequence int,
+    item_image_type varchar(10),
     primary key (item_image_id),
     CONSTRAINT image_item_constraint FOREIGN KEY (item_id) REFERENCES item (item_id) on delete cascade on update cascade
+);
+
+create table item_section (
+    item_section_id bigint auto_increment,
+    item_section_name varchar(10),
+    primary key (item_section_id)
 )
 
