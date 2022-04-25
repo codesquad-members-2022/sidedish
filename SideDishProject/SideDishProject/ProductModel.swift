@@ -34,7 +34,7 @@ final class ProductModel{
         dishes[.soup] = products.filter{$0.category == .soup}
         dishes[.side] = products.filter{$0.category == .side}
         delegate?.updateAllDishes(dishes: dishes)
-        delegate?.updateDishComment(comments: ["모두가 좋아하는\n든든한 메인 요리", "정성이 담긴\n뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는\n정갈한 밑반찬"])
+        delegate?.updateDishComment(comments: [DishCategory.main.comment, DishCategory.soup.comment, DishCategory.side.comment])
     }
 }
 

@@ -27,20 +27,24 @@ struct Product{
         self.category = category
         self.event = event
     }
+    
+    func getTitle() -> String{
+        return name
+    }
 }
 
-enum DishCategory: CaseIterable, CustomStringConvertible{
+enum DishCategory: CaseIterable{
     case main
     case soup
     case side
-    var description: String{
+    var comment: String{
         switch self{
         case .main:
-            return "메인음식"
+            return "모두가 좋아하는\n든든한 메인 요리"
         case .side:
-            return "밑반찬"
+            return "정성이 담긴\n뜨끈뜨끈 국물 요리"
         case .soup:
-            return "국"
+            return "식탁을 풍성하게 하는\n정갈한 밑반찬"
         }
     }
 }

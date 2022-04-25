@@ -12,9 +12,13 @@ final class DishCollectionViewCell: UICollectionViewCell{
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        eventConstraints.map{$0.isActive = false}
+        nonEventConstraints.map{$0.isActive = false}
+        eventButton.translatesAutoresizingMaskIntoConstraints = true
+        
     }
     
-    private lazy var view = UIView()
+    private lazy var basicView = UIView()
     private lazy var dishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
@@ -53,6 +57,10 @@ final class DishCollectionViewCell: UICollectionViewCell{
         return button
     }()
     
+    private lazy var eventConstraints: [NSLayoutConstraint] = []
+    private lazy var nonEventConstraints: [NSLayoutConstraint] = []
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -64,76 +72,65 @@ final class DishCollectionViewCell: UICollectionViewCell{
     }
     
     private func setupUI(){
-        contentView.addSubview(view)
-        view.addSubview(dishImageView)
-        view.addSubview(dishTitleLabel)
-        view.addSubview(descriptionTitleLabel)
-        view.addSubview(priceLabel)
-        view.addSubview(eventButton)
+        contentView.addSubview(basicView)
+        basicView.addSubview(dishImageView)
+        basicView.addSubview(dishTitleLabel)
+        basicView.addSubview(descriptionTitleLabel)
+        basicView.addSubview(priceLabel)
+        basicView.addSubview(eventButton)
         setDefaultUIConstraint()
     }
     
     private func setDefaultUIConstraint(){
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        view.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
-        view.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        basicView.translatesAutoresizingMaskIntoConstraints = false
+        basicView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        basicView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
+        basicView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         dishImageView.translatesAutoresizingMaskIntoConstraints = false
         dishImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         dishImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         dishImageView.widthAnchor.constraint(equalToConstant: 125).isActive = true
         dishImageView.heightAnchor.constraint(equalToConstant: 125).isActive = true
+        
+        descriptionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        dishTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setEventUIConstraint(){
-        descriptionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTitleLabel.bottomAnchor.constraint(equalTo: dishImageView.centerYAnchor, constant: -10).isActive = true
-        descriptionTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        descriptionTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
-        
-        dishTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        dishTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        dishTitleLabel.bottomAnchor.constraint(equalTo: descriptionTitleLabel.topAnchor, constant: -5).isActive = true
-        dishTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        priceLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 5).isActive = true
-        priceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
         eventButton.translatesAutoresizingMaskIntoConstraints = false
-        eventButton.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        eventButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10).isActive = true
-        eventButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        eventConstraints = [descriptionTitleLabel.bottomAnchor.constraint(equalTo: dishImageView.centerYAnchor, constant: -10),
+                            descriptionTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                            descriptionTitleLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor,constant: -10),
+                            dishTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                            dishTitleLabel.bottomAnchor.constraint(equalTo: descriptionTitleLabel.topAnchor, constant: -5),
+                            dishTitleLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor),
+                            priceLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                            priceLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 5),
+                            priceLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor),
+                            eventButton.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                            eventButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10),
+                            eventButton.widthAnchor.constraint(equalToConstant: 80)]
+        eventConstraints.map{$0.isActive = true}
     }
     
     private func setNonEventUIConstraint(){
-        descriptionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTitleLabel.centerYAnchor.constraint(equalTo: dishImageView.centerYAnchor).isActive = true
-        descriptionTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        descriptionTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
-        
-        dishTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        dishTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        dishTitleLabel.bottomAnchor.constraint(equalTo: descriptionTitleLabel.topAnchor, constant: -5).isActive = true
-        dishTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10).isActive = true
-        priceLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 5).isActive = true
-        priceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        nonEventConstraints = [ descriptionTitleLabel.centerYAnchor.constraint(equalTo: dishImageView.centerYAnchor),
+                                descriptionTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                                descriptionTitleLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor,constant: -10),
+                                dishTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                                dishTitleLabel.bottomAnchor.constraint(equalTo: descriptionTitleLabel.topAnchor, constant: -5),
+                                dishTitleLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor),
+                                priceLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
+                                priceLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 5),
+                                priceLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor)]
+        nonEventConstraints.map{$0.isActive = true}
     }
     
-    func setProperties(product: Product){
+    func updateUIProperty(with product: Product){
         dishTitleLabel.text = product.name
         descriptionTitleLabel.text = product.description
-        //        if product.event.contains(.none) {
-        //           setNonEventUIConstraint()
-        //        }else{
-        //           setEventUIConstraint()
-        //        }
-        //
         
         let isContainEvent = product.event.contains { event in
             if case .none = event {
@@ -141,7 +138,6 @@ final class DishCollectionViewCell: UICollectionViewCell{
             }
             return true
         }
-        
         isContainEvent ? setNonEventUIConstraint() : setEventUIConstraint()
     }
 }

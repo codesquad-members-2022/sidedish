@@ -9,11 +9,11 @@ import UIKit
 import Toaster
 
 final class HomeViewController: UIViewController {
-
+    
     private var productRepository: ProductRepository?
+    private var productModel: ProductModel?
     private lazy var homeView = HomeView(frame: view.frame)
     private let dishCollectionWrapper = DishCollectionWrapper()
-    private var productModel: ProductModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ final class HomeViewController: UIViewController {
         productModel?.delegate = self
         productModel?.getAll()
         view = homeView
-        homeView.setCollectionViewModel(viewModel: dishCollectionWrapper)
+        homeView.setCollectionViewModel(model: dishCollectionWrapper)
     }
 
     static func create(with repository: ProductRepository) -> HomeViewController {
