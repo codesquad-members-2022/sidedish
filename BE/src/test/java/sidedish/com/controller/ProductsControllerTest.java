@@ -62,6 +62,18 @@ class ProductsControllerTest {
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 	}
 
+	@Test
+	void 만약_category가_meat인_경우_베스트_음식_중_meat_타입_조회_성공() throws Exception {
+		given(productsService.findAllByBestCategory("meat"))
+			.willReturn(createProductsMealTypeResponse());
+
+		ResultActions perform = mockMvc.perform(get("/api/products/best?category=meat"));
+
+		perform
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+	}
+
 	private List<ProductBasicTypeResponse> createProductsMealTypeResponse() {
 		List<Product> products = new ArrayList<>();
 
@@ -78,4 +90,6 @@ class ProductsControllerTest {
 
 		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
 	}
+
+
 }
