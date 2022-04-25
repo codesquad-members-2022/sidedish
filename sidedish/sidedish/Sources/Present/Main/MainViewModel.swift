@@ -37,7 +37,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
     
     private var menus = [Sidedish.Menu: [Sidedish]]()
-    private var thumbnailImages = [IndexPath:URL]()
+    private var thumbnailImages = [IndexPath: URL]()
     
     let action = MainViewModelAction()
     let state = MainViewModelState()
@@ -94,6 +94,6 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     }
     
     func getMenuCount(_ type: Sidedish.Menu) -> Int {
-        menus[type]?.count ?? 0
+        menus[type]?.count ?? 8
     }
 }

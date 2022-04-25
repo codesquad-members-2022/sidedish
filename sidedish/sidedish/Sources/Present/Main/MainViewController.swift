@@ -86,7 +86,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let menuType = Sidedish.Menu(rawValue: section) else {
-            return 0
+            return 8
         }
         return model.getMenuCount(menuType)
     }
