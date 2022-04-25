@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const thumbnailSize = {
+  large: '411px',
+  medium: '302px',
+  small: '160px',
+};
+
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,8 +13,8 @@ const CardWrapper = styled.div`
 `;
 
 const Thumbnail = styled.div`
-  width: 411px;
-  height: 411px;
+  width: ${({ size }) => (size ? thumbnailSize[size] : thumbnailSize.large)};
+  height: ${({ size }) => (size ? thumbnailSize[size] : thumbnailSize.large)};
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,7 +22,7 @@ const Thumbnail = styled.div`
 
 const Title = styled.h3`
   font-size: ${props => props.theme.fontSize.medium};
-  font-weight: ${props => props.theme.fontWeight.bold};
+  font-weight: ${({ theme, size }) => (size === 'small' ? theme.fontWeight.regular : theme.fontWeight.bold)};
   color: ${props => props.theme.colors.grey1};
   margin-right: 8px;
 `;

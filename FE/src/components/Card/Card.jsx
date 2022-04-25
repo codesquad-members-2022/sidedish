@@ -1,19 +1,19 @@
 import React from 'react';
 import { CardWrapper, SubTitle, Title, Thumbnail, PriceBox, SalePrice, Badge, DescriptionWrapper } from './Card.style';
 
-const Card = ({ data }) => {
+const Card = ({ data, size }) => {
   return (
     <CardWrapper>
-      <Thumbnail src={data.thumbnail} />
+      <Thumbnail src={data.thumbnail} size={size} />
       <DescriptionWrapper>
-        <Title>{data.name}</Title>
-        <SubTitle>{data.description}</SubTitle>
+        <Title size={size}>{data.name}</Title>
+        {size !== 'small' && <SubTitle>{data.description}</SubTitle>}
         <PriceBox>
           <Title>{data.normalPrice.toLocaleString('ko-KR')}원</Title>
-          <SalePrice>{data.salePrice.toLocaleString('ko-KR')}원</SalePrice>
+          <SalePrice>{(data.normalPrice * 0.9).toLocaleString('ko-KR')}원</SalePrice>
         </PriceBox>
       </DescriptionWrapper>
-      <Badge>런칭특가</Badge>
+      {size !== 'small' && <Badge>런칭특가</Badge>}
     </CardWrapper>
   );
 };
