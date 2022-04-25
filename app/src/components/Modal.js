@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
 import { Badge } from "../styles/utils.js";
+import CardList from "./CardList.js";
 
 const ModalContainer = styled.div`
   position: absolute;
@@ -207,7 +208,7 @@ const FooterTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.medium};
 `;
 
-const Modal = () => {
+const Modal = ({ hideModal }) => {
   return (
     <ThemeProvider theme={theme}>
       <ModalContainer>
@@ -215,7 +216,7 @@ const Modal = () => {
         <ModalPopup>
           <ModalTobContainer>
             <ModalHeader>
-              <ModalCloseBtn>닫기</ModalCloseBtn>
+              <ModalCloseBtn onClick={hideModal}>닫기</ModalCloseBtn>
             </ModalHeader>
             <ModalContent>
               <ContentImgs>
@@ -282,6 +283,7 @@ const Modal = () => {
           <ModalFooter>
             <FooterHeader>
               <FooterTitle>함께하면 더욱 맛있는 상품</FooterTitle>
+              {/* <CardList cards={}></CardList> */}
             </FooterHeader>
             {/* <FooterMain></FooterMain> */}
           </ModalFooter>

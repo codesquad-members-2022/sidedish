@@ -6,12 +6,14 @@ import MainTab from "./MainTab.js";
 import Modal from "./Modal.js";
 import setData from "../store/store.js";
 import Category from "./Category.js";
+import { ModalContext } from "../contexts/ModalContext.js";
 
 function App() {
   const [dishData, setDishData] = useState([]);
   const [mainDish, setMainDish] = useState([]);
   const [sideDish, setSideDish] = useState([]);
   const [soupDish, setSoupDish] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -27,16 +29,22 @@ function App() {
     })();
   }, []);
 
+  const hideModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <Reset />
       <Header />
       <main>
-        <MainTab dish={dishData} />
-        <Modal />
-        <Category dish={sideDish} category={"side"} />
+        <ModalContext.Provider value={{ showModal, setShowModal }}>
+          <MainTab dish={dishData} />
+          {showModal && <Modal hideModal={hideModal} />}
+          {/* <Category dish={sideDish} category={"side"} />
         <Category dish={soupDish} category={"soup"} />
-        <Category dish={mainDish} category={"main"} />
+        <Category dish={mainDish} category={"main"} /> */}
+        </ModalContext.Provider>
       </main>
     </>
   );
