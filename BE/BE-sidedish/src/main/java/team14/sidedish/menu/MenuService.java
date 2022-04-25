@@ -2,24 +2,123 @@ package team14.sidedish.menu;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
+import team14.sidedish.event.EventAndSalesDto;
+import team14.sidedish.event.EventService;
+import team14.sidedish.eventplanner.EventPlannerDto;
+import team14.sidedish.eventplanner.EventPlannerService;
 import team14.sidedish.exhibition.ExhibitionDto;
 import team14.sidedish.exhibition.ExhibitionService;
-import team14.sidedish.menu.specialmenu.SpecialMenuService;
-import team14.sidedish.menu.specialmenu.SpecialMenus;
+import team14.sidedish.specialmenu.SpecialMenuService;
+import team14.sidedish.specialmenu.enums.SpecialMenuModel;
 
 @RequiredArgsConstructor
 @Service
 public class MenuService {
 	private final ExhibitionService exhibitionService;
 	private final SpecialMenuService specialMenuService;
+	private final EventPlannerService eventPlannerService;
+	private final EventService eventService;
 
 	private final MenuRepository menuRepository;
 
-	public void readExhibition() {
+	/**
+	 * 1. 현재 진행중인 기획전에 대한 추천메뉴(specialNumber) 목록을 가져옵니다.
+	 * 2. 첫번째 카테고리에 해당하는 메뉴 목록 조회합니다.
+	 * 3. 각각의 추천메뉴와 카테고리의 메뉴 내에서 이벤트가 진행중인 메뉴목륵을 조회합니다.
+	 * 4. 3의 결과에 진행중인 이벤트에 대한 이벤트 목록과 할인정보 추가합니다.
+	 */
+	public MenuDto.Response readExhibition(int specialNumber) {
+		SpecialMenuModel specialMenuTitle = SpecialMenuModel.from(specialNumber);
 		ExhibitionDto exhibitionInfo = exhibitionService.readOngoing();
-		List<SpecialMenus> specialMenusInfo = specialMenuService.read(exhibitionInfo.getExhibitionId());
+		List<MenuDto.SubCategory> specialMenus = specialMenuService.read(exhibitionInfo.getExhibitionId(), specialMenuTitle.getTitle());
+		List<Menu> menuInfo = menuRepository.findByCategory(Menu.Category.MAIN_DISH);  // todo 10개 - LessThanEqual() or Pageable
+		List<MenuDto.SubCategory> menus = getSubCategoryOf(menuInfo);
+
+		// 추천메뉴, 카테고리별 메뉴 내 menuId들을 중복없이 모아 진행중인 이벤트를 조회합니다.
+		Set<Long> specialMenuIds = getMenuIds(specialMenus);
+		Set<Long> menuIds = getMenuIds(menus);
+		menuIds.addAll(specialMenuIds);
+		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
+		List<Long> eventIds = ids.getEventIds();
+
+		// menuId 별 이벤트제목, 할인가격 추가조회
+		// 요청받은 추천메뉴 + 전송할 카테고리내 메뉴 : 많아야 13개
+		EventAndSalesDto eventAndSales = eventService.read(eventIds);
+		insertSalesAndEventBadge(specialMenus, ids, eventAndSales);
+		insertSalesAndEventBadge(menus, ids, eventAndSales);
+
+		MenuDto.ExhibitionResponse exhibitionResponse = new MenuDto.ExhibitionResponse(
+			exhibitionInfo.getTitle(),
+			new MenuDto.CategoryResponse(specialMenuTitle.getId(), specialMenuTitle.getTitle(), specialMenus));
+
+		MenuDto.CategoryResponse categoryResponse = new MenuDto.CategoryResponse(
+			Menu.Category.MAIN_DISH.getId(),
+			Menu.Category.MAIN_DISH.getKoType(),
+			menus);
+		return new MenuDto.Response(exhibitionResponse, categoryResponse);
+	}
+
+	private List<MenuDto.SubCategory> getSubCategoryOf(List<Menu> menus) {
+		List<MenuDto.SubCategory> categories = menus.stream()
+			.map(menu -> {
+				return MenuDto.SubCategory.builder()
+					.menuId(menu.getMenuId())
+					.menuName(menu.getName())
+					.description(menu.getDescription())
+					.image(menu.getDefaultImage())
+					.originalPrice(menu.getPrice())
+					.build();
+			}).collect(Collectors.toList());
+		return categories;
+	}
+
+	/**
+	 * MenuDto.SubCategory의 메뉴 정보에 할인가격, 이벤트 배지 정보 추가 합니다.
+	 * @param subCategories
+	 * @param ids
+	 * @param eventAndSales
+	 */
+	private void insertSalesAndEventBadge(List<MenuDto.SubCategory> subCategories, EventPlannerDto.Ids ids,
+		EventAndSalesDto eventAndSales) {
+		subCategories.stream()
+			.map(category -> {
+				Optional<EventPlannerDto.Id> eventMenu = ids.findOngoingEvent(category);
+				if (eventMenu.isPresent()) {
+					EventPlannerDto.Id id = eventMenu.get();
+					BigDecimal discountedPrice = getDiscountedPrice(eventAndSales, category, id);
+					List<String> eventBadges = eventAndSales.getEventBadges(id);
+					category.setDiscountedPrice(discountedPrice);
+					category.setEvent(eventBadges);
+					return category;
+				}
+				category.setDiscountedPrice(BigDecimal.ZERO);
+				category.setEvent(List.of());
+				return category;
+			}).collect(Collectors.toList());
+	}
+
+	private BigDecimal getDiscountedPrice(EventAndSalesDto eventAndSales, MenuDto.SubCategory category, EventPlannerDto.Id id) {
+		List<BigDecimal> deductibleAmounts = eventAndSales.getDeductibleAmounts(category, id);
+		BigDecimal discountedPrice = category.getOriginalPrice();
+
+		for (BigDecimal deductibleAmount : deductibleAmounts) {
+			discountedPrice = discountedPrice.subtract(deductibleAmount);
+		}
+
+		return discountedPrice;
+	}
+
+	private Set<Long> getMenuIds(List<MenuDto.SubCategory> menus) {
+		return menus.stream()
+			.parallel()
+			.map(menu -> menu.getMenuId())
+			.collect(Collectors.toSet());
 	}
 }

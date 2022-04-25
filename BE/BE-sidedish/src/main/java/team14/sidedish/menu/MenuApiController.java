@@ -2,6 +2,7 @@ package team14.sidedish.menu;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,8 +12,11 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/sidedish")
 public class MenuApiController {
-	@GetMapping
-	public ResponseEntity readAll() {
-		return ResponseEntity.ok().build();
+	private final MenuService menuService;
+
+	@GetMapping("/{id}")
+	public ResponseEntity<MenuDto.Response> readAll(@PathVariable int id) {
+		MenuDto.Response response = menuService.readExhibition(id);
+		return ResponseEntity.ok().body(response);
 	}
 }
