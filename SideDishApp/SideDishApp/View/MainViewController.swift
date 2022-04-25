@@ -40,13 +40,20 @@ class MainViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.cellViewModels.bind { [weak self] _ in
-            guard let self = self else {return}
-            DispatchQueue.main.async {
-                self.mainCollectionView.reloadData()
+        ProductType.allCases.forEach({ type in
+            guard let categoryVM = viewModel.categoryVMs[type] else {return}
+            categoryVM.bind { _ in
+                DispatchQueue.main.async {
+
+                    let targetIndex = IndexSet(integer: type.index)
+                    self.mainCollectionView.performBatchUpdates({
+                        self.mainCollectionView.reloadSections(targetIndex)
+                    }, completion: nil)
+                }
             }
-        }
-        viewModel.fetchCategories()
+        })
+
+     viewModel.fetchAllCategories()
     }
 }
 
