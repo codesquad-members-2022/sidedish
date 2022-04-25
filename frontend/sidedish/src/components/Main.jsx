@@ -4,7 +4,13 @@ import ItemCards from "./ItemCards";
 import Label from "../core/Label";
 import mockData from "../mockData";
 import carouselMockData from "../carouselMockData.json";
-import { LABEL_ATTRIBUTES, CARD_LENGHTHS } from "../consts/constants";
+import {
+  LABEL_ATTRIBUTES,
+  CARD_LENGHTHS,
+  NUM_OF_CARD_ON_DISPLAY,
+  CARD_PADDING,
+  CARD_CONTAINER_PADDING,
+} from "../consts/constants";
 import Carousel from "./Carousel";
 import DivisionLine from "../core/Line";
 import Popup from "./Popup";
@@ -14,7 +20,7 @@ const Main = () => {
   const lnb = mockData.lnb;
   const [lnbState, setLnbState] = useState(lnb[0]);
   const [dataState, setDataState] = useState(mockData.data);
-  const [carouselState, setCarouselDataState] = useState(carouselMockData);
+  // const [carouselState, setCarouselDataState] = useState(carouselMockData);
   const [relatedListState, setRelatedListState] = useState(relatedMockData);
 
   const handleLnbState = (event) => {
@@ -56,13 +62,23 @@ const Main = () => {
         <ItemCards
           cardClickState={cardClickState}
           setCardClickState={setCardClickState}
-          cardInfoState={cardInfoState}
-          setCardInfoState={setCardInfoState}
+          // cardInfoState={cardInfoState}
+          // setCardInfoState={setCardInfoState}
           dataState={dataState}
-          len={CARD_LENGHTHS.BIG}
+          cardLength={CARD_LENGHTHS.BIG}
+          cardPadding={CARD_PADDING}
+          cardContainerPadding={CARD_CONTAINER_PADDING}
         />
         <DivisionLine height="1px" color="#EBEBEB" />
-        <Carousel cardClickState={cardClickState} setCardClickState={setCardClickState} carouselState={carouselState} len={CARD_LENGHTHS.SMALL} />
+        <SubTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SubTitle>
+        <Carousel
+          cardClickState={cardClickState}
+          setCardClickState={setCardClickState}
+          carouselCards={carouselMockData.carouselCardData}
+          cardLength={CARD_LENGHTHS.SMALL}
+          cardCount={NUM_OF_CARD_ON_DISPLAY}
+          cardPadding={CARD_PADDING}
+        />
         <Popup
           cardClickState={cardClickState}
           setCardClickState={setCardClickState}
@@ -76,8 +92,8 @@ const Main = () => {
 };
 
 const MainContainer = styled.main`
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   white-space: nowrap;
 `;
 
@@ -112,6 +128,16 @@ const MainLnb = styled.li`
   padding-bottom: 17px;
   cursor: pointer;
   border-bottom: ${(props) => (props.title === props.lnbState ? "black solid 1px" : "")};
+`;
+
+const SubTitle = styled.h1`
+  font-family: "Noto Sans KR";
+  font-weight: 500;
+  font-size: 24px;
+  color: #333;
+  margin-top: 50px;
+  margin-left: 80px;
+  padding-bottom: 40px;
 `;
 
 export default Main;

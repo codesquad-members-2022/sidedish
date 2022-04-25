@@ -4,64 +4,87 @@ import LeftArrowBtn from "../core/LeftArrowBtn";
 import RightArrowBtn from "../core/RightArrowBtn";
 import ItemCards from "./ItemCards";
 
-const Carousel = ({ cardClickState, setCardClickState, carouselState, len }) => {
-  const [positionState, setPositionState] = useState("-80");
+const Carousel = ({
+  cardClickState,
+  setCardClickState,
+  carouselCards,
+  cardLength,
+  cardCount,
+  cardPadding,
+}) => {
+  const [positionState, setPositionState] = useState(-cardPadding);
+  const carouselWidth = (+cardLength + cardPadding * 2) * cardCount;
+  let currentPage = Math.abs(positionState + cardPadding) / carouselWidth;
+
+  function calLengthToMove(numOfLeftCard) {
+    return numOfLeftCard < cardCount
+      ? (+cardLength + cardPadding * 2) * numOfLeftCard
+      : carouselWidth;
+  }
+
   const handleClickLeftBtn = () => {
-    setPositionState(Number(positionState) + 1475);
+    if (positionState >= -cardPadding) return;
+    const numOfLeftCard = currentPage * cardCount;
+    const lengthToMove = calLengthToMove(numOfLeftCard);
+    setPositionState(positionState + lengthToMove);
   };
+
   const handleClickRightBtn = () => {
-    setPositionState(positionState - 1475);
+    if (positionState <= -cardPadding - carouselCards.length * cardLength) return;
+    const numOfLeftCard = carouselCards.length - (currentPage + 1) * cardCount;
+    const lengthToMove = calLengthToMove(numOfLeftCard);
+    setPositionState(positionState - lengthToMove);
   };
+
   return (
     <CarouselContainer>
       <LeftArrowBtnSpan onClick={handleClickLeftBtn}>
         <LeftArrowBtn />
       </LeftArrowBtnSpan>
-      <RightArrowBtnSpan onClick={handleClickRightBtn}>
-        <RightArrowBtn />
-      </RightArrowBtnSpan>
+
       <CarouselView>
         <CarouselItems position={positionState}>
           <ItemCards
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            dataState={[...carouselState.prev, ...carouselState.curr, ...carouselState.next]}
-            len={len}
+            dataState={[...carouselCards]}
+            cardLength={cardLength}
+            cardPadding={cardPadding}
           />
         </CarouselItems>
       </CarouselView>
+
+      <RightArrowBtnSpan onClick={handleClickRightBtn}>
+        <RightArrowBtn />
+      </RightArrowBtnSpan>
     </CarouselContainer>
   );
 };
 
 const CarouselContainer = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 `;
+
 const LeftArrowBtnSpan = styled.span`
-  position: absolute;
   cursor: pointer;
-  left: 30px;
-  top: 150px;
-  z-index: 1;
+  margin: 29px;
 `;
 
 const RightArrowBtnSpan = styled.span`
-  position: absolute;
   cursor: pointer;
-  left: 1545px;
-  top: 150px;
-  z-index: 1;
+  margin: 29px;
 `;
 
 const CarouselView = styled.div`
   overflow: hidden;
-  margin-left: 80px;
-  width: 1420px;
+  width: 1424px;
 `;
 
 const CarouselItems = styled.div`
   transform: translateX(${(props) => props.position}px);
-  transition: 1s;
+  transition: 0.5s;
 `;
 
 export default Carousel;

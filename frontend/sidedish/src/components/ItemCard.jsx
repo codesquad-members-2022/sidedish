@@ -3,14 +3,27 @@ import { LABEL_ATTRIBUTES } from "../consts/constants";
 import Label from "../core/Label";
 import { makePriceFormat } from "../util/makePriceFormat";
 
-const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) => {
+const ItemCard = ({
+  image,
+  title,
+  description,
+  n_price,
+  s_price,
+  badge,
+  cardLength,
+  cardPadding,
+}) => {
   const labelList = badge.map((string, ind) => {
-    return string === "런칭특가" ? <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} /> : <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />;
+    return string === "런칭특가" ? (
+      <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} />
+    ) : (
+      <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />
+    );
   });
 
   return (
-    <Card>
-      <MenuCardImg src={image} alt={title} len={len} />
+    <Card cardPadding={cardPadding}>
+      <MenuCardImg src={image} alt={title} cardLength={cardLength} />
       <MenuTitle>{title}</MenuTitle>
       <MenuDescription>{description}</MenuDescription>
       <Price>
@@ -23,13 +36,13 @@ const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) =
 };
 
 const Card = styled.div`
-  padding: 0 24px;
+  padding: 0 ${(props) => props.cardPadding}px;
   cursor: pointer;
 `;
 
 const MenuCardImg = styled.img`
-  width: ${(props) => props.len};
-  height: ${(props) => props.len};
+  width: ${(props) => props.cardLength}px;
+  height: ${(props) => props.cardLength}px;
   margin-bottom: 16px;
 `;
 

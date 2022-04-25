@@ -26,6 +26,12 @@ export const LABEL_ATTRIBUTES = {
 };
 
 export const CARD_LENGHTHS = {
-  BIG: "441px",
-  SMALL: "320px",
+  BIG: "441",
+  SMALL: "320",
 };
+
+export const CARD_PADDING = 24;
+
+export const CARD_CONTAINER_PADDING = 56;
+
+export const NUM_OF_CARD_ON_DISPLAY = 4;
