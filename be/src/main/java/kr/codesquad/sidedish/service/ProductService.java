@@ -28,11 +28,11 @@ public class ProductService {
 	}
 
 	public ProductDTO findById(Integer id) {
-		return productRepository.findById(id).createDTO();
+		return productRepository.findById(id).get().createDTO();
 	}
 
 	public void order(RequestProduct requestProduct) {
-		Product originProduct = productRepository.findById(requestProduct.getId());
+		Product originProduct = productRepository.findById(requestProduct.getId()).get();
 		Product updateProduct = Product.updateQuantity(originProduct, requestProduct.getQuantity());
 		productRepository.updateQuantity(requestProduct.getId(), updateProduct);
 	}

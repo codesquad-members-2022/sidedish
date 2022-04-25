@@ -18,7 +18,7 @@ public enum Discount {
 	}
 
 
-	public Discount setSaleType(String applyEvent) {
+	public static Discount setSaleType(String applyEvent) {
 		switch (applyEvent) {
 			case "런칭특가,이벤트특가":
 				return SUPER_SALE;
