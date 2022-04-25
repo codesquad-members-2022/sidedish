@@ -38,4 +38,8 @@ public class ItemService {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException(NOT_FOUND_ITEM_EXCEPTION));
     }
+
+    public void updateItem(Item orderItem) {
+        itemRepository.save(orderItem);
+    }
 }

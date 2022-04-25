@@ -120,4 +120,8 @@ public class Item {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public void decreasedQuantity(int quantity) {
+        this.quantity -= quantity;
+    }
 }
