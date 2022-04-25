@@ -116,14 +116,14 @@ const Thumbnail = ({ src, alt, size, deliveryType }) => {
 const Card = ({ card, size }) => {
   const modal = useContext(ModalContext);
 
-  const handleModalClick = (e) => {
-    console.log(e);
+  const handleCardClick = () => {
     modal.setShowModal(!modal.showModal);
+    modal.setDishHash(card.detail_hash);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Wrapper onClick={handleModalClick}>
+      <Wrapper onClick={handleCardClick}>
         <Thumbnail
           src={card.image}
           alt={card.alt}

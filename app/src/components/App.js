@@ -14,6 +14,7 @@ function App() {
   const [sideDish, setSideDish] = useState([]);
   const [soupDish, setSoupDish] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [dishHash, setDishHash] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -38,9 +39,9 @@ function App() {
       <Reset />
       <Header />
       <main>
-        <ModalContext.Provider value={{ showModal, setShowModal }}>
+        <ModalContext.Provider value={{ showModal, setShowModal, setDishHash }}>
           <MainTab dish={dishData} />
-          {showModal && <Modal hideModal={hideModal} />}
+          {showModal && <Modal hideModal={hideModal} dishHash={dishHash} />}
           {/* <Category dish={sideDish} category={"side"} />
         <Category dish={soupDish} category={"soup"} />
         <Category dish={mainDish} category={"main"} /> */}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
 import { Badge } from "../styles/utils.js";
@@ -91,6 +92,7 @@ const ContentNPrice = styled.div`
   font-size: ${({ theme }) => theme.fontSize.small};
   color: ${({ theme }) => theme.color.grey3};
   line-height: 2.4rem;
+  text-decoration: line-through;
 `;
 
 const ContentPriceEtc = styled.div`
@@ -208,87 +210,119 @@ const FooterTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.medium};
 `;
 
-const Modal = ({ hideModal }) => {
+const Modal = ({ hideModal, dishHash }) => {
+  const [dish, setDish] = useState("");
+  const [mainImg, setMainImg] = useState("");
+  const [count, setCount] = useState(1);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      await fetch(`https://api.codesquad.kr/onban/detail/${dishHash}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDish(data.data);
+          setMainImg(data.data.top_image);
+        });
+    })();
+  }, []);
+
+  const handleMouseOver = ({ target }) => {
+    setMainImg(target.src);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <ModalContainer>
-        <ModalBackground></ModalBackground>
-        <ModalPopup>
-          <ModalTobContainer>
-            <ModalHeader>
-              <ModalCloseBtn onClick={hideModal}>닫기</ModalCloseBtn>
-            </ModalHeader>
-            <ModalContent>
-              <ContentImgs>
-                <MainImg
-                  src="http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"
-                  alt=""
-                ></MainImg>
-                <SubImgs>
-                  <img
-                    src="http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"
-                    alt=""
-                  />
-                  <img
-                    src="http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"
-                    alt=""
-                  />
-                </SubImgs>
-              </ContentImgs>
-              <ContentDesc>
-                <ContentTitle>오리 주물럭_반조리</ContentTitle>
-                <ContentPrice>
-                  <ContentNPrice>15,800원</ContentNPrice>
-                  <ContentPriceEtc>
-                    <Badge bgColor={"orange"}>런칭특가</Badge>
-                    <ContentSPrice>12,640원</ContentSPrice>
-                  </ContentPriceEtc>
-                </ContentPrice>
-                <ContentEtcDesc>
-                  <ContentEtcDescList>
-                    <DescListTerm>적립금</DescListTerm>
-                    <dd>126원</dd>
-                  </ContentEtcDescList>
-                  <ContentEtcDescList>
-                    <DescListTerm>배송정보</DescListTerm>
-                    <dd>서울 경기 새벽 배송, 전국 택배 배송</dd>
-                  </ContentEtcDescList>
-                  <ContentEtcDescList>
-                    <DescListTerm>배송비</DescListTerm>
-                    <dd>2,500원 (40,000원 이상 구매 시 무료)</dd>
-                  </ContentEtcDescList>
-                </ContentEtcDesc>
-                <ContentTotal>
-                  <ContentCounter>
-                    <CountMinusButton>
-                      <ButtonImg
-                        src={`${process.env.PUBLIC_URL}/images/Minus.svg`}
-                      ></ButtonImg>
-                    </CountMinusButton>
-                    <ContentCount>1</ContentCount>
-                    <CountPlusButton>
-                      <ButtonImg
-                        src={`${process.env.PUBLIC_URL}/images/Plus.svg`}
-                      ></ButtonImg>
-                    </CountPlusButton>
-                  </ContentCounter>
-                  <ContentTotalPrice>
-                    총 주문금액 <TotalPrice>12,640원</TotalPrice>
-                  </ContentTotalPrice>
-                </ContentTotal>
-                <OrderButton>주문하기</OrderButton>
-              </ContentDesc>
-            </ModalContent>
-          </ModalTobContainer>
-          <ModalFooter>
-            <FooterHeader>
-              <FooterTitle>함께하면 더욱 맛있는 상품</FooterTitle>
-              {/* <CardList cards={}></CardList> */}
-            </FooterHeader>
-            {/* <FooterMain></FooterMain> */}
-          </ModalFooter>
-        </ModalPopup>
-      </ModalContainer>
+      {dish ? (
+        <ModalContainer>
+          <ModalBackground></ModalBackground>
+          <ModalPopup>
+            <ModalTobContainer>
+              <ModalHeader>
+                <ModalCloseBtn onClick={hideModal}>닫기</ModalCloseBtn>
+              </ModalHeader>
+              <ModalContent>
+                <ContentImgs>
+                  <MainImg src={mainImg} alt=""></MainImg>
+                  <SubImgs>
+                    {dish.thumb_images.map((e) => (
+                      <img src={e} onMouseOver={handleMouseOver} />
+                    ))}
+                  </SubImgs>
+                </ContentImgs>
+                <ContentDesc>
+                  <ContentTitle>{dish.product_description}</ContentTitle>
+                  <ContentPrice>
+                    {dish.prices.length === 1 ? (
+                      <>
+                        <ContentPriceEtc>
+                          <ContentSPrice>{dish.prices[0]}</ContentSPrice>
+                        </ContentPriceEtc>
+                      </>
+                    ) : (
+                      <>
+                        <ContentNPrice>{dish.prices[0]}</ContentNPrice>
+                        <ContentPriceEtc>
+                          <Badge bgColor={"orange"}>런칭특가</Badge>
+                          <ContentSPrice>{dish.prices[1]}</ContentSPrice>
+                        </ContentPriceEtc>
+                      </>
+                    )}
+                  </ContentPrice>
+                  <ContentEtcDesc>
+                    <ContentEtcDescList>
+                      <DescListTerm>적립금</DescListTerm>
+                      <dd>{dish.point}</dd>
+                    </ContentEtcDescList>
+                    <ContentEtcDescList>
+                      <DescListTerm>배송정보</DescListTerm>
+                      <dd>{dish.delivery_info}</dd>
+                    </ContentEtcDescList>
+                    <ContentEtcDescList>
+                      <DescListTerm>배송비</DescListTerm>
+                      <dd>{dish.delivery_fee}</dd>
+                    </ContentEtcDescList>
+                  </ContentEtcDesc>
+                  <ContentTotal>
+                    <ContentCounter>
+                      <CountMinusButton>
+                        <ButtonImg
+                          src={`${process.env.PUBLIC_URL}/images/Minus.svg`}
+                          onClick={() => {
+                            count > 1 ? setCount(count - 1) : setCount(1);
+                          }}
+                        ></ButtonImg>
+                      </CountMinusButton>
+                      <ContentCount>{count}</ContentCount>
+                      <CountPlusButton>
+                        <ButtonImg
+                          src={`${process.env.PUBLIC_URL}/images/Plus.svg`}
+                          onClick={() => {
+                            count < 100 ? setCount(count + 1) : setCount(99);
+                          }}
+                        ></ButtonImg>
+                      </CountPlusButton>
+                    </ContentCounter>
+                    <ContentTotalPrice>
+                      총 주문금액 <TotalPrice>{dish.prices[0]}</TotalPrice>
+                    </ContentTotalPrice>
+                  </ContentTotal>
+                  <OrderButton>주문하기</OrderButton>
+                </ContentDesc>
+              </ModalContent>
+            </ModalTobContainer>
+            <ModalFooter>
+              <FooterHeader>
+                <FooterTitle>함께하면 더욱 맛있는 상품</FooterTitle>
+                {/* <CardList cards={}></CardList> */}
+              </FooterHeader>
+              {/* <FooterMain></FooterMain> */}
+            </ModalFooter>
+          </ModalPopup>
+        </ModalContainer>
+      ) : (
+        console.log("!")
+      )}
     </ThemeProvider>
   );
 };
