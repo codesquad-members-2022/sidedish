@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { SIZE, WEIGHT, FAMILY } from '../variable/font';
 import COLOR from '../variable/color';
 
-export default function Text({ size, weight, family, color, value }) {
+export default function Text({ size, weight, family, color, value, line }) {
   return (
-    <SPAN size={size} weight={weight} family={family} color={color}>
+    <SPAN size={size} weight={weight} family={family} color={color} line={line}>
       {value}
     </SPAN>
   );
