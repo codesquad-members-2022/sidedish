@@ -1,5 +1,6 @@
 package com.codesquad.sidedish.category;
 
+import com.codesquad.sidedish.category.domain.Category;
 import java.util.List;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.Repository;

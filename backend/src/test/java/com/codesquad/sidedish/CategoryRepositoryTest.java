@@ -1,7 +1,7 @@
 package com.codesquad.sidedish;
 
-import com.codesquad.sidedish.category.Category;
 import com.codesquad.sidedish.category.CategoryRepository;
+import com.codesquad.sidedish.category.domain.Category;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

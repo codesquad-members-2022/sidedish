@@ -1,5 +1,6 @@
 package com.codesquad.sidedish.category;
 
+import com.codesquad.sidedish.category.dto.CategoryResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,6 @@ public class CategoryController {
         if (sectionName != null) {
             return categoryService.groupDishBySection(sectionName.replace("-", " "));
         }
-        return null;
+        return List.of();
     }
 }

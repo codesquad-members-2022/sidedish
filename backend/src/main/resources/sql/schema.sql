@@ -26,11 +26,10 @@ DROP TABLE IF EXISTS dish_image;
 
 CREATE TABLE dish_image
 (
-    dish_image_id INT          NOT NULL AUTO_INCREMENT COMMENT 'dish_image 테이블의 레코드를 식별하기 위한 ID',
     dish_id       INT          NOT NULL COMMENT 'dish 테이블의 레코드를 식별하기 위한 ID',
     image_path    VARCHAR(255) NOT NULL COMMENT '반찬 이미지 경로',
     sequence      INT          NOT NULL DEFAULT 1 COMMENT '반찬 당 이미지 순서',
-    PRIMARY KEY (dish_image_id)
+    PRIMARY KEY (dish_id, image_path)
 );
 
 DROP TABLE IF EXISTS dish_discount;
