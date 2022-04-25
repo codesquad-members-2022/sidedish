@@ -18,6 +18,14 @@
         <variable
             name="badge"
             type="List&lt;String>" />
+
+        <variable
+            name="totalPage"
+            type="java.lang.Integer" />
+
+        <variable
+            name="nowPage"
+            type="java.lang.Integer" />
     </data>
 
 
@@ -41,8 +49,20 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_item_detail_img"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent">
+                </androidx.viewpager2.widget.ViewPager2>
 
+                <TextView
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:totalPageNum= "@{totalPage}"
+                    app:nowPageNum=  "@{nowPage}"
+                    android:id="@+id/tv_viewpager_page_indicator"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="176dp"
+                    />
             </FrameLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

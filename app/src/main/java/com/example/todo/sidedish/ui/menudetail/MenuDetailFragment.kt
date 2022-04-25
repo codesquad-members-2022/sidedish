@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.todo.sidedish.databinding.FragmentMenuDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class MenuDetailFragment : Fragment() {
@@ -42,8 +43,7 @@ class MenuDetailFragment : Fragment() {
         binding.vpItemDetailImg.adapter= viewPagerAdapter
         registerOrderQuantityControlBtn()
         setMenuInfo()
-
-
+        bindViewPagerPageNum()
         viewModel._detailInfo.observe(viewLifecycleOwner) {
             binding.detail = it
             menuDetailAdapter.submitDetailImages(it.detailImages)
@@ -51,7 +51,19 @@ class MenuDetailFragment : Fragment() {
         viewModel._thumbnailImages.observe(viewLifecycleOwner){thumbs->
             viewPagerAdapter.submitThumbnails(thumbs)
             binding.vpItemDetailImg.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+            binding.totalPage= thumbs.size
         }
+    }
+
+    private fun bindViewPagerPageNum(){
+        binding.nowPage=1
+        binding.totalPage= viewModel._thumbnailImages.value?.size
+        binding.vpItemDetailImg.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.nowPage=(position+1)
+            }
+        })
     }
 
     private fun registerOrderQuantityControlBtn(){

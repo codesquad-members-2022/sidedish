@@ -13,3 +13,8 @@ fun loadOriginalPrice(view: TextView, price: String?) {
         view.text = price
     }
 }
+
+@BindingAdapter("nowPageNum", "totalPageNum")
+fun displayPageInfo(view:TextView, nowPageNum:Int, totalPageNum:Int){
+    view.text= "$nowPageNum / $totalPageNum"
+}
