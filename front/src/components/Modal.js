@@ -41,7 +41,7 @@ const PopupCloseButton = styled.button`
 `;
 
 function Modal({ dishes }) {
-  // const relatedDishes = dishes.related_dishes;
+  const relatedDishes = dishes.related_dishes;
   const modal = useRef();
   function closeModal(e) {
     if (e.target !== e.currentTarget) {
