@@ -1,12 +1,13 @@
 import styled, { css } from 'styled-components';
 
-import { HoverInfo } from './HoverInfo';
 import { PriceTag } from './PriceTag';
+import { ProductThumbNail } from './Thumbnail';
 
 import { DiscountBadge } from '@/Components/Badge/DiscountBadge';
 import Colors from '@/Constants/Colors';
+import Fonts from '@/Constants/Fonts';
 
-const CardWrapper = styled.li`
+const ProductCardWrapper = styled.li`
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -18,7 +19,7 @@ const CardWrapper = styled.li`
   ${({ size }) => {
     return size === 'md'
       ? css`
-          .image {
+          .product-thumbnail {
             width: 302px;
             height: 302px;
           }
@@ -29,36 +30,13 @@ const CardWrapper = styled.li`
             margin-right: 16px;
           }
 
-          .image {
+          .product-thumbnail {
             width: 160px;
             height: 160px;
           }
         `
       : null;
   }};
-`;
-
-const CardImgContainer = styled.div`
-  position: relative;
-  width: 411px;
-  height: 411px;
-
-  .productCardImg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &:hover {
-    .hover-info {
-      opacity: 0.8;
-    }
-
-    .mask {
-      opacity: 1;
-    }
-  }
 `;
 
 const Title = styled.span`
@@ -80,18 +58,6 @@ const BadgeWrapper = styled.div`
 const PriceWrapper = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const Mask = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity 150ms;
 `;
 
 const PolicyBadge = ({ priceData: discountPolicy }) => {
@@ -120,14 +86,15 @@ export const ProductCard = ({
   size,
 }) => {
   return (
-    <CardWrapper data-id={id} size={size}>
-      <CardImgContainer className={'image'}>
+    <ProductCardWrapper data-id={id} size={size}>
+      {/* <ProductThumbnail className={'product-thumbnail'}>
         {morningDelivery && <HoverInfo />}
         <Mask className={'mask'} />
-        <img className={'productCardImg'} src={image} alt={'제품사진'} />
-      </CardImgContainer>
-      <Title className="fonts-md">{title}</Title>
-      <Description className="fonts-sm">{description}</Description>
+        <img className={'productImg'} src={image} alt={'제품사진'} />
+      </ProductThumbnail> */}
+      <ProductThumbNail imgUrl={image} morningDelivery={morningDelivery} />
+      <Title className={Fonts.FONTS_MD}>{title}</Title>
+      <Description className={Fonts.FONTS_SM}>{description}</Description>
       <PriceWrapper>
         <PriceTag
           priceData={{
@@ -138,6 +105,6 @@ export const ProductCard = ({
         />
       </PriceWrapper>
       <PolicyBadge priceData={discountPolicy} />
-    </CardWrapper>
+    </ProductCardWrapper>
   );
 };
