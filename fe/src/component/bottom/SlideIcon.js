@@ -7,15 +7,17 @@ import styled, { css } from "styled-components";
 const StyledleftIcon = styled(leftIcon)`
   ${(props) => svgStyles(props)}
   position: absolute;
-  left: -20px;
-  top: 160px;
+  left: 15px;
+  top: 100%;
+  color: blue;
 `;
 
 const StyledrightIcon = styled(rightIcon)`
   ${(props) => svgStyles(props)}
   position: absolute;
-  right: 10px;
-  top: 160px;
+  top: 100%;
+  left: 1330px;
+  color: ${({ isRight }) => (isRight ? "black" : "red")};
 `;
 
 const svgStyles = ({ height, width }) => {
@@ -25,11 +27,12 @@ const svgStyles = ({ height, width }) => {
   `;
 };
 
-const SlideIcon = () => {
+const SlideIcon = ({ onSaveClickedDirection, isRight }) => {
+  console.log(isRight);
   return (
     <>
       <StyledleftIcon />
-      <StyledrightIcon />
+      <StyledrightIcon onClick={onSaveClickedDirection} isRight={isRight} />
     </>
   );
 };
