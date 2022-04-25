@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Card from "../UI/Card";
 import CardsWrapper from "../UI/CardsWrapper";
 import SlideIcon from "./SlideIcon";
+import More from "./More";
 
 const SlideTitle = styled.h5`
   font-size: 24px;
@@ -33,9 +34,10 @@ const Slide = () => {
   const [slideInfo, setSlideInfo] = useState([]);
   const [x, setX] = useState(0);
   useEffect(() => {
-    fetch("https://api.codesquad.kr/onban/soup")
+    fetch("https://api.codesquad.kr/onban/side")
       .then((res) => res.json())
       .then((data) => setSlideInfo(data.body));
+    //promise all사용 예정 -> data한번에 받기(안쓰는 data는 display:none)
   }, []);
 
   const [isrightBtnActive, setIsRightBtnActive] = useState(true);
@@ -54,7 +56,7 @@ const Slide = () => {
 
   return (
     <>
-      <SlideTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SlideTitle>;
+      <SlideTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SlideTitle>
       <SlideWrapper>
         <SlideCardsList currentPlace={x.toString() + "px"}>
           {slideInfo.map((v) => {
@@ -69,10 +71,14 @@ const Slide = () => {
                 s_price={v.s_price}
                 n_price={v.n_price}
                 badge={v.badge}
-              />
+                delivery={v.delivery_type}
+              ></Card>
             );
           })}
         </SlideCardsList>
+        <div style={{ margin: "0 auto" }}>
+          <More />
+        </div>
       </SlideWrapper>
       <SlideIcon
         onSaveClickedDirection={onClickHandler}

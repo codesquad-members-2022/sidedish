@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import StyledDeliveryIcon from "../bottom/Delivery";
 
 const CardImg = styled.img`
   ${({ size }) =>
@@ -58,10 +59,13 @@ const CardBadge = styled.div`
 `;
 
 const CardWrapper = styled.div`
+  position: relative;
   margin-right: 18px;
 `;
 
 const Card = (props) => {
+  console.log(props.delivery && "acitve");
+
   return (
     <CardWrapper>
       <CardImg src={props.image} alt={props.alt} size={props.size} />
@@ -78,6 +82,9 @@ const Card = (props) => {
               </CardBadge>
             ))}
       </CardBadgeWapper>
+      <StyledDeliveryIcon
+        className={props.delivery === undefined ? "" : "active"}
+      />
     </CardWrapper>
   );
 };
