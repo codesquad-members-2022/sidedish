@@ -7,12 +7,11 @@ import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import team14.sidedish.menu.MenuModel;
 
 @ToString
 @Getter
 @AllArgsConstructor
-public class SpecialMenuInfo implements MenuModel {
+public class SpecialMenuInfo {
 	private final String specialTitle;
 	private final Long menuId;
 	private final String menuName;
@@ -21,12 +20,10 @@ public class SpecialMenuInfo implements MenuModel {
 	@Column("MENU_IMAGE_URL")
 	private final String imageUrl;
 
-	@Override
 	public Long getMenuId() {
 		return menuId;
 	}
 
-	@Override
 	public BigDecimal getPrice() {
 		return this.menuPrice;
 	}
