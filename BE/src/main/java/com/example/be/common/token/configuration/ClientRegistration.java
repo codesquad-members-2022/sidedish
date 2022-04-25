@@ -21,6 +21,30 @@ public class ClientRegistration {
         this.redirectUrl = redirectUrl;
     }
 
+    public String getScope() {
+        return scope;
+    }
+
+    public String getTokenUrl() {
+        return tokenUrl;
+    }
+
+    public String getUserInfoUrl() {
+        return userInfoUrl;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
     private static class Builder {
         private String scope;
         private String tokenUrl;
