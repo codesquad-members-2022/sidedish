@@ -9,24 +9,8 @@ class DeliverySectionView: UIView {
     private let deliveryFeeTitle = UILabel.customLabel("배송비", .dishLightGrey, 14)
     private let deliveryFee = UILabel.customLabel("2,500원 (40,000원 이상 구매 시 무료)", .dishGrey, 14)
     
-    private let titleSection: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = CGFloat.defaultInset
-        
-        return stackView
-    }()
-    private let informationSection: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = CGFloat.defaultInset
-        
-        return stackView
-    }()
+    private let titleSection: UIStackView = UIStackView.customStackView(.vertical, .fillEqually, spacing: CGFloat.defaultInset)
+    private let informationSection: UIStackView = UIStackView.customStackView(.vertical, .fillEqually, spacing: CGFloat.defaultInset)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

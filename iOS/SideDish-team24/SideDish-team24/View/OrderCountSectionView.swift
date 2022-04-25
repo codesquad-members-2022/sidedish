@@ -12,10 +12,7 @@ class OrderCountSectionView: UIView {
     private var counter: UILabel = UILabel.customLabel("1", .dishGrey, 14)
     
     private var buttons: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .fill
+        let stackView = UIStackView.customStackView(.horizontal, .fill)
         stackView.alignment = .center
         stackView.layer.cornerRadius = 5
         stackView.clipsToBounds = true

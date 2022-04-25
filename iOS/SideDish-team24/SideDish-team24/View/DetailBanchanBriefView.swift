@@ -17,21 +17,8 @@ class DetailBanchanBriefView: UIView {
     private var normalPrice: UILabel = UILabel.customLabel("15,800원", .dishLightGrey, 16)
     private var specialPrice: UILabel = UILabel.customBadge("특가 정보", .dishBlue)
     
-    private var prices: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
-    private var breifStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    private var prices: UIStackView = UIStackView.customStackView(.horizontal, .fillEqually)
+    private var breifStackView: UIStackView = UIStackView.customStackView(.vertical, .fillEqually)
     
     private var blank: UILabel = {
         let label = UILabel()

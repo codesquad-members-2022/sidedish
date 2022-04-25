@@ -19,6 +19,7 @@
 		6C4CEF522815597900AFB684 /* OrderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF512815597900AFB684 /* OrderSectionView.swift */; };
 		6C4CEF542815648800AFB684 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF532815648800AFB684 /* UIButtonExtension.swift */; };
 		6C4CEF5728156F0900AFB684 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6C4CEF5628156F0900AFB684 /* .swiftlint.yml */; };
+		6C4CEF59281656FB00AFB684 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */; };
 		6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0801280D080000D2D401 /* AppDelegate.swift */; };
 		6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0803280D080000D2D401 /* SceneDelegate.swift */; };
 		6CEE0806280D080000D2D401 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0805280D080000D2D401 /* MainViewController.swift */; };
@@ -49,6 +50,7 @@
 		6C4CEF512815597900AFB684 /* OrderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSectionView.swift; sourceTree = "<group>"; };
 		6C4CEF532815648800AFB684 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		6C4CEF5628156F0900AFB684 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
 		6CEE07FE280D080000D2D401 /* SideDish-team24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideDish-team24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEE0801280D080000D2D401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEE0803280D080000D2D401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				6C162B7C280ED8F9003399BC /* UILabelExtension.swift */,
 				6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */,
 				6C4CEF532815648800AFB684 /* UIButtonExtension.swift */,
+				6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				6CEE0818280D616E00D2D401 /* Dish.swift in Sources */,
 				6C105839280E7FD500C0B462 /* BriefBanchanReusableView.swift in Sources */,
 				6C4CEF522815597900AFB684 /* OrderSectionView.swift in Sources */,
+				6C4CEF59281656FB00AFB684 /* StackViewExtension.swift in Sources */,
 				6C162B7D280ED8F9003399BC /* UILabelExtension.swift in Sources */,
 				6C105832280E6A0E00C0B462 /* UIColorExtension.swift in Sources */,
 				F5F1A1AA280E4736006EFDE2 /* DetailBanchanViewController.swift in Sources */,

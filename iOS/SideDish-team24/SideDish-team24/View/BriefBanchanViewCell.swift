@@ -16,21 +16,9 @@ class BriefBanchanViewCell: UICollectionViewCell {
     private var normalPrice: UILabel = UILabel.customLabel("15,800", .dishLightGrey, 14)
     private var specialPrice: UILabel = UILabel.customBadge("특가정보", .dishBlue)
     
-    private var prices: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
-    private var breifStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    private var breifStackView: UIStackView = UIStackView.customStackView(.vertical, .fillEqually)
+    private var specialPrices: UIStackView = UIStackView.customStackView(.horizontal, .fillEqually)
+    private var prices: UIStackView = UIStackView.customStackView(.horizontal, .fillProportionally)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
