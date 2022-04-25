@@ -4,7 +4,7 @@ import LeftArrowBtn from "../core/LeftArrowBtn";
 import RightArrowBtn from "../core/RightArrowBtn";
 import ItemCards from "./ItemCards";
 
-const Carousel = ({ carouselState, len }) => {
+const Carousel = ({ cardClickState, setCardClickState, carouselState, len }) => {
   const [positionState, setPositionState] = useState("-80");
   const handleClickLeftBtn = () => {
     setPositionState(Number(positionState) + 1475);
@@ -22,7 +22,12 @@ const Carousel = ({ carouselState, len }) => {
       </RightArrowBtnSpan>
       <CarouselView>
         <CarouselItems position={positionState}>
-          <ItemCards dataState={[...carouselState.prev, ...carouselState.curr, ...carouselState.next]} len={len} />
+          <ItemCards
+            cardClickState={cardClickState}
+            setCardClickState={setCardClickState}
+            dataState={[...carouselState.prev, ...carouselState.curr, ...carouselState.next]}
+            len={len}
+          />
         </CarouselItems>
       </CarouselView>
     </CarouselContainer>

@@ -7,12 +7,15 @@ import carouselMockData from "../carouselMockData.json";
 import { LABEL_ATTRIBUTES, CARD_LENGHTHS } from "../consts/constants";
 import Carousel from "./Carousel";
 import DivisionLine from "../core/Line";
+import Popup from "./Popup";
+import relatedMockData from "../relatedListMockData.json";
 
 const Main = () => {
   const lnb = mockData.lnb;
   const [lnbState, setLnbState] = useState(lnb[0]);
   const [dataState, setDataState] = useState(mockData.data);
   const [carouselState, setCarouselDataState] = useState(carouselMockData);
+  const [relatedListState, setRelatedListState] = useState(relatedMockData);
 
   const handleLnbState = (event) => {
     setLnbState((lnbState) => (lnbState = event.target.textContent));
@@ -37,6 +40,11 @@ const Main = () => {
     </MainLnbContainer>
   );
 
+  const [cardClickState, setCardClickState] = useState(false);
+  const [cardInfoState, setCardInfoState] = useState({
+    /* ... */
+  });
+
   return (
     <>
       <MainContainer>
@@ -45,9 +53,23 @@ const Main = () => {
           <Title>한 번 주문하면 두 번 반하는 반찬</Title>
         </MainTitleContainer>
         {mainLnb}
+        <ItemCards
+          cardClickState={cardClickState}
+          setCardClickState={setCardClickState}
+          cardInfoState={cardInfoState}
+          setCardInfoState={setCardInfoState}
+          dataState={dataState}
           len={CARD_LENGHTHS.BIG}
+        />
         <DivisionLine height="1px" color="#EBEBEB" />
-        <Carousel carouselState={carouselState} len={CARD_LENGHTHS.SMALL} />
+        <Carousel cardClickState={cardClickState} setCardClickState={setCardClickState} carouselState={carouselState} len={CARD_LENGHTHS.SMALL} />
+        <Popup
+          cardClickState={cardClickState}
+          setCardClickState={setCardClickState}
+          cardInfoState={cardInfoState}
+          relatedListState={relatedListState}
+          setRelatedListState={setRelatedListState}
+        />
       </MainContainer>
     </>
   );
