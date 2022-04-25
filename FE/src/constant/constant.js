@@ -35,6 +35,7 @@ export const categoryText = [
   "우리 아이 영양 반찬",
 ];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 export const labelTitles = ["런칭특가", "이벤트특가"];
 
@@ -45,3 +46,7 @@ export const imageSize = {
 };
 =======
 >>>>>>> d91e1d9 (Feat: constant 파일을 만들어서 상수 변수를 관리함)
+=======
+
+export const labelTitles = ["런칭특가", "이벤트특가"];
+>>>>>>> d7b694f ([#13] Refactor: label 컴포넌트 수정)
