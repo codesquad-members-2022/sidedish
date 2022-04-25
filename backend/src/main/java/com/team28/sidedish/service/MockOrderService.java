@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MockOrderService {
 
-    private final String OUT_OF_STOCK = "재고가 부족합니다.";
-    private final int MAX_QUANTITY = 5;
+    private static final String OUT_OF_STOCK = "재고가 부족합니다.";
+    private static final int MAX_QUANTITY = 5;
 
     private boolean isEnoughStockCount(Long productId, int quantity) {
         return quantity <= MAX_QUANTITY;

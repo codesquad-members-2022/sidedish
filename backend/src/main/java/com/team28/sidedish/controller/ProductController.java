@@ -10,14 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "products", description = "상품 조회 API")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/products")
 public class ProductController {
 
     private final MockProductService productService;
@@ -39,7 +37,7 @@ public class ProductController {
                     )
             }
     )
-    @GetMapping("/products")
+    @GetMapping
     public ProductListResponse productList(@RequestParam Long categoryId) {
         return productService.findProductList(categoryId);
     }
@@ -60,7 +58,7 @@ public class ProductController {
                     )
             }
     )
-    @GetMapping("/products/{productId}")
+    @GetMapping("/{productId}")
     public ProductDetailResponse productDetail(@PathVariable Long productId) {
         return productDetailService.findProductDetail(productId);
     }
