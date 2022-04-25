@@ -1,6 +1,7 @@
 import Foundation
 
 class Ordering{
+final class Ordering{
     private var foodMap: [Category:[String:Food]] = {
         var map: [Category:[String:Food]] = [:]
         for category in Category.allCases {
@@ -64,7 +65,7 @@ class Ordering{
         }
     }
     
-    func getFoodCount(category: Category)-> Int{
+    func getFoodCountInCertainCategory(category: Category)-> Int{
        return foodMap[category]?.count ?? 0
     }
     

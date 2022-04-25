@@ -53,7 +53,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let ordering = ordering else { return 0 }
         let category = ordering.getCategoryWithIndex(index: section)
-        return ordering.getFoodCount(category: category)
+        return ordering.getFoodCountInCertainCategory(category: category)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
