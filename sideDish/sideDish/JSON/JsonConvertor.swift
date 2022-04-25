@@ -9,16 +9,41 @@ import Foundation
 
 class JsonConvertor{
     
-    func mockLoad(file: String){
+    static func mockLoad(file: String) -> [Food]?{
         let fileName = file
         let type = "json"
         
-        guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: type) else { return  }
-        
+        guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: type) else { return nil }
         do {
             let data = try Data(contentsOf: fileLocation)
-            guard let decodeData: [Food] = JsonConvertor.decodeJsonArray(data: data) else { return }
-        } catch {
+            let result = try JSONDecoder().decode(Response.self, from: data)
+            
+            if result.statusCode == 200{
+                return result.body
+            } else{
+                return nil
+            }
+
+            } catch {
+                print(error)
+            }
+        return nil 
+    }
+    
+    static func decodeJson<T: Codable>(data: Data) -> T?{
+        do{
+            let result = try JSONDecoder().decode(T.self, from: data)
+            return result
+        } catch{
+            guard let error = error as? DecodingError else { return nil }
+            
+            switch error{
+            case .dataCorrupted(let context):
+                print(context.codingPath, context.debugDescription, context.underlyingError ?? "", separator: "\n")
+                return nil
+            default :
+                return nil
+            }
         }
     }
     
