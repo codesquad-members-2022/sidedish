@@ -76,6 +76,6 @@ class ProductsControllerTest {
 				List.of(new Image("http://kukukukukukukukuku.com/test2.jpg")),
 				"하하하 테스트 음식", "맛있어요", 8370, "main", "soup"));
 
-		return productsDtoMapper.toProductsMealTypeResponseFromDomain(products);
+		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
 	}
 }
