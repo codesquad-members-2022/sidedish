@@ -12,7 +12,7 @@ class ViewPagerAdapter() :RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>(){
     class ViewHolder(private val binding: ItemViepagerBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(imageUri:String){
-            binding.thumb= imageUri
+            binding.thumbnail= imageUri
         }
     }
 

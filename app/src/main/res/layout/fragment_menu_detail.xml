@@ -90,7 +90,7 @@
                 <TextView
                     android:id="@+id/tv_menu_origin_price"
                     style="@style/TextMedium"
-                    cancelText="@{detail.NPrice}"
+                    cancelText="@{detail.originPrice}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
