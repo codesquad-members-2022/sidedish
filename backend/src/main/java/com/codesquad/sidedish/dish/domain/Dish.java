@@ -14,15 +14,19 @@ public class Dish {
     @Column(value = "dish_id")
     private Integer id;
 
-    private final Integer categoryId;
-    private final String title;
-    private final String description;
-    private final Integer price;
-    private final Integer stock;
+    private String title;
+    private String description;
+    private Integer price;
+    private Integer stock;
 
-    // entity mapping
+    // 연관관계 수동 매핑 필드
+    @Transient
+    private Integer categoryId;
     @Transient
     private DishImage dishImage;
+
+    private Dish() {
+    }
 
     public Dish(Integer id, String title, String description, Integer price, Integer stock,
         Integer categoryId) {
