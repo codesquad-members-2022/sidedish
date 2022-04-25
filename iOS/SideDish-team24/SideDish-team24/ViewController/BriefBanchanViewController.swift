@@ -3,10 +3,14 @@ import UIKit
 class BriefBanchanViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet private weak var briefBanchanList: UICollectionView!
+    private let mockData = MockData()
+    var tmp: [Dishes] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tmp.append(mockData.mainDishes)
+        tmp.append(mockData.soupDishes)
+        tmp.append(mockData.sideDishes)
         self.registerCollectionView()
     }
 }

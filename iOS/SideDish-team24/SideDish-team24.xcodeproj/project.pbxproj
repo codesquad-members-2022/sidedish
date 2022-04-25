@@ -32,6 +32,7 @@
 		F57135BE280E4ABB0040C5A4 /* BriefBanchanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */; };
 		F57135C2280E98500040C5A4 /* DetailBanchanBriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57135C1280E98500040C5A4 /* DetailBanchanBriefView.swift */; };
 		F5F1A1AA280E4736006EFDE2 /* DetailBanchanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F1A1A9280E4736006EFDE2 /* DetailBanchanViewController.swift */; };
+		F5F2088F28163805004F50A3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2088E28163805004F50A3 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanViewCell.swift; sourceTree = "<group>"; };
 		F57135C1280E98500040C5A4 /* DetailBanchanBriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBanchanBriefView.swift; sourceTree = "<group>"; };
 		F5F1A1A9280E4736006EFDE2 /* DetailBanchanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBanchanViewController.swift; sourceTree = "<group>"; };
+		F5F2088E28163805004F50A3 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			children = (
 				6CEE0817280D616E00D2D401 /* Dish.swift */,
 				F56668C0280D86B0007ECAD0 /* Dishes.swift */,
+				F5F2088E28163805004F50A3 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				6C162B7B280ED461003399BC /* DeliverySectionView.swift in Sources */,
 				6C10583B280E893100C0B462 /* CGFloatExtension.swift in Sources */,
 				F57135C2280E98500040C5A4 /* DetailBanchanBriefView.swift in Sources */,
+				F5F2088F28163805004F50A3 /* MockData.swift in Sources */,
 				6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
