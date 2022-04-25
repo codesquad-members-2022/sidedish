@@ -11,9 +11,13 @@ import App from "./App";
 =======
 =======
 import App from "@src/App";
+<<<<<<< HEAD
 >>>>>>> e0194a0 ([#8] Refactor: import 경로 수정)
 window.React = React;
 >>>>>>> 3caa9c6 ([#6] Chore: sass 모듈 추가, react 인식 불가 에러 해결)
+=======
+
+>>>>>>> b3671d9 ([#6] Chore: babel config에 `runtime: automatic' 추가)
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
