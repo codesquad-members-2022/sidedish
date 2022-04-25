@@ -1,5 +1,6 @@
 package com.codesquadhan.sidedish.di
 
+import com.codesquadhan.sidedish.network.DetailService
 import com.codesquadhan.sidedish.network.MenuService
 import dagger.Module
 import dagger.Provides
@@ -43,5 +44,10 @@ object NetworkModule{
         return retrofit.create(MenuService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideDetailApiService(retrofit: Retrofit): DetailService {
+        return retrofit.create(DetailService::class.java)
+    }
 
 }

@@ -26,9 +26,9 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
         viewModelScope.launch {
             menuMainList.clear()
 
-            val mainResponse = async { menuRepository.getMainMenu() ?: throw RuntimeException("test") }
-            val soupResponse = async { menuRepository.getSoupMenu() ?: throw RuntimeException("test") }
-            val sideResponse = async { menuRepository.getSideMenu() ?: throw RuntimeException("test") }
+            val mainResponse = async { menuRepository.getMainMenu() ?: throw RuntimeException("why..?") }
+            val soupResponse = async { menuRepository.getSoupMenu() ?: throw RuntimeException("why..?") }
+            val sideResponse = async { menuRepository.getSideMenu() ?: throw RuntimeException("why..?") }
 
             menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "모두가 좋아하는\n든든한 메인 요리"))
             menuMainList.addAll(mainResponse.await())

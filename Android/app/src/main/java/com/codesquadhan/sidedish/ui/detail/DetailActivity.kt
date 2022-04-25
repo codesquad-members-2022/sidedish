@@ -1,13 +1,16 @@
 package com.codesquadhan.sidedish.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
@@ -21,12 +24,15 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
-
-        setViewPager()
-        setDeatil()
+        val id = intent.getIntExtra("id", 0)
+        Log.d("AppTest", "menuId : $id")
 
         setViewPagerListener()
+        setViewPager()
+        setDeatil()
+        setDetailInfo()
 
+        detailViewModel.getMenuDetail(id)
     }
 
     fun setViewPagerListener() {
@@ -40,15 +46,21 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+    fun setDetailInfo(){
+        detailViewModel.detailResponseLd.observe(this){
+            binding.detailInfo = it
+        }
+    }
+
     fun setViewPager(){
-        viewPagerAdapter = ViewPagerAdapter(arrayListOf<String>())
+        viewPagerAdapter = ViewPagerAdapter()
         binding.vpDetail.apply {
             adapter = viewPagerAdapter
-            orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            //orientation = ViewPager2.ORIENTATION_HORIZONTAL
         }
 
         detailViewModel.vpImageListLd.observe(this){
-            viewPagerAdapter.updateImageList(it)
+            viewPagerAdapter.submitList(it.toList())
             binding.tvTotalPage.text = it.size.toString()
         }
     }
