@@ -4,17 +4,16 @@ import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("users")
+@Table("user")
 @Getter
 public class User {
 
     @Id
-    private Long user_id;
-    private String userLoginId;
-    private String password;
+    private Long userId;
+    private String name;
+    private String username;
+    private String avatarUrl;
+    private String email;
+    private Bio bio;
 
-    public User(String userLoginId, String password) {
-        this.userLoginId = userLoginId;
-        this.password = password;
-    }
 }

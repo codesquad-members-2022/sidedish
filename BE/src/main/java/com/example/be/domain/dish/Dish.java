@@ -14,17 +14,17 @@ public class Dish {
     private String description;
     private BigDecimal normalPrice;
     private Badge badge;
-    private DeliveryType deliveryType;
+    private DeliveryPriceOption deliveryPriceOption;
     private String thumbnail;
     private int count;
     private DishStatus dishStatus;
 
-    public Dish(String name, String description, BigDecimal normalPrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, int count) {
+    public Dish(String name, String description, BigDecimal normalPrice, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, int count) {
         this.name = name;
         this.description = description;
         this.normalPrice = normalPrice;
         this.badge = badge;
-        this.deliveryType = deliveryType;
+        this.deliveryPriceOption = deliveryPriceOption;
         this.thumbnail = thumbnail;
         this.dishStatus = dishStatus;
         this.count = count;
@@ -50,8 +50,8 @@ public class Dish {
         return badge;
     }
 
-    public DeliveryType getDeliveryType() {
-        return deliveryType;
+    public DeliveryPriceOption getDeliveryType() {
+        return deliveryPriceOption;
     }
 
     public String getThumbnail() {

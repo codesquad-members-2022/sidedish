@@ -2,7 +2,7 @@ package com.example.be.repository.dish.jdbc;
 
 import com.example.be.controller.dish.dto.PlanningDataRequest;
 import com.example.be.domain.dish.Badge;
-import com.example.be.domain.dish.DeliveryType;
+import com.example.be.domain.dish.DeliveryPriceOption;
 import com.example.be.domain.dish.DishStatus;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -31,7 +31,7 @@ public class DishJdbcReadRepository {
                     rs.getString("description"),
                     rs.getBigDecimal("normal_price"),
                     Badge.valueOf(rs.getString("badge")),
-                    DeliveryType.valueOf(rs.getString("delivery_type")),
+                    DeliveryPriceOption.valueOf(rs.getString("delivery_type")),
                     rs.getString("thumbnail"),
                     DishStatus.valueOf(rs.getString("dish_status")),
                     rs.getLong("category_id"),

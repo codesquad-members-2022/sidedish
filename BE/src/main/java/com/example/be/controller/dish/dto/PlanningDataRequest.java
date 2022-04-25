@@ -1,7 +1,7 @@
 package com.example.be.controller.dish.dto;
 
 import com.example.be.domain.dish.Badge;
-import com.example.be.domain.dish.DeliveryType;
+import com.example.be.domain.dish.DeliveryPriceOption;
 import com.example.be.domain.dish.DishStatus;
 
 import java.math.BigDecimal;
@@ -18,13 +18,13 @@ public class PlanningDataRequest {
     private Long categoryId;
     private String title;
 
-    public PlanningDataRequest(Long dishId, String name, String description, BigDecimal normalPrice, Badge badge, DeliveryType deliveryType, String thumbnail, DishStatus dishStatus, Long categoryId, String title) {
+    public PlanningDataRequest(Long dishId, String name, String description, BigDecimal normalPrice, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, Long categoryId, String title) {
         this.dishId = dishId;
         this.name = name;
         this.description = description;
         this.normalPrice = normalPrice;
         this.badge = badge.name();
-        this.deliveryType = deliveryType.name();
+        this.deliveryType = deliveryPriceOption.name();
         this.thumbnail = thumbnail;
         this.dishStatus = dishStatus.name();
         this.categoryId = categoryId;

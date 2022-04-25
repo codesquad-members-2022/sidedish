@@ -1,4 +1,4 @@
-package com.example.be.domain;
+package com.example.be.domain.image;
 
 import org.springframework.data.relational.core.mapping.Table;
 

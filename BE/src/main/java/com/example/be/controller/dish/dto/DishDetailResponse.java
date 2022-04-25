@@ -1,7 +1,7 @@
 package com.example.be.controller.dish.dto;
 
 import com.example.be.domain.dish.Badge;
-import com.example.be.domain.dish.DeliveryType;
+import com.example.be.domain.dish.DeliveryPriceOption;
 import com.example.be.domain.dish.Dish;
 import com.example.be.domain.dish.DishStatus;
 
@@ -14,7 +14,7 @@ public class DishDetailResponse {
     private String description;
     private BigDecimal normalPrice;
     private Badge badge;
-    private DeliveryType deliveryType;
+    private DeliveryPriceOption deliveryPriceOption;
     private String thumbnail;
     private DishStatus dishStatus;
     private Long categoryId;
@@ -25,7 +25,7 @@ public class DishDetailResponse {
         this.description = dish.getDescription();
         this.normalPrice = dish.getNormalPrice();
         this.badge = dish.getBadge();
-        this.deliveryType = dish.getDeliveryType();
+        this.deliveryPriceOption = dish.getDeliveryType();
         this.thumbnail = dish.getThumbnail();
         this.dishStatus = dish.getDishStatus();
     }
@@ -50,8 +50,8 @@ public class DishDetailResponse {
         return badge;
     }
 
-    public DeliveryType getDeliveryType() {
-        return deliveryType;
+    public DeliveryPriceOption getDeliveryType() {
+        return deliveryPriceOption;
     }
 
     public String getThumbnail() {

@@ -1,6 +1,6 @@
 package com.example.be.domain.dish;
 
-public enum DeliveryType {
+public enum DeliveryPriceOption {
     ROCKET_DELIVERY,
-    NONE;
+    FREE;
 }
