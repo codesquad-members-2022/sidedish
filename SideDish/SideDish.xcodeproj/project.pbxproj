@@ -11,6 +11,10 @@
 		376A6B9B280EA8040016F0CE /* Ordering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
 		37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBAE8528113209000A941D /* FoodCollectionViewCell.swift */; };
 		6C6F1567A61EB71FDAFADBA3 /* Pods_SideDishTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58366F2461797F38FD359AF0 /* Pods_SideDishTests.framework */; };
+		B50782B72816866900445859 /* NetworkHandlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782B52816866900445859 /* NetworkHandlable.swift */; };
+		B50782B82816866900445859 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782B62816866900445859 /* NetworkHandler.swift */; };
+		B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */; };
+		B50782BC2816BA9C00445859 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782BB2816BA9C00445859 /* DataCache.swift */; };
 		B50A0C38280E9A1500A49273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C36280E9A1500A49273 /* Main.storyboard */; };
 		B50A0C3A280E9A1700A49273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C39280E9A1700A49273 /* Assets.xcassets */; };
 		B50A0C3D280E9A1700A49273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C3B280E9A1700A49273 /* LaunchScreen.storyboard */; };
