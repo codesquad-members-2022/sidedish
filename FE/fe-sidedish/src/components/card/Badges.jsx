@@ -1,10 +1,10 @@
-import { Badge, BadgeContainer } from './Card.style';
+import * as S from './Card.style';
 
 const Badges = ({ badges }) => {
   return (
-    <BadgeContainer>
-      {badges.map((badge, index) => <Badge key={index} type={`${badge}`}>{badge}</Badge>)}
-    </BadgeContainer>
+    <S.BadgeContainer>
+      {badges.map((badge, index) => <S.Badge key={index} type={`${badge}`}>{badge}</S.Badge>)}
+    </S.BadgeContainer>
   )
 }
 

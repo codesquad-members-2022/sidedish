@@ -1,12 +1,12 @@
 import { ButtonContent } from '../../constants/slider'
-import { Button } from './Slider.style';
+import * as S from './Slider.style';
 
 const SlideButton = ({ buttonType }) => {
   return (
-    <Button type={buttonType}>
+    <S.Button type={buttonType}>
       {ButtonContent[buttonType].text}
       {ButtonContent[buttonType].img}
-    </Button>
+    </S.Button>
   )
 }
 

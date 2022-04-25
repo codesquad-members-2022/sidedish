@@ -1,20 +1,20 @@
-import { Container, Wrapper, Title, CardList } from './Category.style';
+import * as S from './Category.style';
 import Card from '../card/Card';
 import Slider from '../slider/Slider';
 
 const Category = ({ category, categoryList }) => {
 
   return (
-    <Container>
-      <Wrapper>
-        <Title>{category}</Title>
+    <S.Container>
+      <S.Wrapper>
+        <S.Title>{category}</S.Title>
         <Slider>
-          <CardList>
+          <S.CardList>
             {categoryList.map(dish => <Card key={dish.menuId} dish={dish} />)}
-          </CardList>
+          </S.CardList>
         </Slider>
-      </Wrapper>
-    </Container>
+      </S.Wrapper>
+    </S.Container>
   );
 };
 

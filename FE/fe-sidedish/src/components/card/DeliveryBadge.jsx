@@ -1,13 +1,12 @@
-import { RoundBadge, RoundBadgeBackground } from './Card.style';
+import * as S from './Card.style';
 
-const DevlieryBadge = () => {
+const DevlieryBadge = ({ children }) => {
   return (
-    <RoundBadgeBackground>
-      <RoundBadge>
-        <p>새벽 배송</p>
-        <p>전국 택배</p>
-      </RoundBadge>
-    </RoundBadgeBackground>
+    <S.RoundBadgeBackground>
+      <S.RoundBadge>
+        {children}
+      </S.RoundBadge>
+    </S.RoundBadgeBackground>
   )
 }
 

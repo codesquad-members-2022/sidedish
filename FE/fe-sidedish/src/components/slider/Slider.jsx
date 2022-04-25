@@ -1,16 +1,16 @@
-import { Container, Wrapper } from './Slider.style';
+import * as S from './Slider.style';
 import { ButtonType } from '../../constants/slider';
 import SlideButton from './SlideButton';
 
 const Slider = ({ children }) => {
   return (
-    <Container>
-      <Wrapper>
+    <S.Container>
+      <S.Wrapper>
         {children}
-      </Wrapper>
+      </S.Wrapper>
       <SlideButton buttonType={ButtonType.PREV} />
       <SlideButton buttonType={ButtonType.NEXT} />
-    </Container>
+    </S.Container>
   );
 };
 
