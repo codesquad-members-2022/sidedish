@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.MappedCollection;
-import sidedish.domain.images.Images;
+import sidedish.domain.images.Image;
 
 import java.util.List;
 
@@ -25,9 +25,9 @@ public class Item {
 	private double discountRate;
 	private boolean morningDelivery;
 	@MappedCollection(idColumn = "item_id", keyColumn = "id")
-	private List<Images> images;
+	private List<Image> images;
 
-	public Item(Long id, Long mainCategoryId, String title, String description, int price, int quantity, String discountPolicy, boolean morningDelivery, List<Images> images) {
+	public Item(Long id, Long mainCategoryId, String title, String description, int price, int quantity, String discountPolicy, boolean morningDelivery, List<Image> images) {
 		this.id = id;
 		this.mainCategoryId = mainCategoryId;
 		this.title = title;

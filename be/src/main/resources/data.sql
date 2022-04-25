@@ -58,29 +58,29 @@ insert into item (main_category_id, title, `description`, price, quantity, disco
 values (3, '야채 어묵볶음', '첨가물 없는 순수어묵과 야채의 만남', 4900, 2, 'lunch', false);
 
 
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (1, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (2, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (3, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (4, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (5, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (6, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (7, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (8, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (9, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (10, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (11, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
-insert into images (item_id, url, main_status)
+insert into image (item_id, url, main_status)
 values (12, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
 
 

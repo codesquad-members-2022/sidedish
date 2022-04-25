@@ -1,7 +1,7 @@
 package sidedish.web.dto;
 
 import org.springframework.stereotype.Component;
-import sidedish.domain.images.Images;
+import sidedish.domain.images.Image;
 import sidedish.domain.item.Item;
 import sidedish.web.dto.image.ResponseImagesDto;
 import sidedish.web.dto.item.ResponseItemDto;
@@ -19,7 +19,7 @@ public class DtoMapper {
         return new ResponseItemDto(item, images);
     }
 
-    public ResponseImagesDto mapImageDomainToDto(Images images) {
-        return new ResponseImagesDto(images);
+    public ResponseImagesDto mapImageDomainToDto(Image image) {
+        return new ResponseImagesDto(image);
     }
 }

@@ -1,4 +1,4 @@
-drop table if exists orders, images, dish_event, item, event_category, sub_category, main_category;
+drop table if exists `order`, image, dish_event, item, event_category, sub_category, main_category;
 
 create table main_category
 (
@@ -41,7 +41,7 @@ create table dish_event
     FOREIGN KEY (event_id) references event_category (id)
 );
 
-create table images
+create table image
 (
     id          bigint      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     item_id     bigint      NOT NULL,
@@ -50,7 +50,7 @@ create table images
     FOREIGN KEY (item_id) references item (id)
 );
 
-create table orders
+create table `order`
 (
     id             bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
     item_id        bigint NOT NULL,
