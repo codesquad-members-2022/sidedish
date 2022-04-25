@@ -15,6 +15,7 @@ public class DetailMenuResponse {
 	private String deliveryInfo;
 	private int fee;
 	private int freeShippingStartingPrice;
+	private int stock;
 	private List<String> mainImage;
 	private List<String> detailImage;
 
@@ -26,6 +27,7 @@ public class DetailMenuResponse {
 		this.deliveryInfo = menu.getDeliveryInfo();
 		this.fee = menu.getFee();
 		this.freeShippingStartingPrice = menu.getFreeShippingStartingPrice();
+		this.stock = menu.getStock();
 		mainImage = menu.getImages().stream()
 			.filter(Image::getIsMainImage)
 			.map(Image::getImagePath)
@@ -62,6 +64,10 @@ public class DetailMenuResponse {
 
 	public int getFreeShippingStartingPrice() {
 		return freeShippingStartingPrice;
+	}
+
+	public int getStock() {
+		return stock;
 	}
 
 	public List<String> getMainImage() {

@@ -17,7 +17,7 @@ public class Menu {
 	private int fee;
 	private int freeShippingStartingPrice;
 	private String deliveryInfo;
-	private Integer stock;
+	private int stock;
 	private String imagePath;
 	@MappedCollection(idColumn = "MENU_ID", keyColumn = "ID")
 	private List<Image> images;
@@ -67,6 +67,11 @@ public class Menu {
 	public String getDeliveryInfo() {
 		return deliveryInfo;
 	}
+
+	public int getStock() {
+		return stock;
+	}
+
 	public List<Image> getImages() {
 		return images;
 	}
