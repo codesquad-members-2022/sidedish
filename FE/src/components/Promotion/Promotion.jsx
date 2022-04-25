@@ -86,7 +86,7 @@ function PromotionSection({ dataName, dataID }) {
     return (
       <article className="menu-article" key={`article${index}`}>
         <figure className="menu-article__figure">
-          <img src={card.main_image}></img>
+          <img src={card.main_image} alt="menu-image"></img>
         </figure>
         <div className="menu-article__description">
           <p className="menu-article__title">{card.item_name}</p>
