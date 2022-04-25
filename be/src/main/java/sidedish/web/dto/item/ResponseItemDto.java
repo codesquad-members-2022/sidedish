@@ -3,6 +3,7 @@ package sidedish.web.dto.item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import sidedish.domain.item.Item;
+import sidedish.web.dto.image.ResponseImagesDto;
 
 import java.util.List;
 
@@ -17,19 +18,18 @@ public class ResponseItemDto {
     private String discountPolicy;
     private double discountRate;
     private boolean morningDelivery;
-    private String mainImage;
-    private List<String> tabList;
+    private List<ResponseImagesDto> images;
 
-    public ResponseItemDto(Item item, String mainImage, List<String> tabList) {
+    public ResponseItemDto(Item item, List<ResponseImagesDto> images) {
         this.id = item.getId();
         this.title = item.getTitle();
         this.description = item.getDescription();
         this.price = item.getPrice();
-        this.accumulate = item.getPrice() * 0.01;
+        this.accumulate = item.getAccumulate();
         this.discountPolicy = item.getDiscountPolicy();
-        this.discountRate = 0.1;
+        this.discountRate = item.getDiscountRate();
         this.morningDelivery = item.isMorningDelivery();
-        this.mainImage = mainImage;
-        this.tabList = tabList;
+        this.images = images;
+
     }
 }

@@ -10,10 +10,10 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 public class Order {
 
-	@Id
-	private Long id;
-	private Long dishId;
-	private int orderQuantity;
-	private int totalPrice;
-	private boolean deliveryFee;
+    @Id
+    private Long id;
+    private Long dishId;
+    private int orderQuantity;
+    private int totalPrice;
+    private boolean deliveryFee;
 }
