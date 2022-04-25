@@ -5,7 +5,7 @@ public enum EventCategory {
 
 	private final String name;
 
-	EventCategory(String name) {
+	EventCategory(final String name) {
 		this.name = name;
 	}
 
