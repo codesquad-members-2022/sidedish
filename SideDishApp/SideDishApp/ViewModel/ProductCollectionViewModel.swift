@@ -6,75 +6,74 @@
 //
 
 import Foundation
-import UIKit.UIImage
-import UIKit
+
 // This is going to represent single viewModel that drives productCollectionView
 
 struct CategorySectionViewModel {
     var type: ProductType
-    var productViewModel: [ProductCellViewModel]
+    var productVMs: [ProductCellViewModel]
 }
 
 struct ProductCollectionViewModel {
 
     private let categoryManager = CategoryManager()
-    private var imageCache = NSCache<NSURL, UIImage>()
-    private let categoryType = [0: ProductType.main, 1: ProductType.soup, 2: ProductType.side]
+    private var imageCache = NSCache<NSURL, NSData>()
+    var categoryVMs: [ProductType: Observable<CategorySectionViewModel>]
 
-    public var cellViewModels: Observable<[CategorySectionViewModel]> = Observable<[CategorySectionViewModel]>([])
+    init () {
+        let placeHolders = (0..<5).map({ _ in
+            ProductCellViewModel.makePlaceHolder()
+        })
+        let placeHolderCategory =  CategorySectionViewModel(type: .main, productVMs: placeHolders)
+
+        categoryVMs = [.main: Observable<CategorySectionViewModel>(placeHolderCategory),
+                         .side: Observable<CategorySectionViewModel>(),
+                        .soup: Observable<CategorySectionViewModel>()]
+    }
 
     func countProduct(section: Int) -> Int {
-        self.cellViewModels.value[section].productViewModel.count
+        let targetType = ProductType.allCases[section]
+        guard let productVMs = categoryVMs[targetType]?.value?.productVMs else {return 0}
+        return productVMs.count
     }
 
     func countSection() -> Int {
-        self.cellViewModels.value.count
+        self.categoryVMs.count
     }
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
-        let targetType = categoryType[indexPath.item]
-        guard let index = cellViewModels.value.firstIndex(where: {$0.type == targetType}) else {return nil}
-        let targetCellViewModel = cellViewModels.value[index]
-        return targetCellViewModel.productViewModel[indexPath.item]
+        let targetType = ProductType.allCases[indexPath.section]
+        guard let productVMs = categoryVMs[targetType]?.value?.productVMs else {return nil}
+        return productVMs[indexPath.item]
     }
 
-    func fetchCategories() {
-        var temp = [CategorySectionViewModel]()
-
-        let dispatchGroup = DispatchGroup()
-
-        for type in ProductType.allCases {
-            dispatchGroup.enter()
-
-            categoryManager.fetchCategory(of: type) { category in
-                let productCellVMs = category.product.compactMap { product in
-                    ProductCellViewModel(product: product)
-                }
-
-                let categorySectionVM = CategorySectionViewModel(type: type, productViewModel: productCellVMs)
-
-                temp.append(categorySectionVM)
-
-                dispatchGroup.leave()
-            }
-        }
-
-        dispatchGroup.notify(queue: .global(), work: DispatchWorkItem {
-            cellViewModels.value = temp
+    func fetchAllCategories() {
+        ProductType.allCases.forEach({
+            fetchCategories(of: $0)
         })
     }
 
-    func fetchImage(from url: URL, then completion: @escaping (UIImage?) -> Void) {
+    private func fetchCategories(of type: ProductType) {
+        categoryManager.fetchCategory(of: type) { category in
+            let productCellVMs = category.product.compactMap { product in
+                ProductCellViewModel(product: product)
+            }
+            let categoryVM = CategorySectionViewModel(type: type, productVMs: productCellVMs)
+            categoryVMs[type]?.value = categoryVM
+        }
+    }
+
+    func fetchImage(from url: URL, then completion: @escaping (NSData?) -> Void) {
         if let image = imageCache.object(forKey: url as NSURL) {
             return completion(image)
         }
 
         categoryManager.fetchImageData(of: url) { data in
-            guard let data = data, let image = UIImage(data: data) else {
+            guard let data = data as? NSData else {
                 return completion(nil)
             }
-            imageCache.setObject(image, forKey: url as NSURL)
-            completion(image)
+            imageCache.setObject(data, forKey: url as NSURL)
+            completion(data)
         }
     }
 }
