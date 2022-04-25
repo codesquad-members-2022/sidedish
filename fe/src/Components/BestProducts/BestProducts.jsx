@@ -41,6 +41,11 @@ export const BestProducts = () => {
   const [selectedTabId, setSelectedTabId] = useState(null);
   const [cardData, setCardData] = useState([]);
 
+  const fetchSelectedTabData = async url => {
+    const selectedTabProductsData = await fetchData(url);
+    setCardData(selectedTabProductsData.content);
+  };
+
   useEffect(() => {
     fetchData('/events')
       .then(tabListData => {
@@ -50,7 +55,7 @@ export const BestProducts = () => {
       .catch(err => {
         //TODO: 에러 핸들링
         console.error(err);
-      })
+      });
   }, []);
 
   useEffect(() => {
@@ -58,16 +63,12 @@ export const BestProducts = () => {
       return;
     }
 
-    fetch(`/event/${selectedTabId}`)
-      .then(body => body.json())
-      .then(data => {
-        setCardData(data.content);
-      });
+    fetchSelectedTabData(`/event/${selectedTabId}`);
   }, [selectedTabId]);
 
-  const onClickTab = (clickedTabId) => () => {
+  const onClickTab = clickedTabId => () => {
     setSelectedTabId(clickedTabId);
-  }
+  };
 
   return (
     <BestProductWrapper>
