@@ -87,11 +87,6 @@ export const ProductCard = ({
 }) => {
   return (
     <ProductCardWrapper data-id={id} size={size}>
-      {/* <ProductThumbnail className={'product-thumbnail'}>
-        {morningDelivery && <HoverInfo />}
-        <Mask className={'mask'} />
-        <img className={'productImg'} src={image} alt={'제품사진'} />
-      </ProductThumbnail> */}
       <ProductThumbNail imgUrl={image} morningDelivery={morningDelivery} />
       <Title className={Fonts.FONTS_MD}>{title}</Title>
       <Description className={Fonts.FONTS_SM}>{description}</Description>
