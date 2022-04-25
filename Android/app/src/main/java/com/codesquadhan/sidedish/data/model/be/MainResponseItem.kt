@@ -1,6 +1,5 @@
 package com.codesquadhan.sidedish.data.model.be
 
-import com.codesquadhan.sidedish.ui.constant.ViewType.FOOD_VIEW_TYPE
 import com.google.gson.annotations.SerializedName
 
 data class MainResponseItem(
@@ -19,5 +18,6 @@ data class MainResponseItem(
     @SerializedName("saleType")
     val saleType: String = "",
     val viewType: Int = 2,
-    val headerText: String = ""
+    val headerText: String = "",
+    var isWhite: Boolean = true
 )

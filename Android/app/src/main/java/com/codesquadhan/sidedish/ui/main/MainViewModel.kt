@@ -1,19 +1,18 @@
 package com.codesquadhan.sidedish.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codesquadhan.sidedish.data.model.MenuData
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 import com.codesquadhan.sidedish.data.repository.MenuRepository
-import com.codesquadhan.sidedish.ui.constant.ViewType.HEADER_VIEW_TYPE
+import com.codesquadhan.sidedish.ui.common.ViewType.HEADER_VIEW_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.lang.RuntimeException
 import javax.inject.Inject
+import com.codesquadhan.sidedish.ui.common.addAllAndSetIsWhite
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val menuRepository: MenuRepository): ViewModel() {
@@ -35,8 +34,8 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
             menuMainList.addAll(mainResponse.await())
             _menuMainListLd.value = menuMainList
 
-            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리"))
-            menuMainList.addAll(soupResponse.await())
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리", isWhite = false))
+            menuMainList.addAllAndSetIsWhite(soupResponse.await())
             _menuMainListLd.value = menuMainList
 
             menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬"))

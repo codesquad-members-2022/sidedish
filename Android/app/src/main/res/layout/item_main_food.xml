@@ -12,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        isWhite="@{mainResponseItem.isWhite}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
