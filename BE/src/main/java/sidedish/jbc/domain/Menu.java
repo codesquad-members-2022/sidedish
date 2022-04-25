@@ -1,7 +1,10 @@
 package sidedish.jbc.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 public class Menu {
 
@@ -9,19 +12,23 @@ public class Menu {
 	private Long id;
 	private String name;
 	private String description;
-	private int price;
+	private Integer price;
 	private MenuType menuType;
 	private SaleType saleType;
-	private int fee;
-	private int freeShippingStartingPrice;
+	private Integer fee;
+	private Integer freeShippingStartingPrice;
 	private String deliveryInfo;
-	private int stock;
+	private Integer stock;
 	private String imagePath;
 
+	@MappedCollection(idColumn = "MENU_ID", keyColumn = "ID")
+	private List<Image> images;
+
 	@PersistenceConstructor
-	public Menu(Long id, String name, String description, int price,
-		MenuType menuType, SaleType saleType, int fee, int freeShippingStartingPrice,
-		String deliveryInfo, int stock, String imagePath) {
+	public Menu(Long id, String name, String description, Integer price,
+		MenuType menuType, SaleType saleType, Integer fee, Integer freeShippingStartingPrice,
+		String deliveryInfo, Integer stock, String imagePath, List<Image> images) {
+		System.out.println("메뉴 생성자 호출");
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -33,11 +40,13 @@ public class Menu {
 		this.deliveryInfo = deliveryInfo;
 		this.stock = stock;
 		this.imagePath = imagePath;
+		this.images = images;
 	}
 
-	public Menu(String name, String description, int price, MenuType menuType,
-		SaleType saleType, int fee, int freeShippingStartingPrice, String deliveryInfo, int stock,
-		String imagePath) {
+	public Menu(Long id, String name, String description, Integer price,
+		MenuType menuType, SaleType saleType, Integer fee, Integer freeShippingStartingPrice,
+		String deliveryInfo, Integer stock, String imagePath) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -63,7 +72,8 @@ public class Menu {
 			", freeShippingStartingPrice=" + freeShippingStartingPrice +
 			", deliveryInfo='" + deliveryInfo + '\'' +
 			", stock=" + stock +
-			", imagePath=" + imagePath +
+			", imagePath='" + imagePath + '\'' +
+			", imageTest=" + images +
 			'}';
 	}
 }
