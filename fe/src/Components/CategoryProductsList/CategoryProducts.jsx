@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { LoadingSpinner } from "@/Components/LoadingSpinner";
+import { RetryButton } from '@/Components/Button';
+import { LoadingSpinner } from '@/Components/LoadingSpinner';
 import { ProductCard } from '@/Components/ProductCard';
+import { useFetch } from '@/Hooks/useFetch';
 
 const CategoryProductsWrapper = styled.li`
   width: 1280px;
@@ -22,23 +23,6 @@ const ProductCardList = styled.ul`
   justify-content: flex-start;
 `;
 
-const useFetch = url => {
-  const [data, setData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    fetch(url)
-      .then(res => res.json())
-      .then(v => {
-        setData(v);
-        setIsLoaded(true);
-      });
-  }, [url]);
-
-  return [data, isLoaded];
-};
-
 const parse = categoryProductsData => {
   const title = categoryProductsData.content[0].mainCategory;
   return {
@@ -49,9 +33,18 @@ const parse = categoryProductsData => {
 
 export const CategoryProducts = props => {
   const categoryId = props.categoryId;
-  const [categoryProductsData, isLoaded] = useFetch(`/category/${categoryId}`);
+  const [categoryProductsData, isLoaded, isError, setRetry] = useFetch(
+    `/category/${categoryId}`
+  );
 
+  const handleClickRetryButton = () => {
+    setRetry(true);
+  };
+
+  if (isError) return <RetryButton onClick={handleClickRetryButton} />;
   if (!isLoaded) return <LoadingSpinner />;
+
+  /* 임시: API 나오면 아마 삭제될 것 같습니다 */
   const parsedCategoryProductsData = parse(categoryProductsData);
 
   return (
