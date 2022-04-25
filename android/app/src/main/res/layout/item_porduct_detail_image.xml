@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_product_detail_image"
-            updateImage="@{image.productDetailImageURL}"
+            updateImage="@{image.imageURL}"
             android:layout_width="0dp"
             android:layout_height="400dp"
             android:contentDescription="@string/label_iv_product_detail_image"

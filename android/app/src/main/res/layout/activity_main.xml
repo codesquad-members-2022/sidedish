@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="menuData"
+            type="com.example.sidedish.model.MenuData" />
+        <variable
+            name="viewModel"
+            type="com.example.sidedish.ui.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -138,5 +147,5 @@
                 tools:listitem="@layout/item_menu_data" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

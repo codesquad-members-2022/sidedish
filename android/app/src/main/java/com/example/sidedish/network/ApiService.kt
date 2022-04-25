@@ -14,6 +14,14 @@ interface ApiService {
     suspend fun getMainMenu(): Response<MenuData>
 
     @Headers("Content-Type: application/json")
+    @GET("products?categoryId=2")
+    suspend fun getSoupMenu(): Response<MenuData>
+
+    @Headers("Content-Type: application/json")
+    @GET("products?categoryId=3")
+    suspend fun getSideDish(): Response<MenuData>
+
+    @Headers("Content-Type: application/json")
     @GET("products/{productId}")
     suspend fun getProductDetail(@Path("productId") id: Int): Response<ProductDetail>
 }

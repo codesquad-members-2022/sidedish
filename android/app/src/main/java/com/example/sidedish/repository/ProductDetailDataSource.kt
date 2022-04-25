@@ -4,5 +4,5 @@ import com.example.sidedish.model.ProductDetail
 
 interface ProductDetailDataSource {
 
-    suspend fun loadProductDetailImage(categoryId: Int): ProductDetail?
+    suspend fun loadProductDetail(productId: Int): ProductDetail?
 }

@@ -31,7 +31,7 @@ class MainHomeAdapter :
     class MainHomeHolder(private val binding: ItemMenuDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(menuList: Products) {
-            binding.menuData = menuList
+            binding.products = menuList
         }
     }
 }

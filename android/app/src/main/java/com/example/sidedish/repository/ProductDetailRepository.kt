@@ -2,9 +2,9 @@ package com.example.sidedish.repository
 
 import com.example.sidedish.model.ProductDetail
 
-class ProductDetailRepository(private val productDetailImageDataSource: ProductDetailImageDataSource) {
+class ProductDetailRepository(private val productDetailRemoteDataSource: ProductDetailRemoteDataSource) {
 
-    suspend fun loadProductDetail(categoryId: Int): ProductDetail? {
-        return productDetailImageDataSource.loadProductDetailImage(categoryId)
+    suspend fun loadProductDetail(productId: Int): ProductDetail? {
+        return productDetailRemoteDataSource.loadProductDetail(productId)
     }
 }

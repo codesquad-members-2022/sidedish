@@ -1,34 +1,48 @@
 package com.example.sidedish.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sidedish.model.Products
-import com.example.sidedish.repository.Repository
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.sidedish.repository.MainRepository
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel
-@Inject
-constructor(private val repository: Repository) : ViewModel() {
+class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
+
+    var mainMenuCount: Int? = 0
+    var soupMenuCount: Int? = 0
+    var sideDishCount: Int? = 0
+
     private val _mainMenu = MutableLiveData<List<Products>>()
-    val mainMenu: LiveData<List<Products>> get() = _mainMenu
+    val mainMenu: LiveData<List<Products>>
+        get() = _mainMenu
+
+    private val _soupMenu = MutableLiveData<List<Products>>()
+    val soupMenu: LiveData<List<Products>>
+        get() = _soupMenu
+
+    private val _sideDish = MutableLiveData<List<Products>>()
+    val sideDish: LiveData<List<Products>>
+        get() = _sideDish
 
     init {
-        getMainMenu()
+        loadMenu()
     }
 
-    private fun getMainMenu() = viewModelScope.launch {
-        repository.getMainMenu().let {
-            Log.d("뭐지", "$it")
-            if (it.isSuccessful) {
-                _mainMenu.value = it.body()?.products
-            } else {
-                Log.d("reponse Error", "errorcode: ${it.code()}")
+    private fun loadMenu() {
+        viewModelScope.launch {
+            mainRepository.loadMainMenu().let {
+                _mainMenu.value = it?.products
+                mainMenuCount = it?.count
+            }
+            mainRepository.loadSoupMenu().let {
+                _soupMenu.value = it?.products
+                soupMenuCount=  it?.count
+            }
+            mainRepository.loadSideDish().let {
+                _sideDish.value = it?.products
+                sideDishCount = it?.count
             }
         }
     }

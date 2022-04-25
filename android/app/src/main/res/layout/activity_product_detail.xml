@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="contents"
-            type="com.example.sidedish.model.DetailImages" />
+            name="productDetail"
+            type="com.example.sidedish.model.ProductDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="30dp"
-                    android:text="@{contents.title}"
+                    android:text="@{productDetail.productName}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tab_layout_product_detail_indicator"
                     tools:text="오리 주물럭_반조리" />
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{contents.contents}"
+                    android:text="@{productDetail.description}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_title"
                     tools:text="감칠맛 나는 매콤한 양념" />
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{contents.salePrice}"
+                    android:text="@{productDetail.discountPrice}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_contents"
                     tools:text="12,640원" />
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{contents.originalPrice}"
+                    android:text="@{productDetail.price}"
                     app:layout_constraintStart_toEndOf="@id/tv_product_detail_contents_sale_price"
                     app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_contents"
                     tools:text="15,800원" />

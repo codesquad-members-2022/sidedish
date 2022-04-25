@@ -5,13 +5,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.sidedish.ui.common.GlideApp
 
 @BindingAdapter("updateImage")
-fun updateImage(view: ImageView, imageUrl: String) {
-    GlideApp.with(view)
-        .load(imageUrl)
-        .into(view)
+fun updateImage(view: ImageView, imageUrl: String?) {
+    if (imageUrl != null) {
+        GlideApp.with(view)
+            .load(imageUrl)
+            .into(view)
+    }
 }
 
 @BindingAdapter("updateTextWithStroke")

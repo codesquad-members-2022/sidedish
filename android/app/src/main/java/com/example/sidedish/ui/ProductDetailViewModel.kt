@@ -22,9 +22,9 @@ class ProductDetailViewModel(private val productDetailRepository: ProductDetailR
     private val _detailImage = MutableLiveData<List<DetailImages>>()
     val detailImage: LiveData<List<DetailImages>> = _detailImage
 
-    private fun loadProductDetail(categoryId: Int) {
+    private fun loadProductDetail(productId: Int) {
         viewModelScope.launch {
-            val image = productDetailRepository.loadProductDetail(categoryId)
+            val image = productDetailRepository.loadProductDetail(productId)
             image?.let {
                 _productDetail.value = it
                 _representImage.value = it.representImages
