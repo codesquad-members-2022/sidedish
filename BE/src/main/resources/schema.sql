@@ -1,10 +1,10 @@
-
+drop table if exists CATEGORY;
 CREATE TABLE CATEGORY(
                          id          BIGINT PRIMARY KEY AUTO_INCREMENT,
                          name        VARCHAR(30) not null,
                          description VARCHAR(500)
 );
-
+drop table if exists EVENT;
 CREATE TABLE EVENT(
                       id          BIGINT PRIMARY KEY AUTO_INCREMENT,
                       name        VARCHAR(30) not null,

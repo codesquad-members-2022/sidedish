@@ -1,7 +1,7 @@
 package kr.codesquad.sidedish.repository;
 
-
 import kr.codesquad.sidedish.domain.Category;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ class JdbcCategoryRepositoryTest {
     void test() {
 
         Category saved = jdbcCategoryRepository.save(category);
-        assertThat(saved.getId()).isEqualTo(1L);
+        assertThat(saved.getId()).isEqualTo(4L);
         assertThat(saved.getName()).isEqualTo("짱민");
         assertThat(saved.getDescription()).isEqualTo("짱");
 

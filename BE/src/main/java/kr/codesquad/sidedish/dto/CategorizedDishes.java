@@ -23,4 +23,12 @@ public class CategorizedDishes {
     public List<DishSimpleResponse> getDishes() {
         return dishes;
     }
+
+    @Override
+    public String toString() {
+        return "CategorizedDishes{" +
+                "category=" + category +
+                ", dishes=" + dishes +
+                '}';
+    }
 }
