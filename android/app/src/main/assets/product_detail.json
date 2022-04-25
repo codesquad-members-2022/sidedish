@@ -1,5 +1,5 @@
 {
-  "product_detail_image": [
+  "product_detail_title_image": [
     {
       "id": 1,
       "product_detail_image_url": "https://s3-alpha-sig.figma.com/img/33bc/7060/2cdf7235b65a114abff05b9133f90085?Expires=1651449600&Signature=GkIDXNQYgylWHG6s0156N~naar2gkF38JhOATAhWKeeHbRT-kL2ijeaFLLZOKSD73FeHAN9qEVDVseXH4fvzR~936Jydsw4S8W7DsU4IBU48TMJdv~VpUo9~W-OHQu68L~rB5n3ol0VvEX1eJAzJqmotiVC1GSRtcpwjzg4DpUKkhnmfDs7j0lP9a7ggNSZdyCxs85cOYFqSwPAOOK~CeL~iO8a9kvq24BzQIlHkIwBVZ4cZQy43TAj4S-Cy3Nu8ck6NVmyi9HHIdKpWzxN0E6sTTPtmgsvoItVvpqpK9DbkaTMwdxj16-AraqhH36l0zqFeKBJslCXkq-9XXIxJAw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -8,5 +8,16 @@
       "id": 2,
       "product_detail_image_url": "https://s3-alpha-sig.figma.com/img/30c6/1007/aaf0c1caf699925cb0a0c2c69d82e2e5?Expires=1651449600&Signature=I8erBK8BzTiT1nrW5ofa4hPVjICOYyFxKVXurOFC6FO7q6SMSLfSY75Vm2gupcOrp5h67leyn9wku8a3SiEHEMO88QIBRORJCkiahnLJeQB739pyBRIk6uKTEKYaWuzKEuwJTqqToxMZVr6r1PmEYJufvuVn0LwAtDSFAYzhaG070m5uLqy0W0-oThvUZIDtD7fIUg0f1thENSbFy7m7neF-t0PedQ5QKA-fk4DFL5tvXKSH5tfv7nyNA6zt8TYNvJ1omyAgkmIornFhocMdvzgfS3m9HjVCimSG4DKEJIxVG-3Tu-iDvFDfbmNZvnTZV5weXCUFixsWk05g0vEFLA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
     }
-  ]
+  ],
+  "product_detail_contents": {
+    "title": "오리 주물럭_반조리",
+    "contents": "감칠맛 나는 매콤한 양념",
+    "original_price": 15800,
+    "sale_price": 12640,
+    "badge": "런칭 특가",
+    "saved_money": 126,
+    "delivery_information": "서울 경기 새벽 배송, 전국 택배 배송",
+    "delivery_price": 2500,
+    "product_detail_contents_image": "https://s3-alpha-sig.figma.com/img/c4c5/f629/a3c8a65a16628d634c1112b3fb457cc8?Expires=1651449600&Signature=WLmKqGFoIUeW~m9yQbjAWr25vDCOO-Ws~6qLVFnvxKYoX~EDflmkKUgL16tFdz4yWVehK0TqWLQweTAnLq5mQXzahPlk17RkIusyxjeYqKUlalsesIui5TtGw~gTSCIgX0djSHJUwg2SYwYiBIOK7S7VhWcflR76tYE60P3wY9TO23XVLy4nEFzxrI1C8UAXgaxm2oHcMskIXEniwYT4tYsS3ivKjMYxhyLIhqLAIqCKeFcWKBiuoOlxa~Roif4PwhiRYCgIo79uyg6-ocRjNb1i42XegrnldZGLtNhmzs0xJ4WnsozeHGLDsav~~-VRDlKsi2oZAxrrsDDH7ppslA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+  }
 }

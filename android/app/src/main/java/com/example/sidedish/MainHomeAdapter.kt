@@ -6,15 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sidedish.databinding.HomeListBinding
+import com.example.sidedish.databinding.ItemMenuDataBinding
 
-class MainHomeAdapter : ListAdapter<MenuList, MainHomeAdapter.MainHomeHolder>(diffUtil) {
-    inner class MainHomeHolder(private val binding: HomeListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(menuList: MenuList) {
-            binding.menuXml = menuList
-        }
-    }
+class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
 
     override fun onBindViewHolder(holder: MainHomeHolder, position: Int) {
         val item = getItem(position)
@@ -22,9 +16,9 @@ class MainHomeAdapter : ListAdapter<MenuList, MainHomeAdapter.MainHomeHolder>(di
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        DataBindingUtil.inflate<HomeListBinding>(
+        DataBindingUtil.inflate<ItemMenuDataBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.home_list,
+            R.layout.item_menu_data,
             parent,
             false
         ).let {
@@ -32,12 +26,19 @@ class MainHomeAdapter : ListAdapter<MenuList, MainHomeAdapter.MainHomeHolder>(di
         }
 }
 
-private val diffUtil = object : DiffUtil.ItemCallback<MenuList>() {
-    override fun areItemsTheSame(oldItem: MenuList, newItem: MenuList): Boolean {
-        return oldItem.id == newItem.id
+class MainHomeHolder(private val binding: ItemMenuDataBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(menuList: Products) {
+        binding.menuData = menuList
+    }
+}
+
+private val diffUtil = object : DiffUtil.ItemCallback<Products>() {
+    override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
+        return oldItem.productId == newItem.productId
     }
 
-    override fun areContentsTheSame(oldItem: MenuList, newItem: MenuList): Boolean {
+    override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
         return oldItem == newItem
     }
 }
