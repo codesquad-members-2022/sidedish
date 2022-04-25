@@ -4,6 +4,7 @@ import com.example.be.controller.exception.BaseExceptionType;
 import org.springframework.http.HttpStatus;
 
 public enum DishTypeException implements BaseExceptionType {
+
     DISH_NOT_FOUND_EXCEPTION(404, "해당 음식을 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
 
     private final int errorCode;

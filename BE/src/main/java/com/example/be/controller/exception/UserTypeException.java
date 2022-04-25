@@ -2,7 +2,7 @@ package com.example.be.controller.exception;
 
 import org.springframework.http.HttpStatus;
 
-public enum UserTypeException {
+public enum UserTypeException implements BaseExceptionType{
     USER_NOT_FOUND_EXCEPTION(404, "현재 유저를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
 
     private final int errorCode;
