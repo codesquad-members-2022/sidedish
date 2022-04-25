@@ -47,13 +47,14 @@ class MainViewController: UIViewController {
         collectionView.widthAnchor.constraint(greaterThanOrEqualToConstant: 343).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
-        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -67,11 +68,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
         headerView.setTitle(text: dummyHeaderData[indexPath.section])
         return headerView
     }
-    
+
 }
