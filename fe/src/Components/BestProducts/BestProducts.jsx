@@ -41,11 +41,6 @@ export const BestProducts = () => {
   const [selectedTabId, setSelectedTabId] = useState(null);
   const [cardData, setCardData] = useState([]);
 
-  const fetchSelectedTabData = async url => {
-    const selectedTabProductsData = await fetchData(url);
-    setCardData(selectedTabProductsData.content);
-  };
-
   useEffect(() => {
     fetchData('/events')
       .then(tabListData => {
@@ -63,7 +58,13 @@ export const BestProducts = () => {
       return;
     }
 
-    fetchSelectedTabData(`/event/${selectedTabId}`);
+    fetchData(`/event/${selectedTabId}`)
+      .then(selectedTabProductsData => {
+        setCardData(selectedTabProductsData.content);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }, [selectedTabId]);
 
   const onClickTab = clickedTabId => () => {
