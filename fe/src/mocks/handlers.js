@@ -27,7 +27,7 @@ const getEvents = rest.get('/events', (req, res, ctx) => {
   );
 });
 const getEvent = [
-  rest.get('/events/:id', (req, res, ctx) => {
+  rest.get('/event/:id', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.delay(0),

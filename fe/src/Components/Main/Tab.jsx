@@ -19,17 +19,13 @@ function checkSelected(tabClassName) {
   return null;
 }
 
-export const Tab = ({ tabData, clickTab, TabClassName }) => {
+export const Tab = ({ tabData, onClickTab, TabClassName }) => {
   const tabId = tabData.id;
-
-  const onClickTab = () => {
-    clickTab(tabId);
-  };
 
   return (
     <StyledList
       key={tabData.id}
-      onClick={onClickTab}
+      onClick={onClickTab(tabId)}
       className={checkSelected(TabClassName)}
     >
       {tabData.title}

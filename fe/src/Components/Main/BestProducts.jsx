@@ -7,6 +7,7 @@ import { TabList } from './TabList';
 
 import Colors from '@/Constants/Colors';
 import Fonts from '@/Constants/Fonts';
+import { fetchData } from '@/Utils/Utils';
 
 const BestProductWrapper = styled.div`
   display: flex;
@@ -42,12 +43,15 @@ export const BestProducts = () => {
   const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    fetch('/events')
-      .then(body => body.json())
-      .then(data => {
-        setTabList(data.content);
-        setSelectedTabId(data.content[0].id);
-      });
+    fetchData('/events')
+      .then(tabListData => {
+        setTabList(tabListData.content);
+        setSelectedTabId(tabListData.content[0].id);
+      })
+      .catch(err => {
+        //TODO: 에러 핸들링
+        console.error(err);
+      })
   }, []);
 
   useEffect(() => {
@@ -55,14 +59,14 @@ export const BestProducts = () => {
       return;
     }
 
-    fetch(`/events/${selectedTabId}`)
+    fetch(`/event/${selectedTabId}`)
       .then(body => body.json())
       .then(data => {
         setCardData(data.content);
       });
   }, [selectedTabId]);
 
-  function clickTab(clickedTabId) {
+  const onClickTab = (clickedTabId) => () => {
     setSelectedTabId(clickedTabId);
   }
 
@@ -81,7 +85,7 @@ export const BestProducts = () => {
       <TabList
         tabData={tabList}
         selectedTabId={selectedTabId}
-        clickTab={clickTab}
+        onClickTab={onClickTab}
       />
 
       <ProductCardList>
