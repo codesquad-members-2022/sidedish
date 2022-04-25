@@ -1,5 +1,5 @@
 import { categoryData } from '../helper/mock';
-import { Card } from '../components/Card';
+import { ProductCard } from '../components/ProductCard';
 import { applyFlex } from '../helper/utils';
 import styled from 'styled-components';
 import { buttonIcons } from '../helper/constants';
@@ -11,7 +11,7 @@ export function Category() {
       <CategoryCardWrapper flex>
         <LeftButton>{buttonIcons.left}</LeftButton>
         {categoryData.map((product, idx) => {
-          return <Card product={product} size="small" key={idx}></Card>;
+          return <ProductCard product={product} size="small" key={idx}></ProductCard>;
         })}
         <RightButton>{buttonIcons.right}</RightButton>
       </CategoryCardWrapper>

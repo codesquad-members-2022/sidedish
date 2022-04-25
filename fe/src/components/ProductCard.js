@@ -8,9 +8,9 @@ import {
   StyledImg,
   StyledP,
   StyledWrapper,
-} from './Card.styled';
+} from './ProductCard.styled';
 
-export function Card({ product, size }) {
+export function ProductCard({ product, size }) {
   return (
     <CardWrapper>
       <StyledImg src={product.src} size={size} />

@@ -1,5 +1,5 @@
 import { StyledDiv } from './BestProduct.styled';
-import { Card } from '../../components/Card';
+import { ProductCard } from '../../components/ProductCard';
 
 export function TapList(props) {
   if (!props.tapList) {
@@ -8,7 +8,7 @@ export function TapList(props) {
   return (
     <StyledDiv flex>
       {props.tapList.map((product, idx) => (
-        <Card product={product} key={idx} size="large" />
+        <ProductCard product={product} key={idx} size="large" />
       ))}
     </StyledDiv>
   );
