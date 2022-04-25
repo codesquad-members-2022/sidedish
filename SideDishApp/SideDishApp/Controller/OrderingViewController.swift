@@ -30,6 +30,15 @@ final class OrderingViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         getSideDishInfo()
+        
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
     
     private func setUpView() {
@@ -75,7 +84,7 @@ final class OrderingViewController: UIViewController {
     }
 }
 
-// MARK: - View Layouts
+// MARK: - View Layout
 
 extension OrderingViewController {
     private func layoutOrderingCollectionView() {
@@ -100,8 +109,7 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
                 os_log(.error, "\(failure.localizedDescription)")
             }
         }
-        let detailVC = DetailViewController()
-        detailVC.title = item.title
+        let detailVC = DetailViewController(menu: item)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
