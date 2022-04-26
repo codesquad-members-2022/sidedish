@@ -57,6 +57,8 @@ class MenuDetailViewController: UIViewController {
     private let amountView = MenuAmountView()
     
     private let orderView = MenuOrderView()
+    
+    private let sectionView = MenuSectionView()
 
     private let separator = (0..<3).map { _ -> UIView in
         let view = UIView()
@@ -74,6 +76,10 @@ class MenuDetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         nil
     }
+    
+    deinit {
+        Log.debug("DeInit MenuDetailViewController")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,16 +93,17 @@ class MenuDetailViewController: UIViewController {
     private func bind() {
         model.state.loadedDetail
             .receive(on: DispatchQueue.main)
-            .sink { menu, detail in
-                self.title = menu.title
-                self.infoView.changeTitleLabel(text: menu.title)
-                self.infoView.changeDescriptionLabel(text: menu.description)
-                self.infoView.changePriceLabel(text: menu.price)
-                self.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
-                self.infoView.changeSaleBadge(menu.badge)
-                self.subInfoView.setData(detail)
-                self.orderView.setTotalPrice(menu.price)
-                self.thumbnailImageView.setImage(urls: detail.thumbImages)
+            .sink { [weak self] menu, detail in
+                self?.title = menu.title
+                self?.infoView.changeTitleLabel(text: menu.title)
+                self?.infoView.changeDescriptionLabel(text: menu.description)
+                self?.infoView.changePriceLabel(text: menu.price)
+                self?.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
+                self?.infoView.changeSaleBadge(menu.badge)
+                self?.subInfoView.setData(detail)
+                self?.orderView.setTotalPrice(menu.price)
+                self?.thumbnailImageView.makeImageView(count: detail.thumbImages.count)
+                self?.sectionView.makeImageView(count: detail.detailSection.count)
             }.store(in: &cancellables)
 
         model.state.showError
@@ -113,8 +120,8 @@ class MenuDetailViewController: UIViewController {
             .store(in: &cancellables)
 
         model.state.amount
-            .sink {
-                self.amountView.amount = $0
+            .sink { [weak self] amount in
+                self?.amountView.amount = amount
             }
             .store(in: &cancellables)
 
@@ -126,6 +133,16 @@ class MenuDetailViewController: UIViewController {
             .sink {
                 // TODO: 주문완료 처리
             }.store(in: &cancellables)
+        
+        model.state.loadedThumbnail
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: thumbnailImageView.setImage(_:_:))
+            .store(in: &cancellables)
+        
+        model.state.loadedDetailSection
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: sectionView.setImage(_:_:))
+            .store(in: &cancellables)
     }
 
     private func attribute() {
@@ -138,7 +155,7 @@ class MenuDetailViewController: UIViewController {
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(infoStackView)
 
-        let infoViews = [infoView, separator[0], subInfoView, separator[1], amountView, separator[2], orderView]
+        let infoViews = [infoView, separator[0], subInfoView, separator[1], amountView, separator[2], orderView, sectionView]
         infoViews.forEach {
             infoStackView.addArrangedSubview($0)
         }

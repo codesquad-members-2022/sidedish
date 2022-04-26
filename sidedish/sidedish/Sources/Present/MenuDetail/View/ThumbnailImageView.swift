@@ -14,6 +14,8 @@ class ThumbnailImageView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isScrollEnabled = true
         scrollView.isPagingEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
         scrollView.bounces = false
         return scrollView
     }()
@@ -21,9 +23,8 @@ class ThumbnailImageView: UIView {
     private let pageControl: UIPageControl = {
         let paging = UIPageControl()
         paging.translatesAutoresizingMaskIntoConstraints = false
-        paging.numberOfPages = 3
-        paging.pageIndicatorTintColor = .gray
-        paging.currentPageIndicatorTintColor = .black
+        paging.pageIndicatorTintColor = .white
+        paging.currentPageIndicatorTintColor = .primary2
         return paging
     }()
     
@@ -37,12 +38,17 @@ class ThumbnailImageView: UIView {
     
     init() {
         super.init(frame: .zero)
+        bind()
         layout()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("Init with coder is unavailable")
+    }
+    
+    private func bind() {
+        detailScrollView.delegate = self
     }
     
     private func layout() {
@@ -70,20 +76,30 @@ class ThumbnailImageView: UIView {
             contentView.leadingAnchor.constraint(equalTo: detailScrollView.leadingAnchor)
         ])
     }
-    
-    let color: [UIColor] = [.red, .purple, .primary2]
-    
-    func setImage(urls: [URL]) {
-        let imageViews = urls.map { _ -> UIImageView in
+        
+    func makeImageView(count: Int) {
+        pageControl.numberOfPages = count
+        let imageViews = (0..<count).map { _ -> UIImageView in
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.backgroundColor = color[ Int.random(in: 0..<color.count)]
             contentView.addArrangedSubview(imageView)
+            imageView.widthAnchor.constraint(equalTo: detailScrollView.widthAnchor).isActive = true
             return imageView
         }
-        imageViews.forEach {
-            $0.widthAnchor.constraint(equalTo: detailScrollView.widthAnchor).isActive = true
-        }
         contentView.trailingAnchor.constraint(equalTo: imageViews[imageViews.count - 1].trailingAnchor).isActive = true
+    }
+    
+    func setImage(_ index: Int, _ fileUrl: URL) {
+        guard let imageView = contentView.subviews[index] as? UIImageView else {
+            return
+        }
+        
+        imageView.image = UIImage(contentsOfFile: fileUrl.path)
+    }
+}
+
+extension ThumbnailImageView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(round(scrollView.contentOffset.x / detailScrollView.bounds.width))
     }
 }

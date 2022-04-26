@@ -20,6 +20,8 @@ struct MenuDetailViewModelState {
     let showError = PassthroughSubject<SessionError, Never>()
     let ordered = PassthroughSubject<Void, Never>()
     let amount = CurrentValueSubject<Int, Never>(1)
+    let loadedThumbnail = PassthroughSubject<(Int, URL), Never>()
+    let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
 }
 
 protocol MenuDetailViewModelBinding {
@@ -33,6 +35,7 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
     
     private var cancellables = Set<AnyCancellable>()
     private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
+    private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
     
     let action = MenuDetailViewModelAction()
     let state = MenuDetailViewModelState()
@@ -46,8 +49,9 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
         
         requestDetail
             .compactMap { $0.value }
-            .sink {
-                self.state.loadedDetail.send((menu, $0))
+            .sink { detail in
+                self.state.loadedDetail.send((menu, detail))
+                self.loadImage(detail: detail)
             }
             .store(in: &cancellables)
         
@@ -72,5 +76,21 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
             .compactMap { $0.error }
             .sink(receiveValue: state.showError.send(_:))
             .store(in: &cancellables)
+    }
+    
+    private func loadImage(detail: MenuDetail) {
+        detail.thumbImages.enumerated().forEach { index, url in
+            resourceRepository.loadImage(url)
+                .sink { fileUrl in
+                    self.state.loadedThumbnail.send((index, fileUrl))
+                }.store(in: &self.cancellables)
+        }
+        
+        detail.detailSection.enumerated().forEach { index, url in
+            resourceRepository.loadImage(url)
+                .sink { fileUrl in
+                    self.state.loadedDetailSection.send((index, fileUrl))
+                }.store(in: &self.cancellables)
+        }
     }
 }
