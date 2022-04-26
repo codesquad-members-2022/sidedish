@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Modal from './components/Modal';
-import Event from './components/Event';
+import Promotion from './components/Promotion';
 import GlobalStyles from './GlobalStyles';
 import Alert from './components/Alert';
 import Main from './components/Main';
@@ -145,7 +145,7 @@ function App() {
       <GlobalStyles></GlobalStyles>
       {modal.show && <Modal dishes={dishes} cardId={modal.cardId} hideModal={hideModal} showModal={showModal}></Modal>}
       <Header categories={categories}></Header>
-      <Event showModal={showModal}></Event>
+      <Promotion showModal={showModal}></Promotion>
       <Main categories={MainCategories} showModal={showModal}></Main>
       {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
     </AppWrap>

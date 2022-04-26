@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
-function Event({ title, events, showModal }) {
+function Promotion({ title, promotions, showModal }) {
   const [selectedTabIndex, setSelectedTapIndex] = useState(0);
 
   function selectTab(index) {
     setSelectedTapIndex(index);
   }
   return (
-    <StyledEvent>
-      <EventHeader>
-        <EventBadge>기획전</EventBadge>
-        <EventTitle>{title}</EventTitle>
-      </EventHeader>
+    <StyledPromotion>
+      <PromotionHeader>
+        <PromotionBadge>기획전</PromotionBadge>
+        <PromotionTitle>{title}</PromotionTitle>
+      </PromotionHeader>
       <nav>
         <TabBar>
-          {events.map(({ title }, index) => (
+          {promotions.map(({ title }, index) => (
             <Tab
               key={index}
               selected={index === selectedTabIndex}
@@ -31,17 +31,17 @@ function Event({ title, events, showModal }) {
         <Line></Line>
       </nav>
       <CardList>
-        {events[selectedTabIndex].items.map((item, index) => (
+        {promotions[selectedTabIndex].items.map((item, index) => (
           <Card key={index} size={'large'} item={item} showModal={showModal}></Card>
         ))}
       </CardList>
-    </StyledEvent>
+    </StyledPromotion>
   );
 }
 
-Event.defaultProps = {
+Promotion.defaultProps = {
   title: '둘이 먹다 하나가 죽어도 모르는 반찬',
-  events: [
+  promotions: [
     {
       title: '풍성한 고기 반찬',
       items: [
@@ -141,15 +141,15 @@ Event.defaultProps = {
   },
 };
 
-const StyledEvent = styled.div`
+const StyledPromotion = styled.div`
   margin: 32px 80px 0 80px;
 `;
-const EventHeader = styled.div`
+const PromotionHeader = styled.div`
   display: flex;
   align-items: center;
   margin: 24px 0;
 `;
-const EventBadge = styled.div`
+const PromotionBadge = styled.div`
   padding: 8px 16px;
   background: #f8f7f7;
 
@@ -157,7 +157,7 @@ const EventBadge = styled.div`
   box-sizing: border-box;
   border-radius: 999px;
 `;
-const EventTitle = styled.div`
+const PromotionTitle = styled.div`
   margin-left: 16px;
   font-weight: 700;
   font-size: 40px;
@@ -188,4 +188,4 @@ const CardList = styled.div`
   justify-content: space-between;
 `;
 
-export default Event;
+export default Promotion;
