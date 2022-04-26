@@ -63,6 +63,10 @@ class MenuAdapter(private val itemClick : (hash: String, title:String, badges:Li
 
         fun bind(header: Header) {
             binding.header = header
+            binding.clickFlag=false
+            binding.root.setOnClickListener {
+                binding.clickFlag= (binding.clickFlag)?.not()
+            }
             binding.executePendingBindings()
         }
     }

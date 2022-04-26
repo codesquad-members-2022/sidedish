@@ -21,6 +21,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextMedium.Grey2">
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
     <style name="Subtitle1.Grey2" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">@color/grey2</item>
     </style>
