@@ -24,13 +24,11 @@ public enum Badge {
     }
 
     static public Badge of(String name) {
-        try {
-            if (name == null) {
-                return NONE;
+        for (Badge value : Badge.values()) {
+            if(value.getName().equals(name)) {
+                return value;
             }
-            return Badge.valueOf(name);
-        } catch (IllegalArgumentException e) {
-            return NONE;
         }
+        return NONE;
     }
 }
