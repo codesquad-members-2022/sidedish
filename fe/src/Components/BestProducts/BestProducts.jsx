@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Colors, Fonts } from '@/Constants';
 import { API_URL } from '@/Env';
 import { useFetch } from '@/Hooks';
-import { fetchData } from '@/Utils';
 
 import { BestTemp } from './BestTemp';
 import { TabList } from './TabList';
