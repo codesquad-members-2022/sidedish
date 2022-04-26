@@ -1,5 +1,6 @@
 package com.example.sideDish.network.dto
 
+import com.example.sideDish.data.model.FoodDetail
 import com.google.gson.annotations.SerializedName
 
 data class DetailData(
@@ -24,3 +25,17 @@ data class DetailDto(
     @SerializedName("data")
     val detail: DetailData
 )
+
+fun DetailDto.toFoodDetail(): FoodDetail {
+    return FoodDetail(
+        detail.deliveryFee,
+        detail.deliveryInfo,
+        detail.detailSection,
+        detail.point,
+        detail.prices[0],
+        detail.prices[1],
+        detail.productDescription,
+        detail.thumbImages,
+        detail.topImage,
+    )
+}
