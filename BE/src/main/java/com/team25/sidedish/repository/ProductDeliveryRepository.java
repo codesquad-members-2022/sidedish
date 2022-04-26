@@ -18,5 +18,5 @@ public interface ProductDeliveryRepository extends CrudRepository<Delivery, Long
             + "     WHERE PRODUCT_ID = :productId"
             + " )"
             + " AS R ON D.ID = R.DELIVERY_ID")
-    Optional<List<Delivery>> findDeliveriesByProductId(@Param("productId") Long productId);
+    List<Delivery> findDeliveriesByProductId(@Param("productId") Long productId);
 }

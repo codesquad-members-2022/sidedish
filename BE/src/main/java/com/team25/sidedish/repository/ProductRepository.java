@@ -12,7 +12,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("SELECT ID, NAME, PRICE, DESCRIPTION, THUMBNAIL_IMAGE_URL, STOCK "
         + " FROM product "
         + " WHERE CATEGORY_ID = :categoryId")
-    Optional<List<Product>> findProductsByCategoryId(@Param("categoryId") Long categoryId);
+    List<Product> findProductsByCategoryId(@Param("categoryId") Long categoryId);
 
     @Override
     Optional<Product> findById(Long productId);

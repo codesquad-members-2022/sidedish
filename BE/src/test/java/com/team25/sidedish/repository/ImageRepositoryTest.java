@@ -24,7 +24,7 @@ public class ImageRepositoryTest {
     @DisplayName("프로덕트 ID를 통해 해당하는 이미지 목록을 조회할 수 있다")
     void 프로덕트ID로_이미지_조회_테스트() {
 
-        Optional<List<Image>> result = imageRepository.findImagesByProductId(PRODUCT_ID);
+        List<Image> result = imageRepository.findImagesByProductId(PRODUCT_ID);
 
         assertThat(result).isPresent();
         assertThat(result.get()).hasSize(IMAGE_COUNT);

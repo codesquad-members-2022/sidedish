@@ -8,6 +8,8 @@ import com.team25.sidedish.dto.request.ProductStockChangeRequest;
 import com.team25.sidedish.dto.response.ProductDetailResponse;
 import com.team25.sidedish.dto.response.ProductResponse;
 import com.team25.sidedish.dto.response.ProductStockChangeResponse;
+import com.team25.sidedish.exception.NotEnoughStockException;
+import com.team25.sidedish.service.CategoryService;
 import com.team25.sidedish.service.ImageService;
 import com.team25.sidedish.service.ProductDeliveryService;
 import com.team25.sidedish.service.ProductEventService;
@@ -26,6 +28,7 @@ public class AggregateProductService {
     private final ProductEventService productEventService;
     private final ProductDeliveryService productDeliveryService;
     private final ImageService imageService;
+    private final CategoryService categoryService;
 
     @Transactional
     public List<ProductResponse> getProductList(Long categoryId) {
@@ -65,6 +68,9 @@ public class AggregateProductService {
     @Transactional
     public ProductStockChangeResponse updateProductStock(ProductStockChangeRequest request) {
         Product product = productService.getProductByProductId(request.getId());
+        if (product.getStock() < request.getAmount()) {
+            throw new NotEnoughStockException("주문 수량이 재고 수량보다 많습니다");
+        }
         product.updateStock(request.getAmount());
         productService.updateProduct(product);
         return ProductStockChangeResponse.from(product);

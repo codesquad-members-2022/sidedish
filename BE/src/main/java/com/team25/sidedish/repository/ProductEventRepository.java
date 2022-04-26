@@ -18,5 +18,5 @@ public interface ProductEventRepository extends CrudRepository<Event, Long> {
         + "     WHERE PRODUCT_ID = :productId"
         + " )"
         + " AS R ON E.ID = R.EVENT_ID")
-    Optional<List<Event>> findEventsByProductId(@Param("productId") Long productId);
+    List<Event> findEventsByProductId(@Param("productId") Long productId);
 }
