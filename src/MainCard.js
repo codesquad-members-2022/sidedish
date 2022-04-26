@@ -20,9 +20,10 @@ const MainCard = ({ mainCardData }) => {
 
   const banner = '기획전';
   const title = '한 번 주문하면 두 번 반하는 반찬';
+  const cardNum = 3;
 
   return (
-    <CardContainer cardInfos={mainDatas}>
+    <CardContainer cardInfos={mainDatas} cardNum={cardNum}>
       <StyledTap>
         <CategoryTitle title={title} banner={banner} />
       </StyledTap>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { color, slideBtn } from '../css/variables';
+import { color } from '../css/variables';
 
 const Tab = ({ onClick }) => {
   const tabs = [
@@ -24,7 +24,6 @@ const Tab = ({ onClick }) => {
 
 const StyledTab = styled.ul`
   display: flex;
-  margin-left: ${slideBtn.size + slideBtn.margin}px;
   padding: 30px 0 30px 0;
   li {
     cursor: pointer;
