@@ -2,17 +2,17 @@ import styled from "styled-components";
 import ItemCard from "./ItemCard";
 
 const ItemCards = ({ cardClickState, setCardClickState, dataState, cardLength, cardMargin, cardContainerPadding }) => {
-  const itemCardList = dataState.map(({ image, title, description, n_price, s_price, badge }, ind) => (
+  const itemCardList = dataState.map(({ mainImage, title, description, price, eventBadge, dishId }) => (
     <ItemCard
       cardClickState={cardClickState}
       setCardClickState={setCardClickState}
-      key={ind}
-      image={image}
+      key={dishId}
+      image={mainImage}
       title={title}
       description={description}
-      n_price={n_price}
-      s_price={s_price}
-      badge={badge}
+      n_price={price}
+      s_price={((100 - eventBadge[0].discount) * price) / 100}
+      badge={eventBadge[0].eventName}
       cardLength={cardLength}
       cardMargin={cardMargin}
     ></ItemCard>

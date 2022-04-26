@@ -1,30 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ItemCards from "../itemCard/ItemCards";
 import Label from "../../core/Label";
 import mockData from "../../mockData.json";
 import carouselMockData from "../../carouselMockData.json";
-import { LABEL_ATTRIBUTES, CARD_LENGHTHS, NUM_OF_CARD_ON_DISPLAY, CARD_MARGIN, CARD_CONTAINER_PADDING } from "../../consts/constants";
+import {
+  LABEL_ATTRIBUTES,
+  CARD_LENGHTHS,
+  NUM_OF_CARD_ON_DISPLAY,
+  CARD_MARGIN,
+  CARD_CONTAINER_PADDING,
+} from "../../consts/constants";
 import Carousel from "./Carousel";
 import DivisionLine from "../../core/Line";
 import Popup from "../popup/Popup";
 import relatedMockData from "../../relatedListMockData.json";
+import fetchData from "../../util/fetchData.js";
 
 const Main = () => {
-  const lnb = mockData.lnb;
-  const [lnbState, setLnbState] = useState(lnb[0]);
-  const [dataState, setDataState] = useState(mockData.data);
-  // const [carouselState, setCarouselDataState] = useState(carouselMockData);
+  const [lnbStateArr, setLnbStateArr] = useState([]);
+  const [lnbState, setLnbState] = useState("");
+  const [dataState, setDataState] = useState([]);
   const [relatedListState, setRelatedListState] = useState(relatedMockData);
   const [allCategoryVisible, setAllCategoryVisible] = useState(false);
+  const [cardClickState, setCardClickState] = useState(false);
+  const [cardInfoState, setCardInfoState] = useState({
+    /* ... */
+  });
 
   const handleLnbState = (event) => {
     setLnbState((lnbState) => (lnbState = event.target.textContent));
-    if (event.target.textContent === lnb[0]) {
+    if (event.target.textContent === lnbStateArr[0].name) {
+      // fetchCardData()
       setDataState((dataState) => (dataState = mockData.data));
-    } else if (event.target.textContent === lnb[1]) {
+    } else if (event.target.textContent === lnbStateArr[1].name) {
       setDataState((dataState) => (dataState = mockData.data2));
-    } else if (event.target.textContent === lnb[2]) {
+    } else if (event.target.textContent === lnbStateArr[2].name) {
       setDataState((dataState) => (dataState = mockData.data3));
     } else {
       setDataState((dataState) => (dataState = mockData.data4));
@@ -35,20 +46,37 @@ const Main = () => {
     setAllCategoryVisible(true);
   };
 
+  const fetchLnb = async () => {
+    const lnbData = await fetchData(
+      "https://8f066698-0757-470c-86aa-4df5338cb17d.mock.pstmn.io/api/dish/categorynames"
+    );
+    setLnbStateArr(lnbData.categorynames);
+    setLnbState(lnbData.categorynames[0].name);
+  };
+
+  const fetchCardData = async (foodType) => {
+    const cardData = await fetchData(
+      `https://8f066698-0757-470c-86aa-4df5338cb17d.mock.pstmn.io/api/dish?event-tabs=${foodType}`
+    );
+    console.log(cardData.dishes);
+    // setDataState(cardData.dishes);
+  };
+
+  useEffect(() => {
+    fetchLnb();
+    console.log("ok");
+    fetchCardData("meat");
+  }, []);
+
   const mainLnb = (
     <MainLnbContainer>
-      {lnb.map((title, ind) => (
-        <MainLnb onClick={handleLnbState} title={title} lnbState={lnbState} key={ind}>
-          {title}
+      {lnbStateArr.map(({ name, id }) => (
+        <MainLnb onClick={handleLnbState} title={name} lnbState={lnbState} key={id}>
+          {name}
         </MainLnb>
       ))}
     </MainLnbContainer>
   );
-
-  const [cardClickState, setCardClickState] = useState(false);
-  const [cardInfoState, setCardInfoState] = useState({
-    /* ... */
-  });
 
   return (
     <>
