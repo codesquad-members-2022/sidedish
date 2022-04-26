@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const SubProductList = styled.ul`
@@ -33,14 +34,16 @@ const ProductPanel = styled.li`
 `;
 
 export const ProductThumbnail = ({ ProductThumbnailData }) => {
+  const [mainPanelImg, setMainPanelImg] = useState(ProductThumbnailData[0]);
+
+  const onClickSubPanel = e => {
+    setMainPanelImg(e.target.src);
+  };
+
   return (
     <ProductThumbnailWrapper>
       <ProductPanel as={'div'} size={'md'}>
-        <img
-          className="product-img"
-          src={ProductThumbnailData[0]}
-          alt="제품 상세 사진"
-        />
+        <img className="product-img" src={mainPanelImg} alt="제품 상세 사진" />
       </ProductPanel>
       <SubProductList>
         {ProductThumbnailData.map((imgUrl, idx) => {
@@ -51,6 +54,7 @@ export const ProductThumbnail = ({ ProductThumbnailData }) => {
                 alt="제품 상세 사진"
                 key={idx}
                 className="product-img"
+                onClick={onClickSubPanel}
               />
             </ProductPanel>
           );
