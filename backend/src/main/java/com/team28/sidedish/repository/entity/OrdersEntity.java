@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -16,8 +17,18 @@ public class OrdersEntity {
 
     @Id
     private Long id;
-    private Long memberId;
+    private String memberId;
     private LocalDateTime orderDate;
     @MappedCollection(idColumn = "ORDER_ID")
-    private Set<OrderProductsEntity> orderProducts;
+    private Set<OrderProductsEntity> orderProducts = new HashSet<>();
+
+    public OrdersEntity(Long id, String memberId) {
+        this.id = id;
+        this.memberId = memberId;
+        this.orderDate = LocalDateTime.now();
+    }
+
+    public void addOrderProducts(OrderProductsEntity orderProducts) {
+        this.orderProducts.add(orderProducts);
+    }
 }
