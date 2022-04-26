@@ -1,11 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
-import axios from 'axios';
 import styled from 'styled-components';
-import { SERVER_URL } from 'constant.js';
-import { FlexDiv } from 'common/FlexDiv';
-import ModalDetailContainer from './ModalDetailContainer';
-import ModalImgWrapper from './ModalImgWrapper';
 
 const ModalWrapper = styled.div`
   display: ${(props) => (props.visible ? 'block' : 'none')};
@@ -54,45 +49,16 @@ const ModalCloseBtn = styled.button`
   cursor: pointer;
 `;
 
-const ModalTogetherContainer = styled.article`
-  padding: 48px 0;
-
-  h3 {
-    ${({ theme }) => theme.fontStyles.largeBold};
-  }
-`;
-
-const Modal = ({ className, visible, children, onClose, id }) => {
-  const [dishes, setDishes] = useState([]);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${SERVER_URL}dishes/${id}`);
-      if (data) {
-        setDishes(data);
-      }
-    } catch (error) {
-      throw new Error(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
+const Modal = ({ className, visible, children, onClose }) => {
   return ReactDom.createPortal(
     <>
       <ModalOverlay visible={visible} />
-      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
+      <ModalWrapper className={className} visible={visible}>
         <ModalInner tabIndex="0" className="modal-inner">
           <ModalCloseBtnWrapper>
             <ModalCloseBtn onClick={onClose}>닫기</ModalCloseBtn>
           </ModalCloseBtnWrapper>
-          <FlexDiv>
-            {dishes.length !== 0 && <ModalImgWrapper title={dishes.name} images={dishes.images} />}
-            {dishes.length !== 0 && <ModalDetailContainer item={dishes} />}
-          </FlexDiv>
-          <ModalTogetherContainer>{children}</ModalTogetherContainer>
+          {children}
         </ModalInner>
       </ModalWrapper>
     </>,

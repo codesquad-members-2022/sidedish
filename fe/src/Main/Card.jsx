@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
+import axios from 'axios';
+import { SERVER_URL } from 'constant.js';
+import { FlexDiv } from 'common/FlexDiv';
 import CardDeliveryInfo from 'Main/CardDeliveryInfo';
 import DishTogatherContainer from 'Main/Dish/DishTogatherContainer';
 import Modal from 'Modal';
+import ModalDetailContainer from 'Modal/ModalDetailContainer';
+import ModalImgWrapper from 'Modal/ModalImgWrapper';
 
 const CardItem = styled.div`
   ${({ imageSize }) => {
@@ -92,8 +97,17 @@ const CardItemTag = styled.p`
   ${({ theme }) => theme.fontStyles.smallBold};
 `;
 
+const ModalTogetherContainer = styled.article`
+  padding: 48px 0;
+
+  h3 {
+    ${({ theme }) => theme.fontStyles.largeBold};
+  }
+`;
+
 const Card = ({ item, imageSize }) => {
   const [hover, setHover] = useState(false);
+  const [dishes, setDishes] = useState([]);
   const setPrice = (price) => Number(price).toLocaleString();
 
   const onMouseOver = () => setHover(true);
@@ -104,23 +118,38 @@ const Card = ({ item, imageSize }) => {
 
   const openModal = () => {
     setModalVisible(true);
+    fetchData();
   };
+
   const closeModal = () => {
     setModalVisible(false);
   };
+
+  const fetchData = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}dishes/${item.id}`);
+      if (data) {
+        setDishes(data);
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }, []);
 
   return (
     item && (
       <CardItem imageSize={imageSize}>
         {modalVisible && (
-          <Modal
-            id={item.id}
-            visible={modalVisible}
-            closable={true}
-            maskClosable={true}
-            onClose={closeModal}
-          >
-            <DishTogatherContainer />
+          <Modal visible={modalVisible} closable={true} maskClosable={true} onClose={closeModal}>
+            <FlexDiv>
+              {dishes.length !== 0 && (
+                <ModalImgWrapper title={dishes.name} images={dishes.images} />
+              )}
+              {dishes.length !== 0 && <ModalDetailContainer item={dishes} />}
+            </FlexDiv>
+            <ModalTogetherContainer>
+              <DishTogatherContainer></DishTogatherContainer>
+            </ModalTogetherContainer>
           </Modal>
         )}
         <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
