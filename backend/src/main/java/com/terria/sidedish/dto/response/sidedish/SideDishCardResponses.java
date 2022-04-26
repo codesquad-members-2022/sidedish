@@ -13,7 +13,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class SideDishCardResponses {
-    
+
+    @ApiModelProperty(required = true, value = "총 개수")
+    private int totalCount;
+
     @ApiModelProperty(required = true, value = "반찬 카드 목록")
     private List<SideDishCardResponse> sideDishCardResponses;
 }

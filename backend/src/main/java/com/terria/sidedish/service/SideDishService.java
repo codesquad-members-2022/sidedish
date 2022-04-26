@@ -34,7 +34,7 @@ public class SideDishService {
             sideDishCardResponses.add(SideDishCardResponse.from(sideDish, getDiscountEvent(sideDish)));
         }
 
-        return new SideDishCardResponses(sideDishCardResponses);
+        return new SideDishCardResponses(sideDishRepository.countByCategoryId(categoryId), sideDishCardResponses);
     }
 
     private List<DiscountEvent> getDiscountEvent(SideDish sideDish) {
