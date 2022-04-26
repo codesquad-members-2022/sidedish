@@ -24,10 +24,10 @@ function Main({ categories, showModal }) {
 const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 const CategoryShowButton = styled.button`
+  width: 250px;
   display: flex;
   justify-content: center;
   font-weight: 400;
@@ -35,8 +35,7 @@ const CategoryShowButton = styled.button`
   line-height: 30px;
   letter-spacing: -0.008em;
   padding: 16px 24px;
-  margin-top: 85px;
-  margin-bottom: 56px;
+  margin: 85px auto 56px auto;
   border: 1px solid #ebebeb;
 `;
 

@@ -5,6 +5,7 @@ import Event from './components/Event';
 import GlobalStyles from './GlobalStyles';
 import Alert from './components/Alert';
 import Main from './components/Main';
+import styled from 'styled-components';
 
 const categories = [
   {
@@ -160,15 +161,19 @@ function App() {
     setModal({ show: false, cardId: null });
   }
   return (
-    <div className="App">
+    <AppWrap>
       <GlobalStyles></GlobalStyles>
       {modal.show && <Modal dishes={dishes} cardId={modal.cardId} hideModal={hideModal} showModal={showModal}></Modal>}
       <Header categories={categories}></Header>
       <Event showModal={showModal}></Event>
       <Main categories={MainCategories} showModal={showModal}></Main>
       {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
-    </div>
+    </AppWrap>
   );
 }
+
+const AppWrap = styled.div`
+  min-width: 1400px;
+`;
 
 export default App;
