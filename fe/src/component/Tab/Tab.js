@@ -60,6 +60,7 @@ const Tab = () => {
           s_price={cards.s_price}
           n_price={cards.n_price}
           badge={cards.badge}
+          delivery={cards.delivery_type}
         />
       </CardsWrapper>
     </>

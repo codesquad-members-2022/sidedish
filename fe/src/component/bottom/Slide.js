@@ -72,6 +72,7 @@ const Slide = () => {
                 n_price={v.n_price}
                 badge={v.badge}
                 delivery={v.delivery_type}
+                iconSize="small"
               ></Card>
             );
           })}

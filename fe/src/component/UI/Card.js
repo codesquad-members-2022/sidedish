@@ -61,10 +61,15 @@ const CardBadge = styled.div`
 const CardWrapper = styled.div`
   position: relative;
   margin-right: 18px;
+  &:hover {
+    .deliveryIconIsActive {
+      display: block;
+    }
+  }
 `;
 
 const Card = (props) => {
-  console.log(props.delivery && "acitve");
+  console.log(!!props.delivery);
 
   return (
     <CardWrapper>
@@ -83,7 +88,8 @@ const Card = (props) => {
             ))}
       </CardBadgeWapper>
       <StyledDeliveryIcon
-        className={props.delivery === undefined ? "" : "active"}
+        className={!!props.delivery && "deliveryIconIsActive"}
+        size={props.iconSize}
       />
     </CardWrapper>
   );
