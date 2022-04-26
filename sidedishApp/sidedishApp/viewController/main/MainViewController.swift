@@ -100,7 +100,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
 
 private extension MainViewController {
     func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.identifier), object: sideDishManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager)
         self.sideDishManager.getDishes(type: .main)
         self.sideDishManager.getDishes(type: .soup)
         self.sideDishManager.getDishes(type: .side)
