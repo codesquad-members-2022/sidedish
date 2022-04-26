@@ -25,6 +25,7 @@ export const useFetch = url => {
     abortController.current = new AbortController();
     whileFetching.current = true;
 
+    setIsError(false);
     setIsLoaded(false);
     fetchData(url, { signal: abortController.current.signal })
       .then(responseData => {

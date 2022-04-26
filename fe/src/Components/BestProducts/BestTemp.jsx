@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { API_URL } from '@/Env';
@@ -13,16 +12,11 @@ const ProductCardList = styled.ul`
 `;
 
 export const BestTemp = ({ bestProductsTabId }) => {
-  const [bestProducts, isLoaded] = useFetch(
+  const [bestProducts, isLoaded, isError] = useFetch(
     `${API_URL}/event/${bestProductsTabId}/items`
   );
 
-  useEffect(() => {
-    if (!isLoaded) {
-      return;
-    }
-  });
-
+  if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
   if (!isLoaded) return <LoadingSpinner />;
 
   return (
