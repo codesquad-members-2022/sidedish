@@ -6,6 +6,7 @@
 //
 
 import Combine
+import GoogleSignIn
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -33,8 +34,6 @@ class LoginViewController: UIViewController {
     }
     
     private func bind() {
-        model.delegate = self
-        
         model.state.presentMainView
             .sink {
                 RootWindow.shared?.switchRootWindowState.send(.main)
@@ -44,6 +43,13 @@ class LoginViewController: UIViewController {
         googleLoginButton.publisher(for: .touchUpInside)
             .sink(receiveValue: model.action.tappedGoogleLogin.send(_:))
             .store(in: &cancellables)
+        
+        model.state.presentGoogleLogin
+            .sink { config in
+                GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, _ in
+                    self.model.action.googleUser.send(user)
+                }
+            }.store(in: &cancellables)
     }
     
     private func attritbute() {
@@ -59,11 +65,5 @@ class LoginViewController: UIViewController {
             googleLoginButton.widthAnchor.constraint(equalToConstant: 300),
             googleLoginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-    }
-}
-
-extension LoginViewController: LoginViewDelegate {
-    func getViewController() -> UIViewController {
-        self
     }
 }
