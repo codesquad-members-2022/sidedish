@@ -1,16 +1,15 @@
 package com.codesquadhan.sidedish.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codesquadhan.sidedish.data.model.DetailImage
 import com.codesquadhan.sidedish.data.model.detail.DetailResponse
 import com.codesquadhan.sidedish.data.model.detail.TopImageData
 import com.codesquadhan.sidedish.data.repository.DetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.RuntimeException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,4 +56,14 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
             }
         }
     }
+
+    fun orderFood(menuId: Int) {
+        _orderedFoodQuantityLD.value?.let {
+            viewModelScope.launch {
+                val orderRequestResponse = detailRepository.orderFood(menuId, it)
+                Log.d("되나", "$orderRequestResponse")
+            }
+        }
+    }
+
 }

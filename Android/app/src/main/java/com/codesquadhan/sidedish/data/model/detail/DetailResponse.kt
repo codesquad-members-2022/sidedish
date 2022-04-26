@@ -1,6 +1,5 @@
 package com.codesquadhan.sidedish.data.model.detail
 
-
 import com.google.gson.annotations.SerializedName
 
 data class DetailResponse(
@@ -20,6 +19,8 @@ data class DetailResponse(
     val name: String = "",
     @SerializedName("price")
     val price: Int = 0,
+    @SerializedName("point")
+    val point: Int = 0,
     @SerializedName("saleType")
     val saleType: String = "",
     @SerializedName("salePrice")

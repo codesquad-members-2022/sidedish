@@ -7,10 +7,7 @@ import retrofit2.http.Query
 
 interface MenuService {
 
-  /*  @GET("main")
-    suspend fun getMainMenu(): Response<OnbanMainResponse>*/
-
     @GET(".")
-    suspend fun getMenuList(@Query("type") type: String ): Response<List<MainResponseItem>>
+    suspend fun getMenuList(@Query("type") type: String): Response<List<MainResponseItem>>
 
 }

@@ -31,6 +31,7 @@ class DetailActivity : AppCompatActivity() {
         setDetailInfo()
         countUpOrDownQuantity()
         setOrderFoodQuantity()
+        orderFood(id)
         detailViewModel.getMenuDetail(id)
     }
 
@@ -88,6 +89,12 @@ class DetailActivity : AppCompatActivity() {
     private fun setOrderFoodQuantity() {
         detailViewModel.orderedFoodQuantityLD.observe(this) {
             binding.tvItemCount.text = it.toString()
+        }
+    }
+
+    private fun orderFood(menuId: Int) {
+        binding.btnOrder.setOnClickListener {
+            detailViewModel.orderFood(menuId)
         }
     }
 
