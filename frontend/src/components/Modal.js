@@ -17,10 +17,14 @@ import { SIZES } from "../convention";
 export const Modal = ({ openId }) => {
   const [info, setInfo] = useState();
   const [count, setCount] = useState(1);
+  const [primaryImage, setPrimaryImage] = useState();
+  const [variantImages, setVariantImages] = useState();
   useEffect(() => {
     (async () => {
       const res = await (await fetch("/mocks/product.json")).json();
       setInfo(res);
+      setPrimaryImage(res.primary_image);
+      setVariantImages(res.variant_image);
     })();
   }, []);
 
@@ -31,9 +35,9 @@ export const Modal = ({ openId }) => {
           <ModalWrapper onClick={(e) => e.stopPropagation()}>
             <MainProduct>
               <ProductImageWrapper>
-                <PrimaryImage bgImg={info.primary_image}></PrimaryImage>
+                <PrimaryImage bgImg={primaryImage}></PrimaryImage>
                 <VariantWrapper>
-                  {info.variant_image.map((img, key) => (
+                  {variantImages.map((img, key) => (
                     <VariantImage key={key} bgImg={img}></VariantImage>
                   ))}
                 </VariantWrapper>

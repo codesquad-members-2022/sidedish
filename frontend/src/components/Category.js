@@ -22,9 +22,9 @@ export const Category = ({ cats }) => {
   return (
     <>
       {displayTargetCategories.map((cat) => (
-        <CarouselWrapper>
-          <HorizontalLine position={0} color={"Grey4"} />
-          <Carousel key={cat.id} id={cat.id} name={cat.name} size={SIZES.medium} />
+        <CarouselWrapper key={cat.id}>
+          <HorizontalLine  position={0} color={"Grey4"} />
+          <Carousel id={cat.id} name={cat.name} size={SIZES.medium} />
         </CarouselWrapper>
       ))}
       <ExtendingButton onClick={() => setExtended(!extended)}>

@@ -152,8 +152,8 @@ export const ProductCard = ({
           <ProductDescription>{description}</ProductDescription>
         )}
         <ProductPriceWrapper>
-          <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
-          <ProductPrice>{price + "원" || ""}</ProductPrice>
+          <ProductFinalPrice>{final_price.toLocaleString() + "원"}</ProductFinalPrice>
+          <ProductPrice>{price.toLocaleString() + "원" || ""}</ProductPrice>
         </ProductPriceWrapper>
       </ProductInfo>
       <DiscountTag discount={discount} />
