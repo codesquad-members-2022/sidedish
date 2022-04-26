@@ -2,7 +2,7 @@ import Card from "../UI/Card";
 import CardsWrapper from "../UI/CardsWrapper";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import tapInforList from "../../constants/TapInforList";
+import constansts from "../../constants/constansts";
 
 const TabList = styled.ul`
   display: flex;
@@ -36,7 +36,7 @@ const Tab = () => {
   return (
     <>
       <TabList>
-        {tapInforList.map((v) => {
+        {constansts.tapInforList.map((v) => {
           return (
             <TabListItem
               id={v.id}

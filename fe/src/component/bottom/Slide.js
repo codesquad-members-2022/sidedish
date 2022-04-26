@@ -1,68 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "../UI/Card";
-import CardsWrapper from "../UI/CardsWrapper";
-import SlideIcon from "./SlideIcon";
-import More from "./More";
-
-const SlideTitle = styled.h5`
-  font-size: 24px;
-  font-weight: 500;
-  color: #333;
-  margin: 40px 0 0 40px;
-`;
+import SlideIcon from "../icons/SlideIcon";
+import constansts from "../../constants/constansts";
 
 const SlideWrapper = styled.div`
-  position: absolute;
-  width: 1280px;
+  position: relative;
+  height: 460px;
+  display: none;
 
-  height: 450px;
-  overflow: hidden;
-  margin-left: 40px;
+  &.active {
+    display: block;
+  }
 `;
 
-// 슬라이드 전체를 감싸고 있는 래퍼
+const SlideTitle = styled.h5`
+  font-size: ${({ theme }) => theme.fontSize.mLarge};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.black};
+  margin: 40px 0 20px 40px;
+`;
+
+const SliceCardWrapper = styled.div`
+  position: absolute;
+  width: 1280px;
+  height: 450px;
+  overflow: hidden;
+  margin-left: 50px;
+`;
 
 const SlideCardsList = styled.div`
   display: flex;
-  transform: translateX(${({ currentPlace }) => currentPlace});
-
-  // -310 단위로 오른쪽으로 돌아감
+  transform: translateX(${({ currentTranslateX }) => currentTranslateX});
 `;
 
-const Slide = () => {
-  const [slideInfo, setSlideInfo] = useState([]);
-  const [x, setX] = useState(0);
-  useEffect(() => {
-    fetch("https://api.codesquad.kr/onban/side")
-      .then((res) => res.json())
-      .then((data) => setSlideInfo(data.body));
-    //promise all사용 예정 -> data한번에 받기(안쓰는 data는 display:none)
-  }, []);
-
-  const [isrightBtnActive, setIsRightBtnActive] = useState(true);
-  const [isleftBtnActive, setIsLeftBtnActive] = useState(true);
-
-  const onClickHandler = () => {
-    const all = -(slideInfo.length * 312) + 4 * 312;
-    setX((prev) => (prev - 312 >= all ? prev - 312 : prev));
-    x - 312 >= all ? setIsRightBtnActive(true) : setIsRightBtnActive(false);
+const Slide = ({ cardData, alwaysDisplayed, isDisplayed }) => {
+  const [cardListTranslateX, setCardListTranslateX] = useState(0);
+  const cardSize = constansts.CardSize.small;
+  const maxTranslateX = -(cardData.body.length * cardSize) + 4 * cardSize;
+  const onClickRightHandler = () => {
+    setCardListTranslateX((prev) =>
+      prev - cardSize >= maxTranslateX ? prev - cardSize : prev
+    );
   };
 
-  const onClickHandler2 = () => {
-    setX((prev) => (prev + 312 <= 0 ? prev + 312 : prev));
-    x === 0 ? setIsLeftBtnActive(false) : setIsLeftBtnActive(true);
+  const onClickLeftHandler = () => {
+    setCardListTranslateX((prev) =>
+      prev + cardSize <= 0 ? prev + cardSize : prev
+    );
   };
 
   return (
-    <>
+    <SlideWrapper
+      className={isDisplayed ? "active" : ""}
+      style={{ display: alwaysDisplayed && "block" }}
+    >
       <SlideTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SlideTitle>
-      <SlideWrapper>
-        <SlideCardsList currentPlace={x.toString() + "px"}>
-          {slideInfo.map((v) => {
+      <SliceCardWrapper>
+        <SlideCardsList
+          currentTranslateX={cardListTranslateX.toString() + "px"}
+        >
+          {cardData.body.map((v) => {
             return (
               <Card
-                size={`small`}
+                size="small"
                 key={v.detail_hash}
                 image={v.image}
                 alt={v.alt}
@@ -72,27 +73,20 @@ const Slide = () => {
                 n_price={v.n_price}
                 badge={v.badge}
                 delivery={v.delivery_type}
-                iconSize="small"
-              ></Card>
+              />
             );
           })}
         </SlideCardsList>
-        <div style={{ margin: "0 auto" }}>
-          <More />
-        </div>
-      </SlideWrapper>
+      </SliceCardWrapper>
       <SlideIcon
-        onSaveClickedDirection={onClickHandler}
-        onSaveClickedDirection2={onClickHandler2}
-        isright={isrightBtnActive}
-        isleft={isleftBtnActive}
+        onClickRightBtn={onClickRightHandler}
+        onClickLeftBtn={onClickLeftHandler}
+        current={cardListTranslateX}
+        max={maxTranslateX}
+        min={0}
       />
-    </>
+    </SlideWrapper>
   );
 };
 
 export default Slide;
-
-// 슬라이드
-// 슬라이드 아이콘 << 여기서 버튼을 전달하고 있음
-// 아이콘을 누를때 신호를 -> 슬라이드 전달

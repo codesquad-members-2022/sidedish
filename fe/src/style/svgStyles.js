@@ -4,7 +4,7 @@ const svgStyles = ({ height, width }) => {
   return css`
     height: ${height};
     width: ${width};
-    // margin-left: 10px;
+    cursor: pointer;
   `;
 };
 

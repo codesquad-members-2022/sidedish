@@ -1,9 +1,8 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import theme from "../../style/theme.js";
-import GNBLists from "../../constants/GNBLists.js";
+import styled from "styled-components";
+import constansts from "../../constants/constansts.js";
 import CustomNav from "./CustomNav";
-import Icons from "./Icons";
+import HeaderIcon from "../icons/HeaderIcon.js";
 
 const HeaderTitle = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.xLarge};
@@ -12,7 +11,6 @@ const HeaderTitle = styled.h1`
 
 const GNBWrapper = styled.div`
   display: flex;
-  // align-items: center;
   position: relative;
   height: 70px;
   padding: 0 40px;
@@ -29,10 +27,10 @@ const GNB = () => {
   return (
     <GNBWrapper>
       <HeaderTitle>Ordering</HeaderTitle>
-      {GNBLists.map((navInfo, i) => (
+      {constansts.GNBLists.map((navInfo, i) => (
         <CustomNav key={i} infor={navInfo} />
       ))}
-      <Icons />
+      <HeaderIcon />
     </GNBWrapper>
   );
 };

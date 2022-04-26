@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as CartIcon } from "../../asset/cartIcon.svg";
 import { ReactComponent as MyPageIcon } from "../../asset/myPageIcon.svg";
 import { ReactComponent as SearchIcon } from "../../asset/searchIcon.svg";
@@ -27,7 +26,7 @@ const StyledSearchIcon = styled(SearchIcon)`
   ${(props) => svgStyles(props)}
 `;
 
-const Icons = () => {
+const HeaderIcon = () => {
   return (
     <IconBox>
       <StyledSearchIcon />
@@ -37,4 +36,4 @@ const Icons = () => {
   );
 };
 
-export default Icons;
+export default HeaderIcon;
