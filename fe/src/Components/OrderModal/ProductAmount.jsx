@@ -1,22 +1,15 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Colors } from '@/Constants';
+import { IconFonts } from '@/Constants';
+
+import { AmountButton } from '@/Components/Button';
 
 const ProductAmountWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 440px;
   margin-top: 26px;
-`;
-
-const AmountButton = styled.button`
-  color: ${Colors.GREY};
-  width: 24px;
-  height: 24px;
-
-  i {
-    font-size: 20px;
-  }
 `;
 
 const TotalAmount = styled.div`
@@ -33,24 +26,42 @@ const TotalCost = styled.span`
 
 const CurrentAmount = styled.span``;
 
-const Icon = styled.i`
-  color: ${Colors.GREY};
-`;
+export const ProductAmount = ({ priceData }) => {
+  const [totalCost, setTotalCost] = useState(priceData);
+  const [currentAmount, setCurrentAmount] = useState(1);
 
-export const ProductAmount = () => {
+  // TODO: 상품 닫고 다시 클릭했을때 수량 가격 초기화
+  const onClickPlus = () => {
+    setCurrentAmount(currentAmount + 1);
+    setTotalCost((currentAmount + 1) * priceData);
+  };
+
+  const onClickMinus = () => {
+    if (currentAmount <= 0) {
+      return;
+    }
+    setCurrentAmount(currentAmount - 1);
+    setTotalCost((currentAmount - 1) * priceData);
+  };
+
   return (
     <ProductAmountWrapper>
       <TotalAmount>
-        <AmountButton>
-          <Icon className={'ic-plus'} aria-label={'상품 추가'} />
-        </AmountButton>
-        <CurrentAmount>0</CurrentAmount>
-        <AmountButton>
-          <Icon className={'ic-minus'} aria-label={'상품 '} />
-        </AmountButton>
+        <AmountButton
+          iconSrc={IconFonts.PLUS}
+          onClickIcon={onClickPlus}
+          label={'상품 추가'}
+        />
+
+        <CurrentAmount>{currentAmount}</CurrentAmount>
+        <AmountButton
+          iconSrc={IconFonts.MINUS}
+          onClickIcon={onClickMinus}
+          label={'상품 추감'}
+        />
       </TotalAmount>
 
-      <TotalCost>최종 가격</TotalCost>
+      <TotalCost>{totalCost} 원</TotalCost>
     </ProductAmountWrapper>
   );
 };

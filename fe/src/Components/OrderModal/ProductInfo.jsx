@@ -68,17 +68,51 @@ const Price = styled.span`
   margin-left: 8px;
 `;
 
-export const ProductInfo = () => {
+const CheckPrice = ({ priceData: { price, discountPolicy, discountRate } }) => {
+  if (!discountPolicy) {
+    return <Price className={Fonts.LG}>{price} 원</Price>;
+  }
+
+  return (
+    <>
+      <OriginalPrice className={Fonts.SM}>{price} 원</OriginalPrice>
+      <ListPrice>
+        <DiscountBadge type={discountPolicy} />
+        <Price className={Fonts.LG}>{price - price * discountRate} 원</Price>
+      </ListPrice>
+    </>
+  );
+};
+
+export const ProductInfo = ({
+  productData: {
+    id,
+    title,
+    description,
+    price,
+    accumulate,
+    discountPolicy,
+    discountRate,
+    images,
+  },
+}) => {
   return (
     <ProductInfoWrapper>
-      <Title className={Fonts.LG}>오이피자</Title>
-      <OriginalPrice className={Fonts.SM}>15800 원</OriginalPrice>
-
-      <ListPrice>
-        <DiscountBadge />
-        <Price className={Fonts.LG}>12000 원</Price>
-      </ListPrice>
-
+      <Title className={Fonts.LG}>{title}</Title>
+      {/* <CheckPrice priceData={{ price, discountPolicy, discountRate }} /> */}
+      {discountPolicy ? (
+        <>
+          <OriginalPrice className={Fonts.SM}>{price} 원</OriginalPrice>
+          <ListPrice>
+            <DiscountBadge type={discountPolicy} />
+            <Price className={Fonts.LG}>
+              {price - price * discountRate} 원
+            </Price>
+          </ListPrice>
+        </>
+      ) : (
+        <Price className={Fonts.LG}>{price} 원</Price>
+      )}
       <DeliveryInfo>
         <ProductOrderSpec>
           <li className={Fonts.XS}>적립금</li>
@@ -87,13 +121,17 @@ export const ProductInfo = () => {
         </ProductOrderSpec>
 
         <ProductOrderInfo>
-          <li className={Fonts.XS}>180 원</li>
+          <li className={Fonts.XS}>
+            {discountPolicy ? accumulate * price : price} 원
+          </li>
           <li className={Fonts.XS}>이곳은 주소입니다</li>
           <li className={Fonts.XS}>3000 원</li>
         </ProductOrderInfo>
       </DeliveryInfo>
 
-      <ProductAmount />
+      <ProductAmount
+        priceData={discountPolicy ? price - discountRate * price : price}
+      />
     </ProductInfoWrapper>
   );
 };
