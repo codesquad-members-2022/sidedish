@@ -12,7 +12,7 @@
 
         <variable
             name="foodInfo"
-            type="com.example.sideDish.data.Item.FoodInfo" />
+            type="com.example.sideDish.data.model.Item.FoodInfo" />
 
         <variable
             name="viewmodel"

@@ -1,43 +1,32 @@
 package com.example.sideDish.ui.productdetail
 
-import android.annotation.SuppressLint
-import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
 import com.example.sideDish.common.ViewModelFactory
-import com.example.sideDish.data.Item
-import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
 import java.text.DecimalFormat
 
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
-    lateinit var viewModel: FoodDetailViewModel
+    val viewModel by viewModels<FoodDetailViewModel>{ViewModelFactory()}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        viewModel = ViewModelProvider(this, ViewModelFactory(FoodRepository(), "hash")).get(
-            FoodDetailViewModel::class.java
-        )
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
-        viewModel.getDetail("hash")
+        viewModel.getDetail("HBBCC")
 
         setFoodInfoDummy()
         registerStepper()
@@ -65,13 +54,12 @@ class ProductDetailFragment : Fragment() {
         binding.stepper.orderCount = viewModel.orderCount
 
         viewModel.orderCount.observe(viewLifecycleOwner) {
+            val discountedPrice = viewModel.detail.value?.discountedPrice
+
             binding.stepper.value.text = it.toString()
             binding.textViewTotalCostFix.text =
-                "${DecimalFormat("#,###").format(it * (viewModel.detail.value?.discountedPrice ?: 0))}${
-                    resources.getString(
-                        R.string.money_unit
-                    )
-                }"
+                DecimalFormat("#,###").format(it * (discountedPrice?.filter { price -> price.isDigit() }
+                    ?.toInt() ?: 0))
         }
     }
 

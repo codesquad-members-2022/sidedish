@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sideDish.common.Event
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.Item
-import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.Item
+import com.example.sideDish.data.source.FoodRemoteRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {
+class FoodListViewModel(private val remoteRepository: FoodRemoteRepository) : ViewModel() {
     private val _openDetail = MutableLiveData<Event<Boolean>>()
     val openDetail: LiveData<Event<Boolean>> = _openDetail
 
@@ -19,21 +21,21 @@ class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {
     private var soupItemsCount = 0
     private var sideItemsCount = 0
 
-    private fun getMainItems(): List<Item> {
-        val mainItems = repository.getMainItems()
-        mainItemsCount = mainItems.size
+    private suspend fun getMainItems(): List<Item>? {
+        val mainItems = remoteRepository.getMenu(FoodCategory.MAIN)
+        mainItemsCount = mainItems?.size ?: 0
         return mainItems
     }
 
-    private fun getSoupItems(): List<Item> {
-        val soupItems = repository.getSoupItems()
-        soupItemsCount = soupItems.size
+    private suspend fun getSoupItems(): List<Item>? {
+        val soupItems = remoteRepository.getMenu(FoodCategory.SOUP)
+        soupItemsCount = soupItems?.size ?: 0
         return soupItems
     }
 
-    private fun getSideItems(): List<Item> {
-        val sideItems = repository.getSideItems()
-        sideItemsCount = sideItems.size
+    private suspend fun getSideItems(): List<Item>? {
+        val sideItems = remoteRepository.getMenu(FoodCategory.SIDE)
+        sideItemsCount = sideItems?.size ?: 0
         return sideItems
     }
 
@@ -51,13 +53,17 @@ class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {
         else count - 1
     }
 
-    fun updateItems(category: FoodCategory) {
+    suspend fun updateItems(category: FoodCategory) {
+        val newItems: List<Item> =
+            withContext(Dispatchers.IO) {
+                when (category) {
+                    FoodCategory.MAIN -> getMainItems()
+                    FoodCategory.SOUP -> getSoupItems()
+                    FoodCategory.SIDE -> getSideItems()
+                }
+            } ?: kotlin.run { return }
+
         val tempItems = _items.value?.toMutableList() ?: mutableListOf()
-        val newItems = when (category) {
-            FoodCategory.MAIN -> getMainItems()
-            FoodCategory.SOUP -> getSoupItems()
-            FoodCategory.SIDE -> getSideItems()
-        }
 
         var sectionIndex = -1
         tempItems.forEachIndexed { itemIndex, item ->
@@ -82,11 +88,9 @@ class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {
                     else -> removedIndex++
                 }
             }
-
             tempItems.removeAll(tempItems.slice(sectionIndex..sectionIndex + removedIndex))
             tempItems.addAll(sectionIndex, newItems)
         }
-
         _items.value = tempItems.toList()
     }
 }

@@ -17,11 +17,11 @@
 
         <variable
             name="detail"
-            type="com.example.sideDish.data.source.FoodDetail" />
+            type="com.example.sideDish.data.model.FoodDetail" />
 
         <variable
             name="foodInfo"
-            type="com.example.sideDish.data.Item.FoodInfo" />
+            type="com.example.sideDish.data.model.Item.FoodInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{String.valueOf(detail.discountedPrice)+'원'}"
+                    android:text="@{detail.discountedPrice}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view_detail_body" />
 

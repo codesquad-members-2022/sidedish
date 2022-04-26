@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import com.example.sideDish.R
-import com.example.sideDish.ui.productdetail.FoodDetailViewModel
 
 class Stepper(context: Context, attrs: AttributeSet) :
     LinearLayout(context, attrs) {

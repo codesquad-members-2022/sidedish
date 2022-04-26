@@ -1,4 +1,4 @@
-package com.example.sideDish.data
+package com.example.sideDish.data.model
 
 enum class FoodCategory(val sectionTitle: String) {
     MAIN("모두가 좋아하는\n든든한 메인 요리"),

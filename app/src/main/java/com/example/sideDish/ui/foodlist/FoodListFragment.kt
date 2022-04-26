@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.common.ViewModelFactory
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
-import kotlin.concurrent.fixedRateTimer
+import kotlinx.coroutines.launch
 
 class FoodListFragment : Fragment() {
 
@@ -30,7 +30,7 @@ class FoodListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelFactory(FoodRepository())
+            ViewModelFactory()
         ).get(FoodListViewModel::class.java)
 
         return layout
@@ -46,9 +46,11 @@ class FoodListFragment : Fragment() {
             adapter.submitList(it)
         }
 
-        adapter.updateCategoryItems(FoodCategory.MAIN)
-        adapter.updateCategoryItems(FoodCategory.SOUP)
-        adapter.updateCategoryItems(FoodCategory.SIDE)
+        viewLifecycleOwner.lifecycleScope.launch() {
+            launch { adapter.updateCategoryItems(FoodCategory.MAIN) }.join()
+            launch { adapter.updateCategoryItems(FoodCategory.SOUP) }.join()
+            launch { adapter.updateCategoryItems(FoodCategory.SIDE) }.join()
+        }
 
         viewModel.openDetail.observe(viewLifecycleOwner, EventObserver {
             openDetail()
