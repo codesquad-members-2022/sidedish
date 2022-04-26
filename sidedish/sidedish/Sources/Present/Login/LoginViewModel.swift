@@ -7,15 +7,19 @@
 
 import Combine
 import FirebaseAuth
+import FirebaseCore
 import Foundation
+import GoogleSignIn
 
 struct LoginViewModelAction {
     let viewDidLoad = PassthroughSubject<Void, Never>()
     let tappedGoogleLogin = PassthroughSubject<Void, Never>()
+    let googleUser = PassthroughSubject<GIDGoogleUser?, Never>()
 }
 
 struct LoginViewModelState {
     let presentMainView = PassthroughSubject<Void, Never>()
+    let presentGoogleLogin = PassthroughSubject<GIDConfiguration, Never>()
 }
 
 protocol LoginViewModelBinding {
@@ -23,15 +27,7 @@ protocol LoginViewModelBinding {
     var state: LoginViewModelState { get }
 }
 
-protocol LoginViewDelegate: AnyObject {
-    func getViewController() -> UIViewController
-}
-
-protocol LoginViewModelProperty {
-    var delegate: LoginViewDelegate? { get set }
-}
-
-typealias LoginViewModelProtocol = LoginViewModelBinding & LoginViewModelProperty
+typealias LoginViewModelProtocol = LoginViewModelBinding
 
 class LoginViewModel: LoginViewModelProtocol {
     
@@ -40,7 +36,6 @@ class LoginViewModel: LoginViewModelProtocol {
     
     let action = LoginViewModelAction()
     let state = LoginViewModelState()
-    weak var delegate: LoginViewDelegate?
     
     init() {
         action.viewDidLoad
@@ -51,10 +46,26 @@ class LoginViewModel: LoginViewModelProtocol {
                 self.state.presentMainView.send()
             }
             .store(in: &cancellables)
-                    
+        
         action.tappedGoogleLogin
-            .compactMap { self.delegate?.getViewController() }
-            .map { self.loginRepository.googleLogin(viewController: $0) }
+            .compactMap { _ -> GIDConfiguration? in
+                guard let clientId = FirebaseApp.app()?.options.clientID else {
+                    return nil
+                }
+                return GIDConfiguration(clientID: clientId)
+            }
+            .sink(receiveValue: state.presentGoogleLogin.send(_:))
+            .store(in: &cancellables)
+        
+        action.googleUser
+            .compactMap { user -> AuthCredential? in
+                guard let authentication = user?.authentication,
+                      let idToken = authentication.idToken else {
+                    return nil
+                }
+                return GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+            }
+            .map { self.loginRepository.googleLogin(authCredential: $0) }
             .switchToLatest()
             .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
             .map { _ in }

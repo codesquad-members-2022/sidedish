@@ -7,29 +7,17 @@
 
 import Combine
 import FirebaseAuth
-import FirebaseCore
 import Foundation
-import GoogleSignIn
 
 class LoginRepositoryImpl: NetworkRepository, LoginRepository {
-    func googleLogin(viewController: UIViewController) -> AnyPublisher<User, Never> {
+    func googleLogin(authCredential: AuthCredential) -> AnyPublisher<User, Never> {
         Future<User, Never> { promise in
-            guard let clientId = FirebaseApp.app()?.options.clientID else { return }
-            let config = GIDConfiguration(clientID: clientId)
-            GIDSignIn.sharedInstance.signIn(with: config, presenting: viewController) { user, _ in
-                guard let authentication = user?.authentication,
-                      let idToken = authentication.idToken else {
+            Auth.auth().signIn(with: authCredential) { authResult, _ in
+                guard let user = authResult?.user else {
                     return
                 }
-
-                let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-                Auth.auth().signIn(with: credential) { authResult, _ in
-                    guard let user = authResult?.user else {
-                        return
-                    }
-                    
-                    promise(.success(User(user: user)))
-                }
+                
+                promise(.success(User(user: user)))
             }
         }.eraseToAnyPublisher()
     }
