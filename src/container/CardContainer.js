@@ -2,71 +2,120 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
-import Card from '../components/Card';
+import CardBox from '../components/CardBox';
 import { slideBtn } from '../css/variables';
 import { color } from '../css/variables';
 
+const changeBtnActivation = (
+  isImmovable,
+  setSelectedBtnActivate,
+  setAnotherBtnActivate
+) => {
+  if (isImmovable) {
+    setSelectedBtnActivate(true);
+  } else {
+    setSelectedBtnActivate(false);
+  }
+  setAnotherBtnActivate(false);
+};
+
+const getSlidingSize = (isMoveableSlide, sizeToMove, cardNum) => {
+  const moveDefault = 100;
+  const slidingSize = isMoveableSlide
+    ? Math.floor(moveDefault * (sizeToMove / cardNum))
+    : moveDefault;
+  return slidingSize;
+};
+
 const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
-  const [curHeadCardOrder, setCurHeadCardOrder] = useState(1);
+  const initialHeadCardOrder = 1;
+
+  const [curHeadCardOrder, setCurHeadCardOrder] =
+    useState(initialHeadCardOrder);
   const [slidingSize, setSlidingSize] = useState(0);
   const [disabledPrevBtn, setDisabledPrevBtn] = useState(true);
   const [disabledNextBtn, setDisabledNextBtn] = useState(false);
 
   const handleClickPrev = () => {
+    if (disabledPrevBtn) return;
+
+    /**
+     * 1 2 3 4 | 5 6 7 8 (이전에 4개 있는 경우)
+     * 5 - 4 => 1
+     * 1 2 3 | 4 5 6 7 |(이전에 3개 있는 경우)
+     * 4 - 4 => 0
+     * 1 2 | 3 4 5 6 | (이전에 2개 있는 경우)
+     * 3 - 4 => -1
+     * 1 | 2 3 4 5 | (이전에 1개 있는 경우)
+     * 2- 4 => -2
+     */
     const prevOrder = curHeadCardOrder - cardNum;
     const isLeakNFirstSlide = prevOrder >= -2 && prevOrder < 1;
-    const isBelowHead = isLeakNFirstSlide || prevOrder === 1;
 
-    if (isBelowHead) {
-      setDisabledPrevBtn(true);
-    } else {
-      setDisabledPrevBtn(false);
-    }
-    setDisabledNextBtn(false);
+    const isFirstShowingSlide =
+      isLeakNFirstSlide || prevOrder === initialHeadCardOrder;
 
-    const sizeToMove = cardNum + curHeadCardOrder - (cardNum + 1);
+    changeBtnActivation(
+      isFirstShowingSlide,
+      setDisabledPrevBtn,
+      setDisabledNextBtn
+    );
+
+    /**
+     * if(cardNum = 4) 1 2 3 | 4 5 6 7 | => 4 + 4 - (4 + 1) = 3
+     * if(cardNum = 3) 1 2 | 3 4 5 | => 3 + 3 - (3 + 1) = 2
+     */
+    const sizeToMove =
+      cardNum + curHeadCardOrder - (cardNum + initialHeadCardOrder);
+
     setCurHeadCardOrder(
       isLeakNFirstSlide
         ? curHeadCardOrder - sizeToMove
         : curHeadCardOrder - cardNum
     );
 
-    const moveDefault = 100;
-    const nextSlidingSize = isLeakNFirstSlide
-      ? Math.floor(moveDefault * (sizeToMove / cardNum))
-      : moveDefault;
-    setSlidingSize(slidingSize + nextSlidingSize);
+    const prevSlidingSize = getSlidingSize(
+      isLeakNFirstSlide,
+      sizeToMove,
+      cardNum
+    );
+
+    setSlidingSize(slidingSize + prevSlidingSize);
   };
 
   const handleClickNext = () => {
+    if (disabledNextBtn) return;
+
     const cardInfosLen = cardInfos.length;
     const showingHeadCardOrder = curHeadCardOrder + cardNum;
+    const sizeToMove = cardInfosLen % cardNum;
 
-    const leakCardSize = cardInfosLen % cardNum;
     const isUndividedLastSlide =
-      (showingHeadCardOrder - 1) / cardNum ===
+      (showingHeadCardOrder - initialHeadCardOrder) / cardNum ===
       Math.floor(cardInfosLen / cardNum);
 
-    if (
-      isUndividedLastSlide ||
-      showingHeadCardOrder + cardNum === cardInfosLen + 1
-    ) {
-      setDisabledNextBtn(true);
-    } else {
-      setDisabledNextBtn(false);
-    }
-    setDisabledPrevBtn(false);
+    const isDividedLastSlide =
+      showingHeadCardOrder + cardNum === cardInfosLen + initialHeadCardOrder;
+
+    const isLastShowingSlide = isUndividedLastSlide || isDividedLastSlide;
+
+    changeBtnActivation(
+      isLastShowingSlide,
+      setDisabledNextBtn,
+      setDisabledPrevBtn
+    );
 
     setCurHeadCardOrder(
       isUndividedLastSlide
-        ? curHeadCardOrder + leakCardSize
+        ? curHeadCardOrder + sizeToMove
         : showingHeadCardOrder
     );
 
-    const moveDefault = 100;
-    const nextSlidingSize = isUndividedLastSlide
-      ? Math.floor(moveDefault * (leakCardSize / cardNum))
-      : moveDefault;
+    const nextSlidingSize = getSlidingSize(
+      isUndividedLastSlide,
+      sizeToMove,
+      cardNum
+    );
 
     setSlidingSize(slidingSize - nextSlidingSize);
   };
@@ -89,17 +138,12 @@ const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
         />
       )}
       <StyledDiv>
-        <StyledCardContainer
+        <CardBox
           hasBtn={hasButton}
           cardNum={cardNum}
           slidingSize={slidingSize}
-        >
-          {cardInfos.map((cardInfo, idx) => (
-            <StyledCard key={idx}>
-              <Card cardInfo={cardInfo} cardNum={cardNum} />
-            </StyledCard>
-          ))}
-        </StyledCardContainer>
+          cardInfos={cardInfos}
+        />
       </StyledDiv>
     </StyledSection>
   );
@@ -113,16 +157,6 @@ const StyledDiv = styled.div`
 const StyledSection = styled.section`
   margin-top: 50px;
   position: relative;
-`;
-
-const StyledCardContainer = styled.ul`
-  display: flex;
-  transition: transform 1s ease 0s;
-  transform: translateX(${({ slidingSize }) => slidingSize}%);
-`;
-
-const StyledCard = styled.li`
-  margin-right: 24px;
 `;
 
 const StyledButton = styled(Button)`
