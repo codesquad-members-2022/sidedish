@@ -29,6 +29,7 @@ final class DetailViewController: UIViewController {
         layoutDetailScrollView()
         
         detailScrollView.overViewImageScrollView.delegate = self
+        detailScrollView.countStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .touchUpInside)
     }
     
     private func configureMenuStackView() {
@@ -59,5 +60,13 @@ extension DetailViewController {
 extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detailScrollView.imagePageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
+    }
+}
+
+// MARK: - Selector Function
+
+extension DetailViewController {
+    @objc func stepperValueChanged(_ sender: UIStepper!) {
+        detailScrollView.orderCount = Int(sender.value)
     }
 }
