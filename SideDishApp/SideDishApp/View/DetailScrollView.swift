@@ -9,7 +9,17 @@ import UIKit
 
 final class DetailScrollView: UIScrollView {
     
-    private var mockImages = ["mockImage.png", "mockImage.png"]
+    var orderCount: Int = 1 {
+        didSet {
+            countLabel.text = "\(orderCount)"
+        }
+    }
+    
+    var amount: String = "" {
+        didSet {
+            amountLabel.text = amount
+        }
+    }
     
     private let contentView: UIView = {
         let view = UIView()
@@ -19,7 +29,6 @@ final class DetailScrollView: UIScrollView {
     
     private(set) var overViewImageScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .green
         scrollView.alwaysBounceVertical = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -31,11 +40,10 @@ final class DetailScrollView: UIScrollView {
     
     private(set) var imagePageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.backgroundColor = .red
         return pageControl
     }()
     
-    private let DetailContainerStackView: UIStackView = {
+    private let detailContainerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 24
         stackView.axis = .vertical
@@ -45,6 +53,81 @@ final class DetailScrollView: UIScrollView {
     
     private(set) var mainInfoStackView = MenuStackView()
     private(set) var subInfoStackView = MenuSubInfoContainerStackView()
+    
+    private let countContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    private let countTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "수량"
+        label.textColor = .systemGray
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let countLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1"
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .darkGray
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private(set) var countStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.minimumValue = 1
+        return stepper
+    }()
+    
+    private let orderContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 24
+        stackView.alignment = .trailing
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    private let amountContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 24
+        return stackView
+    }()
+    
+    private let amountTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "총 주문금액"
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    private let amountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 32)
+        return label
+    }()
+    
+    private let orderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("주문하기", for: .normal)
+        button.backgroundColor = .tintColor
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private let recipeImageStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        return stackView
+    }()
     
     private let separatorView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -65,28 +148,47 @@ final class DetailScrollView: UIScrollView {
         addSubview(contentView)
         
         contentView.addSubview(overViewImageScrollView)
-        configureOverViewImageScrollView()
-        
         contentView.addSubview(imagePageControl)
-        configureImagePageControl()
+        contentView.addSubview(detailContainerStackView)
         
-        contentView.addSubview(DetailContainerStackView)
-        
-        DetailContainerStackView.addArrangedSubview(mainInfoStackView)
+        detailContainerStackView.addArrangedSubview(mainInfoStackView)
         mainInfoStackView.changeSpacingForDetailView()
         mainInfoStackView.changeFontForDetailView()
-        DetailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
         
-        DetailContainerStackView.addArrangedSubview(subInfoStackView)
-        DetailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        detailContainerStackView.addArrangedSubview(subInfoStackView)
+        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        
+        detailContainerStackView.addArrangedSubview(countContainerStackView)
+        countContainerStackView.addArrangedSubview(countTitleLabel)
+        countContainerStackView.addArrangedSubview(countLabel)
+        countContainerStackView.addArrangedSubview(countStepper)
+        configureCountContainerStackView()
+        
+        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        
+        detailContainerStackView.addArrangedSubview(orderContainerStackView)
+        orderContainerStackView.addArrangedSubview(amountContainerStackView)
+        amountContainerStackView.addArrangedSubview(amountTitleLabel)
+        amountContainerStackView.addArrangedSubview(amountLabel)
+        orderContainerStackView.addArrangedSubview(orderButton)
+        
+        detailContainerStackView.addArrangedSubview(recipeImageStackView)
         
         layoutContentView()
         layoutImagePageControl()
         layoutDetailContainerStackView()
+        layoutCountTitleLabel()
+        layoutOrderButton()
+        
+        amountTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountTitleLabel.widthAnchor.constraint(equalToConstant: 87).isActive = true
+        
+        configureOverViewImageScrollView()
+        configureImagePageControl()
     }
     
     private func configureImagePageControl() {
-        imagePageControl.numberOfPages = mockImages.count
         imagePageControl.currentPage = 0
         imagePageControl.pageIndicatorTintColor = .white
         imagePageControl.currentPageIndicatorTintColor = .systemBlue
@@ -94,16 +196,11 @@ final class DetailScrollView: UIScrollView {
     
     private func configureOverViewImageScrollView() {
         overViewImageScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 375)
-        overViewImageScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * CGFloat(mockImages.count), height: 375)
-        
-        for (index, imageName) in mockImages.enumerated() {
-            let image = UIImage(named: imageName)
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleToFill
-            
-            imageView.frame = overViewImageScrollView.frame
-            imageView.frame.origin.x = UIScreen.main.bounds.width * CGFloat(index)
-            overViewImageScrollView.addSubview(imageView)
+    }
+
+    private func addPlaceholderView(count: Int) {
+        for _ in 0..<count {
+            recipeImageStackView.addArrangedSubview(UIView())
         }
     }
 }
@@ -119,7 +216,7 @@ extension DetailScrollView {
         contentView.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor).isActive = true
         
         contentView.widthAnchor.constraint(equalTo: frameLayoutGuide.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalTo: frameLayoutGuide.heightAnchor).isActive = true
+        contentLayoutGuide.bottomAnchor.constraint(equalTo: detailContainerStackView.bottomAnchor, constant: 100).isActive = true
     }
     
     private func layoutOverViewImageScrollView() {
@@ -137,10 +234,10 @@ extension DetailScrollView {
     }
     
     private func layoutDetailContainerStackView() {
-        DetailContainerStackView.translatesAutoresizingMaskIntoConstraints = false
-        DetailContainerStackView.topAnchor.constraint(equalTo: overViewImageScrollView.bottomAnchor, constant: 24).isActive = true
-        DetailContainerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        DetailContainerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        detailContainerStackView.translatesAutoresizingMaskIntoConstraints = false
+        detailContainerStackView.topAnchor.constraint(equalTo: overViewImageScrollView.bottomAnchor, constant: 24).isActive = true
+        detailContainerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        detailContainerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
     }
     
     private func layoutSeparatorView() {
@@ -148,46 +245,84 @@ extension DetailScrollView {
         separatorView.widthAnchor.constraint(equalTo: mainInfoStackView.widthAnchor).isActive = true
         separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
+    
+    private func configureCountContainerStackView() {
+        countContainerStackView.setCustomSpacing(150, after: countTitleLabel)
+    }
+    
+    private func layoutCountTitleLabel() {
+        countTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        countTitleLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
+    private func layoutOrderButton() {
+        orderButton.translatesAutoresizingMaskIntoConstraints = false
+        orderButton.leadingAnchor.constraint(equalTo: orderContainerStackView.leadingAnchor).isActive = true
+        orderButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+}
+
+// MARK: - Providing Function
+
+extension DetailScrollView {
+    func setPrice(text: String) {
+        amountLabel.text = "\(text)"
+    }
+    
+    func setThumbNail(images: [String]) {
+        
+        imagePageControl.numberOfPages = images.count
+        overViewImageScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * CGFloat(images.count), height: 375)
+        
+        for (index, imageName) in images.enumerated() {
+            let url = URL(string: imageName)
+            
+            DispatchQueue.global().async {
+                guard let data = try? Data(contentsOf: url!) else { return }
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let imageView = UIImageView(image: UIImage(data: data))
+                    imageView.contentMode = .scaleToFill
+                    imageView.frame = self.overViewImageScrollView.frame
+                    imageView.frame.origin.x = UIScreen.main.bounds.width * CGFloat(index)
+                    self.overViewImageScrollView.addSubview(imageView)
+                }
+            }
+        }
+    }
+    
+    func setRecipe(images: [String]) {
+        addPlaceholderView(count: images.count)
+        
+        for (imageIndex, imageName) in images.enumerated() {
+            let url = URL(string: imageName)
+            
+            DispatchQueue.global().async {
+                guard let data = try? Data(contentsOf: url!) else { return }
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    
+                    let image = UIImage(data: data)
+                    let imageView = UIImageView(image: image)
+                    
+                    let baseWidth = self.detailContainerStackView.frame.size.width
+                    
+                    guard let adjustedHeight = imageView.calculateAdjustedHeight(baseWidth: baseWidth) else { return }
+                    
+                    imageView.translatesAutoresizingMaskIntoConstraints = false
+                    imageView.heightAnchor.constraint(equalToConstant: adjustedHeight).isActive = true
+                    
+                    self.recipeImageStackView.insertArrangedSubview(imageView, at: imageIndex)
+                }
+            }
+        }
+    }
+    
 }
 
 // MARK: - Private Extension
-
-private extension UIStackView {
-    static func makeSubInfo(by description: [String]) -> UIStackView {
-        let stackView = UIStackView()
-        stackView.spacing = 16
-        stackView.axis = .vertical
-        
-        for index in 0..<description.count {
-            let eachStackView = UIStackView.makeSubInfoComponents(titleText: .allCases[index], descriptionText: description[index])
-            stackView.addArrangedSubview(eachStackView)
-        }
-        
-        return stackView
-    }
-    
-    private static func makeSubInfoComponents(titleText: Constant.SubInfoTitle, descriptionText: String) -> UIStackView {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 16
-        
-        let titleLabel = UILabel()
-        titleLabel.text = titleText.rawValue
-        titleLabel.textColor = .systemGray
-        
-        let descriptionLabel = UILabel()
-        descriptionLabel.text = descriptionText
-        descriptionLabel.textColor = .darkGray
-        
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(descriptionLabel)
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        return stackView
-    }
-}
 
 private extension UIView {
     static func makeSeparatorView() -> UIView {
@@ -196,5 +331,17 @@ private extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 1).isActive = true
         return view
+    }
+}
+
+private extension UIImageView {
+    func calculateAdjustedHeight(baseWidth: CGFloat) -> CGFloat? {
+        guard let imageHeight = self.image?.size.height,
+              let imageWidth = self.image?.size.width else { return nil }
+        
+        let imageRatio = imageHeight / imageWidth
+        let adjustedImageHeight = baseWidth * imageRatio
+        
+        return adjustedImageHeight
     }
 }

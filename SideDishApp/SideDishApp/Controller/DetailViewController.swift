@@ -12,6 +12,12 @@ final class DetailViewController: UIViewController {
     private let menu: Menu
     private let detailScrollView = DetailScrollView()
     
+    private var menuDetail: MenuDetail? {
+        didSet {
+            setDetailView(by: menuDetail)
+        }
+    }
+    
     init(menu: Menu) {
         self.menu = menu
         super.init(nibName: nil, bundle: nil)
@@ -29,6 +35,7 @@ final class DetailViewController: UIViewController {
         layoutDetailScrollView()
         
         detailScrollView.overViewImageScrollView.delegate = self
+        detailScrollView.countStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .touchUpInside)
     }
     
     private func configureMenuStackView() {
@@ -38,9 +45,23 @@ final class DetailViewController: UIViewController {
         detailScrollView.mainInfoStackView.setBadges(by: menu.badge)
     }
     
-    func setSubInfo(by menuDetail: MenuDetail) {
+    private func setSubInfo(by menuDetail: MenuDetail) {
         let descriptions = [menuDetail.point, menuDetail.delivery_info, menuDetail.delivery_fee]
         detailScrollView.subInfoStackView.setSubInfoDescription(by: descriptions)
+        
+        guard let price = menuDetail.prices.last else { return }
+        detailScrollView.setPrice(text: price)
+    }
+    
+    private func setDetailView(by menuDetail: MenuDetail?) {
+        guard let menuDetail = menuDetail else { return }
+        setSubInfo(by: menuDetail)
+        detailScrollView.setThumbNail(images: menuDetail.thumb_images)
+        detailScrollView.setRecipe(images: menuDetail.detail_section)
+    }
+    
+    func setMenuDetail(menuDetail: MenuDetail?) {
+        self.menuDetail = menuDetail
     }
 }
 
@@ -49,6 +70,7 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     private func layoutDetailScrollView() {
         detailScrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         detailScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         detailScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         detailScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -59,5 +81,20 @@ extension DetailViewController {
 extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detailScrollView.imagePageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
+    }
+}
+
+// MARK: - Selector Function
+
+extension DetailViewController {
+    @objc func stepperValueChanged(_ sender: UIStepper!) {
+        let count = Int(sender.value)
+        detailScrollView.orderCount = count
+        
+        guard let stringPrice = menuDetail?.prices.last else { return }
+        let decimalPrice = PriceConvertor.toDecimal(from: stringPrice)
+        let stringAmount = decimalPrice * count
+        let decimalAmount = PriceConvertor.toString(from: stringAmount)
+        detailScrollView.amount = decimalAmount
     }
 }

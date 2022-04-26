@@ -129,7 +129,7 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
             case .success(let data):
                 guard let menuDetail = data?.data else { return }
                 DispatchQueue.main.async {
-                    detailVC.setSubInfo(by: menuDetail)
+                    detailVC.setMenuDetail(menuDetail: menuDetail)
                 }
             case .failure(let failure):
                 os_log(.error, "\(failure.localizedDescription)")
