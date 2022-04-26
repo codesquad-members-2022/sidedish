@@ -10,6 +10,7 @@ public class Dish {
     private Long id;
     private String title;
     private String content;
+    private String tag;
     private int price;
     private int stock;
     private int deliveryFee;
