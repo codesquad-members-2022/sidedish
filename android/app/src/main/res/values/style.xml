@@ -23,7 +23,7 @@
     </style>
 
     <style name="event_style.launching_price">
-        <item name="android:color">@color/primary3</item>
+        <item name="android:textColor">@color/primary3</item>
     </style>
 
     <style name="normal_style">

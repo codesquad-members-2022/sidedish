@@ -1,5 +1,7 @@
 package com.example.sidedish.data
 
+import com.example.sidedish.data.dto.DetailImageLinkDTO
+
 data class Menu(
     val description: String?,
     val discountPolicy: String?,
@@ -9,7 +11,7 @@ data class Menu(
     val name: String?,
     val price: Int?,
     var detailImageLink: List<DetailImageLinks>?
-) {
+): MenuModel() {
     fun makeDetailImageLinkList(list: List<DetailImageLinkDTO>?) {
         val newList = mutableListOf<DetailImageLinks>()
         list?.forEach { detailImageLink ->

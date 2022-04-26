@@ -1,4 +1,6 @@
-package com.example.sidedish.data
+package com.example.sidedish.data.dto
+
+import com.example.sidedish.data.Menu
 
 
 data class MenuDetailDTO(

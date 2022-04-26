@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sidedish.R
+import com.example.sidedish.data.Category
 import com.example.sidedish.data.Menu
-import com.example.sidedish.data.Header
+import com.example.sidedish.data.MenuModel
 import com.example.sidedish.databinding.ItemHeaderBinding
 import com.example.sidedish.databinding.ItemMenuListBinding
 import com.example.sidedish.ui.MenuItemClickListener
@@ -21,20 +23,18 @@ import java.text.DecimalFormat
 private const val HEADER = 0
 private const val ITEM = 1
 
-class MenuListAdapter(private val header: Header, private val listener: MenuItemClickListener) :
-    ListAdapter<Menu, RecyclerView.ViewHolder>(DiffUtil) {
-
+class MenuPageAdapter(private val listener: MenuItemClickListener) : ListAdapter<MenuModel, RecyclerView.ViewHolder>(MenuDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            HEADER -> MenuListHeaderViewHolder(
+            HEADER -> HeaderViewHolder(
                 ItemHeaderBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
             )
-            else -> MenuListViewHolder(
+            else -> MenuViewHolder(
                 ItemMenuListBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -45,57 +45,24 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is MenuListHeaderViewHolder -> {
-                holder.bind(header)
+        when(holder) {
+            is HeaderViewHolder -> {
+                holder.bind(getItem(position) as Category)
             }
-
-            is MenuListViewHolder -> {
-                holder.bind(getItem(position-1))
+            is MenuViewHolder -> {
+                holder.bind(getItem(position) as Menu)
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> HEADER
-            else -> ITEM
+        return when (currentList[position]) {
+            is Category -> HEADER
+            is Menu -> ITEM
         }
     }
 
-    override fun getItemCount(): Int {
-        return currentList.size + 1
-    }
-
-    object DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Menu>() {
-
-        override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem == newItem
-        }
-
-    }
-
-    class MenuListHeaderViewHolder(private val binding: ItemHeaderBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(header: Header) {
-            when (header) {
-                Header.MAIN -> binding.tvMenuListLabel.text =
-                    binding.root.context.getString(R.string.main_header)
-                Header.SOUP -> binding.tvMenuListLabel.text =
-                    binding.root.context.getString(R.string.soup_header)
-                Header.SIDE -> binding.tvMenuListLabel.text =
-                    binding.root.context.getString(R.string.side_header)
-            }
-        }
-
-    }
-
-    inner class MenuListViewHolder(private val binding: ItemMenuListBinding) :
+    inner class MenuViewHolder(private val binding: ItemMenuListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(menu: Menu) {
@@ -140,7 +107,6 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
                     }
                 }
                 "이벤트특가" -> {
-//                    binding.tvLimitedCostBadge.visibility = View.VISIBLE
                     with(binding) {
                         tvLaunchingCostBadge.visibility = View.VISIBLE
                         tvLaunchingCostBadge.text = sale
@@ -153,6 +119,27 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
                 }
             }
         }
+    }
+
+    inner class HeaderViewHolder(private val binding: ItemHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(header: Category) {
+            binding.tvMenuListLabel.text = header.category
+        }
+
+    }
+
+    object MenuDiffUtil : DiffUtil.ItemCallback<MenuModel>() {
+
+        override fun areItemsTheSame(oldItem: MenuModel, newItem: MenuModel): Boolean {
+            return oldItem.hashCode() == newItem.hashCode()
+        }
+
+        override fun areContentsTheSame(oldItem: MenuModel, newItem: MenuModel): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
 }

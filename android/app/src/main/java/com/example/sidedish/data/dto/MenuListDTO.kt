@@ -1,6 +1,7 @@
-package com.example.sidedish.data
+package com.example.sidedish.data.dto
 
 
+import com.example.sidedish.data.Menu
 import com.google.gson.annotations.SerializedName
 
 
