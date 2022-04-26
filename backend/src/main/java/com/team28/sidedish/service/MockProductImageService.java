@@ -18,13 +18,13 @@ public class MockProductImageService {
     @PostConstruct
     private void setup() {
         images.put(1L, List.of(
-                new ProductImageResponse(1L, "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D1.jpg", true, 1),
+                new ProductImageResponse(1L, "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg", true, 1),
                 new ProductImageResponse(2L, "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_S.jpg", true, 2),
-                new ProductImageResponse(3L, "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg", false, 1)
+                new ProductImageResponse(3L, "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D1.jpg", false, 1)
         ));
         images.put(2L, List.of(
-                new ProductImageResponse(1L, "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_S.jpg", true, 1),
-                new ProductImageResponse(2L, "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg", true, 2),
+                new ProductImageResponse(1L, "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg", true, 1),
+                new ProductImageResponse(2L, "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_S.jpg", true, 2),
                 new ProductImageResponse(3L, "http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_D1.jpg", false, 1)
         ));
         images.put(3L, List.of(
