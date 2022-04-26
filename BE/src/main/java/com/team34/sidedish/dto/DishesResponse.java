@@ -4,14 +4,19 @@ import java.util.List;
 
 public class DishesResponse {
 
-    private List<DishesResponse> eventItems;
-    private List<DishesResponse> items;
+    private List<DishResponse> eventItems;
+    private List<DishResponse> items;
 
-    public List<DishesResponse> getEventItems() {
+    public DishesResponse(List<DishResponse> eventItems, List<DishResponse> items) {
+        this.eventItems = eventItems;
+        this.items = items;
+    }
+
+    public List<DishResponse> getEventItems() {
         return eventItems;
     }
 
-    public List<DishesResponse> getItems() {
+    public List<DishResponse> getItems() {
         return items;
     }
 }
