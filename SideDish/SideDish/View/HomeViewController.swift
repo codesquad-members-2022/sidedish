@@ -79,13 +79,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     // MARK: - Cell 이 클릭되게 만듦
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("click index=\(indexPath.row)")
-        print("click section=\(indexPath.section)")
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else { return }
-        // TODO: - 선택된 셀의 무엇을 보고 호출해야할까? -> Detail Hash
-        // TODO: - DetailView(hash: String) 으로 할 수 있도록, 이니셜라이저를 편집해야하나요?
-//        let nextVC = DetailView(hash: String)
-//        navigationController?.pushViewController(nextVC, animated: true)
+
+        let detailHash = model[indexPath.section][indexPath.item].hash
+        let dishDetailViewModel = DishDetailViewModel(detailHash: detailHash, repository: DishDetailRepository())
+        let nextViewController = DetailViewController(viewModel: dishDetailViewModel)
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 
