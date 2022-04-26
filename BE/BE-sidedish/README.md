@@ -1,3 +1,19 @@
+### rest api
+
+| URL                                            | 기능                    |
+|------------------------------------------------|-----------------------|
+| GET /api/sidedish/{special-menu-id}            | 첫 페이지 조회 + 추천메뉴(random) |
+| GET /api/sidedish/exhibition/{special-menu-id} | 첫 페이지 내 다른 추천메뉴만 요청   |
+| GET /api/sidedish/more                         | 첫화면 더보기 버튼 클릭         |
+| GET /api/sidedish/menu/{menu-id}               | 메뉴 상세 보기              |
+| GET /api/sidedish/menu/order/{menu-id}         | 주문하기                  |
+
+
+### 설치 및 실행 방법
+
+- [swagger 실행 url](http://localhost:8080/swagger-ui/index.html) 
+
+
 ### 📝`BE 기획 요구사항 분석`
 
 #### 📝`전첵적인 분석`
