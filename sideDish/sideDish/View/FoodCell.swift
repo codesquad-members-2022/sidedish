@@ -41,16 +41,15 @@ class FoodCell: UICollectionViewCell {
         return label
     }()
     
-    private var eventLabel: UILabel = {
-        var label = UILabel()
-        label.clipsToBounds = true
-        label.backgroundColor = UIColor(red: 0.502, green: 0.737, blue: 1, alpha: 1)
-        label.textColor = .white
-        label.layer.cornerRadius = 13
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textAlignment = .center
-        label.text = "이벤트특가"
-        return label
+    private var eventBadgeLable: UILabel?
+    private var launcingBadgeLabel: UILabel?
+    
+    private var stackView: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.distribution = .fillProportionally
+        return stack
     }()
     
     // MARK: Initiallize
@@ -77,14 +76,32 @@ class FoodCell: UICollectionViewCell {
         bodyLabel.text = data.description
         originPriceLabel.text = data.originPrice
         salePriceLabel.text = data.salePrice
-        if let event = data.badge {
-            eventLabel.text = event.joined(separator: ",")
-        } else { eventLabel.text = "" }
+        guard let badge = data.badge else { return }
+        setBadgeLabel(badge)
         myImageView.load(url: data.image)
         
     }
     
+    func setBadgeLabel(_ badge: [String]){
+        for str in badge{
+            let label = makeEventLabel(text: str)
+            stackView.addArrangedSubview(makeEventLabel(text: str))
+        }
+    }
+    
     // MARK: Label configure
+    func makeEventLabel(text: String) -> UILabel{
+        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.clipsToBounds = true
+        label.backgroundColor = UIColor(red: 0.502, green: 0.737, blue: 1, alpha: 1)
+        label.textColor = .white
+        label.layer.cornerRadius = 13
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
+        label.text = text
+        return label
+    }
     
     func configureLayout(){
         self.contentView.addSubview(myImageView)
@@ -119,13 +136,13 @@ class FoodCell: UICollectionViewCell {
         salePriceLabel.leadingAnchor.constraint(equalTo: originPriceLabel.trailingAnchor, constant: 4).isActive = true
         salePriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        self.contentView.addSubview(eventLabel)
-        eventLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventLabel.widthAnchor.constraint(equalToConstant: 89).isActive = true
-        eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        eventLabel.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
-        eventLabel.leadingAnchor.constraint(equalTo: originPriceLabel.leadingAnchor).isActive = true
-        eventLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13).isActive = true
+        self.contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        stackView.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: originPriceLabel.leadingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13).isActive = true
     }
     
 }
