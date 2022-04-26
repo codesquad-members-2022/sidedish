@@ -216,7 +216,7 @@ extension DetailScrollView {
         contentView.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor).isActive = true
         
         contentView.widthAnchor.constraint(equalTo: frameLayoutGuide.widthAnchor).isActive = true
-        contentLayoutGuide.bottomAnchor.constraint(equalTo: detailContainerStackView.bottomAnchor).isActive = true
+        contentLayoutGuide.bottomAnchor.constraint(equalTo: detailContainerStackView.bottomAnchor, constant: 100).isActive = true
     }
     
     private func layoutOverViewImageScrollView() {
