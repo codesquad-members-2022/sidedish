@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { BestProducts } from '@/Components/BestProducts';
 import { CategoryProductsList } from '@/Components/CategoryProductsList';
 import { Header } from '@/Components/Header';
+import { OrderPanel } from '@/Components/OrderModal';
 import { fetchData } from '@/Utils/Utils';
 
 const Root = styled.div`
@@ -39,6 +40,7 @@ const App = () => {
       <CategoryProductsList
         categoryList={categoryList}
       />
+      <OrderPanel />
     </Root>
   );
 };
