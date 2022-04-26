@@ -146,10 +146,8 @@ const Card = ({ item, imageSize }) => {
             <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
           )}
         </CardItemInfo>
-        {item.discountPolicy ? (
+        {item.discountPolicy && imageSize !== 'small' && (
           <CardItemTag tag={item.discountPolicy}>{item.discountPolicy}</CardItemTag>
-        ) : (
-          ''
         )}
       </CardItem>
     )
