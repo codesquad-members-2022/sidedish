@@ -3,7 +3,7 @@ package sidedish.com.service;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import sidedish.com.controller.ProductsDtoMapper;
+import sidedish.com.controller.DomainDtoMapper;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.domain.Product;
@@ -22,18 +22,18 @@ public class ProductsService {
 	private final ProductsRepository productsRepository;
 	private final DiscountPolicyRepository discountPolicyRepository;
 	private final DeliveryPolicyRepository deliveryPolicyRepository;
-	private final ProductsDtoMapper productsDtoMapper;
+	private final DomainDtoMapper domainDtoMapper;
 	private final DomainEntityMapper domainEntityMapper;
 
 	public ProductsService(ProductsRepository productsRepository,
 		DiscountPolicyRepository discountPolicyRepository,
 		DeliveryPolicyRepository deliveryPolicyRepository,
-		ProductsDtoMapper productsDtoMapper,
+		DomainDtoMapper domainDtoMapper,
 		DomainEntityMapper domainEntityMapper) {
 		this.productsRepository = productsRepository;
 		this.discountPolicyRepository = discountPolicyRepository;
 		this.deliveryPolicyRepository = deliveryPolicyRepository;
-		this.productsDtoMapper = productsDtoMapper;
+		this.domainDtoMapper = domainDtoMapper;
 		this.domainEntityMapper = domainEntityMapper;
 	}
 
@@ -45,7 +45,7 @@ public class ProductsService {
 
 		validateProducts(products);
 
-		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
+		return domainDtoMapper.toProductsBasicTypeResponseFromProducts(products);
 	}
 
 	public ProductDetailTypeResponse findById(Long id) {
@@ -58,7 +58,7 @@ public class ProductsService {
 		Product products = domainEntityMapper.toDomainFromProductEntity(productEntity,
 			discountPolicyEntities, deliveryPolicyEntities);
 
-		return productsDtoMapper.toProductDetailTypeFromDomain(products);
+		return domainDtoMapper.toProductDetailTypeFromProduct(products);
 	}
 
 	public List<ProductBasicTypeResponse> recommend() {
@@ -72,7 +72,7 @@ public class ProductsService {
 			recommendationProductEntity,
 			discountPolicyEntities, deliveryPolicyEntities);
 
-		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(recommendationProducts);
+		return domainDtoMapper.toProductsBasicTypeResponseFromProducts(recommendationProducts);
 	}
 
 	public List<ProductBasicTypeResponse> findAllByBestCategory(String category) {
@@ -86,7 +86,7 @@ public class ProductsService {
 
 		validateProducts(products);
 
-		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
+		return domainDtoMapper.toProductsBasicTypeResponseFromProducts(products);
 	}
 
 	private void validateProducts(List<Product> products) {

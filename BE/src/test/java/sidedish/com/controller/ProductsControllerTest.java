@@ -30,7 +30,7 @@ class ProductsControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 
-	private ProductsDtoMapper productsDtoMapper = new ProductsDtoMapper();
+	private DomainDtoMapper domainDtoMapper = new DomainDtoMapper();
 
 	@MockBean
 	private ProductsService productsService;
@@ -51,7 +51,7 @@ class ProductsControllerTest {
 	void 만약_유효한_product_id가_주어졌을때_음식_상세조회_성공() throws Exception {
 		given(productsService.findById(1L))
 			.willReturn(new ProductDetailTypeResponse(1L,
-				List.of(new Image("http://kukukukukukukukuku.com/test.jpg")), "한돈 돼지 김치찌개",
+				List.of(new Image(1L, "http://kukukukukukukukuku.com/test.jpg")), "한돈 돼지 김치찌개",
 				"맛있어요", 8000, 10000, "이벤트특가", 80L, "서울 경기 새벽 배송, 전국 택배 배송",
 				2500L, 40000L));
 
@@ -77,18 +77,18 @@ class ProductsControllerTest {
 	private List<ProductBasicTypeResponse> createProductsMealTypeResponse() {
 		List<Product> products = new ArrayList<>();
 
-		DiscountPolicy discountPolicy = new DiscountPolicy("이벤트특가", 20);
-		DeliveryPolicy deliveryPolicy = new DeliveryPolicy("테스트", 2500L, 40000L);
+		DiscountPolicy discountPolicy = new DiscountPolicy(1L, "이벤트특가", 20);
+		DeliveryPolicy deliveryPolicy = new DeliveryPolicy(1L, "테스트", 2500L, 40000L);
 		products.add(
 			new Product(5L, discountPolicy, deliveryPolicy,
-				List.of(new Image("http://kukukukukukukukuku.com/test.jpg")),
+				List.of(new Image(1L, "http://kukukukukukukukuku.com/test.jpg")),
 				"한돈 돼지 김치찌개", "김치찌개에는 역시 돼지고기", 8370, 100, "soup", "meat"));
 		products.add(
 			new Product(6L, discountPolicy, deliveryPolicy,
-				List.of(new Image("http://kukukukukukukukuku.com/test2.jpg")),
+				List.of(new Image(1L, "http://kukukukukukukukuku.com/test2.jpg")),
 				"하하하 테스트 음식", "맛있어요", 8370, 100, "main", "soup"));
 
-		return productsDtoMapper.toProductsBasicTypeResponseFromDomain(products);
+		return domainDtoMapper.toProductsBasicTypeResponseFromProducts(products);
 	}
 
 

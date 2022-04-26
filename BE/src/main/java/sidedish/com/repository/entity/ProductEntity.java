@@ -24,7 +24,6 @@ public class ProductEntity {
 	private final String mealCategory;
 	private final String bestCategory;
 
-
 	@PersistenceConstructor
 	public ProductEntity(Long id, Long discountPolicyId,
 		Long deliveryPolicyId, List<ImageEntity> imageEntities, String productName,
