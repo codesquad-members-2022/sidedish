@@ -14,9 +14,13 @@ export default function GNB() {
 
   return (
     <Wrap>
-      <GNBItems onMouseEnter={() => setSubGnbVisible(true)} onMouseLeave={() => setSubGnbVisible(false)}>
+      <GNBItems>
         {GNB_INFO.map(({ GNB_NAME }, gnbIndex) => (
-          <GNBItem key={`${GNB_NAME}_${gnbIndex}`}>
+          <GNBItem
+            key={`${GNB_NAME}_${gnbIndex}`}
+            onMouseEnter={() => setSubGnbVisible(true)}
+            onMouseLeave={() => setSubGnbVisible(false)}
+          >
             <Text size="MEDIUM" value={GNB_NAME} />
             <SubGNB visible={subGnbVisible} SUB_GNB_INFO={GNB_INFO[gnbIndex]} gnbIndex={gnbIndex} />
           </GNBItem>
