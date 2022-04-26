@@ -1,11 +1,13 @@
 package team14.sidedish.menu;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,7 @@ public class MenuService {
 	 * 3. 각각의 추천메뉴와 카테고리의 메뉴 내에서 이벤트가 진행중인 메뉴목륵을 조회합니다.
 	 * 4. 3의 결과에 진행중인 이벤트에 대한 이벤트 목록과 할인정보 추가합니다.
 	 */
+	@Transactional(readOnly = true)
 	public MenuDto.Response readExhibition(int specialNumber) {
 		SpecialMenuModel specialMenuTitle = SpecialMenuModel.from(specialNumber);
 		ExhibitionDto exhibitionInfo = exhibitionService.readOngoing();
@@ -48,8 +51,7 @@ public class MenuService {
 		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
 		List<Long> eventIds = ids.getEventIds();
 
-		// menuId 별 이벤트제목, 할인가격 추가조회
-		// 요청받은 추천메뉴 + 전송할 카테고리내 메뉴 : 많아야 13개
+		// menuId 별 이벤트제목, 할인가격 추가조회 (요청받은 추천메뉴 + 전송할 카테고리내 메뉴 : 많아야 13개)
 		EventAndSalesDto eventAndSales = eventService.read(eventIds);
 		insertSalesAndEventBadge(specialMenus, ids, eventAndSales);
 		insertSalesAndEventBadge(menus, ids, eventAndSales);
@@ -63,6 +65,29 @@ public class MenuService {
 			Menu.Category.MAIN_DISH.getKoType(),
 			menus);
 		return new MenuDto.Response(exhibitionResponse, categoryResponse);
+	}
+
+	public MenuDto.DetailResponse readFrom(Long menuId) {
+		Menu menu = menuRepository.findById(menuId)
+			.orElseThrow(() -> new IllegalArgumentException("error of menuId - read"));
+
+		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.of(menu.getMenuId()));
+		List<Long> eventIds = ids.getEventIds();
+		EventAndSalesDto eventAndSales = eventService.read(eventIds);
+		MenuDto.DetailResponse response = new MenuDto.DetailResponse(
+			menu.getMenuId(),
+			menu.getName(),
+			menu.getDescription(),
+			menu.getPrice(),
+			menu.getImages());
+
+		menuDiscountAndEvent(ids, eventAndSales, response);   // 할인금액과 이벤트 적용
+		Function<Boolean, Integer> savedCharge = (isDiscounted) -> isDiscounted ?
+			response.getDiscountedPrice() :
+			response.getPrice().intValue();
+
+		response.setSavedCharge(savedCharge.apply(eventAndSales.hasDiscounted()));
+		return response;
 	}
 
 	private List<MenuDto.SubCategory> getSubCategoryOf(List<Menu> menus) {
@@ -89,24 +114,29 @@ public class MenuService {
 		EventAndSalesDto eventAndSales) {
 		subCategories.stream()
 			.map(category -> {
-				Optional<EventPlannerDto.Id> eventMenu = ids.findOngoingEvent(category);
-				if (eventMenu.isPresent()) {
-					EventPlannerDto.Id id = eventMenu.get();
-					BigDecimal discountedPrice = getDiscountedPrice(eventAndSales, category, id);
-					List<String> eventBadges = eventAndSales.getEventBadges(id);
-					category.setDiscountedPrice(discountedPrice);
-					category.setEvent(eventBadges);
-					return category;
-				}
-				category.setDiscountedPrice(BigDecimal.ZERO);
-				category.setEvent(List.of());
+				menuDiscountAndEvent(ids, eventAndSales, category);
 				return category;
-			}).collect(Collectors.toList());
+			})
+			.collect(Collectors.toList());
 	}
 
-	private BigDecimal getDiscountedPrice(EventAndSalesDto eventAndSales, MenuDto.SubCategory category, EventPlannerDto.Id id) {
+	private void menuDiscountAndEvent(EventPlannerDto.Ids ids, EventAndSalesDto eventAndSales,
+		MenuModel menuModel) {
+		Optional<EventPlannerDto.Id> eventMenu = ids.findOngoingEvent(menuModel);
+		if (eventMenu.isPresent()) {
+			EventPlannerDto.Id id = eventMenu.get();
+			BigDecimal discountedPrice = getDiscountedPrice(eventAndSales, menuModel, id);
+			List<String> eventBadges = eventAndSales.getEventBadges(id);
+			menuModel.setDiscountedPrice(discountedPrice);
+			menuModel.setEvent(eventBadges);
+		}
+		menuModel.setDiscountedPrice(BigDecimal.ZERO);
+		menuModel.setEvent(List.of());
+	}
+
+	private BigDecimal getDiscountedPrice(EventAndSalesDto eventAndSales, MenuModel category, EventPlannerDto.Id id) {
 		List<BigDecimal> deductibleAmounts = eventAndSales.getDeductibleAmounts(category, id);
-		BigDecimal discountedPrice = category.getOriginalPrice();
+		BigDecimal discountedPrice = category.getPrice();
 
 		for (BigDecimal deductibleAmount : deductibleAmounts) {
 			discountedPrice = discountedPrice.subtract(deductibleAmount);
