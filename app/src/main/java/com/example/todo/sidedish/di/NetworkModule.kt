@@ -4,6 +4,7 @@ import com.example.todo.sidedish.common.Constants
 import com.example.todo.sidedish.config.ORDER_BASE_URL
 import com.example.todo.sidedish.data.remote.OnBanApi
 import com.example.todo.sidedish.data.remote.order.OrderApi
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,7 +38,7 @@ object NetworkModule {
     @Provides
     @OrderRetrofit
     fun orderRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .baseUrl(ORDER_BASE_URL)
         .client(okHttpClient)
         .build()

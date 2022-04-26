@@ -4,23 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
+import com.example.todo.sidedish.R
 import com.example.todo.sidedish.databinding.FragmentMenuDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+
+const val ORDER_COUNT_ZERO = 0
 
 @AndroidEntryPoint
 class MenuDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuDetailBinding
+    private lateinit var navigator: NavController
     private val detailHash: String by lazy {
-        requireArguments().getString("KEY_HASH","")
+        requireArguments().getString("KEY_HASH", "")
     }
-    private val title:String by lazy {
-        requireArguments().getString("KEY_TITLE","")
+    private val title: String by lazy {
+        requireArguments().getString("KEY_TITLE", "")
     }
-    private val badges:List<String>? by lazy {
+    private val badges: List<String>? by lazy {
         requireArguments().get("KEY_BADGE") as List<String>?
     }
     private val viewModel: MenuDetailViewModel by viewModels()
@@ -28,49 +35,71 @@ class MenuDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding =  FragmentMenuDetailBinding.inflate(inflater, container, false)
+        binding = FragmentMenuDetailBinding.inflate(inflater, container, false)
         viewModel.getDetail(detailHash)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val menuDetailAdapter =  MenuDetailAdapter()
-        val viewPagerAdapter= ViewPagerAdapter()
+        val menuDetailAdapter = MenuDetailAdapter()
+        val viewPagerAdapter = ViewPagerAdapter()
+        navigator = Navigation.findNavController(view)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.rvDetail.adapter= menuDetailAdapter
-        binding.vpItemDetailImg.adapter= viewPagerAdapter
+        binding.rvDetail.adapter = menuDetailAdapter
+        binding.vpItemDetailImg.adapter = viewPagerAdapter
         registerOrderQuantityControlBtn()
         setMenuInfo()
-
+        registerOrderClickBtn()
 
         viewModel._detailInfo.observe(viewLifecycleOwner) {
             binding.detail = it
             menuDetailAdapter.submitDetailImages(it.detailImages)
         }
-        viewModel._thumbnailImages.observe(viewLifecycleOwner){thumbs->
+        viewModel._thumbnailImages.observe(viewLifecycleOwner) { thumbs ->
             viewPagerAdapter.submitThumbnails(thumbs)
-            binding.vpItemDetailImg.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+            binding.vpItemDetailImg.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        }
+
+        viewModel.orderSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            when (isSuccess) {
+                true -> OrderCompleteDialogFragment().show(parentFragmentManager, "order_complete")
+                else -> OrderCancelDialogFragment(getString(R.string.label_order_fail)).show(parentFragmentManager, "order_fail")
+            }
         }
     }
 
-    private fun registerOrderQuantityControlBtn(){
+    private fun registerOrderClickBtn() {
+        binding.btnOrder.setOnClickListener {
+            when (val orderCount = binding.tvOrderCountValue.text.toString().toInt()) {
+                ORDER_COUNT_ZERO -> OrderCancelDialogFragment(getString(R.string.label_order_cancel)).show(parentFragmentManager, "order_cancel")
+                else -> {
+                    val name = requireActivity().getSharedPreferences("userName", AppCompatActivity.MODE_PRIVATE).getString("name", null)
+                    if(name==null) { navigator.navigate(R.id.action_menuDetailFragment_to_loginFragment) }
+                    val message = "${name}님 주문사항: ${binding.tvMenuTitle.text} (개당 ${binding.tvMenuPrice.text})를 ${orderCount}개를 주문하셨습니다. 총 결재금액은 ${binding.tvTotalPayValue.text}입니다"
+                    viewModel.saveOrder(message)
+                }
+            }
+        }
+    }
+
+    private fun registerOrderQuantityControlBtn() {
         registerOrderIncreaseBtn()
         registerOrderDecreaseBtn()
     }
 
-    private fun registerOrderIncreaseBtn(){
+    private fun registerOrderIncreaseBtn() {
         binding.btnIncreaseOrderCount.setOnClickListener {
-            val curCount=  binding.tvOrderCountValue.text.toString().toInt()
-            binding.tvOrderCountValue.text= "${curCount+1}"
+            val curCount = binding.tvOrderCountValue.text.toString().toInt()
+            binding.tvOrderCountValue.text = "${curCount + 1}"
             setTotalPay()
         }
     }
 
-    private fun registerOrderDecreaseBtn(){
+    private fun registerOrderDecreaseBtn() {
         binding.btnDecreaseOrderCount.setOnClickListener {
-            val curCount=  binding.tvOrderCountValue.text.toString().toInt()
-            if(curCount>0) {
+            val curCount = binding.tvOrderCountValue.text.toString().toInt()
+            if (curCount > 0) {
                 binding.tvOrderCountValue.text = "${curCount - 1}"
                 setTotalPay()
             }
@@ -82,17 +111,17 @@ class MenuDetailFragment : Fragment() {
         return priceString.replace(",", "").toInt()
     }
 
-    private fun setTotalPay(){
-        val totalCount =  binding.tvOrderCountValue.text.toString().toInt()
-        val menuPrice= splitMenuPrice(binding.tvMenuPrice.text.toString())
-        binding.tvTotalPayValue.text = "${totalCount*(menuPrice)} 원"
+    private fun setTotalPay() {
+        val totalCount = binding.tvOrderCountValue.text.toString().toInt()
+        val menuPrice = splitMenuPrice(binding.tvMenuPrice.text.toString())
+        binding.tvTotalPayValue.text = "${totalCount * (menuPrice)} 원"
     }
 
-    private fun setMenuInfo(){
-        badges?.let{
-            binding.badge= badges
+    private fun setMenuInfo() {
+        badges?.let {
+            binding.badge = badges
         }
-        binding.tvMenuTitle.text= title
+        binding.tvMenuTitle.text = title
     }
 
 }
