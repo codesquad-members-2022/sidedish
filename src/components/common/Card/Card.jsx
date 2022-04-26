@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Tag from 'components/Tag';
-import Text from 'components/Text';
+import Tag from 'components/common/Card/Tag';
+import Text from 'components/utils/Text';
 import HoverInfo from 'images/HoverInfo.png';
 
 export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {

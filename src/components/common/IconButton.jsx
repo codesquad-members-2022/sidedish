@@ -8,7 +8,7 @@ import { ReactComponent as Prev } from 'images/icon_prev.svg';
 import { ReactComponent as Next } from 'images/icon_next.svg';
 import { ReactComponent as Plus } from 'images/icon_plus.svg';
 import { ReactComponent as Minus } from 'images/icon_minus.svg';
-import THEME from '../variable/theme';
+import THEME from '../../variable/theme';
 
 function Icon({ icon, width, height, fill }) {
   const svgInfo = { icon, width, height, fill, stroke: fill };

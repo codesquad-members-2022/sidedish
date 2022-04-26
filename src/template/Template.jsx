@@ -1,14 +1,14 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import Text from 'components/Text';
-import Button from 'components/Button';
-import IconButton from 'components/IconButton';
+import Text from 'components/utils/Text';
+import Button from 'components/common/Button';
+import IconButton from 'components/common/IconButton';
 import MoreButton from 'components/MoreButton';
-import Tag from 'components/Tag';
-import TabButton from 'components/TabButton';
-import TabBar from 'components/TabBar';
-import Header from 'components/Header';
-import Card from 'components/Card';
+import Tag from 'components/common/Card/Tag';
+import TabButton from 'components/Category/Tab/TabButton';
+import TabBar from 'components/Category/Tab/TabBar';
+import Header from 'components/Header/Header';
+import Card from 'components/common/Card/Card';
 import theme from 'variable/theme';
 
 export default function Template() {

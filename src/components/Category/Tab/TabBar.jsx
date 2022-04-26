@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TabButton from 'components/TabButton';
+import TabButton from 'components/Category/Tab/TabButton';
 
 export default function TabBar({ tabNames }) {
   return <Wrap>{tabNames.map(getTabButton)}</Wrap>;

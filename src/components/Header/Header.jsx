@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from 'components/Logo';
-import GNBWrap from 'components/GNBWrap';
-import IconButton from 'components/IconButton';
+import Logo from 'components/Header/Logo';
+import GNBWrap from 'components/Header/GNB';
+import IconButton from 'components/common/IconButton';
 
 const iconButtons = {
   search: {
