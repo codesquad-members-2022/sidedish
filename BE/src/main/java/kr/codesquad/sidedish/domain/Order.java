@@ -1,21 +1,47 @@
 package kr.codesquad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("orders")
 public class Order {
 
     @Id
-    private final Long orderId;
-    private final Long itemId;
-    private final Long userId;
-    private final Integer quantity;
-    private final Integer totalPrice;
+    private Long orderId;
+    private Long itemId;
+    private String email;
+    private Integer quantity;
+    private Long totalPrice;
 
-    public Order(Long orderId, Long itemId, Long userId, Integer quantity, Integer totalPrice) {
+    public Order(Long orderId, Long itemId, String email, Integer quantity, Long totalPrice) {
         this.orderId = orderId;
         this.itemId = itemId;
-        this.userId = userId;
+        this.email = email;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
+    }
+
+    public static Order newOrder(Long itemId, String email, Integer quantity, Long totalPrice) {
+        return new Order(null, itemId, email, quantity, totalPrice);
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
     }
 }
