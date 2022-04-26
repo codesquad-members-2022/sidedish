@@ -39,13 +39,13 @@ const Logo = () => {
   );
 };
 
-export const Header = props => {
-  if (!props.categoryList.length) return null;
+export const Header = ({ categoryList }) => {
+  if (!categoryList.length) return null;
 
   return (
     <HeaderWrapper>
       <Logo />
-      <MenuList categoryList={props.categoryList} />
+      <MenuList categoryList={categoryList} />
       <UserActionButtons />
     </HeaderWrapper>
   );

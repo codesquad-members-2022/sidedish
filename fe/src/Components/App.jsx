@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { fetchData } from '@/Utils';
+import { API_URL } from '@/Env';
+import { useFetch } from '@/Hooks';
 
 import { BestProducts } from '@/Components/BestProducts';
 import { CategoryProductsList } from '@/Components/CategoryProductsList';
@@ -14,31 +15,15 @@ const Root = styled.div`
 `;
 
 const App = () => {
-  const [categoryList, setCategoryList] = useState([]);
-  const [error, setError] = useState(false);
-
-  const fetchInitialData = async () => {
-    const categoryListData = await fetchData('/categories');
-    return categoryListData.content;
-  };
-
-  useEffect(() => {
-    fetchInitialData()
-      .then(initialCategoryList => {
-        setCategoryList(initialCategoryList);
-      })
-      .catch(err => {
-        // TODO: 에러핸들링
-        console.error(err);
-        setError(true);
-      });
-  }, []);
+  const [categoryList, isLoaded] = useFetch('/categories');
+  // 배포용
+  // const [categoryList, isLoaded] = useFetch(`${API_URL}/categories`);
 
   return (
     <Root>
-      <Header categoryList={categoryList} error={error} />
+      {isLoaded && <Header categoryList={categoryList.result_body} />}
       <BestProducts />
-      <CategoryProductsList categoryList={categoryList} />
+      {/*<CategoryProductsList categoryList={categoryList} />*/}
       <OrderPanel />
     </Root>
   );

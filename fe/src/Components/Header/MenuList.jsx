@@ -13,7 +13,7 @@ const MenuListWrapper = styled.ul`
   padding-top: 12px;
 `;
 
-export const MenuList = props => {
+export const MenuList = ({ categoryList }) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -30,7 +30,7 @@ export const MenuList = props => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {props.categoryList.map(category => (
+      {categoryList.map(category => (
         <Menu key={category.id} category={category} subMenuOpen={subMenuOpen} />
       ))}
     </MenuListWrapper>
