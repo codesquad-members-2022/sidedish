@@ -74,7 +74,6 @@ class DetailView: UIView {
         label.font = UIFont.init(name: Font.sfRegular, size: 14)
         label.textColor = .grey1
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "126원"
         return label
     }()
 
@@ -101,6 +100,7 @@ class DetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.preferredMaxLayoutWidth = 57
         label.textAlignment = .center
+        label.text = "0"
         return label
     }()
 
@@ -117,6 +117,7 @@ class DetailView: UIView {
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.text = "원"
         return label
     }()
 
@@ -381,6 +382,17 @@ class DetailView: UIView {
         amountComponetnsStackView.alignment = .fill
         amountComponetnsStackView.spacing = 0
         amountComponetnsStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        let action = UIAction {_ in
+            let amount = Int(self.amountStepper.value)
+            self.amountLabel.text = String(amount)
+
+            let finalPrice = self.finalPriceLabel.text?.toInt() ?? 0
+
+            let totalPrice = finalPrice * amount
+            self.totalPriceLabel.text = String(totalPrice).toPrice()
+        }
+        amountStepper.addAction(action, for: .touchUpInside)
 
         amountComponetnsStackView.addArrangedSubview(amountLabel)
         amountComponetnsStackView.addArrangedSubview(amountStepper)
