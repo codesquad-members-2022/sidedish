@@ -9,39 +9,34 @@ import {
     EventBadge,
 } from "./Card.style";
 
-function EventBadges({ eventBadges }) {
-    return eventBadges.map((eventBadge) => (
+function EventBadges(eventBadges) {
+    return eventBadges.map((eventBadge, idx) => (
         <EventBadge
-            key={eventBadge.eventBadgeId}
-            eventBadgeColor={
-                eventBadge.eventBadgeName === "런칭특가" ? "orange" : "green"
-            }
+            key={idx}
+            eventBadgeColor={eventBadge === "런칭특가" ? "orange" : "green"}
         >
-            {eventBadge.eventBadgeName}
+            {eventBadge}
         </EventBadge>
     ));
 }
 
-function Card({ title, image, description, price, eventBadges }) {
-    const saledPrice = eventBadges
-        ? price * ((100 - eventBadges[0].discount) / 100)
-        : 0;
+function Card({
+    title,
+    image,
+    description,
+    fixedPrice,
+    discountPrice,
+    eventBadges,
+}) {
+    const originPrice = (
+        <Price isClientPrice={false}>{fixedPrice.toLocaleString()}원</Price>
+    );
     const clientPrice = (
         <Price isClientPrice>
-            {eventBadges ? saledPrice.toLocaleString() : price.toLocaleString()}
-            원
+            {discountPrice.toLocaleString() && fixedPrice.toLocaleString()}원
         </Price>
     );
-    const originalPrice = eventBadges ? (
-        <Price isClientPrice={false}>{price.toLocaleString()}원</Price>
-    ) : (
-        ""
-    );
-    const eventTags = eventBadges ? (
-        <EventBadges eventBadges={eventBadges} />
-    ) : (
-        ""
-    );
+    const eventTags = eventBadges ? EventBadges(eventBadges) : null;
 
     return (
         <li>
@@ -55,7 +50,7 @@ function Card({ title, image, description, price, eventBadges }) {
                     <PriceContainer>
                         <>
                             {clientPrice}
-                            {originalPrice}
+                            {fixedPrice !== discountPrice && originPrice}
                         </>
                     </PriceContainer>
                 </TextContainer>
