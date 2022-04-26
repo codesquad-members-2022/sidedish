@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-function Button({ text }) {
+function Button({ text, isBtnVisible, onClick }) {
     return (
-        <Center>
-            <Btn>{text}</Btn>
+        <Center isVisible={isBtnVisible}>
+            <Btn onClick={onClick}>{text}</Btn>
         </Center>
     );
 }
 
 const Center = styled.div`
-    display: flex;
+    display: ${(props) => (props.isVisible ? "flex" : "none")};
     justify-content: center;
     margin-bottom: 56px;
 `;
