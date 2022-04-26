@@ -105,8 +105,6 @@ const ModalWrapper = styled.div`
   ${custom_flex("column", "flex-start")}
   ${custom_absolute(0, null, null, 0)}
   ${width_height_bypx(960, 994)}
-
-
   padding: 0px;
   border: 2px solid #000000;
   z-index: 100;

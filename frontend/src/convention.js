@@ -1,3 +1,5 @@
+import { width_height_bypx } from "./styles/global";
+
 export const tagConvetion = {
   1: {
     color: "Green",
@@ -28,4 +30,9 @@ export const SIZES = {
 export const queries = {
   category: (id) => `category_id=${id}`,
   specialCategory: (id) => `special_category_id=${id}`,
+};
+export const cardListArea = {
+  large: [1281, 565],
+  medium: [1280, 479],
+  small: [864, 226],
 };
