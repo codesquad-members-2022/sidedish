@@ -4,6 +4,7 @@ import { ReactComponent as ArrowRight } from 'assets/arrow_right.svg';
 
 const SliderWrapper = styled.div`
   padding: 60px 80px;
+  position: relative;
 `;
 
 const SliderTitle = styled.h2`
@@ -13,16 +14,17 @@ const SliderTitle = styled.h2`
 `;
 
 const SliderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  position: relative;
   margin-top: 40px;
+  width: 1280px;
+  overflow: hidden;
 `;
 
 const SliderList = styled.ul`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: ${({ width }) => width};
+  transition: all 1s ease;
+  transform: translateX(${({ xposition }) => xposition + 'px'});
 `;
 
 const ArrowIconStyle = {
@@ -33,7 +35,7 @@ const ArrowIconStyle = {
 
 const ArrowLeftIcon = styled(ArrowLeft)`
   ${ArrowIconStyle};
-  left: -36px;
+  left: 36px;
   path {
     stroke: ${({ theme: { colors }, active }) => (active === 'true' ? colors.black : colors.gray3)};
   }
@@ -41,7 +43,7 @@ const ArrowLeftIcon = styled(ArrowLeft)`
 
 const ArrowRightIcon = styled(ArrowRight)`
   ${ArrowIconStyle};
-  right: -36px;
+  right: 36px;
   path {
     stroke: ${({ theme: { colors }, active }) => (active === 'true' ? colors.black : colors.gray3)};
   }

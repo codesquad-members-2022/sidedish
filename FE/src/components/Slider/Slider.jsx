@@ -6,18 +6,20 @@ import { TEST_URL } from 'constants/api';
 
 const Slider = () => {
   const VISIBLE_CARD_COUNT = 4;
+  const MEDIUM_CARD_WIDTH = 302;
+  const MEDIUM_CARD_MARGIN = 24;
+  const TOTAL_MEDIUM_CARD_WIDTH = MEDIUM_CARD_WIDTH + MEDIUM_CARD_MARGIN;
 
   const [data, setData] = useState([]);
   const [isLeftArrowActive, setIsLeftArrowActive] = useState(false);
   const [isRightArrowActive, setIsRightArrowActive] = useState(false);
-  const [visibleData, setVisibleData] = useState([]);
   const [dataIndex, setDataIndex] = useState(0);
+  const [xPosition, setXPosition] = useState(0);
 
   const fetchTabData = async () => {
     let data = await fetchData(TEST_URL);
-    data = data.slice(dataIndex, 6); // Temporarily set 6 data
+    data = data.slice(dataIndex, 14); // Temporarily set 14 data
     setData(data);
-    setVisibleData(data.slice(dataIndex, VISIBLE_CARD_COUNT));
     initRightArrowState(data);
   };
 
@@ -44,7 +46,6 @@ const Slider = () => {
       return;
     }
 
-    let visibleData;
     let startIndex;
 
     if (direction === 'right') {
@@ -55,7 +56,6 @@ const Slider = () => {
       }
 
       startIndex = endIndex - VISIBLE_CARD_COUNT;
-      visibleData = data.slice(endIndex - VISIBLE_CARD_COUNT, endIndex);
     }
 
     if (direction === 'left') {
@@ -64,13 +64,15 @@ const Slider = () => {
       if (startIndex < 0) {
         startIndex = 0;
       }
-
-      visibleData = data.slice(startIndex, startIndex + VISIBLE_CARD_COUNT);
     }
 
+    setXPosition(-(TOTAL_MEDIUM_CARD_WIDTH * startIndex));
     setDataIndex(startIndex);
-    setVisibleData(visibleData);
     changeArrowState(startIndex);
+  };
+
+  const calcSliderWidth = dataCount => {
+    return MEDIUM_CARD_WIDTH * dataCount + MEDIUM_CARD_MARGIN * (dataCount - 1) + 'px';
   };
 
   useEffect(() => {
@@ -89,8 +91,8 @@ const Slider = () => {
           onClick={() => handleArrowClick('right', isRightArrowActive)}
           active={isRightArrowActive.toString()}
         />
-        <SliderList>
-          {visibleData.map((v, i) => (
+        <SliderList width={calcSliderWidth(data.length)} xposition={xPosition}>
+          {data.map((v, i) => (
             <Card key={i} data={v} size="medium" />
           ))}
         </SliderList>
