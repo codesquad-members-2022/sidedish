@@ -1,6 +1,6 @@
 package com.terria.sidedish.repository;
 
-import com.terria.sidedish.domain.entity.reference.SideDish;
+import com.terria.sidedish.domain.entity.aggregate.SideDish;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
