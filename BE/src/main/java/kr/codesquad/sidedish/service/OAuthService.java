@@ -29,15 +29,10 @@ public class OAuthService {
     @Value("${github.secret}")
     private String secret;
 
-
-//    public OAuthService( String clientId, String secret) {
-//        this.clientId = clientId;
-//        this.secret = secret;
-//    }
-
     public GitHubToken getAccessToken(String code) {
         Map<String, String> requestBody = generateBody(code);
         RestTemplate restTemplate = new RestTemplate();
+        log.info("requestbody :",String.valueOf(requestBody));
         return restTemplate.postForObject(ACCESS_TOKEN_URL, requestBody,
                 GitHubToken.class);
     }
@@ -53,6 +48,7 @@ public class OAuthService {
         JsonNode jsonNode = objectMapper.readTree(userResource.getBody());
         for (JsonNode node : jsonNode) {
             if (node.get("primary").asBoolean()) {
+                log.info("email :", node.get("email").textValue());
                 return node.get("email").textValue();
             }
         }
