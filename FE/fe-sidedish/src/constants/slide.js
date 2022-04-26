@@ -3,8 +3,17 @@ import { ReactComponent as Next } from '../asset/icons/right.svg';
 
 export const FIRST_PAGE = 1;
 
-export const SLIDES_PER_VIEW = 4;
-export const SMALL_SLIDES_PER_VIEW = 5;
+export const MARGIN = {
+  small: 16,
+  medium: 24,
+  large: 24,
+};
+
+export const SLIDES_PER_VIEW = {
+  small: 5,
+  medium: 4,
+  large: 4,
+};
 
 export const BUTTON_TYPE = {
   PREV: 'prev',

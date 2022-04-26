@@ -40,6 +40,7 @@ const Button = styled.button`
   width: 32px;
   height: 32px;
   font-size: 0;
+  ${({ disabled, theme }) => disabled && `path { stroke: ${theme.color.grey3}}` }
 `;
 
 const CardList = styled.div`
