@@ -8,8 +8,8 @@ const RelatedContents = ({ relatedListState, setRelatedListState }) => {
         <ContentImg src={image} />
         <ContentTitle>{title}</ContentTitle>
         <ContentPrice>
-          <SalePrice>{makePriceFormat(s_price)}원</SalePrice>
-          <MenuPrice>{makePriceFormat(n_price)}원</MenuPrice>
+          <SalePrice>{makePriceFormat(s_price)}</SalePrice>
+          <MenuPrice>{makePriceFormat(n_price)}</MenuPrice>
         </ContentPrice>
       </Content>
     );

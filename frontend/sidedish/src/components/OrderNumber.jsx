@@ -25,7 +25,7 @@ const OrderNumber = () => {
         </NumberChangeContainer>
         <TotalPriceContainer>
           <TotalPriceTitle>총 주문금액</TotalPriceTitle>
-          <TotalPrice>{makePriceFormat(price * wantedNumber)}원</TotalPrice>
+          <TotalPrice>{makePriceFormat(price * wantedNumber)}</TotalPrice>
         </TotalPriceContainer>
       </OrderNumberContainer>
     </>

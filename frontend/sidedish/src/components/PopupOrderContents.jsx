@@ -16,17 +16,17 @@ const PopupOrderContents = ({ title, normalPrice, salePrice, badge }) => {
     <>
       <PopupOrderContentsContainer>
         <Title>{title}</Title>
-        <NormalPrice>{makePriceFormat(normalPrice)}원</NormalPrice>
+        <NormalPrice>{makePriceFormat(normalPrice)}</NormalPrice>
         <SalePrice>
           {labelList}
-          {makePriceFormat(salePrice)}원
+          {makePriceFormat(salePrice)}
         </SalePrice>
         <DivisionLine color="#EBEBEB" height="1px" />
         <OrderDetail />
         <DivisionLine color="#EBEBEB" height="1px" />
         <OrderNumber />
         <Blank />
-        <OrderBtn></OrderBtn>
+        <OrderBtn />
       </PopupOrderContentsContainer>
     </>
   );
