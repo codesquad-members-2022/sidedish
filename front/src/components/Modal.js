@@ -55,7 +55,7 @@ function Modal({ dishes, hideModal, showModal }) {
           <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
         </PopupCloseButtonWrap>
         <ProductDetail dishes={dishes}></ProductDetail>
-        <RelatedProduct dishes={relatedDishes} showModal={showModal}></RelatedProduct>
+        <RelatedProduct relatedDishes={relatedDishes} showModal={showModal}></RelatedProduct>
       </PopupBox>
     </ModalWrap>
   );

@@ -37,7 +37,7 @@ function CategoryMenu({ name, items, showModal }) {
           {items
             .filter((_, index) => index >= startCardIndex && index <= startCardIndex + (NUMBER_OF_CARDS - 1))
             .map(item => (
-              <Card size={'medium'} item={item} showModal={showModal}></Card>
+              <Card key={item.id} size={'medium'} item={item} showModal={showModal}></Card>
             ))}
         </CardList>
         <ButtonWrapper>

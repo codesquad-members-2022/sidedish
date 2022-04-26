@@ -53,7 +53,7 @@ const RelatedProductSlide = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-function RelatedProduct({ dishes, showModal }) {
+function RelatedProduct({ relatedDishes, showModal }) {
   return (
     <RelatedProductWrap>
       <TitleAndNavButtons>
@@ -69,8 +69,8 @@ function RelatedProduct({ dishes, showModal }) {
         </NavButtons>
       </TitleAndNavButtons>
       <RelatedProductSlide>
-        {dishes.map((dishes, index) => (
-          <Card key={index} size={'small'} item={dishes.item} showModal={showModal}></Card>
+        {relatedDishes.map(dish => (
+          <Card key={dish.id} size={'small'} item={dish} showModal={showModal}></Card>
         ))}
       </RelatedProductSlide>
     </RelatedProductWrap>
