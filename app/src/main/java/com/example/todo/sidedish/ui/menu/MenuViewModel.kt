@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.todo.sidedish.domain.OrderRepository
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.Repository
 import com.example.todo.sidedish.ui.common.Event
@@ -26,14 +27,15 @@ class MenuViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    private val _openMenuEvent= MutableLiveData<Event<Menu>>()
-    val openMenuEvent:LiveData<Event<Menu>> = _openMenuEvent
+    private val _openMenuEvent = MutableLiveData<Event<Menu>>()
+    val openMenuEvent: LiveData<Event<Menu>> = _openMenuEvent
+
     init {
         getMenus()
     }
 
-    fun openMenuDetail(menu:Menu){
-        _openMenuEvent.value= Event(menu)
+    fun openMenuDetail(menu: Menu) {
+        _openMenuEvent.value = Event(menu)
     }
 
 
