@@ -118,7 +118,7 @@ const Card = ({ card, size }) => {
 
   const handleCardClick = () => {
     modal.setShowModal(!modal.showModal);
-    modal.setDishHash(card.detail_hash);
+    modal.setProductHash(card.detail_hash);
   };
 
   return (
