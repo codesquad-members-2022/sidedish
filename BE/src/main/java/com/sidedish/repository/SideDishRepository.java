@@ -19,4 +19,10 @@ public interface SideDishRepository extends CrudRepository<SideDish, Integer> {
         + "FROM sidedish s LEFT JOIN discount_policy d ON s.discount_policy_id = d.id "
         + "WHERE menu_category_id = :menuCategoryId")
     List<SideDish> findAllByMenuCategoryId(@Param("menuCategoryId") Integer menuCategoryId);
+
+    @Query("SELECT s.id, menu_category_id, name, dawn_delivery_flag, whole_nation_delivery_flag, price, "
+        + "discount_type, IFNULL(discount_rate, 0) as discount_rate "
+        + "FROM sidedish s LEFT JOIN discount_policy d ON s.discount_policy_id = d.id "
+        + "WHERE s.id = :id")
+    SideDish findBySideDishId(@Param("id") Integer id);
 }

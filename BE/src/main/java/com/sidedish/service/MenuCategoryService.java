@@ -1,7 +1,6 @@
 package com.sidedish.service;
 
 import com.sidedish.domain.MenuCategory;
-import com.sidedish.domain.SideDish;
 import com.sidedish.dto.MenuCategoryDto;
 import com.sidedish.dto.MenuCategoryListDto;
 import com.sidedish.dto.SideDishDto;
@@ -23,7 +22,6 @@ public class MenuCategoryService {
 
     private final MenuCategoryRepository menuCategoryRepository;
     private final SideDishRepository sideDishRepository;
-    private SideDishMapper mapper = new SideDishMapper();
 
     public MenuCategoryListDto getMenuCategories(String range) {
         List<MenuCategoryDto> menuCategoryDtoList = null;
@@ -44,7 +42,7 @@ public class MenuCategoryService {
         String menuCategoryName = menuCategory.getName();
         List<SideDishDto> sideDishes = sideDishRepository.findAllByMenuCategoryId(menuCategory.getId())
             .stream()
-            .map(mapper::convertToDto)
+            .map(SideDishMapper::convertToSideDishDto)
             .collect(Collectors.toList());
 
         MenuCategoryDto menuCategoryDto = new MenuCategoryDto(menuCategoryName, sideDishes);
@@ -60,7 +58,7 @@ public class MenuCategoryService {
             String menuCategoryName = menuCategory.getName();
             List<SideDishDto> sideDishes = sideDishRepository.findAllByMenuCategoryId(menuCategory.getId())
                 .stream()
-                .map(mapper::convertToDto)
+                .map(SideDishMapper::convertToSideDishDto)
                 .collect(Collectors.toList());
 
             MenuCategoryDto menuCategoryDto = new MenuCategoryDto(menuCategoryName, sideDishes);

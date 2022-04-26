@@ -26,12 +26,11 @@ public class EventCategoryService {
     private final SideDishRepository sideDishRepository;
 
     public EventCategoryListDto getEventCategories() {
-        EventCategoryMapper mapper = new EventCategoryMapper();
         for (Event event : eventRepository.findAll()) {
             if (event.isProgressFlag()) {
                 String eventName = event.getName();
                 List<EventCategoryDto> eventCategories = eventCategoryRepository.findAllByEventId(event.getId())
-                    .stream().map(mapper::convertToDto).collect(Collectors.toList());
+                    .stream().map(EventCategoryMapper::convertToDto).collect(Collectors.toList());
 
                 return new EventCategoryListDto(eventName, eventCategories);
             }
@@ -48,11 +47,10 @@ public class EventCategoryService {
 
     private List<SideDishDto> shuffleSideDishes(List<SideDish> sideDishes) {
         Collections.shuffle(sideDishes);
-        SideDishMapper mapper = new SideDishMapper();
 
         return sideDishes.stream()
             .limit(3)
-            .map(mapper::convertToDto)
+            .map(SideDishMapper::convertToSideDishDto)
             .collect(Collectors.toList());
     }
 
