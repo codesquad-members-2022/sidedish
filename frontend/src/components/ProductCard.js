@@ -130,7 +130,7 @@ export const ProductCard = ({
         }}
       >
         <ProductImage hover={hover} src={primary_image} />
-        {hover && cardSize === SIZES.medium && (
+        {hover && cardSize !== SIZES.small && (
           <HoverInfo
             early_morning_delivery={early_morning_delivery}
             nationwide_delivery={nationwide_delivery}
