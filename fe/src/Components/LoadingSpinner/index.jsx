@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { Colors } from '@/Constants';
 
 const LoadingSpinnerWrapper = styled.div`
-  width: 120px;
-  height: 120px;
-  border: 10px solid transparent;
-  border-top-color: ${props => props.color};
-  border-right-color: ${props => props.color};
+  width: ${({ radius }) => radius}px;
+  height: ${({ radius }) => radius}px;
+  border: ${({ borderWidth }) => borderWidth}px solid transparent;
+  border-top-color: ${({ color }) => color};
+  border-right-color: ${({ color }) => color};
   border-radius: 999px;
-  margin: 200px auto;
+  margin: ${({ margin }) => margin}px auto;
   animation: rotation 600ms infinite ease-in-out;
 
   @keyframes rotation {
@@ -23,6 +23,21 @@ const LoadingSpinnerWrapper = styled.div`
   }
 `;
 
-export const LoadingSpinner = ({ color = Colors.BLACK }) => {
-  return <LoadingSpinnerWrapper color={color} />;
+const DEFAULT_SIZE = 10;
+const DEFAULT_COLOR = Colors.BLACK;
+
+export const LoadingSpinner = ({
+  color = DEFAULT_COLOR,
+  radius = DEFAULT_SIZE,
+  margin = DEFAULT_SIZE,
+  borderWidth = DEFAULT_SIZE,
+}) => {
+  return (
+    <LoadingSpinnerWrapper
+      color={color}
+      radius={radius}
+      margin={margin}
+      borderWidth={borderWidth}
+    />
+  );
 };
