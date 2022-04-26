@@ -6,23 +6,12 @@ import { width_height_bypx } from "../styles/global";
 const ShowingArea = styled.div`
   margin-top: 34px;
   overflow: hidden;
-  ${(props) =>
-    props.size === "large" &&
-    css`
-      ${width_height_bypx(1281, 565)}
-    `}
+  ${(props) => props.size === "large" && width_height_bypx(1281, 565)}
 
-  ${(props) =>
-    props.size === "medium" &&
-    css`
-      ${width_height_bypx(1280, 479)}
-    `}
+  ${(props) => props.size === "medium" && width_height_bypx(1280, 479)}
 
-  ${(props) =>
-    props.size === "small" &&
-    css`
-      ${width_height_bypx(864, 226)}
-    `}
+  ${(props) => props.size === "small" && width_height_bypx(864, 226)}
+
 `;
 
 const ProductCardsWrapper = styled.div`
@@ -37,7 +26,11 @@ export const CardList = ({ products, cardSize, firstCardIndex = 0 }) => {
     <ShowingArea size={cardSize}>
       <ProductCardsWrapper cardSize={cardSize} firstCardIndex={firstCardIndex}>
         {products?.map((product) => (
-          <ProductCard key={product.id} cardSize={cardSize} {...product}></ProductCard>
+          <ProductCard
+            key={product.id}
+            cardSize={cardSize}
+            {...product}
+          ></ProductCard>
         ))}
       </ProductCardsWrapper>
     </ShowingArea>

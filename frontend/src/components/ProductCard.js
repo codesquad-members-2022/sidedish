@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { DiscountTag } from "./DiscountTag";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { SIZES, thumbnailSize } from "../convention";
-import { custom_absolute, custom_flex, width_height_bypx, custom_font } from "../styles/global";
-import {HorizontalLine} from "./HorizontalLine";
+import { ModalContext } from "../ModalReducer";
+
 
 const CardWrapper = styled.div`
   margin-right: 24px;
@@ -63,6 +63,7 @@ const ProductPrice = styled.span`
   color: #bcbcbc;
 `;
 
+
 const ThumbnailWrapper = styled.div`
     position: relative;
   ${(props) => css`
@@ -98,18 +99,32 @@ const HoverInfo = ({hover, early_morning_delivery, nationwide_delivery}) => (
   </HoverInfoWrapper>
 );
 
-export const ProductCard = ({ cardSize, primary_image, name, description, discount, final_price, price, early_morning_delivery, nationwide_delivery }) => {
-  const [hover, setHover] = useState(false);
+export const ProductCard = ({
+  cardSize,
+  id,
+  primary_image,
+  name,
+  description,
+  discount,
+  final_price,
+  price,
+}) => {
 
+  const [hover, setHover] = useState(false);
+  const { isOpen, dispatch } = useContext(ModalContext);
   return (
-    <CardWrapper size={cardSize}>
+
+    <CardWrapper size={cardSize} onClick={() => dispatch({ type: "open", openId: id })}>
       <ThumbnailWrapper size={cardSize} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} > 
         <ProductImage hover={hover} src={primary_image} />
         {hover && <HoverInfo early_morning_delivery={early_morning_delivery} nationwide_delivery={nationwide_delivery}/>}
       </ThumbnailWrapper>
+
       <ProductInfo>
         <ProductName size={cardSize}>{name}</ProductName>
-        {cardSize !== SIZES.small && <ProductDescription>{description}</ProductDescription>}
+        {cardSize !== SIZES.small && (
+          <ProductDescription>{description}</ProductDescription>
+        )}
         <ProductPriceWrapper>
           <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
           <ProductPrice>{price + "원" || ""}</ProductPrice>
