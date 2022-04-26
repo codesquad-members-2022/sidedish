@@ -1,22 +1,17 @@
-import {bestGoodsData} from 'data';
+import {TabItem} from './TabList.styled';
 
-function TabList({tabState, setTabState}) {
+function TabList({tab, tabState, setTabState}) {
   const handleTabState = ({target}) => {
     setTabState(prevState => {
       return {...prevState, category: target.title};
     });
   };
 
-  return bestGoodsData.map(element => (
-    <li
-      className={tabState === element.tab.title ? 'selected' : ''}
-      key={element.id}
-      title={element.tab.title}
-      onClick={handleTabState}
-    >
-      {element.tab.title}
-    </li>
-  ));
+  return (
+    <TabItem tabState={tabState} title={tab.title} onClick={handleTabState}>
+      {tab.title}
+    </TabItem>
+  );
 }
 
 export {TabList};

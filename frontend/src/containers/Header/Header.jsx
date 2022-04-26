@@ -1,47 +1,31 @@
 import React, {useState} from 'react';
+import {StyledHeader, InnerHeader, BrandHeader, NavBar} from './Header.styled';
 import {pageHeaderIcon, searchIcon, userIcon, myCartIcon} from 'constants';
-import {category} from 'data';
-import {NavIcon} from 'components';
-import './Header.css';
+import {NavIcon, Category} from 'components';
+
+const navIcons = [
+  {id: 1, name: 'searchIcon', src: `${searchIcon}`},
+  {id: 2, name: 'userIcon', src: `${userIcon}`},
+  {id: 3, name: 'myCartIcon', src: `${myCartIcon}`},
+];
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navIcons = [
-    {name: 'searchIcon', src: `${searchIcon}`},
-    {name: 'userIcon', src: `${userIcon}`},
-    {name: 'myCartIcon', src: `${myCartIcon}`},
-  ];
-
-  const categoryList = category.map(element => (
-    <li key={element.id} className="mainCategory">
-      {element.mainCategory.title}
-      <ul className="subCategoryList">
-        {element.mainCategory.subCategory.map(element => (
-          <li key={element.id} className="subCategory" style={{display: isOpen ? 'flex' : 'none'}}>
-            {element.title}
-          </li>
-        ))}
-      </ul>
-    </li>
-  ));
-
   return (
-    <header className={'header ' + (isOpen ? 'isOpen' : '')}>
-      <div className="innerHeader">
-        <h1 className="brandHeader">
+    <StyledHeader isOpen={isOpen}>
+      <InnerHeader>
+        <BrandHeader>
           <img src={pageHeaderIcon} alt="pageHeaderIcon"></img>
-        </h1>
-        <div className="category" onMouseOver={() => setIsOpen(true)} onMouseOut={() => setIsOpen(false)}>
-          <ul className="categoryList">{categoryList}</ul>
-        </div>
-        <nav className="navBar">
-          {navIcons.map(nav => (
-            <NavIcon name={nav.name} src={nav.src} />
+        </BrandHeader>
+        <Category isOpen={isOpen} setIsOpen={setIsOpen} />
+        <NavBar>
+          {navIcons.map(({id, name, src}) => (
+            <NavIcon key={id} name={name} src={src} />
           ))}
-        </nav>
-      </div>
-    </header>
+        </NavBar>
+      </InnerHeader>
+    </StyledHeader>
   );
 }
 

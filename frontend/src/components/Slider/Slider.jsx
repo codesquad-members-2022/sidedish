@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {prevButtonIcon, nextButtonIcon} from 'constants';
-import {SideDish} from 'components';
+import {GoodsBlock} from 'components';
 
-function Slider({data}) {
+function Slider({goodsData}) {
   const [sliderState, setSliderState] = useState({clickedButton: '', list: ''});
   const [position, setPosition] = useState(0);
 
@@ -37,7 +37,11 @@ function Slider({data}) {
       </button>
       <div className="sideDishContainer">
         <ul className="sideDishList">
-          <SideDish type="origin" data={data} />
+          {goodsData.map(({id, thumb, name, description, price, label}) => (
+            <li key={id}>
+              <GoodsBlock thumb={thumb} name={name} description={description} price={price} label={label} />
+            </li>
+          ))}
         </ul>
       </div>
     </div>

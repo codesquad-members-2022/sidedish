@@ -1,29 +1,43 @@
 import React, {useState} from 'react';
+import {
+  StyledSpecialPromotion,
+  SpecialPromotionIcon,
+  SpecialPromotionTitle,
+  Tab,
+  BestSideDishContainer,
+  BestSideDishList,
+} from './SpecialPromotion.styled';
 import {bestGoodsData} from 'data';
 import {specialPromotionIcon} from 'constants';
-import {TabList, SideDish} from 'components';
-import './SpecialPromotion.css';
+import {TabList, GoodsBlock} from 'components';
 
 function SpecialPromotion() {
   const [tabState, setTabState] = useState({category: '풍부한 고기 반찬'});
+  const goodsData = bestGoodsData.filter(({tab}) => tab.title === tabState.category)[0].tab.goods;
 
   return (
-    <div className="specialPromotion">
-      <h2 className="theme">
-        <img className="specialPromotionIcon" src={specialPromotionIcon} alt="specialPromotionIcon"></img>
+    <StyledSpecialPromotion>
+      <SpecialPromotionTitle>
+        <SpecialPromotionIcon src={specialPromotionIcon} alt="specialPromotionIcon"></SpecialPromotionIcon>
         <p>한 번 주문하면 두 번 반하는 반찬</p>
-      </h2>
-      <h4 className="tab">
+      </SpecialPromotionTitle>
+      <Tab>
         <ul className="tabList">
-          <TabList tabState={tabState.category} setTabState={setTabState} />
+          {bestGoodsData.map(({id, tab}) => (
+            <TabList key={id} tab={tab} tabState={tabState.category} setTabState={setTabState} />
+          ))}
         </ul>
-      </h4>
-      <div className="bestSideDishContainer">
-        <ul className="bestSideDishList">
-          <SideDish type="best" data={bestGoodsData} tabState={tabState.category} />
-        </ul>
-      </div>
-    </div>
+      </Tab>
+      <BestSideDishContainer>
+        <BestSideDishList>
+          {goodsData.map(({id, thumb, name, description, price, label}) => (
+            <li key={id}>
+              <GoodsBlock thumb={thumb} name={name} description={description} price={price} label={label} />
+            </li>
+          ))}
+        </BestSideDishList>
+      </BestSideDishContainer>
+    </StyledSpecialPromotion>
   );
 }
 
