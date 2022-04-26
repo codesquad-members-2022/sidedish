@@ -33,13 +33,13 @@ values ('우리아이 영양 반찬쓰');
 
 
 insert into item (main_category_id, title, `description`, price, quantity, discount_policy, morning_delivery)
-values (1, '오리주무럭', '감칠맛나는 매콤한 양념', 15800, 5, 'lunch', false);
+values (1, '오리주물럭', '감칠맛나는 매콤한 양념', 15800, 5, 'lunch', false);
 insert into item (main_category_id, title, `description`, price, quantity, discount_policy, morning_delivery)
 values (1, '잡채', '맛깔남', 12900, 2, 'lunch', true);
 insert into item (main_category_id, title, `description`, price, quantity, discount_policy, morning_delivery)
 values (1, '소갈비 찜', '매콤양념', 26800, 1, 'event', false);
 insert into item (main_category_id, title, `description`, price, quantity, discount_policy, morning_delivery)
-values (1, '수육국밥', '다데기 굳', 6800, 1, 'event', true);
+values (1, '주꾸미 볶음', '다데기 굳', 6800, 1, 'event', true);
 insert into item (main_category_id, title, `description`, price, quantity, discount_policy, morning_delivery)
 values (2, '한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', 9300, 5, 'lunch', false);
 insert into item (main_category_id, title, `description`, price, quantity, discount_policy, morning_delivery)
@@ -59,29 +59,53 @@ values (3, '야채 어묵볶음', '첨가물 없는 순수어묵과 야채의 �
 
 
 insert into image (item_id, url, main_status)
-values (1, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (1, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main1-1.png', true);
 insert into image (item_id, url, main_status)
-values (2, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (1, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main1-2.png', true);
 insert into image (item_id, url, main_status)
-values (3, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (2, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main2-1.png', true);
 insert into image (item_id, url, main_status)
-values (4, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (2, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main2-2.png', true);
 insert into image (item_id, url, main_status)
-values (5, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (3, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main3-1.png', true);
 insert into image (item_id, url, main_status)
-values (6, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (3, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main3-2.png', true);
 insert into image (item_id, url, main_status)
-values (7, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (4, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main4-1.png', true);
 insert into image (item_id, url, main_status)
-values (8, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (4, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/main/main4-2.png', true);
 insert into image (item_id, url, main_status)
-values (9, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (5, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup1-1.png', true);
 insert into image (item_id, url, main_status)
-values (10, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (5, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup1-2.png', true);
 insert into image (item_id, url, main_status)
-values (11, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (6, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup2-1.png', true);
 insert into image (item_id, url, main_status)
-values (12, 'http://bitcdn.bit-play.com/unibox/2016/12/31/01/9ffdffc6248909840ea94c990e5c72ee_6575547_450.jpg', true);
+values (6, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup2-2.png', true);
+insert into image (item_id, url, main_status)
+values (7, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup3-1.png', true);
+insert into image (item_id, url, main_status)
+values (7, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup3-2.png', true);
+insert into image (item_id, url, main_status)
+values (8, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup4-1.png', true);
+insert into image (item_id, url, main_status)
+values (8, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/soup/soup4-2.png', true);
+insert into image (item_id, url, main_status)
+values (9, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side1-1.png', true);
+insert into image (item_id, url, main_status)
+values (9, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side1-2.png', true);
+insert into image (item_id, url, main_status)
+values (10, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side2-1.png', true);
+insert into image (item_id, url, main_status)
+values (10, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side2-2.png', true);
+insert into image (item_id, url, main_status)
+values (11, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side3-1.png', true);
+insert into image (item_id, url, main_status)
+values (11, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side3-2.png', true);
+insert into image (item_id, url, main_status)
+values (12, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side4-1.png', true);
+insert into image (item_id, url, main_status)
+values (12, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side4-2.png', true);
 
 
 insert into dish_event (item_id, event_id)
