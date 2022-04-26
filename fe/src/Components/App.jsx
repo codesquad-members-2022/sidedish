@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { API_URL } from '@/Env';
@@ -15,7 +14,10 @@ const Root = styled.div`
 `;
 
 const App = () => {
-  const [categoryList, isLoaded] = useFetch(`${API_URL}/categories`);
+  const [categoryList, isLoaded, isError] = useFetch(`${API_URL}/categories`);
+  
+  // TODO: 에러 발생시 보여줄 화면
+  if (isError) return null
 
   // TODO: 로딩중 보여줄 화면
   if (!isLoaded) return null;
@@ -24,7 +26,7 @@ const App = () => {
     <Root>
       <Header categoryList={categoryList.result_body} />
       <BestProducts />
-      {/*<CategoryProductsList categoryList={categoryList.result_body} />*/}
+      <CategoryProductsList categoryList={categoryList.result_body} />
       <OrderPanel />
     </Root>
   );
