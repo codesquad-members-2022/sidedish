@@ -8,10 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		6B33B9A040F6610AADDF7446 /* Pods_BanchanApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5312E135B08B1F128DD6F3CC /* Pods_BanchanApp.framework */; };
+		6FCDA43A280E552000EB8DF6 /* ProductSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDA439280E552000EB8DF6 /* ProductSectionHeader.swift */; };
+		6FCDA43E280E954500EB8DF6 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDA43D280E954500EB8DF6 /* ProductDetailView.swift */; };
+		6FCDA440280E964900EB8DF6 /* ProductDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDA43F280E964900EB8DF6 /* ProductDetailCell.swift */; };
+		E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A35B280E94B4001598D4 /* CarouselView.swift */; };
+		E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A35E280E9750001598D4 /* UIView+Extension.swift */; };
+		E439A361280EB1CD001598D4 /* BanchanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */; };
+		E48748A52810FE8200959D88 /* PriceTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A42810FE8200959D88 /* PriceTag.swift */; };
+		E48748A9281101DF00959D88 /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A8281101DF00959D88 /* QuantityView.swift */; };
+		E4A41E53280E45300044CEB3 /* BanchanDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */; };
+		E4A5143928124C2B0056C953 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5143828124C2B0056C953 /* BadgeLabel.swift */; };
+		E4A5143B28124C490056C953 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5143A28124C490056C953 /* UILabel+Extension.swift */; };
+		E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */; };
+		E4BA18BE2816479E00C19349 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */; };
+		E4BA18C22816578700C19349 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18C12816578700C19349 /* UIColor+Extension.swift */; };
 		E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */; };
 		E4C6B778280CFA7D001C14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */; };
-		E4C6B77A280CFA7D001C14F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B779280CFA7D001C14F7 /* ViewController.swift */; };
-		E4C6B77D280CFA7D001C14F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4C6B77B280CFA7D001C14F7 /* Main.storyboard */; };
+		E4C6B77A280CFA7D001C14F7 /* BanchanListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6B779280CFA7D001C14F7 /* BanchanListViewController.swift */; };
 		E4C6B77F280CFA7F001C14F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4C6B77E280CFA7F001C14F7 /* Assets.xcassets */; };
 		E4C6B782280CFA7F001C14F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4C6B780280CFA7F001C14F7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,13 +32,28 @@
 /* Begin PBXFileReference section */
 		5312E135B08B1F128DD6F3CC /* Pods_BanchanApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanchanApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5752C8297112F34F435319FF /* Pods-BanchanApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanchanApp.release.xcconfig"; path = "Target Support Files/Pods-BanchanApp/Pods-BanchanApp.release.xcconfig"; sourceTree = "<group>"; };
+		6FCDA439280E552000EB8DF6 /* ProductSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSectionHeader.swift; sourceTree = "<group>"; };
+		6FCDA43D280E954500EB8DF6 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		6FCDA43F280E964900EB8DF6 /* ProductDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCell.swift; sourceTree = "<group>"; };
 		A534D41406FF931B3F59A588 /* Pods-BanchanApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanchanApp.debug.xcconfig"; path = "Target Support Files/Pods-BanchanApp/Pods-BanchanApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E439A35B280E94B4001598D4 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		E439A35E280E9750001598D4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanDetailViewController.swift; sourceTree = "<group>"; };
 		E469A945280D136B00C02D97 /* BanchanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanchanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E469A94A280D166700C02D97 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		E48748A42810FE8200959D88 /* PriceTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTag.swift; sourceTree = "<group>"; };
+		E48748A8281101DF00959D88 /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
+		E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanDetailViewController.storyboard; sourceTree = "<group>"; };
+		E4A5143828124C2B0056C953 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
+		E4A5143A28124C490056C953 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanListViewController.storyboard; sourceTree = "<group>"; };
+		E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		E4BA18BF2816489B00C19349 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E4BA18C0281648F700C19349 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		E4BA18C12816578700C19349 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E4C6B779280CFA7D001C14F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E4C6B77C280CFA7D001C14F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E4C6B779280CFA7D001C14F7 /* BanchanListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanListViewController.swift; sourceTree = "<group>"; };
 		E4C6B77E280CFA7F001C14F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4C6B781280CFA7F001C14F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4C6B783280CFA7F001C14F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,9 +88,54 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E439A35D280E9742001598D4 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E439A35E280E9750001598D4 /* UIView+Extension.swift */,
+				E4A5143A28124C490056C953 /* UILabel+Extension.swift */,
+				E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */,
+				E4BA18C12816578700C19349 /* UIColor+Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E4B7D366280D703A009B2C2A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E4C6B779280CFA7D001C14F7 /* BanchanListViewController.swift */,
+				E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */,
+				E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */,
+				E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E4B7D367280D7048009B2C2A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E4B7D368280D704B009B2C2A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6FCDA439280E552000EB8DF6 /* ProductSectionHeader.swift */,
+				6FCDA43D280E954500EB8DF6 /* ProductDetailView.swift */,
+				6FCDA43F280E964900EB8DF6 /* ProductDetailCell.swift */,
+				E439A35B280E94B4001598D4 /* CarouselView.swift */,
+				E4A5143828124C2B0056C953 /* BadgeLabel.swift */,
+				E48748A8281101DF00959D88 /* QuantityView.swift */,
+				E48748A42810FE8200959D88 /* PriceTag.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E4C6B769280CFA7D001C14F7 = {
 			isa = PBXGroup;
 			children = (
+				E4BA18BF2816489B00C19349 /* Debug.xcconfig */,
+				E4BA18C0281648F700C19349 /* Release.xcconfig */,
 				E469A94A280D166700C02D97 /* .swiftlint.yml */,
 				E4C6B774280CFA7D001C14F7 /* BanchanApp */,
 				BDA4B4D1B1C26ED61049E3C2 /* Pods */,
@@ -76,8 +149,10 @@
 			children = (
 				E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */,
 				E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */,
-				E4C6B779280CFA7D001C14F7 /* ViewController.swift */,
-				E4C6B77B280CFA7D001C14F7 /* Main.storyboard */,
+				E439A35D280E9742001598D4 /* Utility */,
+				E4B7D367280D7048009B2C2A /* Models */,
+				E4B7D368280D704B009B2C2A /* Views */,
+				E4B7D366280D703A009B2C2A /* Controllers */,
 				E4C6B77E280CFA7F001C14F7 /* Assets.xcassets */,
 				E4C6B780280CFA7F001C14F7 /* LaunchScreen.storyboard */,
 				E4C6B783280CFA7F001C14F7 /* Info.plist */,
@@ -93,7 +168,7 @@
 			buildConfigurationList = E4C6B786280CFA7F001C14F7 /* Build configuration list for PBXNativeTarget "BanchanApp" */;
 			buildPhases = (
 				EB0FE9202C8624646AED0551 /* [CP] Check Pods Manifest.lock */,
-				E469A946280D13D200C02D97 /* ShellScript */,
+				E469A946280D13D200C02D97 /* SwiftLint */,
 				E4C6B76E280CFA7D001C14F7 /* Sources */,
 				E4C6B76F280CFA7D001C14F7 /* Frameworks */,
 				E4C6B770280CFA7D001C14F7 /* Resources */,
@@ -146,9 +221,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */,
 				E4C6B782280CFA7F001C14F7 /* LaunchScreen.storyboard in Resources */,
+				E4A41E53280E45300044CEB3 /* BanchanDetailViewController.storyboard in Resources */,
 				E4C6B77F280CFA7F001C14F7 /* Assets.xcassets in Resources */,
-				E4C6B77D280CFA7D001C14F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +248,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanchanApp/Pods-BanchanApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E469A946280D13D200C02D97 /* ShellScript */ = {
+		E469A946280D13D200C02D97 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,6 +257,7 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -218,23 +295,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4C6B77A280CFA7D001C14F7 /* ViewController.swift in Sources */,
+				6FCDA43A280E552000EB8DF6 /* ProductSectionHeader.swift in Sources */,
+				6FCDA43E280E954500EB8DF6 /* ProductDetailView.swift in Sources */,
+				E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */,
+				E48748A9281101DF00959D88 /* QuantityView.swift in Sources */,
+				E48748A52810FE8200959D88 /* PriceTag.swift in Sources */,
+				E4C6B77A280CFA7D001C14F7 /* BanchanListViewController.swift in Sources */,
+				E4A5143928124C2B0056C953 /* BadgeLabel.swift in Sources */,
 				E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */,
+				E439A361280EB1CD001598D4 /* BanchanDetailViewController.swift in Sources */,
+				E4BA18C22816578700C19349 /* UIColor+Extension.swift in Sources */,
 				E4C6B778280CFA7D001C14F7 /* SceneDelegate.swift in Sources */,
+				6FCDA440280E964900EB8DF6 /* ProductDetailCell.swift in Sources */,
+				E4A5143B28124C490056C953 /* UILabel+Extension.swift in Sources */,
+				E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */,
+				E4BA18BE2816479E00C19349 /* UIImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E4C6B77B280CFA7D001C14F7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4C6B77C280CFA7D001C14F7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E4C6B780280CFA7F001C14F7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -362,7 +443,7 @@
 		};
 		E4C6B787280CFA7F001C14F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A534D41406FF931B3F59A588 /* Pods-BanchanApp.debug.xcconfig */;
+			baseConfigurationReference = E4BA18BF2816489B00C19349 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -373,7 +454,6 @@
 				INFOPLIST_FILE = BanchanApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,7 +471,7 @@
 		};
 		E4C6B788280CFA7F001C14F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5752C8297112F34F435319FF /* Pods-BanchanApp.release.xcconfig */;
+			baseConfigurationReference = E4BA18C0281648F700C19349 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -402,7 +482,6 @@
 				INFOPLIST_FILE = BanchanApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
