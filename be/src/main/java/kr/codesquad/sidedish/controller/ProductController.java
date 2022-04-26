@@ -2,8 +2,10 @@ package kr.codesquad.sidedish.controller;
 
 import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.domain.SideDish;
+import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.response.CommonCode;
 import kr.codesquad.sidedish.response.CommonResponse;
+import kr.codesquad.sidedish.response.ErrorCode;
 import kr.codesquad.sidedish.service.ProductDTO;
 import kr.codesquad.sidedish.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -19,61 +21,74 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
-    private final ProductService productService;
+	public static final Integer MinimumProductId = 1;
+	public static final Integer MaximumProductId = 24;
 
-    /**
-     * 상품 카테고리별 목록 불러오기
-     */
-    @ResponseBody
-    @GetMapping(value = {"/{dishType}", "/{dishType}/{sideDishType}"})
-    public ResponseEntity<CommonResponse> loadList(
-            @PathVariable String dishType,
-            @PathVariable(required = false) Optional<String> sideDishType) {
-        List<ProductDTO> productDTOs = loadListByType(dishType, sideDishType);
+	private final ProductService productService;
 
-        List<ResponseSimpleProductInfo> simpleDTOs = productDTOs.stream()
-                .map(p -> ResponseSimpleProductInfo.from(p))
-                .collect(Collectors.toList());
+	/**
+	 * 상품 카테고리별 목록 불러오기
+	 */
+	@ResponseBody
+	@GetMapping(value = {"/{dishType}", "/{dishType}/{sideDishType}"})
+	public ResponseEntity<CommonResponse> loadList(
+		@PathVariable String dishType,
+		@PathVariable(required = false) Optional<String> sideDishType) {
+		List<ProductDTO> productDTOs = loadListByType(dishType, sideDishType);
 
-        if (productDTOs.size() == 0) {
-            return noContentCommonResponse().toResponseEntity();
-        }
+		List<ResponseSimpleProductInfo> simpleDTOs = productDTOs.stream()
+			.map(p -> ResponseSimpleProductInfo.from(p))
+			.collect(Collectors.toList());
 
-        return OKCommonResponse(simpleDTOs).toResponseEntity();
-    }
+		if (productDTOs.size() == 0) {
+			return noContentCommonResponse().toResponseEntity();
+		}
+		return OKCommonResponse(simpleDTOs).toResponseEntity();
+	}
 
-    private List<ProductDTO> loadListByType(String dishType, Optional<String> sideDishType) {
-        if (sideDishType.isPresent()) {
-            return productService.loadSideDishListByType(Dish.stringToEnum(dishType), SideDish.stringToEnum(sideDishType.get()));
-        }
-        return productService.loadDishListByType(Dish.stringToEnum(dishType));
-    }
+	/**
+	 * 상품 세부 정보 불러오기
+	 */
+	@ResponseBody
+	@GetMapping("/{id}/detail")
+	public ResponseEntity<CommonResponse> loadDetail(@PathVariable Integer id) {
 
-    /**
-     * 상품 세부 정보 불러오기
-     */
-    @ResponseBody
-    @GetMapping("/{id}/detail")
-    public ResponseEntity<CommonResponse> loadDetail(@PathVariable Integer id) {
-        return OKCommonResponse(ResponseDetailProductInfo.from(productService.findById(id)))
-                .toResponseEntity();
-    }
+		checkForExistingId(id);
 
-    /**
-     * 주문 넣기
-     */
-    @PostMapping("/orders")
-    public ResponseEntity<CommonResponse> order(@RequestBody RequestProduct requestProduct) {
-        productService.order(requestProduct);
+		return OKCommonResponse(ResponseDetailProductInfo.from(productService.findById(id)))
+			.toResponseEntity();
+	}
 
-        return noContentCommonResponse().toResponseEntity();
-    }
+	/**
+	 * 주문 넣기
+	 */
+	@PostMapping("/orders")
+	public ResponseEntity<CommonResponse> order(@RequestBody RequestProduct requestProduct) {
+		productService.order(requestProduct);
 
-    private CommonResponse noContentCommonResponse() {
-        return new CommonResponse(CommonCode.SUCCESS_NO_CONTENT);
-    }
+		return noContentCommonResponse().toResponseEntity();
+	}
 
-    private CommonResponse OKCommonResponse(Object data) {
-        return new CommonResponse(CommonCode.SUCCESS, data);
-    }
+	private CommonResponse noContentCommonResponse() {
+		return new CommonResponse(CommonCode.SUCCESS_NO_CONTENT);
+	}
+
+	private CommonResponse OKCommonResponse(Object data) {
+		return new CommonResponse(CommonCode.SUCCESS, data);
+	}
+
+	private List<ProductDTO> loadListByType(String dishType, Optional<String> sideDishType) {
+		if (sideDishType.isPresent()) {
+			return productService.loadSideDishListByType(Dish.stringToEnum(dishType),
+				SideDish.stringToEnum(sideDishType.get()));
+		}
+		return productService.loadDishListByType(Dish.stringToEnum(dishType));
+	}
+
+	private void checkForExistingId(Integer id) {
+		if (id < MinimumProductId ||
+			id > MaximumProductId) {
+			throw new CustomException(ErrorCode.PRODUCT_ID_NOT_ALLOWED);
+		}
+	}
 }

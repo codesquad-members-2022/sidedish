@@ -7,9 +7,7 @@ import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.controller.RequestProduct;
 import kr.codesquad.sidedish.domain.SideDish;
-import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.repository.ProductRepository;
-import kr.codesquad.sidedish.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,28 +31,25 @@ public class ProductService {
 	}
 
 	public List<ProductDTO> loadSideDishListByType(Dish dish, SideDish sideDish) {
-		checkDishTypeIsSide(dish);
+		ServiceValidator.checkDishTypeIsSide(dish);
 		return productRepository.loadSideDishListByType(dish.getType(), sideDish.getType()).stream()
-				.map(Product::createDTO)
-				.collect(Collectors.toList());
-	}
-
-	private void checkDishTypeIsSide(Dish dish) {
-		if (Dish.SIDE != dish) {
-			throw new CustomException(ErrorCode.SIDE_DISH_ONLY_ALLOWED);
-		}
+			.map(Product::createDTO)
+			.collect(Collectors.toList());
 	}
 
 	public ProductDTO findById(Integer id) {
 		return productRepository.findById(id).get().createDTO();
 	}
 
-	public Product order(RequestProduct requestProduct) {
-		//Product originProduct = productRepository.findById(requestProduct.getId()).get();
-		//Product updateProduct = Product.updateQuantity(originProduct, requestProduct.getQuantity());
-		//productRepository.updateQuantity(requestProduct.getId(), updateProduct);
+	public void order(RequestProduct requestProduct) {
 
-		return productRepository.updateQuantity(requestProduct.getId(),
+		Product product = productRepository.findById(requestProduct.getId()).get();
+		ServiceValidator.checkRemainingProductQuantity(product.getQuantity(),
+			requestProduct.getQuantity());
+
+//		return productRepository.updateQuantity(requestProduct.getId(),
+//			requestProduct.getQuantity());
+		productRepository.updateQuantity(requestProduct.getId(),
 			requestProduct.getQuantity());
 	}
 }
