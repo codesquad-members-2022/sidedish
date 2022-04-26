@@ -3,14 +3,15 @@ import styled from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
 import { API_URL } from '@/Env';
+import { useFetch } from '@/Hooks';
 import { fetchData } from '@/Utils';
 
+import { BestTemp } from './BestTemp';
 import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Components/Badge';
-import { ProductCard } from '@/Components/ProductCard';
 
-const BestProductWrapper = styled.div`
+const BestProductsWrapper = styled.div`
   display: flex;
   padding: 56px 80px;
   border-bottom: 1px solid ${Colors.LIGHT_GREY};
@@ -23,11 +24,6 @@ const Header = styled.div`
   margin-bottom: 8px;
 `;
 
-const ProductCardList = styled.ul`
-  display: flex;
-  margin-top: 34px;
-`;
-
 const Title = styled.span`
   margin-left: 10px;
 `;
@@ -38,21 +34,18 @@ const BadgeWrapper = styled.div`
 `;
 
 export const BestProducts = () => {
-  const [tabList, setTabList] = useState([]);
+  const [tabList, isLoaded] = useFetch(`${API_URL}/events`);
   const [selectedTabId, setSelectedTabId] = useState(null);
   const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    fetchData(`${API_URL}/events`)
-      .then(tabListData => {
-        setTabList(tabListData.result_body);
-        setSelectedTabId(tabListData.result_body[0].id);
-      })
-      .catch(err => {
-        //TODO: 에러 핸들링
-        console.error(err);
-      });
-  }, []);
+    if (!isLoaded) {
+      return;
+    }
+
+    const firstTabIndex = 0;
+    setSelectedTabId(tabList.result_body[firstTabIndex].id);
+  }, [isLoaded]);
 
   useEffect(() => {
     if (!selectedTabId) {
@@ -72,8 +65,10 @@ export const BestProducts = () => {
     setSelectedTabId(clickedTabId);
   };
 
+  if (!isLoaded) return;
+
   return (
-    <BestProductWrapper>
+    <BestProductsWrapper>
       <Header>
         <BadgeWrapper>
           <CategoryBadge />
@@ -85,20 +80,12 @@ export const BestProducts = () => {
       </Header>
 
       <TabList
-        tabData={tabList}
+        tabData={tabList.result_body}
         selectedTabId={selectedTabId}
         onClickTab={onClickTab}
       />
 
-      <ProductCardList>
-        {cardData.map(productCardData => (
-          <ProductCard
-            size={''}
-            data={productCardData}
-            key={productCardData.id}
-          />
-        ))}
-      </ProductCardList>
-    </BestProductWrapper>
+      <BestTemp cardData={cardData} />
+    </BestProductsWrapper>
   );
 };
