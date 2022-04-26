@@ -22,6 +22,13 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
             cell.configure(title: dishViewModel.title, description: dishViewModel.description)
             cell.configure(specialBadge: special)
             cell.configure(price: dishViewModel.price, listPrice: dishViewModel.listPrice)
+            DispatchQueue.global().async {
+                if let image = dishViewModel.image {
+                    DispatchQueue.main.sync {
+                        cell.configure(image: image)
+                    }
+                }
+            }
         }
         return cell
     }

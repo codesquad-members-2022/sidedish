@@ -31,7 +31,6 @@ private extension BriefBanchanViewController {
         if recognizer.state == UIGestureRecognizer.State.ended {
             let tappedLocation = recognizer.location(in: self.briefBanchanList)
             guard let tappedIndexPath = self.briefBanchanList.indexPathForItem(at: tappedLocation) else { return }
-            print(tappedIndexPath)
 
             guard let dish = tmp[tappedIndexPath.section][tappedIndexPath.item] else { return }
             let dishViewModel = BanchanViewModel(dish: dish)
@@ -39,6 +38,12 @@ private extension BriefBanchanViewController {
             guard let detailView = self.storyboard?.instantiateViewController(withIdentifier: "detailBanchanViewController") as? DetailBanchanViewController else { return }
             detailView.title = dishViewModel.title
             detailView.configure(title: dishViewModel.title, description: dishViewModel.description, price: dishViewModel.price, listPrice: dishViewModel.listPrice)
+            DispatchQueue.global().async {
+                let image = dishViewModel.image
+                DispatchQueue.main.sync {
+                    detailView.configure(image: image)
+                }
+            }
             self.navigationController?.pushViewController(detailView, animated: true)
         }
     }

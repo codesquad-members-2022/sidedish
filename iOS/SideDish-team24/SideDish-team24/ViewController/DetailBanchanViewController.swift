@@ -29,6 +29,10 @@ class DetailBanchanViewController: UIViewController {
         self.banchanBrief.configure(title: title, description: description, price: price, listPrice: listPrice)
     }
     
+    func configure(image: UIImage?) {
+        self.banchanBrief.configure(image: image)
+    }
+    
 }
 
 private extension DetailBanchanViewController {

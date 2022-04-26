@@ -45,6 +45,10 @@ class DetailBanchanBriefView: UIView {
         self.listPrice.attributedText = listPrice?.strikeThrough()
     }
     
+    func configure(image: UIImage?) {
+        self.dishImage.image = image
+    }
+    
 }
 
 private extension DetailBanchanBriefView {

@@ -3,11 +3,11 @@ import UIKit
 class BanchanViewModel {
     private let dish: Dish
     
-    var image: UIImage? {
+    lazy var image: UIImage? = {
         let data = try? Data(contentsOf: self.dish.image)
         let image = UIImage(data: data!)
         return image
-    }
+    }()
     
     var discountPolicy: String? {
         return dish.discountPolicy
