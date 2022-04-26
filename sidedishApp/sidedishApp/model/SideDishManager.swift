@@ -64,4 +64,19 @@ final class SideDishManager {
         }
         return dish
     }
+    
+    func getDishCountFromSection(indexPath: IndexPath) -> Int? {
+        var dishCount: Int?
+        switch indexPath.section {
+        case 0:
+            dishCount = mainDishes?.body.count
+        case 1:
+            dishCount = soupDishes?.body.count
+        case 2:
+            dishCount = sideDishes?.body.count
+        default:
+            return nil
+        }
+        return dishCount
+    }
 }
