@@ -4,7 +4,7 @@ import kr.codesquad.sidedish.domain.Order;
 
 public class OrderRequest {
     private Long itemId;
-    private String email;
+    private Long userId;
     private Integer quantity;
     private Long totalPrice;
 
@@ -12,23 +12,23 @@ public class OrderRequest {
 
     }
 
-    public OrderRequest(Long itemId, String email, Integer quantity, Long totalPrice) {
+    public OrderRequest(Long itemId, Long userId, Integer quantity, Long totalPrice) {
         this.itemId = itemId;
-        this.email = email;
+        this.userId = userId;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
 
     public Order toEntity() {
-        return Order.newOrder(this.itemId, this.email, this.quantity, this.totalPrice);
+        return Order.newOrder(this.itemId, this.userId, this.quantity, this.totalPrice);
     }
 
     public Long getItemId() {
         return itemId;
     }
 
-    public String getEmail() {
-        return email;
+    public Long getUserId() {
+        return userId;
     }
 
     public Integer getQuantity() {
