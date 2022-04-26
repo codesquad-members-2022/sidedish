@@ -1,12 +1,12 @@
 package com.team28.sidedish.controller.dto;
 
+import com.team28.sidedish.domain.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Schema(description = "상품 상세조회 결과")
 @Getter
@@ -30,10 +30,10 @@ public class ProductDetailResponse {
     private List<ProductImageResponse> detailImages;
 
     @Schema(description = "상품 가격")
-    private int price;
+    private Long price;
 
     @Schema(description = "할인된 가격")
-    private int discountPrice;
+    private Long discountPrice;
 
     @Schema(description = "상품 재고")
     private int stockQuantity;
@@ -41,27 +41,17 @@ public class ProductDetailResponse {
     @Schema(description = "할인 이름")
     private String eventInfo;
 
-    public static ProductDetailResponse from(ProductResponse product, List<ProductImageResponse> allImages, int stock) {
-        return new ProductDetailResponse(product.getProductId(),
-                product.getProductName(),
+    public static ProductDetailResponse of(Product product, List<ProductImageResponse> representImages, List<ProductImageResponse> detailImages) {
+        return new ProductDetailResponse(
+                product.getId(),
+                product.getName(),
                 product.getDescription(),
-                getRepresentImages(allImages),
-                getDetailsImage(allImages),
+                representImages,
+                detailImages,
                 product.getPrice(),
                 product.getDiscountPrice(),
-                stock,
-                product.getDiscountName());
-    }
-
-    private static List<ProductImageResponse> getRepresentImages(List<ProductImageResponse> images) {
-        return images.stream()
-                .filter(ProductImageResponse::isRepresentYn)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    private static List<ProductImageResponse> getDetailsImage(List<ProductImageResponse> images) {
-        return images.stream()
-                .filter(img -> !img.isRepresentYn())
-                .collect(Collectors.toUnmodifiableList());
+                product.getStockQuantity(),
+                product.getDiscountName()
+        );
     }
 }

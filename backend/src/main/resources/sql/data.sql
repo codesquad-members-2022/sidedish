@@ -41,3 +41,32 @@ VALUES ('런칭 특가', '0.2');
 
 INSERT INTO `discount` (`name`, `discount_rate`)
 VALUES ('이벤트 특가', '0.1');
+
+
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (1, 'http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (1, 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (1, 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (2, 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (2, 'http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (2, 'http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (3, 'http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (3, 'http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (3, 'http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (4, 'http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (4, 'http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (4, 'http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (5, 'http://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (5, 'http://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (5, 'http://public.codesquad.kr/jk/storeapp/data/soup/33_ZIP_P_1004_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (6, 'http://public.codesquad.kr/jk/storeapp/data/soup/842_ZIP_P_1035_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (6, 'http://public.codesquad.kr/jk/storeapp/data/soup/842_ZIP_P_1035_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (6, 'http://public.codesquad.kr/jk/storeapp/data/soup/842_ZIP_P_1035_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (7, 'http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (7, 'http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (7, 'http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (8, 'http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (8, 'http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (8, 'http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_D1.jpg', false, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (9, 'http://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_T.jpg', true, 1);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (9, 'http://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_S.jpg', true, 2);
+INSERT INTO `product_image` (`product_id`,`image_path`,`represent_yn`,`sequence`) VALUES (9, 'http://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_D1.jpg', false, 1);

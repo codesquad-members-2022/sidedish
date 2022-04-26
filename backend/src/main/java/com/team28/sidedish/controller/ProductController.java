@@ -2,8 +2,7 @@ package com.team28.sidedish.controller;
 
 import com.team28.sidedish.controller.dto.ProductDetailResponse;
 import com.team28.sidedish.controller.dto.ProductListResponse;
-import com.team28.sidedish.service.MockProductDetailService;
-import com.team28.sidedish.service.MockProductService;
+import com.team28.sidedish.service.ProductDiscountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,8 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final MockProductService productService;
-    private final MockProductDetailService productDetailService;
+    private final ProductDiscountService productDiscountService;
 
     @Operation(
             summary = "상품 목록 조회",
@@ -39,7 +37,7 @@ public class ProductController {
     )
     @GetMapping
     public ProductListResponse productList(@RequestParam Long categoryId) {
-        return productService.findProductList(categoryId);
+        return productDiscountService.findProductList(categoryId);
     }
 
     @Operation(
@@ -60,6 +58,6 @@ public class ProductController {
     )
     @GetMapping("/{productId}")
     public ProductDetailResponse productDetail(@PathVariable Long productId) {
-        return productDetailService.findProductDetail(productId);
+        return productDiscountService.findProductDetail(productId);
     }
 }
