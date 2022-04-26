@@ -10,9 +10,10 @@ import Toaster
 
 final class HomeViewController: UIViewController {
     
-    private var productModel: ProductModel?
+    private var productModel: HomeUsecase?
     private lazy var homeView = HomeView(frame: view.frame)
-    private let dishCollectionWrapper = DishCollectionWrapper()
+    private let dishCollectionDataSource = DishCollectionDataSource()
+    private let dishCollectionDelegate = DishCollectionDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +21,10 @@ final class HomeViewController: UIViewController {
         productModel?.delegate = self
         productModel?.getAll()
         view = homeView
-        homeView.setCollectionViewModel(model: dishCollectionWrapper)
+        homeView.setCollectionViewModel(dataSource: dishCollectionDataSource, delegate: dishCollectionDelegate)
     }
 
-    static func create(with model: ProductModel) -> HomeViewController {
+    static func create(with model: HomeUsecase) -> HomeViewController {
         let viewController = HomeViewController()
         viewController.productModel = model
         return viewController
@@ -37,11 +38,11 @@ final class HomeViewController: UIViewController {
 }
 extension HomeViewController: ProductModelDelegate{
     func updateDishComment(comments: [String]) {
-        dishCollectionWrapper.setDishComments(dishComments: comments)
+        dishCollectionDataSource.setDishComments(dishComments: comments)
     }
     
     func updateAllDishes(dishes: [DishCategory : [Product]]) {
-        dishCollectionWrapper.setDishes(dishes: dishes)
+        dishCollectionDataSource.setDishes(dishes: dishes)
     }
     
     func updateFail(error: Error) {

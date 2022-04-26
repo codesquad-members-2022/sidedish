@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ProductModel{
+final class HomeUsecase{
 
     private let repository: ProductRepository
     weak var delegate: ProductModelDelegate?

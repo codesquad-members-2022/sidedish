@@ -15,7 +15,6 @@ final class DishCollectionViewCell: UICollectionViewCell{
         eventConstraints.map{$0.isActive = false}
         nonEventConstraints.map{$0.isActive = false}
         eventButton.translatesAutoresizingMaskIntoConstraints = true
-        
     }
     
     private lazy var basicView = UIView()

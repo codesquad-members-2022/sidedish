@@ -8,13 +8,13 @@
 import UIKit
 
 final class DetailViewController: UIViewController{
-    private var model: DetailProductModel?
+    private var model: DetailUsecase?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    static func create(with model: DetailProductModel) -> DetailViewController {
+    static func create(with model: DetailUsecase) -> DetailViewController {
         let viewController = DetailViewController()
         viewController.model = model
         return viewController

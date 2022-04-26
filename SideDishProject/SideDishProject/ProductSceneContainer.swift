@@ -12,11 +12,11 @@ final class ProductSceneContainer {
     static func makeViewController(sceneType: SceneType) -> UIViewController{
         switch sceneType{
         case .home:
-            let model = ProductModel(repository: MockProductRepository())
+            let model = HomeUsecase(repository: MockProductRepository())
             let viewController = HomeViewController.create(with: model)
             return UINavigationController(rootViewController: viewController)
         case .detail(let uniqueId):
-            let model = DetailProductModel(repository: MockDetailRepository(), uniqueId: uniqueId)
+            let model = DetailUsecase(repository: MockDetailRepository(), uniqueId: uniqueId)
             return DetailViewController.create(with: model)
         }
     }

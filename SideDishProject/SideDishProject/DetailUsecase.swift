@@ -1,6 +1,6 @@
 import Foundation
 
-final class DetailProductModel {
+final class DetailUsecase {
     private let repository: ProductDetailRepository
     
     init(repository: ProductDetailRepository, uniqueId: UniqueID){
