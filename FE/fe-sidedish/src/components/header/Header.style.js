@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Container = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.color.black};
-  height: ${({ isOpen }) => (isOpen ? "176px" : "97px")};
+  height: ${({ isOpen }) => (isOpen ? '176px' : '97px')};
   transition: all ease-out 0.1s;
+  overflow: hidden;
 `;
 
 const Wrapper = styled.div`
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-family: "Outfit";
+  font-family: 'Outfit';
   font-weight: ${({ theme }) => theme.fontWeight.heavy};
   font-size: ${({ theme }) => theme.fontSize.display};
   a {
@@ -53,8 +54,6 @@ const IconMenu = styled.li`
   }
 `;
 
-const Category = styled.li``;
-
 const CategoryTitle = styled.p`
   margin: 0 0 12px;
 `;
@@ -63,8 +62,7 @@ const CategoryMenuList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  transition: all ease-out 0.2s;
+  content-visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
 `;
 
 const CategoryMenu = styled.li`
@@ -85,7 +83,6 @@ export {
   Wrapper,
   Title,
   CategoryList,
-  Category,
   CategoryTitle,
   CategoryMenuList,
   CategoryMenu,
