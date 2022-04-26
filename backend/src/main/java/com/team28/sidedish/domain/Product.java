@@ -7,6 +7,7 @@ import com.team28.sidedish.repository.entity.ProductImageEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,7 +50,7 @@ public class Product {
     private static List<String> getRepresentImages(Set<ProductImageEntity> images) {
         return images.stream()
                 .filter(ProductImageEntity::isRepresentYn)
-                .sorted((img1, img2) -> img1.getSequence() - img2.getSequence())
+                .sorted(Comparator.comparingInt(ProductImageEntity::getSequence))
                 .map(ProductImageEntity::getImagePath)
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -57,7 +58,7 @@ public class Product {
     private static List<String> getDetailsImage(Set<ProductImageEntity> images) {
         return images.stream()
                 .filter(img -> !img.isRepresentYn())
-                .sorted((img1, img2) -> img1.getSequence() - img2.getSequence())
+                .sorted(Comparator.comparingInt(ProductImageEntity::getSequence))
                 .map(ProductImageEntity::getImagePath)
                 .collect(Collectors.toUnmodifiableList());
     }
