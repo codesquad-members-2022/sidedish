@@ -9,19 +9,21 @@ import UIKit
 
 final class ProductSceneContainer {
     
-    static func makeViewController(sceneType: SceneType ,repository: ProductRepository) -> UIViewController{
+    static func makeViewController(sceneType: SceneType) -> UIViewController{
         switch sceneType{
         case .home:
-            let viewController = HomeViewController.create(with: repository)
+            let model = ProductModel(repository: MockProductRepository())
+            let viewController = HomeViewController.create(with: model)
             return UINavigationController(rootViewController: viewController)
-        case .detail:
-            return DetailViewController.create(with: repository)
+        case .detail(let uniqueId):
+            let model = DetailModel(repository: MockDetailRepository(), uniqueId: uniqueId)
+            return DetailViewController.create(with: model)
         }
     }
     
     enum SceneType{
         case home
-        case detail
+        case detail(uniqueId: UniqueID)
     }
 }
 
