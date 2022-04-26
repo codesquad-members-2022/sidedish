@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Infos = ({ cardInfo }) => {
   const { title, description, price, discountedPrice, badge } = cardInfo;
-
   return (
     <StyledInfoContainer>
-      {title && <StyledInfo>{title}</StyledInfo>}
-      {description && <StyledInfo>{description}</StyledInfo>}
-      {price && <StyledInfo>{price}</StyledInfo>}
+      <StyledInfo>{title}</StyledInfo>
+      <StyledInfo>{description}</StyledInfo>
+      <StyledInfo>{price}</StyledInfo>
       {discountedPrice && <StyledInfo>{discountedPrice}</StyledInfo>}
       {badge &&
         badge.map((specialBadge, idx) => (
-          <StyledInfo key={idx}>{specialBadge}</StyledInfo>
+          <StyledInfo key={`${specialBadge}-${idx}`}>{specialBadge}</StyledInfo>
         ))}
     </StyledInfoContainer>
   );

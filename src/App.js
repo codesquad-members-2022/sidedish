@@ -14,17 +14,9 @@ const App = () => {
   const [soupData, setSoupData] = useState([]);
 
   const getSideDishData = async (url, setData) => {
-    try {
-      const response = await fetchData(url);
+    const response = await fetchData(url);
 
-      if (!response) {
-        throw new Error('api failed');
-      }
-
-      setData(response.data);
-    } catch (error) {
-      throw new Error(error);
-    }
+    setData(response.data);
   };
 
   useEffect(() => {
