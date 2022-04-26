@@ -22,35 +22,46 @@ class FoodCell: UICollectionViewCell {
         var label = UILabel()
         label.text = "감질맛 나는 매콤한 양념"
         label.font = UIFont.systemFont(ofSize: 14)
+        label.lineBreakMode = .byTruncatingTail
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         return label
     }()
     
-    private var originPriceLabel: UILabel = {
+    private var salePriceLabel: UILabel = {
         var label = UILabel()
         label.text = "12,640원"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
     
-    private var salePriceLabel: UILabel = {
+    private var beforeSalePriceLabel: UILabel = {
         var label = UILabel()
         label.text = "15,800원"
+        
+        if let text = label.text {
+            let attributeString = NSMutableAttributedString(string: label.text ?? "")
+
+          attributeString.addAttribute(.strikethroughStyle,
+                                        value: NSUnderlineStyle.single.rawValue,
+                                        range: NSRange(location: 0, length: attributeString.length))
+
+            label.attributedText = attributeString
+        }
+        
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         return label
     }()
     
-    private var eventLabel: UILabel = {
-        var label = UILabel()
-        label.clipsToBounds = true
-        label.backgroundColor = UIColor(red: 0.502, green: 0.737, blue: 1, alpha: 1)
-        label.textColor = .white
-        label.layer.cornerRadius = 13
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textAlignment = .center
-        label.text = "이벤트특가"
-        return label
+    private var eventBadgeLable: UILabel?
+    private var launcingBadgeLabel: UILabel?
+    
+    private var stackView: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.distribution = .fillProportionally
+        return stack
     }()
     
     // MARK: Initiallize
@@ -75,16 +86,34 @@ class FoodCell: UICollectionViewCell {
     func setDomainFood(data: Food){
         titleLabel.text = data.title
         bodyLabel.text = data.description
-        originPriceLabel.text = data.originPrice
         salePriceLabel.text = data.salePrice
-        if let event = data.badge {
-            eventLabel.text = event.joined(separator: ",")
-        } else { eventLabel.text = "" }
+        beforeSalePriceLabel.text = data.beforeSalePrice
+        guard let badge = data.badge else { return }
+        setBadgeLabel(badge)
         myImageView.load(url: data.image)
         
     }
     
+    func setBadgeLabel(_ badge: [String]){
+        for str in badge{
+            let label = makeEventLabel(text: str)
+            stackView.addArrangedSubview(makeEventLabel(text: str))
+        }
+    }
+    
     // MARK: Label configure
+    func makeEventLabel(text: String) -> UILabel{
+        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.clipsToBounds = true
+        label.backgroundColor = UIColor(red: 0.502, green: 0.737, blue: 1, alpha: 1)
+        label.textColor = .white
+        label.layer.cornerRadius = 13
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
+        label.text = text
+        return label
+    }
     
     func configureLayout(){
         self.contentView.addSubview(myImageView)
@@ -105,27 +134,28 @@ class FoodCell: UICollectionViewCell {
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         bodyLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        bodyLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         bodyLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
-
-        self.contentView.addSubview(originPriceLabel)
-        originPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        originPriceLabel.topAnchor.constraint(equalTo: bodyLabel.bottomAnchor).isActive = true
-        originPriceLabel.leadingAnchor.constraint(equalTo: bodyLabel.leadingAnchor).isActive = true
-        originPriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
         self.contentView.addSubview(salePriceLabel)
         salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        salePriceLabel.topAnchor.constraint(equalTo: originPriceLabel.topAnchor).isActive = true
-        salePriceLabel.leadingAnchor.constraint(equalTo: originPriceLabel.trailingAnchor, constant: 4).isActive = true
+        salePriceLabel.topAnchor.constraint(equalTo: bodyLabel.bottomAnchor).isActive = true
+        salePriceLabel.leadingAnchor.constraint(equalTo: bodyLabel.leadingAnchor).isActive = true
         salePriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+
+        self.contentView.addSubview(beforeSalePriceLabel)
+        beforeSalePriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        beforeSalePriceLabel.topAnchor.constraint(equalTo: salePriceLabel.topAnchor).isActive = true
+        beforeSalePriceLabel.leadingAnchor.constraint(equalTo: salePriceLabel.trailingAnchor, constant: 4).isActive = true
+        beforeSalePriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        self.contentView.addSubview(eventLabel)
-        eventLabel.translatesAutoresizingMaskIntoConstraints = false
-        eventLabel.widthAnchor.constraint(equalToConstant: 89).isActive = true
-        eventLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        eventLabel.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
-        eventLabel.leadingAnchor.constraint(equalTo: originPriceLabel.leadingAnchor).isActive = true
-        eventLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13).isActive = true
+        self.contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        stackView.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: salePriceLabel.leadingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13).isActive = true
     }
     
 }
