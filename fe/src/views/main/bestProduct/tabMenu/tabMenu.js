@@ -1,4 +1,4 @@
-import { TabMenuLi } from '../BestProduct.styled';
+import { TabMenuLi } from './tabMenu.styled';
 
 export function TabMenu(props) {
   if (!props.menus) {
