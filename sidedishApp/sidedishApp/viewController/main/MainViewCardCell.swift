@@ -19,70 +19,78 @@ class MainViewCardCell: UICollectionViewCell {
         return image
     }()
     
-    private let cardTitleLabel: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.customFont(.sfSemiboldMainTitleLabel)
-        return label
+    private let cardInfoVerticalStackView: MainViewCardInfo = {
+        var stackView = MainViewCardInfo()
+        stackView.axis = .vertical
+        stackView.backgroundColor = UIColor.customColor(.primaryDark)
+        return stackView
     }()
     
-    private let cardBodyLabel: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.customFont(.sfRegularMainBodyLabel)
-        label.numberOfLines = 0
-        label.lineBreakStrategy = .hangulWordPriority
-        return label
-    }()
-    
-    private let normalPriceLabel: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.customFont(.sfRegularMainNormalPrice)
-        return label
-    }()
-    
-    private let salePriceLabel: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.customFont(.sfSemiboldMainSalePrice)
-        return label
-    }()
-    
-    private let eventBadgeLabel: UILabel = {
-        var label = UILabel()
-        label.clipsToBounds = true
-        label.text = Badge.eventPrice.description
-        label.textColor = .white
-        label.font = UIFont.customFont(.sfSemiboldEventLabel)
-        label.backgroundColor = UIColor.customColor(.primaryLight)
-        label.layer.cornerRadius = 13
-        label.textAlignment = .center
-        label.baselineAdjustment = .alignCenters
-        return label
-    }()
-    
-    private let launchingBadgeLabel: UILabel = {
-        var label = UILabel()
-        label.clipsToBounds = true
-        label.text = Badge.launchingPrice.description
-        label.textColor = .white
-        label.font = UIFont.customFont(.sfSemiboldEventLabel)
-        label.backgroundColor = UIColor.customColor(.primaryDark)
-        label.layer.cornerRadius = 13
-        label.textAlignment = .center
-        label.baselineAdjustment = .alignCenters
-        return label
-    }()
-    
-    private let mainBadgeLabel: UILabel = {
-        var label = UILabel()
-        label.clipsToBounds = true
-        label.text = Badge.mainPrice.description
-        label.textColor = .white
-        label.font = UIFont.customFont(.sfSemiboldEventLabel)
-        label.backgroundColor = UIColor.customColor(.primary)
-        label.layer.cornerRadius = 13
-        label.textAlignment = .center
-        label.baselineAdjustment = .alignCenters
-        return label
-    }()
+//    private let cardTitleLabel: UILabel = {
+//        var label = UILabel()
+//        label.font = UIFont.customFont(.sfSemiboldMainTitleLabel)
+//        return label
+//    }()
+//
+//    private let cardBodyLabel: UILabel = {
+//        var label = UILabel()
+//        label.font = UIFont.customFont(.sfRegularMainBodyLabel)
+//        label.numberOfLines = 0
+//        label.lineBreakStrategy = .hangulWordPriority
+//        return label
+//    }()
+//
+//    private let normalPriceLabel: UILabel = {
+//        var label = UILabel()
+//        label.font = UIFont.customFont(.sfRegularMainNormalPrice)
+//        label.textColor = UIColor.customColor(.grey2)
+//        return label
+//    }()
+//
+//    private let salePriceLabel: UILabel = {
+//        var label = UILabel()
+//        label.font = UIFont.customFont(.sfSemiboldMainSalePrice)
+//        return label
+//    }()
+//
+//    private let eventBadgeLabel: UILabel = {
+//        var label = UILabel()
+//        label.clipsToBounds = true
+//        label.text = Badge.eventPrice.description
+//        label.textColor = .white
+//        label.font = UIFont.customFont(.sfSemiboldEventLabel)
+//        label.backgroundColor = UIColor.customColor(.primaryLight)
+//        label.layer.cornerRadius = 13
+//        label.textAlignment = .center
+//        label.baselineAdjustment = .alignCenters
+//        return label
+//    }()
+//
+//    private let launchingBadgeLabel: UILabel = {
+//        var label = UILabel()
+//        label.clipsToBounds = true
+//        label.text = Badge.launchingPrice.description
+//        label.textColor = .white
+//        label.font = UIFont.customFont(.sfSemiboldEventLabel)
+//        label.backgroundColor = UIColor.customColor(.primaryDark)
+//        label.layer.cornerRadius = 13
+//        label.textAlignment = .center
+//        label.baselineAdjustment = .alignCenters
+//        return label
+//    }()
+//
+//    private let mainBadgeLabel: UILabel = {
+//        var label = UILabel()
+//        label.clipsToBounds = true
+//        label.text = Badge.mainPrice.description
+//        label.textColor = .white
+//        label.font = UIFont.customFont(.sfSemiboldEventLabel)
+//        label.backgroundColor = UIColor.customColor(.primary)
+//        label.layer.cornerRadius = 13
+//        label.textAlignment = .center
+//        label.baselineAdjustment = .alignCenters
+//        return label
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -95,39 +103,19 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     func setPropertiesValue(dish: MainCard.Body) {
-        cardTitleLabel.text = dish.title
-        cardBodyLabel.text = dish.description
-        normalPriceLabel.text = dish.normalPrice
-        salePriceLabel.text = dish.salePrice
-        if let badgeList = dish.badgeList {
-            if badgeList.contains("이벤트특가"),
-               badgeList.contains("런칭특가") {
-                configureEventLabelAndBadgeLabelConstraint()
-            } else if badgeList.contains("이벤트특가") {
-                configureEventBadgeLabelConstraint()
-            } else if badgeList.contains("런칭특가") {
-                configureLaunchingBadgeLabelConstraint()
-            }
-        }
+        cardInfoVerticalStackView.setPropertiesValue(dish: dish)
     }
     
     private func setUI() {
         self.addSubview(cardImageView)
-        self.addSubview(cardTitleLabel)
-        self.addSubview(cardBodyLabel)
-        self.addSubview(normalPriceLabel)
-        self.addSubview(salePriceLabel)
-        self.addSubview(eventBadgeLabel)
-        self.addSubview(launchingBadgeLabel)
+        self.addSubview(cardInfoVerticalStackView)
         setUIConstraints()
     }
     
     private func setUIConstraints() {
         congifureCardImageViewConstraint()
-        configureCardTitleLabelConstraint()
-        configureCardBodyLabelConstraint()
-        configureNormalPriceLabelConstraint()
-        configureSalePriceLabelConstraint()
+        configureCardInfoVerticalStackViewConstraint()
+        
     }
     
     private func congifureCardImageViewConstraint() {
@@ -140,73 +128,14 @@ class MainViewCardCell: UICollectionViewCell {
         ])
     }
     
-    private func configureCardTitleLabelConstraint() {
-        cardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureCardInfoVerticalStackViewConstraint() {
+        cardInfoVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardTitleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            cardTitleLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
+            cardInfoVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            cardInfoVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            cardInfoVerticalStackView.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor),
+            cardInfoVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
         ])
     }
     
-    private func configureCardBodyLabelConstraint() {
-        cardBodyLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cardBodyLabel.topAnchor.constraint(equalTo: cardTitleLabel.bottomAnchor, constant: 5),
-            cardBodyLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
-        ])
-    }
-    
-    private func configureNormalPriceLabelConstraint() {
-        normalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            normalPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5),
-            normalPriceLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5)
-        ])
-    }
-    
-    private func configureSalePriceLabelConstraint() {
-        salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            salePriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5),
-            salePriceLabel.leadingAnchor.constraint(equalTo: normalPriceLabel.trailingAnchor, constant: 5)
-        ])
-    }
-    
-    private func configureEventBadgeLabelConstraint() {
-        eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
-            eventBadgeLabel.widthAnchor.constraint(equalToConstant: 89),
-            eventBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
-        ])
-    }
-    
-    private func configureLaunchingBadgeLabelConstraint() {
-        launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            launchingBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
-            launchingBadgeLabel.widthAnchor.constraint(equalToConstant: 77),
-            launchingBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
-        ])
-    }
-    
-    private func configureEventLabelAndBadgeLabelConstraint() {
-        eventBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            eventBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            eventBadgeLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
-            eventBadgeLabel.widthAnchor.constraint(equalToConstant: 89),
-            eventBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
-        ])
-        
-        launchingBadgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            launchingBadgeLabel.topAnchor.constraint(equalTo: normalPriceLabel.bottomAnchor, constant: 5),
-            launchingBadgeLabel.leadingAnchor.constraint(equalTo: eventBadgeLabel.trailingAnchor, constant: 5),
-            launchingBadgeLabel.widthAnchor.constraint(equalToConstant: 77),
-            launchingBadgeLabel.heightAnchor.constraint(equalToConstant: 24)
-        ])
-    }
 }
