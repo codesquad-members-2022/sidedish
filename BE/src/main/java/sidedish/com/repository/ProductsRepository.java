@@ -1,6 +1,7 @@
 package sidedish.com.repository;
 
 import java.util.List;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +17,8 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	List<ProductEntity> findByMealType(@Param("mealType") String mealType);
 
 	List<ProductEntity> findAllByBestCategory(String category);
+
+	@Modifying
+	@Query("update PRODUCT set stock_quantity = :stockQuantity where id = :id")
+	void update(@Param("stockQuantity") long stockQuantity, @Param("id") Long id);
 }

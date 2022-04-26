@@ -38,7 +38,7 @@ public class OrderService {
 		Order order = new Order(product, count);
 		OrderEntity orderEntity = domainEntityMapper.toOrderEntityFromDomain(order);
 
-		productsRepository.save(domainEntityMapper.toProductEntityFromDomain(product));
+		productsRepository.update(product.getStockQuantity(), product.getId());
 		return domainDtoMapper.toOrderSaveResponseFromOrder(orderRepository.save(orderEntity));
 	}
 }
