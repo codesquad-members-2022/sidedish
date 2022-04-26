@@ -1,7 +1,8 @@
 package com.example.sideDish.data.source
 
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.Item
+import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.FoodDetail
+import com.example.sideDish.data.model.Item
 
 class FoodRepository {
     fun getFoodDetail(hash: String): FoodDetail {
@@ -14,8 +15,8 @@ class FoodRepository {
                 "http://public.codesquad.kr/jk/storeapp/data/pakage_regular.jpg"
             ),
             "126원",
-            15800,
-            12640,
+            "15,800원",
+            "12,640원",
             "오리 주물럭_반조리",
             listOf(
                 "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",

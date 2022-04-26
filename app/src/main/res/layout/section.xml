@@ -7,7 +7,7 @@
         
         <variable
             name="section"
-            type="com.example.sideDish.data.Item.Section" />
+            type="com.example.sideDish.data.model.Item" />
         
         <variable
             name="viewmodel"

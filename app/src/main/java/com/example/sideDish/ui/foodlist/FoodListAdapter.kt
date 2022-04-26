@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.Item
+import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.MainSummaryItemBinding
 import com.example.sideDish.databinding.SectionBinding
 

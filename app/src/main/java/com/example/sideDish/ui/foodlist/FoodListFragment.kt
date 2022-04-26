@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.common.ViewModelFactory
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import kotlin.concurrent.fixedRateTimer
 

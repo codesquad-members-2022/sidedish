@@ -1,4 +1,4 @@
-package com.example.sideDish.data
+package com.example.sideDish.data.model
 
 sealed class Item {
 

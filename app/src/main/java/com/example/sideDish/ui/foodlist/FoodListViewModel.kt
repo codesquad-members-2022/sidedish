@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sideDish.common.Event
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.Item
+import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.data.source.FoodRepository
 
 class FoodListViewModel(private val repository: FoodRepository) : ViewModel() {

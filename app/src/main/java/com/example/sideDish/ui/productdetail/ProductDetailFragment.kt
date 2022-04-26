@@ -17,8 +17,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
 import com.example.sideDish.common.ViewModelFactory
-import com.example.sideDish.data.Item
-import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
 import java.text.DecimalFormat
 
