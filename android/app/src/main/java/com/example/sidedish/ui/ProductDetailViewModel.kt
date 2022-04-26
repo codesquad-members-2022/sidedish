@@ -30,6 +30,9 @@ class ProductDetailViewModel(
     private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
+    private val _error = MutableLiveData<String>()
+    val error : LiveData<String> = _error
+
     init {
         _quantity.value = 1
     }
@@ -37,7 +40,6 @@ class ProductDetailViewModel(
     fun loadProductDetail(productId: Int) {
         viewModelScope.launch {
             val detail = productDetailRepository.loadProductDetail(productId)
-            Log.d("image", detail.toString())
             detail?.let {
                 _productDetail.value = it
                 _representImage.value = it.representImages
@@ -48,7 +50,10 @@ class ProductDetailViewModel(
 
     fun postProductCount(postRequest: PostRequest) {
         viewModelScope.launch {
-            val result = productDetailRepository.orderProduct(postRequest)
+            val errorMessage = productDetailRepository.orderProduct(postRequest)
+            errorMessage?.let {
+                _error.value = it
+            }
         }
     }
 

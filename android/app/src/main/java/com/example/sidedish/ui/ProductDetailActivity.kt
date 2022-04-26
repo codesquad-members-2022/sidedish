@@ -2,6 +2,7 @@ package com.example.sidedish.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -52,6 +53,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
         binding.btnOrder.setOnClickListener {
             viewModel.postProductCount(makePostRequest())
+        }
+
+        viewModel.error.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
 

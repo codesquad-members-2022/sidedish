@@ -2,7 +2,7 @@ package com.example.sidedish.network
 
 import com.example.sidedish.model.MenuData
 import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.PostResponse
+import com.example.sidedish.model.Error
 import com.example.sidedish.model.ProductDetail
 import retrofit2.Response
 import retrofit2.http.*
@@ -27,5 +27,5 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("orders")
-    suspend fun orderProduct(@Body postRequest: PostRequest): Response<PostResponse>
+    suspend fun orderProduct(@Body postRequest: PostRequest): Response<Error>
 }

@@ -1,7 +1,7 @@
 package com.example.sidedish.repository
 
 import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.PostResponse
+import com.example.sidedish.model.Error
 import com.example.sidedish.model.ProductDetail
 import com.example.sidedish.network.RetrofitAPI
 
@@ -12,7 +12,7 @@ class ProductDetailRemoteDataSource : ProductDetailDataSource {
         return if (response.isSuccessful) response.body() else null
     }
 
-    override suspend fun orderProduct(postRequest: PostRequest): PostResponse? {
+    override suspend fun orderProduct(postRequest: PostRequest): String? {
         return null
     }
 }

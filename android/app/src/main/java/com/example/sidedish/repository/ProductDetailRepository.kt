@@ -1,7 +1,7 @@
 package com.example.sidedish.repository
 
 import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.PostResponse
+import com.example.sidedish.model.Error
 import com.example.sidedish.model.ProductDetail
 
 class ProductDetailRepository(
@@ -13,7 +13,7 @@ class ProductDetailRepository(
         return productDetailRemoteDataSource.loadProductDetail(productId)
     }
 
-    suspend fun orderProduct(postRequest: PostRequest): PostResponse? {
+    suspend fun orderProduct(postRequest: PostRequest): String? {
         return productCountRemoteDataSource.orderProduct(postRequest)
     }
 }
