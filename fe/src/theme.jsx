@@ -76,6 +76,11 @@ const cardSize = {
   small: { width: '160px', height: '160px' },
 };
 
-const theme = { flexLayout, colors, cardSize, fontStyles };
+const modalImgSize = {
+  main: { width: '392px', height: '392px' },
+  side: { width: '72px', height: '72px' },
+};
+
+const theme = { flexLayout, colors, cardSize, fontStyles, modalImgSize };
 
 export default theme;

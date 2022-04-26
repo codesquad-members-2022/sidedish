@@ -27,7 +27,7 @@ const RecommendTab = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const { data } = await axios.get(`${SERVER_URL}special/`);
+      const { data } = await axios.get(`${SERVER_URL}events/special/`);
       if (data) {
         setDishes(data.eventDishes);
       }
