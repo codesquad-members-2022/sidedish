@@ -20,6 +20,8 @@ public class SideDish {
     private int price;
     private double accrualRate;
 
+    private int stock;
+
     private String shippingInfo;
     private int shippingFee;
     private int exemptionCondition;
