@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS 'product';
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product`
 (
     `id`               BIGINT PRIMARY KEY AUTO_INCREMENT,
