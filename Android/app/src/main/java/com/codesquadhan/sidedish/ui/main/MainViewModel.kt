@@ -1,5 +1,6 @@
 package com.codesquadhan.sidedish.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,6 +42,8 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
             menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬"))
             menuMainList.addAll(sideResponse.await())
             _menuMainListLd.value = menuMainList
+
+            Log.d("AppTest", "total data : $menuMainList")
         }
     }
 }
