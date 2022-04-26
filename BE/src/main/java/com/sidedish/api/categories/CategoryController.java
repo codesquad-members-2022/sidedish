@@ -1,6 +1,6 @@
 package com.sidedish.api.categories;
 
-import com.sidedish.api.ResultDto;
+import com.sidedish.api.common.ResultDto;
 import com.sidedish.api.categories.dto.ItemResource;
 import com.sidedish.api.categories.dto.ResponseItemDto;
 import com.sidedish.domain.CategoryType;
@@ -60,16 +60,16 @@ public class CategoryController {
 
     @GetMapping("/{type}/detail")
     public List<ResponseItemDto> getItemByDetailType(@PathVariable String type) {
-        log.info("type {}", type);
         List<Item> findItems = itemService.findItemByDetailType(type);
-        log.info("findItems {}", findItems);
-        return findItems.stream().map(ResponseItemDto::new).limit(3).collect(Collectors.toList());
+        return findItems.stream()
+                .map(ResponseItemDto::new)
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/items/{itemId}")
     public ItemResource getSingleItem(@PathVariable Long itemId) {
         Item findItem = itemService.findItemById(itemId);
-        ItemResource itemResource = new ItemResource(findItem);
-        return itemResource;
+        return new ItemResource(findItem);
     }
 }

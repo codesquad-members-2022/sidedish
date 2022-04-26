@@ -1,6 +1,6 @@
 package com.sidedish.service;
 
-import com.sidedish.api.ResultDto;
+import com.sidedish.api.common.ResultDto;
 import com.sidedish.domain.Item;
 import com.sidedish.exception.QuantityException;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class OrderService {
     public ResultDto order(Long id, int quantity) {
         Item orderItem = itemService.findItemById(id);
 
-        if(!isValidQuntity(quantity, orderItem)) {
+        if(!isValidQuantity(quantity, orderItem)) {
             throw new QuantityException();
         }
 
@@ -24,7 +24,7 @@ public class OrderService {
         return ResultDto.ok();
     }
 
-    private boolean isValidQuntity(int quantity, Item orderItem) {
+    private boolean isValidQuantity(int quantity, Item orderItem) {
         return orderItem.getQuantity() - quantity > 0;
     }
 }

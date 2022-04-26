@@ -1,6 +1,6 @@
 package com.sidedish.api.order;
 
-import com.sidedish.api.ResultDto;
+import com.sidedish.api.common.ResultDto;
 import com.sidedish.api.order.dto.OrderRequest;
 import com.sidedish.exception.QuantityException;
 import com.sidedish.service.OrderService;

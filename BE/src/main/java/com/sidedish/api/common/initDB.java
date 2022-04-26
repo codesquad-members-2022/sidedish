@@ -1,4 +1,4 @@
-package com.sidedish.api.categories;
+package com.sidedish.api.common;
 
 import com.sidedish.domain.*;
 import com.sidedish.repository.CategoryRepository;

@@ -1,4 +1,4 @@
-package com.sidedish.api;
+package com.sidedish.api.common;
 
 import lombok.Getter;
 
