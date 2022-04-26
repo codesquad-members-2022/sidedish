@@ -21,6 +21,7 @@ public class Product {
     private final String name;
     private final String description;
     private final Long price;
+    private final int stockQuantity;
     private final Long discountPrice;
     private final String discountName;
 
@@ -33,6 +34,7 @@ public class Product {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
+                product.getStockQuantity(),
                 calculateDiscountPrice(product, discount),
                 discount.getName(),
                 getRepresentImages(product.getProductImages()),
