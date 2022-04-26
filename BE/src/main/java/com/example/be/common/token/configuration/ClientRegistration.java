@@ -45,6 +45,18 @@ public class ClientRegistration {
         return redirectUrl;
     }
 
+    @Override
+    public String toString() {
+        return "ClientRegistration{" +
+                "scope='" + scope + '\'' +
+                ", tokenUrl='" + tokenUrl + '\'' +
+                ", userInfoUrl='" + userInfoUrl + '\'' +
+                ", clientId='" + clientId + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
+                ", redirectUrl='" + redirectUrl + '\'' +
+                '}';
+    }
+
     private static class Builder {
         private String scope;
         private String tokenUrl;

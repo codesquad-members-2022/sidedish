@@ -70,15 +70,4 @@ public class GithubUser {
     public String getLocation() {
         return location;
     }
-
-    @Override
-    public String toString() {
-        return "GithubUser{" +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
-                ", bio=" + bio +
-                ", location='" + location + '\'' +
-                '}';
-    }
 }

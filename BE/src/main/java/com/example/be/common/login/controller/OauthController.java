@@ -21,7 +21,6 @@ public class OauthController {
 
     @GetMapping("/login/oauth/github")
     public ResponseEntity<LoginResponse> login(@RequestParam String code, HttpServletResponse response) {
-        oauthService.login(code);
-        return new ResponseEntity<>(new LoginResponse(""), HttpStatus.OK);
+        return new ResponseEntity<>(new LoginResponse(oauthService.login(code)), HttpStatus.OK);
     }
 }
