@@ -37,6 +37,17 @@ class FoodCell: UICollectionViewCell {
     private var beforeSalePriceLabel: UILabel = {
         var label = UILabel()
         label.text = "15,800원"
+        
+        if let text = label.text {
+            let attributeString = NSMutableAttributedString(string: label.text ?? "")
+
+          attributeString.addAttribute(.strikethroughStyle,
+                                        value: NSUnderlineStyle.single.rawValue,
+                                        range: NSRange(location: 0, length: attributeString.length))
+
+            label.attributedText = attributeString
+        }
+        
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         return label
