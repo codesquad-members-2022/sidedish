@@ -4,10 +4,7 @@ import { useState } from "react";
 import { SIZES, thumbnailSize } from "../convention";
 
 const CardWrapper = styled.div`
-  ${(props) =>
-    css`
-      width: ${thumbnailSize[props.size]}px;
-    `}
+  margin-right: 24px;
 `;
 
 const ProductImage = styled.div`
@@ -60,25 +57,15 @@ const ProductPrice = styled.span`
   color: #bcbcbc;
 `;
 
-export const ProductCard = ({
-  size,
-  primary_image,
-  name,
-  description,
-  discount,
-  final_price,
-  price,
-}) => {
+export const ProductCard = ({ cardSize, primary_image, name, description, discount, final_price, price }) => {
   const [hover, setHover] = useState(false);
 
   return (
-    <CardWrapper>
-      <ProductImage size={size} src={primary_image}></ProductImage>
+    <CardWrapper size={cardSize}>
+      <ProductImage size={cardSize} src={primary_image}></ProductImage>
       <ProductInfo>
-        <ProductName size={size}>{name}</ProductName>
-        {size !== SIZES.small && (
-          <ProductDescription>{description}</ProductDescription>
-        )}
+        <ProductName size={cardSize}>{name}</ProductName>
+        {cardSize !== SIZES.small && <ProductDescription>{description}</ProductDescription>}
         <ProductPriceWrapper>
           <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
           <ProductPrice>{price + "원" || ""}</ProductPrice>

@@ -87,35 +87,27 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
-
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
-
   body {
     line-height: 1;
     position: relative;
-    width: 1440px;
-    height: 2844px;
     background: #FFFFFF;
   }
-
   ol, ul {
     list-style: none;
   }
-
   blockquote, q {
     quotes: none;
   }
-
   blockquote:before, blockquote:after,
   q:before, q:after {
     content: '';
     content: none;
   }
-
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -147,13 +139,7 @@ export const Typography = css`
   letter-spacing: -0.004em;
   color: #1b1b1b;
 `;
-const custom_font = (
-  family = "Noto Sans KR",
-  size,
-  weight,
-  height,
-  spacing
-) => css`
+const custom_font = (family = "Noto Sans KR", size, weight, height, spacing) => css`
   font-family: ${family};
   font-size: ${size}px;
   font-style: normal;
@@ -162,35 +148,20 @@ const custom_font = (
   line-height: ${height}px;
   letter-spacing: ${spacing}em;
 `;
-const custom_absolute = (
-  top = null,
-  right = null,
-  bottom = null,
-  left = null
-) => css`
+const custom_absolute = (top = null, right = null, bottom = null, left = null) => css`
   position: absolute;
   ${top ? `top:${top}px` : ""};
   ${left ? `left:${left}px` : ""};
   ${right ? `right:${right}px` : ""};
   ${bottom ? `bottom:${bottom}px` : ""};
 `;
-const custom_static = (
-  top = null,
-  right = null,
-  bottom = null,
-  left = null
-) => {
+const custom_static = (top = null, right = null, bottom = null, left = null) => {
   return css`
     ${custom_absolute(top, right, bottom, left)}
     position: static;
   `;
 };
-const custom_relative = (
-  top = null,
-  right = null,
-  bottom = null,
-  left = null
-) => css`
+const custom_relative = (top = null, right = null, bottom = null, left = null) => css`
   ${custom_absolute(top, right, bottom, left)};
   position: relative;
 `;
@@ -217,5 +188,5 @@ export {
   custom_static,
   custom_flex,
   width_height_bypx,
-  flex_none,
+  flex_none
 };
