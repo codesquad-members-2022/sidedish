@@ -22,6 +22,7 @@
 		E46620122817CD1D00C28C04 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46620112817CD1D00C28C04 /* Configuration.swift */; };
 		E46620142817D10200C28C04 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46620132817D10200C28C04 /* Observable.swift */; };
 		E46620162817D10F00C28C04 /* BanchanListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46620152817D10F00C28C04 /* BanchanListViewModel.swift */; };
+		E46620182817F25B00C28C04 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46620172817F25B00C28C04 /* UIStackView+Extension.swift */; };
 		E48748A52810FE8200959D88 /* PriceTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A42810FE8200959D88 /* PriceTag.swift */; };
 		E48748A9281101DF00959D88 /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A8281101DF00959D88 /* QuantityView.swift */; };
 		E4A5143928124C2B0056C953 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5143828124C2B0056C953 /* BadgeLabel.swift */; };
@@ -56,6 +57,7 @@
 		E46620112817CD1D00C28C04 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		E46620132817D10200C28C04 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		E46620152817D10F00C28C04 /* BanchanListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanListViewModel.swift; sourceTree = "<group>"; };
+		E46620172817F25B00C28C04 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		E469A945280D136B00C02D97 /* BanchanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanchanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E469A94A280D166700C02D97 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E48748A42810FE8200959D88 /* PriceTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTag.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				E439A35E280E9750001598D4 /* UIView+Extension.swift */,
+				E46620172817F25B00C28C04 /* UIStackView+Extension.swift */,
 				E4A5143A28124C490056C953 /* UILabel+Extension.swift */,
 				E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */,
 				E4BA18C12816578700C19349 /* UIColor+Extension.swift */,
@@ -349,6 +352,7 @@
 				E46620102817CCFC00C28C04 /* Service.swift in Sources */,
 				6FCDA43E280E954500EB8DF6 /* ProductDetailView.swift in Sources */,
 				E4D7DA0F2816AC3800C65CD9 /* ProductDetail.swift in Sources */,
+				E46620182817F25B00C28C04 /* UIStackView+Extension.swift in Sources */,
 				E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */,
 				E48748A9281101DF00959D88 /* QuantityView.swift in Sources */,
 				E46620122817CD1D00C28C04 /* Configuration.swift in Sources */,

@@ -45,4 +45,15 @@ class ProductDetailCell: UICollectionViewCell {
 		info.centerY(inView: self.contentView)
     }
 
+	func setInfoText(title: String, description: String, salePrice: String, normalPrice: String?, badges: [String]) {
+		self.info.setTitleText(title)
+		self.info.setDescriptionText(description)
+		self.info.setSalePrice(salePrice)
+
+		if let normalPrice = normalPrice {
+			self.info.setNormalPrice(normalPrice)
+		}
+
+		self.info.setBadgeList(badges)
+	}
 }

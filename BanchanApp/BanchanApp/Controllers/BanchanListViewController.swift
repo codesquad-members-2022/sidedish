@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toaster
 
 class BanchanListViewController: UICollectionViewController {
 
@@ -17,12 +18,15 @@ class BanchanListViewController: UICollectionViewController {
         super.viewDidLoad()
 		self.configureUI()
 		self.bind()
+		self.viewModel?.fetchProducts()
     }
 
 	private func bind() {
-		self.viewModel?.banchans.bind { banchans in
-			
-		}
+		self.viewModel?.banchans.bind(listener: { _ in
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
+			}
+		})
 	}
 
 	private func configureUI() {
@@ -58,32 +62,50 @@ class BanchanListViewController: UICollectionViewController {
 		collectionView.register(ProductSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier)
 	}
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
+}
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return headerItem.count
-    }
+extension BanchanListViewController {
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCell.identifier, for: indexPath)
-        return cell
-    }
+	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return self.viewModel?.getNumberOfItems(inSection: section) ?? 0
+	}
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = BanchanDetailViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
+	override func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return self.viewModel?.sectionCount ?? 0
+	}
 
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCell.identifier, for: indexPath) as? ProductDetailCell else {
+			return UICollectionViewCell()
+		}
+
+		guard let (title, description, salePrice, normalPrice, badges) = self.viewModel?.getBanchanInfo(withIndexPath: indexPath) else {
+			return cell
+		}
+
+		cell.setInfoText(
+			title: title,
+			description: description,
+			salePrice: salePrice,
+			normalPrice: normalPrice,
+			badges: badges
+		)
+
+		return cell
+	}
+
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let viewController = BanchanDetailViewController()
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+
+	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier, for: indexPath) as? ProductSectionHeader else {
 			return UICollectionReusableView()
 		}
 
-		headerView.title.text = headerItem[indexPath.section]
+		headerView.setTitleText(headerItem[indexPath.section])
 
-        return headerView
-    }
-
+		return headerView
+	}
 }

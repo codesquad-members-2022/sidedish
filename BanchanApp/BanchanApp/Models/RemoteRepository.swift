@@ -35,7 +35,7 @@ class RemoteRepository: RepositoryProtocol {
 				let result = try jsonDecoder.decode(ProductResponse.self, from: data)
 				completion(result.body)
 			} catch {
-				print(error)
+				completion([])
 			}
 		}.resume()
 	}

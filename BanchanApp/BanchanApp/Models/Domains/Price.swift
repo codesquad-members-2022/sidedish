@@ -12,7 +12,7 @@ class Price {
 	private var value: Int
 
 	init(_ value: String) {
-		let numberString = value.components(separatedBy: .decimalDigits).joined()
+		let numberString = value.components(separatedBy: .decimalDigits.inverted).joined()
 		self.value = Int(numberString) ?? 0
 	}
 

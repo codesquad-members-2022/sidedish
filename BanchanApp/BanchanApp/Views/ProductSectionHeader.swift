@@ -7,11 +7,25 @@
 
 import UIKit
 
+protocol ProductSectionHeaderDelegate: AnyObject {
+	func didTapTitle()
+}
+
 class ProductSectionHeader: UICollectionReusableView {
 
 	static let identifier = "ProductSectionHeader"
 
-    let title: UILabel = UILabel()
+	weak var delegate: ProductSectionHeaderDelegate?
+
+	private lazy var titleButton: UIButton = {
+		let button = UIButton(type: .system)
+
+		button.titleLabel?.numberOfLines = 0
+		button.titleLabel?.font = .textLargeBold
+		button.setTitleColor(.gray1, for: .normal)
+
+		return button
+	}()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,14 +38,19 @@ class ProductSectionHeader: UICollectionReusableView {
     }
 
     private func setup() {
-        self.addSubview(title)
-        title.numberOfLines = 0
-		title.font = .textLargeRegular
-		title.textColor = .gray1
-        title.translatesAutoresizingMaskIntoConstraints = false
-		title.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-		title.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-		title.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        self.addSubview(titleButton)
+		titleButton.translatesAutoresizingMaskIntoConstraints = false
+		titleButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+		titleButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		titleButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
     }
+
+	private func handleTitleTapped(_ action: UIAction) {
+		self.delegate?.didTapTitle()
+	}
+
+	func setTitleText(_ text: String) {
+		self.titleButton.setTitle(text, for: .normal)
+	}
 
 }

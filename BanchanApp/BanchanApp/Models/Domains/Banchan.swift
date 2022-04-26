@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BanchanType {
+enum BanchanType: CaseIterable {
 	case main
 	case soup
 	case side

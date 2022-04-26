@@ -14,7 +14,11 @@ class ProductDetailView: UIView {
     private let normalPrice: UILabel? = UILabel()
     private let salePrice: UILabel = UILabel()
     private let badges: UIStackView = UIStackView()
-    private let badgeList: [String] = ["런칭특가", "이벤트 특가", "프로모션"]
+	private var badgeList: [String] = [] {
+		didSet {
+			self.configureBadges()
+		}
+	}
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,23 +30,21 @@ class ProductDetailView: UIView {
         setup()
     }
 
-    private func setup() {
-        title.applySemiBold()
-        menuDescription.applyColorGray()
-        salePrice.applySemiBold()
-        normalPrice?.applyColorGray()
-        normalPrice?.applyStrikethoroughStyle()
+	private func configureBadges() {
+		if badges.subviews.count != .zero {
+			badges.clearSubviews()
+		}
 
-        title.text = "오리 주물럭_반조리"
-        menuDescription.text = "감칠맛 나는 매콤한 양념"
-        salePrice.text = "12,640원"
-		normalPrice?.text = "15,800원"
-
-        badgeList.forEach {
+		badgeList.forEach {
 			let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
-            badge.text = $0
-            badges.addArrangedSubview(badge)
-        }
+			badge.text = $0
+			badges.addArrangedSubview(badge)
+		}
+	}
+
+    private func setup() {
+		menuDescription.textColor = .gray2
+		normalPrice?.textColor = .gray2
 
         badges.axis = .horizontal
         badges.spacing = 5
@@ -51,7 +53,6 @@ class ProductDetailView: UIView {
 
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
         if let normalPrice = normalPrice {
-			normalPrice.applyStrikethoroughStyle()
             priceStackView.addArrangedSubview(normalPrice)
         }
 
@@ -77,23 +78,28 @@ class ProductDetailView: UIView {
         ])
     }
 
-	func setTitleText(_ text: String, font: UIFont) {
+	func setTitleText(_ text: String, font: UIFont = .textSmallBold) {
 		self.title.text = text
 		self.title.font = font
 	}
 
-	func setDescriptionText(_ text: String, font: UIFont) {
+	func setDescriptionText(_ text: String, font: UIFont = .textSmallRegular) {
 		self.menuDescription.text = text
 		self.menuDescription.font = font
 	}
 
-	func setSalePrice(_ text: String, font: UIFont) {
+	func setSalePrice(_ text: String, font: UIFont = .textSmallBold) {
 		self.salePrice.text = text
 		self.salePrice.font = font
 	}
 
-	func setNormalPrice(_ text: String, font: UIFont) {
+	func setNormalPrice(_ text: String, font: UIFont = .textSmallRegular) {
 		self.normalPrice?.text = text
 		self.normalPrice?.font = font
+		self.normalPrice?.applyStrikethoroughStyle()
+	}
+
+	func setBadgeList(_ list: [String]) {
+		self.badgeList = list
 	}
 }
