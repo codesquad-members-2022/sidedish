@@ -1,8 +1,11 @@
 package com.codesquad.sidedish.dish;
 
 import com.codesquad.sidedish.dish.domain.Dish;
-import com.codesquad.sidedish.dish.dto.DishResponse;
-import com.codesquad.sidedish.dish.dto.Slice;
+import com.codesquad.sidedish.dish.domain.RecommendRef;
+import com.codesquad.sidedish.dish.dto.DishListResponse;
+import com.codesquad.sidedish.dish.dto.DishUnitResponse;
+import com.codesquad.sidedish.other.page.Criteria;
+import com.codesquad.sidedish.other.page.Slice;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -14,22 +17,47 @@ public class DishService {
 
     private final DishRepository dishRepository;
 
-    public Slice<DishResponse> findDishBySection(String sectionName) {
-        List<Dish> dishes = dishRepository.findBySectionName(sectionName);
+    public Slice<DishListResponse> findDishesBySection(String sectionName, Criteria criteria) {
+        List<Dish> dishes = dishRepository.findBySectionName(
+            sectionName, criteria.getLimit(), criteria.getOffset());
 
-        List<DishResponse> responses = dishes.stream()
-            .map(DishResponse::from)
+        List<DishListResponse> responses = dishes.stream()
+            .map(DishListResponse::from)
             .collect(Collectors.toList());
-        return new Slice<>(responses);
+        return new Slice<>(responses, criteria);
     }
 
-    public Slice<DishResponse> findDishByCategory(String categoryName) {
-        List<Dish> dishes = dishRepository.findByCategoryName(categoryName);
+    public Slice<DishListResponse> findDishesByCategory(String categoryName, Criteria criteria) {
+        List<Dish> dishes = dishRepository.findByCategoryName(
+            categoryName, criteria.getLimit(), criteria.getOffset());
 
-        List<DishResponse> responses = dishes.stream()
-            .map(DishResponse::from)
+        List<DishListResponse> responses = dishes.stream()
+            .map(DishListResponse::from)
             .collect(Collectors.toList());
-        return new Slice<>(responses);
+        return new Slice<>(responses, criteria);
+    }
+
+    public DishUnitResponse findDish(Integer dishId) {
+        Dish dish = dishRepository.findById(dishId)
+            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+
+        return DishUnitResponse.from(dish);
+    }
+
+    public Slice<DishListResponse> findRecommendDishes(Integer dishId, Criteria criteria) {
+        Dish dish = dishRepository.findById(dishId)
+            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+
+        List<Integer> dishIds = dish.getRecommends().stream()
+            .map(RecommendRef::getRecommendeeId)
+            .collect(Collectors.toList());
+        List<Dish> dishes = dishRepository.findByIdIn(
+            dishIds, criteria.getLimit(), criteria.getOffset());
+
+        List<DishListResponse> dishResponses = dishes.stream()
+            .map(DishListResponse::from)
+            .collect(Collectors.toList());
+        return new Slice<>(dishResponses, criteria);
     }
 
 }
