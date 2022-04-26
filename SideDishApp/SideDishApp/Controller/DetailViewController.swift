@@ -50,6 +50,7 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     private func layoutDetailScrollView() {
         detailScrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         detailScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         detailScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         detailScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

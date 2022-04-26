@@ -168,7 +168,7 @@ final class DetailScrollView: UIScrollView {
         amountContainerStackView.addArrangedSubview(amountTitleLabel)
         amountContainerStackView.addArrangedSubview(amountLabel)
         orderContainerStackView.addArrangedSubview(orderButton)
-        
+
         layoutContentView()
         layoutImagePageControl()
         layoutDetailContainerStackView()
@@ -214,7 +214,7 @@ extension DetailScrollView {
         contentView.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor).isActive = true
         
         contentView.widthAnchor.constraint(equalTo: frameLayoutGuide.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalTo: frameLayoutGuide.heightAnchor).isActive = true
+        contentLayoutGuide.bottomAnchor.constraint(equalTo: detailContainerStackView.bottomAnchor).isActive = true
     }
     
     private func layoutOverViewImageScrollView() {
