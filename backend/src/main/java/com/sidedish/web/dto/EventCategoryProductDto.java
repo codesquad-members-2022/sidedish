@@ -1,22 +1,24 @@
 package com.sidedish.web.dto;
 
 import com.sidedish.domain.product.EventBadge;
-import com.sidedish.domain.product.MainCategory;
+import com.sidedish.domain.product.EventCategory;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class MainCategoryProductDto extends CategoryProductDto{
+public class EventCategoryProductDto extends CategoryProductDto{
     private String productName;
     private String description;
     private int price;
     private EventBadge eventBadge;
-    private MainCategory mainCategory;
+    private EventCategory eventCategory;
 
-    public MainCategoryProductDto(String productName, String description, int price, EventBadge eventBadge, MainCategory mainCategory) {
+    @Builder
+    public EventCategoryProductDto(String productName, String description, int price, EventBadge eventBadge, EventCategory eventCategory) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.eventBadge = eventBadge;
-        this.mainCategory = mainCategory;
+        this.eventCategory = eventCategory;
     }
 }
