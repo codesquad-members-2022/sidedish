@@ -7,6 +7,6 @@ public class CategoryDish {
     @Id
     private Long id;
 
-    private Category category;
-    private Dish dish;
+    private Long categoryId;
+    private Long dishId;
 }

@@ -17,10 +17,10 @@ public class Dish {
     private double mileageRate;
     private boolean earlyDeliverable;
 
-    @MappedCollection(idColumn = "id", keyColumn = "id")
-    private List<Category> categories;
+    @MappedCollection(idColumn = "dish_id", keyColumn = "id")
+    private List<CategoryDish> categories;
 
-    @MappedCollection(idColumn = "id", keyColumn = "id")
+    @MappedCollection(idColumn = "dish_id", keyColumn = "id")
     private List<DishImage> images;
 
     @Override
