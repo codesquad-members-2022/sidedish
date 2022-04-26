@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol CurrencyFormatable {
+protocol CurrencyFormattable {
     static var symbol: String {get}
     static var numberFormat: NumberFormatter {get}
 }
 
-enum KRW: CurrencyFormatable {
+enum KRW: CurrencyFormattable {
 
     static var symbol: String {
         return "원"

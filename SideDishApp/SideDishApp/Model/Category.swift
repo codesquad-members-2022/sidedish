@@ -8,6 +8,36 @@
 import Foundation
 
 struct Category {
-    let product: [Product]
-    let type: ProductType
+    let product: [ProductSummary]
+    let type: CategoryType
+}
+
+enum CategoryType: String, CaseIterable {
+    case main
+    case soup
+    case side
+}
+
+extension CategoryType {
+    var index: Int {
+        switch self {
+        case .main:
+            return 0
+        case .soup:
+            return 1
+        case .side:
+            return 2
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .main:
+            return "모두가 좋아하는\n든든한 메인 요리"
+        case .soup:
+            return "정성이 담긴\n뜨끈뜨끈 국물 요리"
+        case .side:
+            return "식탁을 풍성하게 하는\n정갈한 밑반찬"
+        }
+    }
 }
