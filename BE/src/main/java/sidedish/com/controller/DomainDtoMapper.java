@@ -8,16 +8,16 @@ import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.domain.Product;
 
 @Component
-public class ProductsDtoMapper {
+public class DomainDtoMapper {
 
-	public List<ProductBasicTypeResponse> toProductsBasicTypeResponseFromDomain(
+	public List<ProductBasicTypeResponse> toProductsBasicTypeResponseFromProducts(
 		List<Product> products) {
 		return products.stream()
-			.map(this::toProductMealTypeResponseFromDomain)
+			.map(this::toProductMealTypeResponseFromProduct)
 			.collect(Collectors.toList());
 	}
 
-	private ProductBasicTypeResponse toProductMealTypeResponseFromDomain(
+	private ProductBasicTypeResponse toProductMealTypeResponseFromProduct(
 		Product product) {
 		return new ProductBasicTypeResponse(
 			product.getId(),
@@ -29,7 +29,7 @@ public class ProductsDtoMapper {
 			product.getDiscountPolicy().getPolicyName());
 	}
 
-	public ProductDetailTypeResponse toProductDetailTypeFromDomain(
+	public ProductDetailTypeResponse toProductDetailTypeFromProduct(
 		Product product) {
 		return new ProductDetailTypeResponse(
 			product.getId(),
