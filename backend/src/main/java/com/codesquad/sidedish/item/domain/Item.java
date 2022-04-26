@@ -3,6 +3,7 @@ package com.codesquad.sidedish.item.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.codesquad.sidedish.item.exception.OutOfStockException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
@@ -81,5 +82,12 @@ public class Item {
                 ", discountRate=" + discountRate +
                 ", itemImages=" + itemImages +
                 '}';
+    }
+
+    public void removeStock(Integer amount) {
+        if (stock < amount) {
+            throw new OutOfStockException("재고가 부족합니다.");
+        }
+        stock -= amount;
     }
 }
