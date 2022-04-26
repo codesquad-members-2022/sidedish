@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class HTTPManager {
     enum HttpMethod: String {
@@ -35,5 +36,29 @@ final class HTTPManager {
 
             complete(data)
         }.resume()
+    }
+    
+    static func requestGetImageData(url: String) -> Data? {
+        var result = Data()
+        
+        guard let validURL = URL(string: url) else { return nil }
+       
+        var urlRequest = URLRequest(url: validURL)
+        urlRequest.httpMethod = HttpMethod.get.getRawValue()
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let httpURLResponse = response as? HTTPURLResponse, (200..<300) ~= httpURLResponse.statusCode,
+                  let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                  let data = data, error == nil else {
+                print("image download fail : \(url)")
+                return
+            }
+            
+            print(httpURLResponse)
+            print(mimeType)
+            print(data)
+            result = data
+        }.resume()
+        return result
     }
 }

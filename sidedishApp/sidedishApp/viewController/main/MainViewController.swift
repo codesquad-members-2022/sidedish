@@ -72,7 +72,11 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         }
         
-        cell.setPropertiesValue(dish: dish)
+        guard let imageDataList = sideDishManager.getDetailDishThumbImages(hash: dish.detailHash) else {
+            return cell
+        }
+        
+        cell.setPropertiesValue(imageData: imageDataList[0], dish: dish)
         return cell
     }
     
