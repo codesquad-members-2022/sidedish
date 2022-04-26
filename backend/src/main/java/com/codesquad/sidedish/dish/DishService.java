@@ -1,6 +1,7 @@
 package com.codesquad.sidedish.dish;
 
 import com.codesquad.sidedish.dish.domain.Dish;
+import com.codesquad.sidedish.dish.domain.RecommendRef;
 import com.codesquad.sidedish.dish.dto.DishListResponse;
 import com.codesquad.sidedish.dish.dto.DishUnitResponse;
 import com.codesquad.sidedish.dish.dto.Slice;
@@ -38,6 +39,20 @@ public class DishService {
             .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
 
         return DishUnitResponse.from(dish);
+    }
+
+    public List<DishListResponse> findRecommendDishes(Integer dishId) {
+        Dish dish = dishRepository.findById(dishId)
+            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+
+        List<Integer> dishIds = dish.getRecommends().stream()
+            .map(RecommendRef::getRecommendeeId)
+            .collect(Collectors.toList());
+        List<Dish> dishes = dishRepository.findByIdIn(dishIds);
+
+        return dishes.stream()
+            .map(DishListResponse::from)
+            .collect(Collectors.toList());
     }
 
 }

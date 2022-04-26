@@ -20,4 +20,6 @@ public interface DishRepository extends CrudRepository<Dish, Integer> {
         + " join category sub on dc.category_id = sub.category_id and sub.category_name = :category_name"
         + " order by d.dish_id")
     List<Dish> findByCategoryName(@Param("category_name") String categoryName);
+
+    List<Dish> findByIdIn(List<Integer> dishIds);
 }

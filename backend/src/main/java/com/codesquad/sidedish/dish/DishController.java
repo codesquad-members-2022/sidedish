@@ -3,6 +3,7 @@ package com.codesquad.sidedish.dish;
 import com.codesquad.sidedish.dish.dto.DishListResponse;
 import com.codesquad.sidedish.dish.dto.DishUnitResponse;
 import com.codesquad.sidedish.dish.dto.Slice;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,5 +35,10 @@ public class DishController {
     @GetMapping("/{id}")
     public DishUnitResponse findDish(@PathVariable("id") Integer dishId) {
         return dishService.findDish(dishId);
+    }
+
+    @GetMapping("/{id}/recommend")
+    public List<DishListResponse> findRecommendDishes(@PathVariable("id") Integer dishId) {
+        return dishService.findRecommendDishes(dishId);
     }
 }
