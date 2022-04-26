@@ -9,20 +9,20 @@ public class Order {
     @Id
     private Long orderId;
     private Long itemId;
-    private String email;
+    private Long userId;
     private Integer quantity;
     private Long totalPrice;
 
-    public Order(Long orderId, Long itemId, String email, Integer quantity, Long totalPrice) {
+    public Order(Long orderId, Long itemId, Long userId, Integer quantity, Long totalPrice) {
         this.orderId = orderId;
         this.itemId = itemId;
-        this.email = email;
+        this.userId = userId;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
 
-    public static Order newOrder(Long itemId, String email, Integer quantity, Long totalPrice) {
-        return new Order(null, itemId, email, quantity, totalPrice);
+    public static Order newOrder(Long itemId, Long userId, Integer quantity, Long totalPrice) {
+        return new Order(null, itemId, userId, quantity, totalPrice);
     }
 
     public Long getOrderId() {
@@ -33,8 +33,8 @@ public class Order {
         return itemId;
     }
 
-    public String getEmail() {
-        return email;
+    public Long getUserId() {
+        return userId;
     }
 
     public Integer getQuantity() {
