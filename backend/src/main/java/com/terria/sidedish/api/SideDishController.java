@@ -1,5 +1,6 @@
 package com.terria.sidedish.api;
 
+import com.terria.sidedish.dto.response.SideDishCardResponse;
 import com.terria.sidedish.dto.response.SideDishDetailResponse;
 import com.terria.sidedish.service.SideDishService;
 import io.swagger.annotations.Api;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @Api(tags = "SideDishController")
 @Validated
@@ -23,6 +25,29 @@ import javax.validation.constraints.Positive;
 public class SideDishController {
 
     private final SideDishService sideDishService;
+
+    @ApiOperation(
+            value = "특정 카테고리에 속한 반찬 목록 조회",
+            notes = "특정 카테고리에 속한 반찬 목록 조회한다.",
+            produces = "application/json",
+            response = SideDishCardResponse.class
+    )
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "categoryId",
+                    value = "카테고리 아이디",
+                    paramType = "path",
+                    dataType = "long"
+            )
+    })
+    @GetMapping("/category/{categoryId}")
+    public List<SideDishCardResponse> getAllByCategoryId(
+            @PathVariable
+            @Positive(message = "카테고리 아이디 입력값이 부적절합니다.") long categoryId) {
+
+        // TODO
+        return null;
+    }
 
     @ApiOperation(
             value = "반찬 상세 정보 조회",
