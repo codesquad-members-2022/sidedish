@@ -17,13 +17,11 @@ class MainViewHeader: UICollectionReusableView {
         label.font = .systemFont(ofSize: 40)
         label.numberOfLines = 0
         label.lineBreakStrategy = .hangulWordPriority
-        label.text = "모두가 좋아하는 든든한 메인 요리"
         return label
     }()
     
     private let captionLabel: UILabel = {
         var label = UILabel()
-        label.text = "n개의 상품이 등록되어 있습니다."
         label.font = .systemFont(ofSize: 15)
         label.textColor =  .systemGray2
         return label
@@ -37,6 +35,20 @@ class MainViewHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUI()
+    }
+    
+    func setUIValue(indexPath: IndexPath, dishCount: Int) {
+        switch indexPath.section {
+        case 0:
+            titleLabel.text = "모두가 좋아하는 든든한 메인 요리"
+        case 1:
+            titleLabel.text = "정성이 담긴 뜨끈뜨끈 국물 요리"
+        case 2:
+            titleLabel.text = "식탁을 풍성하게 하는 정갈한 밑반찬"
+        default:
+            return
+        }
+        captionLabel.text = "\(dishCount)개의 상품이 등록되어 있습니다."
     }
     
     private func setUI() {
