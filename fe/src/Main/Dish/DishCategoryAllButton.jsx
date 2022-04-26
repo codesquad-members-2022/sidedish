@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import DishContainer from 'Main/Dish/DishContainer';
+import axios from 'axios';
+import { SERVER_URL } from 'constant.js';
 
 const CategoryButtonWrapper = styled.article`
   text-align: center;
@@ -20,7 +22,26 @@ const DishCategoryAllButton = () => {
 
   const onClick = () => {
     setAllCategoryOpen(false);
+    fetchData();
   };
+
+  const [firstCategory, setFirstCategory] = useState({});
+  const [secondCategory, setSecondCategory] = useState({});
+
+  const fetchData = useCallback(async () => {
+    try {
+      const [firstData, secondData] = await axios.all([
+        axios.get(`${SERVER_URL}categories/2/`),
+        axios.get(`${SERVER_URL}categories/3/`),
+      ]);
+      if (firstData && secondData) {
+        setFirstCategory(firstData.data);
+        setSecondCategory(secondData.data);
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }, []);
 
   return (
     <>
@@ -30,8 +51,12 @@ const DishCategoryAllButton = () => {
         </CategoryButtonWrapper>
       ) : (
         <>
-          <DishContainer />
-          <DishContainer />
+          {Object.keys(firstCategory).length !== 0 && (
+            <DishContainer items={firstCategory}></DishContainer>
+          )}
+          {Object.keys(secondCategory).length !== 0 && (
+            <DishContainer items={secondCategory}></DishContainer>
+          )}
         </>
       )}
     </>

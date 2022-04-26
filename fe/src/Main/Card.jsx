@@ -90,6 +90,10 @@ const CardItemTag = styled.p`
         return css`
           ${({ theme }) => theme.colors.green}
         `;
+      case '정가':
+        return css`
+          ${({ theme }) => theme.colors.black}
+        `;
       default:
         return;
     }
@@ -134,7 +138,7 @@ const Card = ({ item, imageSize }) => {
     } catch (error) {
       throw new Error(error);
     }
-  }, []);
+  }, [item.id]);
 
   return (
     item && (
@@ -166,7 +170,7 @@ const Card = ({ item, imageSize }) => {
         <CardItemInfo>
           <p className="item__title">{item.name}</p>
           <p className="item__desc">{item.description}</p>
-          {item.discountPrice ? (
+          {item.discountPrice !== item.normalPrice ? (
             <>
               <span className="item__default-price">{setPrice(item.discountPrice)}원</span>
               <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
