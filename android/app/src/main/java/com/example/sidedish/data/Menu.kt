@@ -1,5 +1,7 @@
 package com.example.sidedish.data
 
+import com.example.sidedish.data.dto.DetailImageLinkDTO
+
 data class Menu(
     val description: String?,
     val discountPolicy: String?,

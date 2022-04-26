@@ -14,6 +14,7 @@ import com.example.sidedish.data.FoodImage
 import com.example.sidedish.data.Menu
 import com.example.sidedish.databinding.FragmentDetailBinding
 import com.example.sidedish.ui.adapter.ImageViewPagerAdapter
+import com.example.sidedish.ui.animation.ZoomOutPageTransformer
 import com.example.sidedish.ui.viewmodel.MenuListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,16 +48,13 @@ class MenuDetailFragment : Fragment() {
             val imageList = mutableListOf<FoodImage>()
             with(binding) {
                 foodDetail = detail
-                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(0)?.imageLink).into(ivDetail1)
-                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(1)?.imageLink).into(ivDetail2)
-                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(2)?.imageLink).into(ivDetail3)
-
                 imageList.add(FoodImage(detail.mainImageLink!!))
                 imageList.add(FoodImage(detail.mainImageLink!!))
                 val adapter = ImageViewPagerAdapter().apply {
                     submitList(imageList)
                 }
                 pagerDetailImage.adapter = adapter
+                pagerDetailImage.setPageTransformer(ZoomOutPageTransformer())
             }
         }
 
@@ -65,7 +63,5 @@ class MenuDetailFragment : Fragment() {
             menuViewModel = viewModel
         }
     }
-
-
 
 }

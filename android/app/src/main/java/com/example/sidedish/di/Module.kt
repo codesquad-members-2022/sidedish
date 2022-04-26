@@ -1,7 +1,7 @@
 package com.example.sidedish.di
 
-import com.example.sidedish.data.MenuListDataSource
-import com.example.sidedish.data.MenuListRepository
+import com.example.sidedish.data.datasource.MenuListDataSource
+import com.example.sidedish.data.repository.MenuListRepository
 import com.example.sidedish.network.ApiClient
 import dagger.Module
 import dagger.Provides
@@ -11,7 +11,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module

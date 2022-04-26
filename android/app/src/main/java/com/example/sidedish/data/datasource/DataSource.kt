@@ -1,5 +1,7 @@
-package com.example.sidedish.data
+package com.example.sidedish.data.datasource
 
+import com.example.sidedish.data.dto.Item
+import com.example.sidedish.data.dto.MenuDetailDTO
 import retrofit2.Response
 
 

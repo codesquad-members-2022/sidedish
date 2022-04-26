@@ -1,14 +1,12 @@
 package com.example.sidedish.ui.viewmodel
 
 import android.accounts.NetworkErrorException
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sidedish.data.Category
 import com.example.sidedish.data.Menu
-import com.example.sidedish.data.MenuListRepository
+import com.example.sidedish.data.repository.MenuListRepository
 import com.example.sidedish.data.MenuModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -48,6 +46,8 @@ class MenuListViewModel @Inject constructor(
     val price: LiveData<Int> get() = _price
 
     private val _detailPrice = MutableLiveData<Int>()
+
+    private val _discountRate = MutableLiveData<Int>()
 
     init {
         load()
@@ -96,6 +96,7 @@ class MenuListViewModel @Inject constructor(
                 }
             }.onSuccess {
                 _selectedFoodDetail.value = it
+                _detailPrice.value = it.let { it?.price!!.times((100 - it.discountRate!!)).div(100)}
             }.onFailure {
                 throw NetworkErrorException("network error")
             }

@@ -1,5 +1,9 @@
-package com.example.sidedish.data
+package com.example.sidedish.data.repository
 
+import com.example.sidedish.data.*
+import com.example.sidedish.data.dto.changeData
+import com.example.sidedish.data.dto.inputDTOToMenu
+import com.example.sidedish.data.datasource.DataSource
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton

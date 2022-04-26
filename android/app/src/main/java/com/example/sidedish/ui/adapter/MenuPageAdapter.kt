@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sidedish.R
 import com.example.sidedish.data.Category
-import com.example.sidedish.data.Header
 import com.example.sidedish.data.Menu
 import com.example.sidedish.data.MenuModel
 import com.example.sidedish.databinding.ItemHeaderBinding
