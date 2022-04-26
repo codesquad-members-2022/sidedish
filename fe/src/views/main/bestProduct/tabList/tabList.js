@@ -1,5 +1,5 @@
-import { StyledDiv } from './BestProduct.styled';
-import { ProductCard } from '../../components/ProductCard';
+import { StyledDiv } from './tabList.styled';
+import { ProductCard } from '../../../../components/productCard/ProductCard';
 
 export function TabList({ tabList }) {
   if (!tabList) {

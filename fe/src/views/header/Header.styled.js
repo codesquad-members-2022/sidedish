@@ -1,29 +1,6 @@
 import styled from 'styled-components';
 import { applyFlex } from '../../helper/utils';
 
-export const StyledSvgWrapper = styled.div`
-  margin-left: 24px;
-  width: 24px;
-  cursor: pointer;
-`;
-
-export const GnbMenu = styled.li`
-  margin-right: 24px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  cursor: pointer;
-`;
-
-export const GnbSubMenuWrapper = styled.ul`
-  margin-top: 4px;
-`;
-
-export const GnbSubMenu = styled.li`
-  font-size: 14px;
-  line-height: 24px;
-`;
-
 export const StyledH1 = styled.h1`
   font-family: 'Outfit', serif;
   font-style: normal;
