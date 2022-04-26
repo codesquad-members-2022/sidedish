@@ -88,4 +88,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             assert(false, "Invalid element type")
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let detailViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: DetailViewController.self)) as? DetailViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
