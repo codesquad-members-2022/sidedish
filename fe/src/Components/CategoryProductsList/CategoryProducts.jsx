@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
+import { useFetch } from '@/Hooks';
+
 import { RetryButton } from '@/Components/Button';
 import { LoadingSpinner } from '@/Components/LoadingSpinner';
 import { ProductCard } from '@/Components/ProductCard';
-import { useFetch } from '@/Hooks/useFetch';
 
 const CategoryProductsWrapper = styled.li`
   width: 1280px;
