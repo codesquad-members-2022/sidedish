@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @ApiModel
 @Getter
 @Setter
@@ -21,10 +19,7 @@ public class ExhibitionResponse {
     @ApiModelProperty(required = true, value = "기획전 타이틀")
     private String exhibitionTitle;
 
-    @ApiModelProperty("카테고리 목록")
-    private List<CategoryResponse> categoryResponses;
-
-    public static ExhibitionResponse from(Exhibition exhibition, List<CategoryResponse> categoryResponses) {
-        return new ExhibitionResponse(exhibition.getId(), exhibition.getTitle(), categoryResponses);
+    public static ExhibitionResponse from(Exhibition exhibition) {
+        return new ExhibitionResponse(exhibition.getId(), exhibition.getTitle());
     }
 }
