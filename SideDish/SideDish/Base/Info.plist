@@ -4,9 +4,17 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>public.codesquad.co.kr</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
+	<key>CFBundleIdentifier</key>
+	<string>Damagucci.SideDish</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-Semibold.otf</string>
