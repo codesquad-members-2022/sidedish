@@ -142,4 +142,8 @@ final class DishCollectionViewCell: UICollectionViewCell{
         }
         isContainEvent ? setNonEventUIConstraint() : setEventUIConstraint()
     }
+    
+    func updateImage(data: Data){
+        dishImageView.image = UIImage(data: data)
+    }
 }

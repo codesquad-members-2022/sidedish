@@ -29,7 +29,9 @@ final class HomeUsecase{
             guard let self = self else { return }
             switch result{
             case .success(let products):
-                self.makeAllDishes(products: products)
+                self.delegate?.updateDishComment(comments: [DishCategory.main.comment, DishCategory.soup.comment, DishCategory.side.comment])
+                self.delegate?.updateAllDishes(dishes: products)
+                self.updateImageData()
             case .failure(let error):
                 self.delegate?.updateFail(error: error)
             }
@@ -40,8 +42,19 @@ final class HomeUsecase{
         dishes[.main] = products.filter{$0.category == .main}
         dishes[.soup] = products.filter{$0.category == .soup}
         dishes[.side] = products.filter{$0.category == .side}
-        delegate?.updateAllDishes(dishes: dishes)
-        delegate?.updateDishComment(comments: [DishCategory.main.comment, DishCategory.soup.comment, DishCategory.side.comment])
+        
+        
+    }
+    
+    private func updateImageData(){
+        repository.fetchImage { result in
+            switch result{
+            case .success(let data):
+                self.delegate?.updateImageData(imageData: data)
+            case .failure(let error):
+                self.delegate?.updateFail(error: error)
+            }
+        }
     }
 }
 
@@ -49,5 +62,6 @@ protocol ProductModelDelegate: AnyObject{
     func updateDishComment(comments: [String])
     func updateAllDishes(dishes: [DishCategory : [Product]])
     func updateFail(error: Error)
+    func updateImageData(imageData: [DishCategory : [Data]])
     func selected(id: UniqueID)
 }

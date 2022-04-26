@@ -16,20 +16,18 @@ struct Product{
     let description: String
     let stock: Int
     let category: DishCategory
+    let imageUrl: String
     let event: [ProductEvent]
     
-    init(name: String, price: Int, description: String, stock: Int, category: DishCategory, event: [ProductEvent]) {
+    init(name: String, price: Int, description: String, stock: Int, category: DishCategory, imageUrl: String, event: [ProductEvent]) {
         self.id = UUID()
         self.name = name
         self.price = price
         self.description = description
         self.stock = stock
         self.category = category
+        self.imageUrl = imageUrl
         self.event = event
-    }
-    
-    func getTitle() -> String{
-        return name
     }
 }
 

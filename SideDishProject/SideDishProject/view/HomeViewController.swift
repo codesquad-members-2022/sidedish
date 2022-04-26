@@ -38,6 +38,11 @@ final class HomeViewController: UIViewController {
     
 }
 extension HomeViewController: ProductModelDelegate{
+    func updateImageData(imageData: [DishCategory : [Data]] ) {
+        dishCollectionDataSource.setDishImages(images: imageData)
+        homeView.collectionViewReloadData()
+    }
+    
     func selected(id: UniqueID) {
         presentDetailViewController(uniqueId: id)
     }
