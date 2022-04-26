@@ -16,7 +16,7 @@ final class ProductSceneContainer {
             let viewController = HomeViewController.create(with: model)
             return UINavigationController(rootViewController: viewController)
         case .detail(let uniqueId):
-            let model = DetailModel(repository: MockDetailRepository(), uniqueId: uniqueId)
+            let model = DetailProductModel(repository: MockDetailRepository(), uniqueId: uniqueId)
             return DetailViewController.create(with: model)
         }
     }

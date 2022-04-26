@@ -214,8 +214,8 @@
 				729E8856280D8F700042ECC9 /* Sources */,
 				729E8857280D8F700042ECC9 /* Frameworks */,
 				729E8858280D8F700042ECC9 /* Resources */,
-				5B4F49A094784314C432FF44 /* [CP] Embed Pods Frameworks */,
 				72B48E92280D9272008628BF /* ShellScript */,
+				2EEE4219EADBD4EDC1B70A99 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,7 +253,7 @@
 				729E8876280D8F720042ECC9 /* Sources */,
 				729E8877280D8F720042ECC9 /* Frameworks */,
 				729E8878280D8F720042ECC9 /* Resources */,
-				BFAA5EBCCD09D66CB7C92100 /* [CP] Embed Pods Frameworks */,
+				1E499AC0DE9DC38BD6ED49BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,7 +358,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B4F49A094784314C432FF44 /* [CP] Embed Pods Frameworks */ = {
+		1E499AC0DE9DC38BD6ED49BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2EEE4219EADBD4EDC1B70A99 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -391,23 +408,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
-		};
-		BFAA5EBCCD09D66CB7C92100 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishProject-SideDishProjectUITests/Pods-SideDishProject-SideDishProjectUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		F1221E6AC86C93677EE3998F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
