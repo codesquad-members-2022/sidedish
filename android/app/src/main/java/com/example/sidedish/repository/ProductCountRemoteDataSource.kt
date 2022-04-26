@@ -1,12 +1,9 @@
 package com.example.sidedish.repository
 
-import android.util.Log
 import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.Error
 import com.example.sidedish.model.ProductDetail
 import com.example.sidedish.network.NetworkUtil
 import com.example.sidedish.network.RetrofitAPI
-import okhttp3.ResponseBody
 import java.lang.Exception
 
 class ProductCountRemoteDataSource : ProductDetailDataSource {
