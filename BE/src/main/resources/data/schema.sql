@@ -1,5 +1,3 @@
-SET FOREIGN_KEY_CHECKS = 0;
-
 DROP TABLE IF EXISTS category;
 
 CREATE TABLE category
@@ -47,6 +45,3 @@ CREATE TABLE item_order
     orders BIGINT,
     primary key (item, orders)
 );
-
-
-SET FOREIGN_KEY_CHECKS = 1;
