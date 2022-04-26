@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.todo.sidedish.R
 import com.example.todo.sidedish.databinding.FragmentMenuDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.roundToInt
 
 const val ORDER_COUNT_ZERO = 0
 
@@ -50,6 +51,7 @@ class MenuDetailFragment : Fragment() {
         binding.vpItemDetailImg.adapter = viewPagerAdapter
         registerOrderQuantityControlBtn()
         setMenuInfo()
+        bindViewPagerPageNum()
         registerOrderClickBtn()
 
         viewModel._detailInfo.observe(viewLifecycleOwner) {
@@ -58,7 +60,8 @@ class MenuDetailFragment : Fragment() {
         }
         viewModel._thumbnailImages.observe(viewLifecycleOwner) { thumbs ->
             viewPagerAdapter.submitThumbnails(thumbs)
-            binding.vpItemDetailImg.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            binding.vpItemDetailImg.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+            binding.totalPage= thumbs.size
         }
 
         viewModel.orderSuccess.observe(viewLifecycleOwner) { isSuccess ->
@@ -67,6 +70,17 @@ class MenuDetailFragment : Fragment() {
                 else -> OrderCancelDialogFragment(getString(R.string.label_order_fail)).show(parentFragmentManager, "order_fail")
             }
         }
+    }
+
+    private fun bindViewPagerPageNum(){
+        binding.nowPage=1
+        binding.totalPage= viewModel._thumbnailImages.value?.size
+        binding.vpItemDetailImg.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.nowPage=(position+1)
+            }
+        })
     }
 
     private fun registerOrderClickBtn() {
