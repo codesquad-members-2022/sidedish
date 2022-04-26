@@ -11,17 +11,3 @@ data class FoodDetail(
     val thumbImageUrls: List<String>,
     val topImageUrl: String
 )
-
-//fun FoodDetail.convertDto(detailDto: DetailDto): FoodDetail {
-//    return FoodDetail(
-//        detailDto.detail.deliveryFee,
-//        detailDto.detail.deliveryInfo,
-//        detailDto.detail.detailSection,
-//        detailDto.detail.point,
-//        detailDto.detail.prices[0],
-//        detailDto.detail.prices[1],
-//        detailDto.detail.productDescription,
-//        detailDto.detail.thumbImages,
-//        detailDto.detail.topImage,
-//    )
-//}

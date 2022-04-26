@@ -1,6 +1,5 @@
 package com.example.sideDish.ui.foodlist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +7,6 @@ import com.example.sideDish.common.Event
 import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.data.source.FoodRemoteRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

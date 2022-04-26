@@ -1,7 +1,6 @@
 package com.example.sideDish.data.source
 
 import com.example.sideDish.data.model.FoodCategory
-import com.example.sideDish.data.model.FoodDetail
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.network.SideDishRetrofitService
 import com.example.sideDish.network.dto.toItems
