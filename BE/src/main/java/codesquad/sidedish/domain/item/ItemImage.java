@@ -10,17 +10,20 @@ import lombok.ToString;
 @ToString
 public class ItemImage {
     private Long itemImageId;
+    private String itemImageUrl;
     private int itemImageSequence;
     private ItemImageType itemImageType;
 
-    public ItemImage(int itemImageSequence, ItemImageType itemImageType) {
+    public ItemImage(String itemImageUrl, int itemImageSequence, ItemImageType itemImageType) {
+        this.itemImageUrl = itemImageUrl;
         this.itemImageSequence = itemImageSequence;
         this.itemImageType = itemImageType;
     }
 
     @Builder
-    public ItemImage(Long itemImageId, int itemImageSequence, ItemImageType itemImageType) {
+    public ItemImage(Long itemImageId, String itemImageUrl, int itemImageSequence, ItemImageType itemImageType) {
         this.itemImageId = itemImageId;
+        this.itemImageUrl = itemImageUrl;
         this.itemImageSequence = itemImageSequence;
         this.itemImageType = itemImageType;
     }
