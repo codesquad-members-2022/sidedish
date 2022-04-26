@@ -7,26 +7,35 @@
 
 import Foundation
 
-class CacheImageRequestMiddleWare {
-    func getAllImageDataCached(completionHandler: @escaping ([Data]?) -> Void) {
-        let result = RepositoryCommons.shared.getAllFilesCached()
-        
-        do {
-            let dtoArray = try result.get()
-            completionHandler(dtoArray)
-        } catch {
-            completionHandler(nil)
+class CacheImageRequestMiddleWare: SideDishMiddleWare {
+    
+    let repository: RepositoryCommons = RepositoryCommons.shared
+    
+    func callCacheSystem(userInfo: [String: Any]?) -> Any? {
+        if let name = userInfo?["name"] as? String {
+            return getImageDataCached(as: name)
+        } else {
+            return getAllImageDataCached()
         }
     }
     
-    func getImageDataCached(as name: String, completionHandler: @escaping (Data?) -> Void) {
+    private func getAllImageDataCached() -> [Data]? {
+        let result = RepositoryCommons.shared.getAllFilesCached()
+        
+        do {
+            return try result.get()
+        } catch {
+            return nil
+        }
+    }
+    
+    private func getImageDataCached(as name: String) -> Data? {
         let result = RepositoryCommons.shared.getFileCached(as: name)
         
         do {
-            let dto = try result.get()
-            completionHandler(dto)
+            return try result.get()
         } catch {
-            completionHandler(nil)
+            return nil
         }
     }
 }

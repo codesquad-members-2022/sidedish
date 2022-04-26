@@ -16,6 +16,8 @@
 		1B56E672280E8E560074E79F /* SideDish20FileManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */; };
 		1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */; };
 		1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA1E193280EDE720032FF88 /* DishViewModel.swift */; };
+		1BF290132816901300493D2F /* SideDishMiddleWare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF290122816901300493D2F /* SideDishMiddleWare.swift */; };
+		1BF290152816914100493D2F /* MiddleWareFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF290142816914100493D2F /* MiddleWareFactory.swift */; };
 		81F02D81F7E6B09E33564B42 /* Pods_SideDish20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */; };
 		AE464DAF583682884F200E26 /* Pods_SideDish20_SideDish20UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */; };
 		D0007A09280E589700997AC5 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0007A08280E589700997AC5 /* SF-Pro-Display-Regular.otf */; };
@@ -68,6 +70,8 @@
 		1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish20FileManagerTest.swift; sourceTree = "<group>"; };
 		1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCommons.swift; sourceTree = "<group>"; };
 		1BA1E193280EDE720032FF88 /* DishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewModel.swift; sourceTree = "<group>"; };
+		1BF290122816901300493D2F /* SideDishMiddleWare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishMiddleWare.swift; sourceTree = "<group>"; };
+		1BF290142816914100493D2F /* MiddleWareFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleWareFactory.swift; sourceTree = "<group>"; };
 		2736D4DB3581F6AA1E7A0869 /* Pods-SideDish20Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20Tests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20Tests/Pods-SideDish20Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5791E07D7FB9C708C754F0FB /* Pods-SideDish20-SideDish20UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20-SideDish20UITests.release.xcconfig"; path = "Target Support Files/Pods-SideDish20-SideDish20UITests/Pods-SideDish20-SideDish20UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6CAB2134DB39689073D8101F /* Pods_SideDish20Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				D01CBC1A280F6D9100F806C9 /* HomeModel.swift */,
+				1BF290142816914100493D2F /* MiddleWareFactory.swift */,
+				1BF290122816901300493D2F /* SideDishMiddleWare.swift */,
 				1B56E668280E823E0074E79F /* CacheImageRequestMiddleWare.swift */,
 				1B56E66A280E82480074E79F /* CacheImageMiddleWare.swift */,
 			);
@@ -554,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01CBC17280F673000F806C9 /* HomeCollectionViewCell.swift in Sources */,
+				1BF290152816914100493D2F /* MiddleWareFactory.swift in Sources */,
 				D0007A1F280EA14200997AC5 /* HomeViewController.swift in Sources */,
 				D01CBC1B280F6D9100F806C9 /* HomeModel.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
@@ -567,6 +574,7 @@
 				1B56E66B280E82480074E79F /* CacheImageMiddleWare.swift in Sources */,
 				1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */,
 				1B56E66F280E83230074E79F /* CacheFileManagerAttribute.swift in Sources */,
+				1BF290132816901300493D2F /* SideDishMiddleWare.swift in Sources */,
 				D08FCDEA280D09AB00176BF9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

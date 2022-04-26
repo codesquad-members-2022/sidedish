@@ -9,92 +9,66 @@ import Foundation
 import UIKit
 
 class DishViewModel {
-    private let fetchOnComplete: ([UIImage]?) -> Void
     
-    private let cacheImageRequestMiddleWare = CacheImageRequestMiddleWare()
-    private let cacheImageMiddleWare = CacheImageMiddleWare()
-    
-    init(fetchOnComplete: @escaping ([UIImage]?) -> Void) {
-        self.fetchOnComplete = fetchOnComplete
-    }
-    
-    func getAllImageCached() {
-        cacheImageRequestMiddleWare.getAllImageDataCached { result in
-            guard let result = result else {
-                self.fetchOnComplete(nil)
-                return
-            }
+    func getAllImageCached(onComplete: @escaping ([UIImage]?) -> Void) {
+        
+        let middleWare = MiddleWareFactory.make(useCase: .getCacheData)
+        
+        if let result = middleWare.callCacheSystem(userInfo: nil) as? [Data] {
             
             let images = result.compactMap({ UIImage(data: $0) })
-            
-            guard images.count > 0 else {
-                self.fetchOnComplete(nil)
-                return
-            }
-            
-            self.fetchOnComplete(images)
+            onComplete(images)
         }
     }
     
-    func getImageCached(
-        as name: String,
-        fetchImageHandler: @escaping (UIImage?) -> Void
-    ) {
+    func getImageCached(as name: String, onComplete: @escaping (UIImage?) -> Void) {
         
-        cacheImageRequestMiddleWare.getImageDataCached(as: name) { data in
-            guard let data = data else {
-                fetchImageHandler(nil)
-                return
-            }
-            
-            fetchImageHandler(UIImage(data: data))
+        let middleWare = MiddleWareFactory.make(useCase: .getCacheData)
+        
+        if let data = middleWare.callCacheSystem(userInfo: ["name": name]) as? Data {
+            onComplete(UIImage(data: data))
+            return
         }
+        
+        onComplete(nil)
     }
     
     func cacheImage(
         as name: String,
-        contentsOf image: UIImage
+        contentsOf image: UIImage,
+        onComplete: ((UIImage?) -> Void)? = nil
     ) {
         
-        guard let data = image.jpegData(compressionQuality: 1.0) else {
-            return
+        guard let data = image.jpegData(compressionQuality: 1.0) else { return }
+        
+        let middleWare = MiddleWareFactory.make(useCase: .setCacheIndividually)
+        
+        if middleWare.callCacheSystem(userInfo: ["name": name, "data": data]) != nil {
+            onComplete?(image)
         }
-        cacheImageMiddleWare.cacheImage(as: name, contentsOf: data)
-        fetchOnComplete([image])
     }
     
-    func getImage(
-        from urlString: String,
-        getImageHandler: @escaping (UIImage?) -> Void
-    ) {
+    func getImage(from urlString: String, onComplete: @escaping (UIImage?) -> Void) {
         
-        // 캐시한 이미지는 url의 lastPathComponent로 저장하는 것에 의미가 있기 때문에 전달되는 urlString은 URL로 구성되어야 한다.
         guard let url = URL(string: urlString) else {
-            getImageHandler(nil)
+            onComplete(nil)
             return
         }
         
-        let cacheName = url.lastPathComponent
-        getImageCached(as: cacheName) { image in
-            if let image = image {
-                getImageHandler(image)
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            
+            guard let self = self else {
                 return
             }
             
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                guard error == nil, let data = data else {
-                    getImageHandler(nil)
-                    return
-                }
-                
-                let image = UIImage(data: data)
-                getImageHandler(image)
-                
-                if let image = image {
-                    self.cacheImage(as: cacheName, contentsOf: image)
-                }
-                
-            }.resume()
-        }
+            guard error == nil, let data = data, let image = UIImage(data: data) else {
+                onComplete(nil)
+                return
+            }
+            
+            self.cacheImage(as: url.lastPathComponent, contentsOf: image)
+            onComplete(image)
+            
+        }.resume()
     }
 }
