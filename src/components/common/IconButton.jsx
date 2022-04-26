@@ -8,10 +8,9 @@ import { ReactComponent as Prev } from 'images/icon_prev.svg';
 import { ReactComponent as Next } from 'images/icon_next.svg';
 import { ReactComponent as Plus } from 'images/icon_plus.svg';
 import { ReactComponent as Minus } from 'images/icon_minus.svg';
-import THEME from '../../variable/theme';
 
-function Icon({ icon, width, height, fill }) {
-  const svgInfo = { icon, width, height, fill, stroke: fill };
+function Icon({ icon, width, height, fill, stroke }) {
+  const svgInfo = { icon, width, height, fill, stroke };
   const Icons = {
     search: <Search {...svgInfo} />,
     user: <User {...svgInfo} />,
@@ -24,10 +23,10 @@ function Icon({ icon, width, height, fill }) {
   return Icons[icon];
 }
 
-export default function IconButton({ icon, width, height, fill }) {
+export default function IconButton({ icon, width, height, fill, stroke }) {
   return (
     <Wrap>
-      <Icon icon={icon} width={width} height={height} fill={fill} />
+      <Icon icon={icon} width={width} height={height} fill={fill} stroke={stroke} />
     </Wrap>
   );
 }
@@ -36,9 +35,12 @@ IconButton.defaultProps = {
   icon: null,
   width: '24px',
   height: '24px',
-  fill: THEME.COLOR.BLACK[100]
+  fill: 'none',
+  stroke: 'none'
 };
 
-const Wrap = styled.a({
-  padding: '10px'
-});
+const Wrap = styled.a`
+  & svg {
+    padding: 10px;
+  }
+`;
