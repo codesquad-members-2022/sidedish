@@ -10,13 +10,7 @@ class HomeViewController: UIViewController {
         setUnderbarAtNavigationBar()
         registerDishCell()
         collectionViewDelegate()
-
-//        self.model = factory.convertCell2Product()
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         let repository = DishCellRepository()
         let factory = CellFactory(repository: repository)
         factory.onUpdate = {

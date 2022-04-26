@@ -9,7 +9,7 @@ class DishCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var finalPriceLabel: UILabel!
     @IBOutlet weak var normalPriceLabel: UILabel!
-    @IBOutlet weak var badgeView: UIView!
+    @IBOutlet weak var badgeView: UIStackView!
     @IBOutlet weak var eventBadgeLabel: UILabel!
     @IBOutlet weak var launchingBadgeLabel: UILabel!
 
@@ -42,10 +42,12 @@ class DishCell: UICollectionViewCell {
                     self.launchingBadgeLabel.isHidden = false
                 }
             }
-
-            if self.eventBadgeLabel.isHidden == true && self.launchingBadgeLabel.isHidden == false {
-                self.launchingBadgeLabel.leadingAnchor.constraint(equalTo: self.badgeView.leadingAnchor).isActive = true
-            }
         }
+    }
+    
+    override func prepareForReuse() {
+        self.badgeView.isHidden = true
+        self.eventBadgeLabel.isHidden = true
+        self.launchingBadgeLabel.isHidden = true
     }
 }

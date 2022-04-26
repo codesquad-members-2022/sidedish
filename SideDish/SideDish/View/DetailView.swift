@@ -55,14 +55,41 @@ class DetailView: UIView {
         return label
     }()
 
-    let badgeLabel: PaddingLabel = {
+    let badgeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isHidden = true
+        return stackView
+    }()
+
+    let eventBadgeLabel: PaddingLabel = {
         var label = PaddingLabel()
         label.topInset = 4; label.bottomInset = 4
         label.leftInset = 16; label.rightInset = 16
         label.font = UIFont.init(name: Font.sfBold, size: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .blue
+        label.backgroundColor = .primary3
+        label.text = "이벤트특가"
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 10
+        label.isHidden = true
+        return label
+    }()
+
+    let launchingBadgeLabel: PaddingLabel = {
+        var label = PaddingLabel()
+        label.topInset = 4; label.bottomInset = 4
+        label.leftInset = 16; label.rightInset = 16
+        label.font = UIFont.init(name: Font.sfBold, size: 12)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .primary1
+        label.text = "런칭특가"
         label.clipsToBounds = true
         label.layer.cornerRadius = 10
         label.isHidden = true
@@ -244,14 +271,17 @@ class DetailView: UIView {
         productInfoStackView.addArrangedSubview(priceInfoStackView)
         priceInfoStackView.addArrangedSubview(finalPriceLabel)
         priceInfoStackView.addArrangedSubview(normalPriceLabel)
-
-        fullScreenScrollView.addSubview(badgeLabel)
-
+        
+        fullScreenScrollView.addSubview(badgeStackView)
+        
         NSLayoutConstraint.activate([
-            badgeLabel.leadingAnchor.constraint(equalTo: productInfoStackView.leadingAnchor),
-            badgeLabel.topAnchor.constraint(equalTo: productInfoStackView.bottomAnchor, constant: 16),
-            badgeLabel.heightAnchor.constraint(equalToConstant: 24)
+            badgeStackView.topAnchor.constraint(equalTo: priceInfoStackView.bottomAnchor, constant: 16),
+            badgeStackView.leadingAnchor.constraint(equalTo: priceInfoStackView.leadingAnchor),
+            badgeStackView.heightAnchor.constraint(equalToConstant: 24)
         ])
+        
+        badgeStackView.addArrangedSubview(eventBadgeLabel)
+        badgeStackView.addArrangedSubview(launchingBadgeLabel)
     }
 
     private func setPointInfoStackViewLayout() {
@@ -262,7 +292,7 @@ class DetailView: UIView {
 
         NSLayoutConstraint.activate([
             dividingLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            dividingLine.topAnchor.constraint(equalTo: badgeLabel.bottomAnchor, constant: 24),
+            dividingLine.topAnchor.constraint(equalTo: badgeStackView.bottomAnchor, constant: 24),
             dividingLine.heightAnchor.constraint(equalToConstant: 1.0),
             dividingLine.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
                                                            constant: -16)
@@ -304,7 +334,7 @@ class DetailView: UIView {
         contentView.addSubview(shippingInfoStackView)
 
         NSLayoutConstraint.activate([
-            shippingInfoStackView.leadingAnchor.constraint(equalTo: badgeLabel.leadingAnchor),
+            shippingInfoStackView.leadingAnchor.constraint(equalTo: badgeStackView.leadingAnchor),
             shippingInfoStackView.topAnchor.constraint(equalTo: pointLabel.bottomAnchor, constant: 16)
         ])
 
@@ -329,7 +359,7 @@ class DetailView: UIView {
         contentView.addSubview(shippingFeeInfoStackView)
 
         NSLayoutConstraint.activate([
-            shippingFeeInfoStackView.leadingAnchor.constraint(equalTo: badgeLabel.leadingAnchor),
+            shippingFeeInfoStackView.leadingAnchor.constraint(equalTo: badgeStackView.leadingAnchor),
             shippingFeeInfoStackView.topAnchor.constraint(equalTo: shippingInfoLabel.bottomAnchor, constant: 16)
         ])
 
@@ -366,7 +396,7 @@ class DetailView: UIView {
         contentView.addSubview(amountStackView)
 
         NSLayoutConstraint.activate([
-            amountStackView.leadingAnchor.constraint(equalTo: badgeLabel.leadingAnchor),
+            amountStackView.leadingAnchor.constraint(equalTo: badgeStackView.leadingAnchor),
             amountStackView.topAnchor.constraint(equalTo: shippingFeeLabel.bottomAnchor, constant: 51),
             amountStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])

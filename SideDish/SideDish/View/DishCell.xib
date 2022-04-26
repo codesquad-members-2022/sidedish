@@ -75,13 +75,14 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <view hidden="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="205" placeholderIntrinsicHeight="32" translatesAutoresizingMaskIntoConstraints="NO" id="dYU-xp-9B4">
-                                        <rect key="frame" x="0.0" y="72" width="205" height="32"/>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="bottom" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="GwJ-Zh-AGi">
+                                        <rect key="frame" x="0.0" y="72" width="0.0" height="32"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이벤트특가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6i-OV-plJ" userLabel="EventLabel" customClass="PaddingLabel" customModule="SideDish" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="8" width="52" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="8" width="32" height="24"/>
                                                 <color key="backgroundColor" red="0.55294120309999995" green="0.72941178080000002" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="ATW-WM-0nj"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="Sv1-qc-78M"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="12"/>
@@ -106,9 +107,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="런칭특가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tE-YU-uR3" userLabel="LaunchingLabel" customClass="PaddingLabel" customModule="SideDish" customModuleProvider="target">
-                                                <rect key="frame" x="56" y="8" width="42" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="8" width="32" height="24"/>
                                                 <color key="backgroundColor" red="0.1647058874" green="0.39215683940000001" blue="0.81176471709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="gjT-jh-TS7"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="h0x-uX-ir9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="12"/>
@@ -133,15 +135,12 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="2tE-YU-uR3" firstAttribute="leading" secondItem="p6i-OV-plJ" secondAttribute="trailing" constant="4" id="PW4-6q-cDK"/>
-                                            <constraint firstItem="p6i-OV-plJ" firstAttribute="top" secondItem="dYU-xp-9B4" secondAttribute="top" constant="8" id="Sqq-Q9-Lig"/>
-                                            <constraint firstItem="p6i-OV-plJ" firstAttribute="leading" secondItem="dYU-xp-9B4" secondAttribute="leading" id="TcJ-eT-w49"/>
-                                            <constraint firstAttribute="height" constant="32" id="kLA-nl-yA2"/>
-                                            <constraint firstItem="2tE-YU-uR3" firstAttribute="top" secondItem="dYU-xp-9B4" secondAttribute="top" constant="8" id="rbi-r0-zCN"/>
+                                            <constraint firstItem="2tE-YU-uR3" firstAttribute="top" secondItem="GwJ-Zh-AGi" secondAttribute="top" constant="8" id="KQP-P3-3CC"/>
+                                            <constraint firstItem="p6i-OV-plJ" firstAttribute="top" secondItem="GwJ-Zh-AGi" secondAttribute="top" constant="8" id="XeT-xS-bnr"/>
+                                            <constraint firstAttribute="height" constant="32" id="c9N-SJ-GQG"/>
                                         </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="mvw-cG-Dft" firstAttribute="height" secondItem="Jqf-Ku-PoY" secondAttribute="height" id="7Mm-gN-6vA"/>
@@ -169,7 +168,7 @@
             </constraints>
             <size key="customSize" width="718" height="212"/>
             <connections>
-                <outlet property="badgeView" destination="dYU-xp-9B4" id="wIH-kj-RWT"/>
+                <outlet property="badgeView" destination="GwJ-Zh-AGi" id="eYA-pd-Q81"/>
                 <outlet property="descriptionLabel" destination="mvw-cG-Dft" id="pTU-ep-qaR"/>
                 <outlet property="eventBadgeLabel" destination="p6i-OV-plJ" id="EZD-cU-cBX"/>
                 <outlet property="finalPriceLabel" destination="dO6-Pv-XTR" id="uE9-js-TPe"/>
