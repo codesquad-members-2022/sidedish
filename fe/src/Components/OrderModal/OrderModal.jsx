@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
 
+import { ProductThumbnail } from './ProductThumbnail';
+
 import { DiscountBadge } from '@/Components/Badge';
 
 const ModalBackGround = styled.div`
@@ -31,38 +33,6 @@ const SelectedProduct = styled.section`
 
   margin: 48px;
   margin-top: 76px;
-`;
-
-const ProductThumbnail = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ProductPanel = styled.div`
-  width: 400px;
-  height: 400px;
-  overflow: hidden;
-
-  ${({ size }) => {
-    return size === 'sm'
-      ? css`
-          width: 72px;
-          height: 72px;
-          overflow: hidden;
-          margin: 8px 8px 0 0;
-        `
-      : null;
-  }}
-
-  .product-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-const SubProductList = styled.div`
-  display: flex;
 `;
 
 const ProductInfo = styled.div`
@@ -185,32 +155,14 @@ export const OrderModal = () => {
     <ModalBackGround>
       <OrderModalWrapper>
         <SelectedProduct>
-          <ProductThumbnail>
-            <ProductPanel size={'md'}>
-              <img
-                className="product-img"
-                src="https://img.insight.co.kr/static/2019/06/26/700/f31l48lhp1v2tuq7ce8o.jpg"
-                alt="대표 음식 사진"
-              />
-            </ProductPanel>
-            <SubProductList>
-              <ProductPanel size={'sm'}>
-                <img
-                  className="product-img"
-                  src="https://img.insight.co.kr/static/2019/06/26/700/5nmluh24cnp5h4rb3vj4.jpg"
-                  alt="대표 음식 사진"
-                />
-              </ProductPanel>
-              <ProductPanel size={'sm'}>
-                <img
-                  className="product-img"
-                  src="https://studyforus.com/files/attach/images/1816/212/461/aca7e1aed69a698c8896c641d77085dd.png
-                "
-                  alt="대표 음식 사진"
-                />
-              </ProductPanel>
-            </SubProductList>
-          </ProductThumbnail>
+          <ProductThumbnail
+            ProductThumbnailData={[
+              'https://img.insight.co.kr/static/2019/06/26/700/f31l48lhp1v2tuq7ce8o.jpg',
+              'https://img.insight.co.kr/static/2019/06/26/700/5nmluh24cnp5h4rb3vj4.jpg',
+              'https://studyforus.com/files/attach/images/1816/212/461/aca7e1aed69a698c8896c641d77085dd.png',
+            ]}
+          />
+
           <ProductInfo>
             <Title className={Fonts.LG}>오이피자</Title>
             <OriginalPrice className={Fonts.SM}>15800 원</OriginalPrice>
