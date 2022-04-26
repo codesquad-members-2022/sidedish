@@ -18,8 +18,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var detailAdapter: DetailAdapter
     private val detailViewModel: DetailViewModel by viewModels()
 
-    private val testUrlList = ArrayList<String>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)

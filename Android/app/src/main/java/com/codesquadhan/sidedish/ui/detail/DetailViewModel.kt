@@ -27,13 +27,6 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
     private val vpImageList = mutableListOf<TopImageData>()
     val vpImageListLd: LiveData<List<TopImageData>> = _vpImageListLd
 
-
-    fun addViewPagerImageTest(){
-        vpImageList.add(TopImageData(1,"https://ww.namu.la/s/32b66f77ef969034adcbce3840d362f66470c1ade8b3b67e9859954467a61a77ffe24051fd4db50a6a5251acd242a9140df6fc120653c85407c5508b00e763d8b2b09754bbe86f5ec315d6c2bfa597a8dc287028f3608155e80c67801d60595d"))
-        vpImageList.add(TopImageData(2,"https://imagescdn.gettyimagesbank.com/500/21/442/935/0/1298312835.jpg"))
-        _vpImageListLd.value = vpImageList
-    }
-
     fun getMenuDetail(id: Int){
         viewModelScope.launch {
             val detailResponse = detailRepository.getMenuDetail(id) ?: throw RuntimeException("why..?")

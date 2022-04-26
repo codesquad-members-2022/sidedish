@@ -12,8 +12,8 @@ data class DetailResponse(
     val detailImage: List<String> = listOf(),
     @SerializedName("fee")
     val fee: Int = 0,
-    @SerializedName("freeShippingMin")
-    val freeShippingMin: Int = 0,
+    @SerializedName("freeShippingStartingPrice")
+    val freeShippingStartingPrice: Int,
     @SerializedName("mainImage")
     val mainImage: List<String> = listOf(),
     @SerializedName("name")
@@ -21,5 +21,9 @@ data class DetailResponse(
     @SerializedName("price")
     val price: Int = 0,
     @SerializedName("saleType")
-    val saleType: String = ""
+    val saleType: String = "",
+    @SerializedName("salePrice")
+    val salePrice: Int = 0,
+    @SerializedName("stock")
+    val stock: Int = 0
 )

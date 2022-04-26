@@ -1,19 +1,14 @@
 package com.codesquadhan.sidedish.ui.common
 
 import android.graphics.Paint
-import android.os.Build
-import android.view.View
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.core.widget.TextViewCompat
 import androidx.databinding.BindingAdapter
 import com.codesquadhan.sidedish.R
 import java.text.DecimalFormat
-import kotlin.math.roundToInt
+import androidx.core.content.ContextCompat
 
 @BindingAdapter("priceAmount")
 fun applyPriceFormat(view: TextView, price: Int) {
@@ -21,12 +16,10 @@ fun applyPriceFormat(view: TextView, price: Int) {
     view.text = view.context.getString(R.string.currency, decimalFormat.format(price))
 }
 
-
 @BindingAdapter("priceAmount", "strikeThrough")
 fun applySalePriceTextView(view: TextView, price: Int, saleType: String) {
     applyPriceFormat(view, price)
     view.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-
     view.isVisible = saleType != "NONE"
 
     // 리사이클러뷰 뷰홀더 재활용으로 인해  saleType이 NONE 일때 GONE 이 되게만 처리를 해두면, NONE이 아닌 메뉴에서도 정가부분이 GONE 되는 이슈 발생
@@ -48,7 +41,6 @@ fun applyBadgeBackground(view: ConstraintLayout, saleType: String) {
     )
     else view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.Primary3))
 }
-
 
 @BindingAdapter("badgeText")
 fun applyBadgeText(view: TextView, saleType: String) {
