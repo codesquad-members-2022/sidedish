@@ -1,29 +1,22 @@
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS images;
+DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS label;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS best_type;
+DROP TABLE IF EXISTS delivery;
 DROP TABLE IF EXISTS user;
+
+
+
 CREATE TABLE user
 (
-    user_id   BIGINT AUTO_INCREMENT NOT NULL,
-    email     VARCHAR(30) NOT NULL,
-    password  VARCHAR(30) NOT NULL,
-    PRIMARY KEY (user_id)
+    user_id   BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    email     VARCHAR(30) NOT NULL UNIQUE,
+    password  VARCHAR(30) NOT NULL
 );
 
-DROP TABLE IF EXISTS category;
-CREATE TABLE category
-(
-    category_id   BIGINT AUTO_INCREMENT NOT NULL,
-    category_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (category_id)
-);
 
-DROP TABLE IF EXISTS label;
-CREATE TABLE label
-(
-    label_id   BIGINT AUTO_INCREMENT NOT NULL,
-    label_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (label_id)
-);
-
-DROP TABLE IF EXISTS delivery;
 CREATE TABLE delivery
 (
     delivery_id   BIGINT AUTO_INCREMENT NOT NULL,
@@ -31,7 +24,7 @@ CREATE TABLE delivery
     PRIMARY KEY (delivery_id)
 );
 
-DROP TABLE IF EXISTS best_type;
+
 CREATE TABLE best_type
 (
     best_id   BIGINT AUTO_INCREMENT NOT NULL COMMENT '베스트 반찬 TAB에서 Sorting 하기 위한 ID',
@@ -39,7 +32,23 @@ CREATE TABLE best_type
     PRIMARY KEY (best_id)
 );
 
-DROP TABLE IF EXISTS item;
+
+CREATE TABLE category
+(
+    category_id   BIGINT AUTO_INCREMENT NOT NULL,
+    category_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (category_id)
+);
+
+
+CREATE TABLE label
+(
+    label_id   BIGINT AUTO_INCREMENT NOT NULL,
+    label_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (label_id)
+);
+
+
 CREATE TABLE item
 (
     item_id        BIGINT AUTO_INCREMENT NOT NULL,
@@ -60,20 +69,7 @@ CREATE TABLE item
     FOREIGN KEY (best_id)     REFERENCES best_type (best_id)
 );
 
-DROP TABLE IF EXISTS orders;
-CREATE TABLE orders
-(
-    order_id    BIGINT AUTO_INCREMENT NOT NULL,
-    item_id     BIGINT NOT NULL,
-    user_id     BIGINT NOT NULL,
-    quantity    INTEGER NOT NULL,
-    total_price DECIMAL(6,0) NOT NULL,
-    PRIMARY KEY (order_id),
-    FOREIGN KEY (item_id) REFERENCES item (item_id),
-    FOREIGN KEY (user_id)  REFERENCES user (user_id)
-);
 
-DROP TABLE IF EXISTS images;
 CREATE TABLE images
 (
     image_id      BIGINT AUTO_INCREMENT NOT NULL,
@@ -81,4 +77,17 @@ CREATE TABLE images
     detail_images VARCHAR(255),
     PRIMARY KEY (image_id),
     FOREIGN KEY (item_id) REFERENCES item (item_id)
+);
+
+CREATE TABLE orders
+(
+    order_id    BIGINT AUTO_INCREMENT NOT NULL,
+    item_id     BIGINT NOT NULL,
+    user_id     BIGINT NOT NULL,
+    email     VARCHAR(30) NOT NULL,
+    quantity    INTEGER NOT NULL,
+    total_price BIGINT NOT NULL,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (item_id) REFERENCES item (item_id),
+    FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
