@@ -28,16 +28,51 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sideDishManager.mainDishes?.body.count ?? 0
+        switch section {
+        case 0:
+            return sideDishManager.mainDishes?.body.count ?? 0
+        case 1:
+            return sideDishManager.soupDishes?.body.count ?? 0
+        case 2:
+            return sideDishManager.sideDishes?.body.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // main / soup / side 별로 분기처리 필요
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCardCell.identifier, for: indexPath) as? MainViewCardCell,
-              let dish = sideDishManager.mainDishes?.body[indexPath.item] else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCardCell.identifier, for: indexPath) as? MainViewCardCell else {
             return UICollectionViewCell()
         }
+        
+        var dish: MainCard.Body
+        
+        switch indexPath.section { // 섹션 번호!
+        case 0:
+            guard let mainDishs = sideDishManager.mainDishes else {
+                return cell
+            }
+            dish = mainDishs.body[indexPath.item]
+        case 1:
+            guard let mainDishs = sideDishManager.soupDishes else {
+                return cell
+            }
+            dish = mainDishs.body[indexPath.item]
+        case 2:
+            guard let mainDishs = sideDishManager.sideDishes else {
+                return cell
+            }
+            dish = mainDishs.body[indexPath.item]
+        default:
+            return cell
+        }
+        
         cell.setPropertiesValue(dish: dish)
         return cell
     }
@@ -63,16 +98,17 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
     }
 }
 
-private extension MainViewController { // 내부 호출 전용
+private extension MainViewController {
     func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.identifier), object: sideDishManager)
-        self.sideDishManager.getMainDishes()
+        self.sideDishManager.getDishes(type: .main)
+        self.sideDishManager.getDishes(type: .soup)
+        self.sideDishManager.getDishes(type: .side)
     }
     
     @objc func setMainDish() {
         DispatchQueue.main.async {
             self.dishCollectionView.reloadData()
-            print("비동기")
         }
     }
 }
