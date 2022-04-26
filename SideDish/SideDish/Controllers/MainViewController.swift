@@ -59,8 +59,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let ordering = ordering,
               let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
-        cell.addViews()
-        cell.setLayout()
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
         let index = indexPath.row
         if let food = ordering[index, category] {

@@ -2,10 +2,9 @@ import Foundation
 import UIKit
 
 final class FoodCollectionViewCell: UICollectionViewCell{
-    //
+
     private lazy var foodImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .orange
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -18,6 +17,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         informationStackView.translatesAutoresizingMaskIntoConstraints = false
         return informationStackView
     }()
+    
     private lazy var foodPriceStackView: UIStackView = {
         let priceStackView = UIStackView()
         priceStackView.axis = .horizontal
@@ -110,7 +110,17 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         return label
     }()
     
-    func addViews(){
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addViews()
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func addViews(){
         contentView.addSubview(foodImageView)
         contentView.addSubview(foodInformationStackView)
         contentView.addSubview(foodPriceStackView)
@@ -124,7 +134,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         foodBadgeStackView.addArrangedSubview(badgeLaunchingLabel)
     }
     
-    func setLayout(){
+    private func setLayout(){
         NSLayoutConstraint.activate([
             foodImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -167,8 +177,6 @@ final class FoodCollectionViewCell: UICollectionViewCell{
                 badgeEventLabel.text = badge
             }
         }
-        
-        
     }
     
     func updateFoodImage(imageData: Data){
