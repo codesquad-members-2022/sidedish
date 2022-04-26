@@ -15,35 +15,40 @@ class MainViewCardCell: UICollectionViewCell {
     private let cardImageView: UIImageView = {
         var image = UIImageView()
         image.backgroundColor = .systemGray5
+        image.layer.cornerRadius = 5
         return image
     }()
     
     private let cardTitleLabel: UILabel = {
         var label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = UIFont.customFont(.sfSemiboldMainTitleLabel)
         return label
     }()
     
     private let cardBodyLabel: UILabel = {
         var label = UILabel()
+        label.font = UIFont.customFont(.sfRegularMainBodyLabel)
+        label.numberOfLines = 0
+        label.lineBreakStrategy = .hangulWordPriority
         return label
     }()
     
     private let normalPriceLabel: UILabel = {
         var label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont.customFont(.sfRegularMainNormalPrice)
         return label
     }()
     
     private let salePriceLabel: UILabel = {
         var label = UILabel()
+        label.font = UIFont.customFont(.sfSemiboldMainSalePrice)
         return label
     }()
     
     private let eventBadgeLabel: UILabel = {
         var label = UILabel()
         label.clipsToBounds = true
-        label.text = "이벤트특가"
+        label.text = Badge.eventPrice.description
         label.textColor = .white
         label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.backgroundColor = UIColor.customColor(.primaryLight)
@@ -56,7 +61,7 @@ class MainViewCardCell: UICollectionViewCell {
     private let launchingBadgeLabel: UILabel = {
         var label = UILabel()
         label.clipsToBounds = true
-        label.text = "런칭특가"
+        label.text = Badge.launchingPrice.description
         label.textColor = .white
         label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.backgroundColor = UIColor.customColor(.primaryDark)
@@ -69,7 +74,7 @@ class MainViewCardCell: UICollectionViewCell {
     private let mainBadgeLabel: UILabel = {
         var label = UILabel()
         label.clipsToBounds = true
-        label.text = "메인특가"
+        label.text = Badge.mainPrice.description
         label.textColor = .white
         label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.backgroundColor = UIColor.customColor(.primary)
@@ -121,8 +126,8 @@ class MainViewCardCell: UICollectionViewCell {
         congifureCardImageViewConstraint()
         configureCardTitleLabelConstraint()
         configureCardBodyLabelConstraint()
-        configurePriceLabelConstraint()
-        configureDiscountedPriceLabelConstraint()
+        configureNormalPriceLabelConstraint()
+        configureSalePriceLabelConstraint()
     }
     
     private func congifureCardImageViewConstraint() {
@@ -151,7 +156,7 @@ class MainViewCardCell: UICollectionViewCell {
         ])
     }
     
-    private func configurePriceLabelConstraint() {
+    private func configureNormalPriceLabelConstraint() {
         normalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             normalPriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5),
@@ -159,7 +164,7 @@ class MainViewCardCell: UICollectionViewCell {
         ])
     }
     
-    private func configureDiscountedPriceLabelConstraint() {
+    private func configureSalePriceLabelConstraint() {
         salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             salePriceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor, constant: 5),

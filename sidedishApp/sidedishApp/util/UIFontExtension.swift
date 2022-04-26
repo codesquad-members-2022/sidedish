@@ -14,6 +14,10 @@ enum CustomFont {
     case sfRegularSubDescription
     case sfRegularCountLabel
     case sfRegularCountText
+    case sfRegularMainBodyLabel
+    case sfRegularMainNormalPrice
+    case sfSemiboldMainTitleLabel
+    case sfSemiboldMainSalePrice
     case sfSemiboldSalePrice
     case sfSemiboldAccountLabel
     case sfSemiboldAccountText
@@ -38,6 +42,14 @@ extension UIFont {
             return UIFont(name: "SFProDisplay-Regular", size: 14) ?? UIFont()
         case .sfRegularCountText:
             return UIFont(name: "SFProDisplay-Regular", size: 18) ?? UIFont()
+        case .sfRegularMainBodyLabel:
+            return UIFont(name: "SFProDisplay-Regular", size: 14) ?? UIFont()
+        case .sfRegularMainNormalPrice:
+            return UIFont(name: "SFProDisplay-Regular", size: 14) ?? UIFont()
+        case .sfSemiboldMainTitleLabel:
+            return UIFont(name: "SFProDisplay-Semibold", size: 14) ?? UIFont()
+        case .sfSemiboldMainSalePrice:
+            return UIFont(name: "SFProDisplay-Semibold", size: 14) ?? UIFont()
         case .sfSemiboldSalePrice:
             return UIFont(name: "SFProDisplay-Semibold", size: 18) ?? UIFont()
         case .sfSemiboldAccountLabel:

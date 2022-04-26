@@ -38,7 +38,6 @@ class MainViewHeader: UICollectionReusableView {
     }
     
     func setUIValue(indexPath: IndexPath, dishCount: Int) {
-        print("여기는 메인뷰헤더")
         switch indexPath.section {
         case 0:
             titleLabel.text = "모두가 좋아하는 든든한 메인 요리"
