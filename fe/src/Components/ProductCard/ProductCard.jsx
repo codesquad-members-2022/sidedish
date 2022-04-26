@@ -72,6 +72,7 @@ const PolicyBadge = ({ priceData: discountPolicy }) => {
   );
 };
 
+// TODO: dataset property 지우기
 export const ProductCard = ({
   data: {
     id,
