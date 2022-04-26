@@ -18,22 +18,21 @@ const Slider = () => {
     data = data.slice(dataIndex, 6); // Temporarily set 6 data
     setData(data);
     setVisibleData(data.slice(dataIndex, VISIBLE_CARD_COUNT));
-    changeRightArrowState(data);
+    initRightArrowState(data);
   };
 
-  const changeRightArrowState = (data, startIndex) => {
+  const initRightArrowState = data => {
     if (data.length >= VISIBLE_CARD_COUNT) {
       setIsRightArrowActive(true);
-      return;
-    }
-
-    if (startIndex + VISIBLE_CARD_COUNT >= data.length) {
-      setIsRightArrowActive(false);
     }
   };
 
-  const changeLeftArrowState = startIndex => {
-    startIndex > 0 ? setIsLeftArrowActive(true) : setIsLeftArrowActive(false);
+  const changeArrowState = startIndex => {
+    const checkLeftArrowActive = startIndex => startIndex > 0;
+    const checkRightArrowActive = startIndex => startIndex + VISIBLE_CARD_COUNT < data.length;
+
+    checkLeftArrowActive(startIndex) ? setIsLeftArrowActive(true) : setIsLeftArrowActive(false);
+    checkRightArrowActive(startIndex) ? setIsRightArrowActive(true) : setIsRightArrowActive(false);
   };
 
   const handleArrowClick = direction => {
@@ -71,8 +70,7 @@ const Slider = () => {
 
     setDataIndex(startIndex);
     setVisibleData(visibleData);
-    changeRightArrowState(data, startIndex);
-    changeLeftArrowState(startIndex);
+    changeArrowState(startIndex);
   };
 
   useEffect(() => {
