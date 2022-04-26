@@ -24,10 +24,16 @@ public class OAuthService {
     private final String ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token";
     private final String GET_RESOURCE_URL = "https://api.github.com/user/emails";
 
-    @Value("${github_client_id}")
+    @Value("${github.client.id}")
     private String clientId;
-    @Value("${github_secret}")
+    @Value("${github.secret}")
     private String secret;
+
+
+//    public OAuthService( String clientId, String secret) {
+//        this.clientId = clientId;
+//        this.secret = secret;
+//    }
 
     public GitHubToken getAccessToken(String code) {
         Map<String, String> requestBody = generateBody(code);
