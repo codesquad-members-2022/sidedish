@@ -70,4 +70,3 @@ CREATE TABLE image_file
     PRIMARY KEY (id),
     FOREIGN KEY (sidedish_id) REFERENCES sidedish (id)
 );
-

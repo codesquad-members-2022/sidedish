@@ -5,13 +5,12 @@ import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@AllArgsConstructor
 @Getter
-@Table("event_category")
-public class EventCategory {
+@AllArgsConstructor
+@Table("menu_category")
+public class MenuCategory {
 
     @Id
     private Integer id;
-    private Integer eventId;
     private String name;
 }
