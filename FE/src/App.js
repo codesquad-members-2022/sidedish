@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 import { Header } from "@/components/templates/Header/Header";
 import { Promotion } from "@/components/templates/Promotion/Promotion";
+<<<<<<< HEAD
 =======
 import { Header } from "@src/components/Header/Header";
 >>>>>>> 159047b (Chore: 깃 충돌 해결 과정에서 꼬인 코드 수정)
@@ -47,6 +48,8 @@ import "./App.scss";
 import { Header } from "@/components/templates/Header/Header";
 >>>>>>> 0847aee ([#31] Feat: Header 컴포넌트에 Atomic Design Pattern 적용)
 import { Promotion } from "@/components/Promotion/Promotion";
+=======
+>>>>>>> 0afbecb (Test: 임시 사용하는 fake data 생성)
 import "./App.scss";
 
 function App() {
@@ -54,7 +57,7 @@ function App() {
     <div>
       <Header />
       <main>
-        <Promotion />
+        <Promotion dataID="1" />
       </main>
     </div>
   );
