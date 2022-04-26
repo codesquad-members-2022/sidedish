@@ -20,8 +20,5 @@ class DishRepositoryTest {
         assertThat(dish).isNotEmpty()
             .get()
             .hasFieldOrPropertyWithValue("title", "오리 주물럭_반조리");
-
-        System.out.println(dish.get());
     }
-
 }
