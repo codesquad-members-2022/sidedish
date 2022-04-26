@@ -36,7 +36,6 @@ const BadgeWrapper = styled.div`
 export const BestProducts = () => {
   const [tabList, isLoaded] = useFetch(`${API_URL}/events`);
   const [selectedTabId, setSelectedTabId] = useState(null);
-  const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
     if (!isLoaded) {
@@ -46,20 +45,6 @@ export const BestProducts = () => {
     const firstTabIndex = 0;
     setSelectedTabId(tabList.result_body[firstTabIndex].id);
   }, [isLoaded]);
-
-  useEffect(() => {
-    if (!selectedTabId) {
-      return;
-    }
-
-    fetchData(`/event/${selectedTabId}`)
-      .then(selectedTabProductsData => {
-        setCardData(selectedTabProductsData.content);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }, [selectedTabId]);
 
   const onClickTab = clickedTabId => () => {
     setSelectedTabId(clickedTabId);
@@ -85,7 +70,7 @@ export const BestProducts = () => {
         onClickTab={onClickTab}
       />
 
-      <BestTemp cardData={cardData} />
+      <BestTemp bestProductsTabId={selectedTabId} />
     </BestProductsWrapper>
   );
 };
