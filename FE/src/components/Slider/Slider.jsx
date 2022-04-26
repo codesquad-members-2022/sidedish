@@ -21,8 +21,8 @@ const Slider = () => {
     changeRightArrowState(data);
   };
 
-  const changeRightArrowState = (data, startIndex = 0) => {
-    if (data.length > VISIBLE_CARD_COUNT) {
+  const changeRightArrowState = (data, startIndex) => {
+    if (data.length >= VISIBLE_CARD_COUNT) {
       setIsRightArrowActive(true);
       return;
     }
@@ -60,7 +60,7 @@ const Slider = () => {
     }
 
     if (direction === 'left') {
-      startIndex = dataIndex + VISIBLE_CARD_COUNT;
+      startIndex = dataIndex - VISIBLE_CARD_COUNT;
 
       if (startIndex < 0) {
         startIndex = 0;
