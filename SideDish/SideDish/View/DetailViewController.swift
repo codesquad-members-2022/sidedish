@@ -28,11 +28,9 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.topItem?.title = "뒤로"
+        navigationController?.navigationBar.topItem?.backButtonTitle = "뒤로"
         navigationController?.navigationBar.titleTextAttributes =
         [NSAttributedString.Key.font: UIFont(name: Font.sfSemiBold, size: 17) ?? UIFont.systemFont(ofSize: 17)]
-        navigationItem.title = "오리 주물럭_반조리"
 
         detailView.setLayout()
     }
@@ -40,6 +38,7 @@ class DetailViewController: UIViewController {
     private func setViewModel() {
         viewModel?.onUpdate = {
             DispatchQueue.main.async {
+                self.navigationItem.title = self.viewModel?.title
                 self.detailView.titleLabel.text = self.viewModel?.title
                 self.detailView.descriptionLabel.text = self.viewModel?.description
                 self.detailView.finalPriceLabel.text = self.viewModel?.finalPrice
