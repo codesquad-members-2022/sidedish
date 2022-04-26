@@ -191,13 +191,9 @@
 		B7F90B22280E7C000067E4FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B7F90B23280E7C2A0067E4FE /* ProductSummary.swift */,
-				B7F90B42280FCD710067E4FE /* ProductDetail.swift */,
-				B7F90B32280EA7850067E4FE /* Category.swift */,
-				B7F90B29280E7FF30067E4FE /* Badge.swift */,
-				B7F90B25280E7FE10067E4FE /* Delivery.swift */,
-				B7F90B27280E7FEC0067E4FE /* Money.swift */,
-				B7F90B9928114F470067E4FE /* CurrencyFormattable.swift */,
+				BCFE4886280D764400F23DCE /* Networking */,
+				B7F90B7F281009F50067E4FE /* Service */,
+				BC7371E92817EFA20082C5DB /* Entity */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +224,20 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		BC7371E92817EFA20082C5DB /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B7F90B23280E7C2A0067E4FE /* ProductSummary.swift */,
+				B7F90B42280FCD710067E4FE /* ProductDetail.swift */,
+				B7F90B32280EA7850067E4FE /* Category.swift */,
+				B7F90B29280E7FF30067E4FE /* Badge.swift */,
+				B7F90B25280E7FE10067E4FE /* Delivery.swift */,
+				B7F90B27280E7FEC0067E4FE /* Money.swift */,
+				B7F90B9928114F470067E4FE /* CurrencyFormattable.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		BCFE4829280D5AE100F23DCE = {
 			isa = PBXGroup;
 			children = (
@@ -255,11 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				B7F90B8A2810522A0067E4FE /* ViewModel */,
-				B7F90B7F281009F50067E4FE /* Service */,
 				BCFE4883280D764400F23DCE /* Resource */,
 				BCFE4880280D756100F23DCE /* View */,
 				B7F90B22280E7C000067E4FE /* Model */,
-				BCFE4886280D764400F23DCE /* Networking */,
 				BCFE4885280D764400F23DCE /* Common */,
 				BCFE4881280D75B900F23DCE /* Support */,
 			);
@@ -345,7 +353,7 @@
 				BC7371E62817E9B50082C5DB /* EndpointFactory.swift */,
 			);
 			name = Networking;
-			path = SideDishApp/Networking;
+			path = SideDishApp/Model/Networking;
 			sourceTree = SOURCE_ROOT;
 		};
 		FBDA7CB3274DBF5844D0339C /* Frameworks */ = {
