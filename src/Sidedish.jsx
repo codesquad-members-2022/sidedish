@@ -1,5 +1,6 @@
 import Header from 'components/Header/Header';
 import MainCategory from 'components/MainCategory/MainCategory';
+import MenuSlider from 'components/MenuSlider';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -9,6 +10,7 @@ export default function Sidedish() {
       <Header />
       <Main>
         <MainCategory />
+        <MenuSlider />
       </Main>
     </div>
   );
