@@ -9,6 +9,12 @@ import UIKit
 
 final class DetailScrollView: UIScrollView {
     
+    var orderCount: Int = 1 {
+        didSet {
+            countLabel.text = "\(orderCount)"
+        }
+    }
+    
     private var mockImages = ["mockImage.png", "mockImage.png"]
     
     private let contentView: UIView = {
@@ -35,7 +41,7 @@ final class DetailScrollView: UIScrollView {
         return pageControl
     }()
     
-    private let DetailContainerStackView: UIStackView = {
+    private let detailContainerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 24
         stackView.axis = .vertical
@@ -45,6 +51,75 @@ final class DetailScrollView: UIScrollView {
     
     private(set) var mainInfoStackView = MenuStackView()
     private(set) var subInfoStackView = MenuSubInfoContainerStackView()
+    
+    private let countContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    private let countTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "수량"
+        label.textColor = .systemGray
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let countLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1"
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .darkGray
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private(set) var countStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.minimumValue = 1
+        return stepper
+    }()
+    
+    private let orderContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 24
+        stackView.alignment = .trailing
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    private let amountContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 24
+        return stackView
+    }()
+    
+    private let amountTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "총 주문금액"
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    private let amountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "12,640원"
+        label.font = .boldSystemFont(ofSize: 32)
+        return label
+    }()
+    
+    private let orderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("주문하기", for: .normal)
+        button.backgroundColor = .tintColor
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        button.layer.cornerRadius = 10
+        return button
+    }()
     
     private let separatorView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -70,19 +145,39 @@ final class DetailScrollView: UIScrollView {
         contentView.addSubview(imagePageControl)
         configureImagePageControl()
         
-        contentView.addSubview(DetailContainerStackView)
+        contentView.addSubview(detailContainerStackView)
         
-        DetailContainerStackView.addArrangedSubview(mainInfoStackView)
+        detailContainerStackView.addArrangedSubview(mainInfoStackView)
         mainInfoStackView.changeSpacingForDetailView()
         mainInfoStackView.changeFontForDetailView()
-        DetailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
         
-        DetailContainerStackView.addArrangedSubview(subInfoStackView)
-        DetailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        detailContainerStackView.addArrangedSubview(subInfoStackView)
+        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        
+        detailContainerStackView.addArrangedSubview(countContainerStackView)
+        countContainerStackView.addArrangedSubview(countTitleLabel)
+        countContainerStackView.addArrangedSubview(countLabel)
+        countContainerStackView.addArrangedSubview(countStepper)
+        configureCountContainerStackView()
+        
+        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        
+        detailContainerStackView.addArrangedSubview(orderContainerStackView)
+        orderContainerStackView.addArrangedSubview(amountContainerStackView)
+        amountContainerStackView.addArrangedSubview(amountTitleLabel)
+        amountContainerStackView.addArrangedSubview(amountLabel)
+        orderContainerStackView.addArrangedSubview(orderButton)
         
         layoutContentView()
         layoutImagePageControl()
         layoutDetailContainerStackView()
+        layoutCountTitleLabel()
+        layoutOrderButton()
+        
+        amountTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountTitleLabel.widthAnchor.constraint(equalToConstant: 87).isActive = true
+        
     }
     
     private func configureImagePageControl() {
@@ -137,16 +232,31 @@ extension DetailScrollView {
     }
     
     private func layoutDetailContainerStackView() {
-        DetailContainerStackView.translatesAutoresizingMaskIntoConstraints = false
-        DetailContainerStackView.topAnchor.constraint(equalTo: overViewImageScrollView.bottomAnchor, constant: 24).isActive = true
-        DetailContainerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        DetailContainerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        detailContainerStackView.translatesAutoresizingMaskIntoConstraints = false
+        detailContainerStackView.topAnchor.constraint(equalTo: overViewImageScrollView.bottomAnchor, constant: 24).isActive = true
+        detailContainerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        detailContainerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
     }
     
     private func layoutSeparatorView() {
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         separatorView.widthAnchor.constraint(equalTo: mainInfoStackView.widthAnchor).isActive = true
         separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    }
+    
+    private func configureCountContainerStackView() {
+        countContainerStackView.setCustomSpacing(150, after: countTitleLabel)
+    }
+    
+    private func layoutCountTitleLabel() {
+        countTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        countTitleLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
+    private func layoutOrderButton() {
+        orderButton.translatesAutoresizingMaskIntoConstraints = false
+        orderButton.leadingAnchor.constraint(equalTo: orderContainerStackView.leadingAnchor).isActive = true
+        orderButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 
