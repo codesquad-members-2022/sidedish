@@ -12,6 +12,7 @@ public interface SideDishRepository extends CrudRepository<SideDish, Long> {
             + " from side_dish s"
             + " join category_has_side_dish c"
             + " on s.id = c.side_dish_id"
-            + " where c.category_id = :categoryId")
-    List<SideDish> findByCategoryId(long categoryId);
+            + " where c.category_id = :categoryId"
+            + " limit :startIndex, :itemCount")
+    List<SideDish> findByCategoryId(long categoryId, int startIndex, int itemCount);
 }

@@ -21,14 +21,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SideDishService {
 
+    private final static int ITEM_COUNT = 4;
+
     private final SideDishRepository sideDishRepository;
 
     private final DiscountEventRepository discountEventRepository;
 
-    public SideDishCardResponses getAllByCategoryId(long categoryId) {
+    public SideDishCardResponses getByCategoryId(long categoryId, int page) {
         List<SideDishCardResponse> sideDishCardResponses = new ArrayList<>();
 
-        for (SideDish sideDish : sideDishRepository.findByCategoryId(categoryId)) {
+        for (SideDish sideDish : sideDishRepository.findByCategoryId(categoryId, page * ITEM_COUNT, ITEM_COUNT)) {
             sideDishCardResponses.add(SideDishCardResponse.from(sideDish, getDiscountEvent(sideDish)));
         }
 

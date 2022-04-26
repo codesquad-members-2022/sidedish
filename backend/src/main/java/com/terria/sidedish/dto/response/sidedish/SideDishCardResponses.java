@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class SideDishCardResponses {
-
+    
     @ApiModelProperty(required = true, value = "반찬 카드 목록")
     private List<SideDishCardResponse> sideDishCardResponses;
 }

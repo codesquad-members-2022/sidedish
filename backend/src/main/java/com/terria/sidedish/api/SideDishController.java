@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
 
@@ -38,14 +35,21 @@ public class SideDishController {
                     value = "카테고리 아이디",
                     paramType = "path",
                     dataType = "long"
+            ),
+            @ApiImplicitParam(
+                    name = "page",
+                    value = "요청 페이지",
+                    paramType = "query",
+                    dataType = "int"
             )
     })
     @GetMapping("/category/{categoryId}")
-    public SideDishCardResponses getAllByCategoryId(
+    public SideDishCardResponses getByCategoryId(
             @PathVariable
-            @Positive(message = "카테고리 아이디 입력값이 부적절합니다.") long categoryId) {
+            @Positive(message = "카테고리 아이디 입력값이 부적절합니다.") long categoryId,
+            @RequestParam(defaultValue = "0") int page) {
 
-        return sideDishService.getAllByCategoryId(categoryId);
+        return sideDishService.getByCategoryId(categoryId, page);
     }
 
     @ApiOperation(
