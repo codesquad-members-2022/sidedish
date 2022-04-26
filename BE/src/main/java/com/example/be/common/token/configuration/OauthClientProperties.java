@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ConstructorBinding
-@ConfigurationProperties(prefix = "spring.oauth.client")
+@ConfigurationProperties(prefix = "oauth.client")
 public class OauthClientProperties {
 
     private final Map<String, Registration> registration = new HashMap<>();

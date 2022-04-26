@@ -6,7 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.util.MultiValueMap;
 
 public interface TokenUtils {
-    HttpEntity<?> getAccessToken(ClientRegistration registration, String code);
+    HttpEntity<?> getAccessTokenRequest(ClientRegistration registration, String code);
 
     MultiValueMap<String, String> getHeadder();
 

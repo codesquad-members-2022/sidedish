@@ -2,13 +2,10 @@ package com.example.be.common.login.controller;
 
 import com.example.be.controller.user.OauthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/oauth")
+//@RequestMapping("/api/oauth")
 public class OauthController {
 
     private OauthService oauthService;
@@ -17,8 +14,8 @@ public class OauthController {
         this.oauthService = oauthService;
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String code) {
+    @GetMapping("/login/oauth/{provider}")
+    public ResponseEntity<String> login(@PathVariable String provider, @RequestParam String code) {
         return oauthService.login(code);
     }
 }
