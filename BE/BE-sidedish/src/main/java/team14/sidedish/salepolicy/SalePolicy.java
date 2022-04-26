@@ -1,9 +1,11 @@
 package team14.sidedish.salepolicy;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("SIDEDISH_SALE_POLICY")
 public class SalePolicy {
+	@Id
 	private final Long saleId;
 	private final String saleTitle;
 	private final String saleAmount;

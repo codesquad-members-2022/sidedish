@@ -38,7 +38,7 @@ public class MenuService {
 		SpecialMenuModel specialMenuTitle = SpecialMenuModel.from(specialNumber);
 		ExhibitionDto exhibitionInfo = exhibitionService.readOngoing();
 		List<MenuDto.SubCategory> specialMenus = specialMenuService.read(exhibitionInfo.getExhibitionId(), specialMenuTitle.getTitle());
-		List<Menu> menuInfo = menuRepository.findByCategory(Menu.Category.MAIN_DISH);  // todo 10개 - LessThanEqual() or Pageable
+		List<Menu> menuInfo = menuRepository.findByCategory(Menu.Category.SIDE_DISH);  // todo 10개 - LessThanEqual() or Pageable
 		List<MenuDto.SubCategory> menus = getSubCategoryOf(menuInfo);
 
 		// 추천메뉴, 카테고리별 메뉴 내 menuId들을 중복없이 모아 진행중인 이벤트를 조회합니다.

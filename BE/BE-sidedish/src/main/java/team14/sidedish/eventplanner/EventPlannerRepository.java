@@ -1,15 +1,16 @@
 package team14.sidedish.eventplanner;
 
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface EventPlannerRepository extends CrudRepository<EventPlanner, Long> {
-	// Between from, to 라서 durtion을 모르고서는 사용 x
-	@Query("select MENU_ID, EVENT_ID from SIDEDISH_EVENT_PLANNER "
-		+ "where START_DATE between date_sub(:date, interval EVENT_DURATION day) and :date\n"
-		+ "and MENU_ID in (:menuIds)")
-	List<EventPlannerDto.Id> findByOngoingEventAndMenuIdIn(LocalDate date, List<Long> menuIds);
+	List<EventPlanner> findByMenuIdIn(List<Long> menuIds);
 }
+
+/**
+ *  조회결과가 있어야 하는데, null 로 나옵니다.  이유를 모르겠어욤.
+ */
+/*	@Query("select MENU_ID, EVENT_ID from SIDEDISH_EVENT_PLANNER "
+		+ "where START_DATE >= date_sub( :date, interval EVENT_DURATION day) and START_DATE <= :date and MENU_ID in ( :menuIds )")
+	List<EventPlannerDto.Id> findByOngoingEventAndMenuIdIn(@Param("date") LocalDate date, @Param("menuIds") List<Long> menuIds);*/
