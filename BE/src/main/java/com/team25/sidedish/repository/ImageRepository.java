@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface ImageRepository extends CrudRepository<Image, Long> {
 
-    @Query("SELECT ID, URL FROM IMAGE WHERE PRODUCT_ID = :productId")
+    @Query("SELECT ID, URL FROM image WHERE PRODUCT_ID = :productId")
     Optional<List<Image>> findImagesByProductId(@Param("productId") Long productId);
 }
