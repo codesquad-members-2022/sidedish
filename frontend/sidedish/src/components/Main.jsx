@@ -64,15 +64,39 @@ const Main = () => {
           cardContainerPadding={CARD_CONTAINER_PADDING}
         />
         <DivisionLine height="1px" color="#EBEBEB" />
-        <SubTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SubTitle>
-        <Carousel
-          cardClickState={cardClickState}
-          setCardClickState={setCardClickState}
-          carouselCards={carouselMockData.carouselCardData}
-          cardLength={CARD_LENGHTHS.SMALL}
-          cardCount={NUM_OF_CARD_ON_DISPLAY}
+        <CarouselContainer isVisible={true}>
+          <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
+          <Carousel
+            cardClickState={cardClickState}
+            setCardClickState={setCardClickState}
+            carouselCards={carouselMockData.carouselCardData}
+            cardLength={CARD_LENGHTHS.SMALL}
+            cardCount={NUM_OF_CARD_ON_DISPLAY}
             cardMargin={CARD_MARGIN}
-        />
+          />
+        </CarouselContainer>
+        <CarouselContainer isVisible={true}>
+          <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
+          <Carousel
+            cardClickState={cardClickState}
+            setCardClickState={setCardClickState}
+            carouselCards={carouselMockData.carouselCardData}
+            cardLength={CARD_LENGHTHS.SMALL}
+            cardCount={NUM_OF_CARD_ON_DISPLAY}
+            cardMargin={CARD_MARGIN}
+          />
+        </CarouselContainer>
+        <CarouselContainer isVisible={false}>
+          <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
+          <Carousel
+            cardClickState={cardClickState}
+            setCardClickState={setCardClickState}
+            carouselCards={carouselMockData.carouselCardData}
+            cardLength={CARD_LENGHTHS.SMALL}
+            cardCount={NUM_OF_CARD_ON_DISPLAY}
+            cardMargin={CARD_MARGIN}
+          />
+        </CarouselContainer>
         <Popup
           cardClickState={cardClickState}
           setCardClickState={setCardClickState}
@@ -124,14 +148,17 @@ const MainLnb = styled.li`
   border-bottom: ${(props) => (props.title === props.lnbState ? "black solid 1px" : "")};
 `;
 
-const SubTitle = styled.h1`
+const CarouselContainer = styled.div`
+  display: ${(props) => (props.isVisible ? "block" : "none")};
+`;
+
+const CarouselTitle = styled.h1`
   font-family: "Noto Sans KR";
   font-weight: 500;
   font-size: 24px;
   color: #333;
-  margin-top: 50px;
   margin-left: 80px;
-  padding-bottom: 40px;
+  padding: 56px 0 40px 0;
 `;
 
 export default Main;
