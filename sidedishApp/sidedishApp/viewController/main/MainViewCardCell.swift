@@ -89,14 +89,12 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
-    func setPropertiesValue(mainCard: MainCard) {
-        cardTitleLabel.text = mainCard.title
-        cardBodyLabel.text = mainCard.description
-        normalPriceLabel.text = mainCard.normalPrice
-        if let salePrice = mainCard.salePrice {
-            salePriceLabel.text = salePrice
-        }
-        if let badgeList = mainCard.badgeList {
+    func setPropertiesValue(dish: MainCard.Body) {
+        cardTitleLabel.text = dish.title
+        cardBodyLabel.text = dish.description
+        normalPriceLabel.text = dish.normalPrice
+        salePriceLabel.text = dish.salePrice
+        if let badgeList = dish.badgeList {
             if badgeList.contains("이벤트특가"),
                badgeList.contains("런칭특가") {
                 configureEventLabelAndBadgeLabelConstraint()

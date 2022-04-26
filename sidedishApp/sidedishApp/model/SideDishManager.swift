@@ -11,7 +11,7 @@ final class SideDishManager {
     
     static let identifier = "SideDishManager"
     
-    private(set) var mainDishes = [MainCard]()
+    private(set) var mainDishes: MainCard?
     private(set) var soupDishes = [MainCard]()
     private(set) var sideDishes = [MainCard]()
     
@@ -21,9 +21,9 @@ final class SideDishManager {
     
     func getMainDishes() {
         HTTPManager.requestGet(url: "https://api.codesquad.kr/onban/main") { data in
-            guard let mainDishes: [MainCard] = JSONConverter.decodeJsonArray(data: data) else { return }
+            guard let mainDishes: MainCard = JSONConverter.decodeJsonObject(data: data) else { return }
             
-            self.mainDishes.append(contentsOf: mainDishes)
+            self.mainDishes = mainDishes
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SideDishManager.identifier), object: self)
         }

@@ -12,35 +12,33 @@ class MainViewController: UIViewController {
     
     let sideDishManager = SideDishManager.shared
     
-//    private let factory = CardFactory()
-//    private var mainCards = [MainCard]()
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var dishCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.register(MainViewCardCell.self, forCellWithReuseIdentifier: MainViewCardCell.identifier)
-        self.collectionView.register(MainViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewHeader.identifier)
+        self.dishCollectionView.delegate = self
+        self.dishCollectionView.dataSource = self
+        self.dishCollectionView.register(MainViewCardCell.self, forCellWithReuseIdentifier: MainViewCardCell.identifier)
+        self.dishCollectionView.register(MainViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewHeader.identifier)
         
-        self.sideDishManager.getMainDishes()
+        addNotification()
+        print(sideDishManager.mainDishes)
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sideDishManager.mainDishes.count
+        return sideDishManager.mainDishes?.body.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCardCell.identifier, for: indexPath) as? MainViewCardCell else {
+        // main / soup / side 별로 분기처리 필요
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCardCell.identifier, for: indexPath) as? MainViewCardCell,
+              let dish = sideDishManager.mainDishes?.body[indexPath.item] else {
             return UICollectionViewCell()
         }
-        
-        let card = sideDishManager.mainDishes[indexPath.item]
-        cell.setPropertiesValue(mainCard: card)
+        cell.setPropertiesValue(dish: dish)
         return cell
     }
     
@@ -68,12 +66,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
 private extension MainViewController { // 내부 호출 전용
     func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.identifier), object: sideDishManager)
-        // self.sideDishManager.getMainDishes()
+        self.sideDishManager.getMainDishes()
     }
     
     @objc func setMainDish() {
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.dishCollectionView.reloadData()
+            print("비동기")
         }
     }
 }
