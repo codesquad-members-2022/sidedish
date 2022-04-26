@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Logo } from "@/components/atoms/Logo/Logo.jsx";
 import { Icons } from "@/components/molecules/Icons/Icons.jsx";
-import { Nav } from "@/components/organisms/Nav/Nav.jsx";
+import { HeaderNav } from "@/components/organisms/HeaderNav/HeaderNav.jsx";
 
 import "./Header.scss";
 
@@ -14,7 +14,7 @@ export function Header() {
       }}
     >
       <Logo />
-      <Nav isShown={isShown} setIsShown={setIsShown} />
+      <HeaderNav isShown={isShown} setIsShown={setIsShown} />
       <Icons />
     </header>
   );
