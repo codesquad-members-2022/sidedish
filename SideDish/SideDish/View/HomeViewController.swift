@@ -35,7 +35,6 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("number of section: \(model.isEmpty)")
         return model[section].count
     }
 
@@ -47,7 +46,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 }
         // TODO: - 팩토리 메서드 패턴으로, 셀.configure
         cell.configure(with: model[indexPath.section][indexPath.item])
-        print("Cell for item: \(model.isEmpty)")
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {

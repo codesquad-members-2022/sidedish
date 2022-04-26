@@ -16,7 +16,7 @@ final class CellFactory: CellFactoryProtocol {
     }
 
     func fetchData() {
-        let allCases: [ProductSort] = ProductSort.allCases
+        let allCases = ProductSort.allCases
         allCases.forEach { sort in
             self.repository.fetchInfo(sort: sort) { [weak self] result in
                 switch result {

@@ -21,11 +21,11 @@ class DishCell: UICollectionViewCell {
         thumbNailImageView.image = product.image
         titleLabel.text = product.title
         descriptionLabel.text = product.description
-        finalPriceLabel.text = "\(product.salePrice)원"
+        finalPriceLabel.text = product.salePrice
         normalPriceLabel.text = ""
         if let normalPrice = product.normalPrice {
             let attributedStyle = NSUnderlineStyle.single
-            let attributedString = NSMutableAttributedString(string: "\(normalPrice)원")
+            let attributedString = NSMutableAttributedString(string: normalPrice)
             attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle,
                                           value: attributedStyle.rawValue,
                                           range: NSRange(0..<attributedString.length))

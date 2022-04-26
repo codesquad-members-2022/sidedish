@@ -42,7 +42,6 @@ class DetailViewController: UIViewController {
                 self.detailView.titleLabel.text = self.viewModel?.title
                 self.detailView.descriptionLabel.text = self.viewModel?.description
                 self.detailView.finalPriceLabel.text = self.viewModel?.finalPrice
-                self.detailView.normalPriceLabel.text = self.viewModel?.normalPrice
                 self.detailView.pointLabel.text = self.viewModel?.point
                 self.detailView.shippingInfoLabel.text = self.viewModel?.deliveryInfo
                 self.detailView.shippingFeeLabel.text = self.viewModel?.deliveryFee
