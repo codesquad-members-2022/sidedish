@@ -1,6 +1,5 @@
 package com.example.sidedish.ui
 
-import android.graphics.Paint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +7,9 @@ import androidx.databinding.DataBindingUtil
 import com.example.sidedish.R
 import com.example.sidedish.ui.common.ViewModelFactory
 import com.example.sidedish.databinding.ActivityProductDetailBinding
+import com.example.sidedish.model.PostRequest
 import com.example.sidedish.model.Products
+import com.example.sidedish.ui.common.ButtonState
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.loadProductDetail(loadProductId())
+        viewModel.postProductCount(makePostRequest())
 
         with(binding.viewpagerProductDetail) {
             adapter = ProductDetailImageAdapter().apply {
@@ -35,10 +37,27 @@ class ProductDetailActivity : AppCompatActivity() {
             TabLayoutMediator(binding.tabLayoutProductDetailIndicator, this) { tab, position ->
             }.attach()
         }
+
+        binding.ibCountPlus.setOnClickListener {
+            viewModel.setQuantity(ButtonState.PLUS)
+        }
+
+        binding.ibCountMinus.setOnClickListener {
+            viewModel.setQuantity(ButtonState.MINUS)
+        }
     }
 
     private fun loadProductId(): Int {
         products = intent.getSerializableExtra("product") as Products
         return products.productId
+    }
+
+    private fun makePostRequest(): PostRequest {
+        return PostRequest(
+            loadProductId(),
+            "abc",
+            binding.tvCount.text.toString().toInt(),
+            binding.tvTotalPrice.text.toString().toInt()
+        )
     }
 }

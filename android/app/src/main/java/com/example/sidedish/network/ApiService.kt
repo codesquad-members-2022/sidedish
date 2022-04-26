@@ -1,11 +1,11 @@
 package com.example.sidedish.network
 
 import com.example.sidedish.model.MenuData
+import com.example.sidedish.model.PostRequest
+import com.example.sidedish.model.PostResponse
 import com.example.sidedish.model.ProductDetail
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -24,4 +24,8 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("products/{productId}")
     suspend fun getProductDetail(@Path("productId") productId: Int): Response<ProductDetail>
+
+    @Headers("Content-Type: application/json")
+    @POST("orders")
+    suspend fun orderProduct(@Body postRequest: PostRequest): Response<PostResponse>
 }

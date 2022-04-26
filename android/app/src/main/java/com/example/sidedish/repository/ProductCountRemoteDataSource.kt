@@ -5,14 +5,13 @@ import com.example.sidedish.model.PostResponse
 import com.example.sidedish.model.ProductDetail
 import com.example.sidedish.network.RetrofitAPI
 
-class ProductDetailRemoteDataSource : ProductDetailDataSource {
-
+class ProductCountRemoteDataSource : ProductDetailDataSource {
     override suspend fun loadProductDetail(productId: Int): ProductDetail? {
-        val response = RetrofitAPI.service.getProductDetail(productId)
-        return if (response.isSuccessful) response.body() else null
+        return null
     }
 
     override suspend fun orderProduct(postRequest: PostRequest): PostResponse? {
-        return null
+        val response =  RetrofitAPI.service.orderProduct(postRequest)
+        return if (response.isSuccessful) return response.body() else null
     }
 }
