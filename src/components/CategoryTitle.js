@@ -25,7 +25,7 @@ const StyledSpan = styled.span`
 
 const StyledH2 = styled.h2`
   font-size: 35px;
-  font-weight: bolder;
+  font-weight: bold;
 `;
 
 const StyledH4 = styled.h4`

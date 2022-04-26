@@ -13,8 +13,8 @@ const Tab = ({ onClick }) => {
 
   return (
     <StyledTab onClick={onClick}>
-      {tabs.map(({ id, title }, idx) => (
-        <li key={idx} data-id={id}>
+      {tabs.map(({ id, title }) => (
+        <li key={id} id={id}>
           {title}
         </li>
       ))}

@@ -15,6 +15,7 @@ const App = () => {
 
   const getSideDishData = async (url, setData) => {
     const response = await fetchData(url);
+
     setData(response.data);
   };
 

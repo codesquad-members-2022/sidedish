@@ -9,11 +9,9 @@ const MainCard = ({ mainCardData }) => {
   const [tabId, setTabId] = useState(0);
 
   const handleClickTab = ({ target }) => {
-    const selectedItem = target.closest('li');
-    if (!selectedItem) return;
+    if (!target.id) return;
 
-    const selectedId = selectedItem.dataset.id;
-    setTabId(selectedId);
+    setTabId(target.id);
   };
 
   const startId = tabId === 0 ? 0 : tabId * 3;

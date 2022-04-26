@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const GnbItem = ({ title, contents }) => {
+const GnbItem = ({ title, contents, isHover }) => {
   return (
     <GnbTap>
       <GnbTitle>{title}</GnbTitle>
-      <GnbCategory>
+      <GnbCategory isHover={isHover}>
         {contents.map((content, idx) => (
-          <GnbContent key={idx}>{content}</GnbContent>
+          <GnbContent key={`${content}-${idx}`}>{content}</GnbContent>
         ))}
       </GnbCategory>
     </GnbTap>
@@ -23,7 +23,8 @@ const GnbTitle = styled.span`
 `;
 
 const GnbCategory = styled.ul`
-  display: none;
+  margin-top: 10px;
+  ${({ isHover }) => (isHover ? 'display: block' : 'display: none')};
 `;
 
 const GnbContent = styled.li`
