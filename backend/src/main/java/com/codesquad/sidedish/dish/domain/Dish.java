@@ -35,6 +35,9 @@ public class Dish {
     @MappedCollection(idColumn = "dish_id")
     private Set<DishDelivery> deliveries = new HashSet<>();
 
+    @MappedCollection(idColumn = "recommender_id")
+    private Set<RecommendRef> recommends = new HashSet<>();
+
     public Dish(Integer id, String title, String description, Integer price, Integer stock) {
         this.id = id;
         this.title = title;
@@ -53,6 +56,10 @@ public class Dish {
 
     private void setDeliveries(Set<DishDelivery> deliveries) {
         this.deliveries = deliveries;
+    }
+
+    public void setRecommends(Set<RecommendRef> recommends) {
+        this.recommends = recommends;
     }
 
     public int getDiscountPrice() {

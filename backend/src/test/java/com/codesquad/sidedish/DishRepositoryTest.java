@@ -4,6 +4,7 @@ package com.codesquad.sidedish;
 import com.codesquad.sidedish.dish.DishRepository;
 import com.codesquad.sidedish.dish.domain.Dish;
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class DishRepositoryTest {
     DishRepository dishRepository;
 
     @Test
-    @DisplayName("저장된 초기 데이터를 조회한다")
-    public void readTest() {
+    @DisplayName("저장된 초기 데이터를 모두 조회한다")
+    public void readAllTest() {
         List<Dish> sectionDishes = dishRepository.findBySectionName("든든한 메인요리");
 
         System.out.println("dishes = " + sectionDishes);
@@ -32,5 +33,13 @@ public class DishRepositoryTest {
         List<Dish> categoryDishes = dishRepository.findByCategoryName("국/탕/찌개");
 
         System.out.println("dishes = " + categoryDishes);
+    }
+
+    @Test
+    @DisplayName("저장된 초기 데이터를 1개 조회한다")
+    public void readOneTest() {
+        Optional<Dish> optional = dishRepository.findById(1);
+
+        System.out.println(optional);
     }
 }
