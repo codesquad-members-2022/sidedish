@@ -7,17 +7,17 @@
 
 import UIKit
 
-struct MenuInfoAttribute {
-    let stackViewSpacing: CGFloat
-    let titleFont: UIFont
-    let titleTextColor: UIColor
-    let discriptionFont: UIFont
-    let discriptionTextColor: UIColor
-    let priceFont: UIFont
-    let priceTextColor: UIColor
-    let salePriceFont: UIFont
-    let salePriceTextColor: UIColor
-    let badgeStackViewSpacing: CGFloat
+class MenuInfoAttribute {
+    var stackViewSpacing: CGFloat = 0
+    var titleFont: UIFont = .systemFont(ofSize: 15)
+    var titleTextColor: UIColor = .white
+    var discriptionFont: UIFont = .systemFont(ofSize: 15)
+    var discriptionTextColor: UIColor = .white
+    var priceFont: UIFont = .systemFont(ofSize: 15)
+    var priceTextColor: UIColor = .white
+    var salePriceFont: UIFont = .systemFont(ofSize: 15)
+    var salePriceTextColor: UIColor = .white
+    var badgeStackViewSpacing: CGFloat = 0
 }
 
 class MenuInfoView: UIView {

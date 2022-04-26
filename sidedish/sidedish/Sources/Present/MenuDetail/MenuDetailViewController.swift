@@ -41,12 +41,17 @@ class MenuDetailViewController: UIViewController {
     }()
     
     private let infoView: MenuInfoView = {
-        let attribute = MenuInfoAttribute(stackViewSpacing: 8,
-                                          titleFont: .systemFont(ofSize: 32, weight: .regular), titleTextColor: .black,
-                                          discriptionFont: .systemFont(ofSize: 14, weight: .regular), discriptionTextColor: .grey2,
-                                          priceFont: .systemFont(ofSize: 18, weight: .bold), priceTextColor: .grey1,
-                                          salePriceFont: .systemFont(ofSize: 16), salePriceTextColor: .grey2,
-                                          badgeStackViewSpacing: 4)
+        let attribute = MenuInfoAttribute()
+        attribute.stackViewSpacing = 8
+        attribute.titleFont = .systemFont(ofSize: 32, weight: .regular)
+        attribute.titleTextColor = .black
+        attribute.discriptionFont = .systemFont(ofSize: 14, weight: .regular)
+        attribute.discriptionTextColor = .grey2
+        attribute.priceFont = .systemFont(ofSize: 32, weight: .regular)
+        attribute.priceTextColor = .grey1
+        attribute.salePriceFont = .systemFont(ofSize: 16)
+        attribute.salePriceTextColor = .grey2
+        attribute.badgeStackViewSpacing = 4
         let view = MenuInfoView(attribute: attribute)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

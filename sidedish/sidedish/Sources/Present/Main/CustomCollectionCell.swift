@@ -22,12 +22,17 @@ class CustomCollectionCell: UICollectionViewCell {
     }()
     
     private let menuInfoView: MenuInfoView = {
-        let attribute = MenuInfoAttribute(stackViewSpacing: 4,
-                                          titleFont: .systemFont(ofSize: 15, weight: .bold), titleTextColor: .black,
-                                          discriptionFont: .systemFont(ofSize: 14, weight: .regular), discriptionTextColor: .grey2,
-                                          priceFont: .systemFont(ofSize: 14, weight: .bold), priceTextColor: .black,
-                                          salePriceFont: .systemFont(ofSize: 14), salePriceTextColor: .grey2,
-                                          badgeStackViewSpacing: 4)
+        let attribute = MenuInfoAttribute()
+        attribute.stackViewSpacing = 4
+        attribute.titleFont = .systemFont(ofSize: 15, weight: .bold)
+        attribute.titleTextColor = .black
+        attribute.discriptionFont = .systemFont(ofSize: 14, weight: .regular)
+        attribute.discriptionTextColor = .grey2
+        attribute.priceFont = .systemFont(ofSize: 14, weight: .bold)
+        attribute.priceTextColor = .black
+        attribute.salePriceFont = .systemFont(ofSize: 14)
+        attribute.salePriceTextColor = .grey2
+        attribute.badgeStackViewSpacing = 4
         let view = MenuInfoView(attribute: attribute)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
