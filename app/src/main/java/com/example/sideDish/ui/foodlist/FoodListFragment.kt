@@ -6,21 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
-import com.example.sideDish.common.ViewModelFactory
 import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class FoodListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: FoodListViewModel
+    private val viewModel by viewModels<FoodListViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,10 +29,6 @@ class FoodListFragment : Fragment() {
         val layout = inflater.inflate(R.layout.fragment_food_list, container, false)
         recyclerView = layout.findViewById(R.id.recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelFactory()
-        ).get(FoodListViewModel::class.java)
 
         return layout
     }

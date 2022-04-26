@@ -6,9 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sideDish.data.model.FoodDetail
 import com.example.sideDish.data.source.DetailRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FoodDetailViewModel(private val repository: DetailRepository) : ViewModel() {
+@HiltViewModel
+class FoodDetailViewModel @Inject constructor(
+    private val repository: DetailRepository
+) : ViewModel() {
     private val _detail = MutableLiveData<FoodDetail>()
     val detail: LiveData<FoodDetail> = _detail
 
