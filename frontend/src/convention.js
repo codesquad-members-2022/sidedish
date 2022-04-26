@@ -17,11 +17,15 @@ export const thumbnailSize = {
 export const cardNumPerPage = {
   large: 3,
   medium: 4,
-  small: 5
+  small: 5,
 };
 
 export const SIZES = {
   large: "large",
   medium: "medium",
   small: "small",
+};
+export const queries = {
+  category: (id) => `category_id=${id}`,
+  specialCategory: (id) => `special_category_id=${id}`,
 };

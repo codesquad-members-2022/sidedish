@@ -1,4 +1,4 @@
-import { useCategories, useSpecialCategories } from "./fetcher";
+import { useCategories, useFetch1, useSpecialCategories } from "./fetcher";
 import { Header } from "./components/Header";
 import { SpecialCategory } from "./components/SpecialCategory";
 import { Category } from "./components/Category";
@@ -12,27 +12,23 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${({ isOpen, theme }) => (isOpen ? theme.colors.Grey2 : "")}
-  opacity: ${({ isOpen }) => (isOpen ? 0.5 : 1)}
 `;
 
 const App = () => {
   const cats = useCategories();
   const specialCategories = useSpecialCategories();
-  const { openId, dispatch } = useContext(ModalContext);
+  const { openedId, setOpenedId } = useContext(ModalContext);
+
   return (
     <>
       {cats && specialCategories && (
-        <AppWrapper
-          isOpen={openId >= 0}
-          onClick={() => dispatch({ type: "close", openId: -1 })}
-        >
+        <AppWrapper isOpen={openedId >= 0} onClick={() => setOpenedId(-1)}>
           <Header cats={cats}></Header>
           <SpecialCategory
             specialCategories={specialCategories}
           ></SpecialCategory>
           <Category cats={cats}></Category>
-          <Modal id={openId} />
+          {openedId >= 0 && <Modal openId={openedId} />}
         </AppWrapper>
       )}
     </>

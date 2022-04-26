@@ -1,19 +1,10 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
-const reducer = {
-  table: {
-    open: (state, payload) => ({ openId: payload }),
-    close: (state, payload) => ({ openId: payload }),
-  },
-  mapper(state, { type, payload }) {
-    return this.table[type](state, payload);
-  },
-};
 export const ModalContext = createContext(null);
 export const ModalProvider = ({ children }) => {
-  const [{ openId }, dispatch] = useReducer(reducer.mapper, { openId: -1 });
+  const [openedId, setOpenedId] = useState(-1);
   return (
-    <ModalContext.Provider value={{ dispatch, openId }}>
+    <ModalContext.Provider value={{ openedId, setOpenedId }}>
       {children}
     </ModalContext.Provider>
   );
