@@ -36,7 +36,7 @@ const ModalInner = styled.div`
   position: relative;
   top: 50%;
   margin: 0 auto;
-  padding: 32px 48px;
+  padding: 32px 48px 0 48px;
   transform: translateY(-50%);
   background-color: #fff;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
