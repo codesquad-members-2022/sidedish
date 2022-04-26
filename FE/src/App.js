@@ -1,5 +1,5 @@
 import { Header } from "@/components/templates/Header/Header";
-import { Promotion } from "@/components/Promotion/Promotion";
+import { Promotion } from "@/components/templates/Promotion/Promotion";
 import "./App.scss";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div>
       <Header />
       <main>
-        <Promotion />
+        <Promotion dataID="1" />
       </main>
     </div>
   );
