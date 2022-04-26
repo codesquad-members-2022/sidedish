@@ -12,7 +12,7 @@ const CategoryProductsListWrapper = styled.ul`
 const MoreButton = styled.button`
   display: block;
   padding: 16px 24px;
-  margin: 56px auto 150px;
+  margin: 80px auto 150px;
   border: 1px solid ${Colors.PALE_GREY};
   color: ${Colors.DARK_GREY};
   transition: all 200ms;
@@ -29,15 +29,18 @@ const MoreButton = styled.button`
 
 export const CategoryProductsList = props => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
-  const [loadedCategoryProductsIdList, setloadedCategoryProductsIdList] = useState([]);
+  const [loadedCategoryProductsIdList, setLoadedCategoryProductsIdList] =
+    useState([]);
 
   const handleClickMoreButton = () => {
     setMoreButtonClicked(true);
-    const allCategoryProductsIdList = props.categoryList.map(category => category.id);
+    const allCategoryProductsIdList = props.categoryList.map(
+      category => category.id
+    );
     const unloadedCategoryProductsIdList = allCategoryProductsIdList.filter(
       id => !loadedCategoryProductsIdList.includes(id)
     );
-    setloadedCategoryProductsIdList([
+    setLoadedCategoryProductsIdList([
       ...loadedCategoryProductsIdList,
       ...unloadedCategoryProductsIdList,
     ]);
@@ -47,7 +50,7 @@ export const CategoryProductsList = props => {
     if (!props.categoryList.length) return;
     const firstCategoryIdx = 0;
     const firstCategoryId = props.categoryList[firstCategoryIdx].id;
-    setloadedCategoryProductsIdList([firstCategoryId]);
+    setLoadedCategoryProductsIdList([firstCategoryId]);
   }, [props.categoryList]);
 
   return (

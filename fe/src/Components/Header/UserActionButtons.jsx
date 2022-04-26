@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { IconFonts } from '@/Constants';
+
 const UserActionButtonsWrapper = styled.div`
   padding-top: 12px;
   display: flex;
@@ -10,35 +12,31 @@ const UserActionButtonsWrapper = styled.div`
   button:not(:last-child) {
     margin-right: 16px;
   }
-
-  img {
-    display: block;
-
-    &:hover {
-      opacity: 0.6;
-    }
-
-    &:active {
-      opacity: 0.3;
-    }
-  }
 `;
 
-const SEARCH_ICON = 'Search.svg';
-const MYPAGE_ICON = 'Mypage.svg';
-const CART_ICON = 'Shopping-cart.svg';
+const Icon = styled.i`
+  font-size: 24px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+`;
 
 export const UserActionButtons = () => {
   return (
     <UserActionButtonsWrapper>
       <button>
-        <img src={SEARCH_ICON} alt="검색" />
+        <Icon className={IconFonts.SEARCH} aria-label={'검색'} />
       </button>
       <button>
-        <img src={MYPAGE_ICON} alt="마이페이지" />
+        <Icon className={IconFonts.MY_PAGE} aria-label={'마이페이지'} />
       </button>
       <button>
-        <img src={CART_ICON} alt="장바구니" />
+        <Icon className={IconFonts.CART} aria-label={'장바구니'} />
       </button>
     </UserActionButtonsWrapper>
   );
