@@ -1,4 +1,4 @@
-package com.terria.sidedish.dto.response;
+package com.terria.sidedish.dto.response.exhibition;
 
 import com.terria.sidedish.domain.entity.aggregate.Exhibition;
 import io.swagger.annotations.ApiModel;

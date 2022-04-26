@@ -1,6 +1,6 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.dto.response.ExhibitionResponse;
+import com.terria.sidedish.dto.response.exhibition.ExhibitionResponse;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

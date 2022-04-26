@@ -1,8 +1,8 @@
 package com.terria.sidedish.service;
 
 import com.terria.sidedish.domain.entity.aggregate.Exhibition;
-import com.terria.sidedish.dto.response.CategoryResponse;
-import com.terria.sidedish.dto.response.ExhibitionResponse;
+import com.terria.sidedish.dto.response.exhibition.CategoryResponse;
+import com.terria.sidedish.dto.response.exhibition.ExhibitionResponse;
 import com.terria.sidedish.error.ExhibitionException;
 import com.terria.sidedish.repository.ExhibitionRepository;
 import lombok.RequiredArgsConstructor;

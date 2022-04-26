@@ -1,4 +1,4 @@
-package com.terria.sidedish.dto.response;
+package com.terria.sidedish.dto.response.sidedish;
 
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
 import io.swagger.annotations.ApiModel;

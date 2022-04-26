@@ -2,7 +2,6 @@ package com.terria.sidedish.dto.response.sidedish;
 
 import com.terria.sidedish.domain.entity.aggregate.SideDish;
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
-import com.terria.sidedish.dto.response.DiscountEventResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
