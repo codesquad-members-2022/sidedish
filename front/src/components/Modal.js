@@ -40,17 +40,16 @@ const PopupCloseButton = styled.button`
   color: #777777;
 `;
 
-function Modal({ dishes }) {
+function Modal({ dishes, hideModal }) {
   const relatedDishes = dishes.related_dishes;
-  const modal = useRef();
   function closeModal(e) {
     if (e.target !== e.currentTarget) {
       return;
     } // 질문해보기!
-    modal.current.style = 'display:none';
+    hideModal();
   }
   return (
-    <ModalWrap ref={modal} onClick={closeModal}>
+    <ModalWrap onClick={closeModal}>
       <PopupBox>
         <PopupCloseButtonWrap>
           <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>

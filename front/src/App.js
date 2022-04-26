@@ -146,16 +146,23 @@ const MainCategories = [
 
 function App() {
   const [alert, setAlert] = useState({ show: false, message: '' });
+  const [modal, setModal] = useState({ show: false, cardId: null });
   function showAlert(message) {
     setAlert({ show: true, message });
   }
   function hideAlert() {
     setAlert({ show: false, message: '' });
   }
+  function showModal(cardId) {
+    setModal({ show: true, cardId });
+  }
+  function hideModal() {
+    setModal({ show: false, cardId: null });
+  }
   return (
     <div className="App">
       <GlobalStyles></GlobalStyles>
-      <Modal dishes={dishes}></Modal>
+      {modal.show && <Modal dishes={dishes} hideModal={hideModal} cardId={modal.cardId}></Modal>}
       <Header categories={categories}></Header>
       <Event></Event>
       <Main categories={MainCategories}></Main>
