@@ -1,0 +1,142 @@
+{
+  "1": [
+    {
+      "id": 1,
+      "item_name": "오리 주물럭",
+      "description": "맛있는 오리고기와 오징어의 조합",
+      "or_price": 15800,
+      "dc_price": 12640,
+      "label_id": 1,
+      "main_image": "https://user-images.githubusercontent.com/92678171/164159697-1c8ef07a-141e-464b-b4e5-bb73e2119535.png",
+      "delivery_id": 3,
+      "best_id": 1
+    },
+    {
+      "id": 1,
+      "item_name": "소갈비찜",
+      "description": "맛있는 소갈비와 양념의 조합",
+      "or_price": 28900,
+      "dc_price": 26010,
+      "label_id": 2,
+      "main_image": "https://user-images.githubusercontent.com/92678171/164163185-ca08cdbc-3b24-4628-ae97-516f4d721c8d.png",
+      "delivery_id": 3,
+      "best_id": 1
+    },
+    {
+      "id": 1,
+      "item_name": "쭈꾸미 한돈 제육볶음",
+      "description": "쭈꾸미와 한돈의 조합",
+      "or_price": 16900,
+      "dc_price": null,
+      "label_id": 3,
+      "main_image": "https://user-images.githubusercontent.com/92678171/164163448-948d6b95-8e42-46fb-8e3c-87e84de729a7.png",
+      "delivery_id": 3,
+      "best_id": 1
+    }
+  ],
+  "2": [
+    {
+      "id": 3,
+      "item_name": "호두 멸치볶음",
+      "description": "잡멸치와 호두가 만나 짭쪼롬하지만 고소하지",
+      "or_price": 5800,
+      "dc_price": 5220,
+      "label_id": 2,
+      "main_image": "https://user-images.githubusercontent.com/92678171/164161461-6f47d7e2-51ed-4e27-b6e6-4a146ac917ed.png",
+      "delivery_id": 2,
+      "best_id": 2
+    },
+    {
+      "id": 6,
+      "item_name": "야채 어묵볶음",
+      "description": "어묵과 야채가 볶음으로 만났다.",
+      "or_price": 5000,
+      "dc_price": 4500,
+      "label_id": 2,
+      "main_image": "https://user-images.githubusercontent.com/92678171/164164522-3cf2262a-74be-4f9c-b160-6700805a576d.png",
+      "delivery_id": 2,
+      "best_id": 2
+    },
+    {
+      "id": 7,
+      "item_name": "새콤달콤 오징어무침",
+      "description": "새콤달콤보다 더 새콤달콤한 오징어무침",
+      "or_price": 6000,
+      "dc_price": 4800,
+      "label_id": 1,
+      "main_image": "https://user-images.githubusercontent.com/92678171/164165013-061b0f0c-4f5c-4417-aab2-74457163ad68.png",
+      "delivery_id": 2,
+      "best_id": 2
+    }
+  ],
+  "3": [
+    {
+      "id": 8,
+      "item_name": "달래장",
+      "description": "간장게장 뺨치는 밥도둑",
+      "or_price": 4000,
+      "dc_price": null,
+      "label_id": 3,
+      "main_image": "http://zipbanchan.godohosting.com/detail_page/8_muchim/707_ZIP_P_5057_S.jpg",
+      "delivery_id": 2,
+      "best_id": 3
+    },
+    {
+      "id": 9,
+      "item_name": "미나리 무침",
+      "description": "향긋하고 고소한 봄나물",
+      "or_price": 4800,
+      "dc_price": null,
+      "label_id": 3,
+      "main_image": "https://zipbanchan.godohosting.com/detail_page/8_muchim/682_ZIP_P_5055_S.jpg",
+      "delivery_id": 2,
+      "best_id": 3
+    },
+    {
+      "id": 10,
+      "item_name": "새콤달콤 유채나물무침",
+      "description": "새콤달콤보다 더 새콤달콤한 유채나물무침",
+      "or_price": 4800,
+      "dc_price": 4320,
+      "label_id": 2,
+      "main_image": "http://zipbanchan.godohosting.com/detail_page/8_muchim/1330_ZIP_P_5117_S.jpg",
+      "delivery_id": 2,
+      "best_id": 3
+    }
+  ],
+  "4": [
+    {
+      "id": 11,
+      "item_name": "새콤 오이무생채",
+      "description": "아이들이 먹기 좋은 깔끔한 무생채",
+      "or_price": 3500,
+      "dc_price": null,
+      "label_id": 3,
+      "main_image": "http://zipbanchan.godohosting.com/detail_page/5_kid/1422_ZIP_P_5150_S.jpg",
+      "delivery_id": 1,
+      "best_id": 4
+    },
+    {
+      "id": 12,
+      "item_name": "아이들 된장국",
+      "description": "아이들도 먹기 좋은 맵지 않은 된장국",
+      "or_price": 8800,
+      "dc_price": 7920,
+      "label_id": 2,
+      "main_image": "http://zipbanchan.godohosting.com/detail_page/5_kid/561_ZIP_P_1026_S.jpg",
+      "delivery_id": 3,
+      "best_id": 4
+    },
+    {
+      "id": 13,
+      "item_name": "계란말이",
+      "description": "두툼하고 부드러운 계란말이",
+      "or_price": 5800,
+      "dc_price": 5220,
+      "label_id": 2,
+      "main_image": "http://zipbanchan.godohosting.com/detail_page/5_kid/346_ZIP_P_3021_S.jpg",
+      "delivery_id": 3,
+      "best_id": 4
+    }
+  ]
+}
