@@ -1,7 +1,8 @@
-package com.terria.sidedish.dto.response;
+package com.terria.sidedish.dto.response.sidedish;
 
 import com.terria.sidedish.domain.entity.aggregate.SideDish;
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
+import com.terria.sidedish.dto.response.DiscountEventResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,6 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 public class SideDishCardResponse {
-
 
     @ApiModelProperty(required = true, value = "반찬 아이디")
     private long sideDishId;

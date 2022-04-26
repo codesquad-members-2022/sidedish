@@ -1,7 +1,8 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.dto.response.SideDishCardResponse;
-import com.terria.sidedish.dto.response.SideDishDetailResponse;
+import com.terria.sidedish.dto.response.sidedish.SideDishCardResponse;
+import com.terria.sidedish.dto.response.sidedish.SideDishCardResponses;
+import com.terria.sidedish.dto.response.sidedish.SideDishDetailResponse;
 import com.terria.sidedish.service.SideDishService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Positive;
-import java.util.List;
 
 @Api(tags = "SideDishController")
 @Validated
@@ -41,12 +41,11 @@ public class SideDishController {
             )
     })
     @GetMapping("/category/{categoryId}")
-    public List<SideDishCardResponse> getAllByCategoryId(
+    public SideDishCardResponses getAllByCategoryId(
             @PathVariable
             @Positive(message = "카테고리 아이디 입력값이 부적절합니다.") long categoryId) {
 
-        // TODO
-        return null;
+        return sideDishService.getAllByCategoryId(categoryId);
     }
 
     @ApiOperation(
