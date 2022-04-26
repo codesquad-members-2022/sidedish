@@ -9,10 +9,8 @@ import javax.inject.Inject
 class ProductOrderRepositoryImpl @Inject constructor(
     private val orderRemoteDataSource: OrderRemoteDataSource,
 ) : OrderRepository {
-    override suspend fun saveOrder(order: Order): Result<String> {
-        return kotlin.runCatching {
-            orderRemoteDataSource.saveOrder(order.toOrderDto())
-        }
+    override suspend fun saveOrder(order: Order): String {
+        return orderRemoteDataSource.saveOrder(order.toOrderDto())
     }
 
 }
