@@ -11,7 +11,7 @@ final class DishDetailViewModel {
     private(set) var description = ""
     private(set) var finalPrice = ""
     private(set) var normalPrice: String?
-    private(set) var discountType: [DiscountType] = []
+    private(set) var discountType: [DiscountType]?
     private(set) var point = ""
     private(set) var deliveryInfo = ""
     private(set) var deliveryFee = ""
@@ -21,7 +21,8 @@ final class DishDetailViewModel {
     var onUpdateWithTopImages: () -> Void = {}
     var onUpdateWithDetailImages: () -> Void = {}
 
-    init(detailHash: String, repository: DishDetailRepository) {
+    init(title: String, detailHash: String, repository: DishDetailRepository) {
+        self.title = title
         self.detailHash = detailHash
         self.repository = repository
     }
@@ -68,5 +69,9 @@ final class DishDetailViewModel {
                 self.onUpdate()
             }
         }
+    }
+
+    func setDiscountType(_ discountType: [DiscountType]) {
+        self.discountType = discountType
     }
 }

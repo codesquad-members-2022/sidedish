@@ -54,6 +54,18 @@ class DetailViewController: UIViewController {
                                                   range: NSRange(0..<attributedString.length))
                     self.detailView.normalPriceLabel.attributedText = attributedString
                 }
+                
+                if let discountType = self.viewModel?.discountType {
+                    self.detailView.badgeStackView.isHidden = false
+                    discountType.forEach {
+                        switch $0 {
+                            case .event:
+                                self.detailView.eventBadgeLabel.isHidden = false
+                            case .launching:
+                                self.detailView.launchingBadgeLabel.isHidden = false
+                        }
+                    }
+                }
             }
         }
 

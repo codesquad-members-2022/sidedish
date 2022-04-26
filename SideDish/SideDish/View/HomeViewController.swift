@@ -72,8 +72,15 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     // MARK: - Cell 이 클릭되게 만듦
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let detailHash = model[indexPath.section][indexPath.item].hash
-        let dishDetailViewModel = DishDetailViewModel(detailHash: detailHash, repository: DishDetailRepository())
+        let targetDish = model[indexPath.section][indexPath.item]
+        let dishTitle = targetDish.title
+        let detailHash = targetDish.hash
+        let dishDetailViewModel = DishDetailViewModel(title: dishTitle,
+                                                      detailHash: detailHash,
+                                                      repository: DishDetailRepository())
+        if let discountType = targetDish.discountType {
+            dishDetailViewModel.setDiscountType(discountType)
+        }
         let nextViewController = DetailViewController(viewModel: dishDetailViewModel)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
