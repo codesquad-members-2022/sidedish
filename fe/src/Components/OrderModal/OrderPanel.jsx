@@ -9,7 +9,7 @@ const OrderPanelWrapper = styled.div`
   flex-direction: column;
   background-color: beige;
   position: relative;
-
+  display: none;
   width: 960px;
 `;
 
