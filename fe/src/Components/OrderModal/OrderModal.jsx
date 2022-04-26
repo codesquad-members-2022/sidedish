@@ -6,6 +6,8 @@ import { Colors, Fonts } from '@/Constants';
 import { ProductInfo } from './ProductInfo';
 import { ProductThumbnail } from './ProductThumbnail';
 
+import { OrderButton } from '@/Components/Button';
+
 const ModalBackGround = styled.div`
   position: fixed;
   display: flex;
@@ -44,21 +46,6 @@ const SelectedProduct = styled.section`
   margin-top: 76px;
 `;
 
-const OrderButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  background-color: black;
-  color: white;
-
-  position: absolute;
-  width: 440px;
-  height: 58px;
-  right: 0px;
-  bottom: 20px;
-`;
-
 const RelatedProduct = styled.div``;
 
 const CloseButton = styled.button`
@@ -77,6 +64,10 @@ export const OrderModal = () => {
     setModalOpen(false);
   }
 
+  function OrderButtonEvent() {
+    console.log('test OK');
+  }
+
   return (
     <ModalBackGround ModalOpen={ModalOpen}>
       <OrderModalWrapper>
@@ -92,7 +83,7 @@ export const OrderModal = () => {
 
           <ProductInfo />
 
-          <OrderButton>주문하기</OrderButton>
+          <OrderButton ContentsText={'주문하기'} onClick={OrderButtonEvent} />
         </SelectedProduct>
 
         <RelatedProduct></RelatedProduct>
