@@ -39,9 +39,18 @@ final class DetailViewController: UIViewController {
         detailScrollView.mainInfoStackView.setBadges(by: menu.badge)
     }
     
-    func setSubInfo(by menuDetail: MenuDetail) {
+    private func setSubInfo(by menuDetail: MenuDetail) {
         let descriptions = [menuDetail.point, menuDetail.delivery_info, menuDetail.delivery_fee]
         detailScrollView.subInfoStackView.setSubInfoDescription(by: descriptions)
+        
+        guard let price = menuDetail.prices.last else { return }
+        detailScrollView.setPrice(text: price)
+    }
+    
+    func setDetailView(by menuDetail: MenuDetail) {
+        setSubInfo(by: menuDetail)
+        detailScrollView.setThumbNail(images: menuDetail.thumb_images)
+        detailScrollView.setRecipe(images: menuDetail.detail_section)
     }
 }
 
