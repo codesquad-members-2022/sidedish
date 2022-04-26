@@ -5,6 +5,7 @@ import Tab from "./component/Tab/Tab";
 import SubTitle from "./component/SubTitle/SubTitle";
 import Slides from "./component/bottom/Slides";
 import GlobalStyle from "./style/globalStyle";
+import Modal from "./component/modal/Modal.js";
 
 const Container = styled.div`
   width: 1440px;
@@ -21,6 +22,7 @@ function App() {
           <Tab />
           <Slides />
         </Container>
+        <Modal />
       </ThemeProvider>
     </>
   );
