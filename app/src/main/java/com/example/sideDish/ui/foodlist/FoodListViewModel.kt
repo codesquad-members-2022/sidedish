@@ -4,13 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.sideDish.common.Event
 import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.data.source.FoodRemoteRepository
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class FoodListViewModel(private val remoteRepository: FoodRemoteRepository) : ViewModel() {
     private val _openDetail = MutableLiveData<Event<Boolean>>()
@@ -55,49 +55,44 @@ class FoodListViewModel(private val remoteRepository: FoodRemoteRepository) : Vi
         else count - 1
     }
 
-    fun updateItems(category: FoodCategory) {
-        viewModelScope.launch {
-            val tempItems = _items.value?.toMutableList() ?: mutableListOf()
-            val newItems = when (category) {
-                FoodCategory.MAIN -> {
-                    getMainItems()
-
+    suspend fun updateItems(category: FoodCategory) {
+        val newItems: List<Item> =
+            withContext(Dispatchers.IO) {
+                when (category) {
+                    FoodCategory.MAIN -> getMainItems()
+                    FoodCategory.SOUP -> getSoupItems()
+                    FoodCategory.SIDE -> getSideItems()
                 }
-                FoodCategory.SOUP -> getSoupItems()
-                FoodCategory.SIDE -> getSideItems()
-            } ?: return@launch
+            } ?: kotlin.run { return }
 
-            var sectionIndex = -1
-            tempItems.forEachIndexed { itemIndex, item ->
-                when (item) {
-                    is Item.Section -> {
-                        if (item.category == category) {
-                            sectionIndex = itemIndex
-                            return@forEachIndexed
-                        }
-                    }
-                    else -> {}
-                }
-            }
+        val tempItems = _items.value?.toMutableList() ?: mutableListOf()
 
-            if (sectionIndex == -1) {
-                tempItems.addAll(newItems)
-            } else {
-                var removedIndex = 0
-                for (index in sectionIndex + 1 until tempItems.size) {
-                    when (tempItems[index]) {
-                        is Item.Section -> break
-                        else -> removedIndex++
+        var sectionIndex = -1
+        tempItems.forEachIndexed { itemIndex, item ->
+            when (item) {
+                is Item.Section -> {
+                    if (item.category == category) {
+                        sectionIndex = itemIndex
+                        return@forEachIndexed
                     }
                 }
-                tempItems.removeAll(tempItems.slice(sectionIndex..sectionIndex + removedIndex))
-                tempItems.addAll(sectionIndex, newItems)
+                else -> {}
             }
-
-            _items.value = tempItems.toList()
         }
 
+        if (sectionIndex == -1) {
+            tempItems.addAll(newItems)
+        } else {
+            var removedIndex = 0
+            for (index in sectionIndex + 1 until tempItems.size) {
+                when (tempItems[index]) {
+                    is Item.Section -> break
+                    else -> removedIndex++
+                }
+            }
+            tempItems.removeAll(tempItems.slice(sectionIndex..sectionIndex + removedIndex))
+            tempItems.addAll(sectionIndex, newItems)
+        }
+        _items.value = tempItems.toList()
     }
-
-
 }

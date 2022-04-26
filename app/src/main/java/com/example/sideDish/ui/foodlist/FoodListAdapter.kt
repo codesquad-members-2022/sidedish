@@ -35,7 +35,6 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
         fun bind(foodInfo: Item.FoodInfo) = with(binding) {
             binding.foodInfo = foodInfo
             binding.viewmodel = viewModel
-//            executePendingBindings()
         }
     }
 
@@ -83,7 +82,7 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
         }
     }
 
-    fun updateCategoryItems(category: FoodCategory) {
+    suspend fun updateCategoryItems(category: FoodCategory) {
         viewModel.updateItems(category)
     }
 }

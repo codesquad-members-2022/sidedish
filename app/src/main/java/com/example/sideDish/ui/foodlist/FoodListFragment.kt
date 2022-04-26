@@ -1,12 +1,15 @@
 package com.example.sideDish.ui.foodlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
@@ -14,6 +17,10 @@ import com.example.sideDish.common.EventObserver
 import com.example.sideDish.common.ViewModelFactory
 import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class FoodListFragment : Fragment() {
 
@@ -44,9 +51,11 @@ class FoodListFragment : Fragment() {
             adapter.submitList(it)
         }
 
-        adapter.updateCategoryItems(FoodCategory.MAIN)
-        adapter.updateCategoryItems(FoodCategory.SOUP)
-        adapter.updateCategoryItems(FoodCategory.SIDE)
+        viewLifecycleOwner.lifecycleScope.launch() {
+            launch { adapter.updateCategoryItems(FoodCategory.MAIN) }.join()
+            launch { adapter.updateCategoryItems(FoodCategory.SOUP) }.join()
+            launch { adapter.updateCategoryItems(FoodCategory.SIDE) }.join()
+        }
 
         viewModel.openDetail.observe(viewLifecycleOwner, EventObserver {
             openDetail()
