@@ -13,6 +13,9 @@ public class OrderItemDto {
     @Schema(description = "구매 수량", example = "2")
     private Integer amount;
 
+    public OrderItemDto() {
+    }
+
     public OrderItemDto(Integer itemId, Integer userId, Integer amount) {
         this.itemId = itemId;
         this.userId = userId;
