@@ -1,3 +1,3 @@
 export const makePriceFormat = (priceString) => {
-  return (Number(priceString) || "").toLocaleString();
+  return priceString ? Number(priceString).toLocaleString() + "원" : "";
 };
