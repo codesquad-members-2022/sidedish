@@ -29,8 +29,7 @@ public class DishService {
         List<DishResponse> items = new ArrayList<>();
 
         dishRepository.findAll()
-            .iterator()
-            .forEachRemaining(dish -> {
+            .forEach(dish -> {
                 DishResponse dishResponse = dish.toDishResponse();
                 if (isEventDish(dish)) {
                     eventItems.add(dishResponse);
