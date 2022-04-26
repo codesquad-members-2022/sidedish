@@ -34,11 +34,17 @@ const ArrowIconStyle = {
 const ArrowLeftIcon = styled(ArrowLeft)`
   ${ArrowIconStyle};
   left: -36px;
+  path {
+    stroke: ${({ theme: { colors }, active }) => (active === 'true' ? colors.black : colors.gray3)};
+  }
 `;
 
 const ArrowRightIcon = styled(ArrowRight)`
   ${ArrowIconStyle};
   right: -36px;
+  path {
+    stroke: ${({ theme: { colors }, active }) => (active === 'true' ? colors.black : colors.gray3)};
+  }
 `;
 
 export { SliderWrapper, SliderTitle, SliderContainer, SliderList, ArrowLeftIcon, ArrowRightIcon };

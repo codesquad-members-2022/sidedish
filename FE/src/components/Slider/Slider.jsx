@@ -5,6 +5,8 @@ import { fetchData } from 'utils/utils';
 
 const Slider = () => {
   const [data, setData] = useState([]);
+  const [isLeftArrowActive, setIsLeftArrowActive] = useState(false);
+  const [isRightArrowActive, setIsRightArrowActive] = useState(false);
   const fetchTabData = async () => {
     const TEST_URL = `http://3.39.42.204:8080/api/dishes`;
     const data = await fetchData(TEST_URL);
@@ -19,8 +21,12 @@ const Slider = () => {
     <SliderWrapper>
       <SliderTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SliderTitle>
       <SliderContainer>
-        <ArrowLeftIcon />
-        <ArrowRightIcon />
+        <ArrowLeftIcon
+          active={isLeftArrowActive.toString()}
+        />
+        <ArrowRightIcon
+          active={isRightArrowActive.toString()}
+        />
         <SliderList>
           {data.map((v, i) => (
             <Card key={i} data={v} size="medium" />
