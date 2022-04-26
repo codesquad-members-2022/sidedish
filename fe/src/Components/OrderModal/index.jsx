@@ -1,1 +1,1 @@
-export { OrderPanel } from './OrderPanel';
+export { OrderModal } from './OrderModal';

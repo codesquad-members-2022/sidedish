@@ -90,7 +90,7 @@ export const ProductCard = ({
 }) => {
   const productImage = images[0];
   return (
-    <ProductCardWrapper data-id={id} size={size}>
+    <ProductCardWrapper size={size}>
       <ProductThumbnail imgUrl={productImage.url} morningDelivery={morningDelivery} />
       <Title className={Fonts.MD}>{title}</Title>
       <Description className={Fonts.SM}>{description}</Description>
