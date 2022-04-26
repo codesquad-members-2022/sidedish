@@ -9,25 +9,25 @@ const theme = {
     size: "small",
 };
 
-function SmallSidedish() {
+function SmallSidedish({ isVisible, section, title }) {
     const [items, setItems] = useState(null);
 
     useEffect(() => {
         try {
-            getData(API.DISH_SECTION + "정갈한-밑반찬", setItems);
+            getData(API.DISH_SECTION + section, setItems);
         } catch (error) {
             console.error(error);
         }
-    }, []);
+    }, [section]);
 
-    if (!items) {
+    if (!isVisible || !items) {
         return;
     }
 
     return (
         <ThemeProvider theme={theme}>
             <Container>
-                <Title>식탁을 풍성하게 하는 정갈한 밑반찬</Title>
+                <Title>{title}</Title>
                 <SidedishCards dishes={items.data}></SidedishCards>
             </Container>
         </ThemeProvider>
