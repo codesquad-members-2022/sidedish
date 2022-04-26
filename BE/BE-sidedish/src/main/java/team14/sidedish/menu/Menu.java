@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -71,11 +72,11 @@ public class Menu {
 		this.inventoryQuantity = inventoryQuantity;
 	}
 
-	public Long getMenuId() {
+	protected Long getMenuId() {
 		return menuId;
 	}
 
-	public BigDecimal getPrice() {
+	protected BigDecimal getPrice() {
 		return this.price;
 	}
 
@@ -89,6 +90,12 @@ public class Menu {
 
 	protected String getDefaultImage() {
 		return images.get(0).getUrl();
+	}
+
+	protected List<String> getImages() {
+		return images.stream()
+			.map(image -> image.getUrl())
+			.collect(Collectors.toList());
 	}
 }
 
