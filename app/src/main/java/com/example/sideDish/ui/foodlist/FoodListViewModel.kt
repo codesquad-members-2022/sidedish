@@ -6,11 +6,16 @@ import androidx.lifecycle.ViewModel
 import com.example.sideDish.common.Event
 import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.data.model.Item
-import com.example.sideDish.data.source.FoodRemoteRepository
+import com.example.sideDish.data.source.FoodRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class FoodListViewModel(private val remoteRepository: FoodRemoteRepository) : ViewModel() {
+@HiltViewModel
+class FoodListViewModel @Inject constructor(
+    private val remoteRepository: FoodRepository
+) : ViewModel() {
     private val _openDetail = MutableLiveData<Event<Boolean>>()
     val openDetail: LiveData<Event<Boolean>> = _openDetail
 

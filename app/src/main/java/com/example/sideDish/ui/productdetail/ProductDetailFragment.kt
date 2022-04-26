@@ -9,14 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
-import com.example.sideDish.common.ViewModelFactory
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
+@AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
-    val viewModel by viewModels<FoodDetailViewModel>{ViewModelFactory()}
+    private val viewModel by viewModels<FoodDetailViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
