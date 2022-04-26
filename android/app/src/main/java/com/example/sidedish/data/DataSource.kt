@@ -7,5 +7,5 @@ interface DataSource {
 
     suspend fun getMenuList(category: Int): Response<Item>
 
-    suspend fun getFoodDetail(hashId: String): Response<FoodDetail>
+    suspend fun getFoodDetail(id: Int): Response<MenuDetailDTO>
 }

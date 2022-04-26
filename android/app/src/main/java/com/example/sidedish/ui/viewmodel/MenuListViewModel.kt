@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sidedish.data.Menu
-import com.example.sidedish.data.Detail
 import com.example.sidedish.data.MenuListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -31,8 +30,8 @@ class MenuListViewModel @Inject constructor(
     private val _sideMenuList = MutableLiveData<List<Menu>>()
     val sideFoodList: LiveData<List<Menu>> = _sideMenuList
 
-    private val _selectedFoodDetail = MutableLiveData<Detail>()
-    val selectedFoodDetail: LiveData<Detail> get() = _selectedFoodDetail
+    private val _selectedFoodDetail = MutableLiveData<Menu>()
+    val selectedFoodDetail: LiveData<Menu> get() = _selectedFoodDetail
 
     private val _error = MutableLiveData<String>()
     val error = _error
@@ -75,7 +74,7 @@ class MenuListViewModel @Inject constructor(
         }
     }
 
-    fun loadFoodDetail(key: String) {
+    fun loadFoodDetail(key: Int) {
         val ceh = CoroutineExceptionHandler { _, _ ->
             error.value = "네트워크 연결 실패"
         }
@@ -106,17 +105,10 @@ class MenuListViewModel @Inject constructor(
     }
 
     private fun calculateTotalAmount() {
-        val regex = "[^0-9]".toRegex()
-        val priceString = _selectedFoodDetail.value?.prices?.get(0)
-        val convertedPrice = priceString?.replace(regex, "")?.toInt()
-        _detailPrice.value = convertedPrice ?: 0
-
         if (_count.value == 0) {
             _price.value = 0
         } else {
             _price.value = _detailPrice.value?.let { _count.value?.times(it) }
-            Log.d("ViewModel", "pricevalue ${_price.value}")
         }
     }
-
 }

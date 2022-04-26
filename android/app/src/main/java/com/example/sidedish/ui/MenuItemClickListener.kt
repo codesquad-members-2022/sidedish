@@ -1,5 +1,5 @@
 package com.example.sidedish.ui
 
 interface MenuItemClickListener {
-    fun itemClickCallback(key: String)
+    fun itemClickCallback(key: Int)
 }

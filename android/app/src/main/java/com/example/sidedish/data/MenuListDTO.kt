@@ -36,4 +36,4 @@ fun Item.changeData(): List<Menu> {
     return list
 }
 
-fun ItemX.changeData(): Menu = Menu(description, discountPoilcy, discountRate, id, mainImageLink, name, price)
+fun ItemX.changeData(): Menu = Menu(description, discountPoilcy, discountRate, id, mainImageLink, name, price, null)

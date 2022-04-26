@@ -43,7 +43,7 @@ abstract class MenuFragment: Fragment(), MenuItemClickListener {
         }
     }
 
-    override fun itemClickCallback(key: String) {
+    override fun itemClickCallback(key: Int) {
         viewModel.loadFoodDetail(key)
         findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
     }

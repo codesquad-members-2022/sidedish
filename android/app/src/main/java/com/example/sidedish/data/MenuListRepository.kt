@@ -7,8 +7,8 @@ import javax.inject.Singleton
 @Singleton
 class MenuListRepository @Inject constructor(private val dataSource: DataSource) {
 
-    suspend fun getSelectedFoodDetail(hashId: String): Detail? {
-        return dataSource.getFoodDetail(hashId).getBodyOrThrow()?.data
+    suspend fun getSelectedFoodDetail(id: Int): Menu? {
+        return dataSource.getFoodDetail(id).getBodyOrThrow()?.inputDTOToMenu()
     }
 
     suspend fun getMenuList(category: Int): List<Menu> {

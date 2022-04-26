@@ -16,7 +16,6 @@ import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.ItemHeaderBinding
 import com.example.sidedish.databinding.ItemMenuListBinding
 import com.example.sidedish.ui.MenuItemClickListener
-import java.lang.NullPointerException
 import java.text.DecimalFormat
 
 private const val HEADER = 0
@@ -112,7 +111,7 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
             }
 
             itemView.setOnClickListener {
-//                menu.id?.let { key -> listener.itemClickCallback(key) }
+                menu.id?.let { key -> listener.itemClickCallback(key) }
             }
         }
 
@@ -121,7 +120,7 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
                 tvBeforeCost.visibility = View.VISIBLE
                 tvBeforeCost.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 tvBeforeCost.text = setSalePrice(menu.discountRate, menu.price).toString()
-                setBadge(menu.discountPoilcy ?: "none")
+                setBadge(menu.discountPolicy ?: "none")
             }
         }
 

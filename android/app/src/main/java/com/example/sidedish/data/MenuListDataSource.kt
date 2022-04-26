@@ -13,5 +13,5 @@ class MenuListDataSource @Inject constructor(private val api: ApiClient) : DataS
         return d
     }
 
-    override suspend fun getFoodDetail(hashId: String) = api.getProductDetail(hashId)
+    override suspend fun getFoodDetail(id: Int) = api.getProductDetail(id)
 }
