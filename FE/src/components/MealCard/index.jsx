@@ -1,30 +1,30 @@
+import { DISCOUNT_TYPE } from "constants";
 import React from "react";
-import styled from "styled-components";
 import { getMealImage } from "utils";
+import { Card, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContainer, SpanDivider } from "./style";
 
-// TODO: style.js로 분리하기
-const MealCardStyled = styled.li`
-  display: flex;
-  flex-direction: column;
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-function MealCard({ mealInfo }) {
-  const { productName, description, event, fixedPrice, image, originalPrice } = mealInfo;
+const MealCard = ({ mealInfo }) => {
+  const { productName, description, event: discountType, fixedPrice, image, originalPrice } = mealInfo;
   return (
-    <MealCardStyled>
+    <Card>
       <img src={getMealImage(image)} alt={productName} />
-      <h4>{productName}</h4>
-      <p>{description}</p>
-      <div>
-        <span>{fixedPrice}</span>
-        <span>{originalPrice}</span>
-      </div>
-      <div>{event}</div>
-    </MealCardStyled>
+      <CardInfo>
+        <h4>{productName}</h4>
+        <p>{description}</p>
+        <PriceContainer>
+          <span>{fixedPrice}</span>
+          <span>{originalPrice}</span>
+        </PriceContainer>
+        {discountType && (
+          <DiscoutType isLaunchingDiscount={discountType === DISCOUNT_TYPE.launching}>{discountType}</DiscoutType>
+        )}
+      </CardInfo>
+      <DeliveryServiceHoverContainer>
+        <span>새벽배송</span>
+        <SpanDivider />
+        <span>전국택배</span>
+      </DeliveryServiceHoverContainer>
+    </Card>
   );
-}
+};
 export default MealCard;

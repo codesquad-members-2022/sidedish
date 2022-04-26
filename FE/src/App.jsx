@@ -3,6 +3,7 @@ import axios from "axios";
 import BestMealContainer from "components/BestMealContainer";
 import MealContainer from "components/MealContainer";
 import { MOCK_SERVER_URL } from "constants";
+import { MOCK_MAIN } from "constants";
 
 function App() {
   const [meals, setMeals] = useState({
@@ -16,13 +17,16 @@ function App() {
       if (status >= 400) {
         throw Error(`${status}: 데이터를 받아오는 도중 에러 발생`);
       }
-      console.log(data);
       setMeals({
         mealHeader: "식탁을 풍성하게 하는 정갈한 밑반찬",
         mealCards: data,
       });
     } catch (error) {
       console.error(error);
+      setMeals({
+        mealHeader: "식탁을 풍성하게 하는 정갈한 밑반찬",
+        mealCards: MOCK_MAIN,
+      });
     }
   }, []);
 

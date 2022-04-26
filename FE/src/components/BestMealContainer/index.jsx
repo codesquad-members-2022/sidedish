@@ -31,7 +31,7 @@ function BestMealContainer() {
 
   useEffect(() => {
     // 여기
-    fetchData();
+    // fetchData();
   }, []);
 
   const BestMealCards = () => meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />);
