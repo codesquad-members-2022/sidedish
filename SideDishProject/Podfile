@@ -8,7 +8,7 @@ target 'SideDishProject' do
   # Pods for SideDishProject
   
   pod 'SwiftLint'
-  pod 'Toaster'
+  pod 'Toaster' 
  
   target 'SideDishProjectTests' do
     inherit! :search_paths
