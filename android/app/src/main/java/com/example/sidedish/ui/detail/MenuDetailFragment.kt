@@ -47,10 +47,6 @@ class MenuDetailFragment : Fragment() {
             val imageList = mutableListOf<FoodImage>()
             with(binding) {
                 foodDetail = detail
-                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(0)?.imageLink).into(ivDetail1)
-                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(1)?.imageLink).into(ivDetail2)
-                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(2)?.imageLink).into(ivDetail3)
-
                 imageList.add(FoodImage(detail.mainImageLink!!))
                 imageList.add(FoodImage(detail.mainImageLink!!))
                 val adapter = ImageViewPagerAdapter().apply {
@@ -64,10 +60,6 @@ class MenuDetailFragment : Fragment() {
             lifecycleOwner = this@MenuDetailFragment
             menuViewModel = viewModel
         }
-    }
-
-    private fun insertImage(fragment: Fragment, menu: String, id: String) {
-        Glide.with(fragment).load(menu).into(binding.)
     }
 
 }

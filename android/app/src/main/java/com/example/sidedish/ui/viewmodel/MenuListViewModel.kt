@@ -44,6 +44,8 @@ class MenuListViewModel @Inject constructor(
 
     private val _detailPrice = MutableLiveData<Int>()
 
+    private val _discountRate = MutableLiveData<Int>()
+
     init {
         load()
         _count.value = 0
@@ -86,6 +88,7 @@ class MenuListViewModel @Inject constructor(
                 }
             }.onSuccess {
                 _selectedFoodDetail.value = it
+                _detailPrice.value = it.let { it?.price!!.times((100 - it.discountRate!!)).div(100)}
             }.onFailure {
                 throw NetworkErrorException("network error")
             }
