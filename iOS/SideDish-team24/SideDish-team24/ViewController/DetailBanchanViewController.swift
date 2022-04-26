@@ -25,6 +25,10 @@ class DetailBanchanViewController: UIViewController {
         self.layoutInnerView()
     }
     
+    func configure(title: String, description: String, price: String, listPrice: String?) {
+        self.banchanBrief.configure(title: title, description: description, price: price, listPrice: listPrice)
+    }
+    
 }
 
 private extension DetailBanchanViewController {

@@ -31,10 +31,14 @@ private extension BriefBanchanViewController {
         if recognizer.state == UIGestureRecognizer.State.ended {
             let tappedLocation = recognizer.location(in: self.briefBanchanList)
             guard let tappedIndexPath = self.briefBanchanList.indexPathForItem(at: tappedLocation) else { return }
-            guard let tappedCell = self.briefBanchanList.cellForItem(at: tappedIndexPath) as? BriefBanchanViewCell else { return }
+            print(tappedIndexPath)
+
+            guard let dish = tmp[tappedIndexPath.section][tappedIndexPath.item] else { return }
+            let dishViewModel = BanchanViewModel(dish: dish)
             
             guard let detailView = self.storyboard?.instantiateViewController(withIdentifier: "detailBanchanViewController") as? DetailBanchanViewController else { return }
-            detailView.title = "something"
+            detailView.title = dishViewModel.title
+            detailView.configure(title: dishViewModel.title, description: dishViewModel.description, price: dishViewModel.price, listPrice: dishViewModel.listPrice)
             self.navigationController?.pushViewController(detailView, animated: true)
         }
     }

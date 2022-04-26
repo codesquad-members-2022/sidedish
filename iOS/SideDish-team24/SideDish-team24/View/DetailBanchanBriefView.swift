@@ -11,8 +11,8 @@ class DetailBanchanBriefView: UIView {
     
     private var dishTitle: UILabel = UILabel.customLabel("요리 제목", .dishBlack, 32, 400, true)
     private var dishDescription: UILabel = UILabel.customLabel("감질맛 나는 요리 설명", .dishLightGrey, 18)
-    private var discountPrice: UILabel = UILabel.customLabel("12,640원", .dishBlack, 18, 600)
-    private var normalPrice: UILabel = UILabel.customLabel("15,800원", .dishLightGrey, 16)
+    private var price: UILabel = UILabel.customLabel("12,640원", .dishBlack, 18, 600)
+    private var listPrice: UILabel = UILabel.customLabel("", .dishLightGrey, 16)
     private var specialPrice: UILabel = UILabel.customBadge("특가 정보", .dishBlue)
     
     private var prices: UIStackView = UIStackView.customStackView(.horizontal, .fillEqually)
@@ -36,6 +36,13 @@ class DetailBanchanBriefView: UIView {
         self.layoutDishImage()
         self.layoutBreifStackView()
         self.layoutPriceStackView()
+    }
+    
+    func configure(title: String, description: String, price: String, listPrice: String?) {
+        self.dishTitle.text = title
+        self.dishDescription.text = description
+        self.price.text = price
+        self.listPrice.attributedText = listPrice?.strikeThrough()
     }
     
 }
@@ -66,8 +73,8 @@ private extension DetailBanchanBriefView {
     }
     
     func layoutPriceStackView() {
-        self.prices.addArrangedSubview(self.discountPrice)
-        self.prices.addArrangedSubview(self.normalPrice)
+        self.prices.addArrangedSubview(self.price)
+        self.prices.addArrangedSubview(self.listPrice)
         self.prices.addArrangedSubview(self.blank)
         
         NSLayoutConstraint.activate([
@@ -78,6 +85,6 @@ private extension DetailBanchanBriefView {
             self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()
+        self.listPrice.attributedText = self.listPrice.text?.strikeThrough()
     }
 }

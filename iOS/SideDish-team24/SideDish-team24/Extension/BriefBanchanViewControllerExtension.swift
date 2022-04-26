@@ -17,13 +17,11 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
         }
         if let targetDish: Dish = tmp[indexPath.section][indexPath.row] {
             let dishViewModel = BanchanViewModel(dish: targetDish)
-            let price = dishViewModel.price
             guard let special = dishViewModel.discountPolicy else { return UICollectionViewCell() }
-            
             
             cell.configure(title: dishViewModel.title, description: dishViewModel.description)
             cell.configure(specialBadge: special)
-            cell.configure(price: price, listPrice: nil)
+            cell.configure(price: dishViewModel.price, listPrice: dishViewModel.listPrice)
         }
         return cell
     }
