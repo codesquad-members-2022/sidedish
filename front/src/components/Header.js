@@ -51,6 +51,10 @@ const Icons = styled.div`
   display: flex;
 `;
 const SubCategory = styled.li`
+  &:hover {
+    color: #ff8e14;
+    text-decoration: underline;
+  }
   margin: 8px 0px;
 `;
 const Search = styled.img`
@@ -68,7 +72,6 @@ const ShoppingCart = styled.img`
 `;
 function Header({ categories }) {
   const [isSubCategoriesShown, setIsSubCategoriesShown] = useState(false);
-
   function showSubCategory() {
     setIsSubCategoriesShown(true);
   }
