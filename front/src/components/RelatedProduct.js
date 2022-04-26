@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import nextBlackBtnSrc from '../images/nextBlackBtn.svg';
 import prevBlackBtnSrc from '../images/prevBlackBtn.svg';
@@ -51,27 +51,46 @@ const Slash = styled(AllPage)``;
 
 const RelatedProductSlide = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
+  gap: 10px;
 `;
 function RelatedProduct({ relatedDishes, showModal }) {
+  const [curPage, setCurPage] = useState(1);
+  const showCardLength = 5;
+  const allPage = Math.floor(
+    relatedDishes.length % showCardLength === 0
+      ? relatedDishes.length / showCardLength
+      : relatedDishes.length / showCardLength + 1,
+  );
+  function moveSlideLeft() {
+    if (curPage > 1) setCurPage(curPage - 1);
+  }
+  function moveSlideRight() {
+    if (curPage < allPage) setCurPage(curPage + 1);
+  }
   return (
     <RelatedProductWrap>
       <TitleAndNavButtons>
         <Title>함께하면 더욱 맛있는 상품</Title>
         <NavButtons>
-          <PrevButton src={prevBlackBtnSrc}></PrevButton>
+          <PrevButton src={prevBlackBtnSrc} onClick={moveSlideLeft}></PrevButton>
           <PageInfo>
-            <CurrentPage>1</CurrentPage>
+            <CurrentPage>{curPage}</CurrentPage>
             <Slash>/</Slash>
-            <AllPage>2</AllPage>
+            <AllPage>{allPage}</AllPage>
           </PageInfo>
-          <NextButton src={nextBlackBtnSrc}></NextButton>
+          <NextButton src={nextBlackBtnSrc} onClick={moveSlideRight}></NextButton>
         </NavButtons>
       </TitleAndNavButtons>
       <RelatedProductSlide>
-        {relatedDishes.map(dish => (
-          <Card key={dish.id} size={'small'} item={dish} showModal={showModal}></Card>
-        ))}
+        {relatedDishes
+          .filter(
+            (_, index) =>
+              index >= (curPage - 1) * showCardLength && index <= (curPage - 1) * showCardLength + showCardLength - 1,
+          )
+          .map(dish => (
+            <Card key={dish.id} size={'small'} item={dish} showModal={showModal}></Card>
+          ))}
       </RelatedProductSlide>
     </RelatedProductWrap>
   );
