@@ -8,6 +8,13 @@ export const tagConvetion = {
     order: 2,
   },
 };
+
+export const cardGapLength = {
+  large: 24,
+  medium: 24,
+  small: 16
+}
+
 export const thumbnailSize = {
   large: 411,
   medium: 302,

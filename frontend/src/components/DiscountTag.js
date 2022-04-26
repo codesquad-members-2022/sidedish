@@ -21,7 +21,6 @@ export const TagItem = styled.li`
 `;
 
 export const TagWrapper = styled.ul`
-  margin-top: 16px;
   ${custom_flex("row", "flex-start")}
 `;
 

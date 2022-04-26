@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { ProductCard } from "./ProductCard";
-import { thumbnailSize } from "../convention";
+import { thumbnailSize, cardGapLength } from "../convention";
 import { width_height_bypx } from "../styles/global";
 
 const ShowingArea = styled.div`
@@ -18,7 +18,7 @@ const ProductCardsWrapper = styled.div`
   display: flex;
   transition: 0.4s ease-out;
   transform: ${({ cardSize, firstCardIndex }) =>
-    `translateX(-${firstCardIndex * (24 + thumbnailSize[cardSize])}px)`};
+    `translateX(-${firstCardIndex * (cardGapLength[cardSize] + thumbnailSize[cardSize])}px)`};
 `;
 
 export const CardList = ({ products, cardSize, firstCardIndex = 0 }) => {
