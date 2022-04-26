@@ -7,38 +7,45 @@
 
 import Foundation
 
-protocol EndPoint {
+protocol Endpoint {
     var url: URL? { get }
 }
 
-protocol JSONEndPoint {
+protocol JSONEndpoint {
     associatedtype DecodingType: Decodable
 }
 
-struct ProductEndPoint: EndPoint & JSONEndPoint {
-    typealias DecodingType = ProductsResponse
+struct ProductDetailEndPoint: Endpoint & JSONEndpoint {
+    typealias DecodingType = ProductDetailResponse
     private var components: URLComponents?
+    var url: URL? { components?.url }
 
-    var url: URL? {
-        components?.url
+    init(from hash: String) {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.codesquad.kr"
+        components.path = "/onban/detail/\(hash)"
+        self.components = components
     }
+ }
 
-    init(from type: ProductType) {
+struct CategoryEndpoint: Endpoint & JSONEndpoint {
+    typealias DecodingType = ProductsSummaryResponse
+    private var components: URLComponents?
+    var url: URL? { components?.url }
+
+    init(from type: CategoryType) {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.codesquad.kr"
         components.path = "/onban/\(type)"
         self.components = components
     }
-
 }
 
-struct ImageEndPoint: EndPoint {
+struct ImageEndPoint: Endpoint {
     private var components: URLComponents?
-
-    var url: URL? {
-        components?.url
-    }
+    var url: URL? { components?.url }
 
     init(url: URL) {
         self.components = URLComponents(url: url, resolvingAgainstBaseURL: false)

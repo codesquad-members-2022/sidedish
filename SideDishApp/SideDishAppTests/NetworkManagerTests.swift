@@ -44,7 +44,7 @@ class NetworkManagerTests: XCTestCase {
     func testNetworkManagerFetchProducts() throws {
         let promise = XCTestExpectation(description: "Fetch products success")
 
-        let endpoint = ProductEndPoint(from: .main)
+        let endpoint = CategoryEndpoint(from: .main)
         XCTAssertNotNil(endpoint.url)
 
         networkManager.fetch(endpoint) { data in

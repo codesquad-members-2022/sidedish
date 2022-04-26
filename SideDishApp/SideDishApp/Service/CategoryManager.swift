@@ -10,22 +10,27 @@ import Foundation
 struct CategoryManager {
     let networkManager = NetworkManager()
 
-    func fetchCategory(of type: ProductType, then completion: @escaping (Category?) -> Void) {
-        networkManager.fetchProducts(of: type) { products in
-            guard let products = products else { return completion(nil) }
-            completion(Category(product: products, type: type))
+    func fetchCategory(of type: CategoryType, then completion: @escaping (Category?) -> Void) {
+        let endpoint = EndpointFactory.make(categoryType: type)
+        networkManager.fetch(endpoint) { data in
+            guard let data = data else {
+                return completion(nil)
+            }
+            completion(Category(product: data.body, type: type))
         }
     }
 
     func fetchImageData(of url: URL, then completion: @escaping (Data?) -> Void) {
-        networkManager.fetchImageData(url: url) { data in
+        let endpoint = EndpointFactory.make(imageURL: url)
+        networkManager.fetch(endpoint) { data in
             completion(data)
         }
     }
 
     func fetchDetail(of hash: String, then completion: @escaping (ProductDetail?) -> Void) {
-        networkManager.fetchDetail(of: hash) { productDetail in
-            completion(productDetail)
+        let endpoint = EndpointFactory.make(detailHash: hash)
+        networkManager.fetch(endpoint) { productReponse in
+            completion(productReponse?.data)
         }
     }
 }

@@ -28,7 +28,7 @@ class CategoryManagerTests: XCTestCase {
     func testFetchImageData() {
 
         // Prepare Product to test fetch Image
-        var testProduct: Product?
+        var testProduct: ProductSummary?
 
         let fetchProductPromise = XCTestExpectation(description: "Fetch Product Success")
 

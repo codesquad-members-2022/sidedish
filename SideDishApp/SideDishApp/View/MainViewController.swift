@@ -44,7 +44,7 @@ class MainViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        ProductType.allCases.forEach({ type in
+        CategoryType.allCases.forEach({ type in
             guard let categoryVM = viewModel.categoryVMs[type] else {return}
             categoryVM.bind { _ in
                 DispatchQueue.main.async {
@@ -89,7 +89,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return HeaderView()
         }
 
-        let productType = ProductType.allCases[indexPath.section]
+        let productType = CategoryType.allCases[indexPath.section]
         header.setTitle(text: productType.title)
         return header
     }

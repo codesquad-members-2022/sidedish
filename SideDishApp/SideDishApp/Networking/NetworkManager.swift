@@ -8,10 +8,9 @@
 import Foundation
 import Alamofire
 
-
 struct NetworkManager {
 
-    func fetch<T: EndPoint & JSONEndPoint>(_ endpoint: T, completion: @escaping (T.DecodingType?) -> Void) {
+    func fetch<T: Endpoint & JSONEndpoint>(_ endpoint: T, completion: @escaping (T.DecodingType?) -> Void) {
         guard let url = endpoint.url else {
             SystemLog.fault(NetworkError.wrongEndPoint.localizedDescription)
             return completion(nil)
@@ -30,7 +29,7 @@ struct NetworkManager {
             }
     }
 
-    func fetch<T: EndPoint>(_ endpoint: T, completion: @escaping (Data?) -> Void) {
+    func fetch<T: Endpoint>(_ endpoint: T, completion: @escaping (Data?) -> Void) {
         guard let url = endpoint.url else {
             SystemLog.fault(NetworkError.wrongEndPoint.localizedDescription)
             return completion(nil)
