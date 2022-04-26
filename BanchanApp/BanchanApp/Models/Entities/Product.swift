@@ -11,8 +11,11 @@ struct Product: Codable {
 	let detailHash: String
 	let image: String
 	let alt: String
+	let title: String
 	let deliveryType: [String]
-	let title, productDescription, nPrice, sPrice: String
+	let productDescription: String
+	let nPrice: String?
+	let sPrice: String
 	let badge: [String]
 
 	enum CodingKeys: String, CodingKey {
