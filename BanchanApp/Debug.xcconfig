@@ -10,4 +10,4 @@
 
 #include "Pods/Target Support Files/Pods-BanchanApp/Pods-BanchanApp.debug.xcconfig"
 
-SERVER_URL = public.codesquad.kr
+SERVER_URL = api.codesquad.kr/onban
