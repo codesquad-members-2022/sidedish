@@ -25,6 +25,6 @@ public class DishController {
 
     @GetMapping("/{id}")
     public DishDetailResponse dishDetail(@PathVariable Long id) {
-        return new DishDetailResponse();
+        return dishService.dishDetail(id);
     }
 }

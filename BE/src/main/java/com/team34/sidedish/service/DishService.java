@@ -2,11 +2,13 @@ package com.team34.sidedish.service;
 
 import com.team34.sidedish.domain.Category;
 import com.team34.sidedish.domain.Dish;
+import com.team34.sidedish.dto.DishDetailResponse;
 import com.team34.sidedish.dto.DishResponse;
 import com.team34.sidedish.dto.DishesResponse;
 import com.team34.sidedish.repository.CategoryRepository;
 import com.team34.sidedish.repository.DishRepository;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -45,5 +47,14 @@ public class DishService {
             .map(categoryRepository::findById)
             .map(Optional::orElseThrow)
             .anyMatch(Category::isEvent);
+    }
+
+    public DishDetailResponse dishDetail(Long id) {
+        Dish dish = dishRepository.findById(id).orElseThrow();
+        List<Dish> dishes = dishRepository.findAll();
+        // TODO: 추천 아이템 로직 개선(다른 카테고리의 상품이 추천되도록)
+        Collections.shuffle(dishes);
+        List<Dish> recommendedDishes = dishes.subList(0, 10);
+        return dish.toDishDetailResponse(recommendedDishes);
     }
 }

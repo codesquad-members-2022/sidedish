@@ -1,5 +1,6 @@
 package com.team34.sidedish.domain;
 
+import com.team34.sidedish.dto.DishDetailResponse;
 import com.team34.sidedish.dto.DishResponse;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,6 +49,22 @@ public class Dish {
         );
     }
 
+    public DishDetailResponse toDishDetailResponse(List<Dish> recommendedDishes) {
+        return new DishDetailResponse(
+            price,
+            calculateDiscountPrice(),
+            deliveryFee,
+            mileageRate,
+            earlyDeliverable,
+            freeShippingAmount,
+            title,
+            content,
+            getImagePaths(),
+            tag,
+            recommendedDishes.stream().map(Dish::toDishResponse).collect(Collectors.toList())
+        );
+    }
+
     private int calculateDiscountPrice() {
         Badge badge = Badge.of(tag);
         return badge.calculateDiscountPrice(price);
@@ -62,6 +79,12 @@ public class Dish {
 
     private boolean isImageExist() {
         return images.size() > 0;
+    }
+
+    private List<String> getImagePaths() {
+        return images.stream()
+            .map(DishImage::getPath)
+            .collect(Collectors.toList());
     }
 
     @Override
