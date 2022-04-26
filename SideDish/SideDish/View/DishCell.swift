@@ -10,12 +10,14 @@ class DishCell: UICollectionViewCell {
     @IBOutlet weak var finalPriceLabel: UILabel!
     @IBOutlet weak var normalPriceLabel: UILabel!
     @IBOutlet weak var badgeView: UIView!
+    @IBOutlet weak var eventBadgeLabel: UILabel!
+    @IBOutlet weak var launchingBadgeLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    func configure(image: UIImage, title: String, description: String, finalPrice: Int, normalPrice: Int?, discountType: DiscountType?) {
+    func configure(image: UIImage, title: String, description: String, finalPrice: Int, normalPrice: Int?, discountType: [DiscountType]?) {
         thumbNailImageView.image = image
         titleLabel.text = title
         descriptionLabel.text = description
@@ -32,34 +34,20 @@ class DishCell: UICollectionViewCell {
             normalPriceLabel.attributedText = attributedString
         }
 
-        if let discountType = discountType,
-           let badgeLabel = badgeView.subviews.first as? UILabel {
+        if let discountType = discountType {
             badgeView.isHidden = false
-            badgeLabel.backgroundColor = discountType.labelColor
-            badgeLabel.text = discountType.description
-        }
-    }
-}
+            discountType.forEach {
+                switch $0 {
+                case .event:
+                    self.eventBadgeLabel.isHidden = false
+                case .launching:
+                    self.launchingBadgeLabel.isHidden = false
+                }
+            }
 
-enum DiscountType {
-    case event
-    case launching
-
-    var description: String {
-        switch self {
-        case .event:
-                return "이벤트특가"
-        case .launching:
-                return "런칭특가"
-        }
-    }
-
-    var labelColor: UIColor {
-        switch self {
-        case .event:
-                return UIColor.init(red: 0, green: 102/255, blue: 214/255, alpha: 1.0)
-        case .launching:
-                return UIColor.init(red: 128/255, green: 188/255, blue: 1, alpha: 1.0)
+            if self.eventBadgeLabel.isHidden == true && self.launchingBadgeLabel.isHidden == false {
+                self.launchingBadgeLabel.leadingAnchor.constraint(equalTo: self.badgeView.leadingAnchor).isActive = true
+            }
         }
     }
 }
