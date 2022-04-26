@@ -1,6 +1,7 @@
 import GlobalStyle from "./GlobalStyle";
 import Header from "./Header";
 import BigSidedish from "./BigSidedish";
+import SmallSidedish from "./SmallSidedish";
 
 function App() {
     return (
@@ -8,6 +9,7 @@ function App() {
             <GlobalStyle />
             <Header />
             <BigSidedish />
+            <SmallSidedish />
         </>
     );
 }
