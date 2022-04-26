@@ -17,13 +17,21 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var thirdSectionView: UIView!
     
     var selectedDish: MainCard.Body?
-    var detailDish: DetailCard?
+    var detailDish: DetailCard.Body.DetailCardData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
-        print("selected : \(selectedDish)")
-        print("detail : \(detailDish)")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "firstSection" {
+            guard let containerVC = segue.destination as? MainDescriptionViewController else { return }
+            containerVC.setLabelTexts(main: selectedDish, detail: detailDish)
+        } else if segue.identifier == "secondSection" {
+            guard let containerVC = segue.destination as? SubDescriptionViewController else { return }
+            containerVC.setLabelTexts(detail: detailDish)
+        }
     }
 }
 

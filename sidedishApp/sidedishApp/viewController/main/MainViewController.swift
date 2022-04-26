@@ -92,10 +92,9 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // 셀 아이템 선택 시
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-        guard let dish = self.sideDishManager.getDishFromSection(indexPath: indexPath) else { return }
+        guard let dish = self.sideDishManager.getDishFromSection(indexPath: indexPath), let detail = self.sideDishManager.getDetailDishFromHash(hash: dish.detailHash) else { return }
         detailVC.selectedDish = dish
-        sideDishManager.getDetailDish(hash: dish.detailHash)
-        detailVC.detailDish = sideDishManager.selectedDish
+        detailVC.detailDish = detail
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -112,6 +111,7 @@ private extension MainViewController {
         self.sideDishManager.getDishes(type: .main)
         self.sideDishManager.getDishes(type: .soup)
         self.sideDishManager.getDishes(type: .side)
+        self.sideDishManager.getDetailDish()
     }
     
     @objc func setMainDish() {

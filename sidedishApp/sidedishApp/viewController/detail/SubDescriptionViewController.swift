@@ -21,7 +21,6 @@ class SubDescriptionViewController: UIViewController {
     private lazy var pointText: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
-        label.text = "126원"
         label.textColor = UIColor.customColor(.grey1)
         label.font = UIFont.customFont(.sfRegularSubDescription)
         return label
@@ -39,7 +38,6 @@ class SubDescriptionViewController: UIViewController {
     private lazy var deliveryText: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
-        label.text = "서울 경기 새벽 배송, 전국 택배 배송"
         label.textColor = UIColor.customColor(.grey1)
         label.font = UIFont.customFont(.sfRegularSubDescription)
         return label
@@ -57,7 +55,6 @@ class SubDescriptionViewController: UIViewController {
     private lazy var chargeText: UILabel = {
         var label = UILabel()
         label.baselineAdjustment = .alignCenters
-        label.text = "2,500원 (40,000원 이상 구매 시 무료)"
         label.textColor = UIColor.customColor(.grey1)
         label.font = UIFont.customFont(.sfRegularSubDescription)
         return label
@@ -65,6 +62,15 @@ class SubDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func setLabelTexts(detail: DetailCard.Body.DetailCardData?) {
+        guard let detail = detail else { return }
+
+        pointText.text = detail.point
+        deliveryText.text = detail.deliveryInfo
+        chargeText.text = detail.deliveryFee
+        
         setAllProperties()
     }
 }
