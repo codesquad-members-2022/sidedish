@@ -14,10 +14,27 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         let informationStackView = UIStackView()
         informationStackView.axis = .vertical
         informationStackView.alignment = .leading
-        informationStackView.spacing = 5
         informationStackView.distribution = .fillEqually
         informationStackView.translatesAutoresizingMaskIntoConstraints = false
         return informationStackView
+    }()
+    private lazy var foodPriceStackView: UIStackView = {
+        let priceStackView = UIStackView()
+        priceStackView.axis = .horizontal
+        priceStackView.alignment = .leading
+        priceStackView.distribution = .fillEqually
+        priceStackView.translatesAutoresizingMaskIntoConstraints = false
+        return priceStackView
+    }()
+    
+    private lazy var foodBadgeStackView: UIStackView = {
+        let badgeStackView = UIStackView()
+        badgeStackView.axis = .horizontal
+        badgeStackView.alignment = .leading
+        badgeStackView.spacing = 5
+        badgeStackView.distribution = .fillEqually
+        badgeStackView.translatesAutoresizingMaskIntoConstraints = false
+        return badgeStackView
     }()
     
     private lazy var foodNameLabel: UILabel = {
@@ -42,6 +59,11 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         label.text = "푸드 정가 라벨"
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 17)
+        if let text = label.text {
+            let attributeString = NSMutableAttributedString(string: label.text ?? "해당없음")
+            attributeString.addAttributes([NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue], range: NSMakeRange(0, attributeString.length))
+            label.attributedText = attributeString
+        }
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,14 +77,51 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         return label
     }()
     
+    private lazy var badgeLaunchingLabel: UILabel = {
+        let label = UILabel()
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 8.0
+        label.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var badgeMainLabel: UILabel = {
+        let label = UILabel()
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 8.0
+        label.backgroundColor = UIColor(red: 0/255, green: 102/255, blue: 214/255, alpha: 1)
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var badgeEventLabel: UILabel = {
+        let label = UILabel()
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 8.0
+        label.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
     func addViews(){
         contentView.addSubview(foodImageView)
         contentView.addSubview(foodInformationStackView)
+        contentView.addSubview(foodPriceStackView)
+        contentView.addSubview(foodBadgeStackView)
         foodInformationStackView.addArrangedSubview(foodNameLabel)
         foodInformationStackView.addArrangedSubview(foodDescriptionLabel)
-        foodInformationStackView.addArrangedSubview(foodNormalPriceLabel)
-        foodInformationStackView.addArrangedSubview(foodSpecialPriceLabel)
-
+        foodPriceStackView.addArrangedSubview(foodSpecialPriceLabel)
+        foodPriceStackView.addArrangedSubview(foodNormalPriceLabel)
+        foodBadgeStackView.addArrangedSubview(badgeEventLabel)
+        foodBadgeStackView.addArrangedSubview(badgeMainLabel)
+        foodBadgeStackView.addArrangedSubview(badgeLaunchingLabel)
     }
     
     func setLayout(){
@@ -75,7 +134,17 @@ final class FoodCollectionViewCell: UICollectionViewCell{
             foodInformationStackView.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
             foodInformationStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             foodInformationStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            foodInformationStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7)
+            foodInformationStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
+            
+            foodPriceStackView.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
+            foodPriceStackView.topAnchor.constraint(equalTo: foodInformationStackView.bottomAnchor, constant: 5),
+            foodPriceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            foodPriceStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
+            
+            foodBadgeStackView.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
+            foodBadgeStackView.topAnchor.constraint(equalTo: foodPriceStackView.bottomAnchor, constant: 5),
+            foodBadgeStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
+            foodBadgeStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
         ])
     }
     
@@ -84,5 +153,24 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         foodDescriptionLabel.text = food.foodDescription
         foodNormalPriceLabel.text = food.normalPrice
         foodSpecialPriceLabel.text = food.specialPrice
+        
+        if foodNormalPriceLabel.text == "0원"{
+            foodNormalPriceLabel.text = ""
+        }
+        
+        for badge in food.badges{
+            if badge.contains("런칭"){
+                badgeLaunchingLabel.text = badge
+            } else if badge.contains("메인") {
+                badgeMainLabel.text = badge
+            } else if badge.contains("이벤트") {
+                badgeEventLabel.text = badge
+            }
+        }
+        
+        
     }
 }
+
+
+
