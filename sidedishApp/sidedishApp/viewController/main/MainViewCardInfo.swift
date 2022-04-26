@@ -31,43 +31,14 @@ class MainViewCardInfo: UIStackView {
         return label
     }()
     
-    let badgeLabel: UILabel = {
-        var label = UILabel()
-        label.clipsToBounds = true
-        label.textColor = .white
-        label.font = UIFont.customFont(.sfSemiboldEventLabel)
-        label.layer.cornerRadius = 13
-        label.textAlignment = .center
-        label.baselineAdjustment = .alignCenters
-        // text, backgroundColor
-        return label
-    }() // badgeStackView 만들기
-
-//    let launchingBadgeLabel: UILabel = {
-//        var label = UILabel()
-//        label.clipsToBounds = true
-//        label.text = Badge.launchingPrice.description
-//        label.textColor = .white
-//        label.font = UIFont.customFont(.sfSemiboldEventLabel)
-//        label.backgroundColor = UIColor.customColor(.primaryDark)
-//        label.layer.cornerRadius = 13
-//        label.textAlignment = .center
-//        label.baselineAdjustment = .alignCenters
-//        return label
-//    }()
-//
-//    let mainBadgeLabel: UILabel = {
-//        var label = UILabel()
-//        label.clipsToBounds = true
-//        label.text = Badge.mainPrice.description
-//        label.textColor = .white
-//        label.font = UIFont.customFont(.sfSemiboldEventLabel)
-//        label.backgroundColor = UIColor.customColor(.primary)
-//        label.layer.cornerRadius = 13
-//        label.textAlignment = .center
-//        label.baselineAdjustment = .alignCenters
-//        return label
-//    }()
+    let badgeStackView: BadgeStackView = {
+        var stackView = BadgeStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,6 +58,8 @@ class MainViewCardInfo: UIStackView {
         priceLabel.text = "\(dish.salePrice)" + " \(dish.normalPrice ?? "")"
         
         setPriceLabelAttributedString(salePrice: dish.salePrice, normalPrice: dish.normalPrice ?? "")
+        
+        badgeStackView.setBadges(dish.badgeList)
     }
     
     private func setPriceLabelAttributedString(salePrice: String, normalPrice: String) {
@@ -107,28 +80,51 @@ class MainViewCardInfo: UIStackView {
         self.addArrangedSubview(cardTitleLabel)
         self.addArrangedSubview(cardBodyLabel)
         self.addArrangedSubview(priceLabel)
+        self.addArrangedSubview(badgeStackView)
     }
     
     private func setUIConstraints() {
+        configureBadgeStackViewConstraint()
         configureCardTitleLabelConstraint()
         configureCardBodyLabelConstraint()
-        configureSalePriceLabelConstraint()
+        configurePriceLabelConstraint()
+    }
+    
+    private func configureBadgeStackViewConstraint() {
+        badgeStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            badgeStackView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            badgeStackView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),
+            badgeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+        ])
     }
     
     private func configureCardTitleLabelConstraint() {
         cardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            cardTitleLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
             cardTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             cardTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
         ])
     }
     
     private func configureCardBodyLabelConstraint() {
-    
+        cardBodyLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardBodyLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
+            cardBodyLabel.topAnchor.constraint(equalTo: cardTitleLabel.bottomAnchor),
+            cardBodyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+        ])
     }
     
-    private func configureSalePriceLabelConstraint() {
-        
+    private func configurePriceLabelConstraint() {
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            priceLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
+            priceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+        ])
     }
+
 }
 
