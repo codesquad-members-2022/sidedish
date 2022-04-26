@@ -11,7 +11,7 @@ data class ProductDetail(
     val description: String,
     @SerializedName("representImages")
     val representImages: List<RepresentImages>,
-    @SerializedName("representImages")
+    @SerializedName("detailImages")
     val detailImages: List<DetailImages>,
     @SerializedName("price")
     val price: Int,
@@ -20,7 +20,7 @@ data class ProductDetail(
     @SerializedName("stockQuantity")
     val stockQuantity: Int,
     @SerializedName("eventInfo")
-    val eventInfo: String
+    val eventInfo: String?
 )
 
 data class RepresentImages(

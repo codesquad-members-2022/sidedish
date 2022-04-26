@@ -1,5 +1,6 @@
 package com.example.sidedish.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +11,9 @@ import com.example.sidedish.repository.ProductDetailRepository
 import com.example.sidedish.model.RepresentImages
 import kotlinx.coroutines.launch
 
-class ProductDetailViewModel(private val productDetailRepository: ProductDetailRepository) :
+class ProductDetailViewModel(
+    private val productDetailRepository: ProductDetailRepository
+) :
     ViewModel() {
 
     private val _productDetail = MutableLiveData<ProductDetail>()
@@ -22,10 +25,11 @@ class ProductDetailViewModel(private val productDetailRepository: ProductDetailR
     private val _detailImage = MutableLiveData<List<DetailImages>>()
     val detailImage: LiveData<List<DetailImages>> = _detailImage
 
-    private fun loadProductDetail(productId: Int) {
+    fun loadProductDetail(productId: Int) {
         viewModelScope.launch {
-            val image = productDetailRepository.loadProductDetail(productId)
-            image?.let {
+            val detail = productDetailRepository.loadProductDetail(productId)
+            Log.d("image", detail.toString())
+            detail?.let {
                 _productDetail.value = it
                 _representImage.value = it.representImages
                 _detailImage.value = it.detailImages

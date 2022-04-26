@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sidedish.databinding.ItemPorductDetailImageBinding
+import com.example.sidedish.databinding.ItemProductDetailImageBinding
 import com.example.sidedish.model.RepresentImages
 
 class ProductDetailImageAdapter :
@@ -17,7 +17,7 @@ class ProductDetailImageAdapter :
         parent: ViewGroup,
         viewType: Int
     ): ProductDetailImageViewHolder {
-        val binding = ItemPorductDetailImageBinding.inflate(
+        val binding = ItemProductDetailImageBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -29,10 +29,10 @@ class ProductDetailImageAdapter :
         holder.bind(getItem(position))
     }
 
-    class ProductDetailImageViewHolder(private val binding: ItemPorductDetailImageBinding) :
+    class ProductDetailImageViewHolder(private val binding: ItemProductDetailImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(representImages: RepresentImages) {
-            binding.image = representImages
+            binding.representImages = representImages
             binding.executePendingBindings()
         }
     }

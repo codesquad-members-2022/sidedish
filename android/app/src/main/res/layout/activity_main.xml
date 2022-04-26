@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="menuData"
-            type="com.example.sidedish.model.MenuData" />
-        <variable
-            name="viewModel"
-            type="com.example.sidedish.ui.MainViewModel" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView

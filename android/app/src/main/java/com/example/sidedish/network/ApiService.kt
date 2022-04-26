@@ -23,5 +23,5 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @GET("products/{productId}")
-    suspend fun getProductDetail(@Path("productId") id: Int): Response<ProductDetail>
+    suspend fun getProductDetail(@Path("productId") productId: Int): Response<ProductDetail>
 }

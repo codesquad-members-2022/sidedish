@@ -61,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="72dp"
             android:gravity="center_vertical"
-            android:text="@{String.valueOf(products.price)}"
+            android:text="@{String.valueOf(products.discountPrice)}"
             android:textColor="#010101"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
@@ -78,7 +78,7 @@
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/tv_home_discountPrice"
             app:layout_constraintTop_toTopOf="parent"
-            bind:updateTextWithStroke="@{products.discountPrice}" />
+            bind:updateTextWithStroke="@{products.price}" />
 
         <TextView
             android:id="@+id/tv_home_event"

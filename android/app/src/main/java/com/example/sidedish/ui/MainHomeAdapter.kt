@@ -1,5 +1,6 @@
 package com.example.sidedish.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -30,8 +31,14 @@ class MainHomeAdapter :
 
     class MainHomeHolder(private val binding: ItemMenuDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(menuList: Products) {
-            binding.products = menuList
+        fun bind(products: Products) {
+            binding.products = products
+            itemView.setOnClickListener {
+                Intent(it.context, ProductDetailActivity::class.java).apply {
+                    putExtra("product", products)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { it.context.startActivity(this) }
+            }
         }
     }
 }
