@@ -206,25 +206,25 @@ export const OrderPanel = () => {
           </SubProductList>
         </ProductThumbnail>
         <ProductInfo>
-          <Title className={Fonts.FONTS_LG}>오이피자</Title>
-          <OriginalPrice className={Fonts.FONTS_SM}>15800 원</OriginalPrice>
+          <Title className={Fonts.LG}>오이피자</Title>
+          <OriginalPrice className={Fonts.SM}>15800 원</OriginalPrice>
 
           <ListPrice>
             <DiscountBadge />
-            <Price className={Fonts.FONTS_LG}>12000 원</Price>
+            <Price className={Fonts.LG}>12000 원</Price>
           </ListPrice>
 
           <DeliveryInfo>
             <ProductOrderInfo>
-              <li className={Fonts.FONTS_XS}>적립금</li>
-              <li className={Fonts.FONTS_XS}>주소</li>
-              <li className={Fonts.FONTS_XS}>배달금</li>
+              <li className={Fonts.XS}>적립금</li>
+              <li className={Fonts.XS}>주소</li>
+              <li className={Fonts.XS}>배달금</li>
             </ProductOrderInfo>
 
             <ProductOrderInfoDetail>
-              <li className={Fonts.FONTS_XS}>180 원</li>
-              <li className={Fonts.FONTS_XS}>이곳은 주소입니다</li>
-              <li className={Fonts.FONTS_XS}>3000 원</li>
+              <li className={Fonts.XS}>180 원</li>
+              <li className={Fonts.XS}>이곳은 주소입니다</li>
+              <li className={Fonts.XS}>3000 원</li>
             </ProductOrderInfoDetail>
           </DeliveryInfo>
 

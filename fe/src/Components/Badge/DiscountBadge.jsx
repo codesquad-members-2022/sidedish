@@ -35,7 +35,7 @@ const Badge = styled.button`
 export const DiscountBadge = ({ type }) => {
   return (
     <Badge
-      className={Fonts.FONTS_SM}
+      className={Fonts.SM}
       backgroundColor={getBadgeBackgroundColor(type)}
     >
       {getBadgeName(type)}

@@ -32,7 +32,7 @@ const Logo = () => {
   return (
     <LogoWrapper href={'/'}>
       <LogoIcon
-        className={`${IconFonts.LOGO} ${Fonts.FONTS_DISPLAY}`}
+        className={`${IconFonts.LOGO} ${Fonts.DISPLAY}`}
         aria-label={'로고'}
       />
     </LogoWrapper>

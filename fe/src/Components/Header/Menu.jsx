@@ -27,7 +27,7 @@ export const Menu = ({ category, subMenuOpen }) => {
     <MenuWrapper>
       <span>{category.main}</span>
       {subMenuOpen ? (
-        <SubMenuList className={Fonts.FONTS_SM}>
+        <SubMenuList className={Fonts.SM}>
           {category.subs.map((sub, idx) => (
             <li key={idx}>{sub}</li>
           ))}

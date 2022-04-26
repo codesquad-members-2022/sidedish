@@ -26,7 +26,7 @@ export const MenuList = props => {
 
   return (
     <MenuListWrapper
-      className={Fonts.FONTS_MD}
+      className={Fonts.MD}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
