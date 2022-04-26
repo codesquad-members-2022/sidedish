@@ -1,7 +1,9 @@
 package kr.codesquad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("images")
 public class Image {
 
     @Id
@@ -13,5 +15,9 @@ public class Image {
         this.imageId = imageId;
         this.itemId = itemId;
         this.detailImages = detailImages;
+    }
+
+    public String getDetailImages() {
+        return detailImages;
     }
 }

@@ -18,4 +18,9 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT item_id, item_name, description, original_price, discount_price, label_id, main_image, delivery_id" +
             " from item WHERE best_id = :best_id ORDER BY label_id DESC;")
     List<Item> findByBestId(@Param("best_id") int bestId);
+
+//    @Query("SELECT item.item_id, item.item_name, item.original_price, item.discount_price, item.stock, item.label_id, item.main_image," +
+//            "item.delivery_id, images.detail_images from item inner join images on item.item_id = images.item_id where item.item_id = :item_id;")
+//    Item getItemDetailById(@Param("item_id") Long itemId);
+
 }
