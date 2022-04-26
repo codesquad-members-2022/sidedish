@@ -1,16 +1,18 @@
 import styled from 'styled-components';
+import { applyFlex } from '../../../../helper/utils';
 
 export function ExtendBtn({ onClick, buttonState }) {
-  return <StyledBtn onClick={onClick}>모든 카테고리 {buttonState}</StyledBtn>;
+  return (
+    <StyledBtn flex justify="center" align="center" onClick={onClick}>
+      모든 카테고리 {buttonState}
+    </StyledBtn>
+  );
 }
 
 const StyledBtn = styled.div`
   width: 200px;
   height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-style: normal;
+  ${({ flex, justify, align }) => applyFlex({ flex, justify, align })}
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
@@ -19,4 +21,5 @@ const StyledBtn = styled.div`
   box-sizing: border-box;
   margin-left: 600px;
   margin-bottom: 50px;
+  cursor: pointer;
 `;
