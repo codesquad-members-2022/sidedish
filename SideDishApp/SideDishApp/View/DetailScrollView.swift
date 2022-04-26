@@ -64,7 +64,7 @@ final class DetailScrollView: UIScrollView {
     
     private let countTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "수량"
+        label.text = Constant.DetailScrollText.count
         label.textColor = .systemGray
         label.textAlignment = .left
         return label
@@ -72,7 +72,7 @@ final class DetailScrollView: UIScrollView {
     
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
+        label.text = Constant.DetailScrollText.initialCount
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .darkGray
         label.textAlignment = .center
@@ -103,7 +103,7 @@ final class DetailScrollView: UIScrollView {
     
     private let amountTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "총 주문금액"
+        label.text = Constant.DetailScrollText.amount
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .systemGray
         return label
@@ -117,7 +117,7 @@ final class DetailScrollView: UIScrollView {
     
     private let orderButton: UIButton = {
         let button = UIButton()
-        button.setTitle("주문하기", for: .normal)
+        button.setTitle(Constant.DetailScrollText.order, for: .normal)
         button.backgroundColor = .tintColor
         button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 10

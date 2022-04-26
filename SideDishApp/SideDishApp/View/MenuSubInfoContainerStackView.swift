@@ -30,7 +30,7 @@ class MenuSubInfoContainerStackView: UIStackView {
 extension MenuSubInfoContainerStackView {
     func setSubInfoDescription(by texts: [String]) {
         
-        if texts.count < Constant.SubInfoTitle.allCases.count {
+        if texts.count < Constant.SubInfoText.allCases.count {
             os_log(.error, "Count of 'Texts' must smaller than count of 'SubInfoTitle'")
             return
         }
@@ -45,7 +45,7 @@ extension MenuSubInfoContainerStackView {
 // MARK: - Private Extension
 
 private extension UIStackView {
-    static func makeSubInfo(titleText: Constant.SubInfoTitle, descriptionText: String) -> UIStackView {
+    static func makeSubInfo(titleText: Constant.SubInfoText, descriptionText: String) -> UIStackView {
         
         let subInfoContainerStackView = UIStackView.makeEachSubInfo()
         let titleLabel = UILabel.makeTitle(title: titleText.description)

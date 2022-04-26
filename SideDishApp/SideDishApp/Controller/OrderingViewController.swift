@@ -52,7 +52,7 @@ final class OrderingViewController: UIViewController {
     }
     
     private func configureView() {
-        title = Constant.Title.orderingViewController
+        title = Constant.ViewControllerTitle.ordering
         view.backgroundColor = .systemBackground
     }
     
