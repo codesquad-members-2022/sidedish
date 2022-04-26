@@ -36,5 +36,7 @@ public class Member {
         this.memberId = memberId;
     }
 
-
+    public void earnMileage(int mileage) {
+        this.mileage += mileage;
+    }
 }
