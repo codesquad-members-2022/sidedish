@@ -26,7 +26,6 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.loadProductDetail(loadProductId())
-        viewModel.postProductCount(makePostRequest())
 
         with(binding.viewpagerProductDetail) {
             adapter = ProductDetailImageAdapter().apply {
@@ -49,6 +48,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
         viewModel.quantity.observe(this) { quantity ->
             binding.ibCountMinus.isEnabled = quantity > 1
+        }
+
+        binding.btnOrder.setOnClickListener {
+            viewModel.postProductCount(makePostRequest())
         }
     }
 
