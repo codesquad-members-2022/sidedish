@@ -15,7 +15,7 @@ struct Food: Codable{
     private(set) var alt: String
     private(set) var badge: [String]?
     private(set) var deliveryType: [String]
-    private(set) var originPrice: String?
+    private(set) var beforeSalePrice: String?
     private(set) var salePrice: String?
     
     enum CodingKeys: String, CodingKey{
@@ -26,7 +26,7 @@ struct Food: Codable{
         case alt
         case badge
         case deliveryType = "delivery_type"
-        case originPrice = "n_price"
+        case beforeSalePrice = "n_price"
         case salePrice = "s_price"
     }
 }
