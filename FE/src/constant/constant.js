@@ -61,4 +61,13 @@ export const imageSize = {
 =======
 
 export const labelTitles = ["런칭특가", "이벤트특가"];
+<<<<<<< HEAD
 >>>>>>> d7b694f ([#13] Refactor: label 컴포넌트 수정)
+=======
+
+export const imageSize = {
+  promotion: "411px",
+  category: "302px",
+  sideCategory: "160px",
+};
+>>>>>>> 2b46bcb ([#36] Feat: Promotion 컴포넌트 분리)
