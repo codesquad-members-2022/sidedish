@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Badges from './Badges';
 
 function Card({ size, item, showModal }) {
   const { id, image, title, contents, origin_price, discount_price, early_delivery, badge_title } = item;
@@ -45,13 +46,7 @@ function Card({ size, item, showModal }) {
               {discount_price !== origin_price && <OriginPrice>{origin_price.toLocaleString()}</OriginPrice>}
             </Price>
           </CardBody>
-          <Badges>
-            {badge_title.map((badgeTitle, index) => (
-              <Badge key={index} background={badgeColores[badgeTitle]}>
-                {badgeTitle}
-              </Badge>
-            ))}
-          </Badges>
+          <Badges badge_title={badge_title} />
         </>
       ) : (
         <>
@@ -170,21 +165,6 @@ const DiscountPrice = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
-`;
-const Badges = styled.div`
-  display: flex;
-  height: 30px;
-`;
-const Badge = styled.div`
-  margin-right: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: ${props => props.background};
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 18px;
-  color: #ffffff;
 `;
 
 export default Card;

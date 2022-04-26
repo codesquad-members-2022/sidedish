@@ -33,7 +33,7 @@ const dishes = {
   sub_category_id: 111,
   name: '오리 주물럭_반조리',
   content: '칠맛 나는 매콤한 양념',
-  badge_title: '한정특가',
+  badge_title: ['이벤트특가', '런칭특가'],
   price: 15000,
   discount_price: 12600,
   mileage_ratio: 0.01,

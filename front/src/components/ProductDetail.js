@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import Badges from './Badges';
+
 const DishDetail = styled.div`
   width: 860px;
   height: 520px;
@@ -52,17 +54,6 @@ const BadgeAndPrice = styled.div`
   height: 30px;
   gap: 8px;
   margin-bottom: 24px;
-`;
-const Badge = styled.div`
-  box-sizing: border-box;
-  padding: 6px 16px;
-  display: grid;
-  place-content: center center;
-  background: #ff8e14;
-  border-radius: 999px;
-  font-size: 12px;
-  line-height: 18px;
-  color: #ffffff;
 `;
 const Price = styled.div`
   font-size: 20px;
@@ -181,7 +172,7 @@ function ProductDetail({ dishes }) {
         <ProductName>{dishes.name}</ProductName>
         <PrimeCost>{dishes.price.toLocaleString()}원</PrimeCost>
         <BadgeAndPrice>
-          <Badge>{dishes.badge_title}</Badge>
+          <Badges badge_title={dishes.badge_title}></Badges>
           <Price>{dishes.discount_price.toLocaleString()}원</Price>
         </BadgeAndPrice>
         <Info>
