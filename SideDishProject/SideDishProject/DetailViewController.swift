@@ -8,15 +8,15 @@
 import UIKit
 
 final class DetailViewController: UIViewController{
-    private var productRepository: ProductRepository?
+    private var model: DetailModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    static func create(with repository: ProductRepository) -> DetailViewController {
+    static func create(with model: DetailModel) -> DetailViewController {
         let viewController = DetailViewController()
-        viewController.productRepository = repository
+        viewController.model = model
         return viewController
     }
     

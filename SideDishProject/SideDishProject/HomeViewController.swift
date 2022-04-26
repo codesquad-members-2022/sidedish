@@ -10,7 +10,6 @@ import Toaster
 
 final class HomeViewController: UIViewController {
     
-    private var productRepository: ProductRepository?
     private var productModel: ProductModel?
     private lazy var homeView = HomeView(frame: view.frame)
     private let dishCollectionWrapper = DishCollectionWrapper()
@@ -24,15 +23,14 @@ final class HomeViewController: UIViewController {
         homeView.setCollectionViewModel(model: dishCollectionWrapper)
     }
 
-    static func create(with repository: ProductRepository) -> HomeViewController {
+    static func create(with model: ProductModel) -> HomeViewController {
         let viewController = HomeViewController()
-        viewController.productModel = ProductModel(repository: repository)
+        viewController.productModel = model
         return viewController
     }
     
-    private func presentDetailViewController(){
-        guard let repository = productRepository else { return }
-        let detailViewController = ProductSceneContainer.makeViewController(sceneType: .detail, repository: repository)
+    private func presentDetailViewController(uniqueId: UniqueID){
+        let detailViewController = ProductSceneContainer.makeViewController(sceneType: .detail(uniqueId: uniqueId))
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
