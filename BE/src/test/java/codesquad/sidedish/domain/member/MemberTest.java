@@ -16,4 +16,15 @@ class MemberTest {
         assertThat(member.liveIn("서울특별시")).isTrue();
         assertThat(member.liveIn("부산광역시")).isFalse();
     }
+
+    @Test
+    @DisplayName("earnMileage 메서드를 호출 후 적립금이 추가된다.")
+    void earnMileageTest() {
+        Member member = Member.builder()
+                .mileage(50)
+                .build();
+
+        member.earnMileage(100);
+        assertThat(member.getMileage()).isEqualTo(150);
+    }
 }
