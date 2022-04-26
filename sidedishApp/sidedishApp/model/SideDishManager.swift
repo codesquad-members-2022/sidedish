@@ -39,13 +39,29 @@ final class SideDishManager {
         }
     }
     
-    func getDetailDish() {
-        HTTPManager.requestGet(url: "https://api.codesquad.kr/onban/detail/HBDEF"){ data in
+    func getDetailDish(hash: String) {
+        let url = "https://api.codesquad.kr/onban/detail/" + hash
+        HTTPManager.requestGet(url: url) { data in
             guard let detailDish: DetailCard = JSONConverter.decodeJsonObject(data: data) else { return }
             
             self.selectedDish = detailDish
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SideDishManager.detailIdentifier), object: self)
         }
+    }
+    
+    func getDishFromSection(indexPath: IndexPath) -> MainCard.Body? {
+        var dish: MainCard.Body?
+        switch indexPath.section {
+        case 0:
+            dish = mainDishes?.body[indexPath.item]
+        case 1:
+            dish = soupDishes?.body[indexPath.item]
+        case 2:
+            dish = sideDishes?.body[indexPath.item]
+        default:
+            return nil
+        }
+        return dish
     }
 }

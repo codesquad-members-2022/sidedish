@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         self.dishCollectionView.register(MainViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewHeader.identifier)
         
         addNotification()
-        print(sideDishManager.mainDishes)
     }
 }
 
@@ -89,6 +88,15 @@ extension MainViewController: UICollectionViewDataSource {
         let width = collectionView.frame.width
         let height: CGFloat = 170
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // 셀 아이템 선택 시
+        guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        guard let dish = self.sideDishManager.getDishFromSection(indexPath: indexPath) else { return }
+        detailVC.selectedDish = dish
+        sideDishManager.getDetailDish(hash: dish.detailHash)
+        detailVC.detailDish = sideDishManager.selectedDish
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

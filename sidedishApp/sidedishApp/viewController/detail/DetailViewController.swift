@@ -16,9 +16,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var secondSectionView: UIView!
     @IBOutlet weak var thirdSectionView: UIView!
     
+    var selectedDish: MainCard.Body?
+    var detailDish: DetailCard?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        print("selected : \(selectedDish)")
+        print("detail : \(detailDish)")
     }
 }
 
