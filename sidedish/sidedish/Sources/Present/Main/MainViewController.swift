@@ -108,6 +108,7 @@ class MainViewController: UIViewController {
     }
     
     private func makeNavigationButtons() {
+        navigationItem.backButtonTitle = "뒤로"
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loginButton)
     }
 }
