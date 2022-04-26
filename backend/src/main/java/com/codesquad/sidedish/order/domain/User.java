@@ -1,0 +1,28 @@
+package com.codesquad.sidedish.order.domain;
+
+import java.util.HashSet;
+import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+
+@Getter
+@ToString
+@AllArgsConstructor
+public class User {
+
+    @Id
+    private String githubId;
+    private String username;
+    private Integer point;
+
+    @MappedCollection(idColumn = "github_id")
+    private Set<Order> orders = new HashSet<>();
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
+}

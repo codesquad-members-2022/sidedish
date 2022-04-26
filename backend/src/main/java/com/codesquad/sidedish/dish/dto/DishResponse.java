@@ -26,8 +26,8 @@ public class DishResponse {
             dish.getDescription(),
             dish.getPrice(),
             dish.getStock(),
-            ImageResponse.getFirstPath(dish.getDishImages()),
-            DiscountResponse.from(dish.getDishDiscounts())
+            ImageResponse.getFirstPath(dish.getImages()),
+            DiscountResponse.from(dish.getDiscounts())
         );
     }
 
