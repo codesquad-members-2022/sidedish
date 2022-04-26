@@ -8,13 +8,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ThemeListResponse {
 
-	private final List<Element> themes;
+    private final List<Element> themes;
 
-	@Getter
-	@AllArgsConstructor
-	public static class Element {
+    @Getter
+    @AllArgsConstructor
+    public static class Element {
 
-		Long id;
-		String name;
-	}
+        Long id;
+        String name;
+    }
 }

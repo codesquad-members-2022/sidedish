@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ThemeService {
 
-	private final ThemeRepository themeRepository;
+    private final ThemeRepository themeRepository;
 
-	public List<Theme> readAll() {
-		return themeRepository.findAll();
-	}
+    public List<Theme> readAll() {
+        return themeRepository.findAll();
+    }
 }

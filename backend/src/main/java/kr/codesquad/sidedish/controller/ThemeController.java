@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ThemeController {
 
-	private final ThemeService themeService;
+    private final ThemeService themeService;
 
-	@GetMapping
-	public ThemeListResponse themeListResponse(){
-		List<ThemeListResponse.Element> elements = themeService.readAll()
-			.stream()
-			.map(this::entityToDTO)
-			.collect(Collectors.toList());
+    @GetMapping
+    public ThemeListResponse themeListResponse(){
+        List<ThemeListResponse.Element> elements = themeService.readAll()
+                .stream()
+                .map(this::entityToDTO)
+                .collect(Collectors.toList());
 
-		return new ThemeListResponse(elements);
-	}
+        return new ThemeListResponse(elements);
+    }
 
 
-	private ThemeListResponse.Element entityToDTO(Theme theme) {
-		return new ThemeListResponse.Element(theme.getId(), theme.getName());
-	}
+    private ThemeListResponse.Element entityToDTO(Theme theme) {
+        return new ThemeListResponse.Element(theme.getId(), theme.getName());
+    }
 }

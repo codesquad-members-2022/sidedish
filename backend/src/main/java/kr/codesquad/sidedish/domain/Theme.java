@@ -6,8 +6,8 @@ import org.springframework.data.annotation.Id;
 @Getter
 public class Theme {
 
-	@Id
-	private Long id;
-	private String name;
+    @Id
+    private Long id;
+    private String name;
 
 }
