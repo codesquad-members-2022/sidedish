@@ -12,10 +12,10 @@ import {
 } from './Card.style';
 
 const Card = ({ data, size }) => {
-  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [isMouseEnter, setIsMouseEnter] = useState(false);
 
-  const handleThumbnailMouseOver = () => {
-    setIsMouseOver(!isMouseOver);
+  const handleThumbnailMouseEnter = () => {
+    setIsMouseEnter(!isMouseEnter);
   };
 
   return (
@@ -23,10 +23,10 @@ const Card = ({ data, size }) => {
       <Thumbnail
         src={data.thumbnail}
         size={size}
-        onMouseOver={handleThumbnailMouseOver}
-        onMouseLeave={handleThumbnailMouseOver}
+        onMouseEnter={handleThumbnailMouseEnter}
+        onMouseLeave={handleThumbnailMouseEnter}
       >
-        {isMouseOver && <DeliveryIcon />}
+        {isMouseEnter && <DeliveryIcon />}
       </Thumbnail>
       <DescriptionWrapper>
         <Title size={size}>{data.name}</Title>
