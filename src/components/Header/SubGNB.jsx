@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Text from 'components/utils/Text';
 
-export default function SubGNB({ subVisible, GNB_INFO, gnbIndex }) {
+export default function SubGNB({ visible, SUB_GNB_INFO }) {
   return (
-    <Wrap visible={subVisible}>
-      {GNB_INFO[gnbIndex].SUB_GNB.map((subGnbName, index) => (
+    <Wrap visible={visible}>
+      {SUB_GNB_INFO.SUB_GNB.map((subGnbName, index) => (
         <SubGNBItem key={`${subGnbName}_${index}`}>
           <a href="http://localhost:3000/">
             <Text value={subGnbName} />
