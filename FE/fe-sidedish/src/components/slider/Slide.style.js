@@ -47,6 +47,8 @@ const CardList = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 24px;
+  transform: translateX(${({ translate, margin }) => !translate ? '0%' : `calc(-${translate}% - ${margin}px)`});
+  transition: all 700ms;
 `;
 
 const Container = styled.div`

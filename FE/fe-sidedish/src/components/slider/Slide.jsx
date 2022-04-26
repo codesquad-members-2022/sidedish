@@ -22,7 +22,7 @@ const Slide = ({ cardSize, cardList }) => {
   return (
     <S.Container cardSize={cardSize}>
       <S.Wrapper>
-        <SlideCardList cardSize={cardSize} cardList={cardList} />
+        <SlideCardList cardSize={cardSize} cardList={cardList} currentPage={currentPage} />
       </S.Wrapper>
       <S.PaginationContainer>
         <SlideButton
