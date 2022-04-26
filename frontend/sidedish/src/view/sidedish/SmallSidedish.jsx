@@ -28,7 +28,7 @@ function SmallSidedish() {
         <ThemeProvider theme={theme}>
             <Container>
                 <Title>식탁을 풍성하게 하는 정갈한 밑반찬</Title>
-                <SidedishCards dishes={items[1].dishes}></SidedishCards>
+                <SidedishCards dishes={items.data}></SidedishCards>
             </Container>
         </ThemeProvider>
     );
