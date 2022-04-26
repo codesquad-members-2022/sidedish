@@ -1,6 +1,5 @@
 package com.team28.sidedish.domain;
 
-import com.team28.sidedish.controller.dto.ProductImageResponse;
 import com.team28.sidedish.repository.entity.DiscountEntity;
 import com.team28.sidedish.repository.entity.ProductEntity;
 import com.team28.sidedish.repository.entity.ProductImageEntity;
