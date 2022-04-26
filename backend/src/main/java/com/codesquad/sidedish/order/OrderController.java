@@ -1,6 +1,7 @@
 package com.codesquad.sidedish.order;
 
 import com.codesquad.sidedish.order.dto.OrderRequest;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public void order(@RequestBody OrderRequest orderRequest) {
+    public void order(@RequestBody @Valid OrderRequest orderRequest) {
         orderService.order(
             orderRequest.getGithubId(),
             orderRequest.getDishId(),

@@ -1,5 +1,7 @@
 package com.codesquad.sidedish.dish.domain;
 
+import com.codesquad.sidedish.exception.ErrorCode;
+import com.codesquad.sidedish.exception.GoneException;
 import com.codesquad.sidedish.other.DiscountPolicy;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -76,7 +78,7 @@ public class Dish {
 
     public void sold(int quantity) {
         if (stock < quantity) {
-            throw new IllegalStateException("반찬의 재고가 부족합니다.");
+            throw new GoneException(ErrorCode.DISH_OUT_OF_STOCK);
         }
         stock -= quantity;
     }
