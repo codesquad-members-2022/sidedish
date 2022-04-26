@@ -34,13 +34,12 @@ class LoginRepositoryImpl: NetworkRepository, LoginRepository {
         }.eraseToAnyPublisher()
     }
     
-    func getUser() -> AnyPublisher<Void, Never> {
-        Future<Void, Never> { promise in
-//            try? Auth.auth().signOut()
-            if Auth.auth().currentUser == nil {
+    func getUser() -> AnyPublisher<User, Never> {
+        Future<User, Never> { promise in
+            guard let user = Auth.auth().currentUser else {
                 return
             }
-            promise(.success(()))
+            promise(.success(User(user: user)))
         }.eraseToAnyPublisher()
     }
 }

@@ -9,12 +9,12 @@ import FirebaseAuth
 import Foundation
 
 struct User: Codable {
-    let name: String?
+    let name: String
     let accessToken: String
     let refreshToken: String?
     
     init(user: FirebaseAuth.User) {
-        self.name = user.displayName
+        self.name = user.displayName ?? ""
         self.accessToken = ""
         self.refreshToken = user.refreshToken
     }

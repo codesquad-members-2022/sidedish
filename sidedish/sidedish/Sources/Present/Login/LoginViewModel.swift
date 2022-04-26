@@ -45,9 +45,12 @@ class LoginViewModel: LoginViewModelProtocol {
     
     init() {
         action.viewDidLoad
-            .compactMap{ self.loginRepository.getUser() }
+            .compactMap { self.loginRepository.getUser() }
             .switchToLatest()
-            .sink(receiveValue: state.presentMainView.send(_:))
+            .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
+            .sink { _ in
+                self.state.presentMainView.send()
+            }
             .store(in: &cancellables)
                     
         action.tappedGoogleLogin
