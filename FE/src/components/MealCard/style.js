@@ -29,8 +29,8 @@ export const Card = styled.li`
   flex-direction: column;
   align-self: flex-start;
   img {
-    width: 300px;
-    height: 300px;
+    width: ${({ imageSize }) => imageSize}px;
+    height: ${({ imageSize }) => imageSize}px;
   }
   &:hover ${DeliveryServiceHoverContainer} {
     display: flex;

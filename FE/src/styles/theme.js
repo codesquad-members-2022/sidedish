@@ -25,4 +25,8 @@ const color = {
   orange: "#FF8E14",
 };
 
+const width = {
+  main: "1280px",
+};
+
 export const theme = { fontSize, fontWeight, color };

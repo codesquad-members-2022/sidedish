@@ -3,10 +3,10 @@ import React from "react";
 import { getMealImage } from "utils";
 import { Card, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContainer, SpanDivider } from "./style";
 
-const MealCard = ({ mealInfo }) => {
+const MealCard = ({ mealInfo, size }) => {
   const { productName, description, event: discountType, fixedPrice, image, originalPrice } = mealInfo;
   return (
-    <Card>
+    <Card imageSize={size}>
       <img src={getMealImage(image)} alt={productName} />
       <CardInfo>
         <h4>{productName}</h4>
