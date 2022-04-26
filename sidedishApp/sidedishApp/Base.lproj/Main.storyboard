@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N1f-wN-LAi">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,11 +19,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z7x-CL-Yid">
-                                <rect key="frame" x="16" y="44" width="568" height="556"/>
+                                <rect key="frame" x="16" y="88" width="382" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qUs-iX-Ipc">
                                     <size key="itemSize" width="128" height="128"/>
@@ -38,10 +39,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <segue destination="RRb-Uw-OQJ" kind="show" id="4Ap-7O-AEU"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="U1Q-dt-lfP">
-                                    <rect key="frame" x="0.0" y="0.0" width="568" height="98"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="98"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </collectionReusableView>
                             </collectionView>
@@ -55,13 +59,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Z7x-CL-Yid" secondAttribute="trailing" constant="16" id="kxa-qB-i13"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Banchan" id="gNc-Co-6nV">
-                        <barButtonItem key="rightBarButtonItem" image="doc.richtext.he" catalog="system" id="0t2-t8-btj">
-                            <connections>
-                                <segue destination="RRb-Uw-OQJ" kind="show" id="mWf-4E-CrE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Banchan" id="gNc-Co-6nV"/>
                     <connections>
                         <outlet property="dishCollectionView" destination="Z7x-CL-Yid" id="009-Vo-ok1"/>
                     </connections>
@@ -76,7 +74,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N1f-wN-LAi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MS5-kc-6DN">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -91,9 +89,9 @@
         <!--Detail View Controller-->
         <scene sceneID="ykQ-Dw-0Ga">
             <objects>
-                <viewController id="RRb-Uw-OQJ" customClass="DetailViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="RRb-Uw-OQJ" customClass="DetailViewController" customModule="sidedishApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RaS-FU-Or6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-qc-yYr">
@@ -206,7 +204,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doc.richtext.he" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
