@@ -15,8 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window = UIWindow(windowScene: scene)
 
-        guard let viewController = UIStoryboard(name: "BanchanListViewController", bundle: nil)
-            .instantiateInitialViewController() else { return }
+        let viewController = BanchanListViewController(collectionViewLayout: UICollectionViewLayout())
 
         let navigationController = UINavigationController(rootViewController: viewController)
 

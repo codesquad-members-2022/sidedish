@@ -16,7 +16,7 @@ class BanchanListViewController: UICollectionViewController {
 
 		let itemSize = NSCollectionLayoutSize(
 			widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-			heightDimension: NSCollectionLayoutDimension.estimated(40)
+			heightDimension: .estimated(300)
 		)
 
 		let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -42,6 +42,7 @@ class BanchanListViewController: UICollectionViewController {
 		let layout = UICollectionViewCompositionalLayout(section: section)
 
 		collectionView.collectionViewLayout = layout
+		collectionView.register(ProductDetailCell.self, forCellWithReuseIdentifier: ProductDetailCell.identifier)
 		collectionView.register(ProductSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier)
     }
 
@@ -59,7 +60,6 @@ class BanchanListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         let viewController = BanchanDetailViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }

@@ -16,10 +16,8 @@
 		E439A361280EB1CD001598D4 /* BanchanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */; };
 		E48748A52810FE8200959D88 /* PriceTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A42810FE8200959D88 /* PriceTag.swift */; };
 		E48748A9281101DF00959D88 /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48748A8281101DF00959D88 /* QuantityView.swift */; };
-		E4A41E53280E45300044CEB3 /* BanchanDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */; };
 		E4A5143928124C2B0056C953 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5143828124C2B0056C953 /* BadgeLabel.swift */; };
 		E4A5143B28124C490056C953 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5143A28124C490056C953 /* UILabel+Extension.swift */; };
-		E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */; };
 		E4BA18BE2816479E00C19349 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */; };
 		E4BA18C22816578700C19349 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18C12816578700C19349 /* UIColor+Extension.swift */; };
 		E4BA18C62816A0DB00C19349 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA18C52816A0DB00C19349 /* UIFont+Extension.swift */; };
@@ -46,10 +44,8 @@
 		E469A94A280D166700C02D97 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E48748A42810FE8200959D88 /* PriceTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTag.swift; sourceTree = "<group>"; };
 		E48748A8281101DF00959D88 /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
-		E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanDetailViewController.storyboard; sourceTree = "<group>"; };
 		E4A5143828124C2B0056C953 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 		E4A5143A28124C490056C953 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
-		E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BanchanListViewController.storyboard; sourceTree = "<group>"; };
 		E4BA18BD2816479E00C19349 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E4BA18BF2816489B00C19349 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E4BA18C0281648F700C19349 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -110,9 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E4C6B779280CFA7D001C14F7 /* BanchanListViewController.swift */,
-				E4B7D369280D7124009B2C2A /* BanchanListViewController.storyboard */,
 				E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */,
-				E4A41E52280E45300044CEB3 /* BanchanDetailViewController.storyboard */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -246,9 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B7D36A280D7124009B2C2A /* BanchanListViewController.storyboard in Resources */,
 				E4C6B782280CFA7F001C14F7 /* LaunchScreen.storyboard in Resources */,
-				E4A41E53280E45300044CEB3 /* BanchanDetailViewController.storyboard in Resources */,
 				E4C6B77F280CFA7F001C14F7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

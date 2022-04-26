@@ -11,7 +11,7 @@ class ProductDetailCell: UICollectionViewCell {
 
 	static let identifier = "ProductDetailCell"
 
-    private let image: UIImageView = UIImageView()
+    private let imageView: UIImageView = UIImageView()
     private let info: ProductDetailView = ProductDetailView()
 
     override init(frame: CGRect) {
@@ -25,24 +25,24 @@ class ProductDetailCell: UICollectionViewCell {
     }
 
     private func setup() {
-        image.layer.masksToBounds = true
-        image.layer.cornerRadius = 10
-        image.image = UIImage(systemName: "cart.circle")
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.image = UIImage(systemName: "cart.circle")
 
-		image.translatesAutoresizingMaskIntoConstraints = false
+		imageView.translatesAutoresizingMaskIntoConstraints = false
 		info.translatesAutoresizingMaskIntoConstraints = false
 
-		self.contentView.addSubview(image)
+		self.contentView.addSubview(imageView)
 		self.contentView.addSubview(info)
 
-		image.anchor(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, leading: self.contentView.leadingAnchor)
+		imageView.anchor(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, leading: self.contentView.leadingAnchor)
 
-		image.setWidth(130)
-		image.setHeight(toAnchor: image.widthAnchor)
+		imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 130).isActive = true
+		imageView.setWidth(toAnchor: imageView.heightAnchor)
 
-		info.anchor(leading: image.trailingAnchor)
+		info.anchor(leading: imageView.trailingAnchor)
 		info.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.trailingAnchor, constant: -16).isActive = true
-		info.centerY(inView: image)
+		info.centerY(inView: self.contentView)
     }
 
 }

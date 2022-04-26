@@ -38,15 +38,7 @@ class BanchanDetailViewController: UIViewController {
     // MARK: - Order View
     private lazy var orderView = UIView()
 
-    private lazy var productDetailStack: UIStackView = {
-        let stack = UIStackView()
-
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
-		stack.alignment = .leading
-
-        return stack
-    }()
+	private lazy var productDetailView = ProductDetailView()
 
     private lazy var deliveryInformationContainerStack: UIStackView = {
         let stack = UIStackView()
@@ -179,7 +171,7 @@ class BanchanDetailViewController: UIViewController {
             paddingRight: 16
         )
 
-        self.configureProductDescription()
+        self.configureProductDetailView()
         self.configureDeliveryInformationView()
         self.configureQuantityView()
         self.configureTotalPriceLabel()
@@ -187,48 +179,24 @@ class BanchanDetailViewController: UIViewController {
     }
 
     // MARK: - OrderView Configuration
-    private func configureProductDescription() {
-        self.orderView.addSubview(self.productDetailStack)
-        self.productDetailStack.anchor(
-            top: self.orderView.topAnchor,
-            leading: self.orderView.leadingAnchor,
-            trailing: self.orderView.trailingAnchor
-        )
+    private func configureProductDetailView() {
+		self.orderView.addSubview(self.productDetailView)
+		self.productDetailView.anchor(
+			top: self.orderView.topAnchor,
+			leading: self.orderView.leadingAnchor,
+			trailing: self.orderView.trailingAnchor
+		)
 
-        let productTitleLabel = UILabel()
-        let productSubtitleLabel = UILabel()
-        let salePrice = UILabel()
-		let originPrice = UILabel()
-
-        productTitleLabel.text = "오리 주물럭 반조리"
-		productTitleLabel.font = .textLargeRegular
-        productSubtitleLabel.text = "감칠맛 나는 매콤한 양념"
-		productSubtitleLabel.font = .textMediumRegular
-		productSubtitleLabel.textColor = .gray2
-
-        salePrice.text = "12,640원"
-		salePrice.font = .textMediumBold
-		salePrice.textColor = .gray1
-
-		originPrice.text = "15,800원"
-		originPrice.font = .textSmallRegular
-		originPrice.textColor = .gray2
-		originPrice.applyStrikethoroughStyle()
-
-        self.productDetailStack.addArrangedSubview(productTitleLabel)
-        self.productDetailStack.addArrangedSubview(productSubtitleLabel)
-
-		let priceStack = UIStackView(arrangedSubviews: ([salePrice, originPrice]))
-		priceStack.axis = .horizontal
-		priceStack.spacing = 8
-
-        self.productDetailStack.addArrangedSubview(priceStack)
+		self.productDetailView.setTitleText("오리 주물럭_반조리", font: .textLargeBold)
+		self.productDetailView.setDescriptionText("감칠맛 나는 매콤한 양념", font: .textMediumRegular)
+		self.productDetailView.setNormalPrice("15,800원", font: .textMediumRegular)
+		self.productDetailView.setSalePrice("12,640원", font: .textMediumBold)
     }
 
     private func configureDeliveryInformationView() {
         self.orderView.addSubview(self.deliveryInformationContainerStack)
         self.deliveryInformationContainerStack.anchor(
-            top: self.productDetailStack.bottomAnchor,
+            top: self.productDetailView.bottomAnchor,
             leading: self.orderView.leadingAnchor,
             trailing: self.orderView.trailingAnchor,
             paddingTop: 24

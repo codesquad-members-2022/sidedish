@@ -77,4 +77,23 @@ class ProductDetailView: UIView {
         ])
     }
 
+	func setTitleText(_ text: String, font: UIFont) {
+		self.title.text = text
+		self.title.font = font
+	}
+
+	func setDescriptionText(_ text: String, font: UIFont) {
+		self.menuDescription.text = text
+		self.menuDescription.font = font
+	}
+
+	func setSalePrice(_ text: String, font: UIFont) {
+		self.salePrice.text = text
+		self.salePrice.font = font
+	}
+
+	func setNormalPrice(_ text: String, font: UIFont) {
+		self.normalPrice?.text = text
+		self.normalPrice?.font = font
+	}
 }
