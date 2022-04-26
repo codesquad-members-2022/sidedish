@@ -39,7 +39,18 @@ public class DishAndCategoryTest {
 
         dishRepository.delete(savedDish);
         Assertions.assertThrows(NoSuchElementException.class, ()->imageRepository.findById(1L).orElseThrow());
+    }
 
+    @Test
+    @Rollback
+    @DisplayName("애그리게잇을 삭제하면 동일 바운드리 내부의 엔티티도 함께 삭제된다.")
+    void deleteAggregate2() throws Exception {
+        Dish dish = getDishIncludedOnlyOneImage();
+        Dish savedDish = dishRepository.save(dish);
+
+        dishRepository.delete(savedDish);
+        imageRepository.findAll().forEach(System.out::println);
+        Assertions.assertFalse(imageRepository.findAll().iterator().hasNext());
     }
 
     private Dish getDishIncludedOnlyOneImage() {

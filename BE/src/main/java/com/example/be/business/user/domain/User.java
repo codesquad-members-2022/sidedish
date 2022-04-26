@@ -16,10 +16,11 @@ public class User {
     private String avatarUrl;
     private String email;
     private String location;
+    private String githubId;
     private Bio bio;
 
     @PersistenceConstructor
-    public User(Long userId, String name, String username, String avatarUrl, String email, String location, Bio bio) {
+    public User(String name, String username, String avatarUrl, String email, String location, Bio bio, String githubId) {
         this.userId = userId;
         this.name = name;
         this.username = username;
@@ -27,6 +28,7 @@ public class User {
         this.email = email;
         this.location = location;
         this.bio = bio;
+        this.githubId = githubId;
     }
 
     public Long getUserId() {
@@ -57,6 +59,10 @@ public class User {
         return bio;
     }
 
+    public String getGithubId() {
+        return githubId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,5 +74,14 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(userId);
+    }
+
+    public void publishUpdateEvent(String name, String avatarUrl, String email, String location, String githubId, Bio bio) {
+        this.name = name;
+        this.avatarUrl = avatarUrl;
+        this.email = email;
+        this.location = location;
+        this.githubId = githubId;
+        this.bio = bio;
     }
 }

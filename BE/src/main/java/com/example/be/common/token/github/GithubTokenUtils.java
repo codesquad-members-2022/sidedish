@@ -60,6 +60,7 @@ public class GithubTokenUtils implements TokenUtils {
         return headers;
     }
 
+    @Override
     public Map<String, String> getUserDetail(String userInformationCode) {
         return githubTokenParser.getUserInformation(userInformationCode);
     }

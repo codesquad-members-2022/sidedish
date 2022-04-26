@@ -31,7 +31,8 @@ CREATE TABLE user
     avatar_url VARCHAR(255),
     email      VARCHAR(25),
     location   VARCHAR(120),
-    bio        ENUM ('MAN', 'WOMAN', 'NOT_REGISTERED')
+    bio        ENUM ('MAN', 'WOMAN', 'NOT_REGISTERED'),
+    github_id VARCHAR(50)
 );
 
 DROP TABLE IF EXISTS category;

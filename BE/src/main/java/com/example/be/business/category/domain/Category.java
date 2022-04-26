@@ -15,7 +15,7 @@ public class Category {
     private Long categoryId;
     private String description;
 
-    @MappedCollection(idColumn = "category_id", keyColumn = "dish_id")
+    @MappedCollection(idColumn = "category_id", keyColumn = "sub_category_id")
     private List<SubCategory> subCategories;
 
     @PersistenceConstructor

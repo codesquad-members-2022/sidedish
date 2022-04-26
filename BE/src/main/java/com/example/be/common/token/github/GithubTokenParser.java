@@ -12,6 +12,8 @@ public class GithubTokenParser {
 
     private static final String USER_INFORMATION_DELIMETER = ",";
     private static final String USER_INFORMATION_DETAIL_DELIMETER = ":";
+    private static final String ESCAPE_LETTER_DELIMETER = "\"";
+    private static final String NULL_STRING = "";
     private static final int KEY = 0;
 
     public Map<String, String> getUserInformation(String userInformationString) {
@@ -27,7 +29,8 @@ public class GithubTokenParser {
     }
 
     private String getValue(String[] userInformationDetail) {
-        return Arrays.stream(userInformationDetail, 1, userInformationDetail.length)
+        String value = Arrays.stream(userInformationDetail, 1, userInformationDetail.length)
                 .collect(Collectors.joining());
+        return value.replaceAll(ESCAPE_LETTER_DELIMETER, NULL_STRING);
     }
 }

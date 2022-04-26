@@ -12,6 +12,9 @@ public class GithubUser {
     private static final String AVATAR_URL = "avatar_url";
     private static final String BIO = "bio";
     private static final String LOCATION = "location";
+    private static final String HTML_URL = "html_url";
+    private static final String GITHUB_ID = "githubId";
+    private static final String USERDETAIL_DELIMETER = "/";
     private static final char KEY_DELIMETER = '"';
 
     private Long id;
@@ -20,24 +23,27 @@ public class GithubUser {
     private final String avatarUrl;
     private final Bio bio;
     private final String location;
+    private final String githubId;
 
-    public GithubUser(Long id, String email, String name, String avatarUrl, Bio bio, String location) {
+    public GithubUser(Long id, String email, String name, String avatarUrl, Bio bio, String location, String githubId) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.bio = bio;
         this.location = location;
+        this.githubId = githubId;
     }
 
     public static GithubUser from(Map<String, String> userDetail) {
         Long id = Long.parseLong(getAttribute(userDetail, ID));
         String email = getAttribute(userDetail, EMAIL);
-        String name = getAttribute(userDetail, NAME);
+        String name = getAttribute(userDetail, NAME).replaceAll("'\"'", "");
         Bio bio = Bio.valueOf(getAttribute(userDetail, BIO));
         String avatarUrl = getAttribute(userDetail, AVATAR_URL);
         String location = getAttribute(userDetail, LOCATION);
-        return new GithubUser(id, email, name, avatarUrl, bio, location);
+        String githubId = saveGithubId(userDetail);
+        return new GithubUser(id, email, name, avatarUrl, bio, location, githubId);
     }
 
     // TODO if문 중첩 개선
@@ -49,6 +55,14 @@ public class GithubUser {
         }
         String key = KEY_DELIMETER + attribute + KEY_DELIMETER;
         return userDetail.get(key);
+    }
+
+    private static String saveGithubId(Map<String, String> userDetail) {
+        String key = KEY_DELIMETER + HTML_URL + KEY_DELIMETER;
+        String[] parsing = userDetail.get(key).split(USERDETAIL_DELIMETER);
+        String id = parsing[parsing.length - 1];
+        userDetail.put(GITHUB_ID, id);
+        return parsing[parsing.length - 1];
     }
 
     public String getEmail() {
@@ -69,5 +83,9 @@ public class GithubUser {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getGithubId() {
+        return githubId;
     }
 }
