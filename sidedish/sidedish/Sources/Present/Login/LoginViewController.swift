@@ -25,7 +25,10 @@ class LoginViewController: UIViewController {
         bind()
         attritbute()
         layout()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         model.action.viewDidLoad.send()
     }
     
@@ -34,18 +37,13 @@ class LoginViewController: UIViewController {
         
         model.state.presentMainView
             .sink {
-                self.navigationController?.pushViewController(MainViewController(), animated: true)
+                RootWindow.shared?.switchRootWindowState.send(.main)
             }
             .store(in: &cancellables)
         
         googleLoginButton.publisher(for: .touchUpInside)
             .sink(receiveValue: model.action.tappedGoogleLogin.send(_:))
             .store(in: &cancellables)
-        
-        model.state.loginFinish
-            .sink {
-                print($0.name)
-            }.store(in: &cancellables)
     }
     
     private func attritbute() {
@@ -65,7 +63,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewDelegate {
-    func getPresenting() -> UIViewController {
+    func getViewController() -> UIViewController {
         self
     }
 }

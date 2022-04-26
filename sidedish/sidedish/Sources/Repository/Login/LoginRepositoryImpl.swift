@@ -34,9 +34,10 @@ class LoginRepositoryImpl: NetworkRepository, LoginRepository {
         }.eraseToAnyPublisher()
     }
     
-    func getUser() -> AnyPublisher<User, Never> {
-        Future<User, Never> { promise in
+    func getUser() -> AnyPublisher<User?, Never> {
+        Future<User?, Never> { promise in
             guard let user = Auth.auth().currentUser else {
+                promise(.success(nil))
                 return
             }
             promise(.success(User(user: user)))

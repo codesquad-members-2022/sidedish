@@ -30,6 +30,9 @@
 		E0D380CC2816CFD4009627A1 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380CB2816CFD4009627A1 /* Container.swift */; };
 		E0D380CE2816D01E009627A1 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380CD2816D01E009627A1 /* UserStore.swift */; };
 		E0D380D22816D467009627A1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380D12816D467009627A1 /* Token.swift */; };
+		E0D380D42817E33F009627A1 /* RootWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380D32817E33F009627A1 /* RootWindow.swift */; };
+		E0D380D72817E6C6009627A1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380D62817E6C6009627A1 /* SplashViewController.swift */; };
+		E0D380D92817E6CF009627A1 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380D82817E6CF009627A1 /* SplashViewModel.swift */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
 		E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */; };
 		E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EDD5A2280CF94700DBF9C6 /* Assets.xcassets */; };
@@ -80,6 +83,9 @@
 		E0D380CB2816CFD4009627A1 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		E0D380CD2816D01E009627A1 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		E0D380D12816D467009627A1 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		E0D380D32817E33F009627A1 /* RootWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindow.swift; sourceTree = "<group>"; };
+		E0D380D62817E6C6009627A1 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		E0D380D82817E6CF009627A1 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +185,15 @@
 			path = PropertyWrapper;
 			sourceTree = "<group>";
 		};
+		E0D380D52817E6AC009627A1 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				E0D380D62817E6C6009627A1 /* SplashViewController.swift */,
+				E0D380D82817E6CF009627A1 /* SplashViewModel.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		E0EDD58D280CF94700DBF9C6 = {
 			isa = PBXGroup;
 			children = (
@@ -242,9 +257,11 @@
 		E0EDD5B2280D183100DBF9C6 /* Present */ = {
 			isa = PBXGroup;
 			children = (
-				E0FAAA44280D900B00B36F4D /* MenuDetail */,
+				E0D380D52817E6AC009627A1 /* Splash */,
 				E0EDD5B8280D510D00DBF9C6 /* Login */,
 				E0EDD5B7280D186B00DBF9C6 /* Main */,
+				E0FAAA44280D900B00B36F4D /* MenuDetail */,
+				E0D380D32817E33F009627A1 /* RootWindow.swift */,
 			);
 			path = Present;
 			sourceTree = "<group>";
@@ -521,12 +538,14 @@
 				E0D380C62816CC98009627A1 /* User.swift in Sources */,
 				E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */,
 				7345C9A9280E53AE00F89135 /* SidedishRepository.swift in Sources */,
+				E0D380D42817E33F009627A1 /* RootWindow.swift in Sources */,
 				733D584628112E96007FC36F /* String+Extension.swift in Sources */,
 				7345C9A6280E522D00F89135 /* SidedishEndPoint.swift in Sources */,
 				7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */,
 				E0FAAA4F280E867900B36F4D /* MenuDetail.swift in Sources */,
 				E0D380C82816CDC5009627A1 /* UserDefaultPropertyWrapper.swift in Sources */,
 				E0FAAA42280D883200B36F4D /* EndPoint.swift in Sources */,
+				E0D380D92817E6CF009627A1 /* SplashViewModel.swift in Sources */,
 				E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */,
 				E0FAAA5A280EEC9500B36F4D /* MenuAmountView.swift in Sources */,
 				E0D380C42816CC6D009627A1 /* LoginRepositoryImpl.swift in Sources */,
@@ -540,6 +559,7 @@
 				E0D380CC2816CFD4009627A1 /* Container.swift in Sources */,
 				E0FAAA43280D883200B36F4D /* ApiResult.swift in Sources */,
 				7345C9A4280E4B4100F89135 /* MainViewModel.swift in Sources */,
+				E0D380D72817E6C6009627A1 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

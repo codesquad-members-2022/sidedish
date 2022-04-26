@@ -11,5 +11,5 @@ import UIKit
 
 protocol LoginRepository {
     func googleLogin(viewController: UIViewController) -> AnyPublisher<User, Never>
-    func getUser() -> AnyPublisher<User, Never>
+    func getUser() -> AnyPublisher<User?, Never>
 }

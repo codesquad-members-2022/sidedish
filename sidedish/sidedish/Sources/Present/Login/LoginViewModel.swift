@@ -16,7 +16,6 @@ struct LoginViewModelAction {
 
 struct LoginViewModelState {
     let presentMainView = PassthroughSubject<Void, Never>()
-    let loginFinish = PassthroughSubject<User, Never>()
 }
 
 protocol LoginViewModelBinding {
@@ -25,7 +24,7 @@ protocol LoginViewModelBinding {
 }
 
 protocol LoginViewDelegate: AnyObject {
-    func getPresenting() -> UIViewController
+    func getViewController() -> UIViewController
 }
 
 protocol LoginViewModelProperty {
@@ -54,11 +53,12 @@ class LoginViewModel: LoginViewModelProtocol {
             .store(in: &cancellables)
                     
         action.tappedGoogleLogin
-            .compactMap { self.delegate?.getPresenting() }
+            .compactMap { self.delegate?.getViewController() }
             .map { self.loginRepository.googleLogin(viewController: $0) }
             .switchToLatest()
             .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
-            .sink(receiveValue: state.loginFinish.send(_:))
+            .map { _ in }
+            .sink(receiveValue: state.presentMainView.send(_:))
             .store(in: &cancellables)
     }
 }
