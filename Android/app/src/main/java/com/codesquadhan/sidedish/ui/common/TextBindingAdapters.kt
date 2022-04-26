@@ -17,7 +17,7 @@ fun applyPriceFormat(view: TextView, price: Int) {
 }
 
 @BindingAdapter("priceAmount", "strikeThrough")
-fun applySalePriceTextView(view: TextView, price: Int, saleType: String) {
+fun applySalePriceTextView(view: TextView, price: Int, saleType: String?) {
     applyPriceFormat(view, price)
     view.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
     view.isVisible = saleType != "NONE"
@@ -27,12 +27,12 @@ fun applySalePriceTextView(view: TextView, price: Int, saleType: String) {
 }
 
 @BindingAdapter("badgeVisible")
-fun applyBadgeVisibility(view: CardView, saleType: String) {
+fun applyBadgeVisibility(view: CardView, saleType: String?) {
     view.isVisible = saleType != "NONE"
 }
 
 @BindingAdapter("badgeBackground")
-fun applyBadgeBackground(view: ConstraintLayout, saleType: String) {
+fun applyBadgeBackground(view: ConstraintLayout, saleType: String?) {
     if (saleType == "LAUNCH") view.setBackgroundColor(
         ContextCompat.getColor(
             view.context,
@@ -43,7 +43,7 @@ fun applyBadgeBackground(view: ConstraintLayout, saleType: String) {
 }
 
 @BindingAdapter("badgeText")
-fun applyBadgeText(view: TextView, saleType: String) {
+fun applyBadgeText(view: TextView, saleType: String?) {
     if (saleType == "LAUNCH") {
         view.text = view.context.getString(R.string.text_tag_launching)
         view.setTextColor(ContextCompat.getColor(view.context, R.color.Primary3))
