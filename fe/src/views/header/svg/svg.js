@@ -1,4 +1,4 @@
-import { StyledSvgWrapper } from './Header.styled';
+import { StyledSvgWrapper } from '../Header.styled';
 
 export function Svg({ icons, useIconsName }) {
   return useIconsName.map((iconName, idx) => (

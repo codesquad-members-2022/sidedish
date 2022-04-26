@@ -1,8 +1,8 @@
-import { gnbMenus, gnbSubMenus, icons } from '../helper/constants.js';
-import { GnbLists } from './header/gnbLists.js';
-import { Svg } from './header/svg.js';
+import { gnbMenus, gnbSubMenus, icons } from '../../helper/constants.js';
+import { GnbLists } from './gnbLists/gnbLists.js';
+import { Svg } from './svg/svg.js';
 import { useState } from 'react';
-import { StyledDiv, StyledH1, StyledHeader, StyledInnerDiv, StyledUl } from './header/Header.styled.js';
+import { StyledDiv, StyledH1, StyledHeader, StyledInnerDiv, StyledUl } from './Header.styled.js';
 
 function Header() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);

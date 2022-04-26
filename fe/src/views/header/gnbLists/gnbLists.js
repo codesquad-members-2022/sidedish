@@ -1,4 +1,4 @@
-import { GnbMenu, GnbSubMenu, GnbSubMenuWrapper } from './Header.styled';
+import { GnbMenu, GnbSubMenu, GnbSubMenuWrapper } from '../Header.styled';
 
 export function GnbLists({ isSubMenuOpen, gnbMenus, gnbSubMenus, onMouseEnter }) {
   function handleMouseEnterSubMenu(e) {

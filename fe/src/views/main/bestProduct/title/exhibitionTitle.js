@@ -1,4 +1,4 @@
-import { Title } from './BestProduct.styled';
+import { Title } from '../BestProduct.styled';
 
 export function ExhibitionTitle({ title }) {
   if (!title) {

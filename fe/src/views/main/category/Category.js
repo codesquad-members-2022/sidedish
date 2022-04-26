@@ -1,8 +1,8 @@
-import { categoryData } from '../helper/mock';
-import { ProductCard } from '../components/ProductCard';
-import { applyFlex } from '../helper/utils';
+import { categoryData } from '../../../helper/mock';
+import { ProductCard } from '../../../components/ProductCard';
+import { applyFlex } from '../../../helper/utils';
 import styled from 'styled-components';
-import { buttonIcons } from '../helper/constants';
+import { buttonIcons } from '../../../helper/constants';
 
 export function Category() {
   return (

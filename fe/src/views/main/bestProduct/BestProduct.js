@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react';
-import { TabMenu } from './bestProduct/tabMenu.js';
-import { TabList } from './bestProduct/tabList';
-import {
-  BestProductHeader,
-  CategoryBadge,
-  StyledBestProduct,
-  TabBar,
-  TitleWrapper,
-} from './bestProduct/BestProduct.styled';
-import { fetchData } from '../helper/utils';
-import { API } from '../helper/constants';
-import { ExhibitionTitle } from './bestProduct/exhibitionTitle';
+import { TabMenu } from './tabMenu/tabMenu.js';
+import { TabList } from './tabList/tabList.js';
+import { BestProductHeader, CategoryBadge, StyledBestProduct, TabBar, TitleWrapper } from './BestProduct.styled';
+import { fetchData } from '../../../helper/utils';
+import { API } from '../../../helper/constants.js';
+import { ExhibitionTitle } from './title/exhibitionTitle';
 
 export function BestProduct() {
-  const [exhibitionTitle, setExhibitionTitle] = useState(null);
-  const [bestProductTab, setBestProductTab] = useState(null);
-  const [tabList, setTabList] = useState(null);
-  const [curTab, setCurTab] = useState(null);
+  const [exhibitionTitle, setExhibitionTitle] = useState('');
+  const [bestProductTab, setBestProductTab] = useState([]);
+  const [tabList, setTabList] = useState([]);
+  const [curTab, setCurTab] = useState(0);
   const [sideDishCardDatas, setSideDishCardDatas] = useState([]);
   useEffect(() => {
     async function getExhibitionData() {
@@ -37,9 +31,6 @@ export function BestProduct() {
   }, []);
 
   useEffect(() => {
-    if (curTab === null) {
-      return;
-    }
     setTabList(sideDishCardDatas[curTab]);
   }, [sideDishCardDatas, curTab]);
 
