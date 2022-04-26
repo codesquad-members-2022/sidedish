@@ -1,21 +1,20 @@
 import styled from "styled-components";
+import { custom_font, custom_flex } from "../styles/global";
 
 const MenuWrapper = styled.li`
-  ${({ theme }) => theme.custom_flex("column", "flex-start")}
+  ${custom_flex("column", "flex-start")}
   margin: 0px 12px;
 `;
 
 const Title = styled.span`
-  ${({ theme }) =>
-    theme.custom_font("Noto Sans KR", 16, 400, 26, -0.008) +
-    `color:${theme.colors.Black}`}
+  ${custom_font("Noto Sans KR", 16, 400, 26, -0.008)}
+  color: ${({ theme }) => theme.colors.Black}
 `;
 
 const Sub = styled.span`
   margin-top: 8px;
-  ${({ theme }) =>
-    theme.custom_font("Noto Sans KR", 14, 400, 24) +
-    `color:${theme.colors.Black}`}
+  ${custom_font("Noto Sans KR", 14, 400, 24)}
+  color: ${({ theme }) => theme.colors.Black}
 `;
 
 export const GnbMenu = ({ id, name, subcategories, extended }) => {

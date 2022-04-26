@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import { DiscountTag } from "./DiscountTag";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { SIZES, thumbnailSize } from "../convention";
+import { ModalContext } from "../ModalReducer";
 
 const CardWrapper = styled.div`
   margin-right: 24px;
@@ -57,15 +58,29 @@ const ProductPrice = styled.span`
   color: #bcbcbc;
 `;
 
-export const ProductCard = ({ cardSize, primary_image, name, description, discount, final_price, price }) => {
+export const ProductCard = ({
+  cardSize,
+  id,
+  primary_image,
+  name,
+  description,
+  discount,
+  final_price,
+  price,
+}) => {
   const [hover, setHover] = useState(false);
-
+  const { isOpen, dispatch } = useContext(ModalContext);
   return (
-    <CardWrapper size={cardSize}>
+    <CardWrapper
+      size={cardSize}
+      onClick={() => dispatch({ type: "open", openId: id })}
+    >
       <ProductImage size={cardSize} src={primary_image}></ProductImage>
       <ProductInfo>
         <ProductName size={cardSize}>{name}</ProductName>
-        {cardSize !== SIZES.small && <ProductDescription>{description}</ProductDescription>}
+        {cardSize !== SIZES.small && (
+          <ProductDescription>{description}</ProductDescription>
+        )}
         <ProductPriceWrapper>
           <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
           <ProductPrice>{price + "원" || ""}</ProductPrice>
