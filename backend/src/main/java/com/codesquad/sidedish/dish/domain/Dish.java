@@ -55,7 +55,7 @@ public class Dish {
         this.deliveries = deliveries;
     }
 
-    public int getFixedPrice() {
+    public int getDiscountPrice() {
         BigDecimal totalRate = discounts.stream()
             .map(DishDiscount::getCode)
             .map(DiscountPolicy::from)

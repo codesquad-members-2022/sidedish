@@ -30,7 +30,7 @@ public class OrderService {
         dishRepository.save(dish);
 
         // 반찬의 정보에 따라 주문 저장
-        Order order = new Order(dish.getId(), dish.getFixedPrice(), quantity);
+        Order order = new Order(dish.getId(), dish.getDiscountPrice(), quantity);
         Set<OrderDelivery> deliveries = toOrderDeliveries(dish.getDeliveries());
         order.setDeliveries(deliveries);
 
