@@ -30,10 +30,10 @@ public class ProductDetailResponse {
     private List<ProductImageResponse> detailImages;
 
     @Schema(description = "상품 가격")
-    private int price;
+    private Long price;
 
     @Schema(description = "할인된 가격")
-    private int discountPrice;
+    private Long discountPrice;
 
     @Schema(description = "상품 재고")
     private int stockQuantity;

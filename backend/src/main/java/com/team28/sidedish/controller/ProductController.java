@@ -4,6 +4,7 @@ import com.team28.sidedish.controller.dto.ProductDetailResponse;
 import com.team28.sidedish.controller.dto.ProductListResponse;
 import com.team28.sidedish.service.MockProductDetailService;
 import com.team28.sidedish.service.MockProductService;
+import com.team28.sidedish.service.ProductListService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final MockProductService productService;
+    private final ProductListService productListService;
     private final MockProductDetailService productDetailService;
 
     @Operation(
@@ -39,7 +40,7 @@ public class ProductController {
     )
     @GetMapping
     public ProductListResponse productList(@RequestParam Long categoryId) {
-        return productService.findProductList(categoryId);
+        return productListService.findProductList(categoryId);
     }
 
     @Operation(
