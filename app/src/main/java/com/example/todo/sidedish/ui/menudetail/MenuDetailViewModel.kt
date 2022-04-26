@@ -25,10 +25,8 @@ class MenuDetailViewModel @Inject constructor(
     private val orderRepository: OrderRepository,
 ) : ViewModel() {
 
-    private val detailInfo = MutableLiveData<MenuDetail>()
-    val _detailInfo: LiveData<MenuDetail> = detailInfo
-    private val thumbnailImages = MutableLiveData<List<String>>()
-    val _thumbnailImages: LiveData<List<String>> = thumbnailImages
+    private val _detailInfo = MutableLiveData<MenuDetail>()
+    val detailInfo: LiveData<MenuDetail> = _detailInfo
 
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
@@ -45,8 +43,7 @@ class MenuDetailViewModel @Inject constructor(
     fun getDetail(hash: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val detailMenu = menuRepository.getDetail(hash)
-            detailInfo.value = detailMenu
-            thumbnailImages.value = detailMenu.thumbnailImages
+            _detailInfo.value = detailMenu
         }
     }
 
