@@ -3,8 +3,8 @@ import Header from './components/Header';
 import Modal from './components/Modal';
 import Event from './components/Event';
 import GlobalStyles from './GlobalStyles';
-import CategoryMenu from './components/CategoryMenu';
 import Alert from './components/Alert';
+import Main from './components/Main';
 
 const categories = [
   {
@@ -123,6 +123,27 @@ const dishes = {
     },
   ],
 };
+const MainCategories = [
+  {
+    id: 1,
+    name: '든든한 메인요리',
+    children: [
+      { id: 2, name: '육류 요리', children: null },
+      { id: 3, name: '해산물 요리', children: null },
+    ],
+  },
+  {
+    id: 4,
+    name: '뜨끈한 국물요리',
+    children: [{ id: 5, name: '국/탕/찌개', children: null }],
+  },
+  {
+    id: 7,
+    name: '정갈한 밑반찬',
+    children: [{ id: 6, name: '국/탕/찌개', children: null }],
+  },
+];
+
 function App() {
   const [alert, setAlert] = useState({ show: false, message: '' });
   function showAlert(message) {
@@ -134,9 +155,10 @@ function App() {
   return (
     <div className="App">
       <GlobalStyles></GlobalStyles>
+      <Modal dishes={dishes}></Modal>
       <Header categories={categories}></Header>
       <Event></Event>
-      <CategoryMenu></CategoryMenu>
+      <Main categories={MainCategories}></Main>
       {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
     </div>
   );
