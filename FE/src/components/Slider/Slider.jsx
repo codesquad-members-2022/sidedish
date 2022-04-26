@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SliderWrapper, SliderTitle, SliderContainer, SliderList, ArrowLeftIcon, ArrowRightIcon } from './Slider.style';
 import Card from 'components/Card/Card';
 import { fetchData } from 'utils/utils';
+import { TEST_URL } from 'constants/api';
 
 const Slider = () => {
   const VISIBLE_CARD_COUNT = 4;
@@ -13,7 +14,6 @@ const Slider = () => {
   const [dataIndex, setDataIndex] = useState(0);
 
   const fetchTabData = async () => {
-    const TEST_URL = `http://3.39.42.204:8080/api/dishes`;
     let data = await fetchData(TEST_URL);
     data = data.slice(dataIndex, 6); // Temporarily set 6 data
     setData(data);

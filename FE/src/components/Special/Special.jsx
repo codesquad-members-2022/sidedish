@@ -12,6 +12,7 @@ import {
   CardContainer,
 } from './Special.style';
 import tabData from 'data/specialTab.js';
+import { TEST_URL } from 'constants/api';
 
 const Special = () => {
   const [data, setData] = useState([]);
@@ -28,9 +29,8 @@ const Special = () => {
 
   const fetchTabData = async tabNum => {
     // const TEST_URL = `http://3.39.42.204/api/dishes/${tabNum}`;
-    const TEST_URL = `http://3.39.42.204/api/dishes`;
     const data = await fetchData(TEST_URL);
-    setData(data.response.slice(0, 3));
+    setData(data.slice(0, 3));
   };
 
   return (
