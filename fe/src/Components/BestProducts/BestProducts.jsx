@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
+import { API_URL } from '@/Env';
 import { fetchData } from '@/Utils';
 
 import { TabList } from './TabList';
@@ -42,10 +43,10 @@ export const BestProducts = () => {
   const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    fetchData('/events')
+    fetchData(`${API_URL}/events`)
       .then(tabListData => {
-        setTabList(tabListData.content);
-        setSelectedTabId(tabListData.content[0].id);
+        setTabList(tabListData.result_body);
+        setSelectedTabId(tabListData.result_body[0].id);
       })
       .catch(err => {
         //TODO: 에러 핸들링

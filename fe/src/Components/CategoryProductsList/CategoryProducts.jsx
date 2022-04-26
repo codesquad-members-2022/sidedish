@@ -175,7 +175,6 @@ export const CategoryProducts = ({ categoryId }) => {
   if (!isLoaded) return <LoadingSpinner />;
 
   const categoryProducts = categoryProductsData.result_body;
-  console.log(categoryProducts);
 
   return (
     <CategoryProductsWrapper>
