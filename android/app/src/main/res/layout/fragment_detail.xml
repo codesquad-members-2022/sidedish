@@ -11,7 +11,7 @@
 
         <variable
             name="foodDetail"
-            type="com.example.sidedish.data.Detail" />
+            type="com.example.sidedish.data.Menu" />
 
     </data>
 
@@ -40,7 +40,7 @@
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="요리 이름" />
+                android:text="@{foodDetail.name}" />
 
             <TextView
                 android:id="@+id/tv_body"
@@ -52,7 +52,7 @@
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{foodDetail.productDescription}" />
+                android:text="@{foodDetail.description}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:ellipsize="end"
-                    android:text="@{foodDetail.prices[0]}" />
+                    android:text="@{foodDetail.price}" />
 
                 <TextView
                     android:id="@+id/tv_discounted_amount"
@@ -76,7 +76,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="4dp"
                     android:ellipsize="end"
-                    android:text="@{foodDetail.prices[1]}" />
+                    android:text="@{foodDetail.price * (1 - (foodDetail.discountRate / 100))}" />
 
             </LinearLayout>
 
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    tools:text="@{foodDetail.point}" />
+                    tools:text="값 없음" />
 
             </LinearLayout>
 
@@ -166,7 +166,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    tools:text="@{foodDetail.deliveryInfo}" />
+                    tools:text="값 없음" />
 
             </LinearLayout>
 
@@ -193,7 +193,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    android:text="@{foodDetail.deliveryFee}" />
+                    android:text="값 없음" />
 
             </LinearLayout>
 

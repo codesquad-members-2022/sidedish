@@ -1,7 +1,7 @@
 package com.example.sidedish.network
 
-import com.example.sidedish.data.FoodDetail
 import com.example.sidedish.data.Item
+import com.example.sidedish.data.MenuDetailDTO
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,8 +13,8 @@ interface ApiClient {
         @Path("categoryId") category: Int
     ):Response<Item>
 
-    @GET("/onban/detail/{detail_hash}")
+    @GET("/items/detail/{id}")
     suspend fun getProductDetail(
-        @Path("detail_hash") detailHash: String
-    ): Response<FoodDetail>
+        @Path("id") detailHash: Int
+    ): Response<MenuDetailDTO>
 }

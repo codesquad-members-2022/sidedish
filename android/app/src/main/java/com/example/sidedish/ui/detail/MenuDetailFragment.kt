@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.sidedish.R
 import com.example.sidedish.data.FoodImage
+import com.example.sidedish.data.Menu
 import com.example.sidedish.databinding.FragmentDetailBinding
 import com.example.sidedish.ui.adapter.ImageViewPagerAdapter
 import com.example.sidedish.ui.viewmodel.MenuListViewModel
@@ -46,22 +47,17 @@ class MenuDetailFragment : Fragment() {
             val imageList = mutableListOf<FoodImage>()
             with(binding) {
                 foodDetail = detail
-                Glide.with(this@MenuDetailFragment).load(detail.detailSection[0]).into(ivDetail1)
-                Glide.with(this@MenuDetailFragment).load(detail.detailSection[1]).into(ivDetail2)
-                Glide.with(this@MenuDetailFragment).load(detail.detailSection[2]).into(ivDetail3)
+                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(0)?.imageLink).into(ivDetail1)
+                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(1)?.imageLink).into(ivDetail2)
+                Glide.with(this@MenuDetailFragment).load(detail.detailImageLink?.get(2)?.imageLink).into(ivDetail3)
 
-                imageList.add(FoodImage(detail.thumbImage[0]))
-                imageList.add(FoodImage(detail.thumbImage[1]))
+                imageList.add(FoodImage(detail.mainImageLink!!))
+                imageList.add(FoodImage(detail.mainImageLink!!))
                 val adapter = ImageViewPagerAdapter().apply {
                     submitList(imageList)
                 }
                 pagerDetailImage.adapter = adapter
-
-
-
-
             }
-
         }
 
         with(binding) {
@@ -69,4 +65,9 @@ class MenuDetailFragment : Fragment() {
             menuViewModel = viewModel
         }
     }
+
+    private fun insertImage(fragment: Fragment, menu: String, id: String) {
+        Glide.with(fragment).load(menu).into(binding.)
+    }
+
 }
