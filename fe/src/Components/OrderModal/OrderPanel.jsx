@@ -24,32 +24,26 @@ const ProductThumbnail = styled.div`
   flex-direction: column;
 `;
 
-const MainProductImage = styled.div`
+const ProductImg = styled.div`
   width: 400px;
   height: 400px;
   overflow: hidden;
 
-  .poduct-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-const SubProductImage = styled.div`
-  width: 72px;
-  height: 72px;
-  overflow: hidden;
-  margin: 8px 8px 0 0;
+  ${({ size }) => {
+    return size === 'sm'
+      ? css`
+          width: 72px;
+          height: 72px;
+          overflow: hidden;
+          margin: 8px 8px 0 0;
+        `
+      : null;
+  }}
 
   .product-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  :last-child {
-    margin-right: 0;
   }
 `;
 
@@ -172,29 +166,29 @@ export const OrderPanel = () => {
     <OrderPanelWrapper>
       <SelectedProduct>
         <ProductThumbnail>
-          <MainProductImage size={'md'}>
+          <ProductImg size={'md'}>
             <img
               className="product-img"
               src="https://img.insight.co.kr/static/2019/06/26/700/f31l48lhp1v2tuq7ce8o.jpg"
               alt="대표 음식 사진"
             />
-          </MainProductImage>
+          </ProductImg>
           <SubProductList>
-            <SubProductImage>
+            <ProductImg size={'sm'}>
               <img
                 className="product-img"
                 src="https://img.insight.co.kr/static/2019/06/26/700/5nmluh24cnp5h4rb3vj4.jpg"
                 alt="대표 음식 사진"
               />
-            </SubProductImage>
-            <SubProductImage>
+            </ProductImg>
+            <ProductImg size={'sm'}>
               <img
                 className="product-img"
                 src="https://studyforus.com/files/attach/images/1816/212/461/aca7e1aed69a698c8896c641d77085dd.png
                 "
                 alt="대표 음식 사진"
               />
-            </SubProductImage>
+            </ProductImg>
           </SubProductList>
         </ProductThumbnail>
         <ProductInfo>
