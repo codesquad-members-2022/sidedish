@@ -1,5 +1,6 @@
 package com.example.be.common.service;
 
+import com.example.be.business.user.domain.User;
 import com.example.be.business.user.repository.UserRepository;
 import com.example.be.common.token.configuration.ClientRegistration;
 import com.example.be.common.token.configuration.InMemoryClientRegisterrRepository;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class OauthService {
@@ -46,6 +48,8 @@ public class OauthService {
                 .exchange(clientRegistration.getUserInfoUrl(), HttpMethod.GET, new HttpEntity<String>(authorizationIncludedHeader), String.class);
         Map<String, String> userDetail = githubTokenUtils.getUserDetail(response.getBody());
         GithubUser githubUser = GithubUser.from(userDetail);
+
+        Optional<User> findUser = userRepository.findByGithubId(githubUser.getEmail());
         return jwtTokenProvider.createJwtToken(githubUser.getEmail());
     }
 }

@@ -80,6 +80,10 @@ public class Dish extends AbstractAggregateRootz<Dish> {
         return count;
     }
 
+//    public Dish publishUpdateDish(){
+//        this.registerEvent(new DishUpdatePublishEvent())
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
