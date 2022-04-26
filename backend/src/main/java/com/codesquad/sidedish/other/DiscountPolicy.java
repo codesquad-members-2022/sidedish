@@ -1,5 +1,7 @@
 package com.codesquad.sidedish.other;
 
+import com.codesquad.sidedish.exception.ErrorCode;
+import com.codesquad.sidedish.exception.NotFoundException;
 import java.util.Arrays;
 
 public enum DiscountPolicy {
@@ -20,7 +22,7 @@ public enum DiscountPolicy {
         return Arrays.stream(DiscountPolicy.values())
             .filter(policy -> policy.getCode().equals(code))
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("일치하는 할인 코드가 존재하지 않습니다."));
+            .orElseThrow(() -> new NotFoundException(ErrorCode.DISCOUNT_NOT_FOUND));
     }
 
     public String getDetail() {

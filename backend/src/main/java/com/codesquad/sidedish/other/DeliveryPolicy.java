@@ -1,5 +1,7 @@
 package com.codesquad.sidedish.other;
 
+import com.codesquad.sidedish.exception.BusinessException;
+import com.codesquad.sidedish.exception.ErrorCode;
 import java.util.Arrays;
 
 public enum DeliveryPolicy {
@@ -18,7 +20,7 @@ public enum DeliveryPolicy {
         return Arrays.stream(DeliveryPolicy.values())
             .filter(policy -> policy.getCode().equals(code))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("일치하는 배달 코드가 존재하지 않습니다."));
+            .orElseThrow(() -> new BusinessException(ErrorCode.DELIVERY_NOT_FOUND));
     }
 
     public String getDetail() {

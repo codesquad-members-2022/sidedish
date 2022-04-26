@@ -3,6 +3,8 @@ package com.codesquad.sidedish.order;
 import com.codesquad.sidedish.dish.DishRepository;
 import com.codesquad.sidedish.dish.domain.Dish;
 import com.codesquad.sidedish.dish.domain.DishDelivery;
+import com.codesquad.sidedish.exception.ErrorCode;
+import com.codesquad.sidedish.exception.NotFoundException;
 import com.codesquad.sidedish.order.domain.Order;
 import com.codesquad.sidedish.order.domain.OrderDelivery;
 import com.codesquad.sidedish.order.domain.User;
@@ -20,10 +22,10 @@ public class OrderService {
 
     public void order(String githubId, Integer dishId, Integer quantity) {
         User user = userRepository.findByGithubId(githubId)
-            .orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없습니다."));
+            .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
 
         Dish dish = dishRepository.findById(dishId)
-            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+            .orElseThrow(() -> new NotFoundException(ErrorCode.DISH_NOT_FOUND));
 
         // 반찬 판매 후 저장
         dish.sold(quantity);

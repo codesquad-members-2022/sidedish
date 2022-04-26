@@ -4,6 +4,8 @@ import com.codesquad.sidedish.dish.domain.Dish;
 import com.codesquad.sidedish.dish.domain.RecommendRef;
 import com.codesquad.sidedish.dish.dto.DishListResponse;
 import com.codesquad.sidedish.dish.dto.DishUnitResponse;
+import com.codesquad.sidedish.exception.ErrorCode;
+import com.codesquad.sidedish.exception.NotFoundException;
 import com.codesquad.sidedish.other.page.Criteria;
 import com.codesquad.sidedish.other.page.Slice;
 import java.util.List;
@@ -39,14 +41,14 @@ public class DishService {
 
     public DishUnitResponse findDish(Integer dishId) {
         Dish dish = dishRepository.findById(dishId)
-            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+            .orElseThrow(() -> new NotFoundException(ErrorCode.DISH_NOT_FOUND));
 
         return DishUnitResponse.from(dish);
     }
 
     public Slice<DishListResponse> findRecommendDishes(Integer dishId, Criteria criteria) {
         Dish dish = dishRepository.findById(dishId)
-            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+            .orElseThrow(() -> new NotFoundException(ErrorCode.DISH_NOT_FOUND));
 
         List<Integer> dishIds = dish.getRecommends().stream()
             .map(RecommendRef::getRecommendeeId)
