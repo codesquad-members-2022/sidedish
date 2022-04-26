@@ -46,6 +46,8 @@ create table side_dish
     price               int comment '정상가격',
     accrual_rate        decimal(2, 2) comment '적립률',
 
+    stock               int          default 3 comment '재고수량',
+
     shipping_info       varchar(100) default '서울 경기 새벽 배송, 전국 택배 배송' comment '배송정보',
     shipping_fee        int          default 2500 comment '배송료',
     exemption_condition int          default 40000 comment '배송비 면제 조건'

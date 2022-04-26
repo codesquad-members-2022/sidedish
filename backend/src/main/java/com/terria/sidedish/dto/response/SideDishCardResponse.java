@@ -1,7 +1,7 @@
 package com.terria.sidedish.dto.response;
 
+import com.terria.sidedish.domain.entity.aggregate.SideDish;
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
-import com.terria.sidedish.domain.entity.reference.SideDish;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

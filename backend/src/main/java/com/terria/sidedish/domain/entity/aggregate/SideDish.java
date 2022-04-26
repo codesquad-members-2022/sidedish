@@ -1,6 +1,7 @@
-package com.terria.sidedish.domain.entity.reference;
+package com.terria.sidedish.domain.entity.aggregate;
 
 import com.terria.sidedish.domain.entity.link.SideDishHasDiscountEvent;
+import com.terria.sidedish.domain.entity.reference.SideDishImage;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
@@ -18,6 +19,8 @@ public class SideDish {
     private String description;
     private int price;
     private double accrualRate;
+
+    private int stock;
 
     private String shippingInfo;
     private int shippingFee;

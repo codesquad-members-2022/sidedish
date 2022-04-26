@@ -1,6 +1,5 @@
 package com.terria.sidedish.domain.entity.aggregate;
 
-import com.terria.sidedish.domain.entity.reference.Category;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
