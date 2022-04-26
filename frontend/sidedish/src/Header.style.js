@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-const HeaderContainer = styled.header`
+const Wrapper = styled.header`
     border-bottom: 1px solid black;
 `;
 
-const HeaderInnerContainer = styled.div`
+const Container = styled.div`
     display: flex;
     margin: 25px auto;
     width: 1280px;
 `;
 
-const HeaderTitle = styled.h1`
+const Title = styled.h1`
     font-family: "Outfit";
     font-weight: 900;
     font-size: 4rem;
@@ -18,13 +18,13 @@ const HeaderTitle = styled.h1`
     color: #1b1b1b;
 `;
 
-const HeaderNav = styled.nav`
+const NavBar = styled.nav`
     display: flex;
     width: 100%;
     margin-left: 40px;
 `;
 
-const HeaderNavList = styled.ul`
+const Nav = styled.ul`
     display: flex;
     gap: 24px;
     margin-top: 23px;
@@ -32,7 +32,7 @@ const HeaderNavList = styled.ul`
     padding-bottom: 10px;
 `;
 
-const HeaderIcons = styled.ul`
+const Icons = styled.ul`
     display: flex;
     gap: 25px;
     margin-top: 23px;
@@ -40,19 +40,19 @@ const HeaderIcons = styled.ul`
     align-items: flex-start;
 `;
 
-const HeaderIcon = styled.li`
+const Icon = styled.li`
     width: 24px;
     height: 24px;
     cursor: pointer;
 `;
 
-const HeaderFoodList = styled.ul`
+const SubMenu = styled.ul`
     display: ${(props) => (props.isVisible ? "flex" : "none")};
     flex-direction: column;
     gap: 8px;
 `;
 
-const HeaderFoodTitle = styled.p`
+const MenuTitle = styled.p`
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 26px;
@@ -62,7 +62,7 @@ const HeaderFoodTitle = styled.p`
     cursor: pointer;
 `;
 
-const HeaderFoodItem = styled.li`
+const SubMenuTitle = styled.li`
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 24px;
@@ -75,14 +75,14 @@ const HeaderFoodItem = styled.li`
 `;
 
 export {
-    HeaderContainer,
-    HeaderInnerContainer,
-    HeaderTitle,
-    HeaderNav,
-    HeaderNavList,
-    HeaderIcons,
-    HeaderIcon,
-    HeaderFoodList,
-    HeaderFoodTitle,
-    HeaderFoodItem,
+    Wrapper,
+    Container,
+    Title,
+    NavBar,
+    Nav,
+    Icons,
+    Icon,
+    SubMenu,
+    MenuTitle,
+    SubMenuTitle,
 };

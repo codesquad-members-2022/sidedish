@@ -1,38 +1,37 @@
 import { useState } from "react";
 import "./Header.style.js";
 import {
-    HeaderContainer,
-    HeaderInnerContainer,
-    HeaderTitle,
-    HeaderNav,
-    HeaderNavList,
-    HeaderIcons,
-    HeaderIcon,
-    HeaderFoodList,
-    HeaderFoodTitle,
-    HeaderFoodItem,
+    Wrapper,
+    Container,
+    Title,
+    NavBar,
+    Nav,
+    Icons,
+    Icon,
+    SubMenu,
+    MenuTitle,
+    SubMenuTitle,
 } from "./Header.style";
 
-function NavItem(props) {
-    const items = props.navItem.items.map((item) => (
-        <HeaderFoodItem key={item.id}>{item.title}</HeaderFoodItem>
+function NavItem({ navItem, isSubMenuVisible }) {
+    const items = navItem.items.map((item) => (
+        <SubMenuTitle key={item.id}>{item.title}</SubMenuTitle>
     ));
 
     return (
-        <li key={props.navItem.id} className="header__food">
-            <HeaderFoodTitle>{props.navItem.title}</HeaderFoodTitle>
-            <HeaderFoodList isVisible={props.isVisible}>{items}</HeaderFoodList>
+        <li key={navItem.id}>
+            <MenuTitle>{navItem.title}</MenuTitle>
+            <SubMenu isVisible={isSubMenuVisible}>{items}</SubMenu>
         </li>
     );
 }
 
-function NavList({ isVisible }) {
+function NavList({ isSubMenuVisible }) {
     const navList = headerList.map((navItem) => (
         <NavItem
             key={navItem.id}
-            className="header__food"
             navItem={navItem}
-            isVisible={isVisible}
+            isSubMenuVisible={isSubMenuVisible}
         />
     ));
 
@@ -40,31 +39,29 @@ function NavList({ isVisible }) {
 }
 
 function IconList() {
-    const iconList = icons.map((icon, idx) => (
-        <HeaderIcon key={idx}>{icon}</HeaderIcon>
-    ));
+    const iconList = icons.map((icon, idx) => <Icon key={idx}>{icon}</Icon>);
     return iconList;
 }
 
 function Header() {
-    const [isVisible, setVisibility] = useState(false);
-    const showMenu = () => setVisibility(true);
-    const hideMenu = () => setVisibility(false);
+    const [isSubMenuVisible, setSubMenuVisibility] = useState(false);
+    const showMenu = () => setSubMenuVisibility(true);
+    const hideMenu = () => setSubMenuVisibility(false);
 
     return (
-        <HeaderContainer>
-            <HeaderInnerContainer>
-                <HeaderTitle>Ordering</HeaderTitle>
-                <HeaderNav>
-                    <HeaderNavList onMouseOver={showMenu} onMouseOut={hideMenu}>
-                        <NavList isVisible={isVisible} />
-                    </HeaderNavList>
-                    <HeaderIcons>
+        <Wrapper>
+            <Container>
+                <Title>Ordering</Title>
+                <NavBar>
+                    <Nav onMouseOver={showMenu} onMouseOut={hideMenu}>
+                        <NavList isSubMenuVisible={isSubMenuVisible} />
+                    </Nav>
+                    <Icons>
                         <IconList />
-                    </HeaderIcons>
-                </HeaderNav>
-            </HeaderInnerContainer>
-        </HeaderContainer>
+                    </Icons>
+                </NavBar>
+            </Container>
+        </Wrapper>
     );
 }
 
@@ -95,7 +92,7 @@ const headerList = [
 
 const icons = [
     <svg
-        className="header__icon-search h-6 w-6"
+        className="h-6 w-6"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -110,7 +107,7 @@ const icons = [
     </svg>,
     <a href="/">
         <svg
-            className="header__icon-user h-5 w-5"
+            className="h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -123,7 +120,7 @@ const icons = [
         </svg>
     </a>,
     <svg
-        className="header__icon-cart h-5 w-5"
+        className="h-5 w-5"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
