@@ -1,7 +1,7 @@
 import { Reset } from 'styled-reset';
 import Header from './views/header/Header.js';
 import { BestProduct } from './views/main/bestProduct/BestProduct.js';
-import { Category } from './views/main/category/Category.js';
+import { CategoryArea } from './views/main/categoryArea/CategoryArea.js';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Reset />
       <Header />
       <BestProduct />
-      <Category />
+      <CategoryArea />
     </div>
   );
 }
