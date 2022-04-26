@@ -3,10 +3,20 @@ import UIKit
 class BanchanViewModel {
     private let dish: Dish
     
-    var dishTitle: String {
+    var image: UIImage? {
+        let data = try? Data(contentsOf: self.dish.image)
+        let image = UIImage(data: data!)
+        return image
+    }
+    
+    var discountPolicy: String? {
+        return dish.discountPolicy
+    }
+    
+    var title: String {
         return self.dish.name
     }
-    var dishDescription: String {
+    var description: String {
         return self.dish.description
     }
     var price: String {

@@ -16,19 +16,14 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         if let targetDish: Dish = tmp[indexPath.section][indexPath.row] {
-            let won = targetDish.price.convertToWon()
-            guard let special = targetDish.discountPolicy else { return UICollectionViewCell() }
+            let dishViewModel = BanchanViewModel(dish: targetDish)
+            let price = dishViewModel.price
+            guard let special = dishViewModel.discountPolicy else { return UICollectionViewCell() }
             
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: targetDish.image)
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data!)
-                    cell.configure(image: image!)
-                }
-            }
-            cell.configure(title: targetDish.name, description: targetDish.description)
+            
+            cell.configure(title: dishViewModel.title, description: dishViewModel.description)
             cell.configure(specialBadge: special)
-            cell.configure(price: won, listPrice: nil)
+            cell.configure(price: price, listPrice: nil)
         }
         return cell
     }
