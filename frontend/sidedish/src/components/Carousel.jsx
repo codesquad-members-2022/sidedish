@@ -4,36 +4,29 @@ import LeftArrowBtn from "../core/LeftArrowBtn";
 import RightArrowBtn from "../core/RightArrowBtn";
 import ItemCards from "./ItemCards";
 
-const Carousel = ({
-  cardClickState,
-  setCardClickState,
-  carouselCards,
-  cardLength,
-  cardCount,
-  cardPadding,
-}) => {
-  const [positionState, setPositionState] = useState(-cardPadding);
-  const carouselWidth = (+cardLength + cardPadding * 2) * cardCount;
-  let currentPage = Math.abs(positionState + cardPadding) / carouselWidth;
+const Carousel = ({ cardClickState, setCardClickState, carouselCards, cardLength, cardCount, cardMargin }) => {
+  const [positionState, setPositionState] = useState(-cardMargin);
+  const carouselWidth = (+cardLength + cardMargin * 2) * cardCount;
+  const currentPage = Math.abs(positionState + cardMargin) / carouselWidth;
 
-  function calLengthToMove(numOfLeftCard) {
-    return numOfLeftCard < cardCount
-      ? (+cardLength + cardPadding * 2) * numOfLeftCard
-      : carouselWidth;
-  }
+  const calLengthToMove = (numOfRestCard) => {
+    return numOfRestCard < cardCount ? (+cardLength + cardMargin * 2) * numOfRestCard : carouselWidth;
+  };
 
   const handleClickLeftBtn = () => {
-    if (positionState >= -cardPadding) return;
-    const numOfLeftCard = currentPage * cardCount;
-    const lengthToMove = calLengthToMove(numOfLeftCard);
-    setPositionState(positionState + lengthToMove);
+    if (positionState < -cardMargin) {
+      const numOfRestCard = currentPage * cardCount;
+      const lengthToMove = calLengthToMove(numOfRestCard);
+      setPositionState(positionState + lengthToMove);
+    }
   };
 
   const handleClickRightBtn = () => {
-    if (positionState <= -cardPadding - carouselCards.length * cardLength) return;
-    const numOfLeftCard = carouselCards.length - (currentPage + 1) * cardCount;
-    const lengthToMove = calLengthToMove(numOfLeftCard);
-    setPositionState(positionState - lengthToMove);
+    if (positionState > -cardMargin - carouselCards.length * cardLength) {
+      const numOfRestCard = carouselCards.length - (currentPage + 1) * cardCount;
+      const lengthToMove = calLengthToMove(numOfRestCard);
+      setPositionState(positionState - lengthToMove);
+    }
   };
 
   return (
@@ -49,7 +42,7 @@ const Carousel = ({
             setCardClickState={setCardClickState}
             dataState={[...carouselCards]}
             cardLength={cardLength}
-            cardPadding={cardPadding}
+            cardMargin={cardMargin}
           />
         </CarouselItems>
       </CarouselView>
@@ -65,21 +58,21 @@ const CarouselContainer = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
+  padding-bottom: 24px;
 `;
 
 const LeftArrowBtnSpan = styled.span`
-  cursor: pointer;
   margin: 29px;
 `;
 
 const RightArrowBtnSpan = styled.span`
-  cursor: pointer;
   margin: 29px;
 `;
 
 const CarouselView = styled.div`
   overflow: hidden;
   width: 1424px;
+  min-width: 1424px;
 `;
 
 const CarouselItems = styled.div`

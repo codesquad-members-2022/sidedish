@@ -30,7 +30,7 @@ export const CARD_LENGHTHS = {
   SMALL: "320",
 };
 
-export const CARD_PADDING = 24;
+export const CARD_MARGIN = 24;
 
 export const CARD_CONTAINER_PADDING = 56;
 

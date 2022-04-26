@@ -4,13 +4,7 @@ import ItemCards from "./ItemCards";
 import Label from "../core/Label";
 import mockData from "../mockData";
 import carouselMockData from "../carouselMockData.json";
-import {
-  LABEL_ATTRIBUTES,
-  CARD_LENGHTHS,
-  NUM_OF_CARD_ON_DISPLAY,
-  CARD_PADDING,
-  CARD_CONTAINER_PADDING,
-} from "../consts/constants";
+import { LABEL_ATTRIBUTES, CARD_LENGHTHS, NUM_OF_CARD_ON_DISPLAY, CARD_MARGIN, CARD_CONTAINER_PADDING } from "../consts/constants";
 import Carousel from "./Carousel";
 import DivisionLine from "../core/Line";
 import Popup from "./Popup";
@@ -66,7 +60,7 @@ const Main = () => {
           // setCardInfoState={setCardInfoState}
           dataState={dataState}
           cardLength={CARD_LENGHTHS.BIG}
-          cardPadding={CARD_PADDING}
+          cardMargin={CARD_MARGIN}
           cardContainerPadding={CARD_CONTAINER_PADDING}
         />
         <DivisionLine height="1px" color="#EBEBEB" />
@@ -77,7 +71,7 @@ const Main = () => {
           carouselCards={carouselMockData.carouselCardData}
           cardLength={CARD_LENGHTHS.SMALL}
           cardCount={NUM_OF_CARD_ON_DISPLAY}
-          cardPadding={CARD_PADDING}
+            cardMargin={CARD_MARGIN}
         />
         <Popup
           cardClickState={cardClickState}

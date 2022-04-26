@@ -3,26 +3,17 @@ import { LABEL_ATTRIBUTES } from "../consts/constants";
 import Label from "../core/Label";
 import { makePriceFormat } from "../util/makePriceFormat";
 
-const ItemCard = ({
-  image,
-  title,
-  description,
-  n_price,
-  s_price,
-  badge,
-  cardLength,
-  cardPadding,
-}) => {
+const ItemCard = ({ cardClickState, setCardClickState, image, title, description, n_price, s_price, badge, cardLength, cardMargin }) => {
   const labelList = badge.map((string, ind) => {
-    return string === "런칭특가" ? (
-      <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} />
-    ) : (
-      <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />
-    );
+    return string === "런칭특가" ? <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} /> : <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />;
   });
 
+  const handleCardClick = () => {
+    setCardClickState(!cardClickState);
+  };
+
   return (
-    <Card cardPadding={cardPadding}>
+    <Card onClick={handleCardClick} cardMargin={cardMargin}>
       <MenuCardImg src={image} alt={title} cardLength={cardLength} />
       <MenuTitle>{title}</MenuTitle>
       <MenuDescription>{description}</MenuDescription>
@@ -36,7 +27,7 @@ const ItemCard = ({
 };
 
 const Card = styled.div`
-  padding: 0 ${(props) => props.cardPadding}px;
+  margin: 0 ${(props) => props.cardMargin}px;
   cursor: pointer;
 `;
 
