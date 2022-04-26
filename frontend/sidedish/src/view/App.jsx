@@ -1,7 +1,7 @@
 import GlobalStyle from "./GlobalStyle";
-import Header from "./Header";
-import BigSidedish from "./BigSidedish";
-import SmallSidedish from "./SmallSidedish";
+import Header from "./header/Header";
+import BigSidedish from "./sidedish/BigSidedish";
+import SmallSidedish from "./sidedish/SmallSidedish";
 
 function App() {
     return (
