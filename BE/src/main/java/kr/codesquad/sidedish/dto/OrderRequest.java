@@ -1,25 +1,26 @@
 package kr.codesquad.sidedish.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-
 public class OrderRequest {
 
-    @Email
     private String userEmail;
-    @Min(1)
+    private Long dishId;
     private int quantity;
 
     public OrderRequest() {
     }
 
-    public OrderRequest(String userEmail, int quantity) {
+    public OrderRequest(String userEmail, Long dishId, int quantity) {
         this.userEmail = userEmail;
+        this.dishId = dishId;
         this.quantity = quantity;
     }
 
     public String getUserEmail() {
         return userEmail;
+    }
+
+    public Long getDishId() {
+        return dishId;
     }
 
     public int getQuantity() {
