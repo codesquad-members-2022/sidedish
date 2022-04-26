@@ -5,7 +5,7 @@ import { Colors, Fonts } from '@/Constants';
 import { PriceTag } from './PriceTag';
 import { ProductThumbnail } from './ProductThumbnail';
 
-import { DiscountBadge } from '@/Components/Badge/DiscountBadge';
+import { DiscountBadge } from '@/Components/Badge';
 
 const ProductCardWrapper = styled.li`
   display: flex;

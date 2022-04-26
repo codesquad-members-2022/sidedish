@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
 
-import { DiscountBadge } from '../Badge/DiscountBadge';
+import { DiscountBadge } from '@/Components/Badge';
 
 const OrderPanelWrapper = styled.div`
   display: flex;

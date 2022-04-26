@@ -5,7 +5,7 @@ import { Colors, Fonts } from '@/Constants';
 
 import { TabList } from './TabList';
 
-import { CategoryBadge } from '@/Components/Badge/CategoryBadge';
+import { CategoryBadge } from '@/Components/Badge';
 import { ProductCard } from '@/Components/ProductCard';
 import { fetchData } from '@/Utils/Utils';
 
