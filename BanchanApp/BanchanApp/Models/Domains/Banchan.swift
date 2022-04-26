@@ -11,6 +11,17 @@ enum BanchanType {
 	case main
 	case soup
 	case side
+
+	var toValue: String {
+		switch self {
+		case .main:
+			return "main"
+		case .soup:
+			return "soup"
+		case .side:
+			return "side"
+		}
+	}
 }
 
 class Banchan {
