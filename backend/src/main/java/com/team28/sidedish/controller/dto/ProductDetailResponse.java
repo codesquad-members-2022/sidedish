@@ -1,7 +1,6 @@
 package com.team28.sidedish.controller.dto;
 
 import com.team28.sidedish.domain.Product;
-import com.team28.sidedish.repository.entity.ProductImageEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,23 +41,17 @@ public class ProductDetailResponse {
     @Schema(description = "할인 이름")
     private String eventInfo;
 
-    public static ProductDetailResponse from(Product product) {
+    public static ProductDetailResponse of(Product product, List<ProductImageResponse> representImages, List<ProductImageResponse> detailImages) {
         return new ProductDetailResponse(
                 product.getId(),
                 product.getName(),
                 product.getDescription(),
-                convertToProductImageResponses(product.getRepresentImages()),
-                convertToProductImageResponses(product.getDetailImages()),
+                representImages,
+                detailImages,
                 product.getPrice(),
                 product.getDiscountPrice(),
                 product.getStockQuantity(),
                 product.getDiscountName()
         );
-    }
-
-    private static List<ProductImageResponse> convertToProductImageResponses(List<ProductImageEntity> images) {
-        return images.stream()
-                .map(ProductImageResponse::from)
-                .collect(Collectors.toUnmodifiableList());
     }
 }
