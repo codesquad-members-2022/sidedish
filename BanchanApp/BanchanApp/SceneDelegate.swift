@@ -16,6 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene)
 
         let viewController = BanchanListViewController(collectionViewLayout: UICollectionViewLayout())
+		let repository = RemoteRepository()
+		let service = Service(repository: repository)
+		let viewModel = BanchanListViewModel(service: service)
+
+		viewController.viewModel = viewModel
+
         let navigationController = UINavigationController(rootViewController: viewController)
 
         self.window?.rootViewController = navigationController

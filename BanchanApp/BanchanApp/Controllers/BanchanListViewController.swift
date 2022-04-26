@@ -11,9 +11,21 @@ class BanchanListViewController: UICollectionViewController {
 
     private let headerItem = ["모두가 좋아하는\n든든한 메인 요리", "정성이 담긴\n뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는\n정갈한 밑반찬"]
 
+	var viewModel: BanchanListViewModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.configureUI()
+		self.bind()
+    }
 
+	private func bind() {
+		self.viewModel?.banchans.bind { banchans in
+			
+		}
+	}
+
+	private func configureUI() {
 		let itemSize = NSCollectionLayoutSize(
 			widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
 			heightDimension: .estimated(300)
@@ -44,7 +56,7 @@ class BanchanListViewController: UICollectionViewController {
 		collectionView.collectionViewLayout = layout
 		collectionView.register(ProductDetailCell.self, forCellWithReuseIdentifier: ProductDetailCell.identifier)
 		collectionView.register(ProductSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier)
-    }
+	}
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
