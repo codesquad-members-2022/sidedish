@@ -39,8 +39,8 @@ final class SideDishManager {
         }
     }
     
-    func getDetailDish(hash: String) {
-        let url = "https://api.codesquad.kr/onban/detail/" + hash
+    func getDetailDish() {
+        let url = "https://api.codesquad.kr/onban/detail/"
         HTTPManager.requestGet(url: url) { data in
             guard let detailDish: DetailCard = JSONConverter.decodeJsonObject(data: data) else { return }
             
@@ -65,6 +65,16 @@ final class SideDishManager {
         return dish
     }
     
+    func getDetailDishFromHash(hash: String) -> DetailCard.Body.DetailCardData? {
+        var detailCard: DetailCard.Body.DetailCardData?
+        self.selectedDish?.body.forEach{
+            if $0.hash == hash {
+                detailCard = $0.data
+            }
+        }
+        return detailCard
+    }
+
     func getDishCountFromSection(indexPath: IndexPath) -> Int? {
         var dishCount: Int?
         switch indexPath.section {

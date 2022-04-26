@@ -115,13 +115,13 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ds-sl-mPb">
                                                 <rect key="frame" x="0.0" y="455" width="390" height="74"/>
                                                 <connections>
-                                                    <segue destination="ZOK-MW-p1m" kind="embed" id="PXj-YL-Y33"/>
+                                                    <segue destination="ZOK-MW-p1m" kind="embed" identifier="secondSection" id="PXj-YL-Y33"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugP-ya-KTg">
                                                 <rect key="frame" x="0.0" y="529" width="390" height="104"/>
                                                 <connections>
-                                                    <segue destination="mKr-iP-6LT" kind="embed" id="fYQ-rt-Io0"/>
+                                                    <segue destination="mKr-iP-6LT" kind="embed" identifier="thirdSection" id="fYQ-rt-Io0"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>

@@ -14,7 +14,6 @@ class MainDescriptionViewController: UIViewController {
         label.textColor = UIColor.customColor(.black)
         label.font = UIFont.customFont(.sfRegularTitle)
         label.baselineAdjustment = .alignCenters
-        label.text = "오리 주물럭_반조리"
         return label
     }()
     
@@ -23,7 +22,6 @@ class MainDescriptionViewController: UIViewController {
         label.textColor = UIColor.customColor(.grey2)
         label.font = UIFont.customFont(.sfRegularSubtitle)
         label.baselineAdjustment = .alignCenters
-        label.text = "감칠맛 나는 매콤한 양념"
         return label
     }()
     
@@ -32,7 +30,6 @@ class MainDescriptionViewController: UIViewController {
         label.textColor = UIColor.customColor(.grey1)
         label.font = UIFont.customFont(.sfSemiboldSalePrice)
         label.baselineAdjustment = .alignCenters
-        label.text = "12,640원"
         return label
     }()
     
@@ -64,6 +61,22 @@ class MainDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func setLabelTexts(main: MainCard.Body?, detail: DetailCard.Body.DetailCardData?) {
+        guard let main = main, let detail = detail else { return }
+
+        titleLabel.text = main.title
+        subtitleLabel.text = main.description
+        
+        if detail.prices.count > 1 {
+            salePrice.text = detail.prices[1]
+            setRawPriceAttribute(label: rawPrice, text: detail.prices[0])
+        } else {
+            salePrice.text = detail.prices[0]
+            rawPrice.text = nil
+        }
+        
         setAllProperties()
     }
 }
@@ -97,7 +110,7 @@ private extension MainDescriptionViewController {
         NSLayoutConstraint.activate([
             subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
             subtitleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            subtitleLabel.widthAnchor.constraint(equalToConstant: 177),
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             subtitleLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
@@ -109,20 +122,17 @@ private extension MainDescriptionViewController {
         NSLayoutConstraint.activate([
             salePrice.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8),
             salePrice.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            salePrice.widthAnchor.constraint(equalToConstant: 74),
             salePrice.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
     func configureRawPrice() {
-        setRawPriceAttribute(label: rawPrice, text: "15,800원")
         self.view.addSubview(rawPrice)
         
         rawPrice.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             rawPrice.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8),
             rawPrice.leadingAnchor.constraint(equalTo: self.salePrice.trailingAnchor, constant: 8),
-            rawPrice.widthAnchor.constraint(equalToConstant: 64),
             rawPrice.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
