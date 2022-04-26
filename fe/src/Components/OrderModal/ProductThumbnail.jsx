@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const SubProductList = styled.div`
+const SubProductList = styled.ul`
   display: flex;
 `;
 
@@ -35,7 +35,7 @@ const ProductPanel = styled.li`
 export const ProductThumbnail = ({ ProductThumbnailData }) => {
   return (
     <ProductThumbnailWrapper>
-      <ProductPanel size={'md'}>
+      <ProductPanel as={'div'} size={'md'}>
         <img
           className="product-img"
           src={ProductThumbnailData[0]}
