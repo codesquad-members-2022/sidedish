@@ -40,8 +40,6 @@ const Logo = () => {
 };
 
 export const Header = ({ categoryList }) => {
-  if (!categoryList.length) return null;
-
   return (
     <HeaderWrapper>
       <Logo />

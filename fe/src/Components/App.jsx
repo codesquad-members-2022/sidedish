@@ -15,15 +15,16 @@ const Root = styled.div`
 `;
 
 const App = () => {
-  const [categoryList, isLoaded] = useFetch('/categories');
-  // 배포용
-  // const [categoryList, isLoaded] = useFetch(`${API_URL}/categories`);
+  const [categoryList, isLoaded] = useFetch(`${API_URL}/categories`);
+
+  // TODO: 로딩중 보여줄 화면
+  if (!isLoaded) return null;
 
   return (
     <Root>
-      {isLoaded && <Header categoryList={categoryList.result_body} />}
+      <Header categoryList={categoryList.result_body} />
       <BestProducts />
-      {/*<CategoryProductsList categoryList={categoryList} />*/}
+      {/*<CategoryProductsList categoryList={categoryList.result_body} />*/}
       <OrderPanel />
     </Root>
   );
