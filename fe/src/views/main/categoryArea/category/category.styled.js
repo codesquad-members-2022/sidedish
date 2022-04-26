@@ -21,14 +21,37 @@ export const CategoryCardWrapper = styled.div`
   ${props => applyFlex(props)}
 `;
 
+export const CardArea = styled.div`
+  width: 1300px;
+  overflow: hidden;
+  position: relative;
+`;
+
+export const MoveArea = styled.div`
+  ${({ flex }) => applyFlex({ flex })}
+  ${({ position }) => {
+    return `
+    transform: translateX(${-326 * position.left}px);
+    transition: transform ${0.25 * position.diff}s linear;
+    `;
+  }}
+`;
+
 export const LeftButton = styled.div`
   position: absolute;
   left: 35px;
   top: 150px;
 
   path {
-    stroke: #1b1b1b;
+    ${({ leftPosition, targetPosition }) => {
+      if (leftPosition === targetPosition) {
+        return `stroke: #bcbcbc;`;
+      }
+      return `stroke: #1b1b1b;`;
+    }}
   }
+
+  cursor: pointer;
 `;
 
 export const RightButton = styled.div`
@@ -37,6 +60,13 @@ export const RightButton = styled.div`
   top: 150px;
 
   path {
-    stroke: #1b1b1b;
+    ${({ rightPosition, targetPosition }) => {
+      if (rightPosition === targetPosition) {
+        return `stroke: #bcbcbc;`;
+      }
+      return `stroke: #1b1b1b;`;
+    }}
   }
+
+  cursor: pointer;
 `;

@@ -1,0 +1,302 @@
+{
+  "exhibitionId": 1,
+  "exhibitionTitle": "일반 진열 상품",
+  "categoryResponses": [
+    {
+      "categoryId": 1,
+      "categoryTitle": "든든한 메인요리",
+      "sideDishCardResponses": [
+        {
+          "sideDishId": 9,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EB%A6%AC_%EC%A3%BC%EB%AC%BC%EB%9F%AD_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png",
+          "name": "오리 주물럭_반조리",
+          "description": "감칠맛 나는 매콤한 양념",
+          "disCountPrice": 12640,
+          "price": 15800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            },
+            {
+              "discountEventId": 2,
+              "title": "런칭특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 10,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%9E%A1%EC%B1%84_1.png",
+          "name": "잡채",
+          "description": "탱글한 면과 맛깔진 고명이 가득",
+          "disCountPrice": 11610,
+          "price": 12900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 11,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C_1.png",
+          "name": "소갈비찜",
+          "description": "촉촉하게 밴 양념이 일품",
+          "disCountPrice": 26010,
+          "price": 28900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 12,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B0%84%EC%9E%A5_%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC_1.png",
+          "name": "간장 코다리조림",
+          "description": "쫀득한 코다리를 국내산 간장소스로 맛있게 조렸어요",
+          "disCountPrice": 14900,
+          "price": 14900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": []
+        },
+        {
+          "sideDishId": 13,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%AD%88%EA%BE%B8%EB%AF%B8+%ED%95%9C%EB%8F%88+%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png",
+          "name": "쭈꾸미 한돈 제육볶음_반조리",
+          "description": "쫄깃한 쭈꾸미와 고소한 돼지고기가 일품",
+          "disCountPrice": 16900,
+          "price": 16900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": []
+        },
+        {
+          "sideDishId": 134,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C_1.png",
+          "name": "된장찌개",
+          "description": "특별하지 않아서 더 좋은 우리맛",
+          "disCountPrice": 7920,
+          "price": 8800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 1345,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%83%88%EC%BD%A4%EB%8B%AC%EC%BD%A4_%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8_1.png",
+          "name": "새콤달콤 오징어무침",
+          "description": "국내산 오징어를 새콤달콤하게",
+          "disCountPrice": 6750,
+          "price": 7500,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 2,
+              "title": "런칭특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 22312,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%98%B8%EB%91%90_%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C_1.png",
+          "name": "호두 멸치볶음",
+          "description": "잔멸치와 호두가 만나 짭쪼름하지만 고소하게!",
+          "disCountPrice": 5220,
+          "price": 5800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 2131223,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%A7%A4%EC%BD%A4_%EC%95%88%EC%8B%AC%EC%9E%A5%EC%A1%B0%EB%A6%BC_1.png",
+          "name": "한돈 매콤 안심장조림",
+          "description": "부드러운 한돈 안심살의 매콤함",
+          "disCountPrice": 6210,
+          "price": 6900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoryId": 2,
+      "categoryTitle": "뜨끈한 국물요리",
+      "sideDishCardResponses": [
+        {
+          "sideDishId": 5,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%8F%BC%EC%A7%80_%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C_1.png",
+          "name": "한돈 돼지 김치찌개",
+          "description": "김치찌개에는 역시 돼지고기",
+          "disCountPrice": 8370,
+          "price": 9300,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 6,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C_1.png",
+          "name": "된장찌개",
+          "description": "특별하지 않아서 더 좋은 우리맛",
+          "disCountPrice": 7920,
+          "price": 8800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 7,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD_1.png",
+          "name": "미역오이냉국",
+          "description": "여름엔 시원한 냉국이 최고",
+          "disCountPrice": 7020,
+          "price": 7800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 8,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C_1.png",
+          "name": "동태찌개",
+          "description": "겨울철 보양식으로 안성맞춤",
+          "disCountPrice": 10900,
+          "price": 10900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": []
+        }
+      ]
+    },
+    {
+      "categoryId": 3,
+      "categoryTitle": "정갈한 밑반찬",
+      "sideDishCardResponses": [
+        {
+          "sideDishId": 1,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%83%88%EC%BD%A4%EB%8B%AC%EC%BD%A4_%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8_1.png",
+          "name": "새콤달콤 오징어무침",
+          "description": "국내산 오징어를 새콤달콤하게",
+          "disCountPrice": 6750,
+          "price": 7500,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 2,
+              "title": "런칭특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 2,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%98%B8%EB%91%90_%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C_1.png",
+          "name": "호두 멸치볶음",
+          "description": "잔멸치와 호두가 만나 짭쪼름하지만 고소하게!",
+          "disCountPrice": 5220,
+          "price": 5800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 3,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%A7%A4%EC%BD%A4_%EC%95%88%EC%8B%AC%EC%9E%A5%EC%A1%B0%EB%A6%BC_1.png",
+          "name": "한돈 매콤 안심장조림",
+          "description": "부드러운 한돈 안심살의 매콤함",
+          "disCountPrice": 6210,
+          "price": 6900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 9,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EB%A6%AC_%EC%A3%BC%EB%AC%BC%EB%9F%AD_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png",
+          "name": "오리 주물럭_반조리",
+          "description": "감칠맛 나는 매콤한 양념",
+          "disCountPrice": 12640,
+          "price": 15800,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            },
+            {
+              "discountEventId": 2,
+              "title": "런칭특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 10,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%9E%A1%EC%B1%84_1.png",
+          "name": "잡채",
+          "description": "탱글한 면과 맛깔진 고명이 가득",
+          "disCountPrice": 11610,
+          "price": 12900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        },
+        {
+          "sideDishId": 4,
+          "imageUrl": "https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%95%BC%EC%B1%84_%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C_1.png",
+          "name": "야채 어묵볶음",
+          "description": "첨가물 없는 순수어묵과 야채의 만남",
+          "disCountPrice": 4410,
+          "price": 4900,
+          "shippingInfo": "서울 경기 새벽 배송, 전국 택배 배송",
+          "discountEventResponses": [
+            {
+              "discountEventId": 1,
+              "title": "이벤트특가"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
