@@ -17,6 +17,7 @@ public class DetailMenuResponse {
 	private int fee;
 	private int freeShippingStartingPrice;
 	private int stock;
+	private int point;
 	private List<String> mainImage;
 	private List<String> detailImage;
 
@@ -30,6 +31,7 @@ public class DetailMenuResponse {
 		this.fee = menu.getFee();
 		this.freeShippingStartingPrice = menu.getFreeShippingStartingPrice();
 		this.stock = menu.getStock();
+		this.point = (int) (salePrice * 0.01);
 		mainImage = menu.getImages().stream()
 			.filter(Image::getIsMainImage)
 			.map(Image::getImagePath)
@@ -74,6 +76,10 @@ public class DetailMenuResponse {
 
 	public int getStock() {
 		return stock;
+	}
+
+	public int getPoint() {
+		return point;
 	}
 
 	public List<String> getMainImage() {

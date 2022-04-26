@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`user`
     `id`      INT          NOT NULL AUTO_INCREMENT COMMENT '유저 PK',
     `address` VARCHAR(255) NOT NULL COMMENT '주소',
     `name`    VARCHAR(45)  NOT NULL COMMENT '이름',
+    `point`   INT          NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
