@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
@@ -7,6 +7,7 @@ import { ProductInfo } from './ProductInfo';
 import { ProductThumbnail } from './ProductThumbnail';
 
 import { OrderButton } from '@/Components/Button';
+import { ModalContext } from '@/Components/OrderModal';
 
 const ModalBackGround = styled.div`
   position: fixed;
@@ -58,18 +59,17 @@ const CloseButton = styled.button`
 `;
 
 export const OrderModal = () => {
-  const [ModalOpen, setModalOpen] = useState(true);
+  const modalContext = ModalContext;
+  const [ModalDisplay, setModalDisplay] = useContext(modalContext);
 
   function onClickCloseBtn() {
-    setModalOpen(false);
+    setModalDisplay(false);
   }
 
-  function OrderButtonEvent() {
-    console.log('test OK');
-  }
+  function OrderButtonEvent() {}
 
   return (
-    <ModalBackGround ModalOpen={ModalOpen}>
+    <ModalBackGround ModalOpen={ModalDisplay}>
       <OrderModalWrapper>
         <CloseButton onClick={onClickCloseBtn}>닫기</CloseButton>
         <SelectedProduct>

@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
@@ -6,6 +7,7 @@ import { PriceTag } from './PriceTag';
 import { ProductThumbnail } from './ProductThumbnail';
 
 import { DiscountBadge } from '@/Components/Badge';
+import { ModalContext } from '@/Components/OrderModal';
 
 const ProductCardWrapper = styled.li`
   display: flex;
@@ -88,10 +90,19 @@ export const ProductCard = ({
   },
   size,
 }) => {
+  const modalContext = ModalContext;
+  const [ModalDisplay, setModalDisplay] = useContext(modalContext);
+  const onClickThumbnail = () => {
+    setModalDisplay(true);
+  };
   const productImage = images[0];
   return (
-    <ProductCardWrapper size={size}>
-      <ProductThumbnail imgUrl={productImage.url} morningDelivery={morningDelivery} />
+    <ProductCardWrapper size={size} onClick={onClickThumbnail}>
+      <ProductThumbnail
+        imgUrl={productImage.url}
+        morningDelivery={morningDelivery}
+        onClickThumbnail={onClickThumbnail}
+      />
       <Title className={Fonts.MD}>{title}</Title>
       <Description className={Fonts.SM}>{description}</Description>
       <PriceWrapper>
