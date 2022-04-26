@@ -31,8 +31,4 @@ public class ProductService {
                 .stream()
                 .collect(Collectors.toUnmodifiableList());
     }
-
-    private ProductListResponse emptyResponse() {
-        return new ProductListResponse(0, Collections.emptyList());
-    }
 }
