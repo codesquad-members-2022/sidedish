@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import CardDeliveryInfo from 'Main/CardDeliveryInfo';
+import DishTogatherContainer from 'Main/Dish/DishTogatherContainer';
+import Modal from 'Modal';
 
 const CardItem = styled.div`
-  margin-right: 24px;
-  cursor: pointer;
+  ${({ imageSize }) => {
+    switch (imageSize) {
+      case 'small':
+        return `margin-right: 16px;`;
+      default:
+        return 'margin-right: 24px;';
+    }
+  }}
 `;
 
 const CardImgWrapper = styled.div`
@@ -13,6 +21,8 @@ const CardImgWrapper = styled.div`
 
 const CardItemImg = styled.img`
   background: ${({ theme }) => theme.colors.gray3};
+  cursor: pointer;
+
   ${({ imageSize }) => {
     switch (imageSize) {
       case 'large':
@@ -90,12 +100,39 @@ const Card = ({ item, imageSize }) => {
 
   const onMouseOut = () => setHover(false);
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     item && (
-      <CardItem>
+      <CardItem imageSize={imageSize}>
+        {modalVisible && (
+          <Modal
+            id={item.id}
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+          >
+            <DishTogatherContainer />
+          </Modal>
+        )}
         <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-          <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
-          <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
+          <CardItemImg
+            onClick={openModal}
+            key={item.id}
+            src={item.image}
+            imageSize={imageSize}
+          ></CardItemImg>
+          {imageSize !== 'small' && (
+            <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
+          )}
         </CardImgWrapper>
         <CardItemInfo>
           <p className="item__title">{item.name}</p>
@@ -103,16 +140,20 @@ const Card = ({ item, imageSize }) => {
           {item.discountPrice ? (
             <>
               <span className="item__default-price">{setPrice(item.discountPrice)}원</span>
-              <span className="item__normal-price">{setPrice(item.price)}원</span>
+              <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
             </>
           ) : (
-            <span className="item__default-price">{setPrice(item.price)}원</span>
+            <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
           )}
         </CardItemInfo>
-        {item.tag ? <CardItemTag tag={item.tag}>{item.tag}</CardItemTag> : ''}
+        {item.discountPolicy ? (
+          <CardItemTag tag={item.discountPolicy}>{item.discountPolicy}</CardItemTag>
+        ) : (
+          ''
+        )}
       </CardItem>
     )
   );
 };
 
-export default Card;
+export default React.memo(Card);
