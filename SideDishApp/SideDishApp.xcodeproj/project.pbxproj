@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		12F7B19F8BB88D58D2789E19 /* Pods_SideDishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4985BD619BB097A2B4FA5F5 /* Pods_SideDishApp.framework */; };
 		1E478F0E28163321002F22B9 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E478F0D28163321002F22B9 /* MenuStackView.swift */; };
+		1E478F102816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E478F0F2816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift */; };
 		1ED9D3F9280D9D7300AEC888 /* mockImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ED9D3F8280D9D7300AEC888 /* mockImage.png */; };
 		1ED9D3FB280FDF5100AEC888 /* DetailDishInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED9D3FA280FDF5100AEC888 /* DetailDishInfo.swift */; };
 		1ED9D53F2812491D00AEC888 /* DetailScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED9D53E2812491D00AEC888 /* DetailScrollView.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		1E478F0D28163321002F22B9 /* MenuStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
+		1E478F0F2816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSubInfoContainerStackView.swift; sourceTree = "<group>"; };
 		1ED9D3F8280D9D7300AEC888 /* mockImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mockImage.png; sourceTree = "<group>"; };
 		1ED9D3FA280FDF5100AEC888 /* DetailDishInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDishInfo.swift; sourceTree = "<group>"; };
 		1ED9D53E2812491D00AEC888 /* DetailScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScrollView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				1ED9D53E2812491D00AEC888 /* DetailScrollView.swift */,
+				1E478F0F2816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift */,
 				1E478F0D28163321002F22B9 /* MenuStackView.swift */,
 				8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */,
 				1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */,
@@ -335,6 +338,7 @@
 				8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */,
 				8DABA0FE28113FDE00ED949A /* UIColor+Extension.swift in Sources */,
 				1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */,
+				1E478F102816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift in Sources */,
 				1EE49019280D870E00B6CE60 /* OrderingViewController.swift in Sources */,
 				1EE49025280D8D9A00B6CE60 /* Constant.swift in Sources */,
 				8D49F637280D535800613CE4 /* NetworkError.swift in Sources */,

@@ -32,10 +32,15 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureMenuStackView() {
-        detailScrollView.menuStackView.setTitle(by: menu.title)
-        detailScrollView.menuStackView.setDescription(by: menu.description)
-        detailScrollView.menuStackView.setPrice(originPrice: menu.n_price, discountedPrice: menu.s_price)
-        detailScrollView.menuStackView.setBadges(by: menu.badge)
+        detailScrollView.mainInfoStackView.setTitle(by: menu.title)
+        detailScrollView.mainInfoStackView.setDescription(by: menu.description)
+        detailScrollView.mainInfoStackView.setPrice(originPrice: menu.n_price, discountedPrice: menu.s_price)
+        detailScrollView.mainInfoStackView.setBadges(by: menu.badge)
+    }
+    
+    func setSubInfo(by menuDetail: MenuDetail) {
+        let descriptions = [menuDetail.point, menuDetail.delivery_info, menuDetail.delivery_fee]
+        detailScrollView.subInfoStackView.setSubInfoDescription(by: descriptions)
     }
 }
 

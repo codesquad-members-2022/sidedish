@@ -24,4 +24,20 @@ enum Constant {
         static let side = "식탁을 풍성하게 하는 정갈한 밑반찬"
     }
     
+    enum SubInfoTitle: String, CaseIterable, CustomStringConvertible {
+        case point
+        case deliveryInfo
+        case deliveryFee
+        
+        var description: String {
+            switch self {
+            case .point:
+                return "적립금"
+            case .deliveryInfo:
+                return "배송정보"
+            case .deliveryFee:
+                return "배송비"
+            }
+        }
+    }
 }
