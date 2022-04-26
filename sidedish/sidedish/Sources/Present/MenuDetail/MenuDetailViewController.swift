@@ -28,7 +28,7 @@ class MenuDetailViewController: UIViewController {
     private let thumbnailImageView: ThumbnailImageView = {
         let thumbnailView = ThumbnailImageView()
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailView.backgroundColor = .red
+
         return thumbnailView
     }()
     
@@ -96,6 +96,7 @@ class MenuDetailViewController: UIViewController {
                 self.infoView.changeSaleBadge(menu.badge)
                 self.subInfoView.setData(detail)
                 self.orderView.setTotalPrice(menu.price)
+                self.thumbnailImageView.setImage(urls: detail.thumbImages)
             }.store(in: &cancellables)
 
         model.state.showError
