@@ -1,6 +1,6 @@
 package com.example.be.common.token.github;
 
-import com.example.be.domain.user.Bio;
+import com.example.be.business.user.domain.Bio;
 
 import java.util.Map;
 

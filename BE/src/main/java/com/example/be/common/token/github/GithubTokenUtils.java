@@ -14,6 +14,7 @@ import java.util.Map;
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+
 @Component
 public class GithubTokenUtils implements TokenUtils {
 
@@ -23,8 +24,8 @@ public class GithubTokenUtils implements TokenUtils {
 
     private GithubTokenParser githubTokenParser;
 
-    private GithubTokenUtils() {
-        this.githubTokenParser = new GithubTokenParser();
+    private GithubTokenUtils(GithubTokenParser githubTokenParser) {
+        this.githubTokenParser = githubTokenParser;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class GithubTokenUtils implements TokenUtils {
         return headers;
     }
 
-    public Map<String, String> getUserDetail(String userInformationCode){
+    public Map<String, String> getUserDetail(String userInformationCode) {
         return githubTokenParser.getUserInformation(userInformationCode);
     }
 }

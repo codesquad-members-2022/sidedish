@@ -1,12 +1,13 @@
 package com.example.be.controller.dish;
 
-import com.example.be.domain.category.Category;
-import com.example.be.domain.category.SubCategory;
-import com.example.be.domain.dish.Badge;
-import com.example.be.domain.dish.DeliveryPriceOption;
-import com.example.be.domain.dish.Dish;
-import com.example.be.domain.dish.DishStatus;
-import com.example.be.service.dish.DishService;
+import com.example.be.business.dish.controller.DishController;
+import com.example.be.business.category.domain.Category;
+import com.example.be.business.category.domain.SubCategory;
+import com.example.be.business.dish.domain.Badge;
+import com.example.be.business.dish.domain.DeliveryPriceOption;
+import com.example.be.business.dish.domain.Dish;
+import com.example.be.business.dish.domain.DishStatus;
+import com.example.be.business.dish.service.DishService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.be.domain.category.Country.KOREA;
+import static com.example.be.business.category.domain.Country.KOREA;
 
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
