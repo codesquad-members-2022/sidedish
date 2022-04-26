@@ -1,8 +1,10 @@
 package com.team28.sidedish.service;
 
+import com.team28.sidedish.controller.dto.ProductDetailResponse;
 import com.team28.sidedish.controller.dto.ProductListResponse;
 import com.team28.sidedish.controller.dto.ProductResponse;
 import com.team28.sidedish.domain.Product;
+import com.team28.sidedish.repository.entity.DiscountEntity;
 import com.team28.sidedish.repository.entity.ProductEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ProductListService {
+public class ProductDiscountService {
 
     private final ProductService productService;
     private final DiscountService discountService;
@@ -35,5 +37,14 @@ public class ProductListService {
         return products.stream()
                 .map(ProductResponse::from)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public ProductDetailResponse findProductDetail(Long productId) {
+        ProductEntity productEntity = productService.findProductById(productId);
+        DiscountEntity discountEntity = discountService.findDiscountById(productEntity.getDiscountId());
+
+        Product product = Product.of(productEntity, discountEntity);
+
+        return ProductDetailResponse.from(product);
     }
 }

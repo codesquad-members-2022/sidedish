@@ -1,5 +1,7 @@
 package com.team28.sidedish.controller.dto;
 
+import com.team28.sidedish.domain.Product;
+import com.team28.sidedish.repository.entity.ProductImageEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,27 +43,23 @@ public class ProductDetailResponse {
     @Schema(description = "할인 이름")
     private String eventInfo;
 
-    public static ProductDetailResponse from(ProductResponse product, List<ProductImageResponse> allImages, int stock) {
-        return new ProductDetailResponse(product.getProductId(),
-                product.getProductName(),
+    public static ProductDetailResponse from(Product product) {
+        return new ProductDetailResponse(
+                product.getId(),
+                product.getName(),
                 product.getDescription(),
-                getRepresentImages(allImages),
-                getDetailsImage(allImages),
+                convertToProductImageResponses(product.getRepresentImages()),
+                convertToProductImageResponses(product.getDetailImages()),
                 product.getPrice(),
                 product.getDiscountPrice(),
-                stock,
-                product.getDiscountName());
+                product.getStockQuantity(),
+                product.getDiscountName()
+        );
     }
 
-    private static List<ProductImageResponse> getRepresentImages(List<ProductImageResponse> images) {
+    private static List<ProductImageResponse> convertToProductImageResponses(List<ProductImageEntity> images) {
         return images.stream()
-                .filter(ProductImageResponse::isRepresentYn)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    private static List<ProductImageResponse> getDetailsImage(List<ProductImageResponse> images) {
-        return images.stream()
-                .filter(img -> !img.isRepresentYn())
+                .map(ProductImageResponse::from)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
