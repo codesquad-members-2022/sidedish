@@ -14,6 +14,7 @@ final class DishCollectionViewCell: UICollectionViewCell{
         super.prepareForReuse()
         eventConstraints.map{$0.isActive = false}
         nonEventConstraints.map{$0.isActive = false}
+        eventButton.removeFromSuperview()
         eventButton.translatesAutoresizingMaskIntoConstraints = true
     }
     
@@ -76,7 +77,7 @@ final class DishCollectionViewCell: UICollectionViewCell{
         basicView.addSubview(dishTitleLabel)
         basicView.addSubview(descriptionTitleLabel)
         basicView.addSubview(priceLabel)
-        basicView.addSubview(eventButton)
+        
         setDefaultUIConstraint()
     }
     
@@ -98,6 +99,7 @@ final class DishCollectionViewCell: UICollectionViewCell{
     }
     
     private func setEventUIConstraint(){
+        basicView.addSubview(eventButton)
         eventButton.translatesAutoresizingMaskIntoConstraints = false
         eventConstraints = [descriptionTitleLabel.bottomAnchor.constraint(equalTo: dishImageView.centerYAnchor, constant: -10),
                             descriptionTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
@@ -125,6 +127,7 @@ final class DishCollectionViewCell: UICollectionViewCell{
                                 priceLabel.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 5),
                                 priceLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor)]
         nonEventConstraints.map{$0.isActive = true}
+        eventButton.removeFromSuperview()
     }
     
     func updateUIProperty(with product: Product){
