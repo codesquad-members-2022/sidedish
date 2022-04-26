@@ -46,11 +46,11 @@ public class MenuController {
 		return menuService.findDetailMenu(menuId);
 	}
 
-	@ApiOperation(value = "메뉴 주문", notes = "지정된 id의 메뉴를 주문합니다.")
+	@ApiOperation(value = "메뉴 주문", notes = "지정된 id의 메뉴를 주문합니다. RequestBody에는 userId(1), quantity(주문 수량)를 입력합니다")
 	@PostMapping("/detail/{id}")
 	public MenuOrderResponse makeOrder(
-		@RequestBody @ApiParam(name = "id", value = "상세 정보를 요청할 menu_id", required = true) OrderRequest orderRequest,
-		@PathVariable("id") int menuId) {
+		@RequestBody OrderRequest orderRequest,
+		@ApiParam(name = "id", value = "상세 정보를 요청할 menu_id", required = true) @PathVariable("id") int menuId) {
 
 		return orderService.save(orderRequest, menuId);
 	}
