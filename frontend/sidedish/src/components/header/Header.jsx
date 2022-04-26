@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Gnb from "./Gnb";
+import { ReactComponent as SearchIcon } from "../../asset/searchIcon.svg";
+import { ReactComponent as UserIcon } from "../../asset/userIcon.svg";
+import { ReactComponent as CartIcon } from "../../asset/cartIcon.svg";
 
 const Header = () => {
   return (
@@ -7,9 +10,9 @@ const Header = () => {
       <Home>Ordering</Home>
       <Gnb />
       <Blank />
-      <Img src="./images/searchIcon.png" alt="돋보기아이콘" />
-      <Img src="./images/userIcon.png" alt="사람아이콘" />
-      <Img src="./images/cartIcon.png" alt="카트아이콘" />
+      <SearchIcon />
+      <UserIcon />
+      <CartIcon />
     </HeaderContainer>
   );
 };
