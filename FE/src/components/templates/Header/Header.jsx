@@ -6,7 +6,7 @@ import { StyledIconContainer } from "@/components/molecules/Icons/Icons.styled";
 =======
 import { Logo } from "@/components/atoms/Logo/Logo.jsx";
 import { Icons } from "@/components/molecules/Icons/Icons.jsx";
-import { Nav } from "@/components/organisms/Nav/Nav.jsx";
+import { HeaderNav } from "@/components/organisms/HeaderNav/HeaderNav.jsx";
 
 >>>>>>> 0847aee ([#31] Feat: Header 컴포넌트에 Atomic Design Pattern 적용)
 import "./Header.scss";
@@ -25,7 +25,7 @@ export function Header() {
       <StyledIconContainer className="icon-container" />
 =======
       <Logo />
-      <Nav isShown={isShown} setIsShown={setIsShown} />
+      <HeaderNav isShown={isShown} setIsShown={setIsShown} />
       <Icons />
 >>>>>>> 0847aee ([#31] Feat: Header 컴포넌트에 Atomic Design Pattern 적용)
     </header>
