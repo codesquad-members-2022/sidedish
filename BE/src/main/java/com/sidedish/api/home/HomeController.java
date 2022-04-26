@@ -30,16 +30,23 @@ public class HomeController {
     public ResponseHomeDto getHome() {
         List<Item> findItems = itemService.findItemByDetailType("풍성한고기반찬");
         List<ResponseItemDto> detailItems = buildDetailItems(findItems);
-        CollectionModel<ItemResource> responseMainType = buildItems();
-        return new ResponseHomeDto(detailItems, responseMainType);
+        CollectionModel<ItemResource> mainResources = buildItems(CategoryType.MAIN, 1L, 4);
+        return new ResponseHomeDto(detailItems, mainResources);
     }
 
-    private CollectionModel<ItemResource> buildItems() {
-        List<Item> items = itemService.findUnitPageById(CategoryType.MAIN, 1L, 4);
+    @GetMapping("/additional")
+    public ResponseAdditionalDto getAdditionalCategory(){
+        CollectionModel<ItemResource> soupResources = buildItems(CategoryType.SOUP, 1L, 4);
+        CollectionModel<ItemResource> sideResources = buildItems(CategoryType.SIDE, 1L, 4);
+        return new ResponseAdditionalDto(soupResources, sideResources);
+    }
+
+    private CollectionModel<ItemResource> buildItems(CategoryType type, Long pageId, int pageCount) {
+        List<Item> items = itemService.findUnitPageById(type, pageId, pageCount);
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
         CollectionModel<ItemResource> responseMainType = CollectionModel.of(itemResources);
-        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(CategoryType.MAIN, 1l, 4)).withSelfRel());
-        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(CategoryType.MAIN, 2l, 4)).withRel("next-page"));
+        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId, pageCount)).withSelfRel());
+        responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId+1, pageCount)).withRel("next-page"));
         return responseMainType;
     }
 
