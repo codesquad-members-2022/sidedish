@@ -1,5 +1,5 @@
-export const fetchData = async url => {
-  const response = await fetch(url);
+export const fetchData = async (url, options) => {
+  const response = await fetch(url, options);
   if (!response.ok) {
     throw Error();
   }
@@ -10,9 +10,9 @@ export const postData = async (url, data = {}) => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
   if (!response.ok) {
     throw Error();
