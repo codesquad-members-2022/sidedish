@@ -11,16 +11,13 @@ import kotlinx.coroutines.launch
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     private val _mainMenu = MutableLiveData<List<Products>>()
-    val mainMenu: LiveData<List<Products>>
-        get() = _mainMenu
+    val mainMenu: LiveData<List<Products>> = _mainMenu
 
     private val _soupMenu = MutableLiveData<List<Products>>()
-    val soupMenu: LiveData<List<Products>>
-        get() = _soupMenu
+    val soupMenu: LiveData<List<Products>> = _soupMenu
 
     private val _sideDish = MutableLiveData<List<Products>>()
-    val sideDish: LiveData<List<Products>>
-        get() = _sideDish
+    val sideDish: LiveData<List<Products>> = _sideDish
 
     init {
         loadMenu()

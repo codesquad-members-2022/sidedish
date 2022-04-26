@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         val mainAdapter = MainHomeAdapter()
         val soupAdapter = MainHomeAdapter()
@@ -27,19 +29,16 @@ class MainActivity : AppCompatActivity() {
         binding.rvMainlist.adapter = mainAdapter.apply {
             viewModel.mainMenu.observe(this@MainActivity) {
                 submitList(it)
-                binding.tvHeaderSub1.text = it.size.toString() + "개의 상품이 진열되어 있습니다."
             }
         }
         binding.rvSidelist.adapter = soupAdapter.apply {
             viewModel.soupMenu.observe(this@MainActivity) {
                 submitList(it)
-                binding.tvHeaderSub2.text = it.size.toString() + "개의 상품이 진열되어 있습니다."
             }
         }
         binding.rvSouplist.adapter = sideAdapter.apply {
             viewModel.sideDish.observe(this@MainActivity) {
                 submitList(it)
-                binding.tvHeaderSub3.text = it.size.toString() + "개의 상품이 진열되어 있습니다."
             }
         }
 
