@@ -8,8 +8,14 @@ import sidedish.jbc.domain.convertor.MenuTypeConvertor;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+	private final MenuTypeConvertor menuTypeConvertor;
+
+	public WebConfig(MenuTypeConvertor menuTypeConvertor) {
+		this.menuTypeConvertor = menuTypeConvertor;
+	}
+
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new MenuTypeConvertor());
+		registry.addConverter(menuTypeConvertor);
 	}
 }
