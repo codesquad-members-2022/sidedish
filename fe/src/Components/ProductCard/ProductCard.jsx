@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
+import { Colors, Fonts } from '@/Constants';
+
 import { PriceTag } from './PriceTag';
 import { ProductThumbnail } from './ProductThumbnail';
 
-import { DiscountBadge } from '@/Components/Badge/DiscountBadge';
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
+import { DiscountBadge } from '@/Components/Badge';
 
 const ProductCardWrapper = styled.li`
   display: flex;
@@ -89,8 +89,8 @@ export const ProductCard = ({
   return (
     <ProductCardWrapper data-id={id} size={size}>
       <ProductThumbnail imgUrl={image} morningDelivery={morningDelivery} />
-      <Title className={Fonts.FONTS_MD}>{title}</Title>
-      <Description className={Fonts.FONTS_SM}>{description}</Description>
+      <Title className={Fonts.MD}>{title}</Title>
+      <Description className={Fonts.SM}>{description}</Description>
       <PriceWrapper>
         <PriceTag
           priceData={{

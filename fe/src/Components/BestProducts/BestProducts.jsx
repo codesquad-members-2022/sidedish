@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { Colors, Fonts } from '@/Constants';
+import { fetchData } from '@/Utils';
+
 import { TabList } from './TabList';
 
-import { CategoryBadge } from '@/Components/Badge/CategoryBadge';
+import { CategoryBadge } from '@/Components/Badge';
 import { ProductCard } from '@/Components/ProductCard';
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
-import { fetchData } from '@/Utils/Utils';
 
 const BestProductWrapper = styled.div`
   display: flex;
@@ -78,7 +78,7 @@ export const BestProducts = () => {
           <CategoryBadge />
         </BadgeWrapper>
 
-        <Title className={Fonts.FONTS_DISPLAY}>
+        <Title className={Fonts.DISPLAY}>
           한번 주문하면 두번 주문하는 반찬
         </Title>
       </Header>

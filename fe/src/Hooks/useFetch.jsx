@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { fetchData } from '@/Utils/Utils';
+import { fetchData } from '@/Utils';
 
 /**
  * @param {string} url

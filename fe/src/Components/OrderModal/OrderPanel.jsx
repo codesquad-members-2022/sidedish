@@ -1,15 +1,15 @@
 import styled, { css } from 'styled-components';
 
-import { DiscountBadge } from '../Badge/DiscountBadge';
+import { Colors, Fonts } from '@/Constants';
 
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
+import { DiscountBadge } from '@/Components/Badge';
+
 const OrderPanelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: beige;
   position: relative;
-
+  display: none;
   width: 960px;
 `;
 
@@ -116,12 +116,22 @@ const ProductOrderInfoDetail = styled.ul`
   }
 `;
 
-const AmountIcon = styled.span`
-  display: block;
+const AmountIcon = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${Colors.GREY};
+  width: 24px;
+  height: 24px;
 
-  img {
-    display: block;
+  i {
+    font-size: 20px;
+  }
+  
+  &:hover {
+    i {
+      color: red;
+    }
   }
 `;
 
@@ -161,6 +171,10 @@ const OrderButton = styled.button`
   bottom: 48px;
 `;
 
+const Icon = styled.i`
+  color: ${Colors.GREY};
+`;
+
 export const OrderPanel = () => {
   return (
     <OrderPanelWrapper>
@@ -192,36 +206,36 @@ export const OrderPanel = () => {
           </SubProductList>
         </ProductThumbnail>
         <ProductInfo>
-          <Title className={Fonts.FONTS_LG}>오이피자</Title>
-          <OriginalPrice className={Fonts.FONTS_SM}>15800 원</OriginalPrice>
+          <Title className={Fonts.LG}>오이피자</Title>
+          <OriginalPrice className={Fonts.SM}>15800 원</OriginalPrice>
 
           <ListPrice>
             <DiscountBadge />
-            <Price className={Fonts.FONTS_LG}>12000 원</Price>
+            <Price className={Fonts.LG}>12000 원</Price>
           </ListPrice>
 
           <DeliveryInfo>
             <ProductOrderInfo>
-              <li className={Fonts.FONTS_XS}>적립금</li>
-              <li className={Fonts.FONTS_XS}>주소</li>
-              <li className={Fonts.FONTS_XS}>배달금</li>
+              <li className={Fonts.XS}>적립금</li>
+              <li className={Fonts.XS}>주소</li>
+              <li className={Fonts.XS}>배달금</li>
             </ProductOrderInfo>
 
             <ProductOrderInfoDetail>
-              <li className={Fonts.FONTS_XS}>180 원</li>
-              <li className={Fonts.FONTS_XS}>이곳은 주소입니다</li>
-              <li className={Fonts.FONTS_XS}>3000 원</li>
+              <li className={Fonts.XS}>180 원</li>
+              <li className={Fonts.XS}>이곳은 주소입니다</li>
+              <li className={Fonts.XS}>3000 원</li>
             </ProductOrderInfoDetail>
           </DeliveryInfo>
 
           <OrderPrice>
             <TotalAmount>
               <AmountIcon>
-                <img src="plus.svg" alt="" />
+                <Icon className={'ic-plus'} aria-label={"상품 추가"} />
               </AmountIcon>
               <CurrentAmount>0</CurrentAmount>
               <AmountIcon>
-                <img src="minus.svg" alt="" />
+                <Icon className={'ic-minus'} aria-label={"상품 "} />
               </AmountIcon>
             </TotalAmount>
 
