@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { IconFonts, Fonts } from '@/Constants';
@@ -31,7 +31,9 @@ const ProductCardList = styled.ul`
 `;
 
 /* 슬라이더 */
-const SLIDE = 'slide-container';
+const SLIDE_CONTAINER = 'slide-container';
+const SLIDE_MARGIN = 24;
+const SLIDE_VIEW_LENGTH = 4;
 const SLIDER_PREV_BUTTON = 'slider-prev-button';
 const SLIDER_NEXT_BUTTON = 'slider-next-button';
 
@@ -44,11 +46,16 @@ const Slider = styled.div`
   width: 100%;
   overflow: hidden;
 
-  .${SLIDE} {
+  .${SLIDE_CONTAINER} {
+    transform: translate3d(
+      ${props => -(props.curSlideIndex * props.slideUnitWidth)}px,
+      0,
+      0
+    );
     transition: transform 250ms ease-in-out;
-    
+
     > * {
-      margin-right: ${({ margin = 24 }) => margin}px;
+      margin-right: ${({ margin }) => margin}px;
     }
   }
 `;
@@ -68,6 +75,11 @@ const SliderButton = styled.button`
     opacity: 0.4;
   }
 
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+
   &.${SLIDER_PREV_BUTTON} {
     left: -60px;
   }
@@ -80,6 +92,56 @@ const SliderButton = styled.button`
 const Icon = styled.i`
   font-size: 24px;
 `;
+
+const useSlide = ({ slideRef }) => {
+  const minSlideIndex = 0;
+  const slideViewItemLength = SLIDE_VIEW_LENGTH;
+  const [curSlideIndex, setCurSlideIndex] = useState(minSlideIndex);
+  const [maxSlideIndex, setMaxSlideIndex] = useState(minSlideIndex);
+
+  const handleClickPrevButton = () => {
+    const nextSlideIndex = curSlideIndex - slideViewItemLength;
+    if (nextSlideIndex < minSlideIndex) {
+      setCurSlideIndex(minSlideIndex);
+    } else {
+      setCurSlideIndex(nextSlideIndex);
+    }
+  };
+
+  const handleClickNextButton = () => {
+    const nextSlideIndex = curSlideIndex + slideViewItemLength;
+    if (nextSlideIndex < minSlideIndex) {
+      setCurSlideIndex(minSlideIndex);
+    } else if (nextSlideIndex > maxSlideIndex) {
+      setCurSlideIndex(maxSlideIndex);
+    } else {
+      setCurSlideIndex(nextSlideIndex);
+    }
+  };
+
+  useEffect(() => {
+    if (!slideRef.current) {
+      return;
+    }
+    const _maxSlideIndex =
+      slideRef.current.children.length - slideViewItemLength;
+    if (_maxSlideIndex < 0) {
+      setMaxSlideIndex(minSlideIndex);
+    } else {
+      setMaxSlideIndex(_maxSlideIndex);
+    }
+    console.log(2222);
+  }, [slideRef.current]);
+
+  return [
+    curSlideIndex,
+    minSlideIndex,
+    maxSlideIndex,
+    handleClickPrevButton,
+    handleClickNextButton,
+  ];
+};
+
 /* ****** */
 
 const parse = categoryProductsData => {
@@ -95,7 +157,18 @@ export const CategoryProducts = props => {
   const [categoryProductsData, isLoaded, isError, setRetry] = useFetch(
     `/category/${categoryId}`
   );
-  const productCardRef = useRef(null);
+
+  const slideRef = useRef(null);
+  const [slideUnitWidth, setSlideUnitWidth] = useState(0);
+  const [
+    curSlideIndex,
+    minSlideIndex,
+    maxSlideIndex,
+    handleClickSliderPrevButton,
+    handleClickSliderNextButton,
+  ] = useSlide({
+    slideRef,
+  });
 
   const handleClickRetryButton = () => {
     setRetry(true);
@@ -103,7 +176,8 @@ export const CategoryProducts = props => {
 
   useEffect(() => {
     if (!isLoaded) return;
-    console.log(productCardRef.current.clientWidth);
+    const { clientWidth, children } = slideRef.current;
+    setSlideUnitWidth(clientWidth / children.length);
   }, [isLoaded]);
 
   if (isError) return <RetryButton onClick={handleClickRetryButton} />;
@@ -118,8 +192,12 @@ export const CategoryProducts = props => {
         {parsedCategoryProductsData.title}
       </Header>
       <SliderWrapper>
-        <Slider margin={24}>
-          <ProductCardList className={SLIDE} ref={productCardRef}>
+        <Slider
+          margin={SLIDE_MARGIN}
+          slideUnitWidth={slideUnitWidth}
+          curSlideIndex={curSlideIndex}
+        >
+          <ProductCardList className={SLIDE_CONTAINER} ref={slideRef}>
             {parsedCategoryProductsData.content.map(categoryProductData => (
               <ProductCard
                 size={'md'}
@@ -128,13 +206,21 @@ export const CategoryProducts = props => {
               />
             ))}
           </ProductCardList>
-          <SliderButton className={SLIDER_PREV_BUTTON}>
-            <Icon className={IconFonts.PREV_BUTTON} />
-          </SliderButton>
-          <SliderButton className={SLIDER_NEXT_BUTTON}>
-            <Icon className={IconFonts.NEXT_BUTTON} />
-          </SliderButton>
         </Slider>
+        <SliderButton
+          className={SLIDER_PREV_BUTTON}
+          onClick={handleClickSliderPrevButton}
+          disabled={curSlideIndex === minSlideIndex}
+        >
+          <Icon className={IconFonts.PREV_BUTTON} />
+        </SliderButton>
+        <SliderButton
+          className={SLIDER_NEXT_BUTTON}
+          onClick={handleClickSliderNextButton}
+          disabled={curSlideIndex === maxSlideIndex}
+        >
+          <Icon className={IconFonts.NEXT_BUTTON} />
+        </SliderButton>
       </SliderWrapper>
     </CategoryProductsWrapper>
   );
