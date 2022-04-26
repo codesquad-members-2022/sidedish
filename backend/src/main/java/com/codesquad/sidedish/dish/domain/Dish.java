@@ -1,8 +1,12 @@
 package com.codesquad.sidedish.dish.domain;
 
+import com.codesquad.sidedish.other.DiscountPolicy;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -10,22 +14,26 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 
 @Getter
 @ToString
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Dish {
 
     @Id
     @Column(value = "dish_id")
     private Integer id;
 
-    private final String title;
-    private final String description;
-    private final Integer price;
-    private final Integer stock;
+    private String title;
+    private String description;
+    private Integer price;
+    private Integer stock;
 
     @MappedCollection(idColumn = "dish_id")
-    private final Set<DishDiscount> dishDiscounts = new HashSet<>();
+    private Set<DishDiscount> discounts = new HashSet<>();
 
     @MappedCollection(idColumn = "dish_id")
-    private final Set<DishImage> dishImages = new HashSet<>();
+    private Set<DishImage> images = new HashSet<>();
+
+    @MappedCollection(idColumn = "dish_id")
+    private Set<DishDelivery> deliveries = new HashSet<>();
 
     public Dish(Integer id, String title, String description, Integer price, Integer stock) {
         this.id = id;
@@ -33,6 +41,37 @@ public class Dish {
         this.description = description;
         this.price = price;
         this.stock = stock;
+    }
+
+    private void setDiscounts(Set<DishDiscount> discounts) {
+        this.discounts = discounts;
+    }
+
+    private void setDishImages(Set<DishImage> images) {
+        this.images = images;
+    }
+
+    private void setDeliveries(Set<DishDelivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public int getFixedPrice() {
+        BigDecimal totalRate = discounts.stream()
+            .map(DishDiscount::getCode)
+            .map(DiscountPolicy::from)
+            .map(DiscountPolicy::getRate)
+            .map(rate -> 1 - rate)
+            .map(BigDecimal::new)
+            .reduce(BigDecimal.ONE, BigDecimal::multiply);
+
+        return (int) (price * totalRate.doubleValue());
+    }
+
+    public void sold(int quantity) {
+        if (stock < quantity) {
+            throw new IllegalStateException("반찬의 재고가 부족합니다.");
+        }
+        stock -= quantity;
     }
 
 }
