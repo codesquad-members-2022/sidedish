@@ -3,7 +3,7 @@ package com.codesquad.sidedish.category.dto;
 import com.codesquad.sidedish.category.domain.Category;
 import com.codesquad.sidedish.category.domain.DishRef;
 import com.codesquad.sidedish.dish.domain.Dish;
-import com.codesquad.sidedish.dish.dto.DishResponse;
+import com.codesquad.sidedish.dish.dto.DishListResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -18,7 +18,7 @@ public class CategoryResponse {
     private final Integer categoryId;
     private final String categoryName;
 
-    private final List<DishResponse> dishes;
+    private final List<DishListResponse> dishes;
 
     public static CategoryResponse of(Category category, List<Dish> dishes) {
         Map<Integer, Dish> dishMap = dishes.stream()
@@ -31,7 +31,7 @@ public class CategoryResponse {
                 .stream()
                 .map(DishRef::getDishId)
                 .map(dishMap::get)
-                .map(DishResponse::from)
+                .map(DishListResponse::from)
                 .collect(Collectors.toList()));
     }
 

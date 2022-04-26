@@ -86,9 +86,9 @@ VALUES (16, 'https://bit.ly/3xKYvgR');
 
 -- delivery
 INSERT INTO dish_delivery (dish_id, delivery_code)
-VALUES (1, 'D001');
+VALUES (1, 'DL001');
 INSERT INTO dish_delivery (dish_id, delivery_code)
-VALUES (1, 'D002');
+VALUES (1, 'DL002');
 
 -- category : festival
 INSERT INTO category (section_id, category_name, is_festival)

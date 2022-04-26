@@ -1,7 +1,8 @@
 package com.codesquad.sidedish.dish;
 
 import com.codesquad.sidedish.dish.domain.Dish;
-import com.codesquad.sidedish.dish.dto.DishResponse;
+import com.codesquad.sidedish.dish.dto.DishListResponse;
+import com.codesquad.sidedish.dish.dto.DishUnitResponse;
 import com.codesquad.sidedish.dish.dto.Slice;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,22 +15,29 @@ public class DishService {
 
     private final DishRepository dishRepository;
 
-    public Slice<DishResponse> findDishBySection(String sectionName) {
+    public Slice<DishListResponse> findDishesBySection(String sectionName) {
         List<Dish> dishes = dishRepository.findBySectionName(sectionName);
 
-        List<DishResponse> responses = dishes.stream()
-            .map(DishResponse::from)
+        List<DishListResponse> responses = dishes.stream()
+            .map(DishListResponse::from)
             .collect(Collectors.toList());
         return new Slice<>(responses);
     }
 
-    public Slice<DishResponse> findDishByCategory(String categoryName) {
+    public Slice<DishListResponse> findDishesByCategory(String categoryName) {
         List<Dish> dishes = dishRepository.findByCategoryName(categoryName);
 
-        List<DishResponse> responses = dishes.stream()
-            .map(DishResponse::from)
+        List<DishListResponse> responses = dishes.stream()
+            .map(DishListResponse::from)
             .collect(Collectors.toList());
         return new Slice<>(responses);
+    }
+
+    public DishUnitResponse findDish(Integer dishId) {
+        Dish dish = dishRepository.findById(dishId)
+            .orElseThrow(() -> new IllegalArgumentException("반찬을 찾을 수 없습니다."));
+
+        return DishUnitResponse.from(dish);
     }
 
 }
