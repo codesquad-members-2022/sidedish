@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityDetailBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,12 +19,16 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var detailAdapter: DetailAdapter
     private val detailViewModel: DetailViewModel by viewModels()
 
+    private var ID = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
-        val id = intent.getIntExtra("id", 0)
-        Log.d("AppTest", "menuId : $id")
+        ID = intent.getIntExtra("id", 0)
+        Log.d("AppTest", "menuId : $ID")
+        binding.viewModel = detailViewModel
+        binding.lifecycleOwner = this
 
         setViewPagerListener()
         setViewPager()
@@ -31,8 +36,9 @@ class DetailActivity : AppCompatActivity() {
         setDetailInfo()
         countUpOrDownQuantity()
         setOrderFoodQuantity()
-        orderFood(id)
-        detailViewModel.getMenuDetail(id)
+        orderFood(ID)
+        setOrderResultDialog()
+        detailViewModel.getMenuDetail(ID)
     }
 
     private fun setViewPagerListener() {
@@ -96,6 +102,29 @@ class DetailActivity : AppCompatActivity() {
         binding.btnOrder.setOnClickListener {
             detailViewModel.orderFood(menuId)
         }
+    }
+
+    private fun setOrderResultDialog(){
+        detailViewModel.orderSuccessLd.observe(this){
+            if(it){
+                // 주문 성공 다이얼로그
+                openDialog(getString(R.string.order_success_message))
+            }
+            else{
+                // 주문 실패 다이얼로그
+                openDialog(getString(R.string.order_fail_message))
+            }
+        }
+    }
+
+    private fun openDialog(message: String){ // 성공, 실패 둘다 확인 누르면 뒤로가기 처리
+        MaterialAlertDialogBuilder(this)
+            .setMessage(message)
+            .setPositiveButton(getString(R.string.dialog_ok)) { dialog, which ->
+                // Respond to positive button press
+                onBackPressed()
+            }
+            .show()
     }
 
 }

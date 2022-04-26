@@ -61,3 +61,10 @@ fun applyDeliveryFeeText(view: TextView, deliveryFee: Int, freeDeliveryFee: Int)
     val freeDeliveryFee = view.context.getString(R.string.currency, decimalFormat.format(freeDeliveryFee))
     view.text = "$deliveryFee (${freeDeliveryFee} 이상 구매 시 무료)"
 }
+
+@BindingAdapter("orderCount", "salePrice")
+fun applyTotalPayText(view: TextView, orderCount: Int, salePrice: Int) {
+    val decimalFormat = DecimalFormat("#,###")
+    val total = orderCount * salePrice
+    view.text = view.context.getString(R.string.currency, decimalFormat.format(total))
+}

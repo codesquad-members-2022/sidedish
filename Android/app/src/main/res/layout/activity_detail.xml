@@ -9,6 +9,10 @@
             name="detailInfo"
             type="com.codesquadhan.sidedish.data.model.detail.DetailResponse" />
 
+        <variable
+            name="viewModel"
+            type="com.codesquadhan.sidedish.ui.detail.DetailViewModel" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -590,6 +594,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
+                orderCount="@{viewModel.orderedFoodQuantityLD}"
+                salePrice="@{viewModel.detailResponseLd.salePrice}"
                 app:layout_constraintBottom_toBottomOf="@id/v_empty_19"
                 app:layout_constraintEnd_toStartOf="@id/gl_detail_95.56"
                 app:layout_constraintTop_toTopOf="@id/v_empty_19"

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import java.lang.RuntimeException
 import javax.inject.Inject
 import com.codesquadhan.sidedish.ui.common.addAllAndSetIsWhite
+import kotlinx.coroutines.CoroutineExceptionHandler
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val menuRepository: MenuRepository): ViewModel() {
@@ -22,9 +23,17 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
     private val menuMainList = mutableListOf<MainResponseItem>()
     val menuMainListLd: LiveData<List<MainResponseItem>> = _menuMainListLd
 
+    // CEH
+    val ceh = CoroutineExceptionHandler { _, exception ->
+        println("Something happend: $exception")
+
+     // 네트워크 통신 실패 시 화면 보여주기 처리하기
+
+    }
+
     // 메인화면 세 가지 섹션 메뉴 가져오기
     fun getMainUIMenu(){
-        viewModelScope.launch {
+        viewModelScope.launch(ceh) {
             menuMainList.clear()
 
             val mainResponse = async { menuRepository.getMenuList("main") ?: throw RuntimeException("why..?") }

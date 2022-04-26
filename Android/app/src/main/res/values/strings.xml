@@ -12,4 +12,9 @@
     <string name="detail_delivery_info">배송정보</string>
     <string name="detail_delivery_info_value">서울 경기 새벽 배송, 전국 택배 배송</string>
     <string name="delivery_fee">배송비</string>
+
+    <string name="order_success_message">주문에 성공했습니다</string>
+    <string name="order_fail_message">주문에 실패했습니다</string>
+
+    <string name="dialog_ok">확인</string>
 </resources>
