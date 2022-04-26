@@ -4,19 +4,19 @@ values ('dave', 'songdavenaknak');
 
 -- dish Table
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
-values ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', '런칭 특가', 15800, 100, 2500, 40000, 0.01, true);
+values ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', '런칭특가', 15800, 100, 2500, 40000, 0.01, true);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
-values ('잡채', '탱글한 면과 맛깔진 고명이 가득', '이벤트 특가', 12900, 100, 2500, 40000, 0.01, false);
+values ('잡채', '탱글한 면과 맛깔진 고명이 가득', '이벤트특가', 12900, 100, 2500, 40000, 0.01, false);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
-values ('소갈비찜', '촉촉하게 밴 양념이 일품', '이벤트 특가', 28900, 0, 2500, 40000, 0.01, true);
+values ('소갈비찜', '촉촉하게 밴 양념이 일품', '이벤트특가', 28900, 0, 2500, 40000, 0.01, true);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
 values ('간장 코다리조림', '쫀득한 코다리를 국내산 간장소스로 맛있게 조렸어요', null, 14900, 100, 2500, 40000, 0.01, false);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
-values ('한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', '이벤트 특가', 9300, 50, 2500, 40000, 0.01, true);
+values ('한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', '이벤트특가', 9300, 50, 2500, 40000, 0.01, true);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
-values ('된장찌개', '특별하지 않아서 더 좋은 우리맛', '이벤트 특가', 8800, 100, 2500, 40000, 0.01, true);
+values ('된장찌개', '특별하지 않아서 더 좋은 우리맛', '이벤트특가', 8800, 100, 2500, 40000, 0.01, true);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
-values ('미역 오이 냉국', '여름엔 시원한 냉국이 최고', '이벤트 특가', 7800, 20, 2500, 40000, 0.01, true);
+values ('미역 오이 냉국', '여름엔 시원한 냉국이 최고', '이벤트특가', 7800, 20, 2500, 40000, 0.01, true);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
 values ('동태찌개', '겨울철 보양식으로 안성맞춤', null, 10900, 0, 2500, 40000, 0.01, true);
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
