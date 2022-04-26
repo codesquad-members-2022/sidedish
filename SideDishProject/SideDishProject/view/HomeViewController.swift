@@ -10,22 +10,24 @@ import Toaster
 
 final class HomeViewController: UIViewController {
     
-    private var productModel: ProductModel?
+    private var usecase: HomeUsecase?
     private lazy var homeView = HomeView(frame: view.frame)
-    private let dishCollectionWrapper = DishCollectionWrapper()
+    private let dishCollectionDataSource = DishCollectionDataSource()
+    private let dishCollectionDelegate = DishCollectionDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "order"
-        productModel?.delegate = self
-        productModel?.getAll()
+        usecase?.delegate = self
+        usecase?.getAll()
         view = homeView
-        homeView.setCollectionViewModel(model: dishCollectionWrapper)
+        dishCollectionDelegate.cellAction = self
+        homeView.setCollectionViewModel(dataSource: dishCollectionDataSource, delegate: dishCollectionDelegate)
     }
 
-    static func create(with model: ProductModel) -> HomeViewController {
+    static func create(with model: HomeUsecase) -> HomeViewController {
         let viewController = HomeViewController()
-        viewController.productModel = model
+        viewController.usecase = model
         return viewController
     }
     
@@ -36,15 +38,25 @@ final class HomeViewController: UIViewController {
     
 }
 extension HomeViewController: ProductModelDelegate{
+    func selected(id: UniqueID) {
+        presentDetailViewController(uniqueId: id)
+    }
+    
     func updateDishComment(comments: [String]) {
-        dishCollectionWrapper.setDishComments(dishComments: comments)
+        dishCollectionDataSource.setDishComments(dishComments: comments)
     }
     
     func updateAllDishes(dishes: [DishCategory : [Product]]) {
-        dishCollectionWrapper.setDishes(dishes: dishes)
+        dishCollectionDataSource.setDishes(dishes: dishes)
     }
     
     func updateFail(error: Error) {
         Toast(text: "error \(error)").show()
+    }
+}
+
+extension HomeViewController: DishCellAction{
+    func didTapped(indexPath: IndexPath) {
+        usecase?.setSelectedIndex(indexPath: indexPath)
     }
 }

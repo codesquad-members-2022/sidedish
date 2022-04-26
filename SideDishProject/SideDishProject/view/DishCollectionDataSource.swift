@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DishCollectionWrapper: NSObject{
+final class DishCollectionDataSource: NSObject{
     
     private var dishes: [DishCategory : [Product]] = [:]
     private var dishComments: [String] = []
@@ -19,7 +19,7 @@ final class DishCollectionWrapper: NSObject{
         self.dishComments = dishComments
     }
 }
-extension DishCollectionWrapper: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension DishCollectionDataSource: UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return dishes.count
     }
@@ -45,13 +45,4 @@ extension DishCollectionWrapper: UICollectionViewDelegate, UICollectionViewDataS
         }
         return UICollectionReusableView()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 125)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)  // Header size
-    }
-    
 }

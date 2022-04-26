@@ -40,8 +40,8 @@ final class HomeView: UIView{
         collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
     }
     
-    func setCollectionViewModel(model: DishCollectionWrapper){
-        collectionView.delegate = model
-        collectionView.dataSource = model
+    func setCollectionViewModel(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate&UICollectionViewDelegateFlowLayout){
+        collectionView.dataSource = dataSource
+        collectionView.delegate = delegate
     }
 }

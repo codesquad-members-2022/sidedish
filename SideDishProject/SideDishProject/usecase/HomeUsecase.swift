@@ -7,13 +7,21 @@
 
 import Foundation
 
-final class ProductModel{
+final class HomeUsecase{
 
     private let repository: ProductRepository
+    private var selectedIndex: IndexPath?
     weak var delegate: ProductModelDelegate?
+    private var dishes: [DishCategory : [Product]] = [:]
     
     init(repository: ProductRepository){
         self.repository = repository
+    }
+    
+    func setSelectedIndex(indexPath: IndexPath){
+        self.selectedIndex = indexPath
+        guard let selectedProduct = dishes[DishCategory.dishKind(section: indexPath.section)]?[indexPath.row] else { return }
+        delegate?.selected(id: selectedProduct.id)
     }
     
     func getAll(){
@@ -29,7 +37,6 @@ final class ProductModel{
     }
     
     private func makeAllDishes(products: [Product]){
-        var dishes: [DishCategory : [Product]] = [:]
         dishes[.main] = products.filter{$0.category == .main}
         dishes[.soup] = products.filter{$0.category == .soup}
         dishes[.side] = products.filter{$0.category == .side}
@@ -42,4 +49,5 @@ protocol ProductModelDelegate: AnyObject{
     func updateDishComment(comments: [String])
     func updateAllDishes(dishes: [DishCategory : [Product]])
     func updateFail(error: Error)
+    func selected(id: UniqueID)
 }

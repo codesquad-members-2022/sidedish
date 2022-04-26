@@ -47,6 +47,18 @@ enum DishCategory: CaseIterable{
             return "식탁을 풍성하게 하는\n정갈한 밑반찬"
         }
     }
+    static func dishKind(section: Int) -> DishCategory{
+        switch section{
+        case 0:
+            return .main
+        case 1:
+            return .soup
+        case 2:
+            return .side
+        default:
+            return .side
+        }
+    }
 }
 
 enum ProductEvent: CustomStringConvertible{
