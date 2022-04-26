@@ -25,4 +25,8 @@ public class User {
         orders.add(order);
     }
 
+    public void addPoint(Integer point) {
+        this.point = point;
+    }
+
 }

@@ -35,6 +35,7 @@ public class OrderService {
         order.setDeliveries(deliveries);
 
         user.addOrder(order);
+        user.addPoint(order.getRewardPoint());
         userRepository.save(user);
     }
 
