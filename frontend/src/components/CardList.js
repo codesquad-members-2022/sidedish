@@ -11,6 +11,7 @@ const ShowingArea = styled.div`
   ${(props) => props.size === "medium" && width_height_bypx(1280, 479)}
 
   ${(props) => props.size === "small" && width_height_bypx(864, 226)}
+
 `;
 
 const ProductCardsWrapper = styled.div`

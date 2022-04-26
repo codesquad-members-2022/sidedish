@@ -10,15 +10,14 @@ const HeaderWrapper = styled.header`
   position: relative;
   width: 1440px;
   min-height: 83px;
-  background: ${({ theme }) => theme.colors.White};
   display: flex;
+  background: ${({ theme }) => theme.colors.White};
 `;
 
 const HeaderLogoWrapper = styled.div`
   margin: 16px 0px 0px 80px;
   height: 50px;
-  display: flex;
-  align-items: center;
+  ${custom_flex('row', 'center')}
 `;
 
 const HeaderLogo = () => (
@@ -31,8 +30,6 @@ const GNB = styled.div`
   margin: 28px;
   ${custom_flex(`row`, `flex-start`, `center`)}
   ${(props) => props.extended && `margin-bottom: 40px;`}
-}
-
 `;
 
 const IconWrapper = styled.div`
@@ -42,8 +39,8 @@ const IconWrapper = styled.div`
 `;
 
 const Icon = styled.div`
-  ${width_height_bypx(32, 32)}
   ${custom_flex("row", "center", "center")}
+  ${width_height_bypx(32, 32)}
 `;
 
 export const Header = ({ cats }) => {
@@ -62,7 +59,7 @@ export const Header = ({ cats }) => {
         <Icon>{headerIcons.MyPageIcon()}</Icon>
         <Icon>{headerIcons.ShoppingCartIcon()}</Icon>
       </IconWrapper>
-      <HorizontalLine color={"Black"} />
+      <HorizontalLine position={100} color={"Black"} />
     </HeaderWrapper>
   );
 };

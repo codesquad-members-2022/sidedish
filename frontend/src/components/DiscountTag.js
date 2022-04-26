@@ -6,15 +6,20 @@ export const TagItem = styled.li`
   margin-right: 8px;
   padding: 6px 16px;
   border-radius: 999px;
+
   ${custom_flex("row", "flex-start")}
+
   background-color: ${({ id, theme }) => theme.colors[tagConvetion[id].color]};
 
   span {
     text-align: center;
     ${custom_font("Noto Sans KR", 12, 500, 18, -0.008)}
+
     color: ${({ theme }) => theme.colors.White}
+
   }
 `;
+
 export const TagWrapper = styled.ul`
   margin-top: 16px;
   ${custom_flex("row", "flex-start")}
