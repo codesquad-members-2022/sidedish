@@ -81,7 +81,7 @@ const GET_CATEGORY = [
               description: '개꿀맛',
               mainCategory: '정갈한 밑반찬',
               price: 5800,
-              discountPolicy: 'launch',
+              discountPolicy: 'lunch',
               discountRate: 0.15,
               morningDelivery: true,
               images: [
@@ -210,28 +210,30 @@ const GET_CATEGORY = [
   }),
 ];
 
-const GET_EVENTS = rest.get('/events', (req, res, ctx) => {
+const GET_EVENTS = rest.get(`${API_URL}/events`, (req, res, ctx) => {
   return res(
     ctx.status(200),
     ctx.delay(0),
     ctx.json({
-      content: [
+      result_code: 200,
+      result_message: 'OK',
+      result_body: [
         {
-          id: 1,
-          title: '풍성한 고기반찬',
+          "id": 1,
+          "title": "풍성한 고기반찬"
         },
         {
-          id: 2,
-          title: '편리한 반찬 세트',
+          "id": 2,
+          "title": "편리한 반찬세트"
         },
         {
-          id: 3,
-          title: '맛있는 제철 요리',
+          "id": 3,
+          "title": "맛있는 제철요리"
         },
         {
-          id: 4,
-          title: '우리 아이 영양 반찬',
-        },
+          "id": 4,
+          "title": "우리아이 영양 반찬쓰"
+        }
       ],
     })
   );
@@ -250,7 +252,7 @@ const GET_EVENT = [
             description: '개꿀맛',
             mainCategory: '정갈한 밑반찬',
             price: 5800,
-            discountPolicy: 'launch',
+            discountPolicy: 'lunch',
             discountRate: 0.15,
             morningDelivery: true,
             images: [
