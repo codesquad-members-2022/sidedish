@@ -90,7 +90,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let detailViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: DetailViewController.self)) as? DetailViewController else {
+        
+        let identifier = String(describing: DetailViewController.self)
+        let dest = storyboard?.instantiateViewController(withIdentifier: identifier)
+        
+        guard let detailViewController = dest as? DetailViewController else {
             return
         }
         

@@ -90,7 +90,7 @@
                     <navigationItem key="navigationItem" title="Ordering" id="jxZ-qo-0bh"/>
                     <connections>
                         <outlet property="collectionView" destination="A3A-1R-dGD" id="DgA-2F-RZi"/>
-                        <segue destination="Ymc-VA-5WP" kind="show" identifier="test" id="6oP-GW-GsS"/>
+                        <segue destination="Ymc-VA-5WP" kind="show" identifier="" id="6oP-GW-GsS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -105,17 +105,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4U-Fv-UTD">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4U-Fv-UTD">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceHorizontal="YES" scrollEnabled="NO" pagingEnabled="YES" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEF-D6-VxK" userLabel="imageScrollView">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEF-D6-VxK" userLabel="imageScrollView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="376"/>
-                                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="376" id="y3b-Me-pAw"/>
                                         </constraints>
-                                        <viewLayoutGuide key="contentLayoutGuide" id="fOJ-m6-VfL"/>
-                                        <viewLayoutGuide key="frameLayoutGuide" id="wlt-Hi-dlG"/>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오리 주물럭_반조리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S7-iy-waO" userLabel="productNameLabel">
                                         <rect key="frame" x="16" y="400" width="382" height="48"/>
@@ -261,8 +259,11 @@
                                         <color key="textColor" name="Grey1"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wOs-yr-162" userLabel="quantityStepper">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wOs-yr-162" userLabel="quantityStepper">
                                         <rect key="frame" x="304" y="752" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="quantityStepperValueChanged:" destination="Ymc-VA-5WP" eventType="valueChanged" id="Ys5-fE-tmh"/>
+                                        </connections>
                                     </stepper>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uc1-f2-ste" userLabel="separateLine">
                                         <rect key="frame" x="16" y="806" width="382" height="1"/>
@@ -304,20 +305,24 @@
                                             </attributedString>
                                         </buttonConfiguration>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-8f-C0C" userLabel="detailImageStackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-8f-C0C" userLabel="detailImageStackView">
                                         <rect key="frame" x="16" y="1001" width="382" height="10"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="10" id="hzs-Vo-Wcu"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="hzs-Vo-Wcu"/>
                                         </constraints>
                                     </stackView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uD6-Wk-5Ad">
+                                        <rect key="frame" x="149.5" y="350" width="115.5" height="26"/>
+                                    </pageControl>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <color key="backgroundColor" name="White"/>
                                 <constraints>
                                     <constraint firstItem="BzF-fs-LgJ" firstAttribute="bottom" secondItem="EhW-8f-C0C" secondAttribute="bottom" constant="8" id="04O-Lj-YYd"/>
                                     <constraint firstItem="YXO-pw-Yvz" firstAttribute="trailing" secondItem="8S7-iy-waO" secondAttribute="trailing" id="557-pe-vDG"/>
                                     <constraint firstItem="mEF-D6-VxK" firstAttribute="top" secondItem="BzF-fs-LgJ" secondAttribute="top" id="5iN-qz-jZt"/>
                                     <constraint firstItem="wOs-yr-162" firstAttribute="leading" secondItem="6mh-6R-Q0N" secondAttribute="trailing" constant="24" id="6PX-6g-qA1"/>
                                     <constraint firstItem="mEF-D6-VxK" firstAttribute="width" secondItem="AQ2-1l-l8w" secondAttribute="width" id="8bC-nX-Llq"/>
+                                    <constraint firstItem="uD6-Wk-5Ad" firstAttribute="centerX" secondItem="mEF-D6-VxK" secondAttribute="centerX" id="8dD-Le-AmT"/>
                                     <constraint firstItem="uth-oY-M0S" firstAttribute="leading" secondItem="8S7-iy-waO" secondAttribute="leading" id="9Dz-EW-Xhf"/>
                                     <constraint firstItem="Rkz-vD-SOz" firstAttribute="top" secondItem="uc1-f2-ste" secondAttribute="bottom" constant="24" id="9qu-Px-Cwc"/>
                                     <constraint firstItem="EhW-8f-C0C" firstAttribute="top" secondItem="jbG-tr-WGJ" secondAttribute="bottom" constant="48" id="A4c-DM-Wxj"/>
@@ -344,6 +349,7 @@
                                     <constraint firstItem="wOs-yr-162" firstAttribute="centerY" secondItem="yCz-wk-rN0" secondAttribute="centerY" id="f2P-jl-U2F"/>
                                     <constraint firstItem="YEf-lr-LEW" firstAttribute="leading" secondItem="8S7-iy-waO" secondAttribute="leading" id="gDB-jK-7zR"/>
                                     <constraint firstItem="YEf-lr-LEW" firstAttribute="top" secondItem="eCL-d9-iGV" secondAttribute="bottom" constant="24" id="hpz-C0-XkR"/>
+                                    <constraint firstItem="uD6-Wk-5Ad" firstAttribute="bottom" secondItem="mEF-D6-VxK" secondAttribute="bottom" id="iNb-4M-mIM"/>
                                     <constraint firstItem="Rkz-vD-SOz" firstAttribute="trailing" secondItem="8S7-iy-waO" secondAttribute="trailing" id="ikg-C4-bDr"/>
                                     <constraint firstItem="uth-oY-M0S" firstAttribute="top" secondItem="8S7-iy-waO" secondAttribute="bottom" constant="8" id="jEw-zg-kes"/>
                                     <constraint firstItem="eCL-d9-iGV" firstAttribute="leading" secondItem="8S7-iy-waO" secondAttribute="leading" id="k30-PL-VX7"/>
@@ -370,6 +376,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wPd-bM-5DY"/>
+                    <connections>
+                        <outlet property="detailImageStackView" destination="EhW-8f-C0C" id="rtS-4s-Y1l"/>
+                        <outlet property="imageScrollView" destination="mEF-D6-VxK" id="dHy-A2-eFv"/>
+                        <outlet property="imageScrollViewPageControl" destination="uD6-Wk-5Ad" id="CBl-ht-LAv"/>
+                        <outlet property="orderButton" destination="jbG-tr-WGJ" id="Mmz-RP-Jb0"/>
+                        <outlet property="quantityLabel" destination="6mh-6R-Q0N" id="3bZ-hO-J9m"/>
+                        <outlet property="specialMessageContainerView" destination="eCL-d9-iGV" id="bw9-NQ-hjc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvl-eT-Y8n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,9 +432,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
