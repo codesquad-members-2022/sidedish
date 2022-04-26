@@ -13,19 +13,36 @@ class BanchanListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCollectionLayout()
-    }
 
-    private func setCollectionLayout() {
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let width = view.frame.width
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 24, right: 16)
-            layout.headerReferenceSize = CGSize(width: width, height: 144)
-            layout.minimumLineSpacing = 8
-            layout.estimatedItemSize = .zero
-            let cellPadding = layout.sectionInset.left + layout.sectionInset.right
-            layout.itemSize = CGSize(width: width - cellPadding, height: (width - cellPadding) * 0.38)
-        }
+		let itemSize = NSCollectionLayoutSize(
+			widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+			heightDimension: NSCollectionLayoutDimension.estimated(40)
+		)
+
+		let item = NSCollectionLayoutItem(layoutSize: itemSize)
+		let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
+		let section = NSCollectionLayoutSection(group: group)
+
+		section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 25, trailing: 16)
+		section.interGroupSpacing = 10
+
+		let headerFooterSize = NSCollectionLayoutSize(
+			widthDimension: .fractionalWidth(1.0),
+			heightDimension: .estimated(40)
+		)
+
+		let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+			layoutSize: headerFooterSize,
+			elementKind: UICollectionView.elementKindSectionHeader,
+			alignment: .top
+		)
+
+		section.boundarySupplementaryItems = [sectionHeader]
+
+		let layout = UICollectionViewCompositionalLayout(section: section)
+
+		collectionView.collectionViewLayout = layout
+		collectionView.register(ProductSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -48,9 +65,13 @@ class BanchanListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProductSectionHeader.identifier, for: indexPath) as? ProductSectionHeader else { return UICollectionReusableView() }
-        header.title.text = headerItem[indexPath.section]
-        return header
+		guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier, for: indexPath) as? ProductSectionHeader else {
+			return UICollectionReusableView()
+		}
+
+		headerView.title.text = headerItem[indexPath.section]
+
+        return headerView
     }
 
 }

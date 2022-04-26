@@ -29,23 +29,20 @@ class ProductDetailCell: UICollectionViewCell {
         image.layer.cornerRadius = 10
         image.image = UIImage(systemName: "cart.circle")
 
-        let stackView: UIStackView = UIStackView(arrangedSubviews: [image, info])
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        self.addSubview(stackView)
+		image.translatesAutoresizingMaskIntoConstraints = false
+		info.translatesAutoresizingMaskIntoConstraints = false
 
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        image.translatesAutoresizingMaskIntoConstraints = false
-        info.translatesAutoresizingMaskIntoConstraints = false
+		self.contentView.addSubview(image)
+		self.contentView.addSubview(info)
 
-        NSLayoutConstraint.activate([
-            image.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
-            image.widthAnchor.constraint(equalTo: image.heightAnchor),
-            info.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 13),
-            info.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -13)
-        ])
+		image.anchor(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, leading: self.contentView.leadingAnchor)
+
+		image.setWidth(130)
+		image.setHeight(toAnchor: image.widthAnchor)
+
+		info.anchor(leading: image.trailingAnchor)
+		info.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.trailingAnchor, constant: -16).isActive = true
+		info.centerY(inView: image)
     }
 
 }

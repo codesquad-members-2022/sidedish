@@ -14,7 +14,7 @@ class ProductDetailView: UIView {
     private let normalPrice: UILabel? = UILabel()
     private let salePrice: UILabel = UILabel()
     private let badges: UIStackView = UIStackView()
-    private let badgeList: [String] = ["런칭특가", "이벤트특가"]
+    private let badgeList: [String] = ["런칭특가", "이벤트 특가", "프로모션"]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,15 +37,16 @@ class ProductDetailView: UIView {
         menuDescription.text = "감칠맛 나는 매콤한 양념"
         salePrice.text = "12,640원"
 		normalPrice?.text = "15,800원"
+
         badgeList.forEach {
 			let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
             badge.text = $0
             badges.addArrangedSubview(badge)
         }
 
-        badges.addArrangedSubview(BadgeLabel(color: .systemBackground))
         badges.axis = .horizontal
         badges.spacing = 5
+		badges.alignment = .center
         badges.distribution = .fillProportionally
 
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
@@ -61,6 +62,7 @@ class ProductDetailView: UIView {
 
         let stackView: UIStackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
         stackView.axis = .vertical
+		stackView.alignment = .leading
         stackView.distribution = .fillEqually
 
         self.addSubview(stackView)

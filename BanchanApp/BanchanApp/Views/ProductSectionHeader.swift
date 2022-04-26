@@ -29,13 +29,9 @@ class ProductSectionHeader: UICollectionReusableView {
 		title.font = .textLargeRegular
 		title.textColor = .gray1
         title.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            title.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            title.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24),
-            title.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -24)
-        ])
+		title.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+		title.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		title.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
     }
 
 }
