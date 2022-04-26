@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {pageHeaderIcon, searchIcon, userIcon, myCartIcon} from '../constants/iconPath.js';
+import {pageHeaderIcon} from '../constants/iconPath.js';
 import {category} from '../data/category.js';
+import {NavIcon} from './NavIcon.jsx';
 import '../../css/Header.css';
 
 function Header() {
@@ -29,15 +30,7 @@ function Header() {
           <ul className="categoryList">{categoryList}</ul>
         </div>
         <nav className="navBar">
-          <a href="#!" className="search">
-            <img className="searchIcon" src={searchIcon} alt="searchIcon"></img>
-          </a>
-          <a href="#!" className="user">
-            <img className="userIcon" src={userIcon} alt="userIcon"></img>
-          </a>
-          <a href="#!" className="myCart">
-            <img className="myCartIcon" src={myCartIcon} alt="myCartIcon"></img>
-          </a>
+          <NavIcon />
         </nav>
       </div>
     </header>

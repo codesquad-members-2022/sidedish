@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SidedishApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="com.sidedish.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.sidedish.SidedishApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs>
+      <env name="DB_URL" value="jdbc:mysql://localhost:13306/sidedishDB" />
+      <env name="USER_NAME" value="root" />
+      <env name="PASSWORD" value="root" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
