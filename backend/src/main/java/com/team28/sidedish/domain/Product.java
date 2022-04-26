@@ -26,8 +26,8 @@ public class Product {
     private final Long discountPrice;
     private final String discountName;
 
-    private final List<String> representImages;
-    private final List<String> detailImages;
+    private final List<ProductImageEntity> representImages;
+    private final List<ProductImageEntity> detailImages;
 
     public static Product of(ProductEntity product, DiscountEntity discount) {
         return new Product(
@@ -47,19 +47,17 @@ public class Product {
         return (long) (product.getPrice() - (product.getPrice() * discount.getDiscountRate()));
     }
 
-    private static List<String> getRepresentImages(Set<ProductImageEntity> images) {
+    private static List<ProductImageEntity> getRepresentImages(Set<ProductImageEntity> images) {
         return images.stream()
                 .filter(ProductImageEntity::isRepresentYn)
                 .sorted(Comparator.comparingInt(ProductImageEntity::getSequence))
-                .map(ProductImageEntity::getImagePath)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private static List<String> getDetailsImage(Set<ProductImageEntity> images) {
+    private static List<ProductImageEntity> getDetailsImage(Set<ProductImageEntity> images) {
         return images.stream()
                 .filter(img -> !img.isRepresentYn())
                 .sorted(Comparator.comparingInt(ProductImageEntity::getSequence))
-                .map(ProductImageEntity::getImagePath)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -68,6 +66,6 @@ public class Product {
             return EMPTY_IMAGE_URL;
         }
 
-        return representImages.get(0);
+        return representImages.get(0).getImagePath();
     }
 }
