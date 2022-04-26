@@ -34,7 +34,7 @@ const OrderModalWrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  background-color: beige;
+  background-color: ${Colors.OFF_WHITE};
   display: flex;
   width: 960px;
 `;
@@ -81,7 +81,16 @@ export const OrderModal = () => {
             ]}
           />
 
-          <ProductInfo />
+          <ProductInfo
+            productData={{
+              id: 0,
+              title: '오이피자',
+              price: 10000,
+              accumulate: 0.01,
+              discountPolicy: 'launch',
+              discountRate: 0.15,
+            }}
+          />
 
           <OrderButton ContentsText={'주문하기'} onClick={OrderButtonEvent} />
         </SelectedProduct>
