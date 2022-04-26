@@ -100,7 +100,7 @@ public class ProductController {
                             }
                     ),
                     @ApiResponse(responseCode = "400",
-                            description = "상품 주문 실패 - 상품 재고가 부족함",
+                            description = "상품 주문 실패 - 상품 재고가 부족함, 주문 수량이 음수, 존재하지 않는 상품 번호",
                             content = {
                                     @Content(
                                             mediaType = "application/json",
