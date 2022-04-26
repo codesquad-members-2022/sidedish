@@ -9,16 +9,8 @@ import javax.inject.Singleton
 @Singleton
 class MenuRepository @Inject constructor(private val menuService: MenuService) {
 
-    suspend fun getMainMenu(): List<MainResponseItem>? {
-        return menuService.getMainMenu().getBodyOrThrow()
-    }
-
-    suspend fun getSoupMenu(): List<MainResponseItem>? {
-        return menuService.getSoupMenu().getBodyOrThrow()
-    }
-
-    suspend fun getSideMenu(): List<MainResponseItem>? {
-        return menuService.getSideMenu().getBodyOrThrow()
+    suspend fun getMenuList(type: String): List<MainResponseItem>? {
+        return menuService.getMenuList(type).getBodyOrThrow()
     }
 
     private fun <T> Response<T>.getBodyOrThrow(): T? {

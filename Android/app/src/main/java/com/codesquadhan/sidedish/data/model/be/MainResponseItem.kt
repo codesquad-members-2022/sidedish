@@ -15,6 +15,8 @@ data class MainResponseItem(
     val name: String = "",
     @SerializedName("price")
     val price: Int = -1,
+    @SerializedName("salePrice")
+    val salePrice: Int = -1,
     @SerializedName("saleType")
     val saleType: String = "",
     val viewType: Int = 2,

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 import com.codesquadhan.sidedish.databinding.ItemMainFoodBinding
 import com.codesquadhan.sidedish.databinding.ItemMainHeaderBinding
@@ -65,6 +66,10 @@ class MainAdapter(private val itemClick: (id: Int) -> Unit) :
 
         fun bind(mainResponseItem: MainResponseItem, itemClick: (id: Int) -> Unit) {
             binding.mainResponseItem = mainResponseItem
+
+            Glide.with(binding.root)
+                .load(mainResponseItem.imagePath)
+                .into(binding.ivFood)
 
             binding.root.setOnClickListener {
                 itemClick.invoke(mainResponseItem.id)

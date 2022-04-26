@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E1E1E1"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:src="@drawable/img_food_sample" />
 
         </com.google.android.material.card.MaterialCardView>
