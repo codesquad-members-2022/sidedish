@@ -14,10 +14,7 @@ function SmallSidedish() {
 
     useEffect(() => {
         try {
-            getData(
-                API.FESTIVAL + "한-번-주문하면-두-번-반하는-반찬",
-                setItems
-            );
+            getData(API.DISH_SECTION + "정갈한-밑반찬", setItems);
         } catch (error) {
             console.error(error);
         }
@@ -31,7 +28,7 @@ function SmallSidedish() {
         <ThemeProvider theme={theme}>
             <Container>
                 <Title>식탁을 풍성하게 하는 정갈한 밑반찬</Title>
-                <SidedishCards dishes={items[0].dishes}></SidedishCards>
+                <SidedishCards dishes={items[1].dishes}></SidedishCards>
             </Container>
         </ThemeProvider>
     );
