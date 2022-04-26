@@ -24,3 +24,9 @@ export const categoryText = [
 ];
 
 export const labelTitles = ["런칭특가", "이벤트특가"];
+
+export const imageSize = {
+  promotion: "411px",
+  category: "302px",
+  sideCategory: "160px",
+};
