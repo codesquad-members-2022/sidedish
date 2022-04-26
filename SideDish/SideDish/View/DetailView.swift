@@ -137,7 +137,7 @@ class DetailView: UIView {
         return button
     }()
 
-    private let detailImageStackView: UIStackView = {
+    let detailImageStackView: UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
