@@ -39,7 +39,7 @@ const Carousel = ({
   return (
     <CarouselContainer>
       <LeftArrowBtnSpan onClick={handleClickLeftBtn}>
-        <LeftArrowBtn />
+        <LeftArrowBtn isLast={currentPage === 0} />
       </LeftArrowBtnSpan>
 
       <CarouselView>
@@ -55,7 +55,7 @@ const Carousel = ({
       </CarouselView>
 
       <RightArrowBtnSpan onClick={handleClickRightBtn}>
-        <RightArrowBtn />
+        <RightArrowBtn isLast={(currentPage + 1) * cardCount === carouselCards.length} />
       </RightArrowBtnSpan>
     </CarouselContainer>
   );
