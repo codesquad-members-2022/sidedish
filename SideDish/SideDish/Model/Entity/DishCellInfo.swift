@@ -39,4 +39,3 @@ enum DeliveryType: String, Codable {
     case dawnDelivery = "새벽배송"
     case contryParcel = "전국택배"
 }
-

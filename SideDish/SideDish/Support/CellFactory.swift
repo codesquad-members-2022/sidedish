@@ -1,10 +1,3 @@
-//
-//  CellFactory.swift
-//  SideDish
-//
-//  Created by YEONGJIN JANG on 2022/04/26.
-//
-
 import Foundation
 import UIKit
 
@@ -39,11 +32,10 @@ final class CellFactory: CellFactoryProtocol {
             }
         }
     }
-    
+
     func fetchImageFromServer() {
-        
     }
-    
+
     func convertCell2Product() -> [[Product]] {
         let productArray: [[Product]] = self.products.map { sectionArray in
             let array = sectionArray.map { cell in
