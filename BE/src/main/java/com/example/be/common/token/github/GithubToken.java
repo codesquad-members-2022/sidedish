@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 public class GithubToken {
 
+    public static final String GITHUB = "github";
     private static final String TOKEN_DELIMETER = " ";
 
     @JsonProperty("access_token")

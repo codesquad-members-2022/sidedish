@@ -9,10 +9,9 @@ import com.example.be.common.token.github.GithubToken;
 import com.example.be.common.token.github.GithubTokenUtils;
 import com.example.be.common.token.github.GithubUser;
 import com.example.be.common.token.jwt.JwtTokenProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -20,9 +19,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.example.be.common.token.github.GithubToken.GITHUB;
+
 @Service
 public class OauthService {
 
+    private final Logger logger = LoggerFactory.getLogger(OauthService.class);
     private final InMemoryClientRegisterrRepository inMemoryClientRegisterRepository;
     private final UserRepository userRepository;
     private final FakeRedisRepository fakeRedisRepository;
@@ -37,8 +39,6 @@ public class OauthService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    private static final String GITHUB = "github";
-
     @Transactional
     public String login(String code) {
         ClientRegistration clientRegistration = inMemoryClientRegisterRepository.findByRegistration(GITHUB);
@@ -47,21 +47,19 @@ public class OauthService {
                 .postForEntity(clientRegistration.getTokenUrl(), accessTokenRequest, GithubToken.class)
                 .getBody();
 
-        HttpHeaders authorizationIncludedHeader = tokenUtils.getAuthorizationIncludedHeader(gitToken.getGithubAccessToken());
-        ResponseEntity<String> response = new RestTemplate()
-                .exchange(clientRegistration.getUserInfoUrl(), HttpMethod.GET, new HttpEntity<String>(authorizationIncludedHeader), String.class);
-        Map<String, String> userDetail = tokenUtils.getUserDetail(response.getBody());
+        Map<String, String> userDetail = tokenUtils.getUserDetailFrom(clientRegistration, gitToken);
+
         GithubUser githubUser = GithubUser.from(userDetail);
+        String jwtToken = jwtTokenProvider.createJwtToken(githubUser.getGithubId());
 
-        save(githubUser);
-
-        String jwtToken = jwtTokenProvider.createJwtToken(githubUser.getEmail());
-        fakeRedisRepository.save(jwtToken);
+        save(githubUser, jwtToken);
+        logger.info("토큰 발급: {}", jwtToken);
         return jwtToken;
     }
 
     // TODO 분기문 제거
-    private void save(GithubUser githubUser) {
+    private void save(GithubUser githubUser, String jwtToken) {
+        logger.info("사용자 및 토큰 저장 {}, {}", githubUser.getGithubId(), jwtToken);
         Optional<User> findUser = userRepository.findByGithubId(githubUser.getGithubId());
         if (findUser.isPresent()) {
             findUser.get().publishUpdateEvent(githubUser.getName(), githubUser.getAvatarUrl(), githubUser.getEmail(),
@@ -69,6 +67,6 @@ public class OauthService {
         } else {
             userRepository.save(new User(githubUser.getName(), null, githubUser.getAvatarUrl(), githubUser.getEmail(), githubUser.getLocation(), githubUser.getBio(), githubUser.getGithubId()));
         }
+        fakeRedisRepository.save(jwtToken);
     }
-
 }

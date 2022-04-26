@@ -1,6 +1,7 @@
 package com.example.be.common.token;
 
 import com.example.be.common.token.configuration.ClientRegistration;
+import com.example.be.common.token.github.GithubToken;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.MultiValueMap;
@@ -17,4 +18,6 @@ public interface TokenUtils {
     HttpHeaders getAuthorizationIncludedHeader(String accessToken);
 
     Map<String, String> getUserDetail(String body);
+
+    Map<String, String> getUserDetailFrom(ClientRegistration clientRegistration, GithubToken gitToken);
 }

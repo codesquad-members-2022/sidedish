@@ -36,10 +36,10 @@ public class JwtTokenProvider {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String createJwtToken(String email) {
-        JwtToken jwtToken = new JwtToken(email);
+    public String createJwtToken(String githubId) {
+        JwtToken jwtToken = new JwtToken(githubId);
         Claims claims = Jwts.claims();
-        claims.put("email", jwtToken.getClaim("email"));
+        claims.put("githubId", jwtToken.getClaim("githubId"));
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setClaims(claims)
