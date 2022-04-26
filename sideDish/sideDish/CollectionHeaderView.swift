@@ -12,7 +12,7 @@ class CollectionHeaderView: UICollectionReusableView {
     private var title: UILabel = {
         let tempTitle = UILabel()
         tempTitle.text = "모두가 좋아하는 든든한 메인요리"
-        tempTitle.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
+        tempTitle.textColor = .headerColor
         tempTitle.font = UIFont.systemFont(ofSize: 32)
         tempTitle.numberOfLines = 2
         return tempTitle
