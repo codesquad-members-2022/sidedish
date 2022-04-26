@@ -14,7 +14,8 @@ import java.lang.RuntimeException
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository) : ViewModel() {
+class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository) :
+    ViewModel() {
 
     private val _detailResponseLd = MutableLiveData<DetailResponse>()
     val detailResponseLd = _detailResponseLd
@@ -27,16 +28,20 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
     private val vpImageList = mutableListOf<TopImageData>()
     val vpImageListLd: LiveData<List<TopImageData>> = _vpImageListLd
 
-    fun getMenuDetail(id: Int){
+    private val _orderedFoodQuantityLD = MutableLiveData(1)
+    val orderedFoodQuantityLD: LiveData<Int> = _orderedFoodQuantityLD
+
+    fun getMenuDetail(id: Int) {
         viewModelScope.launch {
-            val detailResponse = detailRepository.getMenuDetail(id) ?: throw RuntimeException("why..?")
+            val detailResponse =
+                detailRepository.getMenuDetail(id) ?: throw RuntimeException("why..?")
             _detailResponseLd.value = detailResponse
 
             detailResponse.mainImage.forEachIndexed { index, url ->
-                vpImageList.add(TopImageData(index+1, url))
+                vpImageList.add(TopImageData(index + 1, url))
             }
-            detailResponse.detailImage.forEachIndexed{ index, url ->
-                detailImageList.add(TopImageData(index+1, url))
+            detailResponse.detailImage.forEachIndexed { index, url ->
+                detailImageList.add(TopImageData(index + 1, url))
             }
 
             _vpImageListLd.value = vpImageList
@@ -44,4 +49,12 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
         }
     }
 
+    fun countUpOrDownOrderFoodQuantity(countUpOrDown: Int) {
+        _orderedFoodQuantityLD.value?.let {
+            when (countUpOrDown) {
+                0 -> _orderedFoodQuantityLD.value = it + 1
+                else -> _orderedFoodQuantityLD.value = if (it - 1 < 1) 1 else it - 1
+            }
+        }
+    }
 }

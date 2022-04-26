@@ -53,3 +53,11 @@ fun applyBadgeText(view: TextView, saleType: String?) {
 
     }
 }
+
+@BindingAdapter("deliveryFee", "freeDeliveryFee")
+fun applyDeliveryFeeText(view: TextView, deliveryFee: Int, freeDeliveryFee: Int) {
+    val decimalFormat = DecimalFormat("#,###")
+    val deliveryFee = view.context.getString(R.string.currency, decimalFormat.format(deliveryFee))
+    val freeDeliveryFee = view.context.getString(R.string.currency, decimalFormat.format(freeDeliveryFee))
+    view.text = "$deliveryFee (${freeDeliveryFee} 이상 구매 시 무료)"
+}

@@ -27,13 +27,14 @@ class DetailActivity : AppCompatActivity() {
 
         setViewPagerListener()
         setViewPager()
-        setDeatil()
+        setDetail()
         setDetailInfo()
-
+        countUpOrDownQuantity()
+        setOrderFoodQuantity()
         detailViewModel.getMenuDetail(id)
     }
 
-    fun setViewPagerListener() {
+    private fun setViewPagerListener() {
         // 페이지 리스너 달아보기
         binding.vpDetail.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -44,26 +45,26 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    fun setDetailInfo(){
-        detailViewModel.detailResponseLd.observe(this){
+    private fun setDetailInfo() {
+        detailViewModel.detailResponseLd.observe(this) {
             binding.detailInfo = it
         }
     }
 
-    fun setViewPager(){
+    private fun setViewPager() {
         viewPagerAdapter = ViewPagerAdapter()
         binding.vpDetail.apply {
             adapter = viewPagerAdapter
             //orientation = ViewPager2.ORIENTATION_HORIZONTAL
         }
 
-        detailViewModel.vpImageListLd.observe(this){
+        detailViewModel.vpImageListLd.observe(this) {
             viewPagerAdapter.submitList(it.toList())
             binding.tvTotalPage.text = it.size.toString()
         }
     }
 
-    fun setDeatil(){
+    private fun setDetail() {
         detailAdapter = DetailAdapter()
         binding.rvFoodDetail.apply {
             adapter = detailAdapter
@@ -73,4 +74,21 @@ class DetailActivity : AppCompatActivity() {
             detailAdapter.submitList(it.toList())
         }
     }
+
+    private fun countUpOrDownQuantity() {
+        binding.ivCountDown.setOnClickListener {
+            detailViewModel.countUpOrDownOrderFoodQuantity(-1)
+        }
+
+        binding.ivCountUp.setOnClickListener {
+            detailViewModel.countUpOrDownOrderFoodQuantity(0)
+        }
+    }
+
+    private fun setOrderFoodQuantity() {
+        detailViewModel.orderedFoodQuantityLD.observe(this) {
+            binding.tvItemCount.text = it.toString()
+        }
+    }
+
 }

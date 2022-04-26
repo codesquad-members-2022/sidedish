@@ -10,4 +10,6 @@
     <string name="currency">%s원</string>
     <string name="detail_point">적립금</string>
     <string name="detail_delivery_info">배송정보</string>
+    <string name="detail_delivery_info_value">서울 경기 새벽 배송, 전국 택배 배송</string>
+    <string name="delivery_fee">배송비</string>
 </resources>

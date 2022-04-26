@@ -417,11 +417,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
-                android:text="@{@string/currency(detailInfo.price)}"
+                android:text="@string/detail_delivery_info_value"
                 app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_6"
                 app:layout_constraintStart_toEndOf="@+id/v_detail_empty_10"
-                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_6"
-                tools:text="서울 경기 새벽 배송, 전국 택배 배송" />
+                app:layout_constraintTop_toTopOf="@+id/v_detail_tv_6" />
 
             <View
                 android:id="@+id/v_detail_empty_11"
@@ -443,7 +442,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
-                android:text="@string/detail_delivery_info"
+                android:text="@string/delivery_fee"
                 app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_7"
                 app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
                 app:layout_constraintTop_toTopOf="@+id/v_detail_tv_7"
@@ -465,7 +464,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
-                android:text="@{@string/currency(detailInfo.price)}"
+                deliveryFee="@{detailInfo.fee}"
+                freeDeliveryFee="@{detailInfo.freeShippingStartingPrice}"
                 app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_7"
                 app:layout_constraintStart_toEndOf="@+id/v_detail_empty_12"
                 app:layout_constraintTop_toTopOf="@+id/v_detail_tv_7"
