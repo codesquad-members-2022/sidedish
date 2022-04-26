@@ -156,25 +156,14 @@
 		729E885C280D8F700042ECC9 /* SideDishProject */ = {
 			isa = PBXGroup;
 			children = (
-				729E885D280D8F700042ECC9 /* AppDelegate.swift */,
-				729E885F280D8F700042ECC9 /* SceneDelegate.swift */,
-				729E8861280D8F700042ECC9 /* HomeViewController.swift */,
+				72C030312817936D00BCA552 /* applifecycle */,
+				72C030302817934F00BCA552 /* repository */,
+				72C0302F2817932B00BCA552 /* model */,
+				72C0302E2817930A00BCA552 /* view */,
+				72C0302D281792FC00BCA552 /* usecase */,
 				729E8866280D8F720042ECC9 /* Assets.xcassets */,
 				729E8868280D8F720042ECC9 /* LaunchScreen.storyboard */,
 				729E886B280D8F720042ECC9 /* Info.plist */,
-				72F9D300280E921F00EFA22F /* MockProductFactory.swift */,
-				72F9D302280E923900EFA22F /* Product.swift */,
-				72C55BF1280EE1C600E55892 /* HomeView.swift */,
-				72BE39AD280FD873000919EC /* DetailViewController.swift */,
-				72BE39AF280FE8EA000919EC /* DishCollectionDataSource.swift */,
-				72BE39B1280FEB56000919EC /* DishCollectionViewCell.swift */,
-				7268D0E0281126A0005449B9 /* HomeUsecase.swift */,
-				72A4F4E228123EAD00DE19C9 /* DishCommetHeaderView.swift */,
-				72A4F4E4281251EF00DE19C9 /* ProductSceneContainer.swift */,
-				6FE405B7280E967800FD218C /* ProductRepository.swift */,
-				72CD7073281645A500D8C46C /* MockDetailRepository.swift */,
-				6F1DB8F028178B0C0060654B /* DetailUsecase.swift */,
-				72C0302B281790EC00BCA552 /* DishCollectionDelegate.swift */,
 			);
 			path = SideDishProject;
 			sourceTree = "<group>";
@@ -194,6 +183,57 @@
 				729E8880280D8F720042ECC9 /* SideDishProjectUITestsLaunchTests.swift */,
 			);
 			path = SideDishProjectUITests;
+			sourceTree = "<group>";
+		};
+		72C0302D281792FC00BCA552 /* usecase */ = {
+			isa = PBXGroup;
+			children = (
+				72A4F4E4281251EF00DE19C9 /* ProductSceneContainer.swift */,
+				72F9D300280E921F00EFA22F /* MockProductFactory.swift */,
+				7268D0E0281126A0005449B9 /* HomeUsecase.swift */,
+				6F1DB8F028178B0C0060654B /* DetailUsecase.swift */,
+			);
+			path = usecase;
+			sourceTree = "<group>";
+		};
+		72C0302E2817930A00BCA552 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				72BE39B1280FEB56000919EC /* DishCollectionViewCell.swift */,
+				72BE39AF280FE8EA000919EC /* DishCollectionDataSource.swift */,
+				72C0302B281790EC00BCA552 /* DishCollectionDelegate.swift */,
+				729E8861280D8F700042ECC9 /* HomeViewController.swift */,
+				72BE39AD280FD873000919EC /* DetailViewController.swift */,
+				72A4F4E228123EAD00DE19C9 /* DishCommetHeaderView.swift */,
+				72C55BF1280EE1C600E55892 /* HomeView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		72C0302F2817932B00BCA552 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				72F9D302280E923900EFA22F /* Product.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		72C030302817934F00BCA552 /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				72CD7073281645A500D8C46C /* MockDetailRepository.swift */,
+				6FE405B7280E967800FD218C /* ProductRepository.swift */,
+			);
+			path = repository;
+			sourceTree = "<group>";
+		};
+		72C030312817936D00BCA552 /* applifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				729E885D280D8F700042ECC9 /* AppDelegate.swift */,
+				729E885F280D8F700042ECC9 /* SceneDelegate.swift */,
+			);
+			path = applifecycle;
 			sourceTree = "<group>";
 		};
 		BA8607E734B96307BE590A23 /* Frameworks */ = {
