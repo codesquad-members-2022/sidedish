@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
   ${reset}
 
     body {
+      line-height: 1.2;
       color: ${Color.black};
     }
 
