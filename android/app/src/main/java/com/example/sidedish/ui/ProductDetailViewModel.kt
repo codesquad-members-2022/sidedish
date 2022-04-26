@@ -46,6 +46,12 @@ class ProductDetailViewModel(
         }
     }
 
+    fun postProductCount(postRequest: PostRequest) {
+        viewModelScope.launch {
+            val result = productDetailRepository.orderProduct(postRequest)
+        }
+    }
+
     fun setQuantity(buttonState: ButtonState) {
         when (buttonState) {
             ButtonState.PLUS -> _quantity.value = _quantity.value?.plus(1)

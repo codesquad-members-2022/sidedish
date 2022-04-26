@@ -1,6 +1,7 @@
 package com.example.sidedish.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -44,6 +45,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
         binding.ibCountMinus.setOnClickListener {
             viewModel.setQuantity(ButtonState.MINUS)
+        }
+
+        viewModel.quantity.observe(this) { quantity ->
+            binding.ibCountMinus.isEnabled = quantity > 1
         }
     }
 
