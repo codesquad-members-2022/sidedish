@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
-import { MOCK_SERVER_URL } from 'constant.js';
+import { SERVER_URL } from 'constant.js';
 import RecommendTabList from 'Main/Recommend/RecommendTabList';
 
 const RecommendTabCategory = styled.ul`
@@ -27,7 +27,7 @@ const RecommendTab = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const { data } = await axios.get(`${MOCK_SERVER_URL}/special/`);
+      const { data } = await axios.get(`${SERVER_URL}special/`);
       if (data) {
         setDishes(data.eventDishes);
       }
