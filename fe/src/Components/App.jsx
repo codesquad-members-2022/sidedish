@@ -23,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     fetchInitialData()
-      .then((initialCategoryList) => {
+      .then(initialCategoryList => {
         setCategoryList(initialCategoryList);
       })
       .catch(err => {
@@ -37,9 +37,7 @@ const App = () => {
     <Root>
       <Header categoryList={categoryList} error={error} />
       <BestProducts />
-      <CategoryProductsList
-        categoryList={categoryList}
-      />
+      <CategoryProductsList categoryList={categoryList} />
       <OrderPanel />
     </Root>
   );

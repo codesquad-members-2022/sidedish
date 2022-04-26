@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
+import { Colors, Fonts } from '@/Constants';
+
 import { DiscountBadge } from '../Badge/DiscountBadge';
 
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
 const OrderPanelWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,12 +116,22 @@ const ProductOrderInfoDetail = styled.ul`
   }
 `;
 
-const AmountIcon = styled.span`
-  display: block;
+const AmountIcon = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${Colors.GREY};
+  width: 24px;
+  height: 24px;
 
-  img {
-    display: block;
+  i {
+    font-size: 20px;
+  }
+  
+  &:hover {
+    i {
+      color: red;
+    }
   }
 `;
 
@@ -159,6 +169,10 @@ const OrderButton = styled.button`
   height: 58px;
   right: 48px;
   bottom: 48px;
+`;
+
+const Icon = styled.i`
+  color: ${Colors.GREY};
 `;
 
 export const OrderPanel = () => {
@@ -217,11 +231,11 @@ export const OrderPanel = () => {
           <OrderPrice>
             <TotalAmount>
               <AmountIcon>
-                <img src="plus.svg" alt="" />
+                <Icon className={'ic-plus'} aria-label={"상품 추가"} />
               </AmountIcon>
               <CurrentAmount>0</CurrentAmount>
               <AmountIcon>
-                <img src="minus.svg" alt="" />
+                <Icon className={'ic-minus'} aria-label={"상품 "} />
               </AmountIcon>
             </TotalAmount>
 

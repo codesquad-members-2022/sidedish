@@ -1,4 +1,4 @@
-const Fonts = {
+export const Fonts = {
   FONTS_DISPLAY: 'fonts-display',
   FONTS_XL: 'fonts-xl',
   FONTS_XL_BOLD: 'fonts-xl-bold',
@@ -11,5 +11,3 @@ const Fonts = {
   FONTS_XS: 'fonts-xs',
   FONTS_XS_BOLD: 'fonts-xs-bold',
 };
-
-export default Fonts;

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import {Colors} from '@/Constants';
+
 import { CategoryProducts } from './CategoryProducts';
 
-import Colors from '@/Constants/Colors';
 
 const CategoryProductsListWrapper = styled.ul`
   padding: 0 80px;

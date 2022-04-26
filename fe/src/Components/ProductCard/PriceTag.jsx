@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Colors from '@/Constants/Colors';
+import { Colors } from '@/Constants';
 
 const ListPrice = styled.span`
   display: block;

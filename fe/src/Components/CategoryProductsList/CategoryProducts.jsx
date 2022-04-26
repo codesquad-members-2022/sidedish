@@ -64,3 +64,4 @@ export const CategoryProducts = props => {
     </CategoryProductsWrapper>
   );
 };
+

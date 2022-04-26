@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
+import { Colors, Fonts } from '@/Constants';
+
 import { PriceTag } from './PriceTag';
 import { ProductThumbnail } from './ProductThumbnail';
 
 import { DiscountBadge } from '@/Components/Badge/DiscountBadge';
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
 
 const ProductCardWrapper = styled.li`
   display: flex;

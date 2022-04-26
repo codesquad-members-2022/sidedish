@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Menu } from './Menu';
+import { Fonts } from '@/Constants';
 
-import Fonts from '@/Constants/Fonts';
+import { Menu } from './Menu';
 
 const MenuListWrapper = styled.ul`
   display: inline-flex;

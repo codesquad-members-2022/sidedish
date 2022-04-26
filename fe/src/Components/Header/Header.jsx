@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-import { IconFonts } from '@/Constants';
+import { Colors, Fonts, IconFonts } from '@/Constants';
 
 import { MenuList } from './MenuList';
 import { UserActionButtons } from './UserActionButtons';
-
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
 
 const HeaderWrapper = styled.header`
   width: 100%;

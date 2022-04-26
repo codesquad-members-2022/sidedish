@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import Colors from '@/Constants/Colors';
-import Fonts from '@/Constants/Fonts';
+import { Colors, Fonts } from '@/Constants';
 
 const MenuWrapper = styled.li`
   margin-right: 24px;
+
 `;
 
 const SubMenuList = styled.ul`

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Tab } from './Tab';
+import { Colors } from '@/Constants';
 
-import Colors from '@/Constants/Colors';
+import { Tab } from './Tab';
 
 const StyledTabList = styled.ul`
   display: flex;
