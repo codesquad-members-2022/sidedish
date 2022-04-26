@@ -22,6 +22,7 @@ class FoodCell: UICollectionViewCell {
         var label = UILabel()
         label.text = "감질맛 나는 매콤한 양념"
         label.font = UIFont.systemFont(ofSize: 14)
+        label.lineBreakMode = .byTruncatingTail
         label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
         return label
     }()
@@ -105,6 +106,7 @@ class FoodCell: UICollectionViewCell {
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         bodyLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        bodyLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         bodyLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
         self.contentView.addSubview(originPriceLabel)
