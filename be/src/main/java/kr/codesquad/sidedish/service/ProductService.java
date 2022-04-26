@@ -3,10 +3,10 @@ package kr.codesquad.sidedish.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import kr.codesquad.sidedish.domain.DishType;
+import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.controller.RequestProduct;
-import kr.codesquad.sidedish.domain.SideDishType;
+import kr.codesquad.sidedish.domain.SideDish;
 import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.repository.ProductRepository;
 import kr.codesquad.sidedish.response.ErrorCode;
@@ -26,21 +26,21 @@ public class ProductService {
 			.collect(Collectors.toList());
 	}
 
-	public List<ProductDTO> loadDishListByType(DishType dishType) {
-		return productRepository.loadDishListByType(dishType.getType()).stream()
+	public List<ProductDTO> loadDishListByType(Dish dish) {
+		return productRepository.loadDishListByType(dish.getType()).stream()
 			.map(Product::createDTO)
 			.collect(Collectors.toList());
 	}
 
-	public List<ProductDTO> loadSideDishListByType(DishType dishType, SideDishType sideDishType) {
-		checkDishTypeIsSide(dishType);
-		return productRepository.loadSideDishListByType(dishType.getType(), sideDishType.getType()).stream()
+	public List<ProductDTO> loadSideDishListByType(Dish dish, SideDish sideDish) {
+		checkDishTypeIsSide(dish);
+		return productRepository.loadSideDishListByType(dish.getType(), sideDish.getType()).stream()
 				.map(Product::createDTO)
 				.collect(Collectors.toList());
 	}
 
-	private void checkDishTypeIsSide(DishType dishType) {
-		if (DishType.SIDE != dishType) {
+	private void checkDishTypeIsSide(Dish dish) {
+		if (Dish.SIDE != dish) {
 			throw new CustomException(ErrorCode.SIDE_DISH_ONLY_ALLOWED);
 		}
 	}
