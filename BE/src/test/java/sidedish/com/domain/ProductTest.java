@@ -22,13 +22,13 @@ class ProductTest {
 			@Test
 			@DisplayName("20% 할인된 Product를 생성한다.")
 			void It_returns_a_Product() {
-				DiscountPolicy discountPolicy = new DiscountPolicy("이벤트특가", 20);
-				Image image = new Image("https://louie.com/test.jpg");
-				DeliveryPolicy deliveryPolicy = new DeliveryPolicy("테스트", 2500L, 40000L);
+				DiscountPolicy discountPolicy = new DiscountPolicy(1L, "이벤트특가", 20);
+				Image image = new Image(1L, "https://louie.com/test.jpg");
+				DeliveryPolicy deliveryPolicy = new DeliveryPolicy(1L, "테스트", 2500L, 40000L);
 
 				Product sut = new Product(1L, discountPolicy, deliveryPolicy, List.of(image),
 					"김치찌개", "맛있어요",
-					10000, "soup", "meat");
+					10000, 100, "soup", "meat");
 
 				assertThat(sut.getDiscountPolicy().getPolicyName()).isEqualTo("이벤트특가");
 				assertThat(sut.getFixedPrice()).isEqualTo(8000);
@@ -42,13 +42,13 @@ class ProductTest {
 			@Test
 			@DisplayName("10% 할인된 Product를 생성한다.")
 			void It_returns_a_Product() {
-				DiscountPolicy discountPolicy = new DiscountPolicy("런칭특가", 10);
-				Image image = new Image("https://louie.com/test.jpg");
-				DeliveryPolicy deliveryPolicy = new DeliveryPolicy("테스트", 2500L, 40000L);
+				DiscountPolicy discountPolicy = new DiscountPolicy(1L, "런칭특가", 10);
+				Image image = new Image(1L, "https://louie.com/test.jpg");
+				DeliveryPolicy deliveryPolicy = new DeliveryPolicy(1L, "테스트", 2500L, 40000L);
 
 				Product sut = new Product(1L, discountPolicy, deliveryPolicy, List.of(image),
 					"김치찌개", "맛있어요",
-					10000, "soup", "meat");
+					10000, 100, "soup", "meat");
 
 				assertThat(sut.getDiscountPolicy().getPolicyName()).isEqualTo("런칭특가");
 				assertThat(sut.getFixedPrice()).isEqualTo(9000);

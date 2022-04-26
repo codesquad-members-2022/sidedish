@@ -3,21 +3,23 @@ package sidedish.com.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
+import sidedish.com.controller.model.OrderSaveResponse;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.domain.Product;
+import sidedish.com.repository.entity.OrderEntity;
 
 @Component
-public class ProductsDtoMapper {
+public class DomainDtoMapper {
 
-	public List<ProductBasicTypeResponse> toProductsBasicTypeResponseFromDomain(
+	public List<ProductBasicTypeResponse> toProductsBasicTypeResponseFromProducts(
 		List<Product> products) {
 		return products.stream()
-			.map(this::toProductMealTypeResponseFromDomain)
+			.map(this::toProductMealTypeResponseFromProduct)
 			.collect(Collectors.toList());
 	}
 
-	private ProductBasicTypeResponse toProductMealTypeResponseFromDomain(
+	private ProductBasicTypeResponse toProductMealTypeResponseFromProduct(
 		Product product) {
 		return new ProductBasicTypeResponse(
 			product.getId(),
@@ -29,7 +31,7 @@ public class ProductsDtoMapper {
 			product.getDiscountPolicy().getPolicyName());
 	}
 
-	public ProductDetailTypeResponse toProductDetailTypeFromDomain(
+	public ProductDetailTypeResponse toProductDetailTypeFromProduct(
 		Product product) {
 		return new ProductDetailTypeResponse(
 			product.getId(),
@@ -45,4 +47,9 @@ public class ProductsDtoMapper {
 			product.getDeliveryPolicy().getFreeDeliveryOverAmount()
 			);
 	}
+
+	public OrderSaveResponse toOrderSaveResponseFromOrder(OrderEntity orderEntity) {
+		return new OrderSaveResponse(orderEntity.getId());
+	}
+
 }

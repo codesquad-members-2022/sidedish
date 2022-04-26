@@ -20,15 +20,15 @@ public class ProductEntity {
 	private final String productName;
 	private final String description;
 	private final long originalPrice;
+	private final long stockQuantity;
 	private final String mealCategory;
 	private final String bestCategory;
-
 
 	@PersistenceConstructor
 	public ProductEntity(Long id, Long discountPolicyId,
 		Long deliveryPolicyId, List<ImageEntity> imageEntities, String productName,
-		String description, long originalPrice,
-		String mealCategory, String bestCategory) {
+		String description, long originalPrice, long stockQuantity, String mealCategory,
+		String bestCategory) {
 		this.id = id;
 		this.discountPolicyId = discountPolicyId;
 		this.deliveryPolicyId = deliveryPolicyId;
@@ -36,6 +36,7 @@ public class ProductEntity {
 		this.productName = productName;
 		this.description = description;
 		this.originalPrice = originalPrice;
+		this.stockQuantity = stockQuantity;
 		this.mealCategory = mealCategory;
 		this.bestCategory = bestCategory;
 	}

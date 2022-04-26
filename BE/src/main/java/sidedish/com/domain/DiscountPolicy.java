@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DiscountPolicy {
 
+	private Long id;
 	private String policyName;
 	private long discountRate;
 

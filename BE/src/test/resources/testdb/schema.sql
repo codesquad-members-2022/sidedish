@@ -26,6 +26,7 @@ create table product
     product_name       varchar(100) not null,
     description        varchar(1000),
     original_price     int          not null,
+    stock_quantity     int          not null,
     meal_category      varchar(100) not null,
     best_category      varchar(100),
     foreign key (discount_policy_id) references discount_policy (id),

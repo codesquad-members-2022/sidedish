@@ -1,8 +1,8 @@
 package sidedish.com.domain;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import sidedish.com.exception.NotEnoughStockQuantityException;
 
 @Getter
 public class Product {
@@ -17,13 +17,18 @@ public class Product {
 	private final String description;
 	private final long fixedPrice;
 	private final long originalPrice;
+	private long stockQuantity;
 	private final String mealCategory;
 	private final String bestCategory;
 	private final long mileage;
 
 	public Product(Long id, DiscountPolicy discountPolicy,
 		DeliveryPolicy deliveryPolicy, List<Image> images, String productName,
-		String description, long originalPrice, String mealCategory, String bestCategory) {
+		String description, long originalPrice, long stockQuantity, String mealCategory,
+		String bestCategory) {
+		if (stockQuantity < 0) {
+			throw new NotEnoughStockQuantityException("재고가 충분하지 않습니다");
+		}
 		this.id = id;
 		this.discountPolicy = discountPolicy;
 		this.deliveryPolicy = deliveryPolicy;
@@ -31,6 +36,7 @@ public class Product {
 		this.productName = productName;
 		this.description = description;
 		this.originalPrice = originalPrice;
+		this.stockQuantity = stockQuantity;
 		this.mealCategory = mealCategory;
 		this.bestCategory = bestCategory;
 		this.fixedPrice = calculateFixedPrice();
@@ -43,5 +49,12 @@ public class Product {
 
 	private long calculateFixedPrice() {
 		return discountPolicy.calculateFixedPrice(originalPrice);
+	}
+
+	public void minusStockQuantity(long count) {
+		if (count > stockQuantity) {
+			throw new NotEnoughStockQuantityException("재고가 충분하지 않습니다");
+		}
+		stockQuantity -= count;
 	}
 }
