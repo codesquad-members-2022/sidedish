@@ -12,6 +12,12 @@ final class DetailViewController: UIViewController {
     private let menu: Menu
     private let detailScrollView = DetailScrollView()
     
+    private var menuDetail: MenuDetail? {
+        didSet {
+            setDetailView(by: menuDetail)
+        }
+    }
+    
     init(menu: Menu) {
         self.menu = menu
         super.init(nibName: nil, bundle: nil)
@@ -47,10 +53,15 @@ final class DetailViewController: UIViewController {
         detailScrollView.setPrice(text: price)
     }
     
-    func setDetailView(by menuDetail: MenuDetail) {
+    private func setDetailView(by menuDetail: MenuDetail?) {
+        guard let menuDetail = menuDetail else { return }
         setSubInfo(by: menuDetail)
         detailScrollView.setThumbNail(images: menuDetail.thumb_images)
         detailScrollView.setRecipe(images: menuDetail.detail_section)
+    }
+    
+    func setMenuDetail(menuDetail: MenuDetail?) {
+        self.menuDetail = menuDetail
     }
 }
 
@@ -77,6 +88,13 @@ extension DetailViewController: UIScrollViewDelegate {
 
 extension DetailViewController {
     @objc func stepperValueChanged(_ sender: UIStepper!) {
-        detailScrollView.orderCount = Int(sender.value)
+        let count = Int(sender.value)
+        detailScrollView.orderCount = count
+        
+        guard let stringPrice = menuDetail?.prices.last else { return }
+        let decimalPrice = PriceConvertor.toDecimal(from: stringPrice)
+        let stringAmount = decimalPrice * count
+        let decimalAmount = PriceConvertor.toString(from: stringAmount)
+        detailScrollView.amount = decimalAmount
     }
 }

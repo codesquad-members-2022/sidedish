@@ -15,6 +15,12 @@ final class DetailScrollView: UIScrollView {
         }
     }
     
+    var amount: String = "" {
+        didSet {
+            amountLabel.text = amount
+        }
+    }
+    
     private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
@@ -304,7 +310,6 @@ extension DetailScrollView {
                     let baseWidth = self.detailContainerStackView.frame.size.width
                     
                     guard let adjustedHeight = imageView.calculateAdjustedHeight(baseWidth: baseWidth) else { return }
-                    //                    guard let adjustedHeight = self.calculateAdjustedHeight(imageView: imageView, baseWidth: baseWidth) else { return }
                     
                     imageView.translatesAutoresizingMaskIntoConstraints = false
                     imageView.heightAnchor.constraint(equalToConstant: adjustedHeight).isActive = true
