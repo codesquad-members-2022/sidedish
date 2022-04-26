@@ -12,7 +12,6 @@ import Foundation
 import GoogleSignIn
 
 struct LoginViewModelAction {
-    let viewDidLoad = PassthroughSubject<Void, Never>()
     let tappedGoogleLogin = PassthroughSubject<Void, Never>()
     let googleUser = PassthroughSubject<GIDGoogleUser?, Never>()
 }
@@ -37,16 +36,11 @@ class LoginViewModel: LoginViewModelProtocol {
     let action = LoginViewModelAction()
     let state = LoginViewModelState()
     
+    deinit {
+        Log.debug("DeInit LoginViewModel")
+    }
+    
     init() {
-        action.viewDidLoad
-            .compactMap { self.loginRepository.getUser() }
-            .switchToLatest()
-            .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
-            .sink { _ in
-                self.state.presentMainView.send()
-            }
-            .store(in: &cancellables)
-        
         action.tappedGoogleLogin
             .compactMap { _ -> GIDConfiguration? in
                 guard let clientId = FirebaseApp.app()?.options.clientID else {
@@ -65,7 +59,7 @@ class LoginViewModel: LoginViewModelProtocol {
                 }
                 return GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
             }
-            .map { self.loginRepository.googleLogin(authCredential: $0) }
+            .compactMap { [weak self] credential in self?.loginRepository.googleLogin(authCredential: credential) }
             .switchToLatest()
             .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
             .map { _ in }

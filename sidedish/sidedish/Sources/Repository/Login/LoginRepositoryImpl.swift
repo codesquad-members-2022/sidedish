@@ -31,4 +31,11 @@ class LoginRepositoryImpl: NetworkRepository, LoginRepository {
             promise(.success(User(user: user)))
         }.eraseToAnyPublisher()
     }
+    
+    func signOut() -> AnyPublisher<Void, Never> {
+        Future<Void, Never> { promise in
+            try? Auth.auth().signOut()
+            promise(.success(()))
+        }.eraseToAnyPublisher()
+    }
 }

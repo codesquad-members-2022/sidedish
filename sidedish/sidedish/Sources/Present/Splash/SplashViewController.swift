@@ -13,6 +13,10 @@ class SplashViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private var model: SplashViewModelProtocol = SplashViewModel()
     
+    deinit {
+        Log.debug("DeInit SplashViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -67,6 +67,10 @@ class MenuDetailViewController: UIViewController {
         return view
     }
     
+    deinit {
+        Log.debug("DeInit MenuDetailViewController")
+    }
+    
     init(model: MenuDetailViewModelProtcol) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
@@ -75,10 +79,6 @@ class MenuDetailViewController: UIViewController {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         nil
-    }
-    
-    deinit {
-        Log.debug("DeInit MenuDetailViewController")
     }
 
     override func viewDidLoad() {

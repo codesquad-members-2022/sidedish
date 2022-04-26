@@ -30,15 +30,16 @@ class SplashViewModel: SplashViewModelProtocol {
     let action = SplashViewModelAction()
     let state = SplashViewModelState()
     
+    deinit {
+        Log.debug("DeInit SplashViewModel")
+    }
+    
     init() {
         action.viewDidAppear
-            .map { self.loginRepository.getUser() }
+            .compactMap { [weak self] _ in self?.loginRepository.getUser() }
             .switchToLatest()
             .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
-            .map {
-                user -> RootWindow.State in user == nil ? .login : .main
-                
-            }
+            .map { user -> RootWindow.State in user == nil ? .login : .main }
             .sink(receiveValue: state.presentNextView.send(_:))
             .store(in: &cancellables)
     }

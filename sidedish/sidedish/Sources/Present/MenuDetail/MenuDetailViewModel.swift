@@ -40,18 +40,22 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
     let action = MenuDetailViewModelAction()
     let state = MenuDetailViewModelState()
     
+    deinit {
+        Log.debug("DeInit MenuDetailViewModel")
+    }
+    
     init(menu: Sidedish) {
         
         let requestDetail = action.loadMenuDetail
-            .map { self.sidedishRepository.loadDetail(menu.hash) }
+            .compactMap { [weak self] _ in self?.sidedishRepository.loadDetail(menu.hash) }
             .switchToLatest()
             .share()
         
         requestDetail
             .compactMap { $0.value }
-            .sink { detail in
-                self.state.loadedDetail.send((menu, detail))
-                self.loadImage(detail: detail)
+            .sink { [weak self] detail in
+                self?.state.loadedDetail.send((menu, detail))
+                self?.loadImage(detail: detail)
             }
             .store(in: &cancellables)
         
@@ -60,8 +64,8 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
                 action.tappedPlusButton.map { 1 },
                 action.tappedMinusButton.map { -1 }
             )
-            .map {
-                var amount = self.state.amount.value + $0
+            .map { [weak self] value in
+                var amount = (self?.state.amount.value ?? 0) + value
                 amount = amount < 0 ? 0 : amount
                 return amount
             }
@@ -81,15 +85,15 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
     private func loadImage(detail: MenuDetail) {
         detail.thumbImages.enumerated().forEach { index, url in
             resourceRepository.loadImage(url)
-                .sink { fileUrl in
-                    self.state.loadedThumbnail.send((index, fileUrl))
+                .sink { [weak self] fileUrl in
+                    self?.state.loadedThumbnail.send((index, fileUrl))
                 }.store(in: &self.cancellables)
         }
         
         detail.detailSection.enumerated().forEach { index, url in
             resourceRepository.loadImage(url)
-                .sink { fileUrl in
-                    self.state.loadedDetailSection.send((index, fileUrl))
+                .sink { [weak self] fileUrl in
+                    self?.state.loadedDetailSection.send((index, fileUrl))
                 }.store(in: &self.cancellables)
         }
     }
