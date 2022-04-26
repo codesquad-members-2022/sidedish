@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -78,28 +78,68 @@
                                     <view hidden="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="205" placeholderIntrinsicHeight="32" translatesAutoresizingMaskIntoConstraints="NO" id="dYU-xp-9B4">
                                         <rect key="frame" x="0.0" y="72" width="205" height="32"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-Mj-oUm" userLabel="BadgeLabel">
-                                                <rect key="frame" x="0.0" y="8" width="32" height="24"/>
+                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이벤트특가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6i-OV-plJ" userLabel="EventLabel" customClass="PaddingLabel" customModule="SideDish" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="8" width="52" height="14.5"/>
+                                                <color key="backgroundColor" red="0.55294120309999995" green="0.72941178080000002" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="iwD-Ly-dTM"/>
-                                                    <constraint firstAttribute="height" constant="24" id="mlB-m4-I29"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="Sv1-qc-78M"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="100"/>
+                                                        <integer key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="런칭특가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tE-YU-uR3" userLabel="LaunchingLabel" customClass="PaddingLabel" customModule="SideDish" customModuleProvider="target">
+                                                <rect key="frame" x="56" y="8" width="42" height="14.5"/>
+                                                <color key="backgroundColor" red="0.1647058874" green="0.39215683940000001" blue="0.81176471709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="h0x-uX-ir9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="L2i-Mj-oUm" firstAttribute="top" secondItem="dYU-xp-9B4" secondAttribute="top" constant="8" id="5tr-OV-eho"/>
-                                            <constraint firstAttribute="bottom" secondItem="L2i-Mj-oUm" secondAttribute="bottom" id="MYJ-hY-f5y"/>
-                                            <constraint firstItem="L2i-Mj-oUm" firstAttribute="leading" secondItem="dYU-xp-9B4" secondAttribute="leading" id="Oxi-4g-cxN"/>
+                                            <constraint firstItem="2tE-YU-uR3" firstAttribute="leading" secondItem="p6i-OV-plJ" secondAttribute="trailing" constant="4" id="PW4-6q-cDK"/>
+                                            <constraint firstItem="p6i-OV-plJ" firstAttribute="top" secondItem="dYU-xp-9B4" secondAttribute="top" constant="8" id="Sqq-Q9-Lig"/>
+                                            <constraint firstItem="p6i-OV-plJ" firstAttribute="leading" secondItem="dYU-xp-9B4" secondAttribute="leading" id="TcJ-eT-w49"/>
                                             <constraint firstAttribute="height" constant="32" id="kLA-nl-yA2"/>
+                                            <constraint firstItem="2tE-YU-uR3" firstAttribute="top" secondItem="dYU-xp-9B4" secondAttribute="top" constant="8" id="rbi-r0-zCN"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -131,7 +171,9 @@
             <connections>
                 <outlet property="badgeView" destination="dYU-xp-9B4" id="wIH-kj-RWT"/>
                 <outlet property="descriptionLabel" destination="mvw-cG-Dft" id="pTU-ep-qaR"/>
+                <outlet property="eventBadgeLabel" destination="p6i-OV-plJ" id="EZD-cU-cBX"/>
                 <outlet property="finalPriceLabel" destination="dO6-Pv-XTR" id="uE9-js-TPe"/>
+                <outlet property="launchingBadgeLabel" destination="2tE-YU-uR3" id="Y3d-Mb-inH"/>
                 <outlet property="normalPriceLabel" destination="Vq3-Th-6fp" id="wUc-L0-NFS"/>
                 <outlet property="thumbNailImageView" destination="kdg-E1-T7e" id="Sww-Uv-0wt"/>
                 <outlet property="titleLabel" destination="Jqf-Ku-PoY" id="c56-aa-H3I"/>
