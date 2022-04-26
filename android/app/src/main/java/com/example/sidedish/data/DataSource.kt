@@ -5,11 +5,7 @@ import retrofit2.Response
 
 interface DataSource {
 
-    suspend fun getMainFoodList(): Response<Food>
-
-    suspend fun getSoupFoodList(): Response<Food>
-
-    suspend fun getSideFoodList(): Response<Food>
+    suspend fun getMenuList(category: Int): Response<Item>
 
     suspend fun getFoodDetail(hashId: String): Response<FoodDetail>
 }

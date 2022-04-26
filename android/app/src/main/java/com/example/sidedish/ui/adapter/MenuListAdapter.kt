@@ -11,17 +11,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sidedish.R
-import com.example.sidedish.data.Body
+import com.example.sidedish.data.Menu
 import com.example.sidedish.data.Header
 import com.example.sidedish.databinding.ItemHeaderBinding
 import com.example.sidedish.databinding.ItemMenuListBinding
 import com.example.sidedish.ui.MenuItemClickListener
+import java.lang.NullPointerException
+import java.text.DecimalFormat
 
 private const val HEADER = 0
 private const val ITEM = 1
 
 class MenuListAdapter(private val header: Header, private val listener: MenuItemClickListener) :
-    ListAdapter<Body, RecyclerView.ViewHolder>(DiffUtil) {
+    ListAdapter<Menu, RecyclerView.ViewHolder>(DiffUtil) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -66,13 +68,13 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
         return currentList.size + 1
     }
 
-    object DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Body>() {
+    object DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Menu>() {
 
-        override fun areItemsTheSame(oldItem: Body, newItem: Body): Boolean {
-            return oldItem.detailHash == newItem.detailHash
+        override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Body, newItem: Body): Boolean {
+        override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
             return oldItem == newItem
         }
 
@@ -97,30 +99,35 @@ class MenuListAdapter(private val header: Header, private val listener: MenuItem
     inner class MenuListViewHolder(private val binding: ItemMenuListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(menu: Body) {
+        fun bind(menu: Menu) {
+            val decimal = DecimalFormat("#,###")
             with(binding) {
-                Glide.with(itemView).load(menu.image).into(imMenuImage)
-                tvMenuLabel.text = menu.alt
+                Glide.with(itemView).load(menu.mainImageLink).into(imMenuImage)
+                tvMenuLabel.text = menu.name
                 tvMenuInfo.text = menu.description
-                tvAfterCost.text = menu.sPrice
-                if (menu.nPrice != null) {
+                tvAfterCost.text = decimal.format(menu.price)
+                if(menu.discountRate != null) {
                     setSale(menu)
                 }
             }
 
             itemView.setOnClickListener {
-                menu.detailHash?.let { key -> listener.itemClickCallback(key) }
+//                menu.id?.let { key -> listener.itemClickCallback(key) }
             }
         }
 
-        private fun setSale(menu: Body) {
+        private fun setSale(menu: Menu) {
             with(binding) {
                 tvBeforeCost.visibility = View.VISIBLE
                 tvBeforeCost.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                tvBeforeCost.text = menu.nPrice
-                setBadge(menu.badge?.get(0) ?: "none")
-                Log.d("TAG", menu.badge?.get(0).toString())
+                tvBeforeCost.text = setSalePrice(menu.discountRate, menu.price).toString()
+                setBadge(menu.discountPoilcy ?: "none")
             }
+        }
+
+        private fun setSalePrice(rate: Int?, price: Int?): Int {
+            val discountRate = (rate?.div(100)) ?: 0
+            return price?.times(discountRate) ?: 0
         }
 
         @SuppressLint("UseCompatLoadingForDrawables")
