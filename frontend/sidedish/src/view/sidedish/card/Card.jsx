@@ -33,7 +33,10 @@ function Card({
     );
     const clientPrice = (
         <Price isClientPrice>
-            {discountPrice.toLocaleString() && fixedPrice.toLocaleString()}원
+            {fixedPrice === discountPrice
+                ? fixedPrice.toLocaleString()
+                : discountPrice.toLocaleString()}
+            원
         </Price>
     );
     const eventTags = eventBadges ? EventBadges(eventBadges) : null;
