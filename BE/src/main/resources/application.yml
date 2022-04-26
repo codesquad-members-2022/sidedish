@@ -1,0 +1,10 @@
+spring:
+  config:
+    import: secret.yml
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    sql: DEBUG
