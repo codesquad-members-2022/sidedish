@@ -67,7 +67,7 @@ const GET_CATEGORY = [
   rest.get(`${API_URL}/categories/:id/items`, (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.delay(0),
+      ctx.delay(1000),
       ctx.json({
         result_code: 200,
         result_message: 'OK',
@@ -240,10 +240,10 @@ const GET_EVENTS = rest.get(`${API_URL}/events`, (req, res, ctx) => {
 });
 
 const GET_EVENT = [
-  rest.get('/event/:id', (req, res, ctx) => {
+  rest.get(`${API_URL}/event/:id/items`, (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.delay(0),
+      ctx.delay(1000),
       ctx.json({
         content: [
           {
