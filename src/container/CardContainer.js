@@ -12,7 +12,7 @@ const CardContainer = ({ cardInfos, children, hasButton }) => {
       <StyledCardContainer hasBtn={hasButton}>
         {hasButton && <Button icon={'◀'} />}
         {cardInfos.map((cardInfo, idx) => (
-          <StyledCard key={idx}>
+          <StyledCard key={`${cardInfo}-${idx}`}>
             <Card cardInfo={cardInfo} length={cardInfos.length} />
           </StyledCard>
         ))}
