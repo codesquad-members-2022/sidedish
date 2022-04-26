@@ -9,34 +9,35 @@ import UIKit
 
 class MainViewCardInfo: UIStackView {
 
-    private let cardTitleLabel: UILabel = {
+    let cardTitleLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.customFont(.sfSemiboldMainTitleLabel)
         return label
     }()
-
-    private let cardBodyLabel: UILabel = {
+    
+    let cardBodyLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.customFont(.sfRegularMainBodyLabel)
         label.numberOfLines = 0
         label.lineBreakStrategy = .hangulWordPriority
         return label
     }()
-
-    private let normalPriceLabel: UILabel = {
+    
+    let normalPriceLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.customFont(.sfRegularMainNormalPrice)
         label.textColor = UIColor.customColor(.grey2)
         return label
     }()
-
-    private let salePriceLabel: UILabel = {
+    
+    let salePriceLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.customFont(.sfSemiboldMainSalePrice)
         return label
     }()
 
-//    private let eventBadgeLabel: UILabel = {
+//
+//    let eventBadgeLabel: UILabel = {
 //        var label = UILabel()
 //        label.clipsToBounds = true
 //        label.text = Badge.eventPrice.description
@@ -49,7 +50,7 @@ class MainViewCardInfo: UIStackView {
 //        return label
 //    }()
 //
-//    private let launchingBadgeLabel: UILabel = {
+//    let launchingBadgeLabel: UILabel = {
 //        var label = UILabel()
 //        label.clipsToBounds = true
 //        label.text = Badge.launchingPrice.description
@@ -62,7 +63,7 @@ class MainViewCardInfo: UIStackView {
 //        return label
 //    }()
 //
-//    private let mainBadgeLabel: UILabel = {
+//    let mainBadgeLabel: UILabel = {
 //        var label = UILabel()
 //        label.clipsToBounds = true
 //        label.text = Badge.mainPrice.description
@@ -75,17 +76,16 @@ class MainViewCardInfo: UIStackView {
 //        return label
 //    }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
-        setUIProperties()
+        setUIConstraints()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
         setUI()
-        setUIProperties()
+        setUIConstraints()
     }
     
     func setPropertiesValue(dish: MainCard.Body) {
@@ -102,7 +102,28 @@ class MainViewCardInfo: UIStackView {
         self.addArrangedSubview(salePriceLabel)
     }
     
-    private func setUIProperties() {
-        // constraints 설정하기
+    private func setUIConstraints() {
+        configureCardTitleLabelConstraint()
+        configureCardBodyLabelConstraint()
+        configureNormalPriceLabelConstraint()
+        configureSalePriceLabelConstraint()
+    }
+    
+    private func configureCardTitleLabelConstraint() {
+        cardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+    }
+    
+    private func configureCardBodyLabelConstraint() {
+        
+    }
+    
+    private func configureSalePriceLabelConstraint() {
+        
+    }
+    
+    private func configureNormalPriceLabelConstraint() {
     }
 }
+
+
