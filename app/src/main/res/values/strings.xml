@@ -3,8 +3,6 @@
     <string name="label_event">이벤트특가</string>
     <string name="label_launch">런칭특가</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_order_complete">해당 상품을\n주문했습니다.</string>
     <string name="label_order_cancel">주문 수량을\n확인해주세요.</string>
     <string name="label_ok">확인</string>
@@ -25,5 +23,6 @@
     <string name="label_menu_detail_total_price">총 주문금액</string>
     <string name="label_menu_detail_total_price_value">12,640원</string>
     <string name="label_menu_detail_order_btn_title">주문하기</string>
+    <string name="label_order_fail">주문이 취소\n되었습니다</string>
 
 </resources>
