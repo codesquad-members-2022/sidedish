@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as MinusIcon } from 'image/minus.svg';
 import { ReactComponent as PlusIcon } from 'image/plus.svg';
+import { FlexDiv } from 'common/FlexDiv';
 
 const DetailContainer = styled.div`
   min-width: 440px;
@@ -47,6 +48,10 @@ const ItemTag = styled.span`
       case '이벤트특가':
         return css`
           ${({ theme }) => theme.colors.green}
+        `;
+      case '정가':
+        return css`
+          ${({ theme }) => theme.colors.black}
         `;
       default:
         return;
@@ -125,13 +130,19 @@ const ModalDetailContainer = ({ item }) => {
     <DetailContainer>
       <ModalProductInfo>
         <h3>{item.name}</h3>
-        <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
-        <div className="">
-          <ItemTag className="item__tag" tag={item.discountPolicy}>
-            {item.discountPolicy}
-          </ItemTag>
+        {item.discountPrice !== item.normalPrice ? (
+          <>
+            <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
+            <FlexDiv column={'center'}>
+              <ItemTag className="item__tag" tag={item.discountPolicy}>
+                {item.discountPolicy}
+              </ItemTag>
+              <span className="item__normal-price">{setPrice(item.discountPrice)}원</span>
+            </FlexDiv>
+          </>
+        ) : (
           <span className="item__normal-price">{setPrice(item.discountPrice)}원</span>
-        </div>
+        )}
       </ModalProductInfo>
       <ModalDeliveryInfo>
         <DeliveryInnerDiv>

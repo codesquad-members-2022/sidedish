@@ -3,7 +3,6 @@ import Card from 'Main/Card';
 import { useState, useRef } from 'react';
 import { ReactComponent as LeftArrowIcon } from 'image/leftArrow.svg';
 import { ReactComponent as RightArrowIcon } from 'image/rightArrow.svg';
-import { MAIN_ITEMS } from 'MockData/dummyData';
 
 const DishContainerWrapper = styled.div`
   position: relative;
@@ -60,12 +59,12 @@ const RightArrow = styled(RightArrowIcon)`
   }
 `;
 
-const DishContainer = () => {
-  const cardList = MAIN_ITEMS.data.map((item) => {
+const DishContainer = ({ items }) => {
+  const cardList = items.dishes.map((item) => {
     return <Card key={item.id} item={item} imageSize={'medium'}></Card>;
   });
 
-  const totalCount = MAIN_ITEMS.data.length;
+  const totalCount = items.dishes.length;
   const currentPosition = useRef(0);
   const slider = useRef();
   const [leftFocus, setLeftFocus] = useState(false);
@@ -113,7 +112,7 @@ const DishContainer = () => {
   return (
     <DishContainerWrapper>
       <DishContainerBox>
-        <h2>{MAIN_ITEMS.title}</h2>
+        <h2>{items.category.description}</h2>
         <DishCardList ref={slider}>{cardList}</DishCardList>
       </DishContainerBox>
       <LeftArrow onClick={onClickLeft} focus={String(leftFocus)} />
