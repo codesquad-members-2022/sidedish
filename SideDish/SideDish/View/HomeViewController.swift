@@ -3,7 +3,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    private var model = [[Product]]()
+    private var model:  [ProductSort: [Product]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,16 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model[section].count
+        switch section {
+        case 0:
+            return model[.main]?.count ?? 0
+        case 1:
+            return model[.soup]?.count ?? 0
+        case 2:
+            return model[.side]?.count ?? 0
+        default:
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
@@ -44,8 +53,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
                     return UICollectionViewCell()
                 }
-        // TODO: - 팩토리 메서드 패턴으로, 셀.configure
-        cell.configure(with: model[indexPath.section][indexPath.item])
+        guard let main = model[.main] else { return UICollectionViewCell()}
+        guard let soup = model[.soup] else { return UICollectionViewCell()}
+        guard let side = model[.side] else { return UICollectionViewCell()}
+        let sectionNumber = indexPath.section
+        switch sectionNumber {
+        case 0:
+            cell.configure(with: main[indexPath.row])
+        case 1:
+            cell.configure(with: soup[indexPath.row])
+        case 2:
+            cell.configure(with: side[indexPath.row])
+        default:
+            assert(false)
+        }
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
