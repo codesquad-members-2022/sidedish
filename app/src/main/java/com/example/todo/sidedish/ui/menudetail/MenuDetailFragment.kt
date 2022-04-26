@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,20 +23,15 @@ class MenuDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuDetailBinding
     private lateinit var navigator: NavController
-    private val detailHash: String by lazy {
-        requireArguments().getString("KEY_HASH", "")
-    }
-    private val title: String by lazy {
-        requireArguments().getString("KEY_TITLE", "")
-    }
-    private val badges: List<String>? by lazy {
-        requireArguments().get("KEY_BADGE") as List<String>?
-    }
+    private val detailHash: String by lazy { requireArguments().getString("KEY_HASH", "") }
+    private val title: String by lazy { requireArguments().getString("KEY_TITLE", "") }
+    private val badges: List<String>? by lazy { requireArguments().get("KEY_BADGE") as List<String>? }
     private val viewModel: MenuDetailViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = FragmentMenuDetailBinding.inflate(inflater, container, false)
         viewModel.getDetail(detailHash)
         return binding.root
@@ -49,19 +45,17 @@ class MenuDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.rvDetail.adapter = menuDetailAdapter
         binding.vpItemDetailImg.adapter = viewPagerAdapter
+
         registerOrderQuantityControlBtn()
         setMenuInfo()
         bindViewPagerPageNum()
         registerOrderClickBtn()
 
-        viewModel._detailInfo.observe(viewLifecycleOwner) {
-            binding.detail = it
-            menuDetailAdapter.submitDetailImages(it.detailImages)
-        }
-        viewModel._thumbnailImages.observe(viewLifecycleOwner) { thumbs ->
-            viewPagerAdapter.submitThumbnails(thumbs)
-            binding.vpItemDetailImg.orientation= ViewPager2.ORIENTATION_HORIZONTAL
-            binding.totalPage= thumbs.size
+        viewModel.detailInfo.observe(viewLifecycleOwner) { menuDetail ->
+            binding.detail = menuDetail
+            binding.totalPage = menuDetail.thumbnailImages.size
+            menuDetailAdapter.submitDetailImages(menuDetail.detailImages)
+            viewPagerAdapter.submitThumbnails(menuDetail.thumbnailImages)
         }
 
         viewModel.orderSuccess.observe(viewLifecycleOwner) { isSuccess ->
@@ -70,15 +64,19 @@ class MenuDetailFragment : Fragment() {
                 else -> OrderCancelDialogFragment(getString(R.string.label_order_fail)).show(parentFragmentManager, "order_fail")
             }
         }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        }
     }
 
-    private fun bindViewPagerPageNum(){
-        binding.nowPage=1
-        binding.totalPage= viewModel._thumbnailImages.value?.size
+    private fun bindViewPagerPageNum() {
+        binding.nowPage = 1
+        binding.totalPage = viewModel.detailInfo.value?.thumbnailImages?.size
         binding.vpItemDetailImg.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                binding.nowPage=(position+1)
+                binding.nowPage = (position + 1)
             }
         })
     }
@@ -89,7 +87,7 @@ class MenuDetailFragment : Fragment() {
                 ORDER_COUNT_ZERO -> OrderCancelDialogFragment(getString(R.string.label_order_cancel)).show(parentFragmentManager, "order_cancel")
                 else -> {
                     val name = requireActivity().getSharedPreferences("userName", AppCompatActivity.MODE_PRIVATE).getString("name", null)
-                    if(name==null) { navigator.navigate(R.id.action_menuDetailFragment_to_loginFragment) }
+                    if (name == null) { navigator.navigate(R.id.action_menuDetailFragment_to_loginFragment) }
                     val message = "${name}님 주문사항: ${binding.tvMenuTitle.text} (개당 ${binding.tvMenuPrice.text})를 ${orderCount}개를 주문하셨습니다. 총 결재금액은 ${binding.tvTotalPayValue.text}입니다"
                     viewModel.saveOrder(message)
                 }

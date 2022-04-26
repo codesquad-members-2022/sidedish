@@ -12,32 +12,24 @@ class MenuRepositoryImpl @Inject constructor(
     private val onBanDataSource: DataSource,
 ) : Repository {
 
-    override suspend fun getMain(): Result<List<Menu>> {
-        return kotlin.runCatching {
-            val response = onBanDataSource.getMain()
-            response.dish.map { it.toMenu() }
-        }
+    override suspend fun getMain(): List<Menu> {
+        val response = onBanDataSource.getMain()
+        return response.dish.map { it.toMenu() }
     }
 
-    override suspend fun getSoup(): Result<List<Menu>> {
-        return kotlin.runCatching {
-            val response = onBanDataSource.getSoup()
-            response.dish.map { it.toMenu() }
-        }
+    override suspend fun getSoup(): List<Menu> {
+        val response = onBanDataSource.getSoup()
+        return response.dish.map { it.toMenu() }
     }
 
-    override suspend fun getSide(): Result<List<Menu>> {
-        return kotlin.runCatching {
-            val response = onBanDataSource.getSide()
-            response.dish.map { it.toMenu() }
-        }
+    override suspend fun getSide(): List<Menu> {
+        val response = onBanDataSource.getSide()
+        return response.dish.map { it.toMenu() }
     }
 
-    override suspend fun getDetail(detailHash: String): Result<MenuDetail> {
-        val response = onBanDataSource.getDetail(detailHash)
-        return kotlin.runCatching {
-            response.data.toMenuDetail()
-        }
+    override suspend fun getDetail(detailHash: String): MenuDetail {
+        return onBanDataSource.getDetail(detailHash)
+            .data.toMenuDetail()
     }
 
 
