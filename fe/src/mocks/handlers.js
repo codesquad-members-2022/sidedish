@@ -76,24 +76,59 @@ const getEvent = [
 const getCategories = rest.get('/categories', (req, res, ctx) => {
   return res(
     ctx.status(200),
-    ctx.delay(0),
+    ctx.delay(1000),
     ctx.json({
-      content: [
+      result_code: 200,
+      result_message: "OK",
+      result_body: [
         {
-          id: 1,
-          main: '든든한 메인 요리',
-          subs: ['육류 요리', '해산물 요리'],
+          "id": 1,
+          "title": "든든한 메인요리",
+          "subCategories": [
+            {
+              "id": 1,
+              "mainCategoryId": 1,
+              "title": "육류 요리"
+            },
+            {
+              "id": 2,
+              "mainCategoryId": 1,
+              "title": "해산물 요리"
+            }
+          ]
         },
         {
-          id: 2,
-          main: '뜨끈한 국물 요리',
-          subs: ['국/탕/찌개'],
+          "id": 2,
+          "title": "뜨끈한 국물 요리",
+          "subCategories": [
+            {
+              "id": 3,
+              "mainCategoryId": 2,
+              "title": "국/탕/찌개"
+            }
+          ]
         },
         {
-          id: 3,
-          main: '정갈한 밑반찬',
-          subs: ['나물/무침', '조림/볶음', '절임/장아찌'],
-        },
+          "id": 3,
+          "title": "정갈한 밑반찬",
+          "subCategories": [
+            {
+              "id": 4,
+              "mainCategoryId": 3,
+              "title": "나물/무침"
+            },
+            {
+              "id": 5,
+              "mainCategoryId": 3,
+              "title": "조림/볶음"
+            },
+            {
+              "id": 6,
+              "mainCategoryId": 3,
+              "title": "절임/장아찌"
+            }
+          ]
+        }
       ],
     })
   );
@@ -143,6 +178,114 @@ const getCategory = [
           },
           {
             id: 4,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 5,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 6,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 7,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 8,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 9,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 10,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 11,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 12,
+            title: '호두 멸치볶음' + req.params.id,
+            description: '개꿀맛',
+            mainCategory: '정갈한 밑반찬',
+            price: 5800,
+            discountPolicy: '',
+            discountRate: 0.15,
+            morningDelivery: true,
+            image:
+              'https://cdn.pressm.kr/news/photo/202103/41547_31452_2732.jpg',
+          },
+          {
+            id: 13,
             title: '호두 멸치볶음' + req.params.id,
             description: '개꿀맛',
             mainCategory: '정갈한 밑반찬',
