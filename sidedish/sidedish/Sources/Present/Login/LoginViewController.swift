@@ -21,16 +21,15 @@ class LoginViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private var model: LoginViewModelProtocol = LoginViewModel()
     
+    deinit {
+        Log.debug("DeInit LoginViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
         attritbute()
         layout()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        model.action.viewDidLoad.send()
     }
     
     private func bind() {
@@ -45,7 +44,8 @@ class LoginViewController: UIViewController {
             .store(in: &cancellables)
         
         model.state.presentGoogleLogin
-            .sink { config in
+            .sink { [weak self] config in
+                guard let self = self else { return }
                 GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, _ in
                     self.model.action.googleUser.send(user)
                 }

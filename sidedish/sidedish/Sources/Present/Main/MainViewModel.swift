@@ -10,12 +10,14 @@ import Foundation
 
 struct MainViewModelAction {
     let viewDidLoad = PassthroughSubject<Void, Never>()
+    let tappedLogoutButton = PassthroughSubject<Void, Never>()
 }
 
 struct MainViewModelState {
     let userData = PassthroughSubject<User, Never>()
     let loadedData = PassthroughSubject<Sidedish.Menu, Never>()
     let loadedImage = PassthroughSubject<IndexPath, Never>()
+    let presentLoginPage = PassthroughSubject<Void, Never>()
 }
 
 protocol MainViewModelBinding {
@@ -36,6 +38,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     
     private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
     private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
+    private let loginRepository: LoginRepository = LoginRepositoryImpl()
     
     private var menus = [Sidedish.Menu: [Sidedish]]()
     private var thumbnailImages = [IndexPath: URL]()
@@ -52,6 +55,10 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
         return menus[indexPath.item]
     }
     
+    deinit {
+        Log.debug("DeInit MainViewModel")
+    }
+    
     init() {
         action.viewDidLoad
             .compactMap { Container.shared.userStore.user }
@@ -59,12 +66,17 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
             .store(in: &cancellables)
         
         let request = action.viewDidLoad
-            .map { Sidedish.Menu.allCases.publisher.map { self.sidedishRepository.loadMenu($0) } }
+            .map { [weak self] _ in
+                Sidedish.Menu.allCases.publisher.compactMap { menu in
+                    self?.sidedishRepository.loadMenu(menu)
+                }
+            }
             .switchToLatest()
             .share()
-        
+
         request
-            .sink { result in
+            .sink { [weak self] result in
+                guard let self = self else { return }
                 result
                     .compactMap { $0.value }
                     .sink { type, menus in
@@ -72,13 +84,20 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
                         self.state.loadedData.send(type)
                         self.loadThumbnailImage(type: type, menus: menus)
                     }.store(in: &self.cancellables)
-                
+
                 result
                     .compactMap { $0.error }
                     .sink { _ in
                         //TODO: 데이터 로드 시 에러 처리
                     }.store(in: &self.cancellables)
             }.store(in: &cancellables)
+
+        action.tappedLogoutButton
+            .compactMap { [weak self] _ in self?.loginRepository.signOut() }
+            .switchToLatest()
+            .handleEvents(receiveOutput: { Container.shared.userStore.user = nil })
+            .sink(receiveValue: state.presentLoginPage.send(_:))
+            .store(in: &cancellables)
     }
     
     private func loadThumbnailImage(type: Sidedish.Menu, menus: [Sidedish]) {
@@ -87,9 +106,9 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
         }
         imageUrls.forEach { indexPath, url in
             resourceRepository.loadImage(url)
-                .sink {
-                    self.thumbnailImages[indexPath] = $0
-                    self.state.loadedImage.send(indexPath)
+                .sink { [weak self] fileUrl in
+                    self?.thumbnailImages[indexPath] = fileUrl
+                    self?.state.loadedImage.send(indexPath)
                 }
                 .store(in: &cancellables)
         }

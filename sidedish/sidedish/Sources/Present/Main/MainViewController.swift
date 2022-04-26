@@ -11,14 +11,14 @@ class MainViewController: UIViewController {
     private let model: MainViewModelProtocol = MainViewModel()
     private var cancellables = Set<AnyCancellable>()
     
-    private var underLineView: UIView = {
+    private let underLineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .grey3
         return view
     }()
     
-    private var collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
@@ -32,12 +32,23 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
+    private let loginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Logout", for: .normal)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        return button
+    }()
+    
+    deinit {
+        Log.debug("DeInit MainViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
         attritbute()
         layout()
-
+        makeNavigationButtons()
         model.action.viewDidLoad.send()
     }
     
@@ -47,21 +58,31 @@ class MainViewController: UIViewController {
         
         model.state.userData
             .receive(on: DispatchQueue.main)
-            .sink { user in
-                self.title = "\(user.name)님 안녕하세요"
+            .sink { [weak self] user in
+                self?.title = "\(user.name)님 안녕하세요"
             }.store(in: &cancellables)
-        
+
         model.state.loadedData
             .receive(on: DispatchQueue.main)
-            .sink { type in
-                self.collectionView.reloadSections(IndexSet(integer: type.index))
+            .sink { [weak self] type in
+                self?.collectionView.reloadSections(IndexSet(integer: type.index))
             }.store(in: &cancellables)
-        
+
         model.state.loadedImage
             .receive(on: DispatchQueue.main)
-            .sink {
-                self.collectionView.reloadItems(at: [$0])
+            .sink { [weak self] indexPath in
+                self?.collectionView.reloadItems(at: [indexPath])
             }.store(in: &cancellables)
+
+        loginButton.publisher(for: .touchUpInside)
+            .sink(receiveValue: model.action.tappedLogoutButton.send(_:))
+            .store(in: &cancellables)
+        
+        model.state.presentLoginPage
+            .sink {
+                RootWindow.shared?.switchRootWindowState.send(.login)
+            }
+            .store(in: &cancellables)
     }
     
     private func attritbute() {
@@ -84,6 +105,10 @@ class MainViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    private func makeNavigationButtons() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loginButton)
     }
 }
 

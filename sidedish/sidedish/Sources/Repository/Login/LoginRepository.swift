@@ -13,4 +13,5 @@ import UIKit
 protocol LoginRepository {
     func googleLogin(authCredential: AuthCredential) -> AnyPublisher<User, Never>
     func getUser() -> AnyPublisher<User?, Never>
+    func signOut() -> AnyPublisher<Void, Never>
 }
