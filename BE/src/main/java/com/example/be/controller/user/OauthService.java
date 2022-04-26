@@ -8,10 +8,7 @@ import com.example.be.domain.user.User;
 import com.example.be.repository.member.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -25,14 +22,15 @@ public class OauthService {
     private final InMemoryClientRegisterrRepository inMemoryClientRegisterRepository;
     private final UserRepository userRepository;
     private final GithubTokenUtils githubTokenUtils;
+    private final JwtTokenProvider jwtTokenProvider;
 
     private static final String GITHUB = "github";
 
     public ResponseEntity<String> login(String code) {
         ClientRegistration clientRegistration = inMemoryClientRegisterRepository.findByRegistration(GITHUB);
-        HttpEntity<?> request = githubTokenUtils.getAccessTokenRequest(clientRegistration, code);
+        HttpEntity<?> accessTokenRequest = githubTokenUtils.getAccessTokenRequest(clientRegistration, code);
         GithubToken gitToken = new RestTemplate()
-                .postForEntity(clientRegistration.getTokenUrl(), request, GithubToken.class)
+                .postForEntity(clientRegistration.getTokenUrl(), accessTokenRequest, GithubToken.class)
                 .getBody();
 
         HttpHeaders authorizationIncludedHeader = githubTokenUtils.getAuthorizationIncludedHeader(gitToken.getGithubAccessToken());
@@ -40,6 +38,6 @@ public class OauthService {
                 .exchange(clientRegistration.getUserInfoUrl(), HttpMethod.GET, new HttpEntity<String>(authorizationIncludedHeader), String.class);
         Map<String, String> userDetail = githubTokenUtils.getUserDetail(response.getBody());
         GithubUser githubUser = GithubUser.from(userDetail);
-        return null;
+        return new ResponseEntity<>("", HttpStatus.OK);
     }
 }

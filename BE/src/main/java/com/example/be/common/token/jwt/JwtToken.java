@@ -10,7 +10,7 @@ public class JwtToken {
     public JwtToken(String email) {
         this.header = createHeader();
         this.payLoad = createPayLoad(email);
-        this.signature = createSignature();
+        this.signature = createSignature(header, payLoad);
     }
 
     private Header createHeader() {
@@ -18,10 +18,14 @@ public class JwtToken {
     }
 
     private PayLoad createPayLoad(String email) {
-        return new PayLoad();
+        return new PayLoad(email);
     }
 
-    private Signature createSignature() {
-        return new Signature();
+    private Signature createSignature(Header header, PayLoad payLoad) {
+        return new Signature(header, payLoad);
+    }
+
+    public String getClaim(String attribute) {
+        return payLoad.getClaim(attribute);
     }
 }

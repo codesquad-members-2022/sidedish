@@ -5,6 +5,8 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class PayLoad {
@@ -17,17 +19,20 @@ public class PayLoad {
     private static final String ISSUED_AT = "2022-04-26";
     private static final String JWT_ID = hash();
     private static final String TOKEN_DELIMETER = ",";
+    private static final int TEN = 10;
 
-    // TODO 추후 long으로 변경
+    //TODO 추후 long으로 변경
     private LocalDateTime expirationTime;
     private LocalDateTime notBefore;
     private LocalDateTime issuedAt;
     private final String jwtId = UUID.randomUUID().toString();
+    private final Map<String, String> claims = new HashMap<>();
 
-    public PayLoad() {
-        this.expirationTime = LocalDateTime.now().plusDays(7);
-        this.notBefore = LocalDateTime.now().plusDays(7);
+    public PayLoad(String email) {
+        this.expirationTime = LocalDateTime.now().plusDays(TEN);
+        this.notBefore = LocalDateTime.now().plusDays(TEN);
         this.issuedAt = LocalDateTime.now();
+        this.claims.put("email", email);
     }
 
     @Override
@@ -59,4 +64,7 @@ public class PayLoad {
         return messageDigest.digest().toString();
     }
 
+    public String getClaim(String attribute) {
+        return claims.get(attribute);
+    }
 }
