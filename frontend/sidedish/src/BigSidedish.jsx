@@ -1,35 +1,21 @@
 import { useState, useEffect } from "react";
-import "./BigSidedish.css";
-import styled from "styled-components";
+import {
+    Container,
+    Header,
+    Title,
+    TabBar,
+    Tab,
+    CardsContainer,
+    CardImgWrapper,
+    CardImg,
+    CardTextContainer,
+    CardTitle,
+    CardDescription,
+    PriceContainer,
+    Price,
+    EventBadge,
+} from "./BigSidedish.style";
 import { API } from "./config";
-
-const Price = styled.span`
-    font-weight: ${(props) => (props.isClientPrice ? "500" : "400")};
-    font-size: ${(props) => (props.isClientPrice ? "1.6rem" : "1.4rem")};
-    line-height: ${(props) => (props.isClientPrice ? "26px" : "24px")};
-    letter-spacing: -0.008em;
-    text-decoration-line: ${(props) =>
-        props.isClientPrice ? "none" : "line-through"};
-    color: ${(props) => (props.isClientPrice ? "#1b1b1b" : "#bcbcbc")};
-`;
-
-const EventBadge = styled.span`
-    font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 18px;
-    letter-spacing: -0.008em;
-    color: #fff;
-    padding: 6px 8px;
-    border-radius: 25px;
-    margin-top: 22px;
-    margin-right: 8px;
-    background-color: ${(props) =>
-        props.eventBadgeColor === "orange"
-            ? "#ff8e14"
-            : "green"
-            ? "#6dd028"
-            : ""};
-`;
 
 function EventBadges({ eventBadges }) {
     return eventBadges.map((eventBadge) => (
@@ -66,27 +52,21 @@ function SidedishCard({ title, image, description, price, eventBadges }) {
     );
 
     return (
-        <li className="big-sidedish__card">
-            <div className="big-sidedish__card-img-container">
-                <img
-                    alt={title}
-                    className="big-sidedish__card-img"
-                    src={image}
-                />
-            </div>
-            <div className="big-sidedish__card-item">
-                <div className="big-sidedish__card-item--text">
-                    <h3 className="big-sidedish__card-name">{title}</h3>
-                    <p className="big-sidedish__card-description">
-                        {description}
-                    </p>
-                    <div className="big-sidedish__card-prices">
+        <li>
+            <CardImgWrapper>
+                <CardImg alt={title} src={image} />
+            </CardImgWrapper>
+            <div>
+                <CardTextContainer>
+                    <CardTitle>{title}</CardTitle>
+                    <CardDescription>{description}</CardDescription>
+                    <PriceContainer>
                         <>
                             {clientPrice}
                             {originalPrice}
                         </>
-                    </div>
-                </div>
+                    </PriceContainer>
+                </CardTextContainer>
                 {eventTags}
             </div>
         </li>
@@ -111,34 +91,23 @@ function SidedishCards({ sidedishData }) {
             />
         );
     });
-    return <ul className="big-sidedish__cards">{sidedishCards}</ul>;
+    return <CardsContainer>{sidedishCards}</CardsContainer>;
 }
-
-const MenuItem = styled.li`
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 30px;
-    letter-spacing: -0.008em;
-    text-align: center;
-    padding-bottom: 15px;
-    cursor: pointer;
-    border-bottom: ${(props) => (props.isCurrTab ? "solid 2px black" : "")};
-`;
 
 function TabMenu({ currTab, tabMenu, onChangeTab }) {
     const tabMenuTemplate = tabMenu.map((tab, idx) => {
         return (
-            <MenuItem
+            <Tab
                 isCurrTab={idx === currTab}
                 key={tab.id}
                 onClick={() => onChangeTab(idx)}
             >
                 {tab.name}
-            </MenuItem>
+            </Tab>
         );
     });
 
-    return <ul className="big-sidedish__tab-menu">{tabMenuTemplate}</ul>;
+    return <TabBar>{tabMenuTemplate}</TabBar>;
 }
 
 function BigSidedish() {
@@ -178,19 +147,17 @@ function BigSidedish() {
     });
 
     return (
-        <div className="big-sidedish">
-            <div className="big-sidedish__header">
-                <h2 className="big-sidedish__title">
-                    한 번 주문하면 두 번 반하는 반찬
-                </h2>
+        <Container>
+            <Header>
+                <Title>한 번 주문하면 두 번 반하는 반찬</Title>
                 <TabMenu
                     currTab={currTab}
                     tabMenu={tabMenu}
                     onChangeTab={changeTab}
                 />
-            </div>
+            </Header>
             <SidedishCards sidedishData={bigSidedishData[currTab]} />
-        </div>
+        </Container>
     );
 }
 

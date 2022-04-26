@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Header.style.js";
 import {
     Wrapper,
     Container,
