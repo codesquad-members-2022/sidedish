@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactComponent as MinusIcon } from 'image/minus.svg';
 import { ReactComponent as PlusIcon } from 'image/plus.svg';
 
@@ -29,15 +29,29 @@ const ModalProductInfo = styled.div`
   .item__normal-price {
     ${({ theme }) => theme.fontStyles.largeBold};
   }
+`;
 
-  .item__tag {
-    padding: 6px 16px;
-    margin-right: 8px;
-    border-radius: 999px;
-    ${({ theme }) => theme.fontStyles.smallBold};
-    color: ${({ theme }) => theme.colors.white};
-    background: orange;
-  }
+const ItemTag = styled.span`
+  display: inline-block;
+  padding: 6px 16px;
+  margin-right: 8px;
+  border-radius: 999px;
+  ${({ theme }) => theme.fontStyles.smallBold};
+  color: ${({ theme }) => theme.colors.white};
+  background: ${(props) => {
+    switch (props.tag) {
+      case '런칭특가':
+        return css`
+          ${({ theme }) => theme.colors.orange}
+        `;
+      case '이벤트특가':
+        return css`
+          ${({ theme }) => theme.colors.green}
+        `;
+      default:
+        return;
+    }
+  }};
 `;
 
 const ModalDeliveryInfo = styled.div`
@@ -113,7 +127,9 @@ const ModalDetailContainer = ({ item }) => {
         <h3>{item.name}</h3>
         <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
         <div className="">
-          <span className="item__tag">{item.discountPolicy}</span>
+          <ItemTag className="item__tag" tag={item.discountPolicy}>
+            {item.discountPolicy}
+          </ItemTag>
           <span className="item__normal-price">{setPrice(item.discountPrice)}원</span>
         </div>
       </ModalProductInfo>
