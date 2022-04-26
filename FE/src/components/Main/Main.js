@@ -15,7 +15,9 @@ const MainWrap = styled.div`
 
 const Main = () => {
   const [moreButtonDisplay, setMoreButtonDisplay] = useState('block');
-  const [subContentsList, setSubContentsList] = useState(subContents.slice(0, 1));
+  const [subContentsList, setSubContentsList] = useState(
+    subContents.slice(0, 1),
+  );
 
   const handleMoreButtonClick = () => {
     setMoreButtonDisplay('none');

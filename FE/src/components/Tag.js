@@ -13,7 +13,8 @@ const TagWrap = styled.div`
   height: 30px;
   border-radius: 100px;
   margin-right: 4px;
-  background-color: ${({ badge }) => (badge === '이벤트특가' ? colors.green : colors.orange)};
+  background-color: ${({ badge }) =>
+    badge === '이벤트특가' ? colors.green : colors.orange};
 `;
 
 const Tag = ({ badge }) => (
