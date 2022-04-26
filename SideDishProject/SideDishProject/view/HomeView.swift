@@ -44,4 +44,10 @@ final class HomeView: UIView{
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
     }
+    
+    func collectionViewReloadData(){
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
 }
