@@ -76,19 +76,22 @@ const PolicyBadge = ({ priceData: discountPolicy }) => {
 export const ProductCard = ({
   data: {
     id,
-    image,
     title,
     description,
     price,
+    quantity,
+    accumulate,
     discountPolicy,
     discountRate,
     morningDelivery,
+    images,
   },
   size,
 }) => {
+  const productImage = images[0];
   return (
     <ProductCardWrapper data-id={id} size={size}>
-      <ProductThumbnail imgUrl={image} morningDelivery={morningDelivery} />
+      <ProductThumbnail imgUrl={productImage.url} morningDelivery={morningDelivery} />
       <Title className={Fonts.MD}>{title}</Title>
       <Description className={Fonts.SM}>{description}</Description>
       <PriceWrapper>
