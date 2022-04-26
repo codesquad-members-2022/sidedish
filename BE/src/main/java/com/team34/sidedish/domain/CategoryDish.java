@@ -9,4 +9,8 @@ public class CategoryDish {
 
     private Long categoryId;
     private Long dishId;
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
 }

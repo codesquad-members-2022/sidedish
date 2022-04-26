@@ -19,6 +19,10 @@ public enum Badge {
         return discountRate;
     }
 
+    public int calculateDiscountPrice(int originPrice) {
+        return (int) (originPrice - (originPrice * discountRate));
+    }
+
     static public Badge of(String name) {
         try {
             if (name == null) {

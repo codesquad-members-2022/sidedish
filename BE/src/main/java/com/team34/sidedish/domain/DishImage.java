@@ -10,6 +10,10 @@ public class DishImage {
     private Long dishId;
     private String path;
 
+    public String getPath() {
+        return path;
+    }
+
     @Override
     public String toString() {
         return "DishImage{" +
