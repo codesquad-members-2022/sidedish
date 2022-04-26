@@ -72,7 +72,7 @@ export const Carousel = ({ categoryID, categoryName, size }) => {
 
   return (
     <CarouselWrapper>
-      <HorizontalLine position={"top"} color={"Grey4"} />
+      <HorizontalLine position={0} color={"Grey4"} />
       <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
       <CardList products={categoryData?.products} cardSize={size} firstCardIndex={firstCardIndex} />
       <CarouselButton onBtnClick={() => moveSlide("left")} dir={"left"} isEndPage={isFirstPage} />

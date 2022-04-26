@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useState } from "react";
 import { CardList } from "./CardList";
 import { SIZES } from "../convention";
@@ -16,19 +16,16 @@ const TitleWrapper = styled.div`
 
 const TitleBadge = styled.div`
   ${custom_font("Noto Sans KR", 16, 500, 26)}
+  background: ${({theme}) => theme.colors.Off_White};
   border: 2px solid #1b1b1b;
-  box-sizing: border-box;
   border-radius: 999px;
-  background: #f8f7f7;
+  box-sizing: border-box;
   margin-right: 16px;
   padding: 8px 16px; ;
 `;
 
 const Title = styled.div`
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 58px;
-  letter-spacing: -0.004em;
+  ${custom_font("Noto Sans KR", 40, 700, 58, -0.004)}
 `;
 
 const TabBar = styled.ul`
@@ -40,14 +37,9 @@ const TabBar = styled.ul`
 const TabItem = styled.li`
   margin-right: 32px;
   padding-bottom: 17px;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: -0.008em;
-  ${(props) => props.selected && `border-bottom: 2px solid black;`}
+  ${custom_font("Noto Sans KR", 20, 500, 30, -0.008)}
+  ${custom_flex('row','center','center')}
+  ${(props) => props.selected && css`border-bottom: 2px solid black`}
 `;
 
 export const SpecialCategory = ({ specialCategories }) => {
@@ -70,7 +62,7 @@ export const SpecialCategory = ({ specialCategories }) => {
             {specialCategory.name}
           </TabItem>
         ))}
-        <HorizontalLine color={"Grey4"} />
+        <HorizontalLine position={100} color={"Grey4"} />
       </TabBar>
       <CardList products={categoryData?.products} cardSize={SIZES.large}></CardList>
     </Wrapper>
