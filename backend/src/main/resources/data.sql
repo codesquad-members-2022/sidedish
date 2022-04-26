@@ -55,5 +55,3 @@ INSERT INTO item (CATEGORY_ID, NAME, DESCRIPTION, PRICE, STOCK, DISCOUNT_POLICY,
 INSERT INTO item_image (ITEM_ID, IMAGE_LINK) values
 (1, "[https://leejohy-springboot-build.s3.ap-northeast-2.amazonaws.com/2cdf7235b65a114abff05b9133f90085.jpeg](https://leejohy-springboot-build.s3.ap-northeast-2.amazonaws.com/2cdf7235b65a114abff05b9133f90085.jpeg)");
 
-INSERT INTO user (ID, USERNAME, PASSWORD) values
-(1, "testUser", "testPW")
