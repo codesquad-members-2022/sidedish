@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Dish {
+enum Dish: CaseIterable {
     case main
     case side
     case soup
