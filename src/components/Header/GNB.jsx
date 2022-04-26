@@ -31,14 +31,15 @@ export default function GNB() {
 }
 
 const Wrap = styled.nav({
-  flex: '1 0 0'
+  flex: '1 0 0',
+  marginTop: '4px'
 });
 
 const GNBItems = styled.ul({
-  display: 'flex',
-  gap: '24px'
+  display: 'flex'
 });
 
-const GNBItem = styled.li({
-  cursor: 'pointer'
-});
+const GNBItem = styled.li`
+  padding: 10px 12px 0;
+  cursor: pointer;
+`;
