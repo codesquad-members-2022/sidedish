@@ -3,7 +3,8 @@ import styled from "styled-components";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: ${(props) =>
+        props.theme.size === "big" ? "1px solid #ebebeb" : "none"};
     padding: 56px 0px;
 `;
 
