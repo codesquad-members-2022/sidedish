@@ -1,22 +1,5 @@
 import styled from 'styled-components';
-import { applyFlex } from '../helper/utils';
-
-function applyEventStyleByEventId(eventId) {
-  if (eventId === 2) {
-    return `
-      width: 76px;
-      height: 30px;
-      background: #ff8e14;
-    `;
-  }
-  if (eventId === 1) {
-    return `
-      width: 87px;
-      height: 30px;
-      background: #6dd028;
-    `;
-  }
-}
+import { applyFlex } from '../../helper/utils';
 
 function applyImgStyleByCardSize(size) {
   if (size === 'large') {
@@ -100,46 +83,8 @@ export const Price = styled.div`
   color: #bcbcbc;
 `;
 
-export const StyledWrapper = styled.div`
-  ${({ flex }) => applyFlex({ flex })}
-  margin-top:16px;
-  color: #fff;
-  font-weight: 500;
-  font-size: 12px;
-`;
-
-export const Event = styled.div`
-  ${({ flex, justify, align }) => applyFlex({ flex, justify, align })}
-  ${({ eventId }) => applyEventStyleByEventId(eventId)}
-  margin-right: 8px;
-  border-radius: 999px;
-`;
-
 export const CardWrapper = styled.div`
   position: relative;
   margin-right: 24px;
   cursor: pointer;
-`;
-
-export const StyledCircle = styled.div`
-  ${({ flex, justify, align, direction }) => applyFlex({ flex, justify, align, direction })};
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  top: 5%;
-  right: 10%;
-
-  background: rgba(248, 247, 247, 0.8);
-
-  border: 1px solid #1b1b1b;
-  box-sizing: border-box;
-  border-radius: 50%;
-  p:last-child {
-    border: none;
-  }
-`;
-
-export const DeliveryInfo = styled.p`
-  padding: 10px;
-  border-bottom: 1px solid black;
 `;

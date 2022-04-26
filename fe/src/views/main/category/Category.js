@@ -1,8 +1,7 @@
 import { categoryData } from '../../../helper/mock';
-import { ProductCard } from '../../../components/ProductCard';
-import { applyFlex } from '../../../helper/utils';
-import styled from 'styled-components';
+import { ProductCard } from '../../../components/productCard/ProductCard';
 import { buttonIcons } from '../../../helper/constants';
+import { CategoryWrapper, CategoryTitle, CategoryCardWrapper, LeftButton, RightButton } from './category.styled';
 
 export function Category() {
   return (
@@ -18,40 +17,3 @@ export function Category() {
     </CategoryWrapper>
   );
 }
-
-const CategoryWrapper = styled.div`
-  position: absolute;
-  margin-top: 56px;
-`;
-
-const CategoryTitle = styled.h3`
-  font-size: 24px;
-  line-height: 38px;
-  padding: 0 80px;
-`;
-
-const CategoryCardWrapper = styled.div`
-  margin-top: 40px;
-  padding: 0 56px 0 80px;
-  ${props => applyFlex(props)}
-`;
-
-const LeftButton = styled.div`
-  position: absolute;
-  left: 35px;
-  top: 250px;
-
-  path {
-    stroke: #1b1b1b;
-  }
-`;
-
-const RightButton = styled.div`
-  position: absolute;
-  right: 35px;
-  top: 250px;
-
-  path {
-    stroke: #1b1b1b;
-  }
-`;
