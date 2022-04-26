@@ -2,6 +2,7 @@ package sidedish.web.dto.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import sidedish.domain.item.DiscountPolicy;
 import sidedish.domain.item.Item;
 import sidedish.web.dto.image.ResponseImagesDto;
 

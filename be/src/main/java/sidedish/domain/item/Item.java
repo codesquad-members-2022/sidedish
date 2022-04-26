@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import sidedish.domain.images.Image;
 
 import java.util.List;
+import java.util.Locale;
 
 @Getter
 public class Item {
@@ -36,7 +37,7 @@ public class Item {
 		this.quantity = quantity;
 		this.accumulate = price * 0.01;
 		this.discountPolicy = discountPolicy;
-		this.discountRate = 0.1;
+		this.discountRate = DiscountPolicy.valueOf(discountPolicy.toUpperCase()).getRate();
 		this.morningDelivery = morningDelivery;
 		this.images = images;
 	}
