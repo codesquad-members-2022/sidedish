@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 class JsonConvertor{
     
@@ -18,14 +19,9 @@ class JsonConvertor{
             let data = try Data(contentsOf: fileLocation)
             guard let result: Response = JsonConvertor.decodeJson(data: data) else { return nil }
             
-            if result.statusCode == 200{
-                return result.body
-            } else{
-                return nil
-            }
-
+            if result.statusCode == 200 { return result.body } else { os_log(.debug, log: .default, "server is not valid") }
             } catch {
-                print(error)
+                os_log(.default, log: .default, "Decoding error ")
             }
         return nil 
     }
