@@ -6,6 +6,9 @@ extension UIStackView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = axis
         stackView.distribution = distribution
+        if let spacing = spacing {
+            stackView.spacing = spacing            
+        }
         return stackView
     }
 }

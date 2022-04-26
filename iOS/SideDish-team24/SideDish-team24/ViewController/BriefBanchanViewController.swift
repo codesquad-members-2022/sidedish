@@ -38,6 +38,7 @@ private extension BriefBanchanViewController {
             guard let detailView = self.storyboard?.instantiateViewController(withIdentifier: "detailBanchanViewController") as? DetailBanchanViewController else { return }
             detailView.title = dishViewModel.title
             detailView.configure(title: dishViewModel.title, description: dishViewModel.description, price: dishViewModel.price, listPrice: dishViewModel.listPrice)
+            detailView.configure(specialBadge: dishViewModel.discountPolicy)
             DispatchQueue.global().async {
                 let image = dishViewModel.image
                 DispatchQueue.main.sync {
