@@ -9,7 +9,7 @@ data class Menu(
     val name: String?,
     val price: Int?,
     var detailImageLink: List<DetailImageLinks>?
-) {
+): MenuModel() {
     fun makeDetailImageLinkList(list: List<DetailImageLinkDTO>?) {
         val newList = mutableListOf<DetailImageLinks>()
         list?.forEach { detailImageLink ->

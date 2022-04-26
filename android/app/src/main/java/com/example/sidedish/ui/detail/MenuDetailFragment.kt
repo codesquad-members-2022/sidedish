@@ -66,8 +66,6 @@ class MenuDetailFragment : Fragment() {
         }
     }
 
-    private fun insertImage(fragment: Fragment, menu: String, id: String) {
-        Glide.with(fragment).load(menu).into(binding.)
-    }
+
 
 }

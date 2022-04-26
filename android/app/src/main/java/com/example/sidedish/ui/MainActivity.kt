@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
-
+            Log.d("TAG", currentUser.toString())
         }
     }
 

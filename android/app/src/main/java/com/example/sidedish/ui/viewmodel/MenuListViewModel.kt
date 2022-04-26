@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sidedish.data.Category
 import com.example.sidedish.data.Menu
 import com.example.sidedish.data.MenuListRepository
+import com.example.sidedish.data.MenuModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -29,6 +31,9 @@ class MenuListViewModel @Inject constructor(
 
     private val _sideMenuList = MutableLiveData<List<Menu>>()
     val sideFoodList: LiveData<List<Menu>> = _sideMenuList
+
+    private val _menu = MutableLiveData<List<MenuModel>>()
+    val menu: LiveData<List<MenuModel>> = _menu
 
     private val _selectedFoodDetail = MutableLiveData<Menu>()
     val selectedFoodDetail: LiveData<Menu> get() = _selectedFoodDetail
@@ -64,10 +69,15 @@ class MenuListViewModel @Inject constructor(
                     async(Dispatchers.IO) { repository.getMenuList(SIDE_MENU) }
                 ).awaitAll()
             }.onSuccess {
-                val menuList = it
-                _mainMenuList.value = menuList[0]
-                _soupMenuList.value = menuList[1]
-                _sideMenuList.value = menuList[2]
+//                val menuList = it
+//                _mainMenuList.value = menuList[0]
+//                _soupMenuList.value = menuList[1]
+//                _sideMenuList.value = menuList[2]
+                val menuList = mutableListOf<MenuModel>()
+                it.forEach { item ->
+                    menuList.addAll(item)
+                }
+                _menu.value = menuList
             }.onFailure {
                 throw NetworkErrorException("network error")
             }

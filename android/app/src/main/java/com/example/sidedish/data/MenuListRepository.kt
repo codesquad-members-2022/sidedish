@@ -11,9 +11,12 @@ class MenuListRepository @Inject constructor(private val dataSource: DataSource)
         return dataSource.getFoodDetail(id).getBodyOrThrow()?.inputDTOToMenu()
     }
 
-    suspend fun getMenuList(category: Int): List<Menu> {
+    suspend fun getMenuList(category: Int): List<MenuModel> {
         val response = dataSource.getMenuList(category)
-        return response.getBodyOrThrow()?.changeData() ?: emptyList()
+        val menuList = mutableListOf<MenuModel>()
+        menuList.add(Category(response.getBodyOrThrow()?.categoryName))
+        response.getBodyOrThrow()?.changeData()?.let { menuList.addAll(it) }
+        return menuList
     }
 
     private fun <T> Response<T>.getBodyOrThrow(): T? {
