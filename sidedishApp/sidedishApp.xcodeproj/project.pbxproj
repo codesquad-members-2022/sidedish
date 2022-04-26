@@ -23,6 +23,7 @@
 		009361E5280EE47400D0FF1A /* MainCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E4280EE47400D0FF1A /* MainCard.swift */; };
 		009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E6280EE4FB00D0FF1A /* Badge.swift */; };
 		009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E8280EEDC900D0FF1A /* CardFactory.swift */; };
+		00A903B8281785AA00E1402E /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A903B7281785AA00E1402E /* Dish.swift */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
 		D24CF2282812484300677D3D /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24CF2272812484300677D3D /* DetailCard.swift */; };
@@ -53,6 +54,7 @@
 		009361E4280EE47400D0FF1A /* MainCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCard.swift; sourceTree = "<group>"; };
 		009361E6280EE4FB00D0FF1A /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		009361E8280EEDC900D0FF1A /* CardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
+		00A903B7281785AA00E1402E /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D24CF2272812484300677D3D /* DetailCard.swift */,
 				009361E6280EE4FB00D0FF1A /* Badge.swift */,
 				0045439428168D57005DA649 /* SideDishManager.swift */,
+				00A903B7281785AA00E1402E /* Dish.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				0037166B281641130052F690 /* UIFontExtension.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
+				00A903B8281785AA00E1402E /* Dish.swift in Sources */,
 				009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */,
 				0037166E28164B2C0052F690 /* HTTPManager.swift in Sources */,
 				00680791280D5195003C2808 /* SceneDelegate.swift in Sources */,

@@ -11,29 +11,29 @@ final class SideDishManager {
     
     static let identifier = "SideDishManager"
     
-    private(set) var mainDishes = [MainCard]()
-    private(set) var soupDishes = [MainCard]()
-    private(set) var sideDishes = [MainCard]()
+    private(set) var mainDishes: MainCard?
+    private(set) var soupDishes: MainCard?
+    private(set) var sideDishes: MainCard?
     
     static let shared = SideDishManager()
     
-    private init() {} // shared 싱글톤을 위해 init을 private로 설정
+    private init() {}
     
-    func getMainDishes() {
-        HTTPManager.requestGet(url: "https://api.codesquad.kr/onban/main") { data in
-            guard let mainDishes: [MainCard] = JSONConverter.decodeJsonArray(data: data) else { return }
+    func getDishes(type: Dish) {
+        let url = "https://api.codesquad.kr/onban/" + type.name
+        HTTPManager.requestGet(url: url) { data in
+            guard let dishes: MainCard = JSONConverter.decodeJsonObject(data: data) else { return }
             
-            self.mainDishes.append(contentsOf: mainDishes)
+            switch type {
+            case .main:
+                self.mainDishes = dishes
+            case .soup:
+                self.soupDishes = dishes
+            case .side:
+                self.sideDishes = dishes
+            }
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SideDishManager.identifier), object: self)
         }
-    }
-    
-    func getSoupDishes() {
-        
-    }
-    
-    func getSideDishes() {
-        
     }
 }

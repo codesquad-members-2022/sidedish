@@ -9,9 +9,9 @@ import Foundation
 
 final class JSONConverter {
     
-    static func decodeJsonArray<T: Codable>(data: Data) -> [T]? { // JSON -> object
+    static func decodeJsonObject<T: Codable>(data: Data) -> T? { // JSON -> object
         do {
-            let result = try JSONDecoder().decode([T].self, from: data)
+            let result = try JSONDecoder().decode(T.self, from: data)
             return result
         } catch { // 디코딩 실패시 에러를 던져줌 - error
             guard let error = error as? DecodingError else { return nil }
