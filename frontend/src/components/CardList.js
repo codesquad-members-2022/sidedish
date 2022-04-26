@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { ProductCard } from "./ProductCard";
 import { thumbnailSize } from "../convention";
+import { width_height_bypx } from "../styles/global";
 
 const ShowingArea = styled.div`
   margin-top: 34px;
@@ -8,22 +9,19 @@ const ShowingArea = styled.div`
   ${(props) =>
     props.size === "large" &&
     css`
-      width: 1281px;
-      height: 565px;
+      ${width_height_bypx(1281, 565)}
     `}
 
   ${(props) =>
     props.size === "medium" &&
     css`
-      width: 1280px;
-      height: 479px;
+      ${width_height_bypx(1280, 479)}
     `}
 
   ${(props) =>
     props.size === "small" &&
     css`
-      width: 864px;
-      height: 226px;
+      ${width_height_bypx(864, 226)}
     `}
 `;
 
