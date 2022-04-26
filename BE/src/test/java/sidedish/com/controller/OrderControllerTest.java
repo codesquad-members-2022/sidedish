@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import sidedish.com.controller.model.OrderSaveResponse;
 import sidedish.com.service.OrderService;
 
 @WebMvcTest(OrderController.class)
@@ -30,7 +31,7 @@ class OrderControllerTest {
 	@Test
 	void 만약_특정_상품_id로_주문_요청을_하는_경우_재고가_남아있다면_주문_성공() throws Exception {
 		given(orderService.save(1L, 3))
-			.willReturn(1L);
+			.willReturn(new OrderSaveResponse(1L));
 
 		ObjectMapper objectMapper = new ObjectMapper();
 

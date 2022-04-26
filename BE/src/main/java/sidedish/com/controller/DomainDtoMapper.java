@@ -3,9 +3,11 @@ package sidedish.com.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
+import sidedish.com.controller.model.OrderSaveResponse;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.controller.model.ProductBasicTypeResponse;
 import sidedish.com.domain.Product;
+import sidedish.com.repository.entity.OrderEntity;
 
 @Component
 public class DomainDtoMapper {
@@ -45,4 +47,9 @@ public class DomainDtoMapper {
 			product.getDeliveryPolicy().getFreeDeliveryOverAmount()
 			);
 	}
+
+	public OrderSaveResponse toOrderSaveResponseFromOrder(OrderEntity orderEntity) {
+		return new OrderSaveResponse(orderEntity.getId());
+	}
+
 }
