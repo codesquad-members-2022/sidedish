@@ -3,7 +3,6 @@ package com.example.todo.sidedish.ui.menudetail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todo.sidedish.common.GlideApp
 import com.example.todo.sidedish.databinding.ItemViepagerBinding
 
 class ViewPagerAdapter() :RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>(){
@@ -12,7 +11,7 @@ class ViewPagerAdapter() :RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>(){
     class ViewHolder(private val binding: ItemViepagerBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(imageUri:String){
-            binding.thumb= imageUri
+            binding.thumbnail= imageUri
         }
     }
 

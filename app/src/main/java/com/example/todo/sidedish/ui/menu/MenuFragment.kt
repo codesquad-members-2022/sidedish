@@ -1,17 +1,16 @@
 package com.example.todo.sidedish.ui.menu
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.todo.sidedish.R
 import com.example.todo.sidedish.databinding.FragmentMenuBinding
-import com.example.todo.sidedish.ui.common.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,12 +31,13 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigator = Navigation.findNavController(view)
-        setNavigation()
         setMenuAdapter()
     }
 
     private fun setMenuAdapter(){
-        val adapter = MenuAdapter(viewModel)
+        val adapter = MenuAdapter { hash, title, badge ->
+            openMenuDetail(hash,title,badge)
+        }
         binding.lifecycleOwner = viewLifecycleOwner
         binding.rvMenu.adapter = adapter
         viewModel.menus.observe(viewLifecycleOwner) { menus ->
@@ -45,14 +45,7 @@ class MenuFragment : Fragment() {
         }
     }
 
-    private fun setNavigation() {
-        viewModel.openMenuEvent.observe(viewLifecycleOwner, EventObserver {
-            openMenuDetail(it.title, it.detailHash, it.badge)
-        })
-
-    }
-
-    private fun openMenuDetail(title: String, detailHash: String, badge: List<String>?) {
+    private fun openMenuDetail(detailHash: String, title: String, badge: List<String>?) {
         val bundle = bundleOf("KEY_HASH" to detailHash, "KEY_TITLE" to title, "KEY_BADGE" to badge)
         navigator.navigate(R.id.action_menuFragment_to_menuDetailFragment, bundle)
     }
