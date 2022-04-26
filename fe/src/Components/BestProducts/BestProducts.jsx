@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
+import { fetchData } from '@/Utils';
 
 import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Components/Badge';
 import { ProductCard } from '@/Components/ProductCard';
-import { fetchData } from '@/Utils/Utils';
 
 const BestProductWrapper = styled.div`
   display: flex;
