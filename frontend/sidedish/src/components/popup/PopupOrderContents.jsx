@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import Label from "../core/Label";
-import { LABEL_ATTRIBUTES } from "../consts/constants";
-import DivisionLine from "../core/Line";
+import Label from "../../core/Label";
+import { LABEL_ATTRIBUTES } from "../../consts/constants";
+import DivisionLine from "../../core/Line";
 import OrderDetail from "./OrderDetail";
 import OrderNumber from "./OrderNumber";
 import OrderBtn from "./OrderBtn";
-import Blank from "../core/Blank";
-import { makePriceFormat } from "../util/makePriceFormat";
+import Blank from "../../core/Blank";
+import { makePriceFormat } from "../../util/makePriceFormat";
 
 const PopupOrderContents = ({ title, normalPrice, salePrice, badge }) => {
   const labelList = badge.map((string, ind) => {

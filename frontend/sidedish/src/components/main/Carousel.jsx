@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import LeftArrowBtn from "../core/LeftArrowBtn";
-import RightArrowBtn from "../core/RightArrowBtn";
-import ItemCards from "./ItemCards";
+import LeftArrowBtn from "../../core/LeftArrowBtn";
+import RightArrowBtn from "../../core/RightArrowBtn";
+import ItemCards from "../itemCard/ItemCards";
 
 const Carousel = ({ cardClickState, setCardClickState, carouselCards, cardLength, cardCount, cardMargin }) => {
   const [positionState, setPositionState] = useState(-cardMargin);

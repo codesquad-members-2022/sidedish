@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { makePriceFormat } from "../util/makePriceFormat";
+import { makePriceFormat } from "../../util/makePriceFormat";
 
 const RelatedContents = ({ relatedListState, setRelatedListState }) => {
   const list = relatedListState.data.map(({ image, title, s_price, n_price }, ind) => {

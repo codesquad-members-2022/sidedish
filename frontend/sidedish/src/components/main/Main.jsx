@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
-import ItemCards from "./ItemCards";
-import Label from "../core/Label";
-import mockData from "../mockData";
-import carouselMockData from "../carouselMockData.json";
-import { LABEL_ATTRIBUTES, CARD_LENGHTHS, NUM_OF_CARD_ON_DISPLAY, CARD_MARGIN, CARD_CONTAINER_PADDING } from "../consts/constants";
+import ItemCards from "../itemCard/ItemCards";
+import Label from "../../core/Label";
+import mockData from "../../mockData.json";
+import carouselMockData from "../../carouselMockData.json";
+import { LABEL_ATTRIBUTES, CARD_LENGHTHS, NUM_OF_CARD_ON_DISPLAY, CARD_MARGIN, CARD_CONTAINER_PADDING } from "../../consts/constants";
 import Carousel from "./Carousel";
-import DivisionLine from "../core/Line";
-import Popup from "./Popup";
-import relatedMockData from "../relatedListMockData.json";
+import DivisionLine from "../../core/Line";
+import Popup from "../popup/Popup";
+import relatedMockData from "../../relatedListMockData.json";
 
 const Main = () => {
   const lnb = mockData.lnb;
@@ -16,6 +16,7 @@ const Main = () => {
   const [dataState, setDataState] = useState(mockData.data);
   // const [carouselState, setCarouselDataState] = useState(carouselMockData);
   const [relatedListState, setRelatedListState] = useState(relatedMockData);
+  const [allCategoryVisible, setAllCategoryVisible] = useState(false);
 
   const handleLnbState = (event) => {
     setLnbState((lnbState) => (lnbState = event.target.textContent));
@@ -28,6 +29,10 @@ const Main = () => {
     } else {
       setDataState((dataState) => (dataState = mockData.data4));
     }
+  };
+
+  const handleAllCategoryVisible = () => {
+    setAllCategoryVisible(true);
   };
 
   const mainLnb = (
@@ -64,7 +69,7 @@ const Main = () => {
           cardContainerPadding={CARD_CONTAINER_PADDING}
         />
         <DivisionLine height="1px" color="#EBEBEB" />
-        <CarouselContainer isVisible={true}>
+        <CarouselContainer allCategoryVisible={true}>
           <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
@@ -75,7 +80,7 @@ const Main = () => {
             cardMargin={CARD_MARGIN}
           />
         </CarouselContainer>
-        <CarouselContainer isVisible={true}>
+        <CarouselContainer allCategoryVisible={allCategoryVisible}>
           <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
@@ -86,7 +91,7 @@ const Main = () => {
             cardMargin={CARD_MARGIN}
           />
         </CarouselContainer>
-        <CarouselContainer isVisible={false}>
+        <CarouselContainer allCategoryVisible={allCategoryVisible}>
           <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
@@ -97,6 +102,9 @@ const Main = () => {
             cardMargin={CARD_MARGIN}
           />
         </CarouselContainer>
+        <OpenAllCategoryButton openAllCategoryButtonVisible={!allCategoryVisible} onClick={handleAllCategoryVisible}>
+          모든 카테고리 보기
+        </OpenAllCategoryButton>
         <Popup
           cardClickState={cardClickState}
           setCardClickState={setCardClickState}
@@ -149,7 +157,7 @@ const MainLnb = styled.li`
 `;
 
 const CarouselContainer = styled.div`
-  display: ${(props) => (props.isVisible ? "block" : "none")};
+  display: ${(props) => (props.allCategoryVisible ? "block" : "none")};
 `;
 
 const CarouselTitle = styled.h1`
@@ -159,6 +167,19 @@ const CarouselTitle = styled.h1`
   color: #333;
   margin-left: 80px;
   padding: 56px 0 40px 0;
+`;
+
+const OpenAllCategoryButton = styled.div`
+  font-size: 20px;
+  padding: 16px 24px;
+  line-height: 30px;
+  text-align: center;
+  width: 155px;
+  margin: 55px auto;
+  color: #3f3f3f;
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+  display: ${(props) => (props.openAllCategoryButtonVisible ? "block" : "none")};
 `;
 
 export default Main;

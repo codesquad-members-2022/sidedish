@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { LABEL_ATTRIBUTES } from "../consts/constants";
-import Label from "../core/Label";
-import { makePriceFormat } from "../util/makePriceFormat";
+import { LABEL_ATTRIBUTES } from "../../consts/constants";
+import Label from "../../core/Label";
+import { makePriceFormat } from "../../util/makePriceFormat";
 
 const ItemCard = ({ cardClickState, setCardClickState, image, title, description, n_price, s_price, badge, cardLength, cardMargin }) => {
   const labelList = badge.map((string, ind) => {

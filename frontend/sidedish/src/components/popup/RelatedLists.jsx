@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Blank from "../core/Blank";
-import LeftArrowBtn from "../core/LeftArrowBtn";
-import RightArrowBtn from "../core/RightArrowBtn";
+import Blank from "../../core/Blank";
+import LeftArrowBtn from "../../core/LeftArrowBtn";
+import RightArrowBtn from "../../core/RightArrowBtn";
 import RelatedContents from "./RelatedContents";
 
 const RelatedList = ({ relatedListState, setRelatedListState }) => {

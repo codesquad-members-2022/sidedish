@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { makePriceFormat } from "../util/makePriceFormat";
+import { makePriceFormat } from "../../util/makePriceFormat";
 
 const DELIVERY_FEE_INDEX = 0;
 const DELIVERY_FEE_FREE_MIN = 1;

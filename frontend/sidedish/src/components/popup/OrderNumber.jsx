@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import MinusBtn from "../core/MinusBtn";
-import PlusBtn from "../core/PlusBtn";
-import { makePriceFormat } from "../util/makePriceFormat";
+import MinusBtn from "../../core/MinusBtn";
+import PlusBtn from "../../core/PlusBtn";
+import { makePriceFormat } from "../../util/makePriceFormat";
 
 const OrderNumber = () => {
   const price = 12640;
