@@ -131,6 +131,33 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		6C4CEF682817EC2500AFB684 /* BriefView */ = {
+			isa = PBXGroup;
+			children = (
+				6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */,
+			);
+			path = BriefView;
+			sourceTree = "<group>";
+		};
+		6C4CEF692817EC4D00AFB684 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */,
+				6C162B7A280ED461003399BC /* DeliverySectionView.swift */,
+				6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */,
+				6C4CEF512815597900AFB684 /* OrderSectionView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		6C4CEF6A2817ECA400AFB684 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
 		6CEE07F5280D080000D2D401 = {
 			isa = PBXGroup;
 			children = (
@@ -199,14 +226,11 @@
 		F57135BC280E4A8D0040C5A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */,
-				6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */,
-				6C162B7A280ED461003399BC /* DeliverySectionView.swift */,
-				6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */,
-				6C4CEF512815597900AFB684 /* OrderSectionView.swift */,
-				6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */,
 				6C4CEF622817E2FB00AFB684 /* DetailBanchanView.swift */,
-				6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */,
+				6C4CEF692817EC4D00AFB684 /* DetailView */,
+				F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */,
+				6C4CEF682817EC2500AFB684 /* BriefView */,
+				6C4CEF6A2817ECA400AFB684 /* CommonView */,
 			);
 			path = View;
 			sourceTree = "<group>";
