@@ -38,12 +38,18 @@ class MainViewController: UIViewController {
         attritbute()
         layout()
 
-        model.action.loadData.send(Sidedish.Menu.allCases)
+        model.action.viewDidLoad.send()
     }
     
     private func bind() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        model.state.userData
+            .receive(on: DispatchQueue.main)
+            .sink { user in
+                self.title = "\(user.name)님 안녕하세요"
+            }.store(in: &cancellables)
         
         model.state.loadedData
             .receive(on: DispatchQueue.main)

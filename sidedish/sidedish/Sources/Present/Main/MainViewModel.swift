@@ -9,10 +9,11 @@ import Combine
 import Foundation
 
 struct MainViewModelAction {
-    let loadData = PassthroughSubject<[Sidedish.Menu], Never>()
+    let viewDidLoad = PassthroughSubject<Void, Never>()
 }
 
 struct MainViewModelState {
+    let userData = PassthroughSubject<User, Never>()
     let loadedData = PassthroughSubject<Sidedish.Menu, Never>()
     let loadedImage = PassthroughSubject<IndexPath, Never>()
 }
@@ -52,8 +53,13 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     }
     
     init() {
-        let request = action.loadData
-            .map { $0.publisher.map { self.sidedishRepository.loadMenu($0) } }
+        action.viewDidLoad
+            .compactMap { Container.shared.userStore.user }
+            .sink(receiveValue: state.userData.send(_:))
+            .store(in: &cancellables)
+        
+        let request = action.viewDidLoad
+            .map { Sidedish.Menu.allCases.publisher.map { self.sidedishRepository.loadMenu($0) } }
             .switchToLatest()
             .share()
         
