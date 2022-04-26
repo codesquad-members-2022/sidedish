@@ -1,0 +1,19 @@
+.sideDishContents{
+  margin: 0 auto;
+  width: 1280px;
+}
+
+.sideDishContents button{
+  position: absolute;
+  margin-top: 200px;
+  background-color: transparent;
+  border: none;
+}
+
+.prevButton{
+  left:36px;
+}
+
+.nextButton{
+  right:36px;
+}

@@ -1,13 +1,29 @@
 .goodsBlock {
      margin-right: 24px;
  }
+
+.thumbContainer{
+    position: relative;
+}
+
+.thumbContainer:hover{
+    cursor: pointer;
+    filter: brightness(90%);
+}
  
-.goodsThumb{
+.thumb{
     width: 411px;
     height: 411px;
 }
 
-.goodsPrice {
+.deliveryIcon{
+    z-index: 1;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.price {
     display: flex;
 }
 
@@ -15,22 +31,22 @@
     margin-right: 8px;
 }
 
-.goodsInfo {
+.info {
     margin: 16px 0px;
 }
 
-.goodsName, .goodsDescription, .goodsPrice {
+.name, .description, .price {
     margin: 8px 0px;
 }
 
-.goodsName {
+.name {
     font-weight: 500;
     font-size: 16px;
     line-height: 26px; 
     letter-spacing: -0.008em;
 }
 
-.goodsDescription {
+.description {
     font-weight: 400;
     font-size: 14px;
     color: #777;
