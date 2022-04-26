@@ -8,54 +8,44 @@
 import Foundation
 import Alamofire
 
+
 struct NetworkManager {
 
-    func fetchProducts(of type: ProductType, completion: @escaping (Result<[Product], NetworkError>) -> Void) {
+    func fetch<T: EndPoint & JSONEndPoint>(_ endpoint: T, completion: @escaping (T.DecodingType?) -> Void) {
+        guard let url = endpoint.url else {
+            SystemLog.fault(NetworkError.wrongEndPoint.localizedDescription)
+            return completion(nil)
+        }
 
-        do {
-            let url = try makeCategoryURL(of: type)
-
-            AF.request(url).validate().responseDecodable(of: Response.self) { AFResponse in
-                guard let products = AFResponse.value?.body else {
-                    return completion(.failure(.noData))
+        AF.request(url)
+            .validate()
+            .responseDecodable(of: T.DecodingType.self) { response in
+                switch response.result {
+                case .success(let data):
+                    return completion(data)
+                case .failure(let error):
+                    SystemLog.fault(error.localizedDescription)
+                    return completion(nil)
                 }
-                completion(.success(products))
             }
-        } catch {
-            SystemLog.fault(error.localizedDescription)
-        }
     }
 
-    private func makeCategoryURL(of type: ProductType) throws -> URL {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.codesquad.kr"
-        components.path = "/onban/\(type)"
-
-        guard let url = components.url else {
-            throw NetworkError.wrongEndPoint
+    func fetch<T: EndPoint>(_ endpoint: T, completion: @escaping (Data?) -> Void) {
+        guard let url = endpoint.url else {
+            SystemLog.fault(NetworkError.wrongEndPoint.localizedDescription)
+            return completion(nil)
         }
 
-        return url
-    }
-
-    func fetchImageData(url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-
-        guard let url = changeSchemeToHTTPS(url) else { return }
-
-        AF.request(url).validate().responseData { response in
-            guard let data = response.data else {
-                return completion(.failure(.noData))
+        AF.request(url)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    return completion(data)
+                case .failure(let error):
+                    SystemLog.fault(error.localizedDescription)
+                    return completion(nil)
+                }
             }
-            completion(.success(data))
-        }
-    }
-
-    private func changeSchemeToHTTPS(_ url: URL) -> URL? {
-        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
-
-        components.scheme = "https"
-
-        return components.url
     }
 }

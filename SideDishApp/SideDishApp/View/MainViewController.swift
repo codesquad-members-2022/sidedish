@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
     private func setCollectionViewLayout() {
         mainCollectionView.collectionViewLayout = CollectionViewLayoutFactory.createMainLayout()
     }
-    
+
     private func configureCollectionView() {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
@@ -70,8 +70,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
-        guard let productVM = viewModel[indexPath] else {return UICollectionViewCell()}
+
+        guard let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell, let productVM = viewModel[indexPath] else {return UICollectionViewCell()}
         viewModel.fetchImage(from: productVM.imageURL) { nsData in
             guard let nsData = nsData else { return }
             DispatchQueue.main.async {
@@ -85,7 +85,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     // MARK: Section Header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        let header = mainCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier, for: indexPath) as! HeaderView
+        guard let header = mainCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier, for: indexPath) as? HeaderView else {
+            return HeaderView()
+        }
 
         let productType = ProductType.allCases[indexPath.section]
         header.setTitle(text: productType.title)
