@@ -1,4 +1,4 @@
-package com.example.be.business.event;
+package com.example.be.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -10,6 +10,7 @@ import com.example.be.common.token.github.GithubUser;
 import com.example.be.common.token.jwt.JwtToken;
 import com.example.be.common.token.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@EnableJdbcRepositories
 public class OauthService {
 
     private final InMemoryClientRegisterrRepository inMemoryClientRegisterRepository;
@@ -49,7 +51,7 @@ public class OauthService {
         Map<String, String> userDetail = githubTokenUtils.getUserDetail(response.getBody());
         GithubUser githubUser = GithubUser.from(userDetail);
 
-        Optional<User> findUser = userRepository.findByGithubId(githubUser.getEmail());
+//        Optional<User> findUser = userRepository.findByGithubId(githubUser.getEmail());
         return jwtTokenProvider.createJwtToken(githubUser.getEmail());
     }
 }

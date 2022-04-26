@@ -1,6 +1,7 @@
-package com.example.be.business.event;
+package com.example.be.business.event.common;
 
 import org.springframework.data.annotation.Transient;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;

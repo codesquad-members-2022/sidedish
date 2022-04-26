@@ -1,4 +1,4 @@
-package com.example.be.business.dish.domain;
+package com.example.be.common.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

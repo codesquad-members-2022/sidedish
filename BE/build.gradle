@@ -71,10 +71,13 @@ dependencies {
     // Spring Rest Docs
     asciidoctorExtentions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.199'
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.rest-assured:rest-assured'
+    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.16'
+
 }
 
 tasks.named('test') {

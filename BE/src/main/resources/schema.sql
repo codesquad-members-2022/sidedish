@@ -9,6 +9,7 @@ CREATE TABLE dish
     delivery_price_option VARCHAR(255) NULL COMMENT '배송 타입',
     thumbnail             VARCHAR(255) NULL COMMENT '상품의 썸네일 이미지 url',
     category_id           BIGINT       NOT NULL COMMENT 'category 테이블의 외래키',
+    count                 INT,
     dish_status           VARCHAR(255) NULL COMMENT '음식 품절 여부'
 );
 
@@ -16,7 +17,8 @@ DROP TABLE IF EXISTS images;
 CREATE TABLE images
 (
     image_id   BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    image_path VARCHAR(500)
+    image_path VARCHAR(500),
+    dish_id    BIGINT NOT NULL
 
 );
 

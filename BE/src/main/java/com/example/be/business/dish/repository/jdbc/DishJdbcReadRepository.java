@@ -29,11 +29,11 @@ public class DishJdbcReadRepository {
                     rs.getLong("dish_id"),
                     rs.getString("name"),
                     rs.getString("description"),
-                    rs.getBigDecimal("normal_price"),
+                    rs.getBigDecimal("price"),
                     Badge.valueOf(rs.getString("badge")),
-                    DeliveryPriceOption.valueOf(rs.getString("delivery_type")),
+                    DeliveryPriceOption.valueOf(rs.getString("delivery_price_option")),
                     rs.getString("thumbnail"),
                     DishStatus.valueOf(rs.getString("dish_status")),
-                    rs.getString("title")
+                    rs.getString("description")
             );
 }
