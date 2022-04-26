@@ -51,11 +51,11 @@ private extension DetailBanchanView {
     func layoutInnerView() {
         self.addSubview(innerView)
         
-        self.innerView.addArrangedSubview(banchanImageSection)
-        self.innerView.addArrangedSubview(banchanBriefSection)
-        self.innerView.addArrangedSubview(deliverySection)
-        self.innerView.addArrangedSubview(counterSection)
-        self.innerView.addArrangedSubview(orderSection)
+        self.innerView.addBorder(with: banchanImageSection)
+        self.innerView.addBorder(with: banchanBriefSection)
+        self.innerView.addBorder(with: deliverySection)
+        self.innerView.addBorder(with: counterSection)
+        self.innerView.addBorder(with: orderSection)
         
         NSLayoutConstraint.activate([
             self.innerView.topAnchor.constraint(equalTo: self.contentLayoutGuide.topAnchor),

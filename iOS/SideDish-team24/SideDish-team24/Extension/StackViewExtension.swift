@@ -11,4 +11,9 @@ extension UIStackView {
         }
         return stackView
     }
+    
+    func addBorder(with view: UIView) {
+        self.addArrangedSubview(view)
+        self.addArrangedSubview(DetailViewBorder())
+    }
 }
