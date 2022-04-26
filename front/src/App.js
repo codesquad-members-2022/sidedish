@@ -162,10 +162,10 @@ function App() {
   return (
     <div className="App">
       <GlobalStyles></GlobalStyles>
-      {modal.show && <Modal dishes={dishes} hideModal={hideModal} cardId={modal.cardId}></Modal>}
+      {modal.show && <Modal dishes={dishes} cardId={modal.cardId} hideModal={hideModal} showModal={showModal}></Modal>}
       <Header categories={categories}></Header>
-      <Event></Event>
-      <Main categories={MainCategories}></Main>
+      <Event showModal={showModal}></Event>
+      <Main categories={MainCategories} showModal={showModal}></Main>
       {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
     </div>
   );

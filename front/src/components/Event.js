@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
-function Event({ title, events }) {
+function Event({ title, events, showModal }) {
   const [selectedTabIndex, setSelectedTapIndex] = useState(0);
 
   function selectTab(index) {
@@ -32,7 +32,7 @@ function Event({ title, events }) {
       </nav>
       <CardList>
         {events[selectedTabIndex].items.map((item, index) => (
-          <Card key={index} size={'large'} item={item}></Card>
+          <Card key={index} size={'large'} item={item} showModal={showModal}></Card>
         ))}
       </CardList>
     </StyledEvent>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CategoryMenu from './CategoryMenu';
 import styled from 'styled-components';
 
-function Main({ categories }) {
+function Main({ categories, showModal }) {
   const [isShowAllCategories, setIsShowAllCategories] = useState(false);
 
   function showAllCategories() {
@@ -11,10 +11,10 @@ function Main({ categories }) {
   return (
     <MainWrap>
       {isShowAllCategories ? (
-        categories.map(({ name, id }) => <CategoryMenu key={id} name={name}></CategoryMenu>)
+        categories.map(({ name, id }) => <CategoryMenu key={id} name={name} showModal={showModal}></CategoryMenu>)
       ) : (
         <>
-          <CategoryMenu key={categories[0].id} name={categories[0].name}></CategoryMenu>
+          <CategoryMenu key={categories[0].id} name={categories[0].name} showModal={showModal}></CategoryMenu>
           <CategoryShowButton onClick={showAllCategories}>모든 카테고리 보기</CategoryShowButton>
         </>
       )}

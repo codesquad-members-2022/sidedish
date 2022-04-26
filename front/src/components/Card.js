@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function Card({ size, item }) {
+function Card({ size, item, showModal }) {
   const { id, image, title, contents, origin_price, discount_price, early_delivery, badge_title } = item;
   const cardSizes = {
     large: { width: 411, height: 565 },
@@ -21,9 +21,8 @@ function Card({ size, item }) {
   function hideDelevery() {
     setIsHover(false);
   }
-
   return (
-    <StyledCard key={id} cardSize={cardSizes[size]}>
+    <StyledCard key={id} cardSize={cardSizes[size]} onClick={showModal}>
       <Thumbnail height={cardSizes[size].width} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
         <Image src={image}></Image>
         {size !== 'small' && isHover && (

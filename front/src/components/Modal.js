@@ -40,7 +40,7 @@ const PopupCloseButton = styled.button`
   color: #777777;
 `;
 
-function Modal({ dishes, hideModal }) {
+function Modal({ dishes, hideModal, showModal }) {
   const relatedDishes = dishes.related_dishes;
   function closeModal(e) {
     if (e.target !== e.currentTarget) {
@@ -55,7 +55,7 @@ function Modal({ dishes, hideModal }) {
           <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
         </PopupCloseButtonWrap>
         <ProductDetail dishes={dishes}></ProductDetail>
-        <RelatedProduct dishes={relatedDishes}></RelatedProduct>
+        <RelatedProduct dishes={relatedDishes} showModal={showModal}></RelatedProduct>
       </PopupBox>
     </ModalWrap>
   );

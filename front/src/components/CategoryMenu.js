@@ -4,7 +4,7 @@ import Card from './Card';
 import left from '../images/left.png';
 import right from '../images/right.png';
 
-function CategoryMenu({ name, items }) {
+function CategoryMenu({ name, items, showModal }) {
   const [startCardIndex, setStartCardIndex] = useState(0);
   const NUMBER_OF_CARDS = 4;
   function moveCardsLeft() {
@@ -37,7 +37,7 @@ function CategoryMenu({ name, items }) {
           {items
             .filter((_, index) => index >= startCardIndex && index <= startCardIndex + (NUMBER_OF_CARDS - 1))
             .map(item => (
-              <Card size={'medium'} item={item}></Card>
+              <Card size={'medium'} item={item} showModal={showModal}></Card>
             ))}
         </CardList>
         <ButtonWrapper>
