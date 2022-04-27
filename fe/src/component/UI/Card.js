@@ -9,14 +9,30 @@ const CardImg = styled.img`
           width: 302px;
           height: 302px;
         `
+      : size === "xSmall"
+      ? css`
+          width: 160px;
+          height: 160px;
+          margin-bottom: 10px;
+          margin-right: 6px;
+        `
       : css`
-          wdith: 411px;
+          width: 411px;
           height: 411px;
         `}
 `;
 
 const CardTitle = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.medium};
+  ${({ size }) =>
+    size === "xSmall"
+      ? css`
+          font-size: ${({ theme }) => theme.fontSize.small};
+          margin-bottom: 10px;
+        `
+      : css`
+          font-size: ${({ theme }) => theme.fontSize.medium};
+        `}
+
   margin-top: 5px;
 `;
 
@@ -71,8 +87,14 @@ const CardWrapper = styled.div`
 const Card = (props) => {
   return (
     <CardWrapper>
-      <CardImg src={props.image} alt={props.alt} size={props.size} />
-      <CardTitle>{props.title}</CardTitle>
+      <CardImg
+        src={props.image}
+        alt={props.alt}
+        size={props.size}
+        id={props.id}
+        onClick={props.onSaveClickedId}
+      />
+      <CardTitle size={props.size}>{props.title}</CardTitle>
       <CardDesc>{props.description}</CardDesc>
       <span>{props.s_price}</span>
       <CardOriginalPrice>{props.n_price}</CardOriginalPrice>

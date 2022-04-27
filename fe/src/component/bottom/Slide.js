@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "../UI/Card";
-import SlideIcon from "../icons/SlideIcon";
+import { SlideIcon } from "../icons/SlideIcon";
 import constansts from "../../constants/constansts";
 
 const SlideWrapper = styled.div`
   position: relative;
   height: 460px;
   display: none;
-
   &.active {
     display: block;
   }
@@ -21,7 +20,7 @@ const SlideTitle = styled.h5`
   margin: 40px 0 20px 40px;
 `;
 
-const SliceCardWrapper = styled.div`
+const SlideCardWrapper = styled.div`
   position: absolute;
   width: 1280px;
   height: 450px;
@@ -50,19 +49,24 @@ const Slide = ({ cardData, alwaysDisplayed, isDisplayed }) => {
     );
   };
 
+  const click = (event, props) => {
+    console.log(event.target.id);
+  };
+
   return (
     <SlideWrapper
       className={isDisplayed ? "active" : ""}
       style={{ display: alwaysDisplayed && "block" }}
     >
       <SlideTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SlideTitle>
-      <SliceCardWrapper>
+      <SlideCardWrapper>
         <SlideCardsList
           currentTranslateX={cardListTranslateX.toString() + "px"}
         >
           {cardData.body.map((v) => {
             return (
               <Card
+                id={v.detail_hash}
                 size="small"
                 key={v.detail_hash}
                 image={v.image}
@@ -73,12 +77,14 @@ const Slide = ({ cardData, alwaysDisplayed, isDisplayed }) => {
                 n_price={v.n_price}
                 badge={v.badge}
                 delivery={v.delivery_type}
+                onSaveClickedId={click}
               />
             );
           })}
         </SlideCardsList>
-      </SliceCardWrapper>
+      </SlideCardWrapper>
       <SlideIcon
+        place="mainSlide"
         onClickRightBtn={onClickRightHandler}
         onClickLeftBtn={onClickLeftHandler}
         current={cardListTranslateX}

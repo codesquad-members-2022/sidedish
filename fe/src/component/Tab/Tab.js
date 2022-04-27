@@ -52,6 +52,7 @@ const Tab = () => {
 
       <CardsWrapper>
         <Card
+          id={cards.detail_hash}
           key={cards.detail_hash}
           image={cards.image}
           alt={cards.alt}
