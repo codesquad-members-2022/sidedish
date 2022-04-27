@@ -3,6 +3,7 @@ package kr.codesquad.sidedish.dto;
 import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.domain.Event;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,5 +40,9 @@ public class EventResponse {
 
     public List<DishSimpleResponse> getDishes() {
         return dishes;
+    }
+
+    public void shuffleDishes() {
+        Collections.shuffle(dishes);
     }
 }
