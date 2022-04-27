@@ -36,6 +36,20 @@ class ItemRepositoryTest {
     void findBySectionNameTest() {
         List<Item> findItems = itemRepository.findByItemSectionName("main");
         log.info("findItems: {}", findItems);
+        assertThat(findItems.size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("updateStock() 메서드를 호출하면 재고의 수량이 갱신되어야 한다.")
+    void updateStockTest() {
+        Item beforeItem = itemRepository.findById(1L).get();
+        log.info("BeforeItemStock = {}", beforeItem.getStock());
+        beforeItem.reduceStock(beforeItem.getStock());
+
+        itemRepository.updateStock(beforeItem);
+        Item afterItem = itemRepository.findById(beforeItem.getItemId()).get();
+        log.info("AfterItemStock = {}", afterItem.getStock());
+        assertThat(afterItem.getStock()).isEqualTo(0);
     }
 
 }
