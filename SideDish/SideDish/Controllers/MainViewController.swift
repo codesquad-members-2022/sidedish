@@ -1,8 +1,10 @@
 import UIKit
+import OSLog
 
 class MainViewController: UIViewController {
     
     private var ordering: Ordering?
+    private var logger: Logger?
     
     private lazy var foodCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -20,6 +22,7 @@ class MainViewController: UIViewController {
         super.init(coder: coder)
         let repository = Repository()
         ordering = Ordering(repository: repository)
+        logger = Logger()
     }
     
     override func viewDidLoad() {
@@ -43,6 +46,7 @@ class MainViewController: UIViewController {
             foodCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -61,10 +65,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
               let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
         let index = indexPath.row
+        
         if let food = ordering[index, category] {
             cell.receiveFood(food: food)
-            ordering.requesetFoodImage(imageUrl: food.imageUrl) { data in
-                cell.updateFoodImage(imageData: data)
+            ordering.requesetFoodImage(imageUrl: food.imageUrl){ result in
+                switch result{
+                case.success(let data):
+                    cell.updateFoodImage(imageData: data)
+                case .failure(let error):
+                    self.logger?.error("\(error.localizedDescription)")
+                }
             }
         }
         return cell

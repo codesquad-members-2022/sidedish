@@ -33,9 +33,9 @@ final class Repository: RepositoryApplicable {
         return data
     }
     
-    func requestData(completionHandler: @escaping (Data)->Void, method: HttpMethod, contentType: ContentType, url: EndPoint) {
-        if let imageData = dataCache.getCacheData(key: url.urlString) {
-            completionHandler(imageData)
+    func requestData(method: HttpMethod, contentType: ContentType, url: EndPoint, completionHandler: @escaping (Result<Data,Error>)->Void){
+        if let imageData = dataCache.getCacheData(key: url.urlString){
+            completionHandler(.success(imageData))
         }else{
             networkHandler.request(url: url, method: method, contentType: contentType, completionHandler: completionHandler)
         }

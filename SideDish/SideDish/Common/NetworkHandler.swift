@@ -37,7 +37,21 @@ enum HttpMethod {
     case post
 }
 
-struct NetworkHandler: NetworkHandlable {
+enum HttpError: Error, CustomStringConvertible{
+    case normalError(error: Error)
+    case unknownError
+    
+    var description: String{
+        switch self {
+        case .normalError(let error):
+            return error.localizedDescription
+        case .unknownError:
+            return "Unknown Error"
+        }
+    }
+}
+
+struct NetworkHandler: NetworkHandlable{
     
     private let logger: Logger
     weak var delegate: NetworkHandlerDelegate?
@@ -46,7 +60,7 @@ struct NetworkHandler: NetworkHandlable {
         logger = Logger()
     }
     
-    func request(url: EndPoint, method: HttpMethod, contentType: ContentType, completionHandler: @escaping (Data)->Void) {
+    func request(url: EndPoint, method: HttpMethod, contentType: ContentType, completionHandler: @escaping (Result<Data,Error>)->Void){
         AF.request(url.urlString,
                           method: HTTPMethod(rawValue: "\(method)"),
                           parameters: nil,
@@ -56,12 +70,12 @@ struct NetworkHandler: NetworkHandlable {
         .responseData{response in
             switch response.result {
             case .success(let data):
-                completionHandler(data)
+                completionHandler(.success(data))
                 DispatchQueue.global().async {
                     delegate?.cachingDataRequested(url:url, data: data)
                 }
             case .failure(let error):
-                logger.error("[Alamofire Response Error]\(error.localizedDescription)")
+                completionHandler(.failure(error))
             }
         }
     }
