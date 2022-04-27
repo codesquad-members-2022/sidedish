@@ -1,13 +1,14 @@
 import {SideDishContentsList} from 'components';
-import './SideDishContents.css';
+// import './SideDishContents.css';
+import {StyledSideDishContents} from './SideDishContents.styled';
 
 function SideDishContents() {
   return (
-    <div className="sideDishContents">
+    <StyledSideDishContents>
       <ul>
         <SideDishContentsList />
       </ul>
-    </div>
+    </StyledSideDishContents>
   );
 }
 
