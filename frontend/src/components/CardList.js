@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { ProductCard } from "./ProductCard";
-import { cardListArea, thumbnailSize } from "../convention";
+import { thumbnailSize, cardGapLength, cardListArea } from "../convention";
 import { width_height_bypx } from "../styles/global";
 import { useEffect, useRef } from "react";
 

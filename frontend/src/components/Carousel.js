@@ -2,15 +2,9 @@ import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { useFetch } from "../fetcher";
 import { CardList } from "./CardList";
-import { cardNumPerPage } from "../convention";
+import { cardNumPerPage, SIZES } from "../convention";
 import { LeftArrowIcon } from "../icons/LeftArrowIcon";
 import { RightArrowIcon } from "../icons/RightArrowIcon";
-import { HorizontalLine } from "./HorizontalLine";
-
-const CarouselWrapper = styled.div`
-  padding: 56px 80px;
-  position: relative;
-`;
 
 const CarouselTitle = styled.span`
   ${(props) =>
@@ -30,12 +24,19 @@ const CarouselTitle = styled.span`
 
 const CarouselButtonWrapper = styled.div`
   position: absolute;
-  top: 310px;
-  ${({ dir }) => (dir === "left" ? "left: 36px" : "right: 36px")}
-`;
+  ${({size, dir}) => 
+    size === SIZES.medium 
+    ? `
+      top: 310px;
+      ${(dir === "left" ? "left: 36px;" : "right: 36px;")}` 
+    : `
+      top: 51px;
+      ${(dir === "left" ? "right: 135px;" : "right: 57px;")}`
+    }
+  `;
 
-const CarouselButton = ({ dir, onBtnClick, isEndPage }) => (
-  <CarouselButtonWrapper dir={dir} onClick={onBtnClick}>
+const CarouselButton = ({ size, dir, onBtnClick, isEndPage }) => (
+  <CarouselButtonWrapper size={size} dir={dir} onClick={onBtnClick}>
     {dir === "left" ? (
       <LeftArrowIcon isEndPage={isEndPage} />
     ) : (
@@ -84,7 +85,6 @@ export const Carousel = ({ id, name, size }) => {
     <>
       {categoryData && (
         <CarouselWrapper>
-          <HorizontalLine position={0} color={"Grey4"} />
           <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
           <CardList
             products={categoryData?.products}

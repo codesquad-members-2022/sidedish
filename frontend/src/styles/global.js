@@ -151,7 +151,7 @@ const custom_font = (
   weight,
   height,
   spacing
-) => css`
+) => `
   font-family: ${family};
   font-size: ${size}px;
   font-style: normal;

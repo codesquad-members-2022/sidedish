@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { DiscountTag } from "./DiscountTag";
 import { useContext, useState } from "react";
-import { SIZES, thumbnailSize } from "../convention";
+import { SIZES, thumbnailSize, cardGapLength } from "../convention";
 import { ModalContext } from "../ModalReducer";
 import {
   custom_absolute,
@@ -12,7 +12,7 @@ import {
 import { HorizontalLine } from "./HorizontalLine";
 
 const CardWrapper = styled.div`
-  margin-right: 24px;
+  margin-right: ${({size}) => `${cardGapLength[size]}px`};
 `;
 
 const ProductImage = styled.div`
@@ -30,20 +30,15 @@ const ProductImage = styled.div`
 `;
 
 const ProductInfo = styled.div`
-  margin-top: 16px;
+  margin: ${({size}) => size === SIZES.small ? '8px' : '16px'} 0px;
 `;
 
 const ProductName = styled.div`
-  ${(props) =>
-    props.size === SIZES.small
-      ? `font-weight: 500;
-            line-height: 26px;
-        `
-      : `font-weight: 400;
-            line-height: 24px;
-        `}
+  ${({size}) =>
+    size === SIZES.small
+      ? `${custom_font("Noto Sans KR", 14, 400, 24, -0.008)}`
+      : `${custom_font("Noto Sans KR", 16, 500, 26, -0.008)}`}
 `;
-
 const ProductDescription = styled.div`
   font-weight: 400;
   font-size: 14px;
@@ -135,7 +130,7 @@ export const ProductCard = ({
         }}
       >
         <ProductImage hover={hover} src={primary_image} />
-        {hover && (
+        {hover && cardSize !== SIZES.small && (
           <HoverInfo
             early_morning_delivery={early_morning_delivery}
             nationwide_delivery={nationwide_delivery}
@@ -143,7 +138,7 @@ export const ProductCard = ({
         )}
       </ThumbnailWrapper>
 
-      <ProductInfo>
+      <ProductInfo size={cardSize}>
         <ProductName
           size={cardSize}
           onClick={(e) => {
@@ -157,8 +152,8 @@ export const ProductCard = ({
           <ProductDescription>{description}</ProductDescription>
         )}
         <ProductPriceWrapper>
-          <ProductFinalPrice>{final_price + "원"}</ProductFinalPrice>
-          <ProductPrice>{price + "원" || ""}</ProductPrice>
+          <ProductFinalPrice>{final_price.toLocaleString() + "원"}</ProductFinalPrice>
+          <ProductPrice>{price.toLocaleString() + "원" || ""}</ProductPrice>
         </ProductPriceWrapper>
       </ProductInfo>
       <DiscountTag discount={discount} />
