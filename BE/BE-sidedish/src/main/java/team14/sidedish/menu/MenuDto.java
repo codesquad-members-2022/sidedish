@@ -2,6 +2,7 @@ package team14.sidedish.menu;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.function.Function;
 
 import lombok.Builder;
 import lombok.Data;
@@ -43,67 +44,18 @@ public class MenuDto {
 		private final Long menuId;
 		private final String menuName;
 		private final String description;
-		private final BigDecimal originalPrice;
+		private final BigDecimal price;
 		private int discountedPrice;
-		private final String image;
+		private final List<String> image;
 		private List<String> event;
 
 		@Builder
-		public SubCategory(Long menuId, String menuName, String description, BigDecimal originalPrice, String image) {
+		public SubCategory(Long menuId, String menuName, String description, BigDecimal originalPrice, List<String> image) {
 			this.menuId = menuId;
 			this.menuName = menuName;
 			this.description = description;
-			this.originalPrice = originalPrice;
+			this.price = originalPrice;
 			this.image = image;
-		}
-
-		@Override
-		public void setDiscountedPrice(BigDecimal discountedPrice) {
-			this.discountedPrice = discountedPrice.intValue();
-		}
-
-		@Override
-		public BigDecimal getPrice() {
-			return this.originalPrice;
-		}
-	}
-
-	@Data
-	public static class DetailResponse implements MenuModel{
-		private final Long menuId;
-		private final String menuName;
-		private final String description;
-		private final BigDecimal originalPrice;
-		private int discountedPrice;
-		private final List<String> images;
-		private List<String> event;
-
-		private int savedCharge;
-		private final String deliveryInfo;
-		private final DeliveryCharge deliveryCharge;
-
-		public DetailResponse(Long menuId, String menuName, String description, BigDecimal originalPrice,
-			List<String> images) {
-			this.menuId = menuId;
-			this.menuName = menuName;
-			this.description = description;
-			this.originalPrice = originalPrice;
-			this.images = images;
-			this.deliveryInfo = OrderInfo.DELIVERY_INFO.getDescription();
-			this.deliveryCharge = new DeliveryCharge(
-				OrderInfo.getDeliveryCharge(),
-				OrderInfo.getDeliveryFreeCondition(),
-				OrderInfo.DELIVERY_CHARGE.getDescription());
-		}
-
-		@Override
-		public Long getMenuId() {
-			return this.menuId;
-		}
-
-		@Override
-		public BigDecimal getPrice() {
-			return this.originalPrice;
 		}
 
 		@Override
@@ -114,6 +66,48 @@ public class MenuDto {
 		@Override
 		public void setEvent(List<String> events) {
 			this.event = events;
+		}
+	}
+
+	@Data
+	public static class DetailResponse {
+		private SubCategory menu;
+
+		private final DeliveryInfo orderInfo;
+
+		private final CategoryResponse with;
+
+		public DetailResponse(
+			SubCategory menu,
+			boolean orderStatus,
+			CategoryResponse categoryResponse) {
+			this.menu = menu;
+			this.orderInfo = new DeliveryInfo(orderStatus);
+			this.with = categoryResponse;
+		}
+
+		public void setSavedCharge(int price) {
+			this.orderInfo.setSavedCharge(price);
+		}
+	}
+
+	@Data
+	@RequiredArgsConstructor
+	public static class DeliveryInfo {
+		private int savedCharge;
+		private final String deliveryInfo;
+		private final DeliveryCharge deliveryCharge;
+		private final String orderStatus;
+
+		public DeliveryInfo(boolean orderStatus) {
+			Function<Boolean, String> availableOrder = (status) -> status ? "sale" :"sold out";
+			DeliveryCharge deliveryCharge = new DeliveryCharge(
+				OrderInfo.getDeliveryCharge(),
+				OrderInfo.getDeliveryFreeCondition(),
+				OrderInfo.DELIVERY_CHARGE.getDescription());
+			this.deliveryInfo = OrderInfo.DELIVERY_INFO.getDescription();
+			this.deliveryCharge = deliveryCharge;
+			this.orderStatus = availableOrder.apply(orderStatus);
 		}
 
 		/**
