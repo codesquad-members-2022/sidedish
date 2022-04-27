@@ -5,18 +5,27 @@ import { ReactComponent as LoginImg } from "assets/man.svg";
 import { ReactComponent as CartImg } from "assets/cart.svg";
 
 export const Container = styled.header`
+  position: fixed;
   width: 100%;
-  height: ${({ isOpen }) => (isOpen ? `161px` : `83px`)};
+  background-color: ${({ theme: { color } }) => color.white};
+  height: 83px;
   transition: height 0.3s;
   border-bottom: 1px solid black;
   margin-bottom: 30px;
   z-index: 2;
+
+  &:hover {
+    height: 161px;
+
+    ul {
+      display: block;
+    }
+  }
 `;
 
 export const Nav = styled.div`
   display: flex;
   justify-content: space-between;
-
   max-width: 1280px;
   padding: 24px 0;
   margin: 0 auto;
@@ -45,18 +54,19 @@ export const Tab = styled.div`
     }
   }
 `;
-export const SubTabList = styled.ul`
-  display: ${({ isOpen }) => (isOpen ? `block` : "none")};
-  li + li {
-    margin-top: 12px;
-  }
-  cursor: pointer;
-`;
 
 export const SubTab = styled.li`
   font-size: ${({ theme: { fontSize } }) => fontSize.small};
   :hover {
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.display};
+  }
+`;
+
+export const SubTabList = styled.ul`
+  display: none;
+  cursor: pointer;
+  li + li {
+    margin-top: 12px;
   }
 `;
 

@@ -40,11 +40,8 @@ const HEADER_DATA = [
 ];
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onOpenHandler = () => setIsOpen((isOpen) => !isOpen);
-
   return (
-    <Container onMouseEnter={onOpenHandler} onMouseLeave={onOpenHandler} isOpen={isOpen}>
+    <Container>
       <Nav>
         <NavContent>
           <Logo />
@@ -52,7 +49,7 @@ const Header = () => {
             {HEADER_DATA.map(({ id, name: titleName, subCategory }) => (
               <Tab key={id}>
                 <h2>{titleName}</h2>
-                <SubTabList isOpen={isOpen}>
+                <SubTabList>
                   {subCategory.map(({ id, name: subTitleName }) => (
                     <SubTab key={id}>{subTitleName}</SubTab>
                   ))}

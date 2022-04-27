@@ -27,8 +27,6 @@ const color = {
 
 const layout = {
   mainWidth: "1280px",
-  headerHeight: "83px",
-  headerExtendHeight: "191px",
 };
 
 export const theme = { fontSize, fontWeight, color, layout };
