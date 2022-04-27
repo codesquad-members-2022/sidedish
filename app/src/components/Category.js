@@ -12,7 +12,7 @@ const Category = ({ dish, category }) => {
     soup: "정성이 담긴 뜨끈뜨끈 국물 요리",
     main: "모두가 좋아하는 든든한 메인 요리",
   };
-
+  console.log(dish);
   return (
     <ThemeProvider theme={theme}>
       <Header>{title[category]}</Header>

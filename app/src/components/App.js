@@ -47,8 +47,8 @@ function App() {
             <Modal showModalPopup={showModalPopup} productHash={productHash} />
           )}
           {/* <Category dish={sideDish} category={"side"} />
-        <Category dish={soupDish} category={"soup"} />
-        <Category dish={mainDish} category={"main"} /> */}
+          <Category dish={soupDish} category={"soup"} />
+          <Category dish={mainDish} category={"main"} /> */}
         </ModalContext.Provider>
       </main>
     </>
