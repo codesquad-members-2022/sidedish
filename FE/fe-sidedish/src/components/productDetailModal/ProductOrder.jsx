@@ -1,55 +1,63 @@
 import { useState, useEffect } from 'react';
 import * as S from './ProductDetailModal.style';
 
-import IconButton from './IconButton';
-import CostItem from './CostItem';
+import {
+  AMOUNT_UNIT,
+  DIRECTION,
+  ICON_NAME,
+  COST_LABEL,
+  COST_ITEM_SIZE,
+  DELIVERY,
+} from '../../constants/productDetailModal';
 import { formatPrice } from '../../utils';
 
+import IconButton from './IconButton';
+import CostItem from './CostItem';
+
 const ProductOrder = ({ orderable, price }) => {
-  const RIGHT = 'right';
-  const MINUS = 'minus';
-  const PLUS = 'plus';
-  const SMALL = 'small';
-  const BIG = 'big';
-  const TOTAL_COST = '총 주문금액';
-  const PRODUCT_COST = '상품금액';
-  const DELIVERY_FEE = '배송비';
-  const INITIAL_AMOUNT = 1;
-  const INITIAL_DELIVERY_FEE = 2500;
-  const FREE_DELIVERY_FEE = 0;
-  const ORDER_PRICE_FOR_FREE_DELIVERY = 40000;
+  const [amount, setAmount] = useState(AMOUNT_UNIT);
+  const [deliveryFee, setDeliveryFee] = useState(DELIVERY.BASIC_FEE);
 
-  const [amount, setAmount] = useState(INITIAL_AMOUNT);
-  const [deliveryFee, setDeliveryFee] = useState(INITIAL_DELIVERY_FEE);
-
-  const plusAmount = () => setAmount(amount + 1);
+  const plusAmount = () => setAmount(amount + AMOUNT_UNIT);
 
   const minusAmount = () => {
-    if (amount <= INITIAL_AMOUNT) return;
-    setAmount(amount - 1);
+    if (amount <= AMOUNT_UNIT) return;
+    setAmount(amount - AMOUNT_UNIT);
   };
 
   const updateDelveryFee = () => {
-    if (amount * price > ORDER_PRICE_FOR_FREE_DELIVERY) {
-      setDeliveryFee(FREE_DELIVERY_FEE);
+    if (amount * price > DELIVERY.ORDER_PRICE_FOR_FREE) {
+      setDeliveryFee(DELIVERY.FREE_FEE);
       return;
     }
-    setDeliveryFee(INITIAL_DELIVERY_FEE);
+    setDeliveryFee(DELIVERY.BASIC_FEE);
   };
 
   useEffect(() => updateDelveryFee());
 
   return (
-    <S.PriceOrderContainer direction={RIGHT}>
+    <S.PriceOrderContainer direction={DIRECTION.RIGHT}>
       <S.TotalAmount>
-        <IconButton name={MINUS} handleClick={minusAmount} />
+        <IconButton name={ICON_NAME.MINUS} handleClick={minusAmount} />
         {amount}
-        <IconButton name={PLUS} handleClick={plusAmount} />
+        <IconButton name={ICON_NAME.PLUS} handleClick={plusAmount} />
       </S.TotalAmount>
       <S.TotalCostList>
-        <CostItem size={BIG} name={TOTAL_COST} cost={formatPrice(price * amount + deliveryFee)} />
-        <CostItem size={SMALL} name={PRODUCT_COST} cost={formatPrice(price * amount)} />
-        <CostItem size={SMALL} name={DELIVERY_FEE} cost={formatPrice(deliveryFee)} />
+        <CostItem
+          size={COST_ITEM_SIZE.BIG}
+          name={COST_LABEL.TOTAL}
+          cost={formatPrice(price * amount + deliveryFee)}
+        />
+        <CostItem
+          size={COST_ITEM_SIZE.SMALL}
+          name={COST_LABEL.PRODUCT}
+          cost={formatPrice(price * amount)}
+        />
+        <CostItem
+          size={COST_ITEM_SIZE.SMALL}
+          name={COST_LABEL.DELIVERY_FEE}
+          cost={formatPrice(deliveryFee)}
+        />
       </S.TotalCostList>
       <S.SubmitButton orderable={orderable}>{orderable ? '주문하기' : '품절'}</S.SubmitButton>
     </S.PriceOrderContainer>

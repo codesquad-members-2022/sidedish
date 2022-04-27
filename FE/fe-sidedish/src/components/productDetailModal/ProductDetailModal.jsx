@@ -1,20 +1,18 @@
 import * as S from './ProductDetailModal.style';
 
+import { PORTAL_WRAPPER_ID, COLOR, LINE_SIZE } from '../../constants/productDetailModal';
+import { CARD_SIZE } from '../../constants/card';
+
 import Portal from '../portal/Portal';
 import ProductImages from './ProductImages';
 import ProductInfo from './ProductInfo';
 import ProductOrder from './ProductOrder';
 import Category from '../category/Category';
-import { CARD_SIZE } from '../../constants/card';
 import { dish10 } from '../../data/dishes';
-import React from 'react';
 
 const ProductDetailModal = ({ productDetail, toggleModal }) => {
   const { orderable, images, menuName, originalPrice, discountedPrice, point, event } =
     productDetail;
-
-  const PORTAL_WRAPPER_ID = 'productDetailModal';
-  const BLACK = 'black';
 
   const modal = (
     <S.Wrapper>
@@ -35,7 +33,7 @@ const ProductDetailModal = ({ productDetail, toggleModal }) => {
           />
         </S.ProductDetailContainer>
 
-        <S.HorizontalLine color={BLACK} size={2} />
+        <S.HorizontalLine color={COLOR.BLACK} size={LINE_SIZE.THICK} />
 
         <S.RelateProductContainer>
           <Category cardSize={CARD_SIZE.SMALL} {...dish10} />

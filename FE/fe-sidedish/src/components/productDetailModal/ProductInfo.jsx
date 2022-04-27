@@ -1,11 +1,12 @@
 import * as S from './ProductDetailModal.style';
+
+import { DIRECTION } from '../../constants/productDetailModal';
 import { formatPrice } from '../../utils';
 import Badges from './Badges';
 
 const ProductInfo = ({ menuName, originalPrice, discountedPrice, point, event }) => {
-  const RIGHT = 'right';
   return (
-    <S.FloatContainer direction={RIGHT}>
+    <S.FloatContainer direction={DIRECTION.RIGHT}>
       <S.ProductTitle>{menuName}</S.ProductTitle>
       <S.ProductPrice>
         {discountedPrice ? (

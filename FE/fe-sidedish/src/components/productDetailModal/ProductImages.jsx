@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import * as S from './ProductDetailModal.style';
 
-const ProductImages = ({ images }) => {
-  const INITIAL_MAIN_IMAGE_ID = 1;
-  const MAIN_IMAGE_SIZE = 390;
-  const IMAGE_WIDTH = 72;
-  const LEFT = 'left';
+import { IMAGE, DIRECTION } from '../../constants/productDetailModal';
 
-  const [mainImageId, setMainImageId] = useState(INITIAL_MAIN_IMAGE_ID);
+const ProductImages = ({ images }) => {
+  const [mainImageId, setMainImageId] = useState(IMAGE.INITIAL_ID);
 
   const getImageSrc = id =>
     images.reduce((src, image) => {
@@ -16,15 +13,15 @@ const ProductImages = ({ images }) => {
     }, '');
 
   return (
-    <S.FloatContainer direction={LEFT}>
-      <S.Image src={getImageSrc(mainImageId)} alt='큰이미지' size={MAIN_IMAGE_SIZE} />
+    <S.FloatContainer direction={DIRECTION.LEFT}>
+      <S.Image src={getImageSrc(mainImageId)} alt='큰이미지' size={IMAGE.SIZE_BIG} />
       <S.ImageList>
         {images.map(({ id, src }) => (
           <li key={id} onClick={() => setMainImageId(id)}>
             <S.Image
               src={src}
               alt={`상품이미지${id}`}
-              size={IMAGE_WIDTH}
+              size={IMAGE.SIZE_SMALL}
               isMain={id === mainImageId}
             />
           </li>
