@@ -3,34 +3,34 @@ INSERT INTO category (id, type) values (2, 'SIDE');
 INSERT INTO category (id, type) values (3, 'SOUP');
 
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (1, 0, '제육볶음1', '맛있는 제육볶음1', 15000, 10, 'EVENT', '풍성한고기반찬', 10, 15, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (1, 0, '오리 주물럭_반조리', '감칠맛나는 매콤한 양념', 15800, 10, 'EVENT', '풍성한_고기_반찬', 10, 15, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EB%A6%AC%EC%A3%BC%EB%AC%BC%EB%9F%AD.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EB%A6%AC%EC%A3%BC%EB%AC%BC%EB%9F%AD.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EB%A6%AC%EC%A3%BC%EB%AC%BC%EB%9F%AD.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (1, 1, '제육볶음2', '맛있는 제육볶음2', 15000, 10, 'EVENT', '풍성한고기반찬', 10, 15, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (1, 1, '소갈비찜', '촉촉하게 벤 양념이 일품', 28900, 10, 'EVENT', '풍성한_고기_반찬', 10, 15, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (1, 2, '제육볶음3', '맛있는 제육볶음3', 15000, 10, 'EVENT', '풍성한고기반찬', 10, 15, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (1, 2, '쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', 16900, 10, 'EVENT', '풍성한_고기_반찬', 10, 15, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (1, 3, '제육볶음4', '맛있는 제육볶음4', 15000, 10, 'EVENT', '풍성한고기반찬', 10, 15, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (1, 3, '잡채', '탱글한 면과 맛깔진 고명이 가득', 12900, 10, 'EVENT', '우리_아이_영양_반찬', 10, 15, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%9E%A1%EC%B1%84.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%9E%A1%EC%B1%84.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%9E%A1%EC%B1%84.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (1, 4, '제육볶음5', '맛있는 제육볶음5', 15000, 10, 'EVENT', '풍성한고기반찬', 10, 15, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (1, 4, '간장 코다리조림', '쫀득한 코다리를 국내산 간장소스로 맛있게 조렸어요', 14900, 10, 'EVENT', '우리_아이_영양_반찬', 10, 15, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC.png');
 
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (2, 0, '콩나물무침1', '맛있는 콩나물무침1', 5000, 10, 'EVENT', '편리한반찬세트', 10, 5, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (2, 0, '새콤달콤 오징어무침', '국내산 오징어를 새콤달콤하게', 7500, 10, 'EVENT', '맛있는_제철_요리', 10, 5, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (2, 1, '콩나물무침2', '맛있는 콩나물무침2', 5000, 10, 'EVENT', '편리한반찬세트', 10, 5, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (2, 1, '호두 멸치볶음', '잔멸치와 호두가 만나 짭쪼름하지만 고소하게!', 5800, 10, 'EVENT', '우리_아이_영양_반찬', 10, 5, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (2, 2, '콩나물무침3', '맛있는 콩나물무침3', 5000, 10, 'EVENT', '편리한반찬세트', 10, 5, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (2, 2, '한돈 매콤 안심장조림', '부드러운 한돈 안심살의 매콤함', 6900, 10, 'EVENT', '편리한_반찬_세트', 10, 5, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%9E%A5%EC%A1%B0%EB%A6%BC.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%9E%A5%EC%A1%B0%EB%A6%BC.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%9E%A5%EC%A1%B0%EB%A6%BC.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (2, 3, '콩나물무침4', '맛있는 콩나물무침4', 5000, 10, 'EVENT', '편리한반찬세트', 10, 5, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (2, 3, '야채 어묵볶음', '첨가물 없는 순수어묵과 야채의 만남', 4900, 10, 'EVENT', '우리_아이_영양_반찬', 10, 5, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (2, 4, '콩나물무침5', '맛있는 콩나물무침5', 5000, 10, 'EVENT', '편리한반찬세트', 10, 5, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (2, 4, '콩나물무침5', '맛있는 콩나물무침5', 5000, 10, 'EVENT', '편리한_반찬_세트', 10, 5, 'mainUrl', 'sideOne', 'sideTwo');
 
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (3, 0, '김치찌개1', '맛있는 김치찌개1', 25000, 10, 'EVENT', '맛있는제철요리', 10, 25, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (3, 0, '한돈 돼지 김치찌개', '김치찌개는 역시 돼지고기', 9300, 10, 'EVENT', '정성이_담긴_뜨끈뜨끈한_국물_요리', 10, 25, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (3, 1, '김치찌개2', '맛있는 김치찌개2', 25000, 10, 'EVENT', '맛있는제철요리', 10, 25, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (3, 1, '된장찌개', '특별하지 않아서 더 좋은 우리 맛', 8800, 10, 'EVENT', '정성이_담긴_뜨끈뜨끈한_국물_요리', 10, 25, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (3, 2, '김치찌개3', '맛있는 김치찌개3', 25000, 10, 'EVENT', '맛있는제철요리', 10, 25, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (3, 2, '미역오이냉국', '여름엔 시원한 냉국이 최고', 7800, 10, 'EVENT', '정성이_담긴_뜨끈뜨끈한_국물_요리', 10, 25, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (3, 3, '김치찌개4', '맛있는 김치찌개4', 25000, 10, 'EVENT', '맛있는제철요리', 10, 25, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (3, 3, '동태찌개', '겨울철 보양식으로 안성맞춤', 10900, 10, '', '정성이_담긴_뜨끈뜨끈한_국물_요리', 10, 25, 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C.png', 'https://sidedishgeombong.s3.ap-northeast-2.amazonaws.com/images/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C.png');
 INSERT INTO items (category, category_key, title, description, price, discount_rate, badge, detail_type, quantity, reward_point, main_url, side_one, side_two)
-VALUES (3, 4, '김치찌개5', '맛있는 김치찌개5', 25000, 10, 'EVENT', '맛있는제철요리', 10, 25, 'mainUrl', 'sideOne', 'sideTwo');
+VALUES (3, 4, '김치찌개5', '맛있는 김치찌개5', 25000, 10, 'EVENT', '정성이_담긴_뜨끈뜨끈한_국물_요리', 10, 25, 'mainUrl', 'sideOne', 'sideTwo');
