@@ -3,12 +3,12 @@ package com.example.todo.sidedish.ui.menudetail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todo.sidedish.databinding.ItemViepagerBinding
+import com.example.todo.sidedish.databinding.ItemViewpagerBinding
 
 class ViewPagerAdapter() :RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>(){
 
     private val sliderImages = mutableListOf<String>()
-    class ViewHolder(private val binding: ItemViepagerBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(private val binding: ItemViewpagerBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(imageUri:String){
             binding.thumbnail= imageUri
@@ -16,7 +16,7 @@ class ViewPagerAdapter() :RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding= ItemViepagerBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        val binding= ItemViewpagerBinding.inflate(LayoutInflater.from(parent.context),parent, false)
         return ViewHolder(binding)
     }
 
