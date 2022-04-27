@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Text from 'components/utils/Text';
-import SubGNBList from 'components/Header/SubGNB';
+import SubGNB from 'components/Header/SubGNB';
 
 const GNB_INFO = [
   { GNB_NAME: '든든한 메인요리', SUB_GNB: ['육류 요리', '해산물 요리'] },
@@ -14,11 +14,15 @@ export default function GNB() {
 
   return (
     <Wrap>
-      <GNBItems onMouseEnter={() => setSubGnbVisible(true)} onMouseLeave={() => setSubGnbVisible(false)}>
+      <GNBItems>
         {GNB_INFO.map(({ GNB_NAME }, gnbIndex) => (
-          <GNBItem key={`${GNB_NAME}_${gnbIndex}`}>
+          <GNBItem
+            key={`${GNB_NAME}_${gnbIndex}`}
+            onMouseEnter={() => setSubGnbVisible(true)}
+            onMouseLeave={() => setSubGnbVisible(false)}
+          >
             <Text size="MEDIUM" value={GNB_NAME} />
-            <SubGNBList subGnbVisible={subGnbVisible} GNB_INFO={GNB_INFO} gnbIndex={gnbIndex} />
+            <SubGNB visible={subGnbVisible} SUB_GNB_INFO={GNB_INFO[gnbIndex]} gnbIndex={gnbIndex} />
           </GNBItem>
         ))}
       </GNBItems>
@@ -27,14 +31,15 @@ export default function GNB() {
 }
 
 const Wrap = styled.nav({
-  flex: '1 0 0'
+  flex: '1 0 0',
+  marginTop: '4px'
 });
 
 const GNBItems = styled.ul({
-  display: 'flex',
-  gap: '24px'
+  display: 'flex'
 });
 
-const GNBItem = styled.li({
-  cursor: 'pointer'
-});
+const GNBItem = styled.li`
+  padding: 10px 12px 0;
+  cursor: pointer;
+`;

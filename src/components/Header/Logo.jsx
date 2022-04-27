@@ -17,6 +17,5 @@ Logo.defaultProps = {
 };
 
 const Wrap = styled.h1({
-  marginTop: '-14px',
   lineHeight: 1.1
 });
