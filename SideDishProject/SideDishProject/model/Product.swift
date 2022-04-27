@@ -31,31 +31,13 @@ struct Product{
     }
 }
 
-enum DishCategory: CaseIterable{
-    case main
-    case soup
-    case side
-    var comment: String{
-        switch self{
-        case .main:
-            return "모두가 좋아하는\n든든한 메인 요리"
-        case .side:
-            return "정성이 담긴\n뜨끈뜨끈 국물 요리"
-        case .soup:
-            return "식탁을 풍성하게 하는\n정갈한 밑반찬"
-        }
-    }
-    static func dishKind(section: Int) -> DishCategory{
-        switch section{
-        case 0:
-            return .main
-        case 1:
-            return .soup
-        case 2:
-            return .side
-        default:
-            return .side
-        }
+struct DishCategory: Hashable {
+    let id: Int
+    let name: String
+    let count: Int
+    
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(id)
     }
 }
 

@@ -20,8 +20,13 @@ final class HomeUsecase{
     
     func setSelectedIndex(indexPath: IndexPath){
         self.selectedIndex = indexPath
-        guard let selectedProduct = dishes[DishCategory.dishKind(section: indexPath.section)]?[indexPath.row] else { return }
-        delegate?.selected(id: selectedProduct.id)
+        for (index,dish) in dishes.enumerated() {
+            if indexPath.section == index {
+                let product = dish.value[indexPath.row]
+                delegate?.selected(id: product.id)
+                return
+            }
+        }
     }
     
     func getAll(){
@@ -29,7 +34,8 @@ final class HomeUsecase{
             guard let self = self else { return }
             switch result{
             case .success(let products):
-                self.delegate?.updateDishComment(comments: [DishCategory.main.comment, DishCategory.soup.comment, DishCategory.side.comment])
+                let comments: [String] = products.compactMap{ $0.key.name }
+                self.delegate?.updateDishComment(comments: comments)
                 self.delegate?.updateAllDishes(dishes: products)
                 self.updateImageData()
                 self.dishes = products

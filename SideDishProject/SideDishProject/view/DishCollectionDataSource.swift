@@ -29,24 +29,49 @@ extension DishCollectionDataSource: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dishes[DishCategory.allCases[section]]?.count ?? 0
+        guard let category = findCategory(by: section),
+              let itemCount = dishes[category]?.count else {
+            return 0
+        }
+        return itemCount
+    }
+    
+    private func findCategory(by section: Int) -> DishCategory? {
+        for (index,dish) in dishes.enumerated() {
+            if section == index {
+                return dish.key
+            }
+        }
+        return nil
+    }
+    
+    private func findProduct(by indexPath: IndexPath) -> Product? {
+        guard let category = findCategory(by: indexPath.section), let categoryValues = dishes[category] else {
+            return nil
+        }
+        return categoryValues[indexPath.row]
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCollectionViewCell.identifier, for: indexPath) as? DishCollectionViewCell else { return UICollectionViewCell()}
-        guard let product = dishes[DishCategory.allCases[indexPath.section]]?[indexPath.item] else { return cell }
+        guard let product = findProduct(by: indexPath) else {
+            return cell
+        }
         cell.updateUIProperty(with: product)
+        
         if !(dishImages.isEmpty){
-            guard let data = dishImages[DishCategory.dishKind(section: indexPath.section)]?[indexPath.row] else { return cell }
-            cell.updateImage(data: data)
+            guard let category = findCategory(by: indexPath.section),
+                  let imageData = dishImages[category]?[indexPath.row] else {
+                return cell
+            }
+            cell.updateImage(data: imageData)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if (kind == UICollectionView.elementKindSectionHeader) {
-            // Create Header
-            
+        if (kind == UICollectionView.elementKindSectionHeader)
+            && (!dishComments.isEmpty) {
             guard let headerView : DishCommentHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DishCommentHeaderView.identifier, for: indexPath) as? DishCommentHeaderView else { return UICollectionReusableView() }
             headerView.setCommentLabel(text: dishComments[indexPath.section])
             return headerView
