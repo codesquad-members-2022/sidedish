@@ -56,7 +56,7 @@ final class DetailScrollView: UIScrollView {
     private(set) var mainInfoStackView = MenuStackView()
     private(set) var subInfoStackView = MenuSubInfoContainerStackView()
     
-    private let countContainerStackView: UIStackView = {
+    private let countStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         return stackView
@@ -85,7 +85,7 @@ final class DetailScrollView: UIScrollView {
         return stepper
     }()
     
-    private let orderContainerStackView: UIStackView = {
+    private let orderStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 24
         stackView.alignment = .trailing
@@ -94,7 +94,7 @@ final class DetailScrollView: UIScrollView {
         return stackView
     }()
     
-    private let amountContainerStackView: UIStackView = {
+    private let amountStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 24
@@ -151,11 +151,11 @@ final class DetailScrollView: UIScrollView {
         
         detailContainerStackView.addArrangedSubview(subInfoStackView)
         
-        detailContainerStackView.addArrangedSubview(countContainerStackView)
-        configureCountContainerStackView()
+        detailContainerStackView.addArrangedSubview(countStackView)
+        configureCountStackView()
         
-        detailContainerStackView.addArrangedSubview(orderContainerStackView)
-        configureOrderContainerStackView()
+        detailContainerStackView.addArrangedSubview(orderStackView)
+        configureOrderStackView()
         
         detailContainerStackView.addArrangedSubview(recipeImageStackView)
         
@@ -178,18 +178,18 @@ final class DetailScrollView: UIScrollView {
         mainInfoStackView.changeFontForDetailView()
     }
     
-    private func configureCountContainerStackView() {
-        countContainerStackView.addArrangedSubview(countTitleLabel)
-        countContainerStackView.addArrangedSubview(countLabel)
-        countContainerStackView.addArrangedSubview(countStepper)
-        countContainerStackView.setCustomSpacing(150, after: countTitleLabel)
+    private func configureCountStackView() {
+        countStackView.addArrangedSubview(countTitleLabel)
+        countStackView.addArrangedSubview(countLabel)
+        countStackView.addArrangedSubview(countStepper)
+        countStackView.setCustomSpacing(150, after: countTitleLabel)
     }
     
-    private func configureOrderContainerStackView() {
-        orderContainerStackView.addArrangedSubview(amountContainerStackView)
-        amountContainerStackView.addArrangedSubview(amountTitleLabel)
-        amountContainerStackView.addArrangedSubview(amountLabel)
-        orderContainerStackView.addArrangedSubview(orderButton)
+    private func configureOrderStackView() {
+        orderStackView.addArrangedSubview(amountStackView)
+        amountStackView.addArrangedSubview(amountTitleLabel)
+        amountStackView.addArrangedSubview(amountLabel)
+        orderStackView.addArrangedSubview(orderButton)
     }
     
     private func layoutComponents() {
@@ -257,7 +257,7 @@ extension DetailScrollView {
     
     private func layoutOrderButton() {
         orderButton.translatesAutoresizingMaskIntoConstraints = false
-        orderButton.leadingAnchor.constraint(equalTo: orderContainerStackView.leadingAnchor).isActive = true
+        orderButton.leadingAnchor.constraint(equalTo: orderStackView.leadingAnchor).isActive = true
         orderButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
