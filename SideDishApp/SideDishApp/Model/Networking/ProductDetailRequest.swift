@@ -8,16 +8,14 @@
 import Foundation
 import Alamofire
 
-struct ProductDetailRequest: APIRequest {
+struct ProductDetailRequest: APIRequestable {
     typealias Response = ProductDetailResponse
     var url: URL
     var method: HTTPMethod = .get
 
     init?(from hash: String) {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.codesquad.kr"
-        components.path = "/onban/detail/\(hash)"
+        var components = URLComponents.onbanBaseURLComponents
+        components.path += "/detail/\(hash)"
 
         guard let url = components.url else { return nil }
         self.url = url

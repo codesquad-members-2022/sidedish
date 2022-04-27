@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-protocol APIRequest {
+protocol APIRequestable {
     associatedtype Response
 
     var url: URL { get }
@@ -19,14 +19,14 @@ protocol APIRequest {
     func decode(_ data: Data) -> Response?
 }
 
-extension APIRequest {
+extension APIRequestable {
     // Default Implementationg이 있기 때문에
     // Header, queryItem이 없을 경우 구현하지 않아도 됨
     var headers: [String: String] { [:] }
     var queryItems: [String: String] { [:] }
 }
 
-extension APIRequest where Response: Decodable {
+extension APIRequestable where Response: Decodable {
     func decode(_ data: Data) -> Response? {
         do {
             return try JSONDecoder().decode(Response.self, from: data)
@@ -35,4 +35,14 @@ extension APIRequest where Response: Decodable {
             return nil
         }
     }
+}
+
+extension URLComponents {
+    static let onbanBaseURLComponents: Self = {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.codesquad.kr"
+        components.path = "/onban"
+        return components
+    }()
 }

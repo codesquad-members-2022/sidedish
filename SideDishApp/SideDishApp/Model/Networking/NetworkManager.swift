@@ -10,7 +10,7 @@ import Alamofire
 
 struct NetworkManager {
 
-    func request<Request: APIRequest>(_ request: Request, completion: @escaping (Request.Response?) -> Void) {
+    func request<Request: APIRequestable>(_ request: Request, completion: @escaping (Request.Response?) -> Void) {
 
         AF.request(request.url,
                    method: request.method,

@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct ImageRequest: APIRequest {
+struct ImageRequest: APIRequestable {
     typealias Response = Data
     var url: URL
     var method: HTTPMethod = .get
