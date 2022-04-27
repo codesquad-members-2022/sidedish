@@ -11,7 +11,7 @@ final class Repository: RepositoryApplicable {
         self.init(networkHandler: NetworkHandler(), jsonHandler: JSONHandler(), dataCache: DataCachingManager())
     }
     
-    private init(networkHandler: NetworkHandlable, jsonHandler: JSONHandlable, dataCache: DataCachingManagable){
+    init(networkHandler: NetworkHandlable, jsonHandler: JSONHandlable, dataCache: DataCachingManagable){
         self.networkHandler = networkHandler
         self.jsonHandler = jsonHandler
         self.dataCache = dataCache
