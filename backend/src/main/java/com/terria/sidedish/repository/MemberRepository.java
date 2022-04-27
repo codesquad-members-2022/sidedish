@@ -1,6 +1,5 @@
 package com.terria.sidedish.repository;
 
-
 import com.terria.sidedish.domain.Member;
 import com.terria.sidedish.dto.auth.Provider;
 import org.springframework.data.repository.CrudRepository;

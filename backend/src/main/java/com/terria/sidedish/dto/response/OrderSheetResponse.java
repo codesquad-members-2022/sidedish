@@ -1,6 +1,5 @@
 package com.terria.sidedish.dto.response;
 
-import com.terria.sidedish.domain.Member;
 import com.terria.sidedish.domain.entity.aggregate.OrderSheet;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

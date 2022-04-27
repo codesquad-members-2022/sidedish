@@ -22,8 +22,8 @@ public class ExhibitionController {
     private final ExhibitionService exhibitionService;
 
     @ApiOperation(
-            value = "특정 기획전 조회",
-            notes = "특정 기획전을 조회한다.",
+            value = "특정 기획전에 속한 카테고리 목록 조회",
+            notes = "특정 기획전속한 카테고리 목록을 조회한다.",
             produces = "application/json",
             response = ExhibitionResponse.class
     )
