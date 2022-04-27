@@ -92,11 +92,11 @@ class MenuDetailViewController: UIViewController {
         attribute()
         layout()
 
-        model.action.loadMenuDetail.send()
+        model.action().loadMenuDetail.send()
     }
 
     private func bind() {
-        model.state.loadedDetail
+        model.state().loadedDetail
             .receive(on: DispatchQueue.main)
             .sink { [weak self] menu, detail in
                 self?.title = menu.title
@@ -111,48 +111,48 @@ class MenuDetailViewController: UIViewController {
                 self?.sectionView.makeImageView(count: detail.detailSection.count)
             }.store(in: &cancellables)
 
-        model.state.showError
+        model.state().showError
             .sink { _ in
                 //TODO: 에러 처리
             }.store(in: &cancellables)
 
         amountView.plusPublisher
-            .sink(receiveValue: model.action.tappedPlusButton.send(_:))
+            .sink(receiveValue: model.action().tappedPlusButton.send(_:))
             .store(in: &cancellables)
 
         amountView.minusPublisher
-            .sink(receiveValue: model.action.tappedMinusButton.send(_:))
+            .sink(receiveValue: model.action().tappedMinusButton.send(_:))
             .store(in: &cancellables)
 
-        model.state.amount
+        model.state().amount
             .sink { [weak self] amount in
                 self?.amountView.amount = amount
             }
             .store(in: &cancellables)
         
-        model.state.totalPrice
+        model.state().totalPrice
             .sink { [weak self] totalPrice in
                 self?.orderView.setTotalPrice(totalPrice)
             }
             .store(in: &cancellables)
 
         orderView.orderPublisher
-            .sink(receiveValue: model.action.tappedOrderButton.send(_:))
+            .sink(receiveValue: model.action().tappedOrderButton.send(_:))
             .store(in: &cancellables)
 
-        model.state.ordered
+        model.state().ordered
             .sink { [weak self] _ in
                 let alert = UIAlertController(title: "주문완료 ✅", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "완료", style: .cancel))
                 self?.present(alert, animated: true)
             }.store(in: &cancellables)
         
-        model.state.loadedThumbnail
+        model.state().loadedThumbnail
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: thumbnailImageView.setImage(_:_:))
             .store(in: &cancellables)
         
-        model.state.loadedDetailSection
+        model.state().loadedDetailSection
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: sectionView.setImage(_:_:))
             .store(in: &cancellables)

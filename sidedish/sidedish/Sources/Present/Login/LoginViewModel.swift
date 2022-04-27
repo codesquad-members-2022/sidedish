@@ -22,8 +22,8 @@ struct LoginViewModelState {
 }
 
 protocol LoginViewModelBinding {
-    var action: LoginViewModelAction { get }
-    var state: LoginViewModelState { get }
+    func action() -> LoginViewModelAction
+    func state() -> LoginViewModelState
 }
 
 typealias LoginViewModelProtocol = LoginViewModelBinding
@@ -33,25 +33,33 @@ class LoginViewModel: LoginViewModelProtocol {
     private var cancellables = Set<AnyCancellable>()
     private let loginRepository: LoginRepository = LoginRepositoryImpl()
     
-    let action = LoginViewModelAction()
-    let state = LoginViewModelState()
+    private let loginAction = LoginViewModelAction()
+    private let loginState = LoginViewModelState()
+    
+    func action() -> LoginViewModelAction {
+        loginAction
+    }
+    
+    func state() -> LoginViewModelState {
+        loginState
+    }
     
     deinit {
         Log.debug("DeInit LoginViewModel")
     }
     
     init() {
-        action.tappedGoogleLogin
+        action().tappedGoogleLogin
             .compactMap { _ -> GIDConfiguration? in
                 guard let clientId = FirebaseApp.app()?.options.clientID else {
                     return nil
                 }
                 return GIDConfiguration(clientID: clientId)
             }
-            .sink(receiveValue: state.presentGoogleLogin.send(_:))
+            .sink(receiveValue: state().presentGoogleLogin.send(_:))
             .store(in: &cancellables)
         
-        action.googleUser
+        action().googleUser
             .compactMap { user -> AuthCredential? in
                 guard let authentication = user?.authentication,
                       let idToken = authentication.idToken else {
@@ -61,9 +69,9 @@ class LoginViewModel: LoginViewModelProtocol {
             }
             .compactMap { [weak self] credential in self?.loginRepository.googleLogin(authCredential: credential) }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
+            .handleEvents(receiveOutput: { Container.userStore.user = $0 })
             .map { _ in }
-            .sink(receiveValue: state.presentMainView.send(_:))
+            .sink(receiveValue: state().presentMainView.send(_:))
             .store(in: &cancellables)
     }
 }
