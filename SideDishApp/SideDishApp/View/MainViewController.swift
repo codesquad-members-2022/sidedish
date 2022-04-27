@@ -48,8 +48,8 @@ class MainViewController: UIViewController {
             guard let categoryVM = viewModel.categoryVMs[type] else {return}
             categoryVM.bind { _ in
                 DispatchQueue.main.async {
-                    let targetIndex = IndexSet(integer: type.index)
-                        self.mainCollectionView.reloadSections(targetIndex)
+                    let targetIndex = IndexSet(0..<self.viewModel.categoryVMs.count)
+                    self.mainCollectionView.reloadSections(targetIndex)
                 }
             }
         })
