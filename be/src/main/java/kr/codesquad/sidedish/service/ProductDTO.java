@@ -17,4 +17,5 @@ public class ProductDTO {
 	private String sideDishType;
 	private String applyEvent;
 	private String[] imgUrl;
+	private Integer deliveryType;
 }

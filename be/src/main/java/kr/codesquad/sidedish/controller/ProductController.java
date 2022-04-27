@@ -57,8 +57,10 @@ public class ProductController {
 
 		checkForExistingId(id);
 
+		ProductDTO productDTO = productService.findById(id);
+
 		ResponseShippingInfo responseShippingInfo = ResponseShippingInfo.from(
-			shippingInfoService.findById(id));
+			shippingInfoService.findByDeliveryType(productDTO.getDeliveryType()));
 
 		return OKCommonResponse(
 			ResponseDetailProductInfo.from(productService.findById(id), responseShippingInfo))

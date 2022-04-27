@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class ShippingInfoDTO {
 
-	private final Integer id;
+	private final Integer deliveryType;
 	private final Integer deliveryCharge;
 	private final String deliveryInfo;
 }

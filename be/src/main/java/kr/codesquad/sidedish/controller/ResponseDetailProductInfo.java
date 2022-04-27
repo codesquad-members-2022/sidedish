@@ -18,6 +18,7 @@ public class ResponseDetailProductInfo {
 	private String sideDishType;
 	private String applyEvent;
 	private String[] imgUrl;
+	private Integer deliveryType;
 	private ResponseShippingInfo shippingInfo;
 
 	public static ResponseDetailProductInfo from(ProductDTO productDTO,
@@ -26,6 +27,6 @@ public class ResponseDetailProductInfo {
 			productDTO.getContent(), productDTO.getPrice(), productDTO.getDiscountPrice(),
 			productDTO.getQuantity(),
 			productDTO.getDishType(), productDTO.getSideDishType(), productDTO.getApplyEvent(),
-			productDTO.getImgUrl(), shippingInfo);
+			productDTO.getImgUrl(), productDTO.getDeliveryType(), shippingInfo);
 	}
 }

@@ -12,7 +12,7 @@ import org.springframework.data.annotation.Id;
 public class ShippingInfo {
 
 	@Id
-	private final Integer id;
+	private final Integer deliveryType;
 	private final Integer deliveryCharge;
 	private final String deliveryInfo;
 
@@ -20,6 +20,6 @@ public class ShippingInfo {
 
 		Delivery delivery = Delivery.convertInfo(deliveryInfo);
 
-		return new ShippingInfoDTO(id, deliveryCharge, delivery.getValue());
+		return new ShippingInfoDTO(deliveryType, deliveryCharge, delivery.getValue());
 	}
 }

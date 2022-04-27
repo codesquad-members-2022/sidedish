@@ -10,9 +10,9 @@ public class ShippingInfoService {
 
 	private final ShippingInfoRepository shippingInfoRepository;
 
-	public ShippingInfoDTO findById(Integer id) {
+	public ShippingInfoDTO findByDeliveryType(Integer deliveryType) {
 
-		return shippingInfoRepository.findById(id).get().createDTO();
+		return shippingInfoRepository.findByDeliveryType(deliveryType).get().createDTO();
 	}
 
 

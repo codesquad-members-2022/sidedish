@@ -8,15 +8,12 @@ import lombok.Getter;
 @Getter
 public class ResponseShippingInfo {
 
-	private final Integer id;
 	private final Integer deliveryCharge;
 	private final String deliveryInfo;
 
 	public static ResponseShippingInfo from(ShippingInfoDTO shippingInfoDTO) {
 
-
-
-		return new ResponseShippingInfo(shippingInfoDTO.getId(),
-			shippingInfoDTO.getDeliveryCharge(), shippingInfoDTO.getDeliveryInfo());
+		return new ResponseShippingInfo(shippingInfoDTO.getDeliveryCharge(),
+			shippingInfoDTO.getDeliveryInfo());
 	}
 }

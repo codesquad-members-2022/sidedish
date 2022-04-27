@@ -21,12 +21,13 @@ public class Product {
 	private final String sideDishType;
 	private final String applyEvent;
 	private final String imgUrl;
+	private final Integer deliveryType;
 
 	public static Product updateQuantity(Product product, Integer quantity) {
 		return new Product(product.getId(), product.getName(), product.getContent(),
 			product.getPrice(), quantity,
 			product.getDishType(), product.getSideDishType(), product.getApplyEvent(),
-			product.getImgUrl());
+			product.getImgUrl(), product.getDeliveryType());
 	}
 
 	public ProductDTO createDTO() {
@@ -38,7 +39,7 @@ public class Product {
 
 		return new ProductDTO(id, name, content, price, discountPrice, quantity, dishType,
 			sideDishType,
-			applyEvent, images);
+			applyEvent, images, deliveryType);
 	}
 
 	private int convertDiscountPrice(String applyEvent, int price) {
