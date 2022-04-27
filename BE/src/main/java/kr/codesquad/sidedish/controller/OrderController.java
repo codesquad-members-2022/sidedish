@@ -4,10 +4,7 @@ import kr.codesquad.sidedish.dto.OrderRequest;
 import kr.codesquad.sidedish.dto.Reciept;
 import kr.codesquad.sidedish.service.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/orders")
@@ -19,10 +16,10 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping
-    public ResponseEntity<Reciept> orderDishes(@RequestBody OrderRequest orderRequest) {
-        orderService.isOrderPlaceable(orderRequest);
-        return ResponseEntity.ok(orderService.placeOrder(orderRequest));
+    @PostMapping("/{dishId}")
+    public ResponseEntity<Reciept> orderDishes(@PathVariable Long dishId, @RequestBody OrderRequest orderRequest) {
+        orderService.checkOrderPlaceable(dishId, orderRequest);
+        return ResponseEntity.ok(orderService.placeOrder(dishId, orderRequest));
     }
 
 }
