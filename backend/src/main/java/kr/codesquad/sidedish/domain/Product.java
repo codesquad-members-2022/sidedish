@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
@@ -34,4 +35,17 @@ public class Product {
     @MappedCollection(idColumn = "product_id", keyColumn = "discount_id")
     List<DiscountRef> discountRefs = new ArrayList<>();
 
+    public Set<Long> getDiscountIds() {
+        return discountRefs
+                .stream()
+                .map(DiscountRef::getDiscountId)
+                .collect(Collectors.toSet());
+    }
+
+    public List<String> getVariantImageUrls() {
+        return variantImages
+                .stream()
+                .map(VariantImage::getUrl)
+                .collect(Collectors.toList());
+    }
 }
