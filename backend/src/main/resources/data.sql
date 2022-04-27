@@ -1,8 +1,8 @@
-INSERT INTO product (product_name, description, price, stock, event_badge, main_category, event_category)
+INSERT INTO product (product_name, description, early_delivery, price, stock, event_badge, main_category, event_category)
 VALUES
-    ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', 15800, 100, 'launching', 'main', 'meat'),
-    ('소갈비찜', '촉촉하게 벤 양념이 일품', 28900, 100, 'event', 'main', 'meat'),
-    ('쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', 16900, 100, 'none', 'main', 'meat');
+    ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', true, 15800, 100, 'launching', 'main', 'meat'),
+    ('소갈비찜', '촉촉하게 벤 양념이 일품', false, 28900, 100, 'event', 'main', 'meat'),
+    ('쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', true, 16900, 100, 'none', 'main', 'meat');
 
 
 INSERT INTO image (product_id, image_path)

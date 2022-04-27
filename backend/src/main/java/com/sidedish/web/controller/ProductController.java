@@ -1,7 +1,6 @@
 package com.sidedish.web.controller;
 
 import com.sidedish.servcie.ProductService;
-import com.sidedish.web.dto.CategoryProductDto;
 import com.sidedish.web.dto.EventCategoryProductDto;
 import com.sidedish.web.dto.MainCategoryProductDto;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +20,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-/*    @GetMapping
-    public List<MainCategoryProductDto> mainCategoryList(@RequestParam("main-category") String mainCategory){
+   @GetMapping("main")
+    public List<MainCategoryProductDto> mainCategoryList(@RequestParam("category") String mainCategory){
         return productService.findMainCategory(mainCategory);
     }
 
-    @GetMapping
-    public List<EventCategoryProductDto> eventCategoryProductDtoList(@RequestParam("event-category") String eventCategory){
+    @GetMapping("event")
+    public List<EventCategoryProductDto> categoryList(@RequestParam("category") String eventCategory){
         return productService.findEventCategory(eventCategory);
-    }*/
-
-    @GetMapping
-    public List<CategoryProductDto> mainCategoryList(@RequestParam("category-type") String categoryType){
-        return productService.findCategory(categoryType);
     }
 }

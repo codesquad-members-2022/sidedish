@@ -6,17 +6,19 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class EventCategoryProductDto extends CategoryProductDto{
+public class EventCategoryProductDto {
     private String productName;
     private String description;
+    private int earlyDelivery;
     private int price;
     private EventBadge eventBadge;
     private EventCategory eventCategory;
 
     @Builder
-    public EventCategoryProductDto(String productName, String description, int price, EventBadge eventBadge, EventCategory eventCategory) {
+    public EventCategoryProductDto(String productName, String description, int earlyDelivery, int price, EventBadge eventBadge, EventCategory eventCategory) {
         this.productName = productName;
         this.description = description;
+        this.earlyDelivery = earlyDelivery;
         this.price = price;
         this.eventBadge = eventBadge;
         this.eventCategory = eventCategory;
