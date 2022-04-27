@@ -36,6 +36,12 @@ class DetailViewController: UIViewController {
     }
 
     private func setViewModel() {
+        setOnUpdate()
+        setOnUpdateWithTopImages()
+        setOnUpdateWithDetailImages()
+    }
+
+    private func setOnUpdate() {
         viewModel?.onUpdate = {
             DispatchQueue.main.async {
                 self.navigationItem.title = self.viewModel?.title
@@ -54,21 +60,23 @@ class DetailViewController: UIViewController {
                                                   range: NSRange(0..<attributedString.length))
                     self.detailView.normalPriceLabel.attributedText = attributedString
                 }
-                
+
                 if let discountType = self.viewModel?.discountType {
                     self.detailView.badgeStackView.isHidden = false
                     discountType.forEach {
                         switch $0 {
-                            case .event:
-                                self.detailView.eventBadgeLabel.isHidden = false
-                            case .launching:
-                                self.detailView.launchingBadgeLabel.isHidden = false
+                        case .event:
+                            self.detailView.eventBadgeLabel.isHidden = false
+                        case .launching:
+                            self.detailView.launchingBadgeLabel.isHidden = false
                         }
                     }
                 }
             }
         }
+    }
 
+    private func setOnUpdateWithTopImages() {
         viewModel?.onUpdateWithTopImages = {
             DispatchQueue.main.async {
                 self.viewModel?.topImages.forEach { image in
@@ -80,7 +88,9 @@ class DetailViewController: UIViewController {
                 }
             }
         }
+    }
 
+    private func setOnUpdateWithDetailImages() {
         viewModel?.onUpdateWithDetailImages = {
             DispatchQueue.main.async {
                 self.viewModel?.detailImages.forEach { image in
