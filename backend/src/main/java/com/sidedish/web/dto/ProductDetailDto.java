@@ -13,6 +13,6 @@ public class ProductDetailDto {
     private int earlyDelivery;
     private int price;
     private EventBadge eventBadge;
-    private double discountRate;
+    private int discountRate;
     private Set<ImageDto> image;
 }

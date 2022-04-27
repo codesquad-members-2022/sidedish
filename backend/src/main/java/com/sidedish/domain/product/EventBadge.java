@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum EventBadge {
-	none(1), launching(0.8), event(0.9);
+	none(0), launching(20), event(10);
 
-	private final double discountRate;
+	private final int discountRate;
 }
