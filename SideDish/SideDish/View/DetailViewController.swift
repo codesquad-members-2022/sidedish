@@ -28,11 +28,14 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItems()
+        detailView.setLayout()
+    }
+
+    private func setNavigationItems() {
         navigationController?.navigationBar.topItem?.backButtonTitle = "뒤로"
         navigationController?.navigationBar.titleTextAttributes =
         [NSAttributedString.Key.font: UIFont(name: Font.sfSemiBold, size: 17) ?? UIFont.systemFont(ofSize: 17)]
-
-        detailView.setLayout()
     }
 
     private func setViewModel() {
