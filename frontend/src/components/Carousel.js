@@ -66,13 +66,13 @@ export const Carousel = ({ id, name, size }) => {
         curIndex={curIndex}
       />
       <CarouselButton
-        size={SIZES.medium}
+        size={size}
         onBtnClick={() => clickPrev()}
         dir={"left"}
         isEndPage={curIndex === 0}
       />
       <CarouselButton
-        size={SIZES.medium}
+        size={size}
         onBtnClick={() => clickNext()}
         dir={"right"}
         isEndPage={curIndex === lastIndex}
