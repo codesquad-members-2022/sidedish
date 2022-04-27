@@ -35,7 +35,7 @@ public class ProductDTO {
 	}
 
 	private static Integer convertDiscountPrice(String applyEvent, int price) {
-		Discount discount = Discount.setSaleType(applyEvent);
+		Discount discount = Discount.convertSaleType(applyEvent);
 
 		return (int) (price * discount.getValue());
 	}
