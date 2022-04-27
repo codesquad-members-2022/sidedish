@@ -33,4 +33,5 @@ const MealCard = ({ mealInfo, size }) => {
     </Conatiner>
   );
 };
+
 export default MealCard;
