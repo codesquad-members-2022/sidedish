@@ -9,11 +9,14 @@ const RecommendTabList = styled.div`
 `;
 
 const ThemeTabList = ({ items }) => {
-  const tabItems = items.dishes.map((item) => {
-    return <Card key={item.id} item={item} imageSize={'large'}></Card>;
-  });
-
-  return <RecommendTabList>{tabItems}</RecommendTabList>;
+  return (
+    <RecommendTabList>
+      {items &&
+        items.dishes.slice(0, 3).map((item) => {
+          return <Card key={item.id} item={item} imageSize={'large'}></Card>;
+        })}
+    </RecommendTabList>
+  );
 };
 
 export default ThemeTabList;

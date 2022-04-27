@@ -29,10 +29,10 @@ const ModalImgWrapper = ({ title, images }) => {
   return (
     images && (
       <ImgWrapper>
-        <img src={mainImage.name} alt={title} className="first" />
+        <img src={mainImage.path} alt={title} className="first" />
         <Grid>
           {subImages.map((image) => (
-            <img key={image.id} src={image.name} alt="" />
+            <img key={image.id} src={image.path} alt="" />
           ))}
         </Grid>
       </ImgWrapper>
