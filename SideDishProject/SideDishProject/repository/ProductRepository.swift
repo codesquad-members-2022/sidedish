@@ -24,7 +24,7 @@ extension MockProductRepository: ProductRepository{
         var imageData: [DishCategory : [Data]]  = [:]
         let group = DispatchGroup()
         for product in products{
-            guard let index = dishes[product.category]?.firstIndex(where: { factor in
+            guard let index: Int = dishes[product.category]?.firstIndex(where: { factor in
                 if factor.id == product.id{
                     return true
                 }
@@ -41,7 +41,7 @@ extension MockProductRepository: ProductRepository{
                     guard let count = self.dishes[product.category]?.count else { return }
                     imageData[product.category] = [Data](repeating: Data(), count: count)
                 }
-                imageData[product.category]?[Int(exactly: index)!] = data
+                imageData[product.category]?[index] = data
                 group.leave()
             }.resume()
         }
@@ -65,11 +65,8 @@ extension MockProductRepository: ProductRepository{
         completion(.success(dishes))
     }
     
-    
     func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void){
         let filteredResults = self.products.filter{ $0.category == category }
         completion(.success(filteredResults))
     }
-    
-    
 }
