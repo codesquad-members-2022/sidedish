@@ -1,10 +1,10 @@
 package com.terria.sidedish.repository;
 
 import com.terria.sidedish.domain.entity.aggregate.SideDish;
+import java.util.List;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
 
 public interface SideDishRepository extends CrudRepository<SideDish, Long> {
 
@@ -22,4 +22,9 @@ public interface SideDishRepository extends CrudRepository<SideDish, Long> {
             + " on s.id = c.side_dish_id"
             + " where c.category_id = :categoryId")
     int countByCategoryId(long categoryId);
+
+    @Modifying
+    @Query("update side_dish set stock = :stock  where id = :id")
+    int updateStockById(long id, int stock);
 }
+
