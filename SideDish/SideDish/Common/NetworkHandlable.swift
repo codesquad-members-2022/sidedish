@@ -1,4 +1,4 @@
-import Alamofire
+import Foundation
 
 protocol NetworkHandlable{
     var delegate: NetworkHandlerDelegate? { get set }
