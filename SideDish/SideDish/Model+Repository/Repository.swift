@@ -21,7 +21,7 @@ final class Repository: RepositoryApplicable {
     
     func fetchBackgroundData<T: Codable>(category: Category, dataType: T.Type) {
         guard let data = getSampleJSONData(fileName: category.fileName) else { return }
-        guard let response = jsonHandler.convertJSONToObject(from: data, to: Response<T>.self) else { return }
+        guard let response = jsonHandler.convertJSONToObject(from: data, to: MainResponse<T>.self) else { return }
         for backgroundData in response.body {
             delegate?.fetchBackgroundData(category: category, backgroundData: backgroundData)
         }
@@ -33,11 +33,28 @@ final class Repository: RepositoryApplicable {
         return data
     }
     
-    func requestData(method: HttpMethod, contentType: ContentType, url: EndPoint, completionHandler: @escaping (Result<Data,Error>)->Void){
-        if let imageData = dataCache.getCacheData(key: url.urlString){
-            completionHandler(.success(imageData))
+    func requestBinaryData(method: HttpMethod, contentType: ContentType, url: EndPoint, completionHandler: @escaping (Result<Data,Error>) -> Void){
+        if let binaryData = dataCache.getCacheData(key: url.urlString){
+            completionHandler(.success(binaryData))
         }else{
             networkHandler.request(url: url, method: method, contentType: contentType, completionHandler: completionHandler)
+        }
+    }
+    
+    func requestModelData<T: Codable>(method: HttpMethod, contentType: ContentType, url: EndPoint, completionHandler: @escaping (Result<T,Error>) -> Void){
+        if let jsonData = dataCache.getCacheData(key: url.urlString){
+            guard let model = jsonHandler.convertJSONToObject(from: jsonData, to: T.self) else { return }
+            completionHandler(.success(model))
+        }else{
+            networkHandler.request(url: url, method: method, contentType: contentType) { result in
+                switch result{
+                case .success(let data):
+                    guard let model = self.jsonHandler.convertJSONToObject(from: data, to: T.self) else { return }
+                    completionHandler(.success(model))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+            }
         }
     }
 }
