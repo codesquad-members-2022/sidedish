@@ -13,6 +13,7 @@ class RepositoryCommons {
     
     private let getFileService = GetFileURLService()
     private let saveFileService = SaveFileService()
+    private let dataFetchService = DataFetchService()
     
     func cachingFile(as name: String, contentsOf data: Data) {
         self.saveFileService.saveFile(as: name, contentsOf: data)
@@ -30,5 +31,11 @@ class RepositoryCommons {
     
     func getFileCached(as name: String) -> Result<Data, CacheError> {
         return self.getFileService.fetchFile(as: name)
+    }
+    
+    func fetchAll(onComplete: @escaping (Data?) -> Void) {
+        dataFetchService.fetchAll { data in
+            onComplete(data)
+        }
     }
 }
