@@ -38,6 +38,7 @@
     "scss-loader": "^0.0.1",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.5",
+<<<<<<< HEAD
 =======
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
@@ -49,6 +50,8 @@
     "scss-loader": "^0.0.1",
     "style-loader": "^3.3.1",
 >>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
+=======
+>>>>>>> 9e68d79 ([#39] Chore:  styled-components, babel-plugin-styled-components 설치)
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
