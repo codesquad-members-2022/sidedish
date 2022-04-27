@@ -18,6 +18,9 @@ const theme = {
     },
     ORANGE: {
       100: '#FF8E14'
+    },
+    BLUE: {
+      100: '#3498db'
     }
   },
   FONT: {

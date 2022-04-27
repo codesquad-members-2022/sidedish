@@ -29,5 +29,8 @@ function getColorByType(type) {
   if (type === '런칭특가') {
     return theme.COLOR.ORANGE[100];
   }
+  if (type === '메인특가') {
+    return theme.COLOR.BLUE[100];
+  }
   throw new Error('태그의 타입이 올바르지 않습니다.');
 }

@@ -5,7 +5,7 @@ import Tag from 'components/common/Card/Tag';
 import Text from 'components/utils/Text';
 import HoverInfo from 'images/HoverInfo.png';
 
-export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {
+export default function Card({ size, imageURL, title, desc, sellingPrice, normalPrice, tags }) {
   const [isHoverImg, setHoverImg] = useState(false);
   const isSizeSmall = size === 'SMALL';
   return (
@@ -19,8 +19,8 @@ export default function Card({ size, imageURL, title, desc, curPrice, prevPrice,
         <Title />
         {Description()}
         <Prices>
-          <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
-          <Text size="BASE" weight="REGULAR" color="GREY_300" value={prevPrice} line />
+          <Text size="MEDIUM" weight="MEDIUM" value={sellingPrice} />
+          <Text size="BASE" weight="REGULAR" color="GREY_300" value={normalPrice} line />
         </Prices>
       </A>
       <TagWrap>{Tags()}</TagWrap>
