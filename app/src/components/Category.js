@@ -9,7 +9,7 @@ const Category = ({ dish, category }) => {
     SOUP: "정성이 담긴 뜨끈뜨끈 국물 요리",
     MAIN: "모두가 좋아하는 든든한 메인 요리",
   };
-  console.log(dish);
+
   return (
     <Wrapper>
       <Header>{TITLE[category]}</Header>
