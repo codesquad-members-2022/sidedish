@@ -1,24 +1,40 @@
 import styled from "styled-components";
-import constants from "../consts/constants";
-import Label from "../core/Label";
+import { LABEL_ATTRIBUTES } from "../../consts/constants";
+import Label from "../../core/Label";
+import { makePriceFormat } from "../../util/makePriceFormat";
 
-const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) => {
+const ItemCard = ({
+  cardClickState,
+  setCardClickState,
+  image,
+  title,
+  description,
+  originPrice,
+  currentPrice,
+  badge,
+  cardLength,
+  cardMargin,
+}) => {
   const labelList = badge.map((string, ind) => {
     return string === "런칭특가" ? (
-      <Label key={ind} {...constants.LAUNCH_LABEL_ATTRIBUTES} />
+      <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} />
     ) : (
-      <Label key={ind} {...constants.EVENT_LABEL_ATTRIBUTES} />
+      <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />
     );
   });
 
+  const handleCardClick = () => {
+    setCardClickState(!cardClickState);
+  };
+
   return (
-    <Card>
-      <MenuCardImg src={image} alt={title} len={len} />
+    <Card onClick={handleCardClick} cardMargin={cardMargin}>
+      <MenuCardImg src={image} alt={title} cardLength={cardLength} />
       <MenuTitle>{title}</MenuTitle>
       <MenuDescription>{description}</MenuDescription>
       <Price>
-        <SalePrice>{s_price}</SalePrice>
-        <MenuPrice>{n_price}</MenuPrice>
+        <SalePrice>{makePriceFormat(currentPrice)}</SalePrice>
+        <MenuPrice>{makePriceFormat(originPrice)}</MenuPrice>
       </Price>
       {labelList}
     </Card>
@@ -26,13 +42,13 @@ const ItemCard = ({ image, title, description, n_price, s_price, badge, len }) =
 };
 
 const Card = styled.div`
-  padding: 0 24px;
+  margin: 0 ${(props) => props.cardMargin}px;
   cursor: pointer;
 `;
 
 const MenuCardImg = styled.img`
-  width: ${(props) => props.len};
-  height: ${(props) => props.len};
+  width: ${(props) => props.cardLength}px;
+  height: ${(props) => props.cardLength}px;
   margin-bottom: 16px;
 `;
 
