@@ -12,7 +12,7 @@ module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
   },
   module: {
     rules: [
