@@ -68,9 +68,9 @@ final class Ordering{
        return foodMap[category]?.count ?? 0
     }
     
-    func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Data) -> Void) {
+    func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Result<Data,Error>)->Void){
         let url = EndPoint.mainImage(rawUrl: imageUrl)
-        repository.requestData(completionHandler: completionHandler, method: .get, contentType: .image, url: url)
+        repository.requestData(method: .get, contentType: .image, url: url, completionHandler: completionHandler)
     }
     
     subscript(index: Int = 0 , category: Category) -> Food? {
