@@ -8,7 +8,14 @@ protocol CellFactoryProtocol {
 
 final class CellFactory: CellFactoryProtocol {
     private let repository: DishCellRepositoryProtocol
-    private(set) var products: [[DishCellInfo]] = []
+    private(set) var products: [ProductSort: [DishCellInfo]] = [:] {
+        didSet {
+            let requiredSectionCount = 3
+            if products.count == requiredSectionCount {
+                self.onUpdate()
+            }
+        }
+    }
     var onUpdate: () -> Void = { }
 
     init(repository: DishCellRepositoryProtocol) {
@@ -16,33 +23,25 @@ final class CellFactory: CellFactoryProtocol {
     }
 
     func fetchData() {
-        let allCases = ProductSort.allCases
-        allCases.forEach { sort in
+        let allCases: [ProductSort] = ProductSort.allCases
+        for sort in allCases {
             self.repository.fetchInfo(sort: sort) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    DispatchQueue.main.async {
-                        self?.products.append(data)
-                    }
-                    self?.onUpdate()
+                    self?.products[sort] = data
                 case .failure:
-                    // TODO: - error handling
                     print("\(sort.rawValue) error happend!!!")
                 }
             }
         }
     }
 
-    func fetchImageFromServer() {
-    }
-
-    func convertCell2Product() -> [[Product]] {
-        let productArray: [[Product]] = self.products.map { sectionArray in
-            let array = sectionArray.map { cell in
-                return Product(origin: cell, image: UIImage(systemName: "pencil")!)
-            }
-            return array
+    func convertCell2Product() -> [ProductSort: [Product]] {
+        var resultDictionary: [ProductSort: [Product]] = [ : ]
+        for (key, value) in products {
+            let productArray = value.map { Product(origin: $0, image: UIImage(systemName: "pencil")!)}
+            resultDictionary[key] = productArray
         }
-        return productArray
+        return resultDictionary
     }
 }
