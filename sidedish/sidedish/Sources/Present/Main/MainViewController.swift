@@ -115,11 +115,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        Sidedish.Menu.allCases.count
+        Menu.Category.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let menuType = Sidedish.Menu(rawValue: section) else {
+        guard let menuType = Menu.Category(rawValue: section) else {
             return 8
         }
         return model.getMenuCount(menuType)
@@ -148,7 +148,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader, let sideMenu = Sidedish.Menu(rawValue: indexPath.section) else {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader, let sideMenu = Menu.Category(rawValue: indexPath.section) else {
                 return UICollectionReusableView()
             }
             headerView.changeTitle(text: sideMenu.headerTitle)

@@ -15,7 +15,7 @@ struct MainViewModelAction {
 
 struct MainViewModelState {
     let userData = PassthroughSubject<User, Never>()
-    let loadedData = PassthroughSubject<Sidedish.Menu, Never>()
+    let loadedData = PassthroughSubject<Menu.Category, Never>()
     let loadedImage = PassthroughSubject<IndexPath, Never>()
     let presentLoginPage = PassthroughSubject<Void, Never>()
 }
@@ -26,12 +26,13 @@ protocol MainViewModelBinding {
 }
 
 protocol MainViewModelProperty {
-    subscript(_ indexPath: IndexPath) -> Sidedish? { get }
+    subscript(_ indexPath: IndexPath) -> Menu? { get }
     func getThumbnailUrl(indexPath: IndexPath) -> URL?
-    func getMenuCount(_ type: Sidedish.Menu) -> Int
+    func getMenuCount(_ type: Menu.Category) -> Int
 }
 
 typealias MainViewModelProtocol = MainViewModelBinding & MainViewModelProperty
+typealias Menus = [Menu]
 
 class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     private var cancellables = Set<AnyCancellable>()
@@ -40,14 +41,14 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
     private let loginRepository: LoginRepository = LoginRepositoryImpl()
     
-    private var menus = [Sidedish.Menu: [Sidedish]]()
+    private var menus = [Menu.Category: Menus]()
     private var thumbnailImages = [IndexPath: URL]()
     
     let action = MainViewModelAction()
     let state = MainViewModelState()
     
-    subscript(_ indexPath: IndexPath) -> Sidedish? {
-        guard let type = Sidedish.Menu(rawValue: indexPath.section),
+    subscript(_ indexPath: IndexPath) -> Menu? {
+        guard let type = Menu.Category(rawValue: indexPath.section),
               let menus = self.menus[type] else {
             return nil
         }
@@ -67,7 +68,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
         
         let request = action.viewDidLoad
             .map { [weak self] _ in
-                Sidedish.Menu.allCases.publisher.compactMap { menu in
+                Menu.Category.allCases.publisher.compactMap { menu in
                     self?.sidedishRepository.loadMenu(menu)
                 }
             }
@@ -100,7 +101,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
             .store(in: &cancellables)
     }
     
-    private func loadThumbnailImage(type: Sidedish.Menu, menus: [Sidedish]) {
+    private func loadThumbnailImage(type: Menu.Category, menus: [Menu]) {
         let imageUrls = menus.enumerated().map {
             (IndexPath(item: $0.offset, section: type.index), $0.element.image)
         }
@@ -118,7 +119,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
         thumbnailImages[indexPath]
     }
     
-    func getMenuCount(_ type: Sidedish.Menu) -> Int {
+    func getMenuCount(_ type: Menu.Category) -> Int {
         menus[type]?.count ?? 8
     }
 }

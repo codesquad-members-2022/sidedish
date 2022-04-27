@@ -40,7 +40,7 @@
 		E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EDD5A2280CF94700DBF9C6 /* Assets.xcassets */; };
 		E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */; };
 		E0EDD5BC280D513700DBF9C6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */; };
-		E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */; };
+		E0EDD5BE280D541800DBF9C6 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD5BD280D541800DBF9C6 /* Menu.swift */; };
 		E0FAAA3C280D881900B36F4D /* NetworkApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA30280D881900B36F4D /* NetworkApiRepository.swift */; };
 		E0FAAA3D280D881900B36F4D /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA32280D881900B36F4D /* URLSessionProtocol.swift */; };
 		E0FAAA3E280D881900B36F4D /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAAA33280D881900B36F4D /* SessionError.swift */; };
@@ -97,7 +97,7 @@
 		E0EDD5A7280CF94700DBF9C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidedish.swift; sourceTree = "<group>"; };
+		E0EDD5BD280D541800DBF9C6 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		E0FAAA30280D881900B36F4D /* NetworkApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkApiRepository.swift; sourceTree = "<group>"; };
 		E0FAAA32280D881900B36F4D /* URLSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		E0FAAA33280D881900B36F4D /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 		E0EDD5B3280D183A00DBF9C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E0EDD5BD280D541800DBF9C6 /* Sidedish.swift */,
+				E0EDD5BD280D541800DBF9C6 /* Menu.swift */,
 				E0FAAA4E280E867900B36F4D /* MenuDetail.swift */,
 				E0D380C52816CC98009627A1 /* User.swift */,
 				E0D380D12816D467009627A1 /* Token.swift */,
@@ -541,7 +541,7 @@
 				E0D380BF2816C0B7009627A1 /* LoginViewModel.swift in Sources */,
 				E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */,
 				E0FAAA5E280F120900B36F4D /* MenuOrderView.swift in Sources */,
-				E0EDD5BE280D541800DBF9C6 /* Sidedish.swift in Sources */,
+				E0EDD5BE280D541800DBF9C6 /* Menu.swift in Sources */,
 				E0D380C22816C2C0009627A1 /* LoginRepository.swift in Sources */,
 				E0D380C62816CC98009627A1 /* User.swift in Sources */,
 				E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */,

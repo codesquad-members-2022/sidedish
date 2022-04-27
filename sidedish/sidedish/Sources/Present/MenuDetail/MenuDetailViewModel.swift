@@ -16,7 +16,7 @@ struct MenuDetailViewModelAction {
 }
 
 struct MenuDetailViewModelState {
-    let loadedDetail = PassthroughSubject<(Sidedish, MenuDetail), Never>()
+    let loadedDetail = PassthroughSubject<(Menu, MenuDetail), Never>()
     let showError = PassthroughSubject<SessionError, Never>()
     let ordered = PassthroughSubject<Void, Never>()
     let amount = CurrentValueSubject<Int, Never>(1)
@@ -44,7 +44,7 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
         Log.debug("DeInit MenuDetailViewModel")
     }
     
-    init(menu: Sidedish) {
+    init(menu: Menu) {
         
         let requestDetail = action.loadMenuDetail
             .compactMap { [weak self] _ in self?.sidedishRepository.loadDetail(menu.hash) }
