@@ -17,6 +17,7 @@ final class HTTPManager {
         }
     }
     
+    // 캐시에 이미지 다운로드해 저장
     static let fileDownloadPath = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)[0]
     
     static func requestGet(url: String, complete: @escaping (Data) -> ()) {
@@ -40,8 +41,6 @@ final class HTTPManager {
     }
     
     static func downloadImage(url: URL, toFile file: URL, completion: @escaping (Error?) -> Void) {
-        var result = Data()
-       
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HttpMethod.get.getRawValue()
         
@@ -70,7 +69,6 @@ final class HTTPManager {
     }
     
     static func loadData(url: URL, completion: @escaping (Data?, Error?) -> Void) {
-        // TODO : 비동기? 데이터가 다운로드되기 전에 사용하려 해서 데이터가 없는 것...  - NotificationCenter로 다운로드되면 사용하기
         var result = Data()
         // 캐시 내의 URL로의 경로 지정
         let fileCachePath = FileManager.default.temporaryDirectory.appendingPathComponent(
@@ -83,17 +81,18 @@ final class HTTPManager {
             completion(result, nil)
             return
         } catch {
-            print(error)
+            print("캐시에 이미지 있음 : \(error)")
         }
         
-        // 캐시에 해당 이미지가 없으면, 캐시에 그 이미지 다운로드
+        // 캐시에 해당 이미지가 없으면, 캐시에 그 이미지 다운로드 :
         downloadImage(url: url, toFile: fileDownloadPath) { (error) in
             do {
                 try result = Data(contentsOf: fileDownloadPath)
-                completion(result, error)
+                completion(result, nil)
             } catch {
-                print(error)
+                print("캐시에 이미지가 없어 새로 다운로드 : \(error)")
             }
         }
+        // TODO : 이전에 다운받은 이미지가 있어서 매번 그 이미지를 가져오는 상황.
     }
 }

@@ -20,6 +20,7 @@ class BadgeStackView: UIStackView {
             self.layer.cornerRadius = 10
             self.textAlignment = .center
             self.baselineAdjustment = .alignCenters
+            self.numberOfLines = 0
         }
         
         required init?(coder: NSCoder) {

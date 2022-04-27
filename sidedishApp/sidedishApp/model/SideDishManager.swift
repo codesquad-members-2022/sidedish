@@ -62,7 +62,7 @@ final class SideDishManager {
             if let data = data {
                 imageData = data
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
         }
         return imageData
     }
@@ -107,7 +107,7 @@ final class SideDishManager {
         return dishCount
     }
     
-    func getMainDishImageURLFromHash(hash: String) -> URL? {
+    private func getMainDishImageURLFromHash(hash: String) -> URL? {
         guard let mainDishesBody = mainDishes?.body,
               let soupDishesBody = soupDishes?.body,
               let sideDishesBody = sideDishes?.body else {

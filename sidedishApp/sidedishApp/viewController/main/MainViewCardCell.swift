@@ -23,7 +23,7 @@ class MainViewCardCell: UICollectionViewCell {
         var stackView = MainViewCardInfo()
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.distribution = .fillProportionally
+        // stackView.distribution = .fillProportionally
         stackView.spacing = 5
         return stackView
     }()
@@ -43,7 +43,9 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     func setImage(imageData: Data) {
-        self.cardImageView.image = UIImage(data: imageData)
+        DispatchQueue.main.async {
+            self.cardImageView.image = UIImage(data: imageData)
+        }
     }
     
     private func setUI() {
