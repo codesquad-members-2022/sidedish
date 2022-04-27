@@ -15,16 +15,14 @@ public class OrderService {
         this.jdbcDishRepository = jdbcDishRepository;
     }
 
-    public void isOrderPlaceable(OrderRequest orderRequest) {
-        Long dishId = orderRequest.getDishId();
+    public void checkOrderPlaceable(Long dishId, OrderRequest orderRequest) {
         Dish dish = jdbcDishRepository.findById(dishId).orElseThrow();
         if (dish.getStock() < orderRequest.getQuantity()) {
             throw new IllegalArgumentException("주문 오류");
         }
     }
 
-    public Reciept placeOrder(OrderRequest orderRequest) {
-        Long dishId = orderRequest.getDishId();
+    public Reciept placeOrder(Long dishId, OrderRequest orderRequest) {
         int quantity = orderRequest.getQuantity();
         jdbcDishRepository.updateStock(dishId, quantity);
         Dish dish = jdbcDishRepository.findById(dishId).orElseThrow();
