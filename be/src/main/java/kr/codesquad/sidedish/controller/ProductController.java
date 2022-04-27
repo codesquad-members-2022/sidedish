@@ -38,13 +38,14 @@ public class ProductController {
 		@PathVariable(required = false) Optional<String> sideDishType) {
 		List<ProductDTO> productDTOs = loadListByType(dishType, sideDishType);
 
+		if (productDTOs.size() == 0) {
+			return noContentCommonResponse().toResponseEntity();
+		}
+
 		List<ResponseSimpleProductInfo> simpleDTOs = productDTOs.stream()
 			.map(p -> ResponseSimpleProductInfo.from(p))
 			.collect(Collectors.toList());
 
-		if (productDTOs.size() == 0) {
-			return noContentCommonResponse().toResponseEntity();
-		}
 		return OKCommonResponse(simpleDTOs).toResponseEntity();
 	}
 
