@@ -5,9 +5,9 @@ final class MockRepository: RepositoryApplicable{
     var delegate: RepositoryDelegate?
     private var networkHandler: NetworkHandlable
     private let jsonHandler: JSONHandlable
-    private let dataCache: DataCacheable
+    private let dataCache: DataCachingManagable
     
-    init(networkHandler: NetworkHandlable, jsonHandler: JSONHandlable, dataCache: DataCacheable){
+    init(networkHandler: NetworkHandlable, jsonHandler: JSONHandlable, dataCache: DataCachingManagable){
         self.networkHandler = networkHandler
         self.jsonHandler = jsonHandler
         self.dataCache = dataCache
