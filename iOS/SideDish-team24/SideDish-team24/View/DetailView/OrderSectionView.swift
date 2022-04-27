@@ -23,7 +23,7 @@ class OrderSectionView: UIView {
     }
     
     func setAmount(amount: String) {
-        self.totalAmountLabel.text = "\(amount)원"
+        self.totalAmountLabel.text = amount
     }
 }
 

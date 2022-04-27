@@ -37,6 +37,8 @@ class DetailBanchanView: UIScrollView {
     func configure(title: String, description: String, price: String, listPrice: String?) {
         self.banchanBriefSection.configure(title: title, description: description)
         self.banchanBriefSection.configure(price: price, listPrice: listPrice)
+        
+        self.orderSection.setAmount(amount: price)
     }
     
     func configure(image: UIImage?) {
