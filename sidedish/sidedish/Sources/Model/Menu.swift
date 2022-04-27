@@ -9,10 +9,10 @@ import Foundation
 
 struct SidedishAPIResult: Decodable {
     let statusCode: Int
-    let body: [Sidedish]
+    let body: [Menu]
 }
 
-struct Sidedish: Decodable {
+struct Menu: Decodable {
     let hash: String
     let image: URL
     let title: String
@@ -31,8 +31,8 @@ struct Sidedish: Decodable {
     }
 }
 
-extension Sidedish {
-    enum Menu: Int, CaseIterable {
+extension Menu {
+    enum Category: Int, CaseIterable {
         case main, soup, side
         
         var index: Int {
