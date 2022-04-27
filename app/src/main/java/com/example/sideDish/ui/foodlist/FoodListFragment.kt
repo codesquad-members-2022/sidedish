@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -80,13 +81,18 @@ class FoodListFragment : Fragment() {
         }
     }
 
-    private fun openDetail(detailHash: String) {
+    private fun openDetail(foodInfo: Item.FoodInfo) {
+        Log.d("openDetail", foodInfo.detailHash)
+        Log.d("openDetail", foodInfo.title)
         parentFragmentManager.commit {
             addToBackStack(null)
             replace(
                 R.id.container,
                 ProductDetailFragment::class.java,
-                bundleOf("DETAILHASH_KEY" to detailHash)
+                bundleOf(
+                    "DETAILHASH_KEY" to foodInfo.detailHash,
+                    "TITLE_KEY" to foodInfo.title
+                )
             )
         }
     }
