@@ -33,21 +33,21 @@ class LoginViewController: UIViewController {
     }
     
     private func bind() {
-        model.state.presentMainView
+        model.state().presentMainView
             .sink {
                 RootWindow.shared?.switchRootWindowState.send(.main)
             }
             .store(in: &cancellables)
         
         googleLoginButton.publisher(for: .touchUpInside)
-            .sink(receiveValue: model.action.tappedGoogleLogin.send(_:))
+            .sink(receiveValue: model.action().tappedGoogleLogin.send(_:))
             .store(in: &cancellables)
         
-        model.state.presentGoogleLogin
+        model.state().presentGoogleLogin
             .sink { [weak self] config in
                 guard let self = self else { return }
                 GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, _ in
-                    self.model.action.googleUser.send(user)
+                    self.model.action().googleUser.send(user)
                 }
             }.store(in: &cancellables)
     }

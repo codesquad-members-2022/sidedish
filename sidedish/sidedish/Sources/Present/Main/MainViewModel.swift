@@ -21,8 +21,8 @@ struct MainViewModelState {
 }
 
 protocol MainViewModelBinding {
-    var action: MainViewModelAction { get }
-    var state: MainViewModelState { get }
+    func action() -> MainViewModelAction
+    func state() -> MainViewModelState
 }
 
 protocol MainViewModelProperty {
@@ -44,8 +44,16 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     private var menus = [Menu.Category: Menus]()
     private var thumbnailImages = [IndexPath: URL]()
     
-    let action = MainViewModelAction()
-    let state = MainViewModelState()
+    private let mainAction = MainViewModelAction()
+    private let mainState = MainViewModelState()
+    
+    func action() -> MainViewModelAction {
+        mainAction
+    }
+    
+    func state() -> MainViewModelState {
+        mainState
+    }
     
     subscript(_ indexPath: IndexPath) -> Menu? {
         guard let type = Menu.Category(rawValue: indexPath.section),
@@ -61,12 +69,12 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     }
     
     init() {
-        action.viewDidLoad
-            .compactMap { Container.shared.userStore.user }
-            .sink(receiveValue: state.userData.send(_:))
+        action().viewDidLoad
+            .compactMap { Container.userStore.user }
+            .sink(receiveValue: state().userData.send(_:))
             .store(in: &cancellables)
         
-        let request = action.viewDidLoad
+        let request = action().viewDidLoad
             .map { [weak self] _ in
                 Menu.Category.allCases.publisher.compactMap { menu in
                     self?.sidedishRepository.loadMenu(menu)
@@ -82,7 +90,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
                     .compactMap { $0.value }
                     .sink { type, menus in
                         self.menus[type] = menus
-                        self.state.loadedData.send(type)
+                        self.state().loadedData.send(type)
                         self.loadThumbnailImage(type: type, menus: menus)
                     }.store(in: &self.cancellables)
 
@@ -93,11 +101,11 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
                     }.store(in: &self.cancellables)
             }.store(in: &cancellables)
 
-        action.tappedLogoutButton
+        action().tappedLogoutButton
             .compactMap { [weak self] _ in self?.loginRepository.signOut() }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.shared.userStore.user = nil })
-            .sink(receiveValue: state.presentLoginPage.send(_:))
+            .handleEvents(receiveOutput: { Container.userStore.user = nil })
+            .sink(receiveValue: state().presentLoginPage.send(_:))
             .store(in: &cancellables)
     }
     
@@ -109,7 +117,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
             resourceRepository.loadImage(url)
                 .sink { [weak self] fileUrl in
                     self?.thumbnailImages[indexPath] = fileUrl
-                    self?.state.loadedImage.send(indexPath)
+                    self?.state().loadedImage.send(indexPath)
                 }
                 .store(in: &cancellables)
         }

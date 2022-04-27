@@ -49,36 +49,36 @@ class MainViewController: UIViewController {
         attritbute()
         layout()
         makeNavigationButtons()
-        model.action.viewDidLoad.send()
+        model.action().viewDidLoad.send()
     }
     
     private func bind() {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        model.state.userData
+        model.state().userData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] user in
                 self?.title = "\(user.name)님 안녕하세요"
             }.store(in: &cancellables)
 
-        model.state.loadedData
+        model.state().loadedData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] type in
                 self?.collectionView.reloadSections(IndexSet(integer: type.index))
             }.store(in: &cancellables)
 
-        model.state.loadedImage
+        model.state().loadedImage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] indexPath in
                 self?.collectionView.reloadItems(at: [indexPath])
             }.store(in: &cancellables)
 
         loginButton.publisher(for: .touchUpInside)
-            .sink(receiveValue: model.action.tappedLogoutButton.send(_:))
+            .sink(receiveValue: model.action().tappedLogoutButton.send(_:))
             .store(in: &cancellables)
         
-        model.state.presentLoginPage
+        model.state().presentLoginPage
             .sink {
                 RootWindow.shared?.switchRootWindowState.send(.login)
             }
