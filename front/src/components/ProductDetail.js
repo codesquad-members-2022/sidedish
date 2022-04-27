@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Badges from './Badges';
 
@@ -157,6 +157,10 @@ function ProductDetail({ dishes }) {
   function changeImage({ target }) {
     mainImage.current.src = target.src;
   }
+  useEffect(() => {
+    setAmount(1);
+    // mainImage 상태로 관리하도록 리팩토링 후 이미지 초기화 추가
+  }, [dishes]);
 
   return (
     <DishDetail>
