@@ -1,24 +1,42 @@
 import styled from "styled-components";
 import ItemCard from "./ItemCard";
 
-const ItemCards = ({ cardClickState, setCardClickState, dataState, cardLength, cardMargin, cardContainerPadding }) => {
-  const itemCardList = dataState.map(({ image, title, description, n_price, s_price, badge }, ind) => (
-    <ItemCard
-      cardClickState={cardClickState}
-      setCardClickState={setCardClickState}
-      key={ind}
-      image={image}
-      title={title}
-      description={description}
-      n_price={n_price}
-      s_price={s_price}
-      badge={badge}
-      cardLength={cardLength}
-      cardMargin={cardMargin}
-    ></ItemCard>
-  ));
+const ItemCards = ({
+  cardClickState,
+  setCardClickState,
+  dataState,
+  cardLength,
+  cardMargin,
+  cardContainerPadding,
+}) => {
+  const findMaxDiscount = (eventBadge) => {
+    const eventDiscount = eventBadge.map((el) => el.discount);
+    return eventDiscount.length ? Math.max(...eventDiscount) : 0;
+  };
 
-  return <ItemCardContainer cardContainerPadding={cardContainerPadding}>{itemCardList}</ItemCardContainer>;
+  const itemCardList = dataState.map(
+    ({ mainImage, title, description, price, eventBadge, dishId }) => (
+      <ItemCard
+        cardClickState={cardClickState}
+        setCardClickState={setCardClickState}
+        key={dishId}
+        image={mainImage}
+        title={title}
+        description={description}
+        originPrice={eventBadge.length ? price : null}
+        currentPrice={((100 - findMaxDiscount(eventBadge)) * price) / 100}
+        badge={eventBadge.map((el) => el.eventName)}
+        cardLength={cardLength}
+        cardMargin={cardMargin}
+      ></ItemCard>
+    )
+  );
+
+  return (
+    <ItemCardContainer cardContainerPadding={cardContainerPadding}>
+      {itemCardList}
+    </ItemCardContainer>
+  );
 };
 
 const ItemCardContainer = styled.ul`
