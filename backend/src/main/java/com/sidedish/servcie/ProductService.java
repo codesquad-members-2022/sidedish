@@ -4,6 +4,9 @@ import com.sidedish.domain.product.Product;
 import com.sidedish.repository.ProductRepository;
 import com.sidedish.web.dto.EventCategoryProductDto;
 import com.sidedish.web.dto.MainCategoryProductDto;
+import com.sidedish.web.dto.ProductDetailDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +14,8 @@ import java.util.List;
 
 @Service
 public class ProductService {
+
+    private final Logger log = LoggerFactory.getLogger(ProductService.class);
 
     private ProductRepository productRepository;
 
@@ -35,5 +40,12 @@ public class ProductService {
         }
         return dtoList;
     }
+
+    public ProductDetailDto findById(Long id){
+        Product product = productRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        log.debug("잘 나왔니? :{}", product);
+        return new ProductDetailDto(product.getProductName(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getImages());
+    }
+
 
 }
