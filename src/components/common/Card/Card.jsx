@@ -7,7 +7,7 @@ import HoverInfo from 'images/HoverInfo.png';
 
 export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {
   const [isHoverImg, setHoverImg] = useState(false);
-  const isSmall = size === 'SMALL';
+  const isSizeSmall = size === 'SMALL';
   return (
     <Wrap size={size}>
       <A>
@@ -28,29 +28,29 @@ export default function Card({ size, imageURL, title, desc, curPrice, prevPrice,
   );
 
   function Title() {
-    if (isSmall) {
+    if (isSizeSmall) {
       return <Text value={title} />;
     }
     return <Text size="MEDIUM" weight="MEDIUM" value={title} />;
   }
 
   function HoverImg() {
-    if (isSmall) return null;
+    if (isSizeSmall) return null;
     return <DeliveryInfo isHoverImg={isHoverImg} />;
   }
 
   function Space() {
-    if (isSmall) return null;
+    if (isSizeSmall) return null;
     return <div />;
   }
 
   function Description() {
-    if (isSmall) return null;
+    if (isSizeSmall) return null;
     return <Text size="BASE" weight="REGULAR" color="GREY_200" value={desc} />;
   }
 
   function Tags() {
-    if (isSmall) return null;
+    if (isSizeSmall) return null;
     return tags.map((tag, index) => <Tag key={`${tag}_${index}`} type={tag} />);
   }
 }

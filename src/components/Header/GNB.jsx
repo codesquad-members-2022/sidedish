@@ -10,7 +10,7 @@ const GNB_INFO = [
 ];
 
 export default function GNB() {
-  const [subGnbVisible, setSubGnbVisible] = useState(false);
+  const [isSubGnbVisible, setSubGnbVisible] = useState(false);
 
   return (
     <Wrap>
@@ -22,7 +22,7 @@ export default function GNB() {
             onMouseLeave={() => setSubGnbVisible(false)}
           >
             <Text size="MEDIUM" value={GNB_NAME} />
-            <SubGNB visible={subGnbVisible} SUB_GNB_INFO={GNB_INFO[gnbIndex]} gnbIndex={gnbIndex} />
+            <SubGNB visible={isSubGnbVisible} SUB_GNB_INFO={GNB_INFO[gnbIndex]} gnbIndex={gnbIndex} />
           </GNBItem>
         ))}
       </GNBItems>
