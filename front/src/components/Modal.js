@@ -1,28 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { fetchDishItem } from '../api';
 import ProductDetail from './ProductDetail';
 import RelatedProduct from './RelatedProduct';
 
-function Modal({ dishes, hideModal, showModal, showAlert }) {
-  const relatedDishes = dishes.related_dishes;
+function Modal({ dishId, hideModal, showModal, showAlert }) {
+  const [dish, setDish] = useState(null);
   function closeModal(e) {
     if (e.target !== e.currentTarget) {
       return;
     } // 질문해보기!
     hideModal();
   }
+  useEffect(() => {
+    async function fetchAndSetDish() {
+      const data = await fetchDishItem(dishId);
+      setDish(data);
+    }
+    fetchAndSetDish();
+  }, [dishId]);
   return (
-    <ModalWrap onClick={closeModal}>
-      <PopupBox>
-        <PopupCloseButtonWrap>
-          <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
-        </PopupCloseButtonWrap>
-        <ProductDetail dishes={dishes} showAlert={showAlert}></ProductDetail>
-        <RelatedProduct relatedDishes={relatedDishes} showModal={showModal}></RelatedProduct>
-      </PopupBox>
-    </ModalWrap>
+    <>
+      {dish && (
+        <ModalWrap onClick={closeModal}>
+          <PopupBox>
+            <PopupCloseButtonWrap>
+              <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
+            </PopupCloseButtonWrap>
+            <ProductDetail dishes={dish} showAlert={showAlert}></ProductDetail>
+            <RelatedProduct relatedDishes={dish.related_dishes} showModal={showModal}></RelatedProduct>
+          </PopupBox>
+        </ModalWrap>
+      )}
+    </>
   );
 }
+
 const ModalWrap = styled.div`
   position: fixed;
   width: 100vw;

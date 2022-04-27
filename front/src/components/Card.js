@@ -9,10 +9,6 @@ function Card({ size, item, showModal }) {
     medium: { width: 302, height: 456 },
     small: { width: 160, height: 226 },
   };
-  const badgeColores = {
-    이벤트특가: '#6DD028',
-    런칭특가: '#FF8E14',
-  };
 
   const [isHover, setIsHover] = useState(false);
 
@@ -23,7 +19,7 @@ function Card({ size, item, showModal }) {
     setIsHover(false);
   }
   return (
-    <StyledCard key={id} cardSize={cardSizes[size]} onClick={showModal}>
+    <StyledCard key={id} cardSize={cardSizes[size]} onClick={() => showModal(id)}>
       <Thumbnail height={cardSizes[size].width} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
         <Image src={image}></Image>
         {size !== 'small' && isHover && (

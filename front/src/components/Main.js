@@ -11,10 +11,17 @@ function Main({ categories, showModal }) {
   return (
     <MainWrap>
       {isShowAllCategories ? (
-        categories.map(({ name, id }) => <CategoryMenu key={id} name={name} showModal={showModal}></CategoryMenu>)
+        categories.map(({ name, id, items }) => (
+          <CategoryMenu key={id} name={name} items={items} showModal={showModal}></CategoryMenu>
+        ))
       ) : (
         <>
-          <CategoryMenu key={categories[0].id} name={categories[0].name} showModal={showModal}></CategoryMenu>
+          <CategoryMenu
+            key={categories[0].id}
+            name={categories[0].name}
+            items={categories[0].items}
+            showModal={showModal}
+          ></CategoryMenu>
           <CategoryShowButton onClick={showAllCategories}>모든 카테고리 보기</CategoryShowButton>
         </>
       )}

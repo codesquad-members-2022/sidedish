@@ -4,7 +4,6 @@ import Card from './Card';
 
 function Promotion({ title, promotions, showModal }) {
   const [selectedTabIndex, setSelectedTapIndex] = useState(0);
-
   function selectTab(index) {
     setSelectedTapIndex(index);
   }
@@ -16,9 +15,9 @@ function Promotion({ title, promotions, showModal }) {
       </PromotionHeader>
       <nav>
         <TabBar>
-          {promotions.map(({ title }, index) => (
+          {promotions.map(({ title, id }, index) => (
             <Tab
-              key={index}
+              key={id}
               selected={index === selectedTabIndex}
               onClick={() => {
                 selectTab(index);
@@ -38,108 +37,6 @@ function Promotion({ title, promotions, showModal }) {
     </StyledPromotion>
   );
 }
-
-Promotion.defaultProps = {
-  title: '둘이 먹다 하나가 죽어도 모르는 반찬',
-  promotions: [
-    {
-      title: '풍성한 고기 반찬',
-      items: [
-        {
-          id: 0,
-          image:
-            'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-          title: '고기반찬 1',
-          contents: '스테이크 먹고싶다',
-          origin_price: 50000,
-          discount_price: 39800,
-          early_delivery: true,
-          badge_title: ['이벤트특가', '런칭특가'],
-          categories: ['메인 요리'],
-        },
-        {
-          id: 1,
-          image:
-            'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-          title: '고기반찬 2',
-          contents: '스테이크 먹고싶다',
-          origin_price: 50000,
-          discount_price: 39800,
-          early_delivery: true,
-          badge_title: ['이벤트특가', '런칭특가'],
-          categories: ['메인 요리'],
-        },
-        {
-          id: 2,
-          image:
-            'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-          title: '고기반찬 3',
-          contents: '스테이크 먹고싶다',
-          origin_price: 50000,
-          discount_price: 39800,
-          early_delivery: true,
-          badge_title: ['이벤트특가', '런칭특가'],
-          categories: ['메인 요리'],
-        },
-      ],
-    },
-    {
-      title: '편리한 반찬 세트',
-      items: [
-        {
-          id: 0,
-          image:
-            'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-          title: '편리한 반찬 1',
-          contents: '스테이크 먹고싶다',
-          origin_price: 50000,
-          discount_price: 39800,
-          early_delivery: true,
-          badge_title: ['이벤트특가', '런칭특가'],
-          categories: ['메인 요리'],
-        },
-        {
-          id: 1,
-          image:
-            'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-          title: '편리한 반찬 2',
-          contents: '스테이크 먹고싶다',
-          origin_price: 50000,
-          discount_price: 39800,
-          early_delivery: true,
-          badge_title: ['이벤트특가', '런칭특가'],
-          categories: ['메인 요리'],
-        },
-        {
-          id: 2,
-          image:
-            'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-          title: '편리한 반찬 3',
-          contents: '스테이크 먹고싶다',
-          origin_price: 50000,
-          discount_price: 39800,
-          early_delivery: true,
-          badge_title: ['이벤트특가', '런칭특가'],
-          categories: ['메인 요리'],
-        },
-      ],
-    },
-    {
-      title: '맛있는 제철 요리',
-      items: [],
-    },
-    {
-      title: '우리 아이 영양 반찬',
-      items: [],
-    },
-  ],
-  items: {
-    '풍성한 고기 반찬': [],
-    '편리한 반찬 세트': [],
-    '맛있는 제철 요리': [],
-    '우리 아이 영양 반찬': [],
-  },
-};
 
 const StyledPromotion = styled.div`
   margin: 32px 80px 0 80px;
