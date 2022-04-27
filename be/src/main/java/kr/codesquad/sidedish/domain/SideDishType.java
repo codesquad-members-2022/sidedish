@@ -9,19 +9,21 @@ import java.util.Arrays;
 
 @AllArgsConstructor
 @Getter
-public enum Dish {
+public enum SideDishType {
 
-    MAIN("메인"),
-    SIDE("반찬"),
-    SOUP("국물"),
+    MEAT("고기"),
+    NUTRITION("영양"),
+    SEASON("제철"),
+    CONVENIENCE("편리"),
+
     ;
 
     private final String type;
 
-    public static Dish stringToEnum(String type) {
+    public static SideDishType stringToEnum(String type) {
         return Arrays.stream(values())
-                .filter(dishType -> dishType.type.equals(type))
+                .filter(sideDish -> sideDish.type.equals(type))
                 .findFirst()
-                .orElseThrow(() -> new CustomException(ErrorCode.DISH_TYPE_NOT_ALLOWED));
+                .orElseThrow(() -> new CustomException(ErrorCode.SIDE_DISH_TYPE_NOT_ALLOWED));
     }
 }

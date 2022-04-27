@@ -3,10 +3,10 @@ package kr.codesquad.sidedish.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import kr.codesquad.sidedish.domain.Dish;
+import kr.codesquad.sidedish.domain.DishType;
 import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.controller.RequestProduct;
-import kr.codesquad.sidedish.domain.SideDish;
+import kr.codesquad.sidedish.domain.SideDishType;
 import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.repository.ProductRepository;
 import kr.codesquad.sidedish.response.ErrorCode;
@@ -26,16 +26,15 @@ public class ProductService {
 			.collect(Collectors.toList());
 	}
 
-	public List<ProductDTO> loadDishListByType(Dish dish) {
-		return productRepository.loadDishListByType(dish.getType()).stream()
+	public List<ProductDTO> loadDishListByType(DishType dishType) {
+		return productRepository.loadDishListByType(dishType.getType()).stream()
 			.map(p -> ProductDTO.from(p))
 			.collect(Collectors.toList());
 	}
 
-	public List<ProductDTO> loadSideDishListByType(Dish dish, SideDish sideDish) {
-		ServiceValidator.checkDishTypeIsSide(dish);
-
-		return productRepository.loadSideDishListByType(dish.getType(), sideDish.getType())
+	public List<ProductDTO> loadSideDishListByType(DishType dishType, SideDishType sideDishType) {
+		ServiceValidator.checkDishTypeIsSide(dishType);
+		return productRepository.loadSideDishListByType(dishType.getType(), sideDishType.getType())
 			.stream()
 			.map(p -> ProductDTO.from(p))
 			.collect(Collectors.toList());

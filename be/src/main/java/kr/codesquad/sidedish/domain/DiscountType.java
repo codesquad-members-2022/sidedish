@@ -5,7 +5,7 @@ import kr.codesquad.sidedish.response.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public enum Discount {
+public enum DiscountType {
 
 	SUPER_SALE(0.7),
 	LAUNCHING(0.8),
@@ -15,12 +15,12 @@ public enum Discount {
 	private String applyEvent;
 	private double value;
 
-	Discount(double value) {
+	DiscountType(double value) {
 		this.value = value;
 	}
 
 
-	public static Discount convertSaleType(String applyEvent) {
+	public static DiscountType convertSaleType(String applyEvent) {
 		switch (applyEvent) {
 			case "런칭특가,이벤트특가":
 				return SUPER_SALE;

@@ -17,7 +17,7 @@ public class Product {
 	private final Integer price;
 	private final Integer quantity;
 	private final String dishType;
-	private final String sideDishType;
+	private final String sidedishType;
 	private final String applyEvent;
 	private final String imgUrl;
 	private final Integer deliveryType;
@@ -26,7 +26,7 @@ public class Product {
 		return this.dishType == dishType;
 	}
 
-	public boolean isSameSideDishType(String sideDishType) {
-		return this.sideDishType == sideDishType;
+	public boolean isSameSideDishType(String sidedishType) {
+		return this.sidedishType == sidedishType;
 	}
 }

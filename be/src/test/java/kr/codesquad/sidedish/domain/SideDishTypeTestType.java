@@ -7,18 +7,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class DishTest {
+class SideDishTypeTestType {
 
     @Test
-    @DisplayName("존재하지 않는 요리 카테고리 조회 시 DISH_TYPE_NOT_ALLOWED 예외가 발생한다.")
+    @DisplayName("존재하지 않는 반찬 카테고리 조회 시 SIDE_DISH_TYPE_NOT_ALLOWED 예외가 발생한다.")
     void notHaveDishType() {
         // given
-        String dishType = "한식";
+        String sideDishType = "채소";
         // when
 
         // then
-        assertThatThrownBy(() -> Dish.stringToEnum(dishType))
+        assertThatThrownBy(() -> SideDishType.stringToEnum(sideDishType))
                 .isInstanceOf(CustomException.class)
-                .hasMessageContaining(ErrorCode.DISH_TYPE_NOT_ALLOWED.getDetail());
+                .hasMessageContaining(ErrorCode.SIDE_DISH_TYPE_NOT_ALLOWED.getDetail());
     }
 }

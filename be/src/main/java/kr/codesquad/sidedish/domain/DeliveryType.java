@@ -5,7 +5,7 @@ import kr.codesquad.sidedish.response.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public enum Delivery {
+public enum DeliveryType {
 	ALL_WAY("서울 경기 새벽 배송, 전국 택배 배송"),
 	NATIONWIDE("서울 경기 새벽 배송"),
 	EARLY_MORNING("전국 택배 배송"),
@@ -16,11 +16,11 @@ public enum Delivery {
 	private String deliveryInfo;
 	private String value;
 
-	Delivery(String value) {
+	DeliveryType(String value) {
 		this.value = value;
 	}
 
-	public static Delivery convertInfo(String deliveryInfo) {
+	public static DeliveryType convertInfo(String deliveryInfo) {
 		switch (deliveryInfo) {
 			case "새벽배송,전국택배":
 				return ALL_WAY;

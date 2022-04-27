@@ -1,6 +1,6 @@
 package kr.codesquad.sidedish.service;
 
-import kr.codesquad.sidedish.domain.Discount;
+import kr.codesquad.sidedish.domain.DiscountType;
 import kr.codesquad.sidedish.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,13 +30,13 @@ public class ProductDTO {
 
 		return new ProductDTO(product.getId(), product.getName(), product.getContent(),
 			product.getPrice(), discountPrice, product.getQuantity(), product.getDishType(),
-			product.getSideDishType(), product.getApplyEvent(), images,
+			product.getSidedishType(), product.getApplyEvent(), images,
 			product.getDeliveryType());
 	}
 
 	private static Integer convertDiscountPrice(String applyEvent, Integer price) {
-		Discount discount = Discount.convertSaleType(applyEvent);
+		DiscountType discountType = DiscountType.convertSaleType(applyEvent);
 
-		return (int) Math.round(price * discount.getValue());
+		return (int) Math.round(price * discountType.getValue());
 	}
 }
