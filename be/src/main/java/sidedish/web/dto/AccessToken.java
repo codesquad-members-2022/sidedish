@@ -9,16 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AccessToken {
 
-	private String access_token;
+	private String accessToken;
 	private String scope;
-	private String token_type;
-
-	@Override
-	public String toString() {
-		return "AccessToken{" +
-			"access_token='" + access_token + '\'' +
-			", scope='" + scope + '\'' +
-			", token_type='" + token_type + '\'' +
-			'}';
-	}
+	private String tokenType;
 }

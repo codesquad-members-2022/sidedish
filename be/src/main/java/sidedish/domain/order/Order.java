@@ -14,6 +14,7 @@ public class Order {
 
     @Id
     private Long id;
+    private Long memberId;
     private Long itemId;
     private int orderQuantity;
     private int totalPrice;
