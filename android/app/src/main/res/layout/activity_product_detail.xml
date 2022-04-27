@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="contents"
+            type="com.example.sidedish.ProductDetailContents" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,12 +59,258 @@
                     android:id="@+id/tab_layout_product_detail_indicator"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewpager_product_detail"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/viewpager_product_detail"
                     app:tabBackground="@drawable/selector_viewpager_indicator"
                     app:tabGravity="center"
                     app:tabIndicatorHeight="0dp" />
+
+                <TextView
+                    android:id="@+id/tv_product_detail_contents_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@{contents.title}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tab_layout_product_detail_indicator"
+                    tools:text="오리 주물럭_반조리" />
+
+                <TextView
+                    android:id="@+id/tv_product_detail_contents_contents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{contents.contents}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_title"
+                    tools:text="감칠맛 나는 매콤한 양념" />
+
+                <TextView
+                    android:id="@+id/tv_product_detail_contents_sale_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{contents.salePrice}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_contents"
+                    tools:text="12,640원" />
+
+                <TextView
+                    android:id="@+id/tv_product_detail_contents_original_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{contents.originalPrice}"
+                    app:layout_constraintStart_toEndOf="@id/tv_product_detail_contents_sale_price"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_contents"
+                    tools:text="15,800원" />
+
+                <TextView
+                    android:id="@+id/tv_product_detail_contents_badge"
+                    style="@style/Subtitle2.white.12.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/badge_background"
+                    android:paddingStart="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_sale_price"
+                    tools:text="런칭특가" />
+
+                <View
+                    android:id="@+id/view_product_detail_first"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/grey_3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_badge" />
+
+
+                <TextView
+                    android:id="@+id/tv_product_detail_saved_money_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="50dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_badge"
+                    tools:text="적립금" />
+
+                <TextView
+                    android:id="@+id/tv_product_detail_saved_money_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="50dp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_product_detail_saved_money_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_badge"
+                    tools:text="126원" />
+
+                <TextView
+                    android:id="@+id/tv_delivery_information_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_saved_money_title"
+                    tools:text="배송정보" />
+
+                <TextView
+                    android:id="@+id/tv_delivery_information_contents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_detail_saved_money_price"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_saved_money_title"
+                    tools:text="서울 경기 새벽 배송, 전국 택배 배송" />
+
+                <TextView
+                    android:id="@+id/tv_delivery_price_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_delivery_information_title"
+                    tools:text="배송비" />
+
+                <TextView
+                    android:id="@+id/tv_delivery_price_contents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_delivery_information_contents"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_delivery_information_contents"
+                    tools:text="2,500원 (40,000원 이상 구매 시 무료)" />
+
+                <View
+                    android:id="@+id/view_product_detail_second"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/grey_3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_delivery_price_title" />
+
+                <TextView
+                    android:id="@+id/tv_item_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_product_detail_second"
+                    tools:text="수량" />
+
+                <ImageButton
+                    android:id="@+id/ib_count_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="36dp"
+                    android:background="@drawable/count_background"
+                    android:contentDescription="@string/label_minus_button"
+                    android:elevation="10dp"
+                    android:src="@drawable/ic_baseline_remove_42"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_count"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/tv_item_count"
+                    app:layout_constraintTop_toBottomOf="@+id/view_product_detail_second" />
+
+                <ImageButton
+                    android:id="@+id/ib_count_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/count_background"
+                    android:contentDescription="@string/label_minus_button"
+                    android:elevation="10dp"
+                    android:src="@drawable/ic_baseline_add_42"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_count"
+                    app:layout_constraintTop_toBottomOf="@+id/view_product_detail_second" />
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    style="@style/Subtitle1.black.32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="36dp"
+                    app:layout_constraintEnd_toStartOf="@+id/ib_count_plus"
+                    app:layout_constraintStart_toEndOf="@+id/ib_count_minus"
+                    app:layout_constraintTop_toBottomOf="@+id/view_product_detail_second"
+                    tools:text="3" />
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    style="@style/Headline.black.500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_count"
+                    tools:text="12,640원" />
+
+                <TextView
+                    android:id="@+id/tv_total_price_title"
+                    style="@style/Subtitle1.grey.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="30dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_total_price"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_count"
+                    tools:text="총 주문금액" />
+
+                <Button
+                    android:id="@+id/btn_order"
+                    style="@style/Subtitle2.white.18"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/label_order"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_price"
+                    tools:text="주문하기" />
+
+                <ImageView
+                    android:id="@+id/iv_product_detail_contents_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_order"
+                    android:contentDescription="@string/label_iv_product_detail_image" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

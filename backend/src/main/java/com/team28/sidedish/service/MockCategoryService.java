@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MockCategoryService implements CategoryService {
+public class MockCategoryService {
 
-    @Override
     public List<CategoryResponse> findAll() {
         List<CategoryResponse> categories = new ArrayList<>();
 
