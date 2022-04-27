@@ -7,9 +7,13 @@ import java.util.List;
  * 추천메뉴, 메뉴 객체들을 MenuDto, EventPlannerDto 에서 공통으로 이용하기 위한 타입
  */
 public interface MenuModel {
-	Long getMenuId();
+	default Long getMenuId() {
+		return null;
+	}
 
-	BigDecimal getPrice();
+	default BigDecimal getPrice() {
+		return null;
+	}
 
 	void setDiscountedPrice(BigDecimal discountedPrice);
 
