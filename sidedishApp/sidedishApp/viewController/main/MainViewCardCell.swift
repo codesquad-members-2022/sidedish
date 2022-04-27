@@ -38,11 +38,12 @@ class MainViewCardCell: UICollectionViewCell {
         setUI()
     }
     
-    func setPropertiesValue(imageData: Data, dish: MainCard.Body) {
-        DispatchQueue.main.async {
-            self.cardImageView.image = UIImage(data: imageData)
-        }
+    func setPropertiesValue(dish: MainCard.Body) {
         self.cardInfoVerticalStackView.setPropertiesValue(dish: dish)
+    }
+    
+    func setImage(imageData: Data) {
+        self.cardImageView.image = UIImage(data: imageData)
     }
     
     private func setUI() {

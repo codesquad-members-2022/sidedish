@@ -54,34 +54,34 @@ extension MainViewController: UICollectionViewDataSource {
         
         switch indexPath.section { // 섹션 번호!
         case 0:
-            guard let mainDishs = sideDishManager.mainDishes else {
+            guard let mainDishes = sideDishManager.mainDishes else {
                 return cell
             }
-            dish = mainDishs.body[indexPath.item]
+            dish = mainDishes.body[indexPath.item]
         case 1:
-            guard let mainDishs = sideDishManager.soupDishes else {
+            guard let soupDishes = sideDishManager.soupDishes else {
                 return cell
             }
-            dish = mainDishs.body[indexPath.item]
+            dish = soupDishes.body[indexPath.item]
         case 2:
-            guard let mainDishs = sideDishManager.sideDishes else {
+            guard let sideDishes = sideDishManager.sideDishes else {
                 return cell
             }
-            dish = mainDishs.body[indexPath.item]
+            dish = sideDishes.body[indexPath.item]
         default:
             return cell
         }
-        
-        ///
         
         guard let imageDataList = sideDishManager.getDetailDishThumbImages(hash: dish.detailHash) else {
             return cell
         }
         
-        cell.setPropertiesValue(imageData: imageDataList[0], dish: dish)
-        // 첫번째 이미지만 불러와보기
-        
-        self.dishCollectionView.reloadData()
+        if imageDataList.isEmpty {
+            cell.setPropertiesValue(dish: dish)
+        } else {
+            cell.setPropertiesValue(dish: dish)
+            cell.setImage(imageData: imageDataList[0]) // 1번째 썸네일로 설정
+        }
         
         return cell
     }
