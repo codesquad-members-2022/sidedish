@@ -16,8 +16,8 @@ import javax.inject.Inject
 class FoodListViewModel @Inject constructor(
     private val remoteRepository: FoodRepository
 ) : ViewModel() {
-    private val _openDetail = MutableLiveData<Event<Boolean>>()
-    val openDetail: LiveData<Event<Boolean>> = _openDetail
+    private val _openDetail = MutableLiveData<Event<String>>()
+    val openDetail: LiveData<Event<String>> = _openDetail
 
     private val _items = MutableLiveData<List<Item>>()
     val items: LiveData<List<Item>> = _items
@@ -44,8 +44,8 @@ class FoodListViewModel @Inject constructor(
         return sideItems
     }
 
-    fun openDetail() {
-        _openDetail.value = Event(true)
+    fun openDetail(detailHash: String) {
+        _openDetail.value = Event(detailHash)
     }
 
     fun getCategoryItemsCount(category: FoodCategory): Int {

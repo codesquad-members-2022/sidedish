@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
@@ -53,7 +54,7 @@ class FoodListFragment : Fragment() {
 
         showSideDishList()
         viewModel.openDetail.observe(viewLifecycleOwner, EventObserver {
-            openDetail()
+            openDetail(it)
         })
     }
 
@@ -79,10 +80,14 @@ class FoodListFragment : Fragment() {
         }
     }
 
-    private fun openDetail() {
+    private fun openDetail(detailHash: String) {
         parentFragmentManager.commit {
             addToBackStack(null)
-            replace(R.id.container, ProductDetailFragment())
+            replace(
+                R.id.container,
+                ProductDetailFragment::class.java,
+                bundleOf("DETAILHASH_KEY" to detailHash)
+            )
         }
     }
 
