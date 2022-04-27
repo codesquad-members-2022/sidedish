@@ -1,7 +1,7 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.domain.entity.aggregate.OrderSheet;
 import com.terria.sidedish.dto.request.OrderSheetRequest;
+import com.terria.sidedish.dto.response.OrderSheetResponse;
 import com.terria.sidedish.service.OrderSheetService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +25,7 @@ public class OrderSheetController {
             response = String.class
     )
     @PostMapping
-    public OrderSheet makeOrderSheet(@ModelAttribute OrderSheetRequest orderSheetRequest) {
+    public OrderSheetResponse makeOrderSheet(@ModelAttribute OrderSheetRequest orderSheetRequest) {
         return orderSheetService.addOrderSheet(orderSheetRequest);
     }
 }
