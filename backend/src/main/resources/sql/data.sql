@@ -24,7 +24,7 @@ INSERT INTO `categories` (name)
 VALUES ('모두가 좋아하는 든든한 메인 요리');
 
 
---event_tabs
+-- event_tabs
 INSERT INTO `event_tabs` (name, description)
 VALUES ('MEAT', '풍성한 고기 반찬');
 
@@ -38,7 +38,7 @@ INSERT INTO `event_tabs` (name, description)
 VALUES ('KIDS', '우리 아이 영양 반찬');
 
 
---discount_policies
+-- discount_policies
 INSERT INTO `discount_policies` (name, discount_rate)
 VALUES ('이벤트특가', 10);
 
@@ -111,7 +111,7 @@ VALUES(4300, '참외오이무침', null, 100,
        43, 1, 1, 2);
 
 
---궁물 요리
+-- 궁물 요리
 INSERT INTO `dishes` (price, title, description, stock_quantity,
                     point, category_id, delivery_id, event_tabs_id)
 VALUES(9300, '한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', 100,
@@ -143,43 +143,43 @@ VALUES(1, 1);
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(1, 2);
 
---소갈비찜
+-- 소갈비찜
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(2, 1);
 
---잡채
+-- 잡채
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(4, 1);
 
---새콤달콤 오징어무침
+-- 새콤달콤 오징어무침
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(6, 2);
 
---호두 멸치볶음
+-- 호두 멸치볶음
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(7, 1);
 
---한돈 매콤 안심장조림
+-- 한돈 매콤 안심장조림
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(8, 1);
 
---야채 어묵볶음
+-- 야채 어묵볶음
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(9, 1);
 
---오이소박이
+-- 오이소박이
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(10, 1);
 
---한돈 돼지 김치찌개
+-- 한돈 돼지 김치찌개
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(13, 1);
 
---된장찌개
+-- 된장찌개
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(14, 1);
 
---미역오이냉국
+-- 미역오이냉국
 INSERT INTO `discount` (dish_id, discount_policy_id)
 VALUES(15, 1);
 
