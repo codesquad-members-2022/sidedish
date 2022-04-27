@@ -19,7 +19,6 @@ public class ItemController {
 
     @GetMapping("/{id}")
     private ResponseDto<ResponseItemDto> getItemDetail(@PathVariable Long id) {
-        ResponseItemDto item = service.findItemById(id);
-        return new ResponseDto<>(HttpStatus.OK, item);
+        return new ResponseDto<>(HttpStatus.OK, service.findItemById(id));
     }
 }
