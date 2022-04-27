@@ -1,6 +1,7 @@
-import Header from './views/Header.js';
 import { Reset } from 'styled-reset';
-import { BestProduct } from './views/BestProduct.js';
+import Header from './views/header/Header.js';
+import { BestProduct } from './views/main/bestProduct/BestProduct.js';
+import { CategoryArea } from './views/main/categoryArea/CategoryArea.js';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Reset />
       <Header />
       <BestProduct />
+      <CategoryArea />
     </div>
   );
 }
