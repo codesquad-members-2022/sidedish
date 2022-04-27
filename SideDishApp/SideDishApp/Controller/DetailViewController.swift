@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import OSLog
 
 final class DetailViewController: UIViewController {
     
+    private let networkManager = NetworkManager(session: .shared)
     private let menu: Menu
     private let detailScrollView = DetailScrollView()
     
@@ -59,7 +61,7 @@ final class DetailViewController: UIViewController {
     private func setDetailView(by menuDetail: MenuDetail?) {
         guard let menuDetail = menuDetail else { return }
         setSubInfo(by: menuDetail)
-        detailScrollView.setThumbNail(images: menuDetail.thumb_images)
+        setThumbNail(images: menuDetail.thumb_images)
         detailScrollView.setRecipe(images: menuDetail.detail_section)
     }
     
@@ -108,4 +110,29 @@ extension DetailViewController {
         let decimalAmount = PriceConvertor.toString(from: stringAmount)
         detailScrollView.amount = decimalAmount
     }
+}
+
+extension DetailViewController {
+    func setThumbNail(images: [String]) {
+        detailScrollView.setOverViewImageScrollContentSize(imageCount: images.count)
+        
+        for (index, image) in images.enumerated() {
+            guard let imageURL = URL(string: image) else { return }
+            networkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
+                guard let self = self else { return }
+
+                switch result {
+                case .success(let data):
+                    guard let data = data,
+                          let image = UIImage(data: data) else { return }
+                    DispatchQueue.main.async {
+                        self.detailScrollView.insertThumbNail(image: image, at: index)
+                    }
+                case .failure(let failure):
+                    os_log(.error, "\(failure.localizedDescription)")
+                }
+            }
+        }
+    }
+    
 }

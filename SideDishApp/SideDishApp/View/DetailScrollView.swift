@@ -270,26 +270,17 @@ extension DetailScrollView {
         amountLabel.text = "\(text)"
     }
     
-    func setThumbNail(images: [String]) {
-        imagePageControl.numberOfPages = images.count
-        overViewImageScrollView.contentSize = CGSize(width: overViewImageScrollView.frame.width * CGFloat(images.count), height: 375)
-        
-        for (index, imageName) in images.enumerated() {
-            let url = URL(string: imageName)
-            
-            DispatchQueue.global().async {
-                guard let data = try? Data(contentsOf: url!) else { return }
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    let imageView = UIImageView(image: UIImage(data: data))
-                    imageView.contentMode = .scaleToFill
-                    imageView.frame = self.overViewImageScrollView.frame
-                    imageView.frame.origin.x = self.overViewImageScrollView.frame.width * CGFloat(index)
-                    self.overViewImageScrollView.addSubview(imageView)
-                }
-            }
-        }
+    func setOverViewImageScrollContentSize(imageCount: Int) {
+        imagePageControl.numberOfPages = imageCount
+        overViewImageScrollView.contentSize = CGSize(width: overViewImageScrollView.frame.width * CGFloat(imageCount), height: 375)
+    }
+    
+    func insertThumbNail(image: UIImage, at index: Int) {
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleToFill
+        imageView.frame = self.overViewImageScrollView.frame
+        imageView.frame.origin.x = self.overViewImageScrollView.frame.width * CGFloat(index)
+        self.overViewImageScrollView.addSubview(imageView)
     }
     
     func setRecipe(images: [String]) {
