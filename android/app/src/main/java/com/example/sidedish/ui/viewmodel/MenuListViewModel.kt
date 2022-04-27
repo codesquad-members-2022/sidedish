@@ -1,6 +1,7 @@
 package com.example.sidedish.ui.viewmodel
 
 import android.accounts.NetworkErrorException
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,16 +21,6 @@ private const val SIDE_MENU = 3
 class MenuListViewModel @Inject constructor(
     private val repository: MenuListRepository
 ) : ViewModel() {
-
-    private val _mainMenuList = MutableLiveData<List<Menu>>()
-    val mainFoodList: LiveData<List<Menu>> = _mainMenuList
-
-    private val _soupMenuList = MutableLiveData<List<Menu>>()
-    val soupFoodList: LiveData<List<Menu>> = _soupMenuList
-
-    private val _sideMenuList = MutableLiveData<List<Menu>>()
-    val sideFoodList: LiveData<List<Menu>> = _sideMenuList
-
     private val _menu = MutableLiveData<List<MenuModel>>()
     val menu: LiveData<List<MenuModel>> = _menu
 

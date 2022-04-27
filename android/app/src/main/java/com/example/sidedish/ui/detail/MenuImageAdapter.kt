@@ -1,5 +1,6 @@
 package com.example.sidedish.ui.detail
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide

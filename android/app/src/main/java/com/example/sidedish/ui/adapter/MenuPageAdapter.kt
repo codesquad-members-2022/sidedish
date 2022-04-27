@@ -68,13 +68,13 @@ class MenuPageAdapter(private val listener: MenuItemClickListener) : ListAdapter
         fun bind(menu: Menu) {
             val decimal = DecimalFormat("#,###")
             with(binding) {
+                bindData = menu
                 Glide.with(itemView).load(menu.mainImageLink).into(imMenuImage)
                 tvMenuLabel.text = menu.name
                 tvMenuInfo.text = menu.description
                 tvAfterCost.text = decimal.format(menu.price)
-                if(menu.discountRate != null) {
-                    setSale(menu)
-                }
+
+                menu.discountPolicy?.let { setBadge(it) }
             }
 
             itemView.setOnClickListener {

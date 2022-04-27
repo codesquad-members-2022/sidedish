@@ -1,5 +1,6 @@
 package com.example.sidedish.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -30,10 +31,15 @@ class ImageViewPagerAdapter :
         holder.bind(getItem(position))
     }
 
+    override fun getItemCount(): Int {
+        Log.d("ImageViewPager", "${super.getItemCount()}")
+        return super.getItemCount()
+    }
+
     companion object DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<FoodImage>() {
 
         override fun areItemsTheSame(oldItem: FoodImage, newItem: FoodImage): Boolean {
-            return oldItem.thumbnailImage == newItem.thumbnailImage
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: FoodImage, newItem: FoodImage): Boolean {
