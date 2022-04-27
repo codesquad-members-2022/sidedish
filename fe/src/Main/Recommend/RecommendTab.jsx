@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import axios from 'axios';
 import { SERVER_URL } from 'constant.js';
 import RecommendTabList from 'Main/Recommend/RecommendTabList';
+import ErrorComponent from 'common/Error';
 
 const RecommendTabCategory = styled.ul`
   ${({ theme }) => theme.flexLayout.default};
@@ -32,7 +33,7 @@ const RecommendTab = () => {
         setDishes(data.eventDishes);
       }
     } catch (error) {
-      throw new Error(error);
+      throw console.log('에러');
     }
   }, []);
 
@@ -58,7 +59,7 @@ const RecommendTab = () => {
       {dishes.length !== 0 ? (
         <RecommendTabList items={dishes.find((obj) => obj.id === focus)}></RecommendTabList>
       ) : (
-        []
+        <ErrorComponent />
       )}
     </>
   );
