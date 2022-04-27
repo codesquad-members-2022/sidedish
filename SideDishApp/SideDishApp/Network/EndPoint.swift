@@ -58,6 +58,7 @@ struct Endpoint: Endpointable {
 enum EndPointCase {
     case get(category: Category)
     case getDetail(hash: String)
+    case getImage(imagePath: String)
     
     var endpoint: Endpointable {
         switch self {
@@ -74,17 +75,26 @@ enum EndPointCase {
                             path: .getDetail(hash: hash),
                             headers: ["Content-Type": "application/json"],
                             body: nil)
+        case .getImage(let imagePath):
+            return Endpoint(httpMethod: .get,
+                            baseURL: .image,
+                            path: .image(path: imagePath),
+                            headers: ["Content-Type": "application/json"],
+                            body: nil)
         }
     }
 }
 
 enum BaseURL {
     case main
+    case image
     
     var urlString: String {
         switch self {
         case .main:
             return "https://api.codesquad.kr/onban/"
+        case .image:
+            return "http://public.codesquad.kr"
         }
     }
 }
@@ -93,6 +103,7 @@ enum Path {
     case get(category: Category)
     case getDetail(hash: String)
     case post
+    case image(path: String)
     
     var pathString: String {
         switch self {
@@ -102,6 +113,8 @@ enum Path {
             return "detail/\(hash)"
         case .post:
             return "main"
+        case .image(let path):
+            return path
         }
     }
 }

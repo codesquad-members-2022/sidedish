@@ -66,15 +66,27 @@ final class NetworkManager {
             
             // handling DecodingError
             do {
-                let deleteCase: Any = HTTPMethod.delete.description
+                
+                guard let getImageBaseURL = urlRequest.url?.path else { return }
+
+                if getImageBaseURL == Path.image(path: getImageBaseURL).pathString {
+                    print("same")
+                }
+
+                if getImageBaseURL == BaseURL.image.urlString {
+                    return completion(.success(data as? T))
+                }
+                
+                let deleteCase = HTTPMethod.delete.description
                 if urlRequest.httpMethod == HTTPMethod.delete.description {
                     return completion(.success(deleteCase as? T ?? nil))
                 }
                 
-                let fetchedData = try JSONDecoder().decode(T.self, from: data)
+                let fetchedData = try JSONDecoder().decode(T.self, from: data) // Data -> T: Decodable
                 return completion(.success(fetchedData))
             } catch {
-                return completion(.failure(.decodingError))
+                return completion(.success(data as? T))
+//                return completion(.failure(.decodingError))
             }
             
         }
