@@ -1,5 +1,6 @@
 package kr.codesquad.sidedish.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.Map;
@@ -18,10 +19,12 @@ public class ProductListRequest {
     private Integer pageSize = 30;
     private String sort = "";
 
+    @JsonIgnore
     public Long getOffset() {
         return (page - 1) * pageSize;
     }
 
+    @JsonIgnore
     public String getSortRule() {
         return SORTING_RULES.getOrDefault(sort, null);
     }
