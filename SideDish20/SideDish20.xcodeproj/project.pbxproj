@@ -16,6 +16,7 @@
 		1B56E672280E8E560074E79F /* SideDish20FileManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */; };
 		1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */; };
 		1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA1E193280EDE720032FF88 /* DishViewModel.swift */; };
+		1BA5C56128192B9F00993F1E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA5C56028192B9F00993F1E /* CommonViewModel.swift */; };
 		1BF290132816901300493D2F /* SideDishMiddleWare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF290122816901300493D2F /* SideDishMiddleWare.swift */; };
 		1BF290152816914100493D2F /* MiddleWareFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF290142816914100493D2F /* MiddleWareFactory.swift */; };
 		81F02D81F7E6B09E33564B42 /* Pods_SideDish20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */; };
@@ -70,6 +71,7 @@
 		1B56E671280E8E560074E79F /* SideDish20FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish20FileManagerTest.swift; sourceTree = "<group>"; };
 		1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCommons.swift; sourceTree = "<group>"; };
 		1BA1E193280EDE720032FF88 /* DishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewModel.swift; sourceTree = "<group>"; };
+		1BA5C56028192B9F00993F1E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		1BF290122816901300493D2F /* SideDishMiddleWare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishMiddleWare.swift; sourceTree = "<group>"; };
 		1BF290142816914100493D2F /* MiddleWareFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleWareFactory.swift; sourceTree = "<group>"; };
 		2736D4DB3581F6AA1E7A0869 /* Pods-SideDish20Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20Tests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20Tests/Pods-SideDish20Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		1BA1E195280EDE840032FF88 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1BA5C56028192B9F00993F1E /* CommonViewModel.swift */,
 				1BA1E193280EDE720032FF88 /* DishViewModel.swift */,
 			);
 			path = ViewModel;
@@ -572,6 +575,7 @@
 				1B56E669280E823E0074E79F /* CacheImageRequestMiddleWare.swift in Sources */,
 				1B56E667280E82220074E79F /* SaveFileService.swift in Sources */,
 				1B56E66B280E82480074E79F /* CacheImageMiddleWare.swift in Sources */,
+				1BA5C56128192B9F00993F1E /* CommonViewModel.swift in Sources */,
 				1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */,
 				1B56E66F280E83230074E79F /* CacheFileManagerAttribute.swift in Sources */,
 				1BF290132816901300493D2F /* SideDishMiddleWare.swift in Sources */,

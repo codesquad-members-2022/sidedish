@@ -20,20 +20,16 @@ class CacheImageRequestMiddleWare: SideDishMiddleWare {
     }
     
     private func getAllImageDataCached() -> [Data]? {
-        let result = RepositoryCommons.shared.getAllFilesCached()
-        
         do {
-            return try result.get()
+            return try repository.getAllFilesCached().get()
         } catch {
             return nil
         }
     }
     
     private func getImageDataCached(as name: String) -> Data? {
-        let result = RepositoryCommons.shared.getFileCached(as: name)
-        
         do {
-            return try result.get()
+            return try repository.getFileCached(as: name).get()
         } catch {
             return nil
         }

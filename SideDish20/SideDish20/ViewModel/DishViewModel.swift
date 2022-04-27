@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 
-class DishViewModel {
+class DishViewModel: CommonViewModel {
     
     func getAllImageCached(onComplete: @escaping ([UIImage]?) -> Void) {
         
-        let middleWare = MiddleWareFactory.make(useCase: .getCacheData)
-        
-        if let result = middleWare.callCacheSystem(userInfo: nil) as? [Data] {
+        if let result = getModel(useCase: .getCacheData).callCacheSystem(userInfo: nil) as? [Data] {
             
             let images = result.compactMap({ UIImage(data: $0) })
             onComplete(images)
@@ -23,9 +21,7 @@ class DishViewModel {
     
     func getImageCached(as name: String, onComplete: @escaping (UIImage?) -> Void) {
         
-        let middleWare = MiddleWareFactory.make(useCase: .getCacheData)
-        
-        if let data = middleWare.callCacheSystem(userInfo: ["name": name]) as? Data {
+        if let data = getModel(useCase: .getCacheData).callCacheSystem(userInfo: ["name": name]) as? Data {
             onComplete(UIImage(data: data))
             return
         }
@@ -41,9 +37,7 @@ class DishViewModel {
         
         guard let data = image.jpegData(compressionQuality: 1.0) else { return }
         
-        let middleWare = MiddleWareFactory.make(useCase: .setCacheIndividually)
-        
-        if middleWare.callCacheSystem(userInfo: ["name": name, "data": data]) != nil {
+        if getModel(useCase: .setCacheIndividually).callCacheSystem(userInfo: ["name": name, "data": data]) != nil {
             onComplete?(image)
         }
     }
