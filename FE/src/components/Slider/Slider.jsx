@@ -38,37 +38,39 @@ const Slider = () => {
   };
 
   const handleArrowClick = direction => {
-    if (direction === 'right' && !isRightArrowActive) {
+    if (!checkArrowActive(direction)) {
       return;
+    }
+
+    const newStartIndex = calcNewStartIndex(direction);
+
+    setDataIndex(newStartIndex);
+    changeArrowState(newStartIndex);
+    setXPosition(-(TOTAL_MEDIUM_CARD_WIDTH * newStartIndex));
+  };
+
+  const checkArrowActive = direction => {
+    if (direction === 'right' && !isRightArrowActive) {
+      return false;
     }
 
     if (direction === 'left' && !isLeftArrowActive) {
-      return;
+      return false;
     }
 
-    let startIndex;
+    return true;
+  };
 
+  const calcNewStartIndex = direction => {
     if (direction === 'right') {
-      let endIndex = dataIndex + VISIBLE_CARD_COUNT * 2;
-
-      if (endIndex > data.length) {
-        endIndex = data.length;
-      }
-
-      startIndex = endIndex - VISIBLE_CARD_COUNT;
+      const endIndex = dataIndex + VISIBLE_CARD_COUNT * 2;
+      return (endIndex > data.length ? data.length : endIndex) - VISIBLE_CARD_COUNT;
     }
 
     if (direction === 'left') {
-      startIndex = dataIndex - VISIBLE_CARD_COUNT;
-
-      if (startIndex < 0) {
-        startIndex = 0;
-      }
+      const newStartIndex = dataIndex - VISIBLE_CARD_COUNT;
+      return newStartIndex < 0 ? 0 : newStartIndex;
     }
-
-    setXPosition(-(TOTAL_MEDIUM_CARD_WIDTH * startIndex));
-    setDataIndex(startIndex);
-    changeArrowState(startIndex);
   };
 
   const calcSliderWidth = dataCount => {
