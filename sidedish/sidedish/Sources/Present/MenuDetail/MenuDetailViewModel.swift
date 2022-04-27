@@ -70,14 +70,30 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
                 amount = amount < 1 ? 1 : amount
                 return amount
             }
-            .sink { amount in
-                self.state.amount.send(amount)
-                self.state.totalPrice.send(menu.price * amount)
+            .sink { [weak self] amount in
+                self?.state.amount.send(amount)
+                self?.state.totalPrice.send(menu.price * amount)
             }
             .store(in: &cancellables)
         
-        action.tappedOrderButton
-            .sink(receiveValue: state.ordered.send(_:))
+        let requestOrder = action.tappedOrderButton
+            .compactMap { [weak self] _ -> AnyPublisher<ApiResult<Void, SessionError>, Never>? in
+                guard let userName = Container.shared.userStore.user?.name,
+                      let count = self?.state.amount.value else {
+                    return nil
+                }
+
+                let message = "\(menu.title) \(count)개 주문!"
+                return self?.sidedishRepository.order(userName, message: message)
+            }
+            .switchToLatest()
+            .share()
+
+        requestOrder
+            .compactMap { $0.value }
+            .sink { [weak self] _ in
+                self?.state.ordered.send()
+            }
             .store(in: &cancellables)
         
         requestDetail
