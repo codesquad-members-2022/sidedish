@@ -1,6 +1,5 @@
 package com.codesquad.sidedish.auth;
 
-import com.codesquad.sidedish.auth.dto.UserResponse;
 import com.codesquad.sidedish.order.UserRepository;
 import com.codesquad.sidedish.order.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +11,10 @@ public class AuthService {
 
     private final UserRepository userRepository;
 
-    public User upsertUser(UserResponse response) {
-        User user = userRepository.findByGithubId(response.getGithubId())
+    public User upsertUser(String githubId, String username) {
+        User user = userRepository.findByGithubId(githubId)
             .orElseGet(User::new);
-        user.update(response.getGithubId(), response.getUsername());
+        user.update(githubId, username);
         userRepository.save(user);
         return user;
     }

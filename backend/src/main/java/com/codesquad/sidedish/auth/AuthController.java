@@ -51,7 +51,7 @@ public class AuthController {
         @RequestParam(value = "code", required = false) String code) {
         TokenResponse tokenResponse = authClient.getTokenResponse(code);
         UserResponse userResponse = authClient.getUserResponse(tokenResponse.getAccessToken());
-        User user = authService.upsertUser(userResponse);
+        User user = authService.upsertUser(userResponse.getGithubId(), userResponse.getUsername());
 
         String accessToken = JwtFactory.create(user, expiredTime);
         ResponseCookie cookie = ResponseCookie.from("access_token", accessToken)
