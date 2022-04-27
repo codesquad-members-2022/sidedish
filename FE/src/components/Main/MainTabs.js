@@ -15,7 +15,8 @@ const Tab = styled.li`
   margin-right: 32px;
   padding: 5px 0px;
   cursor: pointer;
-  border-bottom: ${(props) => (props.isSelected ? `2px solid ${colors.black}` : 'none')};
+  border-bottom: ${(props) =>
+    props.isSelected ? `2px solid ${colors.black}` : 'none'};
 `;
 
 const MainTabs = ({ tabs, selectedTabIndex, onTabClick }) => (

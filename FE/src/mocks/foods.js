@@ -1,7 +1,8 @@
 const foods = [
   {
     detail_hash: 'HBDEF',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
     alt: '오리 주물럭_반조리',
     delivery_type: ['새벽배송', '전국택배'],
     title: '오리 주물럭_반조리',
@@ -12,7 +13,8 @@ const foods = [
   },
   {
     detail_hash: 'HDF73',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/310_ZIP_P_0012_T.jpg',
     alt: '잡채',
     delivery_type: ['새벽배송', '전국택배'],
     title: '잡채',
@@ -23,7 +25,8 @@ const foods = [
   },
   {
     detail_hash: 'HF778',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/349_ZIP_P_0024_T.jpg',
     alt: '소갈비찜',
     delivery_type: ['새벽배송', '전국택배'],
     title: '소갈비찜',
@@ -34,7 +37,8 @@ const foods = [
   },
   {
     detail_hash: 'HFB53',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/371_ZIP_P_0021_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/371_ZIP_P_0021_T.jpg',
     alt: '간장 코다리조림',
     delivery_type: ['새벽배송', '전국택배'],
     title: '간장 코다리조림',
@@ -43,7 +47,8 @@ const foods = [
   },
   {
     detail_hash: 'H077F',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/417_ZIP_P_0041_T.jpg',
     alt: '꼬막비빔밥',
     delivery_type: ['새벽배송', '전국택배'],
     title: '꼬막비빔밥',
@@ -53,7 +58,8 @@ const foods = [
   },
   {
     detail_hash: 'H4665',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/675_ZIP_P_0057_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/675_ZIP_P_0057_T.jpg',
     alt: '궁중 떡볶이_반조리',
     delivery_type: ['새벽배송', '전국택배'],
     title: '궁중 떡볶이_반조리',
@@ -71,7 +77,8 @@ const foods = [
   },
   {
     detail_hash: 'HEDFB',
-    image: 'http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg',
+    image:
+      'http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg',
     alt: '쭈꾸미 한돈 제육볶음_반조림',
     delivery_type: ['새벽배송', '전국택배'],
     title: '쭈꾸미 한돈 제육볶음_반조림',
