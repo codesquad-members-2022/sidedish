@@ -29,11 +29,22 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = menu.title
+        setUpView()
+        setUpDelegate()
+    }
+    
+    private func setUpView() {
+        configureView()
         view.addSubview(detailScrollView)
         configureMenuStackView()
         layoutDetailScrollView()
-        
+    }
+    
+    private func configureView() {
+        title = menu.title
+    }
+    
+    private func setUpDelegate() {
         detailScrollView.overViewImageScrollView.delegate = self
         detailScrollView.countStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .touchUpInside)
     }
@@ -45,19 +56,19 @@ final class DetailViewController: UIViewController {
         detailScrollView.mainInfoStackView.setBadges(by: menu.badge)
     }
     
+    private func setDetailView(by menuDetail: MenuDetail?) {
+        guard let menuDetail = menuDetail else { return }
+        setSubInfo(by: menuDetail)
+        detailScrollView.setThumbNail(images: menuDetail.thumb_images)
+        detailScrollView.setRecipe(images: menuDetail.detail_section)
+    }
+    
     private func setSubInfo(by menuDetail: MenuDetail) {
         let descriptions = [menuDetail.point, menuDetail.delivery_info, menuDetail.delivery_fee]
         detailScrollView.subInfoStackView.setSubInfoDescription(by: descriptions)
         
         guard let price = menuDetail.prices.last else { return }
         detailScrollView.setPrice(text: price)
-    }
-    
-    private func setDetailView(by menuDetail: MenuDetail?) {
-        guard let menuDetail = menuDetail else { return }
-        setSubInfo(by: menuDetail)
-        detailScrollView.setThumbNail(images: menuDetail.thumb_images)
-        detailScrollView.setRecipe(images: menuDetail.detail_section)
     }
     
     func setMenuDetail(menuDetail: MenuDetail?) {
