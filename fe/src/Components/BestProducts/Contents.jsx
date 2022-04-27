@@ -11,6 +11,10 @@ const ProductCardList = styled.ul`
   margin-top: 34px;
 `;
 
+const LS_MARGIN = 260;
+const LS_RADIUS = 50;
+const LS_BORDER_WIDTH = 10;
+
 export const Contents = ({ bestProductsTabId }) => {
   const [bestProducts, isLoaded, isError] = useFetch(
     `${API_URL}/events/${bestProductsTabId}/items`
@@ -21,7 +25,7 @@ export const Contents = ({ bestProductsTabId }) => {
   }
 
   if (!isLoaded) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner margin={LS_MARGIN} radius={LS_RADIUS} borderWidth={LS_BORDER_WIDTH}/>;
   }
 
   return (

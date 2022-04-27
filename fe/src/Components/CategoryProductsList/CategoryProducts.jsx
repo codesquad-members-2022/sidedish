@@ -149,6 +149,11 @@ const useSlide = ({ slideRef }) => {
 
 /* ****** */
 
+const LS_MARGIN = 300;
+const LS_RADIUS = 50;
+const LS_BORDER_WIDTH = 10;
+const RT_MARGIN = 300;
+
 export const CategoryProducts = ({ categoryId }) => {
   const [categoryProductsData, isLoaded, isError, setRetry] = useFetch(
     `${API_URL}/categories/${categoryId}/items`
@@ -176,8 +181,15 @@ export const CategoryProducts = ({ categoryId }) => {
     setSlideUnitWidth(clientWidth / children.length);
   }, [isLoaded]);
 
-  if (isError) return <RetryButton onClick={handleClickRetryButton} />;
-  if (!isLoaded) return <LoadingSpinner />;
+  if (isError) return <RetryButton onClick={handleClickRetryButton} margin={RT_MARGIN} />;
+  if (!isLoaded)
+    return (
+      <LoadingSpinner
+        margin={LS_MARGIN}
+        radius={LS_RADIUS}
+        borderWidth={LS_BORDER_WIDTH}
+      />
+    );
 
   const categoryProducts = categoryProductsData.result_body;
 
