@@ -1,12 +1,12 @@
 package com.sidedish.domain.product;
 
+import com.sidedish.domain.Image;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 @Getter
 @AllArgsConstructor
@@ -22,10 +22,7 @@ public class Product {
 	private MainCategory mainCategory;
 	private EventCategory eventCategory;
 
-	@MappedCollection(idColumn = "id", keyColumn = "id")
-	private final Map<Long, String> images = new HashMap();
+	@MappedCollection(idColumn = "product_id")
+	private final Set<Image> image;
 
-	public void addImage(Long imageId, String imagePath){
-		images.put(imageId,imagePath);
-	}
 }

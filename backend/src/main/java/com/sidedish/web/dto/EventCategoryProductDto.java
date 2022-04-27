@@ -13,5 +13,6 @@ public class EventCategoryProductDto {
     private int earlyDelivery;
     private int price;
     private EventBadge eventBadge;
+    private double discountRate;
     private EventCategory eventCategory;
 }

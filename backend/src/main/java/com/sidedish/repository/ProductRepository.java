@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
@@ -16,7 +15,4 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Query("select * from product where event_category= :categoryName order by rand() limit 3")
     List<Product> findAllEventCategoryProduct(@Param("categoryName") String category);
-
-    @Query("select * from product where id= :id")
-    Optional<Product> findById(@Param("id") Long id);
 }
