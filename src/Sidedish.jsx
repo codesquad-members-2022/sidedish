@@ -19,6 +19,7 @@ export default function Sidedish() {
 }
 
 const Main = styled.main({
-  borderTop: ({ theme }) => `1px solid ${theme.COLOR.BLACK[100]}`,
+  maxWidth: '1440px',
+  margin: '0 auto',
   paddingBottom: '56px'
 });

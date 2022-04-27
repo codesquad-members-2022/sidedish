@@ -22,15 +22,17 @@ const iconButtons = {
 export default function Header() {
   return (
     <Wrap>
-      <Logo size="2.857rem" />
-      <GNBWrap />
-      <MyUtils>
-        {Object.keys(iconButtons).map((iconName, index) => (
-          <li key={`${iconName}_${index}`}>
-            <IconButton icon={iconName} width={iconButtons[iconName].width} height={iconButtons[iconName].hieght} />
-          </li>
-        ))}
-      </MyUtils>
+      <InBox>
+        <Logo size="2.857rem" />
+        <GNBWrap />
+        <MyUtils>
+          {Object.keys(iconButtons).map((iconName, index) => (
+            <li key={`${iconName}_${index}`}>
+              <IconButton icon={iconName} width={iconButtons[iconName].width} height={iconButtons[iconName].hieght} />
+            </li>
+          ))}
+        </MyUtils>
+      </InBox>
     </Wrap>
   );
 }
@@ -41,10 +43,15 @@ Header.defaultProps = {
 };
 
 const Wrap = styled.header({
+  borderBottom: ({ theme }) => `1px solid ${theme.COLOR.BLACK[100]}`
+});
+
+const InBox = styled.div({
   display: 'flex',
   gap: '40px',
-  padding: '30px 80px 16px',
-  borderBottom: `1px solid ${({ theme }) => theme.COLOR.BLACK[100]}`
+  maxWidth: '1440px',
+  margin: '0 auto',
+  padding: '30px 80px 16px'
 });
 
 const MyUtils = styled.ul({
