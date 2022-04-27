@@ -40,6 +40,9 @@ public class SideDishDetailResponse {
     @ApiModelProperty(required = true, value = "재고수량")
     private int stock;
 
+    @ApiModelProperty(required = true, value = "적립금")
+    private int accumulatedAmount;
+
     @ApiModelProperty(required = true, value = "배송정보")
     private String shippingInfo;
 
@@ -68,6 +71,7 @@ public class SideDishDetailResponse {
                 (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 10 * 10,
                 sideDish.getPrice(),
                 sideDish.getStock(),
+                (int) (sideDish.getPrice() * sideDish.getAccrualRate()),
                 sideDish.getShippingInfo(),
                 sideDish.getShippingFee(),
                 sideDish.getExemptionCondition(),
