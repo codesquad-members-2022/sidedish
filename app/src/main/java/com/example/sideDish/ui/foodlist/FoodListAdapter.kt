@@ -21,12 +21,11 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
     inner class SectionViewHolder(private val binding: SectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(section: Item.Section) {
-            binding.sectionText.text = section.category.sectionTitle
             binding.sectionText.setOnClickListener {
-                binding.sectionCountText.visibility = View.VISIBLE
-                val count = viewModel.getCategoryItemsCount(section.category)
-                binding.sectionCountText.text = String.format("총 %d개의 상품이 등록되어 있습니다.", count)
+                section.isExpended = !section.isExpended
+                binding.section = section
             }
+            binding.section = section
         }
     }
 

@@ -28,7 +28,7 @@ data class SideDishDto(
 
 fun SideDishDto.toItems(foodCategory: FoodCategory): List<Item> {
     val mutableList = mutableListOf<Item>()
-    mutableList.add(Item.Section(foodCategory))
+    mutableList.add(Item.Section(foodCategory, body.size))
     body.forEach {
         val foodInfo = Item.FoodInfo(
             it.alt,
