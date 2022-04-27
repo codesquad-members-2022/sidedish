@@ -9,9 +9,9 @@ import UIKit
 
 final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var headers: [String] = [Constant.SectionHeaderTitle.main,
-                                     Constant.SectionHeaderTitle.soup,
-                                     Constant.SectionHeaderTitle.side]
+    private var headers: [String] = [Constant.SectionHeaderText.main,
+                                     Constant.SectionHeaderText.soup,
+                                     Constant.SectionHeaderText.side]
     
     private var menus: [Menu] = []
     

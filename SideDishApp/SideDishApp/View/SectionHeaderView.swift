@@ -13,7 +13,7 @@ final class SectionHeaderView: UICollectionReusableView {
     private let fontSize: CGFloat = 32.0
     private var sectionNumber: Int?
 
-    var delegate: SectionHeaderViewDelegate?
+    weak var delegate: SectionHeaderViewDelegate?
     
     private lazy var sectionStackView: UIStackView = {
         let stackView = UIStackView()
@@ -37,24 +37,12 @@ final class SectionHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
-        setGesture()
+        setUpView()
+        setUpGesture()
     }
     
     @available(*, unavailable) required init?(coder: NSCoder) {
         fatalError("init with coder is unavailable")
-    }
-    
-    func setTitle(title: String?) {
-        self.sectionTitleLabel.text = title
-    }
-    
-    func setCountLabel(count: Int) {
-        self.sectionCountLabel.text = "\(count)개의 상품이 등록되어 있습니다."
-    }
-    
-    func setSectionNumber(number: Int) {
-        self.sectionNumber = number
     }
     
     override func prepareForReuse() {
@@ -64,48 +52,69 @@ final class SectionHeaderView: UICollectionReusableView {
             sectionCountLabel.removeFromSuperview()
         }
     }
-
-    private func setGesture() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapSectionHeaderView))
-        self.addGestureRecognizer(gesture)
-    }
     
-    @objc private func tapSectionHeaderView() {
-        showNumberOfItemInSection()
-        guard let sectionNumber = sectionNumber else { return }
-        delegate?.didTapSectionHeader(section: self, sectionNumber: sectionNumber)
+    private func setUpView() {
+        addSubview(sectionStackView)
+        [sectionTitleLabel].forEach {
+            sectionStackView.addArrangedSubview($0)
+        }
+        
+        layoutSectionStackView()
+    }
+
+    private func setUpGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapSectionHeaderView))
+        addGestureRecognizer(gesture)
     }
     
     private func showNumberOfItemInSection() {
         let isCountVisible = isCountLableVisible()
         
-        isCountVisible == true ? sectionCountLabel.removeFromSuperview() : self.sectionStackView.addArrangedSubview(sectionCountLabel)
+        isCountVisible == true ? sectionCountLabel.removeFromSuperview() : sectionStackView.addArrangedSubview(sectionCountLabel)
     }
     
     private func isCountLableVisible() -> Bool {
-        self.sectionStackView.subviews.contains { $0 == sectionCountLabel }
+        sectionStackView.subviews.contains { $0 == sectionCountLabel }
     }
-    
-    private func setup() {
-        self.backgroundColor = .systemBackground
-        let sectionInset: CGFloat = 16.0
+}
+
+// MARK: - View Layout
+
+extension SectionHeaderView {
+    private func layoutSectionStackView() {
         sectionStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        addSubview(sectionStackView)
-        
-        [sectionTitleLabel].forEach {
-            self.sectionStackView.addArrangedSubview($0)
-        }
-        
+        let sectionInset: CGFloat = 16.0
         NSLayoutConstraint.activate([
-            self.sectionStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sectionInset),
-            self.sectionStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sectionInset),
-            self.sectionStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: sectionInset),
-            self.sectionStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -sectionInset)
+            sectionStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sectionInset),
+            sectionStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sectionInset),
+            sectionStackView.topAnchor.constraint(equalTo: topAnchor, constant: sectionInset),
+            sectionStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -sectionInset)
         ])
     }
 }
 
-protocol SectionHeaderViewDelegate: AnyObject {
-    func didTapSectionHeader(section: SectionHeaderView, sectionNumber: Int)
+// MARK: - Providing Function
+
+extension SectionHeaderView {
+    func setTitle(title: String?) {
+        sectionTitleLabel.text = title
+    }
+    
+    func setCountLabel(count: Int) {
+        sectionCountLabel.text = "\(count)개의 상품이 등록되어 있습니다."
+    }
+    
+    func setSectionNumber(number: Int) {
+        sectionNumber = number
+    }
+}
+
+// MARK: - Selector Function
+
+extension SectionHeaderView {
+    @objc private func tapSectionHeaderView() {
+        showNumberOfItemInSection()
+        guard let sectionNumber = sectionNumber else { return }
+        delegate?.didTapSectionHeader(section: self, sectionNumber: sectionNumber)
+    }
 }

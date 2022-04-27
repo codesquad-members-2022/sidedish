@@ -16,12 +16,10 @@ final class OrderingViewController: UIViewController {
     private let networkManger = NetworkManager(session: .shared)
     
     private var collectionViewLayout: UICollectionViewLayout {
-        let itemHeight: CGFloat = 130.0
-        let headerHeigth: CGFloat = 130.0
-        
         let layout = UICollectionViewFlowLayout()
-        let itemSize = CGSize(width: view.frame.width, height: itemHeight)
-        layout.headerReferenceSize = CGSize(width: view.frame.width, height: headerHeigth)
+        let itemSize = CGSize(width: view.frame.width, height: 130)
+        let headerSize = CGSize(width: view.frame.width, height: 130)
+        layout.headerReferenceSize = headerSize
         layout.itemSize = itemSize
         return layout
     }
@@ -29,8 +27,28 @@ final class OrderingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        setUpDelegate()
+        setUpNavigaionBar()
         getSideDishInfo()
-        
+    }
+    
+    private func setUpView() {
+        configureView()
+        view.addSubview(orderingCollectionView)
+        configureOrderingCollectionView()
+        layoutOrderingCollectionView()
+    }
+    
+    private func setUpDelegate() {
+        collectionViewDelegate.delegate = self
+    }
+    
+    private func configureView() {
+        title = Constant.ViewControllerTitle.ordering
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func setUpNavigaionBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         
         let appearance = UINavigationBarAppearance()
@@ -39,21 +57,6 @@ final class OrderingViewController: UIViewController {
         
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
-    }
-    
-    private func setUpView() {
-        configureView()
-        collectionViewDelegate.delegate = self
-        
-        view.addSubview(orderingCollectionView)
-        configureOrderingCollectionView()
-        layoutOrderingCollectionView()
-        
-    }
-    
-    private func configureView() {
-        title = Constant.Title.orderingViewController
-        view.backgroundColor = .systemBackground
     }
     
     private func configureOrderingCollectionView() {
@@ -89,11 +92,10 @@ final class OrderingViewController: UIViewController {
     }
     
     private func setHeaderViewDelegate() {
-        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let countOfSection = self.orderingCollectionView.numberOfSections
-
+            
             for sectionIndex in 0..<countOfSection {
                 guard let sectionHeaderView = self.orderingCollectionView.supplementaryView(
                     forElementKind: UICollectionView.elementKindSectionHeader,
@@ -118,7 +120,6 @@ extension OrderingViewController {
 }
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
-    
     func didSelectItem(index: IndexPath) {
         guard let menu = collectionViewDataSource.getSelectedItem(at: index.item) else { return }
         let detailVC = DetailViewController(menu: menu)
@@ -139,7 +140,6 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
 }
 
 extension OrderingViewController: SectionHeaderViewDelegate {
-    
     func didTapSectionHeader(section: SectionHeaderView, sectionNumber: Int) {
         let count = self.orderingCollectionView.numberOfItems(inSection: sectionNumber)
         section.setCountLabel(count: count)

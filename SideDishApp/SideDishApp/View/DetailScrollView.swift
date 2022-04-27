@@ -40,6 +40,8 @@ final class DetailScrollView: UIScrollView {
     
     private(set) var imagePageControl: UIPageControl = {
         let pageControl = UIPageControl()
+        pageControl.pageIndicatorTintColor = .white
+        pageControl.currentPageIndicatorTintColor = .systemBlue
         return pageControl
     }()
     
@@ -62,7 +64,7 @@ final class DetailScrollView: UIScrollView {
     
     private let countTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "수량"
+        label.text = Constant.DetailScrollText.count
         label.textColor = .systemGray
         label.textAlignment = .left
         return label
@@ -70,7 +72,7 @@ final class DetailScrollView: UIScrollView {
     
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
+        label.text = Constant.DetailScrollText.initialCount
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .darkGray
         label.textAlignment = .center
@@ -101,7 +103,7 @@ final class DetailScrollView: UIScrollView {
     
     private let amountTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "총 주문금액"
+        label.text = Constant.DetailScrollText.amount
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .systemGray
         return label
@@ -115,7 +117,7 @@ final class DetailScrollView: UIScrollView {
     
     private let orderButton: UIButton = {
         let button = UIButton()
-        button.setTitle("주문하기", for: .normal)
+        button.setTitle(Constant.DetailScrollText.order, for: .normal)
         button.backgroundColor = .tintColor
         button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 10
@@ -127,12 +129,6 @@ final class DetailScrollView: UIScrollView {
         stackView.axis = .vertical
         stackView.spacing = 0
         return stackView
-    }()
-    
-    private let separatorView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        view.backgroundColor = .systemGray5
-        return view
     }()
     
     override init(frame: CGRect) {
@@ -154,9 +150,11 @@ final class DetailScrollView: UIScrollView {
         detailContainerStackView.addArrangedSubview(mainInfoStackView)
         mainInfoStackView.changeSpacingForDetailView()
         mainInfoStackView.changeFontForDetailView()
+        
         detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
         
         detailContainerStackView.addArrangedSubview(subInfoStackView)
+        
         detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
         
         detailContainerStackView.addArrangedSubview(countContainerStackView)
@@ -176,28 +174,13 @@ final class DetailScrollView: UIScrollView {
         detailContainerStackView.addArrangedSubview(recipeImageStackView)
         
         layoutContentView()
+        layoutOverViewImageScrollView()
         layoutImagePageControl()
         layoutDetailContainerStackView()
         layoutCountTitleLabel()
         layoutOrderButton()
-        
-        amountTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        amountTitleLabel.widthAnchor.constraint(equalToConstant: 87).isActive = true
-        
-        configureOverViewImageScrollView()
-        configureImagePageControl()
     }
     
-    private func configureImagePageControl() {
-        imagePageControl.currentPage = 0
-        imagePageControl.pageIndicatorTintColor = .white
-        imagePageControl.currentPageIndicatorTintColor = .systemBlue
-    }
-    
-    private func configureOverViewImageScrollView() {
-        overViewImageScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 375)
-    }
-
     private func addPlaceholderView(count: Int) {
         for _ in 0..<count {
             recipeImageStackView.addArrangedSubview(UIView())
@@ -208,6 +191,7 @@ final class DetailScrollView: UIScrollView {
 // MARK: - View Layout
 
 extension DetailScrollView {
+    
     private func layoutContentView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor).isActive = true
@@ -240,12 +224,6 @@ extension DetailScrollView {
         detailContainerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
     }
     
-    private func layoutSeparatorView() {
-        separatorView.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.widthAnchor.constraint(equalTo: mainInfoStackView.widthAnchor).isActive = true
-        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-    }
-    
     private func configureCountContainerStackView() {
         countContainerStackView.setCustomSpacing(150, after: countTitleLabel)
     }
@@ -265,14 +243,14 @@ extension DetailScrollView {
 // MARK: - Providing Function
 
 extension DetailScrollView {
+    
     func setPrice(text: String) {
         amountLabel.text = "\(text)"
     }
     
     func setThumbNail(images: [String]) {
-        
         imagePageControl.numberOfPages = images.count
-        overViewImageScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * CGFloat(images.count), height: 375)
+        overViewImageScrollView.contentSize = CGSize(width: overViewImageScrollView.frame.width * CGFloat(images.count), height: 375)
         
         for (index, imageName) in images.enumerated() {
             let url = URL(string: imageName)
@@ -285,7 +263,7 @@ extension DetailScrollView {
                     let imageView = UIImageView(image: UIImage(data: data))
                     imageView.contentMode = .scaleToFill
                     imageView.frame = self.overViewImageScrollView.frame
-                    imageView.frame.origin.x = UIScreen.main.bounds.width * CGFloat(index)
+                    imageView.frame.origin.x = self.overViewImageScrollView.frame.width * CGFloat(index)
                     self.overViewImageScrollView.addSubview(imageView)
                 }
             }
