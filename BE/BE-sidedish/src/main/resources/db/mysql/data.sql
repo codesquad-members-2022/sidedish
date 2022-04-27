@@ -70,21 +70,19 @@ values
 insert into SIDEDISH_IMAGE
 ( MENU_IMAGE_URL, IMAGE_MENU_ID, IMAGE_FILE_TYPE, IMAGE_DEFAULT)
 values
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%B5%E1%86%BC%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%84%8E%E1%85%B5%E1%86%B7.png",1, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A9%E1%84%83%E1%85%AE+%E1%84%86%E1%85%A7%E1%86%AF%E1%84%8E%E1%85%B5%E1%84%87%E1%85%A9%E1%86%A9%E1%84%8B%E1%85%B3%E1%86%B7.png",2, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%AB+%E1%84%86%E1%85%A2%E1%84%8F%E1%85%A9%E1%86%B7+%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%89%E1%85%B5%E1%86%B7%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8C%E1%85%A9%E1%84%85%E1%85%B5%E1%86%B7.png",3, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A3%E1%84%8E%E1%85%A2+%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%86%A8%E1%84%87%E1%85%A9%E1%86%A9%E1%84%8B%E1%85%B3%E1%86%B7.png",4, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%AB+%E1%84%80%E1%85%B5%E1%86%B7%E1%84%8E%E1%85%B5%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png",5, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%83%E1%85%AC%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC+%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png",6, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%A8%E1%84%8B%E1%85%A9%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A2%E1%86%BC%E1%84%80%E1%85%AE%E1%86%A8.png",7, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%83%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A2%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png",8, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5+%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3+1.png",9, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5+%E1%84%89%E1%85%A5%E1%84%87%E1%85%B33+.png",9, "png", 0),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8C%E1%85%A1%E1%86%B8%E1%84%8E%E1%85%A2.png",10, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%A9%E1%84%80%E1%85%A1%E1%86%AF%E1%84%87%E1%85%B5%E1%84%8D%E1%85%B5%E1%86%B7.png",11, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC+%E1%84%8F%E1%85%A9%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%8C%E1%85%A9%E1%84%85%E1%85%B5%E1%86%B7.png",12, "png", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8D%E1%85%AE%E1%84%81%E1%85%AE%E1%84%86%E1%85%B5+%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%AB.png",13, "png", 1);
-
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%B5%E1%86%BC%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%84%8E%E1%85%B5%E1%86%B7.png", 1, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A9%E1%84%83%E1%85%AE+%E1%84%86%E1%85%A7%E1%86%AF%E1%84%8E%E1%85%B5%E1%84%87%E1%85%A9%E1%86%A9%E1%84%8B%E1%85%B3%E1%86%B7.png", 2, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%AB+%E1%84%86%E1%85%A2%E1%84%8F%E1%85%A9%E1%86%B7+%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%89%E1%85%B5%E1%86%B7%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8C%E1%85%A9%E1%84%85%E1%85%B5%E1%86%B7.png", 3, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%AB+%E1%84%80%E1%85%B5%E1%86%B7%E1%84%8E%E1%85%B5%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png", 4, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%83%E1%85%AC%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC+%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png", 5, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%A8%E1%84%8B%E1%85%A9%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A2%E1%86%BC%E1%84%80%E1%85%AE%E1%86%A8.png", 6, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%83%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A2%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png", 7, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5+%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3+1.png", 8, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5+%E1%84%89%E1%85%A5%E1%84%87%E1%85%B33+.png", 8, "png", 0),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8C%E1%85%A1%E1%86%B8%E1%84%8E%E1%85%A2.png", 9, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%A9%E1%84%80%E1%85%A1%E1%86%AF%E1%84%87%E1%85%B5%E1%84%8D%E1%85%B5%E1%86%B7.png", 10, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC+%E1%84%8F%E1%85%A9%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%8C%E1%85%A9%E1%84%85%E1%85%B5%E1%86%B7.png", 11, "png", 1),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%E1%84%8D%E1%85%AE%E1%84%81%E1%85%AE%E1%84%86%E1%85%B5+%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%AB.png", 12, "png", 1);
 
 -- 이벤트
 
