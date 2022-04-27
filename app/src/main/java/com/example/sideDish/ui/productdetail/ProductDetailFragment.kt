@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
+import com.example.sideDish.common.EventObserver
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +31,11 @@ class ProductDetailFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
         viewModel.getDetail("HBBCC")
+        viewModel.exceptionOccur.observe(viewLifecycleOwner, EventObserver {
+            Toast.makeText(requireContext(), "반찬 세부 정보를 가져올 수 없습니다", Toast.LENGTH_SHORT).show()
+            parentFragmentManager.beginTransaction().remove(this).commit()
+            parentFragmentManager.popBackStack()
+        })
 
         setFoodInfoDummy()
         registerStepper()

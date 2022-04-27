@@ -47,7 +47,6 @@ class FoodListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-
         viewModel.items.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
@@ -60,8 +59,8 @@ class FoodListFragment : Fragment() {
 
     private fun showSideDishList() {
         val ceh = CoroutineExceptionHandler { _, exception ->
-            Toast.makeText(requireContext(), "반찬의 일부를 가져오지 못했습니다", Toast.LENGTH_SHORT).show()
             Log.d(TAG, "$exception")
+            Toast.makeText(requireContext(), "반찬의 일부를 가져오지 못했습니다", Toast.LENGTH_SHORT).show()
         }
         viewLifecycleOwner.lifecycleScope.launch(ceh) {
             supervisorScope {
@@ -69,7 +68,7 @@ class FoodListFragment : Fragment() {
                     adapter.updateCategoryItems(FoodCategory.MAIN)
                 }.join()
                 launch() {
-                    throw Exception()
+                    //throw Exception()
                     adapter.updateCategoryItems(FoodCategory.SOUP)
                 }.join()
                 launch() {
