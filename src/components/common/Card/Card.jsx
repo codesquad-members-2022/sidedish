@@ -35,22 +35,30 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
   }
 
   function HoverImg() {
-    if (isSizeSmall) return null;
+    if (isSizeSmall) {
+      return null;
+    }
     return <DeliveryInfo isHoverImg={isHoverImg} />;
   }
 
   function Space() {
-    if (isSizeSmall) return null;
+    if (isSizeSmall) {
+      return null;
+    }
     return <div />;
   }
 
   function Description() {
-    if (isSizeSmall) return null;
+    if (isSizeSmall) {
+      return null;
+    }
     return <Text size="BASE" weight="REGULAR" color="GREY_200" value={desc} />;
   }
 
   function Tags() {
-    if (isSizeSmall) return null;
+    if (isSizeSmall) {
+      return null;
+    }
     return tags.map((tag, index) => <Tag key={`${tag}_${index}`} type={tag} />);
   }
 }

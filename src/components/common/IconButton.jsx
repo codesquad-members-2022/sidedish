@@ -18,12 +18,12 @@ const iconsComponents = {
   minus: Minus
 };
 
-function Icon({ icon, width, height, fill }) {
+function Icon({ icon, width, height, fill, stroke }) {
   const IconComponent = iconsComponents[icon];
   if (!IconComponent) {
     throw new Error(`${icon} 컴포넌트를 찾을 수 없습니다. `);
   }
-  return <IconComponent width={width} height={height} fill={fill} stroke={fill} />;
+  return <IconComponent width={width} height={height} fill={fill} stroke={stroke} />;
 }
 
 export default function IconButton({ icon, width, height, fill, stroke, onClick, as }) {

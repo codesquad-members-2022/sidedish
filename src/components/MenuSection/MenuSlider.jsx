@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import IconButton from 'components/common/IconButton';
 import Card from 'components/common/Card/Card';
 import THEME from 'variable/theme';
-import slideData from 'components/MenuSection/slideMockData'; // 수정
+import slideData from 'components/MenuSection/slideMockData';
 
-// TODO
+// TODO: Ref로 받아와서 저장할 것.
 const sliderInfo = {
   size_px: {
     cardWidth: 302,
@@ -16,8 +16,8 @@ const sliderInfo = {
 
 export default function MenuSlider() {
   const [curSlideIdx, setCurSlideIdx] = useState(0);
-  const [canMovePrev, setMovePrev] = useState(false);
-  const [canMoveNext, setMoveNext] = useState(true); // TODO: 슬라이드 개수가 4개 이하 일떄는?
+  const isFirstSlide = curSlideIdx === 0;
+  const isLastSlide = curSlideIdx === slideData.length - sliderInfo.visibleLength;
 
   return (
     <Wrap>
@@ -44,7 +44,7 @@ export default function MenuSlider() {
             icon="prev"
             width="11px"
             height="20px"
-            stroke={canMovePrev ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
+            stroke={isFirstSlide ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
           />
           <IconButton
             onClick={handleMovementToNext}
@@ -52,7 +52,7 @@ export default function MenuSlider() {
             icon="next"
             width="11px"
             height="20px"
-            stroke={canMoveNext ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
+            stroke={isLastSlide ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
           />
         </ButtonWrap>
       </Slider>
@@ -68,22 +68,15 @@ export default function MenuSlider() {
     setCurSlideIdx(newCurSlideIdx);
   }
   function moveSlideToLeft() {
-    const isFirstSlide = curSlideIdx === 0;
     if (isFirstSlide) {
-      setMovePrev(false);
       return 0;
     }
-    setMovePrev(true);
     return curSlideIdx - sliderInfo.visibleLength;
   }
   function moveSlideToRight() {
-    const isLastSlide = curSlideIdx === slideData.length - sliderInfo.visibleLength;
     if (isLastSlide) {
-      setMoveNext(false);
       return curSlideIdx;
     }
-    // 디바운스 추가
-    setMoveNext(true);
     return curSlideIdx + sliderInfo.visibleLength;
   }
 }
