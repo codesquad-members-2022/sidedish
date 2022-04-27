@@ -7,7 +7,9 @@ import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.controller.RequestProduct;
 import kr.codesquad.sidedish.domain.SideDish;
+import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.repository.ProductRepository;
+import kr.codesquad.sidedish.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +40,9 @@ public class ProductService {
 	}
 
 	public ProductDTO findById(Integer id) {
-		return productRepository.findById(id).get().createDTO();
+		return productRepository.findById(id)
+			.orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_ID_NOT_ALLOWED)).
+			createDTO();
 	}
 
 	public void order(RequestProduct requestProduct) {

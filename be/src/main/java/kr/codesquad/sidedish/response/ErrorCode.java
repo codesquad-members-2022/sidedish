@@ -16,6 +16,7 @@ public enum ErrorCode {
 	PRODUCT_QUANTITY_insufficient(HttpStatus.BAD_REQUEST, "현재 상품의 재고가 요청한 값보다 부족합니다."),
 	DISCOUNT_INFORMATION_NOT_CORRECT(HttpStatus.BAD_REQUEST, "올바르지 않은 할인 정보 입니다."),
 	DELIVERY_INFORMATION_NOT_CORRECT(HttpStatus.BAD_REQUEST, "올바르지 않은 택배 정보 입니다."),
+	DELIVERY_INFORMATION_NOT_ALLOWED(HttpStatus.BAD_REQUEST, "존재하지 않는 배송 정보 타입이 입력 되었습니다."),
 	;
 
 	private final HttpStatus httpStatus;
