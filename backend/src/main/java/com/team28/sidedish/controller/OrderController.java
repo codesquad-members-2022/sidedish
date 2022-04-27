@@ -24,7 +24,7 @@ public class OrderController {
     @Operation(summary = "주문 등록",
             description = "하나의 상품에 대해 주문을 등록합니다.",
             responses = {
-                @ApiResponse(responseCode = "201",
+                @ApiResponse(responseCode = "204",
                         description = "주문 등록 성공"
                 ),
                 @ApiResponse(responseCode = "400",
@@ -41,7 +41,7 @@ public class OrderController {
     @PostMapping("/orders")
     public ResponseEntity<Void> postOrder(@RequestBody OrderRequest orderRequest) {
 
-        orderService.order(orderRequest.getProductId(), orderRequest.getUserId(), orderRequest.getQuantity());
+        orderService.order(orderRequest.getProductId(), orderRequest.getMemberId(), orderRequest.getQuantity());
         return ResponseEntity.noContent().build();
     }
 }

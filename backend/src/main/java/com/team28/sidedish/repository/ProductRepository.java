@@ -7,9 +7,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
 
-    @Query("UPDATE PRODUCT SET STOCK_QUANTITY = :quantity WHERE ID = :productId")
-    void updateStockQuantity(
-            @Param("productId") Long productId,
-            @Param("quantity") int stockQuantity);
+//    @Query("UPDATE PRODUCT SET STOCK_QUANTITY = :quantity WHERE ID = :productId")
+//    void updateStockQuantity(
+//            @Param("productId") Long productId,
+//            @Param("quantity") int stockQuantity);
 
 }

@@ -10,6 +10,7 @@ import com.team28.sidedish.repository.entity.OrdersEntity;
 import com.team28.sidedish.repository.entity.ProductEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,18 +31,19 @@ public class OrderService {
         ProductEntity productEntity = productRepository.findById(productId)
                 .orElseThrow(ProductNotFoundException::new);
 
-        productRepository.updateStockQuantity(productId, productEntity.getStockQuantity() - quantity);
+        productEntity.updateStock(quantity);
+        productRepository.save(productEntity);
     }
 
-    public void order(Long productId, String userId, int quantity) {
+    @Transactional
+    public void order(Long productId, Long memberId, int quantity) {
         if (!isEnoughStockCount(productId, quantity)) {
             throw new OutOfStockException();
         }
-
         updateStock(productId, quantity);
 
-        OrdersEntity savedOrder = ordersRepository.save(new OrdersEntity(null, userId));
-        OrderProductsEntity savedOrderProduct = orderProductsRepository.save(new OrderProductsEntity(savedOrder.getId(), productId, quantity));
+        OrdersEntity savedOrder = ordersRepository.save(new OrdersEntity(memberId));
+        OrderProductsEntity savedOrderProduct = orderProductsRepository.save(new OrderProductsEntity(null, savedOrder.getId(), productId, quantity));
         savedOrder.addOrderProducts(savedOrderProduct);
     }
 }

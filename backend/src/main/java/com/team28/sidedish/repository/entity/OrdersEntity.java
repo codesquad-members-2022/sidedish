@@ -3,6 +3,7 @@ package com.team28.sidedish.repository.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -17,13 +18,12 @@ public class OrdersEntity {
 
     @Id
     private Long id;
-    private String memberId;
+    private Long memberId;
     private LocalDateTime orderDate;
     @MappedCollection(idColumn = "ORDER_ID")
     private Set<OrderProductsEntity> orderProducts = new HashSet<>();
 
-    public OrdersEntity(Long id, String memberId) {
-        this.id = id;
+    public OrdersEntity(Long memberId) {
         this.memberId = memberId;
         this.orderDate = LocalDateTime.now();
     }

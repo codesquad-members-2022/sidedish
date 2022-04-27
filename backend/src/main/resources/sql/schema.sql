@@ -41,14 +41,15 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`
 (
     `id`         BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `member_id`  BIGINT UNIQUE NOT NULL,
+    `member_id`  BIGINT NOT NULL,
     `order_date` DATETIME
 );
 
 DROP TABLE IF EXISTS `order_products`;
 CREATE TABLE `order_products`
 (
-    `order_id`   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `id`         BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `order_id`   BIGINT NOT NULL,
     `product_id` BIGINT NOT NULL,
     `quantity`   INT    NOT NULL
 );

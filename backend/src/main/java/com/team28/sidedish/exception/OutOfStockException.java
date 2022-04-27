@@ -10,6 +10,6 @@ public class OutOfStockException extends SidedishRuntimeException {
 
     @Override
     public HttpStatus getStatus() {
-        return null;
+        return HttpStatus.BAD_REQUEST;
     }
 }

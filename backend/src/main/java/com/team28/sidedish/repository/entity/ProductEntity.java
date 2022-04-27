@@ -23,4 +23,8 @@ public class ProductEntity {
     private double savePointRatio;
     @MappedCollection(idColumn = "PRODUCT_ID")
     private Set<ProductImageEntity> productImages;
+
+    public void updateStock(int stockQuantity) {
+        this.stockQuantity -= stockQuantity;
+    }
 }
