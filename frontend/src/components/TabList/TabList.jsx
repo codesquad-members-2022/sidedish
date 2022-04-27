@@ -1,6 +1,6 @@
-import {TabItem} from './TabList.styled';
+import {TabItem} from "./TabList.styled";
 
-function TabList({tab, tabState, setTabState}) {
+function TabList({title, tabState, setTabState}) {
   const handleTabState = ({target}) => {
     setTabState(prevState => {
       return {...prevState, category: target.title};
@@ -8,8 +8,8 @@ function TabList({tab, tabState, setTabState}) {
   };
 
   return (
-    <TabItem tabState={tabState} title={tab.title} onClick={handleTabState}>
-      {tab.title}
+    <TabItem tabState={tabState} title={title} onClick={handleTabState}>
+      {title}
     </TabItem>
   );
 }

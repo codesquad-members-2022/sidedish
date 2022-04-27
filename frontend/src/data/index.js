@@ -1,3 +1,3 @@
-export * from './bestGoods';
-export * from './category';
-export * from './goods';
+export * from "./category";
+export * from "./mainCategory";
+export * from "./eventCategory";

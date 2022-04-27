@@ -1,13 +1,14 @@
-import {goodsData} from 'data';
-import {Slider} from 'components';
-import './SideDishContentsList.css';
+import {Slider} from "components";
+import {mainCategory} from "data";
+import "./SideDishContentsList.css";
 
 function SideDishContentsList() {
-  return goodsData.map(element => (
-    <li key={element.id}>
-      <h3 className="sideDishCategory">{element.title}</h3>
-      <Slider goodsData={element.goods} />
+  return mainCategory.map(({title, subTitle}, index) => (
+    <li key={index}>
+      <h3 className="sideDishCategory">{subTitle}</h3>
+      <Slider sideDishTitle={title} />
     </li>
   ));
 }
+
 export {SideDishContentsList};

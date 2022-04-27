@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from "react";
+import {fetchData} from "utils/utils";
+import {serverURL} from "constants/urlPath";
 import {
   StyledSpecialPromotion,
   SpecialPromotionIcon,
@@ -6,14 +8,24 @@ import {
   Tab,
   BestSideDishContainer,
   BestSideDishList,
-} from './SpecialPromotion.styled';
-import {bestGoodsData} from 'data';
-import {specialPromotionIcon} from 'constants';
-import {TabList, GoodsBlock} from 'components';
+} from "./SpecialPromotion.styled";
+import {eventCategory} from "data";
+import {specialPromotionIcon} from "constants";
+import {TabList, GoodsBlock} from "components";
 
 function SpecialPromotion() {
-  const [tabState, setTabState] = useState({category: '풍부한 고기 반찬'});
-  const goodsData = bestGoodsData.filter(({tab}) => tab.title === tabState.category)[0].tab.goods;
+  const [tabState, setTabState] = useState({category: eventCategory[0].subTitle});
+  const [goodsData, setGoodsData] = useState([]);
+
+  const fetchAPI = async title => {
+    const data = await fetchData(`${serverURL}/${title}`);
+    setGoodsData(data);
+  };
+
+  useEffect(() => {
+    const title = eventCategory.filter(category => category.subTitle === tabState.category)[0].title;
+    fetchAPI(title);
+  }, [tabState]);
 
   return (
     <StyledSpecialPromotion>
@@ -23,18 +35,28 @@ function SpecialPromotion() {
       </SpecialPromotionTitle>
       <Tab>
         <ul className="tabList">
-          {bestGoodsData.map(({id, tab}) => (
-            <TabList key={id} tab={tab} tabState={tabState.category} setTabState={setTabState} />
+          {eventCategory.map(({subTitle}, index) => (
+            <TabList key={index} title={subTitle} tabState={tabState} setTabState={setTabState} />
           ))}
         </ul>
       </Tab>
       <BestSideDishContainer>
         <BestSideDishList>
-          {goodsData.map(({id, thumb, name, description, price, label}) => (
-            <li key={id}>
-              <GoodsBlock thumb={thumb} name={name} description={description} price={price} label={label} />
-            </li>
-          ))}
+          {goodsData.map(
+            ({id, image, productName, description, price, eventBadge, early_delivery, discountedRate}) => (
+              <li key={id}>
+                <GoodsBlock
+                  thumb={image}
+                  name={productName}
+                  description={description}
+                  price={price}
+                  eventBadge={eventBadge}
+                  discountedRate={discountedRate}
+                  delivery={early_delivery}
+                />
+              </li>
+            ),
+          )}
         </BestSideDishList>
       </BestSideDishContainer>
     </StyledSpecialPromotion>

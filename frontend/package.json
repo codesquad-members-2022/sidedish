@@ -19,7 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "server": "json-server --watch ./src/data/goods.json --port 4000"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +42,13 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",
+    "json-server": "^0.17.0",
     "nodemon": "^2.0.15"
   },
-  "homepage": "."
+  "homepage": "http://.",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
