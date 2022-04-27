@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useFetch } from "../fetcher";
 import { CardList } from "./CardList";
 import { cardNumPerPage, Queries, SIZES } from "../convention";

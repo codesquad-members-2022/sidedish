@@ -4,10 +4,8 @@ import {
   custom_flex,
   width_height_bypx,
 } from "../styles/global";
-import { useState } from "react";
-
 import { Logo } from "../icons/Logo";
-import { Line, HorizontalLine } from "./HorizontalLine";
+import { HorizontalLine } from "./HorizontalLine";
 import { headerIcons } from "../icons/headerIcons";
 import { Gnb } from "./Gnb";
 

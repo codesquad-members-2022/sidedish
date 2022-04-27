@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { custom_font, custom_flex } from "../styles/global";
 import { useState } from "react";
 

@@ -19,14 +19,6 @@ export const Modal = ({ openId }) => {
   const [count, setCount] = useState(1);
   const [primaryImage, setPrimaryImage] = useState();
   const [variantImages, setVariantImages] = useState();
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await (await fetch("/mocks/product.json")).json();
-  //     setInfo(res);
-  //     setPrimaryImage(res.primary_image);
-  //     setVariantImages(res.variant_image);
-  //   })();
-  // }, []);
   const res = useFetch(Queries.product, openId);
   useEffect(() => {
     setInfo(res);

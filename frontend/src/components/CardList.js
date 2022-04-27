@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { ProductCard } from "./ProductCard";
 import { thumbnailSize, cardGapLength, cardListArea } from "../convention";
 import { width_height_bypx } from "../styles/global";
