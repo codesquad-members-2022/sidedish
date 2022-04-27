@@ -4,7 +4,6 @@ final class MockDataCachingManager: DataCachingManagable{
     
     private var mockDataCache: [String:Data] = [:]
     var count: Int{
-        print(mockDataCache.count)
         return mockDataCache.count
     }
     
