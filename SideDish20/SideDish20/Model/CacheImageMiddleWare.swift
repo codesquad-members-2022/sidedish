@@ -7,8 +7,21 @@
 
 import Foundation
 
-class CacheImageMiddleWare {
-    func cacheImage(as name: String, contentsOf image: Data) {
-        RepositoryCommons.shared.cachingFile(as: name, contentsOf: image)
+class CacheImageMiddleWare: SideDishMiddleWare {
+    
+    let repository: RepositoryCommons = RepositoryCommons.shared
+    
+    func callCacheSystem(userInfo: [String: Any]?) -> Any? {
+        
+        if let name = userInfo?["name"] as? String, let data = userInfo?["data"] as? Data {
+            cacheImage(as: name, contentsOf: data)
+            return data
+        }
+        
+        return nil
+    }
+    
+    private func cacheImage(as name: String, contentsOf image: Data) {
+        repository.cachingFile(as: name, contentsOf: image)
     }
 }
