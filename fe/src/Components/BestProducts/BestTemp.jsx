@@ -13,7 +13,7 @@ const ProductCardList = styled.ul`
 
 export const BestTemp = ({ bestProductsTabId }) => {
   const [bestProducts, isLoaded, isError] = useFetch(
-    `${API_URL}/event/${bestProductsTabId}/items`
+    `${API_URL}/events/${bestProductsTabId}/items`
   );
 
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
@@ -21,7 +21,7 @@ export const BestTemp = ({ bestProductsTabId }) => {
 
   return (
     <ProductCardList>
-      {bestProducts.content.map(productCardData => (
+      {bestProducts.result_body.map(productCardData => (
         <ProductCard
           size={''}
           data={productCardData}

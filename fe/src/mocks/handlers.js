@@ -219,33 +219,35 @@ const GET_EVENTS = rest.get(`${API_URL}/events`, (req, res, ctx) => {
       result_message: 'OK',
       result_body: [
         {
-          "id": 1,
-          "title": "풍성한 고기반찬"
+          id: 1,
+          title: '풍성한 고기반찬',
         },
         {
-          "id": 2,
-          "title": "편리한 반찬세트"
+          id: 2,
+          title: '편리한 반찬세트',
         },
         {
-          "id": 3,
-          "title": "맛있는 제철요리"
+          id: 3,
+          title: '맛있는 제철요리',
         },
         {
-          "id": 4,
-          "title": "우리아이 영양 반찬쓰"
-        }
+          id: 4,
+          title: '우리아이 영양 반찬쓰',
+        },
       ],
     })
   );
 });
 
 const GET_EVENT = [
-  rest.get(`${API_URL}/event/:id/items`, (req, res, ctx) => {
+  rest.get(`${API_URL}/events/:id/items`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.delay(1000),
       ctx.json({
-        content: [
+        result_code: 200,
+        result_message: 'OK',
+        result_body: [
           {
             id: 1,
             title: '호두 멸치볶음' + req.params.id,
