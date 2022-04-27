@@ -7,7 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DeliveryPolicy {
 
-	private Long id;
 	private String deliveryInfo;
 	private Long deliveryCharge;
 	private Long freeDeliveryOverAmount;
