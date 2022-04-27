@@ -1,14 +1,14 @@
-package com.example.be.common.service;
+package com.example.be.common.login.service;
 
 import com.example.be.business.user.domain.User;
 import com.example.be.business.user.repository.UserRepository;
-import com.example.be.common.token.TokenUtils;
-import com.example.be.common.token.configuration.ClientRegistration;
-import com.example.be.common.token.configuration.InMemoryClientRegisterrRepository;
-import com.example.be.common.token.github.GithubToken;
-import com.example.be.common.token.github.GithubTokenUtils;
-import com.example.be.common.token.github.GithubUser;
-import com.example.be.common.token.jwt.JwtTokenProvider;
+import com.example.be.common.login.token.TokenUtils;
+import com.example.be.common.login.token.configuration.ClientRegistration;
+import com.example.be.common.login.token.configuration.InMemoryClientRegisterrRepository;
+import com.example.be.common.login.token.github.GithubToken;
+import com.example.be.common.login.token.github.GithubTokenUtils;
+import com.example.be.common.login.token.github.GithubUser;
+import com.example.be.common.login.token.jwt.JwtTokenProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.example.be.common.token.github.GithubToken.GITHUB;
+import static com.example.be.common.login.token.github.GithubToken.GITHUB;
 
 @Service
 public class OauthService {

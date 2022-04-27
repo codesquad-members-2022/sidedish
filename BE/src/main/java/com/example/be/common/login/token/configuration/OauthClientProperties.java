@@ -1,4 +1,4 @@
-package com.example.be.common.token.configuration;
+package com.example.be.common.login.token.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;

@@ -35,6 +35,6 @@ public class DishController {
     public ResponseEntity<PlanningDataRequestByCategory> updateDish(@PathVariable("id") Long id, @RequestBody DishUpdateRequest dishUpdateRequest) {
         dishService.updateDish(id, dishUpdateRequest.getPrice(), dishUpdateRequest.getBadge(), dishUpdateRequest.getDeliveryPriceOption(),
                 dishUpdateRequest.getThumbnail(), dishUpdateRequest.getDishStatus(), dishUpdateRequest.getCategoryId(), dishUpdateRequest.getCount());
-        return new ResponseEntity<>(new PlanningDataRequestByCategory(dishService.getPlanningData()), HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

@@ -1,7 +1,7 @@
-package com.example.be.common.token;
+package com.example.be.common.login.token;
 
-import com.example.be.common.token.configuration.ClientRegistration;
-import com.example.be.common.token.github.GithubToken;
+import com.example.be.common.login.token.configuration.ClientRegistration;
+import com.example.be.common.login.token.github.GithubToken;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.MultiValueMap;

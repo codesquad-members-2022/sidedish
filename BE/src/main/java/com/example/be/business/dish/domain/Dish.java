@@ -82,7 +82,7 @@ public class Dish extends AbstractAggregateRootz<Dish> {
         return count;
     }
 
-    public Dish publishUpdateDish(BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, Long categoryId, int count) {
+    public Dish publishEventUpdateDish(BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, Long categoryId, int count) {
         updateDish(price, badge, deliveryPriceOption, thumbnail, dishStatus, categoryId, count);
         this.registerEvent(new DishUpdatePublishEvent(this));
         return this;

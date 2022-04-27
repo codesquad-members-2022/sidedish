@@ -1,6 +1,5 @@
-package com.example.be.common.token.jwt;
+package com.example.be.common.login.token.jwt;
 
-import com.example.be.common.token.jwt.JwtToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;

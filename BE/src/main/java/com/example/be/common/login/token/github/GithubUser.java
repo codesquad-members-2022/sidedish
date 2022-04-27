@@ -1,4 +1,4 @@
-package com.example.be.common.token.github;
+package com.example.be.common.login.token.github;
 
 import com.example.be.business.user.domain.Bio;
 

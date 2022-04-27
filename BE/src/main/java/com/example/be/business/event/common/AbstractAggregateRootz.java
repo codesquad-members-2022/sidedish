@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AbstractAggregateRootz<A extends AbstractAggregateRootz<A>> {
 
-    private transient final @Transient
-    List<Object> domainEvents = new ArrayList<>();
+    @Transient
+    private transient final List<Object> domainEvents = new ArrayList<>();
 
     protected <T> T registerEvent(T event) {
         this.domainEvents.add(event);

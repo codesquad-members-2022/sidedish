@@ -1,4 +1,4 @@
-package com.example.be.business.event.domainevent;
+package com.example.be.business.event.common;
 
 public enum EventType {
     USER,

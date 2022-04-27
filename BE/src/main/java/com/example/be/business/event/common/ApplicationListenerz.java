@@ -1,4 +1,4 @@
-package com.example.be.business.event.dish;
+package com.example.be.business.event.common;
 
 
 import com.example.be.business.event.common.ApplicationEventz;

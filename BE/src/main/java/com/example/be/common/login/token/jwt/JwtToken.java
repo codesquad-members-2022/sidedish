@@ -1,4 +1,4 @@
-package com.example.be.common.token.jwt;
+package com.example.be.common.login.token.jwt;
 
 public class JwtToken {
     private static final String TOKEN = "JwtToken";

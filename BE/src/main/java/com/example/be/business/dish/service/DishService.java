@@ -9,10 +9,8 @@ import com.example.be.business.dish.repository.DishRepository;
 import com.example.be.business.dish.repository.jdbc.DishJdbcReadRepository;
 import com.example.be.common.exception.BusinessException;
 import com.example.be.common.exception.dish.DishTypeException;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,8 +48,7 @@ public class DishService {
     @Transactional
     public void updateDish(Long id, BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, Long categoryId, int count) {
         logger.info("상품 수정: 상품번호 {}", id);
-        Dish findDish = dishRepository.findById(id).orElseThrow(
-                () -> new BusinessException(DishTypeException.DISH_NOT_FOUND_EXCEPTION));
-        findDish.publishUpdateDish(price, badge, deliveryPriceOption, thumbnail, dishStatus, categoryId, count);
+        Dish findDish = getDishDetail(id);
+        findDish.publishEventUpdateDish(price, badge, deliveryPriceOption, thumbnail, dishStatus, categoryId, count);
     }
 }

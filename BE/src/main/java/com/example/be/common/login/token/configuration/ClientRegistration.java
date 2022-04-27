@@ -1,4 +1,4 @@
-package com.example.be.common.token.configuration;
+package com.example.be.common.login.token.configuration;
 
 public class ClientRegistration {
     private final String scope;

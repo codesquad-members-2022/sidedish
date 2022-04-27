@@ -1,9 +1,9 @@
 package com.example.be.common.configuration;
 
-import com.example.be.common.token.configuration.ClientRegistration;
-import com.example.be.common.token.configuration.InMemoryClientRegisterrRepository;
-import com.example.be.common.token.configuration.OauthClientProperties;
-import com.example.be.common.token.configuration.OauthClientPropertiesRegistrationAdapter;
+import com.example.be.common.login.token.configuration.ClientRegistration;
+import com.example.be.common.login.token.configuration.InMemoryClientRegisterrRepository;
+import com.example.be.common.login.token.configuration.OauthClientProperties;
+import com.example.be.common.login.token.configuration.OauthClientPropertiesRegistrationAdapter;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
