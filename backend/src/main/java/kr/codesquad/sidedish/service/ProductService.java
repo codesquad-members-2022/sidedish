@@ -1,7 +1,9 @@
 package kr.codesquad.sidedish.service;
 
 import kr.codesquad.sidedish.controller.dto.ProductResponse;
-import kr.codesquad.sidedish.domain.*;
+import kr.codesquad.sidedish.domain.DeliveryPolicy;
+import kr.codesquad.sidedish.domain.Discount;
+import kr.codesquad.sidedish.domain.Product;
 import kr.codesquad.sidedish.repository.DeliveryPolicyRepository;
 import kr.codesquad.sidedish.repository.DiscountRepository;
 import kr.codesquad.sidedish.repository.ProductRepository;

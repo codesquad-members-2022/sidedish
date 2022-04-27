@@ -1,8 +1,9 @@
 package kr.codesquad.sidedish.controller.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -14,7 +15,7 @@ public class ThemeListResponse {
     @AllArgsConstructor
     public static class Element {
 
-        Long id;
-        String name;
+        private final Long id;
+        private final String name;
     }
 }
