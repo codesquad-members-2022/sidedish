@@ -21,6 +21,6 @@
     <string name="launching_event">런칭특가</string>
     <string name="event_promotion">이벤트특가</string>
     <string name="github_client_id">11c78664d145c3664830</string>
-    <string name="github_redirect_url">http://localhost8080/login/oauth</string>
     <string name="login">login</string>
+    <string name="github_redirect_url">http://13.209.145.70:8080/login/oauth</string>
 </resources>

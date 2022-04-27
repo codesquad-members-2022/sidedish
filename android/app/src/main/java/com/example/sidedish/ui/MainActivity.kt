@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-
         val httpUrl = HttpUrl.Builder()
             .scheme("http")
             .host("github.com")
@@ -39,17 +38,19 @@ class MainActivity : AppCompatActivity() {
             .addPathSegment("oauth")
             .addPathSegment("authorize")
             .addQueryParameter("client_id", getString(R.string.github_client_id))
-            .addQueryParameter("scope", "user:email")
+            .addQueryParameter("scope", "user")
             .build()
-
-//        .addQueryParameter("redirect_uri", getString(R.string.github_redirect_url))
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(httpUrl.toString()))
+//            .addQueryParameter("redirect_uri", getString(R.string.github_redirect_url))
+        Log.d("TAG", "launch start")
+        val intent = Intent(Intent.ACTION_VIEW,Uri.parse(httpUrl.toString()))
         result.launch(intent)
+        Log.d("TAG", "launch end")
     }
 
     private val result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        Log.d("TAG", "${it.resultCode}")
         if (it.resultCode == RESULT_CODE) {
-            Log.d("TAG", "${it.resultCode}")
+
         }
     }
 

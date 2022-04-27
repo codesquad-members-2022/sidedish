@@ -18,10 +18,9 @@ class RedirectActivity: AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             val code = uri.getQueryParameter("code")
             intent.putExtra("code", code)
-            Log.d("TAG", "redirect ${getString(R.string.github_redirect_url)}, code ${code}")
-            startActivity(intent);
+            startActivity(intent)
 
-            finish();
+            finish()
         }
 
     }
