@@ -29,6 +29,7 @@ export const useFetch = (selected, special) => {
     let query = special
       ? "/mocks/specialCategoryProducts.json"
       : "/mocks/categoryProducts.json";
+    console.log(query);
     (async () => {
       const json = await (await fetch(query)).json();
 

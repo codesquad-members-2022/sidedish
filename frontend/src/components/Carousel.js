@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useFetch } from "../fetcher";
 import { CardList } from "./CardList";
 import { cardNumPerPage } from "../convention";
@@ -44,65 +44,65 @@ const CarouselButton = ({ dir, onBtnClick, isEndPage }) => (
   </CarouselButtonWrapper>
 );
 
-export const Carousel = ({ categoryID, categoryName, size }) => {
-  const [firstCardIndex, setfirstCardIndex] = useState(0);
-  const [isFirstPage, setIsFirstPage] = useState(true);
-  const [isLastPage, setIsLastPage] = useState(false);
-  const categoryData = useFetch(categoryID);
+export const Carousel = ({ id, name, size }) => {
+  const [curIndex, setCurIndex] = useState(0);
+  const categoryData = useFetch(id, false);
 
-  const moveSlide = (dir) => {
-    const slideLength = categoryData.products.length;
-    const maxFirstCardIndex = slideLength - cardNumPerPage[size];
-    let newFirstCardIndex;
-    // let changed, max;
-    // changed = dir==='left'? firstCardIndex-cardNumPerPage[size]: firstCardIndex+maxFirstCardIndex
-    // max = dir==="left"?0:maxFirstCardIndex;
-    // newFirstCardIndex= Math.max(changed,max);
-
-    if (dir === "left") {
-      newFirstCardIndex = Math.max(firstCardIndex - cardNumPerPage[size], 0);
-    } else if (dir === "right") {
-      newFirstCardIndex = Math.min(
-        firstCardIndex + cardNumPerPage[size],
-        maxFirstCardIndex
-      );
-    }
-    setfirstCardIndex(newFirstCardIndex);
-    checkPageRemain(newFirstCardIndex, maxFirstCardIndex);
+  const clickNext = () => {
+    const sliderLength = categoryData.products.length;
+    if (curIndex >= sliderLength - cardNumPerPage[size]) return;
+    setCurIndex((prev) =>
+      curIndex + cardNumPerPage[size] > sliderLength - cardNumPerPage[size]
+        ? prev + 1
+        : prev + cardNumPerPage[size]
+    );
   };
-
-  const checkPageRemain = (firstCardIndex, maxFirstCardIndex) => {
-    // setIsFirstPage(firstCardIndex===0);
-    // setIsLastPage(firstCardIndex===maxFirstCardIndex);
-    if (firstCardIndex === 0) {
-      setIsFirstPage(true);
-    } else if (firstCardIndex === maxFirstCardIndex) {
-      setIsLastPage(true);
-    } else {
-      setIsFirstPage(false);
-      setIsLastPage(false);
-    }
+  const clickPrev = () => {
+    if (curIndex === 0) return;
+    setCurIndex((prev) =>
+      curIndex - cardNumPerPage[size] < 0
+        ? prev - 1
+        : prev - cardNumPerPage[size]
+    );
   };
+  // const moveSlide = (dir) => {
+  //   const slideLength = categoryData.products.length;
+  //   const maxFirstCardIndex = slideLength - cardNumPerPage[size];
+  //   let newFirstCardIndex;
+  //   let changed, max;
+  //   changed =
+  //     dir === "left"
+  //       ? firstCardIndex - cardNumPerPage[size]
+  //       : firstCardIndex + cardNumPerPage[size];
+  //   max = dir === "left" ? 0 : maxFirstCardIndex;
+  //   newFirstCardIndex = Math.max(changed, max);
+  //   setfirstCardIndex(newFirstCardIndex);
+  //   checkPageRemain(newFirstCardIndex, maxFirstCardIndex);
+  // };
 
   return (
-    <CarouselWrapper>
-      <HorizontalLine position={0} color={"Grey4"} />
-      <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
-      <CardList
-        products={categoryData?.products}
-        cardSize={size}
-        firstCardIndex={firstCardIndex}
-      />
-      <CarouselButton
-        onBtnClick={() => moveSlide("left")}
-        dir={"left"}
-        isEndPage={isFirstPage}
-      />
-      <CarouselButton
-        onBtnClick={() => moveSlide("right")}
-        dir={"right"}
-        isEndPage={isLastPage}
-      />
-    </CarouselWrapper>
+    <>
+      {categoryData && (
+        <CarouselWrapper>
+          <HorizontalLine position={0} color={"Grey4"} />
+          <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
+          <CardList
+            products={categoryData?.products}
+            cardSize={size}
+            curIndex={curIndex}
+          />
+          <CarouselButton
+            onBtnClick={() => clickPrev()}
+            dir={"left"}
+            isEndPage={curIndex === 0}
+          />
+          <CarouselButton
+            onBtnClick={() => clickNext()}
+            dir={"right"}
+            isEndPage={curIndex === categoryData.products.length}
+          />
+        </CarouselWrapper>
+      )}
+    </>
   );
 };
