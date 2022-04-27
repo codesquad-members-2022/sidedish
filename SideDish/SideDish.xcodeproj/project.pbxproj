@@ -16,6 +16,9 @@
 		B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */; };
 		B50782BC2816BA9C00445859 /* DataCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782BB2816BA9C00445859 /* DataCachingManager.swift */; };
 		B50782BE2816C45300445859 /* DataCachingManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782BD2816C45300445859 /* DataCachingManagable.swift */; };
+		B50782C12818497700445859 /* MockDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782C02818497700445859 /* MockDataCache.swift */; };
+		B50782C328184B0200445859 /* MockNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782C228184B0200445859 /* MockNetworkHandler.swift */; };
+		B50782C528184FDB00445859 /* RepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50782C428184FDB00445859 /* RepositoryTest.swift */; };
 		B50A0C38280E9A1500A49273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C36280E9A1500A49273 /* Main.storyboard */; };
 		B50A0C3A280E9A1700A49273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C39280E9A1700A49273 /* Assets.xcassets */; };
 		B50A0C3D280E9A1700A49273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C3B280E9A1700A49273 /* LaunchScreen.storyboard */; };
@@ -69,6 +72,9 @@
 		B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandlerDelegate.swift; sourceTree = "<group>"; };
 		B50782BB2816BA9C00445859 /* DataCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCachingManager.swift; sourceTree = "<group>"; };
 		B50782BD2816C45300445859 /* DataCachingManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCachingManagable.swift; sourceTree = "<group>"; };
+		B50782C02818497700445859 /* MockDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataCache.swift; sourceTree = "<group>"; };
+		B50782C228184B0200445859 /* MockNetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkHandler.swift; sourceTree = "<group>"; };
+		B50782C428184FDB00445859 /* RepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTest.swift; sourceTree = "<group>"; };
 		B50A0C2D280E9A1500A49273 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50A0C37280E9A1500A49273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B50A0C39280E9A1700A49273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,6 +155,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B50782BF2818496300445859 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B50782C02818497700445859 /* MockDataCache.swift */,
+				B50782C228184B0200445859 /* MockNetworkHandler.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		B50A0C24280E9A1500A49273 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +217,7 @@
 				B50A0C51280EEEB000A49273 /* FoodTest.swift */,
 				B50A0C58280EF19B00A49273 /* OrderingTest.swift */,
 				B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */,
+				B50782C428184FDB00445859 /* RepositoryTest.swift */,
 			);
 			path = SideDishTests;
 			sourceTree = "<group>";
@@ -209,6 +225,7 @@
 		B50A0C5A280EF77E00A49273 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B50782BF2818496300445859 /* Mock */,
 				B50782B52816866900445859 /* NetworkHandlable.swift */,
 				B50782B62816866900445859 /* NetworkHandler.swift */,
 				B50782B92816B7C300445859 /* NetworkHandlerDelegate.swift */,
@@ -441,9 +458,11 @@
 				B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */,
 				B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */,
 				B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */,
+				B50782C12818497700445859 /* MockDataCache.swift in Sources */,
 				B50782B82816866900445859 /* NetworkHandler.swift in Sources */,
 				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
 				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
+				B50782C328184B0200445859 /* MockNetworkHandler.swift in Sources */,
 				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
 				B511E011281323A500B87FB7 /* Repository.swift in Sources */,
 				37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */,
@@ -460,6 +479,7 @@
 				B511E01D2813E2F900B87FB7 /* JSONHandlerTest.swift in Sources */,
 				B50A0C52280EEEB000A49273 /* FoodTest.swift in Sources */,
 				B50A0C59280EF19B00A49273 /* OrderingTest.swift in Sources */,
+				B50782C528184FDB00445859 /* RepositoryTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
