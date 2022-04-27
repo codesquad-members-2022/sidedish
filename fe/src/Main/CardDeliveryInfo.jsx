@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 
 const CardDelivery = styled.div`
   position: absolute;
@@ -28,13 +29,15 @@ const DeliveryText = styled.span`
   ${({ theme }) => theme.fontStyles.mediumBold};
 `;
 
-export default function CardDeliveryInfo({ infos, hover }) {
+const CardDeliveryInfo = ({ infos, hover }) => {
   const [firstInfo, secondInfo] = infos.split(', ');
   return (
     <CardDelivery hover={hover}>
       <DeliveryText>{firstInfo}</DeliveryText>
-      {secondInfo && <Divider></Divider>}
+      {secondInfo && <Divider />}
       <DeliveryText>{secondInfo}</DeliveryText>
     </CardDelivery>
   );
-}
+};
+
+export default React.memo(CardDeliveryInfo);

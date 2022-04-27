@@ -33,7 +33,7 @@ const RecommendProduct = () => {
         <span>기획전</span>
         <h1>한 번 주문하면 두 번 반하는 반찬</h1>
       </RecommendInner>
-      <RecommendTab></RecommendTab>
+      <RecommendTab />
     </RecommendWrapper>
   );
 };

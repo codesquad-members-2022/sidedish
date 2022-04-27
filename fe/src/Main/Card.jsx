@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
+import axios from 'axios';
+import { SERVER_URL } from 'constant.js';
+import { FlexDiv } from 'common/FlexDiv';
 import CardDeliveryInfo from 'Main/CardDeliveryInfo';
+import DishTogatherContainer from 'Main/Dish/DishTogatherContainer';
+import Modal from 'Modal';
+import ModalDetailContainer from 'Modal/ModalDetailContainer';
+import ModalImgWrapper from 'Modal/ModalImgWrapper';
 
 const CardItem = styled.div`
-  margin-right: 24px;
-  cursor: pointer;
+  ${({ imageSize }) => {
+    switch (imageSize) {
+      case 'small':
+        return `margin-right: 16px;`;
+      default:
+        return 'margin-right: 24px;';
+    }
+  }}
 `;
 
 const CardImgWrapper = styled.div`
@@ -13,6 +26,8 @@ const CardImgWrapper = styled.div`
 
 const CardItemImg = styled.img`
   background: ${({ theme }) => theme.colors.gray3};
+  cursor: pointer;
+
   ${({ imageSize }) => {
     switch (imageSize) {
       case 'large':
@@ -75,6 +90,10 @@ const CardItemTag = styled.p`
         return css`
           ${({ theme }) => theme.colors.green}
         `;
+      case '정가':
+        return css`
+          ${({ theme }) => theme.colors.black}
+        `;
       default:
         return;
     }
@@ -82,35 +101,90 @@ const CardItemTag = styled.p`
   ${({ theme }) => theme.fontStyles.smallBold};
 `;
 
+const ModalTogetherContainer = styled.article`
+  padding: 48px 0;
+
+  h3 {
+    ${({ theme }) => theme.fontStyles.largeBold};
+  }
+`;
+
 const Card = ({ item, imageSize }) => {
   const [hover, setHover] = useState(false);
+  const [dishes, setDishes] = useState([]);
   const setPrice = (price) => Number(price).toLocaleString();
 
   const onMouseOver = () => setHover(true);
 
   const onMouseOut = () => setHover(false);
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+    fetchData();
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const fetchData = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}dishes/${item.id}`);
+      if (data) {
+        setDishes(data);
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }, [item.id]);
+
   return (
-    <CardItem>
-      <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-        <CardItemImg key={item.id} src={item.img} imageSize={imageSize}></CardItemImg>
-        <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
-      </CardImgWrapper>
-      <CardItemInfo>
-        <p className="item__title">{item.title}</p>
-        <p className="item__desc">{item.desc}</p>
-        {item.salePrice ? (
-          <>
-            <span className="item__default-price">{setPrice(item.salePrice)}원</span>
-            <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
-          </>
-        ) : (
-          <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
+    item && (
+      <CardItem imageSize={imageSize}>
+        {modalVisible && (
+          <Modal visible={modalVisible} closable={true} maskClosable={true} onClose={closeModal}>
+            <FlexDiv>
+              {dishes.length !== 0 && (
+                <ModalImgWrapper title={dishes.name} images={dishes.images} />
+              )}
+              {dishes.length !== 0 && <ModalDetailContainer item={dishes} />}
+            </FlexDiv>
+            <ModalTogetherContainer>
+              <DishTogatherContainer></DishTogatherContainer>
+            </ModalTogetherContainer>
+          </Modal>
         )}
-      </CardItemInfo>
-      {item.tag ? <CardItemTag tag={item.tag}>{item.tag}</CardItemTag> : ''}
-    </CardItem>
+        <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+          <CardItemImg
+            onClick={openModal}
+            key={item.id}
+            src={item.image}
+            imageSize={imageSize}
+          ></CardItemImg>
+          {imageSize !== 'small' && (
+            <CardDeliveryInfo infos={item.deliveryType} hover={hover}></CardDeliveryInfo>
+          )}
+        </CardImgWrapper>
+        <CardItemInfo>
+          <p className="item__title">{item.name}</p>
+          <p className="item__desc">{item.description}</p>
+          {item.discountPrice !== item.normalPrice ? (
+            <>
+              <span className="item__default-price">{setPrice(item.discountPrice)}원</span>
+              <span className="item__normal-price">{setPrice(item.normalPrice)}원</span>
+            </>
+          ) : (
+            <span className="item__default-price">{setPrice(item.normalPrice)}원</span>
+          )}
+        </CardItemInfo>
+        {item.discountPolicy && imageSize !== 'small' && (
+          <CardItemTag tag={item.discountPolicy}>{item.discountPolicy}</CardItemTag>
+        )}
+      </CardItem>
+    )
   );
 };
 
-export default Card;
+export default React.memo(Card);

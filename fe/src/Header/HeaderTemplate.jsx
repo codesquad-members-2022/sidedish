@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import HeaderCategory from 'Header/HeaderCategory';
 import { ReactComponent as CartImage } from 'image/cart.svg';
-import { ReactComponent as PersonImage } from 'image/person.svg';
 import { ReactComponent as SearchImage } from 'image/search.svg';
 import { CATEGORY_TEXTS } from 'MockData/dummyData';
+import HeaderLogin from './HeaderLogin';
 
 const HeaderLogo = styled.div`
   ${({ theme }) => theme.fontStyles.logo};
@@ -49,32 +49,31 @@ const IconTemplate = styled.div`
 `;
 
 export default function Template() {
-  const [open, setOpen] = useState(false);
+  const [subCategoryOpen, setSubCategoryOpen] = useState(false);
 
   const onMouseOver = () => {
-    setOpen(true);
+    setSubCategoryOpen(true);
   };
 
   const onMouseOut = () => {
-    setOpen(false);
+    setSubCategoryOpen(false);
   };
-
   const categoryList = CATEGORY_TEXTS.map((category, index) => {
-    return <HeaderCategory open={open} key={index} category={category}></HeaderCategory>;
+    return <HeaderCategory open={subCategoryOpen} key={index} category={category}></HeaderCategory>;
   });
 
   const iconList = () => {
     return (
       <>
         <CartImage className="icon" />
-        <PersonImage className="icon" />
+        <HeaderLogin />
         <SearchImage className="icon" />
       </>
     );
   };
 
   return (
-    <HeaderTemplate open={open}>
+    <HeaderTemplate open={subCategoryOpen}>
       <HeaderWrapper>
         <HeaderLogo>Ordering</HeaderLogo>
         <HeaderInnerTemplate>

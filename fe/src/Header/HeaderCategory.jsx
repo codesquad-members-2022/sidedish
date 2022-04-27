@@ -6,7 +6,7 @@ const TitleWrapper = styled.ul`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.black};
   font-weight: 400;
-  lien-height: 18px;
+  line-height: 18px;
   font-size: 16px;
 `;
 

@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import axios from 'axios';
+import { SERVER_URL } from 'constant.js';
 import RecommendTabList from 'Main/Recommend/RecommendTabList';
-import { RECOMMEND_ITEMS } from 'MockData/dummyData';
+import ErrorComponent from 'common/Error';
 
-const RecommendTabBar = styled.ul`
+const RecommendTabCategory = styled.ul`
   ${({ theme }) => theme.flexLayout.default};
-  list-style: none;
 `;
 
-const RecommendTabBarItem = styled.li`
+const RecommendTabCategoryItem = styled.li`
   margin-right: 32px;
   padding-bottom: 17px;
   text-align: center;
@@ -23,22 +24,43 @@ const RecommendTabBarItem = styled.li`
 
 const RecommendTab = () => {
   const [focus, setFocus] = useState(1);
+  const [dishes, setDishes] = useState([]);
+
+  const fetchData = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}events/special/`);
+      if (data) {
+        setDishes(data.eventDishes);
+      }
+    } catch (error) {
+      throw console.log('에러');
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const onClick = (e) => {
     const id = e.currentTarget.id;
     setFocus(Number(id));
   };
-  const tabBarList = RECOMMEND_ITEMS.map((item) => {
+  const tabCategoryList = dishes.map((item) => {
     return (
-      <RecommendTabBarItem key={item.id} id={item.id} onClick={onClick} focus={focus}>
-        <p>{item.title}</p>
-      </RecommendTabBarItem>
+      <RecommendTabCategoryItem key={item.id} id={item.id} onClick={onClick} focus={focus}>
+        <p>{item.name}</p>
+      </RecommendTabCategoryItem>
     );
   });
 
   return (
     <>
-      <RecommendTabBar>{tabBarList}</RecommendTabBar>
-      <RecommendTabList items={RECOMMEND_ITEMS.find((obj) => obj.id === focus)}></RecommendTabList>
+      <RecommendTabCategory>{tabCategoryList}</RecommendTabCategory>
+      {dishes.length !== 0 ? (
+        <RecommendTabList items={dishes.find((obj) => obj.id === focus)}></RecommendTabList>
+      ) : (
+        <ErrorComponent />
+      )}
     </>
   );
 };
