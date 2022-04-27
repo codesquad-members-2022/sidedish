@@ -138,8 +138,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.changeThumbnail(imageUrl: self.model.getThumbnailUrl(indexPath: indexPath))
             cell.changeTitleLabel(text: menuData.title)
             cell.changeDescriptionLabel(text: menuData.description)
-            cell.changePriceLabel(text: menuData.price)
-            cell.changeSalePriceLabel(text: menuData.salePrice ?? "")
+            cell.changePriceLabel(price: menuData.price)
+            cell.changeSalePriceLabel(price: menuData.salePrice)
             cell.changeSaleBadge(menuData.badge)
             cell.changeBackgroundColor(indexPath.section.isMultiple(of: 2) ? .white : .grey4)
         }

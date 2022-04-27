@@ -81,12 +81,12 @@ extension CustomCollectionCell {
         menuInfoView.changeDescriptionLabel(text: text)
     }
     
-    func changePriceLabel(text: String) {
-        menuInfoView.changePriceLabel(text: text)
+    func changePriceLabel(price: Int) {
+        menuInfoView.changePriceLabel(price: price)
     }
     
-    func changeSalePriceLabel(text: String) {
-        menuInfoView.changeSalePriceLabel(text: text)
+    func changeSalePriceLabel(price: String?) {
+        menuInfoView.changeSalePriceLabel(price: price)
     }
     
     func changeSaleBadge(_ badges: [String]?) {
