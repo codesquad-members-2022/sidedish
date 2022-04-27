@@ -12,3 +12,12 @@ CREATE TABLE PRODUCT
     apply_event       VARCHAR(30),
     img_url           VARCHAR(3000)
 );
+
+DROP TABLE IF EXISTS SHIPPING_INFO;
+
+CREATE TABLE SHIPPING_INFO
+(
+    id                INTEGER           PRIMARY KEY    AUTO_INCREMENT,
+    delivery_charge   INTEGER           NOT NULL,
+    delivery_info     VARCHAR(30)       NOT NULL
+);

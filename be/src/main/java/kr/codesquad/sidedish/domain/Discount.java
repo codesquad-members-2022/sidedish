@@ -1,5 +1,7 @@
 package kr.codesquad.sidedish.domain;
 
+import kr.codesquad.sidedish.exception.CustomException;
+import kr.codesquad.sidedish.response.ErrorCode;
 import lombok.Getter;
 
 @Getter
@@ -29,6 +31,6 @@ public enum Discount {
 			case "":
 				return NO_SALE;
 		}
-		throw new AssertionError("올바르지 않은 할인 정보가 들어 왔습니다.");
+		throw new CustomException(ErrorCode.DISH_TYPE_NOT_ALLOWED);
 	}
 }

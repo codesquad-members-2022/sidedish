@@ -8,6 +8,7 @@ import kr.codesquad.sidedish.response.CommonResponse;
 import kr.codesquad.sidedish.response.ErrorCode;
 import kr.codesquad.sidedish.service.ProductDTO;
 import kr.codesquad.sidedish.service.ProductService;
+import kr.codesquad.sidedish.service.ShippingInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class ProductController {
 	public static final Integer MaximumProductId = 24;
 
 	private final ProductService productService;
+	private final ShippingInfoService shippingInfoService;
 
 	/**
 	 * 상품 카테고리별 목록 불러오기
@@ -55,7 +57,11 @@ public class ProductController {
 
 		checkForExistingId(id);
 
-		return OKCommonResponse(ResponseDetailProductInfo.from(productService.findById(id)))
+		ResponseShippingInfo responseShippingInfo = ResponseShippingInfo.from(
+			shippingInfoService.findById(id));
+
+		return OKCommonResponse(
+			ResponseDetailProductInfo.from(productService.findById(id), responseShippingInfo))
 			.toResponseEntity();
 	}
 

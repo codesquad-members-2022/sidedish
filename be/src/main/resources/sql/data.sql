@@ -27,3 +27,30 @@ INSERT INTO PRODUCT (name, content, price, quantity, dish_type, side_dish_type, 
 INSERT INTO PRODUCT (name, content, price, quantity, dish_type, side_dish_type, apply_event, img_url) VALUES ('두부조림','각종 영양이 가득 담긴','7200','100','반찬','영양','런칭특가','http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg');
 INSERT INTO PRODUCT (name, content, price, quantity, dish_type, side_dish_type, apply_event, img_url) VALUES ('미나리무침','향긋하고 고소한 봄나물','6800','100','반찬','제철','런칭특가','http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg');
 INSERT INTO PRODUCT (name, content, price, quantity, dish_type, side_dish_type, apply_event, img_url) VALUES ('참외오이무침','시원하고 아삭한 여름 생채 무침','6300','100','반찬','제철','런칭특가','http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg');
+
+---- 배송 정보
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+INSERT INTO SHIPPING_INFO (delivery_charge,delivery_info) VALUES('2500','새벽배송,전국택배');
+
