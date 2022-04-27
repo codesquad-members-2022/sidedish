@@ -12,8 +12,8 @@ public class OrderRequest {
     @Schema(description = "상품 아이디")
     private Long productId;
 
-    @Schema(description = "회원 아이디")
-    private String userId;
+    @Schema(description = "회원 번호")
+    private Long memberId;
 
     @Schema(description = "상품 수량")
     private int quantity;

@@ -2,26 +2,22 @@ package com.team28.sidedish.controller;
 
 import com.team28.sidedish.controller.dto.ProductDetailResponse;
 import com.team28.sidedish.controller.dto.ProductListResponse;
-import com.team28.sidedish.service.MockProductDetailService;
-import com.team28.sidedish.service.MockProductService;
+import com.team28.sidedish.service.ProductDiscountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "products", description = "상품 조회 API")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/products")
 public class ProductController {
 
-    private final MockProductService productService;
-    private final MockProductDetailService productDetailService;
+    private final ProductDiscountService productDiscountService;
 
     @Operation(
             summary = "상품 목록 조회",
@@ -39,9 +35,9 @@ public class ProductController {
                     )
             }
     )
-    @GetMapping("/products")
+    @GetMapping
     public ProductListResponse productList(@RequestParam Long categoryId) {
-        return productService.findProductList(categoryId);
+        return productDiscountService.findProductList(categoryId);
     }
 
     @Operation(
@@ -60,8 +56,8 @@ public class ProductController {
                     )
             }
     )
-    @GetMapping("/products/{productId}")
+    @GetMapping("/{productId}")
     public ProductDetailResponse productDetail(@PathVariable Long productId) {
-        return productDetailService.findProductDetail(productId);
+        return productDiscountService.findProductDetail(productId);
     }
 }
