@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-import { Colors } from '@/Constants';
+import { Colors, Fonts } from '@/Constants';
 
 const Button = styled.button`
   display: flex;
   padding: 16px 24px;
-  margin: 230px auto;
+  margin: ${({ margin }) => margin}px auto;
   border-radius: 999px;
   color: ${Colors.WHITE};
   background-color: ${Colors.GREY};
@@ -16,9 +16,11 @@ const Button = styled.button`
   }
 `;
 
-export const RetryButton = ({ onClick }) => {
+const DEFAULT_MARGIN = 10;
+
+export const RetryButton = ({ onClick, margin = { DEFAULT_MARGIN } }) => {
   return (
-    <Button className={'fonts-lg'} onClick={onClick}>
+    <Button className={Fonts.LG} onClick={onClick} margin={margin}>
       다시 시도
     </Button>
   );

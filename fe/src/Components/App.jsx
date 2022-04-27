@@ -6,8 +6,7 @@ import { useFetch } from '@/Hooks';
 import { BestProducts } from '@/Components/BestProducts';
 import { CategoryProductsList } from '@/Components/CategoryProductsList';
 import { Header } from '@/Components/Header';
-import { OrderModal } from '@/Components/OrderModal';
-import { ModalStore } from '@/Components/OrderModal';
+import { OrderModal, ModalStore } from '@/Components/OrderModal';
 
 const Root = styled.div`
   width: 1440px;

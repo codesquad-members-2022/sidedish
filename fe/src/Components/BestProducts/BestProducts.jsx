@@ -9,6 +9,7 @@ import { Contents } from './Contents';
 import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Components/Badge';
+import { LoadingSpinner } from '@/Components/LoadingSpinner';
 
 const BestProductsWrapper = styled.div`
   display: flex;
@@ -32,6 +33,10 @@ const BadgeWrapper = styled.div`
   align-items: center;
 `;
 
+const LS_MARGIN = 10;
+const LS_RADIUS = 30;
+const LS_BORDER_WIDTH = 10;
+
 export const BestProducts = () => {
   const [tabList, isLoaded] = useFetch(`${API_URL}/events`);
   const [selectedTabId, setSelectedTabId] = useState(null);
@@ -49,10 +54,6 @@ export const BestProducts = () => {
     setSelectedTabId(clickedTabId);
   };
 
-  if (!isLoaded) {
-    return;
-  }
-
   return (
     <BestProductsWrapper>
       <Header>
@@ -65,11 +66,19 @@ export const BestProducts = () => {
         </Title>
       </Header>
 
-      <TabList
-        tabData={tabList.result_body}
-        selectedTabId={selectedTabId}
-        onClickTab={onClickTab}
-      />
+      {!isLoaded ? (
+        <LoadingSpinner
+          margin={LS_MARGIN}
+          radius={LS_RADIUS}
+          borderWidth={LS_BORDER_WIDTH}
+        />
+      ) : (
+        <TabList
+          tabData={tabList.result_body}
+          selectedTabId={selectedTabId}
+          onClickTab={onClickTab}
+        />
+      )}
 
       <Contents bestProductsTabId={selectedTabId} />
     </BestProductsWrapper>
