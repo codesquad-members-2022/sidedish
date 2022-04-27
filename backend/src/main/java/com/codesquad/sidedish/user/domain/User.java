@@ -1,6 +1,7 @@
 package com.codesquad.sidedish.user.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 public class User {
 
@@ -10,10 +11,14 @@ public class User {
     private String username;
     private String email;
 
-    public User(String oauthId, String username, String email) {
+    @Embedded.Nullable
+    private GithubToken githubToken;
+
+    public User(String oauthId, String username, String email, GithubToken githubToken) {
         this.oauthId = oauthId;
         this.username = username;
         this.email = email;
+        this.githubToken = githubToken;
     }
 
     public Integer getId() {
@@ -32,6 +37,10 @@ public class User {
         return email;
     }
 
+    public GithubToken getGithubToken() {
+        return githubToken;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -39,6 +48,7 @@ public class User {
             ", oauthId='" + oauthId + '\'' +
             ", username='" + username + '\'' +
             ", email='" + email + '\'' +
+            ", githubToken=" + githubToken +
             '}';
     }
 }
