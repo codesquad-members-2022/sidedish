@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ItemCards from "../itemCard/ItemCards";
 import Label from "../../core/Label";
-import mockData from "../../mockData.json";
-import carouselMockData from "../../carouselMockData.json";
+import carouselData from "../../carouselMockData.json";
 import {
   LABEL_ATTRIBUTES,
   CARD_LENGHTHS,
   NUM_OF_CARD_ON_DISPLAY,
   CARD_MARGIN,
   CARD_CONTAINER_PADDING,
+  URL,
 } from "../../consts/constants";
 import Carousel from "./Carousel";
 import DivisionLine from "../../core/Line";
@@ -31,14 +31,13 @@ const Main = () => {
   const handleLnbState = (event) => {
     setLnbState((lnbState) => (lnbState = event.target.textContent));
     if (event.target.textContent === lnbStateArr[0].name) {
-      // fetchCardData()
-      setDataState((dataState) => (dataState = mockData.data));
+      fetchCardData("meat");
     } else if (event.target.textContent === lnbStateArr[1].name) {
-      setDataState((dataState) => (dataState = mockData.data2));
+      fetchCardData("side");
     } else if (event.target.textContent === lnbStateArr[2].name) {
-      setDataState((dataState) => (dataState = mockData.data3));
+      fetchCardData("season");
     } else {
-      setDataState((dataState) => (dataState = mockData.data4));
+      fetchCardData("kids");
     }
   };
 
@@ -47,25 +46,25 @@ const Main = () => {
   };
 
   const fetchLnb = async () => {
-    const lnbData = await fetchData(
-      "https://8f066698-0757-470c-86aa-4df5338cb17d.mock.pstmn.io/api/dish/categorynames"
-    );
+    const lnbData = await fetchData(`${URL}/categorynames`);
     setLnbStateArr(lnbData.categorynames);
     setLnbState(lnbData.categorynames[0].name);
   };
 
   const fetchCardData = async (foodType) => {
-    const cardData = await fetchData(
-      `https://8f066698-0757-470c-86aa-4df5338cb17d.mock.pstmn.io/api/dish?event-tabs=${foodType}`
-    );
-    console.log(cardData.dishes);
-    // setDataState(cardData.dishes);
+    const cardData = await fetchData(`${URL}?event-tabs=${foodType}`);
+    setDataState(cardData.dishes);
+  };
+
+  const fetchCarouselData = async () => {
+    const carouselData = await fetchData("./carouselMockData.json");
   };
 
   useEffect(() => {
     fetchLnb();
-    console.log("ok");
     fetchCardData("meat");
+    //fetchCarouselData();
+    console.log("ok");
   }, []);
 
   const mainLnb = (
@@ -97,40 +96,46 @@ const Main = () => {
           cardContainerPadding={CARD_CONTAINER_PADDING}
         />
         <DivisionLine height="1px" color="#EBEBEB" />
+
         <CarouselContainer allCategoryVisible={true}>
-          <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
+          <CarouselTitle>{carouselData.categories[0].categoryName}</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselMockData.carouselCardData}
+            carouselCards={carouselData.categories[0].dishes}
+            cardLength={CARD_LENGHTHS.SMALL}
+            cardCount={NUM_OF_CARD_ON_DISPLAY}
+            cardMargin={CARD_MARGIN}
+          />
+        </CarouselContainer>
+
+        <CarouselContainer allCategoryVisible={allCategoryVisible}>
+          <CarouselTitle>{carouselData.categories[1].categoryName}</CarouselTitle>
+          <Carousel
+            cardClickState={cardClickState}
+            setCardClickState={setCardClickState}
+            carouselCards={carouselData.categories[1].dishes}
             cardLength={CARD_LENGHTHS.SMALL}
             cardCount={NUM_OF_CARD_ON_DISPLAY}
             cardMargin={CARD_MARGIN}
           />
         </CarouselContainer>
         <CarouselContainer allCategoryVisible={allCategoryVisible}>
-          <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
+          <CarouselTitle>{carouselData.categories[2].categoryName}</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselMockData.carouselCardData}
+            carouselCards={carouselData.categories[2].dishes}
             cardLength={CARD_LENGHTHS.SMALL}
             cardCount={NUM_OF_CARD_ON_DISPLAY}
             cardMargin={CARD_MARGIN}
           />
         </CarouselContainer>
-        <CarouselContainer allCategoryVisible={allCategoryVisible}>
-          <CarouselTitle>식탁을 풍성하게 하는 정갈한 밑반찬</CarouselTitle>
-          <Carousel
-            cardClickState={cardClickState}
-            setCardClickState={setCardClickState}
-            carouselCards={carouselMockData.carouselCardData}
-            cardLength={CARD_LENGHTHS.SMALL}
-            cardCount={NUM_OF_CARD_ON_DISPLAY}
-            cardMargin={CARD_MARGIN}
-          />
-        </CarouselContainer>
-        <OpenAllCategoryButton openAllCategoryButtonVisible={!allCategoryVisible} onClick={handleAllCategoryVisible}>
+
+        <OpenAllCategoryButton
+          openAllCategoryButtonVisible={!allCategoryVisible}
+          onClick={handleAllCategoryVisible}
+        >
           모든 카테고리 보기
         </OpenAllCategoryButton>
         <Popup

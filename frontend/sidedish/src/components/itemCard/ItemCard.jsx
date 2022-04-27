@@ -3,9 +3,24 @@ import { LABEL_ATTRIBUTES } from "../../consts/constants";
 import Label from "../../core/Label";
 import { makePriceFormat } from "../../util/makePriceFormat";
 
-const ItemCard = ({ cardClickState, setCardClickState, image, title, description, n_price, s_price, badge, cardLength, cardMargin }) => {
+const ItemCard = ({
+  cardClickState,
+  setCardClickState,
+  image,
+  title,
+  description,
+  originPrice,
+  currentPrice,
+  badge,
+  cardLength,
+  cardMargin,
+}) => {
   const labelList = badge.map((string, ind) => {
-    return string === "런칭특가" ? <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} /> : <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />;
+    return string === "런칭특가" ? (
+      <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} />
+    ) : (
+      <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />
+    );
   });
 
   const handleCardClick = () => {
@@ -18,8 +33,8 @@ const ItemCard = ({ cardClickState, setCardClickState, image, title, description
       <MenuTitle>{title}</MenuTitle>
       <MenuDescription>{description}</MenuDescription>
       <Price>
-        <SalePrice>{makePriceFormat(s_price)}</SalePrice>
-        <MenuPrice>{makePriceFormat(n_price)}</MenuPrice>
+        <SalePrice>{makePriceFormat(currentPrice)}</SalePrice>
+        <MenuPrice>{makePriceFormat(originPrice)}</MenuPrice>
       </Price>
       {labelList}
     </Card>
