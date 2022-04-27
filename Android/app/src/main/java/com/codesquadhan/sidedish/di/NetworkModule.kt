@@ -1,6 +1,7 @@
 package com.codesquadhan.sidedish.di
 
 import com.codesquadhan.sidedish.network.DetailService
+import com.codesquadhan.sidedish.network.LoginService
 import com.codesquadhan.sidedish.network.MenuService
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    // private const val BASE_URL = "http://3.34.207.233:8080/menus/"  // 로그인 필요 서버
-    private const val BASE_URL = "http://3.38.230.108:8080/menus/"  // 로그인 필요없는 서버
+    private const val BASE_URL = "http://3.34.207.233:8080/"  // 로그인 필요 서버
+    //private const val BASE_URL = "http://3.38.230.108:8080/"  // 로그인 필요없는 서버
 
     @Provides
     @Singleton
@@ -49,6 +50,12 @@ object NetworkModule {
     @Singleton
     fun provideDetailApiService(retrofit: Retrofit): DetailService {
         return retrofit.create(DetailService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginApiService(retrofit: Retrofit): LoginService {
+        return retrofit.create(LoginService::class.java)
     }
 
 }

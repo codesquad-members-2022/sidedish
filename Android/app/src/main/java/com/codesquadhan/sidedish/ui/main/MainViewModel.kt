@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
+import com.codesquadhan.sidedish.data.repository.LoginRepository
 import com.codesquadhan.sidedish.data.repository.MenuRepository
 import com.codesquadhan.sidedish.ui.common.ViewType.HEADER_VIEW_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,7 @@ import com.codesquadhan.sidedish.ui.common.addAllAndSetIsWhite
 import kotlinx.coroutines.CoroutineExceptionHandler
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val menuRepository: MenuRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val menuRepository: MenuRepository, private val loginRepository: LoginRepository): ViewModel() {
 
     private val _menuMainListLd = MutableLiveData<List<MainResponseItem>>()
     private val menuMainList = mutableListOf<MainResponseItem>()
@@ -37,6 +38,13 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
         println("Something happend: $exception")
 
      // 네트워크 통신 실패 시 화면 보여주기 처리하기
+
+    }
+
+    val loginCeh = CoroutineExceptionHandler { _, exception ->
+        println("Login fail & Something happend: $exception")
+
+        // 네트워크 통신 실패 시 화면 보여주기 처리하기
 
     }
 
@@ -62,6 +70,13 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
             _menuMainListLd.value = menuMainList
 
             Log.d("AppTest", "total data : $menuMainList")
+        }
+    }
+
+    // 로그인
+    fun doLogin(){
+        viewModelScope.launch(loginCeh) {
+            loginRepository.doLogin()
         }
     }
 }

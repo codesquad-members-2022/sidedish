@@ -31,11 +31,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setBtnGitHub() {
         binding.btnGithub.setOnClickListener {
-            binding.clLogin.visibility = View.GONE
+           /* binding.clLogin.visibility = View.GONE
             binding.clMain.visibility = View.VISIBLE
 
             // 로그인 후 가정
-            viewModel.getMainUIMenu()
+            viewModel.getMainUIMenu()*/
+
+            viewModel.doLogin()
         }
     }
 
