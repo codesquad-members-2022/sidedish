@@ -4,6 +4,7 @@ import { Container, Title } from "./Sidedish.style";
 import { API } from "../../config";
 import SidedishCards from "./SidedishCards";
 import { getData } from "../../utils";
+import { CarouselItem, Carousel } from "./carousel/Carousel";
 
 const theme = {
     size: "small",
@@ -20,7 +21,11 @@ function SmallSidedish({ isVisible, section, title }) {
         }
     }, [section]);
 
-    if (!isVisible || !items) {
+    if (!isVisible) {
+        return;
+    }
+
+    if (!items) {
         return;
     }
 
@@ -28,7 +33,11 @@ function SmallSidedish({ isVisible, section, title }) {
         <ThemeProvider theme={theme}>
             <Container>
                 <Title>{title}</Title>
-                <SidedishCards dishes={items.data}></SidedishCards>
+                <Carousel>
+                    <CarouselItem>
+                        <SidedishCards dishes={items.data}></SidedishCards>
+                    </CarouselItem>
+                </Carousel>
             </Container>
         </ThemeProvider>
     );
