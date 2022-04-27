@@ -9,6 +9,15 @@ class BanchanViewModel {
         return image
     }()
     
+    @OrderCount var count: Int {
+        didSet {
+            NotificationCenter.default.post(name: .counterValueChanged,
+                                            object: nil,
+                                            userInfo: [NotificationKeyValue.count: count,
+                                                       NotificationKeyValue.amount: totalAmount])
+        }
+    }
+    
     var discountPolicy: String? {
         return dish.discountPolicy
     }
@@ -32,7 +41,7 @@ class BanchanViewModel {
         return 0
     }
     var totalAmount: Int {
-        return 0
+        return self.dish.price * count
     }
     var orderCount: Int {
         return 0

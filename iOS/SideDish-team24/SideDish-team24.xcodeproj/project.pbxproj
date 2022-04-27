@@ -27,6 +27,7 @@
 		6C4CEF812817F17200AFB684 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */; };
 		6C4CEF852817F3AD00AFB684 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */; };
 		6C4CEF892817FE2300AFB684 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF882817FE2300AFB684 /* CustomLabel.swift */; };
+		6C4CEF8D2818F08E00AFB684 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF8C2818F08E00AFB684 /* NotificationExtension.swift */; };
 		6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0801280D080000D2D401 /* AppDelegate.swift */; };
 		6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0803280D080000D2D401 /* SceneDelegate.swift */; };
 		6CEE0806280D080000D2D401 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0805280D080000D2D401 /* MainViewController.swift */; };
@@ -65,6 +66,7 @@
 		6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		6C4CEF882817FE2300AFB684 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		6C4CEF8C2818F08E00AFB684 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		6CEE07FE280D080000D2D401 /* SideDish-team24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideDish-team24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEE0801280D080000D2D401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEE0803280D080000D2D401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */,
 				6C4CEF5C2816975700AFB684 /* IntExtension.swift */,
 				6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */,
+				6C4CEF8C2818F08E00AFB684 /* NotificationExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				F56668C1280D86B0007ECAD0 /* Dishes.swift in Sources */,
 				6C4CEF502815400500AFB684 /* OrderCount.swift in Sources */,
 				6C105834280E6B9D00C0B462 /* StringExtension.swift in Sources */,
+				6C4CEF8D2818F08E00AFB684 /* NotificationExtension.swift in Sources */,
 				6C4CEF632817E2FB00AFB684 /* DetailBanchanView.swift in Sources */,
 				6C4CEF4728110DD000AFB684 /* BriefBanchanViewControllerExtension.swift in Sources */,
 				6C4CEF612817BB0D00AFB684 /* BanchanBriefView.swift in Sources */,

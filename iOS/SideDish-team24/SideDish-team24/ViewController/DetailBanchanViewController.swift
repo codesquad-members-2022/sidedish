@@ -16,34 +16,28 @@ class DetailBanchanViewController: UIViewController {
         super.viewDidLoad()
         self.layoutScollView()
         self.configure()
+        self.publish()
+    }
+    
+    func publish() {
+        NotificationCenter.default.addObserver(forName: .stepperTouched,
+                                               object: nil,
+                                               queue: .main,
+                                               using: stepperTouched(noti:))
     }
     
     func setTarget(with viewModel: BanchanViewModel) {
         self.banchanViewModel = viewModel
     }
     
-    func configure() {
-        guard let banchanViewModel = banchanViewModel else { return }
-        let title = banchanViewModel.title
-        let description = banchanViewModel.description
-        let price = banchanViewModel.price
-        let listPrice = banchanViewModel.listPrice
-        let specialBadge = banchanViewModel.discountPolicy
-        
-        self.detailBanchanView.configure(title: title, description: description, price: price, listPrice: listPrice)
-        self.detailBanchanView.configure(specialBadge: specialBadge)
-        
-        DispatchQueue.global().async {
-            let image = banchanViewModel.image
-            DispatchQueue.main.sync {
-                self.detailBanchanView.configure(image: image)
-            }
-        }
-    }
-    
 }
 
 private extension DetailBanchanViewController {
+    func stepperTouched(noti: Notification) {
+        guard let newValue = noti.userInfo?[NotificationKeyValue.stepperValue] as? Double else { return }
+        self.banchanViewModel?.count = Int(newValue)
+    }
+    
     func layoutScollView() {
         let safeArea = self.view.safeAreaLayoutGuide
         self.view.addSubview(detailBanchanView)
@@ -55,6 +49,23 @@ private extension DetailBanchanViewController {
             self.detailBanchanView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
         
+    }
+    
+    func configure() {
+        guard let banchanViewModel = banchanViewModel else { return }
+
+        self.detailBanchanView.configure(title: banchanViewModel.title,
+                                         description: banchanViewModel.description,
+                                         price: banchanViewModel.price,
+                                         listPrice: banchanViewModel.listPrice)
+        self.detailBanchanView.configure(specialBadge: banchanViewModel.discountPolicy)
+        
+        DispatchQueue.global().async {
+            let image = banchanViewModel.image
+            DispatchQueue.main.sync {
+                self.detailBanchanView.configure(image: image)
+            }
+        }
     }
     
 }

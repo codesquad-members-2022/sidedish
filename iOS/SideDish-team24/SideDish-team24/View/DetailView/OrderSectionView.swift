@@ -11,6 +11,7 @@ class OrderSectionView: UIView {
         self.layoutAmountLabel()
         self.layoutTitleLabel()
         self.layoutOrderButton()
+        self.publish()
     }
     
     required init?(coder: NSCoder) {
@@ -18,6 +19,7 @@ class OrderSectionView: UIView {
         self.layoutAmountLabel()
         self.layoutTitleLabel()
         self.layoutOrderButton()
+        self.publish()
     }
     
     func setAmount(amount: String) {
@@ -26,6 +28,18 @@ class OrderSectionView: UIView {
 }
 
 private extension OrderSectionView {
+    func publish() {
+        NotificationCenter.default.addObserver(forName: .counterValueChanged,
+                                               object: nil,
+                                               queue: .main,
+                                               using: changeAmountValue(noti:))
+    }
+    
+    func changeAmountValue(noti: Notification) {
+        guard let amount = noti.userInfo?[NotificationKeyValue.amount] as? Int else { return }
+        self.totalAmountLabel.text = "\(amount.convertToWon())"
+    }
+    
     func layoutTitleLabel() {
         self.addSubview(totalAmountTitleLabel)
 
