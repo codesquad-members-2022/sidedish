@@ -97,9 +97,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var targetSort: ProductSort = .main
         switch indexPath.section {
-        case 1:
+        case 0:
             targetSort = .main
-        case 2:
+        case 1:
             targetSort = .soup
         default:
             targetSort = .side
