@@ -21,13 +21,15 @@ public class OAuthController {
 			+ "&redirect_uri=http://" + System.getenv("SERVER_IP") +":8080/afterlogin";
 	private static final String GITHUB_ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token";
 
+	// AOS에서 gitHub 로그인 버튼 누르면 여기로 매핑
 	@GetMapping("/login")
-	public ResponseEntity<Object> login() throws URISyntaxException {
+	public ResponseEntity<String> login() throws URISyntaxException {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(new URI(REDIRECT_GITHUB_URL));
 		return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
 	}
 
+	// 위의 303 redirect의 결과로 여기로 보내진다
 	@GetMapping("/afterlogin")
 	public ResponseEntity<String> afterLogin(@RequestParam String code, HttpSession session)
 		throws URISyntaxException {
@@ -51,13 +53,16 @@ public class OAuthController {
 		String accessToken = extractAccessToken(queryParam);
 		session.setAttribute("accessToken", accessToken);
 
-		System.out.println(accessToken);
-
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("log in");
 	}
 
 	private String extractAccessToken(String queryParam) {
 		return queryParam.split("&")[0].split("=")[1];
 	}
 
+	@GetMapping("/logout")
+	public ResponseEntity<String> logout(HttpSession httpSession) {
+		httpSession.invalidate();
+		return ResponseEntity.ok("log out");
+	}
 }
