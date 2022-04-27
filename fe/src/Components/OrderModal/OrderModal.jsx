@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
 
+import { ModalContext } from './ModalContext';
 import { ProductInfo } from './ProductInfo';
 import { ProductThumbnail } from './ProductThumbnail';
 
 import { OrderButton } from '@/Components/Button';
-import { ModalContext } from '@/Components/OrderModal';
 
 const ModalBackGround = styled.div`
   position: fixed;
