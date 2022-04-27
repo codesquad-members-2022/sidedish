@@ -36,8 +36,12 @@ class BanchanListViewModel {
 		return self.banchans.value[index].count
 	}
 
+	private func getBanchan(at indexPath: IndexPath) -> Banchan {
+		return self.banchans.value[indexPath.section][indexPath.item]
+	}
+
 	func getBanchanInfo(withIndexPath indexPath: IndexPath) -> (title: String, description: String, salePrice: String, normalPrice: String?, badges: [String]) {
-		let model = self.banchans.value[indexPath.section][indexPath.item]
+		let model = self.getBanchan(at: indexPath)
 
 		return (
 			title: model.title,
@@ -46,5 +50,10 @@ class BanchanListViewModel {
 			normalPrice: model.normalPrice?.toString(),
 			badges: model.badges
 		)
+	}
+
+	func getBanchanImage(at indexPath: IndexPath, completion: @escaping (Data) -> Void) {
+		let model = self.getBanchan(at: indexPath)
+		self.service.getImage(with: model.imageUrl, completion: completion)
 	}
 }

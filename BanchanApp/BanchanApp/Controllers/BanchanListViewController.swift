@@ -32,7 +32,7 @@ class BanchanListViewController: UICollectionViewController {
 	private func configureUI() {
 		let itemSize = NSCollectionLayoutSize(
 			widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-			heightDimension: .estimated(300)
+			heightDimension: .estimated(130)
 		)
 
 		let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -90,6 +90,11 @@ extension BanchanListViewController {
 			normalPrice: normalPrice,
 			badges: badges
 		)
+
+		self.viewModel?.getBanchanImage(at: indexPath) { data in
+			guard let image = UIImage(data: data) else { return }
+			cell.setImage(image)
+		}
 
 		return cell
 	}

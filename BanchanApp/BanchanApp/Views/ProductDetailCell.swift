@@ -24,6 +24,11 @@ class ProductDetailCell: UICollectionViewCell {
         setup()
     }
 
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		self.imageView.image = nil
+	}
+
     private func setup() {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
@@ -37,10 +42,10 @@ class ProductDetailCell: UICollectionViewCell {
 
 		imageView.anchor(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, leading: self.contentView.leadingAnchor)
 
-		imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 130).isActive = true
+		imageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
 		imageView.setWidth(toAnchor: imageView.heightAnchor)
 
-		info.anchor(leading: imageView.trailingAnchor)
+		info.anchor(leading: imageView.trailingAnchor, paddingLeft: 8)
 		info.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.trailingAnchor, constant: -16).isActive = true
 		info.centerY(inView: self.contentView)
     }
@@ -55,5 +60,9 @@ class ProductDetailCell: UICollectionViewCell {
 		}
 
 		self.info.setBadgeList(badges)
+	}
+
+	func setImage(_ image: UIImage) {
+		self.imageView.image = image
 	}
 }

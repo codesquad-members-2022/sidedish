@@ -13,7 +13,7 @@ protocol RepositoryProtocol {
 
 class RemoteRepository: RepositoryProtocol {
 	private var baseURL: URL? {
-		return try? URL(string: "https://" + Configuration.value(for: "ServerURL"))!
+		return try? URL(string: "https://" + Configuration.value(for: "ServerURL"))
 	}
 
 	func getProductList(by type: BanchanType, completion: @escaping ([Product]) -> Void) {

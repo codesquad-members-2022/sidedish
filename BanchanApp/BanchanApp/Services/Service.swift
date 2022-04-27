@@ -9,11 +9,13 @@ import Foundation
 
 protocol ServiceProtocol {
 	func fetchData(type: BanchanType, completion: @escaping ([Banchan]) -> Void)
+	func getImage(with url: String, completion: @escaping (Data) -> Void)
 }
 
 class Service: ServiceProtocol {
 	private var repository: RepositoryProtocol
 	private var banchans: [Banchan] = []
+	private let imageManager = ImageManager()
 
 	init(repository: RepositoryProtocol) {
 		self.repository = repository
@@ -27,5 +29,10 @@ class Service: ServiceProtocol {
 
 			completion(self.banchans)
 		}
+	}
+
+	func getImage(with url: String, completion: @escaping (Data) -> Void) {
+		guard let url = NSURL(string: url) else { return }
+		self.imageManager.fetchImage(with: url, completion: completion)
 	}
 }
