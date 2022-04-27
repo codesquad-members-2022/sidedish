@@ -14,7 +14,7 @@ struct ProductDetailViewModel {
     public let point = Observable<Money<KRW>>(Money<KRW>(""))
     public let detailSectionURL = Observable<[URL]>([])
 
-    let categoryManager = CategoryManager()
+    let networkManager = NetworkManager()
     let hash: String
 
     init(from hash: String) {
@@ -22,15 +22,18 @@ struct ProductDetailViewModel {
     }
 
     func fetchDetail() {
-        categoryManager.fetchDetail(of: hash) { productDetail in
-            guard let productDetail = productDetail else {
-                return
-            }
+        guard let request = ProductDetailRequest(from: hash) else { return }
+
+        networkManager.request(request) {
+            productDetailResponse in
+            guard let productDetail = productDetailResponse?.data else { return }
+
             thumbImagesURL.value = productDetail.thumbImagesURL
             deliveryFee.value = productDetail.deliveryFee
             deliveryInfo.value = productDetail.deliveryInfo
             point.value = productDetail.point
             detailSectionURL.value = productDetail.detailSectionURL
         }
+
     }
 }

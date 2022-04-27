@@ -16,7 +16,7 @@ struct CategorySectionViewModel {
 
 struct ProductCollectionViewModel {
 
-    private let categoryManager = CategoryManager()
+    private let networkManager = NetworkManager()
     private var imageCache = NSCache<NSURL, NSData>()
     var categoryVMs: [CategoryType: Observable<CategorySectionViewModel>]
 
@@ -55,14 +55,15 @@ struct ProductCollectionViewModel {
 
     private func fetchCategories(of type: CategoryType) {
 
-        categoryManager.fetchCategory(of: type) { category in
-            guard let category = category else {
-                return
-            }
+        guard let request = CategoryRequest(from: type) else {
+            return
+        }
 
-            let productCellVMs = category.product.compactMap { product in
-                ProductCellViewModel(product: product)
-            }
+        networkManager.request(request) { categoryResponse in
+            guard let productCellVMs = categoryResponse?.body.compactMap({ productSummary in
+                ProductCellViewModel(product: productSummary)
+            }) else { return }
+
             let categoryVM = CategorySectionViewModel(type: type, productVMs: productCellVMs)
             categoryVMs[type]?.value = categoryVM
         }
@@ -73,7 +74,11 @@ struct ProductCollectionViewModel {
             return completion(image)
         }
 
-        categoryManager.fetchImageData(of: url) { data in
+        guard let request = ImageRequest(url: url) else {
+            return
+        }
+
+        networkManager.request(request) { data in
             guard let data = data as? NSData else {
                 return completion(nil)
             }
