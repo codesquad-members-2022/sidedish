@@ -2,16 +2,16 @@ package com.terria.sidedish.error;
 
 import com.terria.sidedish.error.exception.ExhibitionException;
 import com.terria.sidedish.error.exception.OAuthException;
+import com.terria.sidedish.error.exception.OrderException;
 import com.terria.sidedish.error.exception.SideDishException;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class HandlerAdvice {
@@ -40,6 +40,12 @@ public class HandlerAdvice {
 
     @ExceptionHandler(SideDishException.class)
     private ResponseEntity<ErrorResponse<String>> handleSideDishException(SideDishException e) {
+        ErrorCode errorCode = e.getErrorCode();
+        return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
+    }
+
+    @ExceptionHandler(OrderException.class)
+    private ResponseEntity<ErrorResponse<String>> handleOrderException(OrderException e) {
         ErrorCode errorCode = e.getErrorCode();
         return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
     }
