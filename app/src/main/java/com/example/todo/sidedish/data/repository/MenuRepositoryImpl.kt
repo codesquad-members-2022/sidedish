@@ -1,9 +1,11 @@
 package com.example.todo.sidedish.data.repository
 
 import com.example.todo.sidedish.data.dto.toMenu
+import com.example.todo.sidedish.data.dto.toMenuDetail
 import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.data.remote.DataSource
 import com.example.todo.sidedish.domain.Repository
+import com.example.todo.sidedish.domain.model.MenuDetail
 import javax.inject.Inject
 
 class MenuRepositoryImpl @Inject constructor(
@@ -30,4 +32,13 @@ class MenuRepositoryImpl @Inject constructor(
             response.dish.map { it.toMenu() }
         }
     }
+
+    override suspend fun getDetail(detailHash: String): Result<MenuDetail> {
+        val response = onBanDataSource.getDetail(detailHash)
+        return kotlin.runCatching {
+            response.data.toMenuDetail()
+        }
+    }
+
+
 }

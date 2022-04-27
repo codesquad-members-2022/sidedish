@@ -1,14 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.menudetail.MenuDetailFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <import type="java.util.List" />
+        <import type="android.view.View" />
+        <variable
+            name="detail"
+            type="com.example.todo.sidedish.domain.model.MenuDetail" />
+
+        <variable
+            name="event"
+            type="java.lang.String" />
+
+        <variable
+            name="badge"
+            type="List&lt;String>" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="menu-detail" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/fl_detail_info"
+                android:layout_width="0dp"
+                android:layout_height="340dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_item_detail_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_detail_info"
+                >
+
+                <TextView
+                    android:id="@+id/tv_menu_title"
+                    style="@style/TextLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_menu_detail_title"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_menu_sub_title"
+                    style="@style/TextMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{detail.description}"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_title" />
+
+                <TextView
+                    android:id="@+id/tv_menu_price"
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{detail.SPrice}"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_sub_title" />
+
+                <TextView
+                    android:id="@+id/tv_menu_origin_price"
+                    style="@style/TextMedium"
+                    cancelText="@{detail.originPrice}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toEndOf="@+id/tv_menu_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_sub_title" />
+
+                <TextView
+                    android:id="@+id/btn_event"
+                    style="@style/Caption.Purple2"
+                    android:visibility="@{badge.contains(@string/label_event) ? View.VISIBLE : View.GONE}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/badge_background_light_purple"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/label_event"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price" />
+
+                <TextView
+                    android:id="@+id/btn_launching"
+                    style="@style/Caption.White"
+                    android:visibility="@{badge.contains(@string/label_launch) ? View.VISIBLE : View.GONE}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:background="@drawable/badge_background_purple"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/label_launch"
+                    app:layout_constraintStart_toEndOf="@id/btn_event"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price" />
+
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="48dp"
+                    android:background="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_point"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/label_menu_detail_point"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <TextView
+                    android:id="@+id/tv_point_value"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@{detail.point}"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toEndOf="@id/tv_point"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <TextView
+                    android:id="@+id/tv_delievery_info"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/label_menu_detail_delivery_info"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_point" />
+
+                <TextView
+                    android:id="@+id/tv_delievery_info_value"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@{detail.deliveryInfo}"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="@id/tv_point_value"
+                    app:layout_constraintTop_toBottomOf="@id/tv_point" />
+
+
+                <TextView
+                    android:id="@+id/tv_delievery_price"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/label_menu_detail_delivery_price"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_delievery_info" />
+
+                <TextView
+                    android:id="@+id/tv_delievery_price_value"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@{detail.deliveryFee}"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="@id/tv_point_value"
+                    app:layout_constraintTop_toBottomOf="@id/tv_delievery_info" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_delievery_price_value" />
+
+                <TextView
+                    android:id="@+id/tv_order_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/label_menu_detail_order_count"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_decrease_order_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/ic_sub_order"
+                    app:borderWidth="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_order_count"
+                    app:layout_constraintTop_toTopOf="@id/tv_order_count" />
+
+                <TextView
+                    android:id="@+id/tv_order_count_value"
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/label_menu_detail_order_count_value"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toStartOf="@id/btn_increase_order_count"
+                    app:layout_constraintStart_toEndOf="@id/btn_decrease_order_count"
+                    app:layout_constraintTop_toTopOf="@id/btn_decrease_order_count" />
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_increase_order_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/ic_add_order"
+                    app:borderWidth="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_order_count_value"
+                    app:layout_constraintTop_toTopOf="@id/btn_decrease_order_count" />
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_decrease_order_count" />
+
+                <TextView
+                    android:id="@+id/tv_total_pay"
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="30dp"
+                    android:padding="8dp"
+                    android:text="@string/label_menu_detail_total_price"
+                    android:textColor="@color/grey2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+                <TextView
+                    android:id="@+id/tv_total_pay_value"
+                    style="@style/TextLarge.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{detail.SPrice}"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_total_pay"
+                    app:layout_constraintTop_toTopOf="@id/tv_total_pay" />
+
+                <Button
+                    android:id="@+id/btn_order"
+                    style="@style/TextMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:paddingVertical="14dp"
+                    android:text="@string/label_menu_detail_order_btn_title"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_total_pay" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail"
+                android:layout_width="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_detail_info" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

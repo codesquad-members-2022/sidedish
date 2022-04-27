@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todo.sidedish.domain.model.Menu
 import com.example.todo.sidedish.domain.Repository
 import com.example.todo.sidedish.domain.model.DishType
 import com.example.todo.sidedish.domain.model.DishType.*
+import com.example.todo.sidedish.domain.model.Menu
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,6 +28,7 @@ class MenuViewModel @Inject constructor(
     init {
         getMenus()
     }
+
 
     private fun getMenus() = viewModelScope.launch {
         launch {
