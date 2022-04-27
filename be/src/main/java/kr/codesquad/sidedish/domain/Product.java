@@ -1,6 +1,5 @@
 package kr.codesquad.sidedish.domain;
 
-import kr.codesquad.sidedish.service.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -22,31 +21,6 @@ public class Product {
 	private final String applyEvent;
 	private final String imgUrl;
 	private final Integer deliveryType;
-
-	public static Product updateQuantity(Product product, Integer quantity) {
-		return new Product(product.getId(), product.getName(), product.getContent(),
-			product.getPrice(), quantity,
-			product.getDishType(), product.getSideDishType(), product.getApplyEvent(),
-			product.getImgUrl(), product.getDeliveryType());
-	}
-
-	public ProductDTO createDTO() {
-
-		int discountPrice = convertDiscountPrice(applyEvent, price);
-
-		String[] images;
-		images = imgUrl.split(",");
-
-		return new ProductDTO(id, name, content, price, discountPrice, quantity, dishType,
-			sideDishType,
-			applyEvent, images, deliveryType);
-	}
-
-	private int convertDiscountPrice(String applyEvent, int price) {
-		Discount discount = Discount.setSaleType(applyEvent);
-
-		return (int) (price * discount.getValue());
-	}
 
 	public boolean isSameDishType(String dishType) {
 		return this.dishType == dishType;

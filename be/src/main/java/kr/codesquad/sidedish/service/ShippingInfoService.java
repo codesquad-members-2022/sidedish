@@ -14,9 +14,9 @@ public class ShippingInfoService {
 
 	public ShippingInfoDTO findByDeliveryType(Integer deliveryType) {
 
-		return shippingInfoRepository.findByDeliveryType(deliveryType)
+		return ShippingInfoDTO.from(shippingInfoRepository.findByDeliveryType(deliveryType)
 			.orElseThrow(() -> new CustomException(
-				ErrorCode.DELIVERY_INFORMATION_NOT_ALLOWED)).createDTO();
+				ErrorCode.DELIVERY_INFORMATION_NOT_ALLOWED)));
 	}
 
 
