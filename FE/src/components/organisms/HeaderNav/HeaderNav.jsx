@@ -4,7 +4,9 @@ import "./HeaderNav.scss";
 
 export function HeaderNav({ isShown, setIsShown }) {
   if (isShown) {
-    return <MainSubCategoryNav setIsShown={setIsShown} />;
+    return (
+      <MainSubCategoryNav className="category-nav" setIsShown={setIsShown} />
+    );
   }
-  return <MainCategoryNav setIsShown={setIsShown} />;
+  return <MainCategoryNav className="category-nav" setIsShown={setIsShown} />;
 }
