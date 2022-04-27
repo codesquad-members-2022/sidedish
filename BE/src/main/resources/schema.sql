@@ -39,6 +39,7 @@ create table item
     discount_policy_id bigint,
     item_section_id    bigint,
     stock              int,
+    support_dawn_delivery boolean,
     primary key (item_id),
     CONSTRAINT item_discount_constraint FOREIGN KEY (discount_policy_id) REFERENCES discount_policy (discount_policy_id) on delete cascade on update cascade,
     CONSTRAINT item_section_constraint FOREIGN KEY (item_section_id) REFERENCES item_section (item_section_id) on delete cascade on update cascade

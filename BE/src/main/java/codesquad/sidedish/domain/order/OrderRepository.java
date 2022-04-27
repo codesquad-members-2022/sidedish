@@ -54,7 +54,7 @@ public class OrderRepository {
     public Optional<Order> findById(Long orderId) {
         String sql = "SELECT o.order_id, o.item_id, o.member_id, o.delivery_id,\n" +
                 "o.discount_policy_id, o.order_item_price, o.item_count,\n" +
-                "i.name, i.description, i.price, i.discount_policy_id, i.item_section_id, i.stock,\n" +
+                "i.name, i.description, i.price, i.discount_policy_id, i.item_section_id, i.stock, i.support_dawn_delivery,\n" +
                 "idp.name, idp.discount_rate,\n" +
                 "isec.item_section_name,\n" +
                 "m.member_name, m.district, m.city, m.mileage,\n" +
@@ -103,6 +103,7 @@ public class OrderRepository {
                 .discountPolicy(buildItemDiscountPolicy(rs))
                 .itemSection(buildItemSection(rs))
                 .stock(rs.getInt("i.stock"))
+                .supportDawnDelivery(rs.getBoolean("i.support_dawn_delivery"))
                 .itemImages(findItemImages(rs.getLong("o.item_id")))
                 .build();
     }

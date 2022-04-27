@@ -20,8 +20,9 @@ public class Item {
     private ItemSection itemSection;
     private int stock;
     private List<ItemImage> itemImages;
+    private boolean supportDawnDelivery;
 
-    public Item(String name, String description, int price, DiscountPolicy discountPolicy, ItemSection itemSection, int stock, List<ItemImage> itemImages) {
+    public Item(String name, String description, int price, DiscountPolicy discountPolicy, ItemSection itemSection, int stock, List<ItemImage> itemImages, boolean supportDawnDelivery) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -29,10 +30,11 @@ public class Item {
         this.itemSection = itemSection;
         this.stock = stock;
         this.itemImages = itemImages;
+        this.supportDawnDelivery = supportDawnDelivery;
     }
 
     @Builder
-    public Item(Long itemId, String name, String description, int price, DiscountPolicy discountPolicy, ItemSection itemSection, int stock, List<ItemImage> itemImages) {
+    public Item(Long itemId, String name, String description, int price, DiscountPolicy discountPolicy, ItemSection itemSection, int stock, List<ItemImage> itemImages, boolean supportDawnDelivery) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
@@ -41,6 +43,7 @@ public class Item {
         this.itemSection = itemSection;
         this.stock = stock;
         this.itemImages = itemImages;
+        this.supportDawnDelivery = supportDawnDelivery;
     }
 
     public void initItemId(Long itemId) {

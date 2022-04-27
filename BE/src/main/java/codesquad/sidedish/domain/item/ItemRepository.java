@@ -1,10 +1,7 @@
 package codesquad.sidedish.domain.item;
 
-import codesquad.sidedish.domain.address.Address;
 import codesquad.sidedish.domain.discount.DiscountPolicy;
-import codesquad.sidedish.domain.member.Member;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,7 +28,7 @@ public class ItemRepository {
         String selectItemSql = "select i.item_id, i.name, i.description, i.price,\n" +
                 "i.discount_policy_id, dp.name, dp.discount_rate,\n"  +
                 "i.item_section_id, isec.item_section_name, \n" +
-                "i.stock \n" +
+                "i.stock, i.support_dawn_delivery\n" +
                 "from item as i\n" +
                 "join discount_policy as dp\n" +
                 "on i.discount_policy_id = dp.discount_policy_id\n " +
@@ -56,6 +53,7 @@ public class ItemRepository {
                         .itemSection(buildItemSection(rs))
                         .stock(rs.getInt("i.stock"))
                         .itemImages(findItemImages(rs.getLong("i.item_id")))
+                        .supportDawnDelivery(rs.getBoolean("i.support_dawn_delivery"))
                         .build();
     }
 
@@ -63,7 +61,7 @@ public class ItemRepository {
         String sql = "select i.item_id, i.name, i.description, i.price,\n" +
                 "i.discount_policy_id, dp.name, dp.discount_rate,\n"  +
                 "i.item_section_id, isec.item_section_name, \n" +
-                "i.stock \n" +
+                "i.stock, i.support_dawn_delivery\n" +
                 "from item as i\n" +
                 "join discount_policy as dp\n" +
                 "on i.discount_policy_id = dp.discount_policy_id\n " +

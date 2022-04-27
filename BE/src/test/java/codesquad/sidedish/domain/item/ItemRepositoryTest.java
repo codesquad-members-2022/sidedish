@@ -1,7 +1,6 @@
 package codesquad.sidedish.domain.item;
 
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @Transactional
@@ -39,7 +37,5 @@ class ItemRepositoryTest {
         List<Item> findItems = itemRepository.findByItemSectionName("main");
         log.info("findItems: {}", findItems);
     }
-
-
 
 }

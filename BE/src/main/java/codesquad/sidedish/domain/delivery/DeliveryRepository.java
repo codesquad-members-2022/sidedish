@@ -1,10 +1,7 @@
 package codesquad.sidedish.domain.delivery;
 
 import codesquad.sidedish.domain.address.Address;
-import codesquad.sidedish.domain.member.Member;
-import codesquad.sidedish.domain.order.Order;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
