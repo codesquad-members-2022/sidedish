@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from 'components/Header/Logo';
-import GNBWrap from 'components/Header/GNB';
+import GNB from 'components/Header/GNB';
 import MyUtils from 'components/Header/MyUtils';
 
 export default function Header() {
@@ -9,7 +9,7 @@ export default function Header() {
     <Wrap>
       <InBox>
         <Logo size="2.857rem" />
-        <GNBWrap />
+        <GNB />
         <MyUtils />
       </InBox>
     </Wrap>
