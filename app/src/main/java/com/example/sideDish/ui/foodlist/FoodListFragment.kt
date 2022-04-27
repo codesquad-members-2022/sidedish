@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.ui.productdetail.DETAIL_HASH_KEY
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -86,7 +87,7 @@ class FoodListFragment : Fragment() {
             replace(
                 R.id.container,
                 ProductDetailFragment::class.java,
-                bundleOf("DETAILHASH_KEY" to detailHash)
+                bundleOf(DETAIL_HASH_KEY to detailHash)
             )
         }
     }

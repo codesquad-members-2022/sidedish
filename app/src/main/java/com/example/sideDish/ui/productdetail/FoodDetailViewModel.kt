@@ -33,7 +33,7 @@ class FoodDetailViewModel @Inject constructor(
 
     fun getDetail(hash: String) {
         viewModelScope.launch(ceh) {
-            throw Exception()
+           // throw Exception()
             _detail.value = repository.getDetail(hash)
         }
     }
