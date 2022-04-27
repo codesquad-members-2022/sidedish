@@ -7,6 +7,14 @@ const changeNumberToKoreanLocale = (number) => `${number.toLocaleString("ko-KR")
 const showOriginalPrice = (originalPrice, fixedPrice) =>
   originalPrice === fixedPrice ? <></> : <span>{changeNumberToKoreanLocale(fixedPrice)}</span>;
 
+const DeliveryOnHover = () => (
+  <DeliveryServiceHoverContainer>
+    <span>새벽배송</span>
+    <SpanDivider />
+    <span>전국택배</span>
+  </DeliveryServiceHoverContainer>
+);
+
 const MealCard = ({ mealInfo, size }) => {
   const { productName, description, event: discountType, fixedPrice, image, originalPrice } = mealInfo;
   return (
@@ -21,11 +29,7 @@ const MealCard = ({ mealInfo, size }) => {
         </PriceContainer>
         {discountType && <DiscoutType discountType={discountType}>{discountType}</DiscoutType>}
       </CardInfo>
-      <DeliveryServiceHoverContainer>
-        <span>새벽배송</span>
-        <SpanDivider />
-        <span>전국택배</span>
-      </DeliveryServiceHoverContainer>
+      <DeliveryOnHover />
     </Conatiner>
   );
 };
