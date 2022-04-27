@@ -12,12 +12,12 @@ const StyledList = styled.li`
   }
 `;
 
-function checkSelected(tabClassName) {
+const checkSelected = tabClassName => {
   if (tabClassName) {
     return 'selected';
   }
   return null;
-}
+};
 
 export const Tab = ({ tabData, onClickTab, TabClassName }) => {
   const tabId = tabData.id;

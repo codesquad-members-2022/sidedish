@@ -49,7 +49,8 @@ const Slider = styled.div`
 
   .${SLIDE_CONTAINER} {
     transform: translate3d(
-      ${props => -(props.curSlideIndex * props.slideUnitWidth)}px,
+      ${({ curSlideIndex, slideUnitWidth }) =>
+        -(curSlideIndex * slideUnitWidth)}px,
       0,
       0
     );
@@ -178,9 +179,7 @@ export const CategoryProducts = ({ categoryId }) => {
 
   return (
     <CategoryProductsWrapper>
-      <Header className={Fonts.XL_BOLD}>
-        {categoryProducts.title}
-      </Header>
+      <Header className={Fonts.XL_BOLD}>{categoryProducts.title}</Header>
       <SliderWrapper>
         <Slider
           margin={SLIDE_MARGIN}
