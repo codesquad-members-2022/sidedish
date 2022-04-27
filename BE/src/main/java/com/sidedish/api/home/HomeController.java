@@ -28,7 +28,7 @@ public class HomeController {
 
     @GetMapping
     public ResponseHomeDto getHome() {
-        List<Item> findItems = itemService.findItemByDetailType("풍성한고기반찬");
+        List<Item> findItems = itemService.findItemByDetailType("풍성한_고기_반찬");
         List<ResponseItemDto> detailItems = buildDetailItems(findItems);
         CollectionModel<ItemResource> mainResources = buildItems(CategoryType.MAIN, 1L, 4);
         return new ResponseHomeDto(detailItems, mainResources);
