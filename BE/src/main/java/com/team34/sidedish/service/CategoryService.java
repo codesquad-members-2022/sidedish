@@ -18,7 +18,7 @@ public class CategoryService {
     }
 
     public CategoriesResponse getCategories(boolean isEvent) {
-        List<Category> categories = categoryRepository.findAllByEvent(isEvent);
+        List<Category> categories = categoryRepository.findAllByIsEvent(isEvent);
 
         List<CategoryResponse> categoryResponses = new ArrayList<>();
         for (Category category:categories) {
