@@ -6,9 +6,9 @@ import Card from './common/Card/Card';
 export default function Slider() {
   return (
     <Wrap>
-      <Button>
+      <PrevButton>
         <IconButton icon="prev" width="8px" height="16px" />
-      </Button>
+      </PrevButton>
       <CardWrap>
         <Card
           size="MEDIUM"
@@ -47,9 +47,9 @@ export default function Slider() {
           tags={['이벤트특가', '런칭특가']}
         />
       </CardWrap>
-      <Button>
+      <NextButton>
         <IconButton icon="next" width="8px" height="16px" />
-      </Button>
+      </NextButton>
     </Wrap>
   );
 }
@@ -65,4 +65,9 @@ const CardWrap = styled.div({
   overflowX: 'hidden'
 });
 
-const Button = styled.button({});
+const PrevButton = styled.button({
+  position: 'relative',
+  right: '10px'
+});
+
+const NextButton = styled.button({});
