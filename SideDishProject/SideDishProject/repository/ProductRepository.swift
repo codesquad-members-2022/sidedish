@@ -52,9 +52,13 @@ extension MockProductRepository: ProductRepository{
     }
     
     private func makeAllDishes(){
-        dishes[.main] = products.filter{$0.category == .main}
-        dishes[.soup] = products.filter{$0.category == .soup}
-        dishes[.side] = products.filter{$0.category == .side}
+        for product in products {
+            if !dishes.keys.contains(product.category) {
+                dishes[product.category] = [product]
+                continue
+            }
+            dishes[product.category]?.append(product)
+        }
     }
     
     func fetchAll(completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void) {
