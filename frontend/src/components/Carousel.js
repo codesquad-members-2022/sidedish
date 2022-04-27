@@ -50,19 +50,11 @@ export const Carousel = ({ id, name, size }) => {
   const lastIndex = categoryData?.products.length - cardNumPerPage[size];
   const clickNext = () => {
     if (curIndex >= lastIndex) return;
-    setCurIndex((prev) =>
-      curIndex + cardNumPerPage[size] > lastIndex
-        ? prev + 1
-        : prev + cardNumPerPage[size]
-    );
+    setCurIndex((prev) => Math.min(prev + cardNumPerPage[size], lastIndex));
   };
   const clickPrev = () => {
     if (curIndex === 0) return;
-    setCurIndex((prev) =>
-      curIndex - cardNumPerPage[size] < 0
-        ? prev - 1
-        : prev - cardNumPerPage[size]
-    );
+    setCurIndex((prev) => Math.max(0, prev - cardNumPerPage[size]));
   };
 
   return (
