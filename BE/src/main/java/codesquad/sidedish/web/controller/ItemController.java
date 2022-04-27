@@ -23,8 +23,6 @@ public class ItemController {
 
     @GetMapping
     public ItemListResponse loadItems(@RequestParam String section) {
-        ItemListElement sampleElement = new ItemListElement();
-        List<ItemListElement> items = List.of(sampleElement);
-        return new ItemListResponse(items);
+        return itemService.findBySection(section);
     }
 }
