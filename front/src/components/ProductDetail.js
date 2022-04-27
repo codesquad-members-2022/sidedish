@@ -24,7 +24,7 @@ function ProductDetail({ dishes, showAlert }) {
   }
   useEffect(() => {
     setAmount(1);
-    // mainImage 상태로 관리하도록 리팩토링 후 이미지 초기화 추가
+    setMainImageIndex(0);
   }, [dishes]);
 
   return (
