@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "components/Main";
+import Main from "Pages/Main";
 import Header from "components/Header";
 
 const App = () => {
