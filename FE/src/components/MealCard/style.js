@@ -48,11 +48,11 @@ export const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  h4 {
+  h3 {
     color: ${({ theme: { color } }) => color.grey1};
     font-size: ${({ theme: { fontSize } }) => fontSize.medium};
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
-    margin: 8px 0px;
+    margin: 16px 0 8px;
   }
   p {
     color: ${({ theme: { color } }) => color.grey2};

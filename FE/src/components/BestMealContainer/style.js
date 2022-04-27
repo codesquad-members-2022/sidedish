@@ -5,6 +5,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.grey4};
+  padding-bottom: 50px;
 `;
 
 export const Header = styled.div`
