@@ -3,14 +3,14 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    private var model:  [ProductSort: [Product]] = [:]
+    private var model: [ProductSort: [Product]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUnderbarAtNavigationBar()
         registerDishCell()
         collectionViewDelegate()
-        
+
         let repository = DishCellRepository()
         let factory = CellFactory(repository: repository)
         factory.onUpdate = {
