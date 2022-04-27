@@ -41,5 +41,13 @@ public class Image {
 		return isMainImage;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Image{" +
+			"id=" + id +
+			", menuId=" + menuId +
+			", imagePath='" + imagePath + '\'' +
+			", isMainImage=" + isMainImage +
+			'}';
+	}
 }
