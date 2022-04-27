@@ -19,6 +19,7 @@ public class Dishes {
     private Integer stockQuantity;
     private Integer point;
     private Integer eventTabsId;
+    private Integer categoryId;
 
     @MappedCollection(idColumn = "dish_id", keyColumn = "dish_id")
     private List<Images> images;
@@ -45,8 +46,12 @@ public class Dishes {
         this.eventBadge = discountPolicies;
     }
 
-    public boolean isSameEvent(Integer eventId) {
-        return Objects.equals(eventId, eventTabsId);
+    public boolean isSameEvent(EventTabs eventTab) {
+        return Objects.equals(eventTabsId, eventTab.getId());
+    }
+
+    public boolean isSameCategory(Category category) {
+        return Objects.equals(categoryId, category.getId());
     }
 
     public Long getId() {
@@ -75,6 +80,10 @@ public class Dishes {
 
     public Integer getEventTabsId() {
         return eventTabsId;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
     public List<Images> getImages() {
