@@ -34,9 +34,9 @@ public class ProductDTO {
 			product.getDeliveryType());
 	}
 
-	private static Integer convertDiscountPrice(String applyEvent, int price) {
+	private static Integer convertDiscountPrice(String applyEvent, Integer price) {
 		Discount discount = Discount.convertSaleType(applyEvent);
 
-		return (int) (price * discount.getValue());
+		return (int) Math.round(price * discount.getValue());
 	}
 }
