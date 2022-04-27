@@ -7,11 +7,11 @@ final class Repository: RepositoryApplicable {
     private var networkHandler: NetworkHandlable
     private let dataCache: DataCachingManagable
     
-    convenience init() {
-        self.init(networkHandler: NetworkHandler(), jsonHandler: JSONHandler(), dataCache: DataCachingManager())
+    convenience init(){
+        self.init(networkHandler: NetworkHandler(), jsonHandler: JSONHandler(), dataCache: DataCache())
     }
     
-    private init(networkHandler: NetworkHandlable, jsonHandler: JSONHandlable, dataCache: DataCachingManagable) {
+    private init(networkHandler: NetworkHandlable, jsonHandler: JSONHandlable, dataCache: DataCacheable){
         self.networkHandler = networkHandler
         self.jsonHandler = jsonHandler
         self.dataCache = dataCache
