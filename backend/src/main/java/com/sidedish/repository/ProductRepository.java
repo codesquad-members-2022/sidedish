@@ -12,4 +12,7 @@ import java.util.List;
 public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("select * from product where main_category= :categoryName")
     List<Product> findAllMainCategoryProduct(@Param("categoryName") String category);
+
+    @Query("select * from product where event_category= :categoryName")
+    List<Product> findAllEventCategoryProduct(@Param("categoryName") String category);
 }

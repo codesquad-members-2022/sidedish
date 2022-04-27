@@ -2,6 +2,7 @@ package com.sidedish.servcie;
 
 import com.sidedish.domain.product.Product;
 import com.sidedish.repository.ProductRepository;
+import com.sidedish.web.dto.EventCategoryProductDto;
 import com.sidedish.web.dto.MainCategoryProductDto;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,18 @@ public class ProductService {
         List<Product> products = productRepository.findAllMainCategoryProduct(mainCategory);
         List<MainCategoryProductDto> dtoList = new ArrayList<>();
         for (Product product : products) {
-            dtoList.add(new MainCategoryProductDto(product.getProductName(), product.getDescription(), product.getPrice(), product.getEventBadge(),product.getMainCategory()));
+            dtoList.add(new MainCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(),product.getMainCategory()));
         }
         return dtoList;
     }
+
+    public List<EventCategoryProductDto> findEventCategory(String eventCategory) {
+        List<Product> products = productRepository.findAllEventCategoryProduct(eventCategory);
+        List<EventCategoryProductDto> dtoList = new ArrayList<>();
+        for (Product product : products) {
+            dtoList.add(new EventCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(),product.getEventCategory()));
+        }
+        return dtoList;
+    }
+
 }

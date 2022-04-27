@@ -4,6 +4,7 @@ CREATE TABLE product (
                          id              BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          product_name    varchar(64) NOT NULL,
                          description     varchar(255) NOT NULL,
+                         early_delivery  TINYINT DEFAULT true,
                          price           int NOT NULL,
                          stock           int NOT NULL,
                          event_badge     varchar(64) NOT NULL COMMENT '이벤트 종류 : none, event, launching',
