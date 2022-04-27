@@ -30,7 +30,7 @@ export function BestProduct() {
       return;
     }
     async function getSideDishDataByTabMenu() {
-      const { sideDishCardResponses } = await fetchData(`${API.categoryDishes}/${curTab}`);
+      const { sideDishCardResponses } = await fetchData(API.categoryDishes(curTab));
       setTabList(sideDishCardResponses);
     }
     getSideDishDataByTabMenu();
