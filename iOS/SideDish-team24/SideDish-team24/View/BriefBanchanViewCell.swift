@@ -7,6 +7,8 @@ class BriefBanchanViewCell: UICollectionViewCell {
     private var dishImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -64,8 +66,8 @@ private extension BriefBanchanViewCell {
         
         NSLayoutConstraint.activate([
             self.banchanBreif.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
-            self.banchanBreif.topAnchor.constraint(equalTo: self.topAnchor),
-            self.banchanBreif.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.banchanBreif.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset),
+            self.banchanBreif.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -CGFloat.defaultInset)
         ])
     }
     

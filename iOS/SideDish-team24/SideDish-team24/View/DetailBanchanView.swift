@@ -13,7 +13,8 @@ class DetailBanchanView: UIScrollView {
     private let banchanImageSection: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     private let banchanBriefSection = BanchanBriefView(type: .detail)
@@ -24,11 +25,13 @@ class DetailBanchanView: UIScrollView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layoutInnerView()
+        self.layoutImageSection()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.layoutInnerView()
+        self.layoutImageSection()
     }
     
     func configure(title: String, description: String, price: String, listPrice: String?) {
@@ -64,6 +67,12 @@ private extension DetailBanchanView {
             self.innerView.trailingAnchor.constraint(equalTo: self.contentLayoutGuide.trailingAnchor, constant: -CGFloat.defaultInset),
             self.innerView.widthAnchor.constraint(equalTo: self.frameLayoutGuide.widthAnchor, constant: -CGFloat.defaultInset*2),
             self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.safeAreaLayoutGuide.layoutFrame.height)
+        ])
+    }
+    
+    func layoutImageSection() {
+        NSLayoutConstraint.activate([
+            self.banchanImageSection.widthAnchor.constraint(equalTo: self.banchanImageSection.heightAnchor, multiplier: 1)
         ])
     }
     
