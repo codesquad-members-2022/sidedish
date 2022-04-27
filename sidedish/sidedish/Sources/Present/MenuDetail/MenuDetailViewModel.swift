@@ -20,6 +20,7 @@ struct MenuDetailViewModelState {
     let showError = PassthroughSubject<SessionError, Never>()
     let ordered = PassthroughSubject<Void, Never>()
     let amount = CurrentValueSubject<Int, Never>(1)
+    let totalPrice = PassthroughSubject<Int, Never>()
     let loadedThumbnail = PassthroughSubject<(Int, URL), Never>()
     let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
 }
@@ -64,12 +65,15 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
                 action.tappedPlusButton.map { 1 },
                 action.tappedMinusButton.map { -1 }
             )
-            .map { [weak self] value in
+            .map { [weak self] value -> Int in
                 var amount = (self?.state.amount.value ?? 0) + value
-                amount = amount < 0 ? 0 : amount
+                amount = amount < 1 ? 1 : amount
                 return amount
             }
-            .sink(receiveValue: state.amount.send(_:))
+            .sink { amount in
+                self.state.amount.send(amount)
+                self.state.totalPrice.send(menu.price * amount)
+            }
             .store(in: &cancellables)
         
         action.tappedOrderButton

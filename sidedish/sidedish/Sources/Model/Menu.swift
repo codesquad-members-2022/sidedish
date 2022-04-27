@@ -18,7 +18,7 @@ struct Menu: Decodable {
     let title: String
     let deliveryType: [String]
     let description: String
-    let price: String
+    @DecodedBy<PriceTransformer<String>> var price: Int
     let salePrice: String?
     let badge: [String]?
     

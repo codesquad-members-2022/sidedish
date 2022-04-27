@@ -113,12 +113,15 @@ extension MenuInfoView {
         descriptionLabel.text = text
     }
     
-    func changePriceLabel(text: String) {
-        priceLabel.text = text
+    func changePriceLabel(price: Int) {
+        priceLabel.text = price.printCurrency()
     }
     
-    func changeSalePriceLabel(text: String) {
-        salePriceLabel.attributedText = text.strikeThrough()
+    func changeSalePriceLabel(price: String?) {
+        guard let price = price else {
+            return
+        }
+        salePriceLabel.attributedText = price.strikeThrough()
     }
     
     func changeSaleBadge(_ badges: [String]?) {

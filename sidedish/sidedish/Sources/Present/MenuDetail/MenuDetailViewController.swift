@@ -102,8 +102,8 @@ class MenuDetailViewController: UIViewController {
                 self?.title = menu.title
                 self?.infoView.changeTitleLabel(text: menu.title)
                 self?.infoView.changeDescriptionLabel(text: menu.description)
-                self?.infoView.changePriceLabel(text: menu.price)
-                self?.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
+                self?.infoView.changePriceLabel(price: menu.price)
+                self?.infoView.changeSalePriceLabel(price: menu.salePrice)
                 self?.infoView.changeSaleBadge(menu.badge)
                 self?.subInfoView.setData(detail)
                 self?.orderView.setTotalPrice(menu.price)
@@ -127,6 +127,12 @@ class MenuDetailViewController: UIViewController {
         model.state.amount
             .sink { [weak self] amount in
                 self?.amountView.amount = amount
+            }
+            .store(in: &cancellables)
+        
+        model.state.totalPrice
+            .sink { [weak self] totalPrice in
+                self?.orderView.setTotalPrice(totalPrice)
             }
             .store(in: &cancellables)
 
