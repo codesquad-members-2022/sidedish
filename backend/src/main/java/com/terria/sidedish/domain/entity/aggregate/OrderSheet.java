@@ -18,7 +18,6 @@ public class OrderSheet {
 
     @CreatedDate
     private LocalDateTime createdAt;
-
     private long sideDishId;
     private long memberId;
 

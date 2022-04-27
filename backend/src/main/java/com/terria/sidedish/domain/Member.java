@@ -15,7 +15,6 @@ public class Member {
 
     @Id
     private long id;
-
     private String userId;
     private Provider provider;
     private String email;

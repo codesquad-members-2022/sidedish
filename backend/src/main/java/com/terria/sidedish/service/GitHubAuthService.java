@@ -66,12 +66,8 @@ public class GitHubAuthService {
         params.add("client_secret", clientSecret);
         params.add("code", code);
 
-        ResponseEntity<GitHubAccessToken> response = new RestTemplate().
-                postForEntity(
-                        url,
-                        new HttpEntity<>(params, headers),
-                        GitHubAccessToken.class
-                );
+        ResponseEntity<GitHubAccessToken> response = new RestTemplate()
+                .postForEntity(url, new HttpEntity<>(params, headers), GitHubAccessToken.class);
 
         return response.getBody();
     }
@@ -83,13 +79,8 @@ public class GitHubAuthService {
         headers.add("Accept", "application/vnd.github.v3+json");
         headers.add("Authorization", accessToken.getTokenType() + " " + accessToken.getAccessToken());
 
-        ResponseEntity<GitHubUser> response = new RestTemplate().
-                exchange(
-                        url,
-                        HttpMethod.GET,
-                        new HttpEntity<>(headers),
-                        GitHubUser.class
-                );
+        ResponseEntity<GitHubUser> response = new RestTemplate()
+                .exchange(url, HttpMethod.GET, new HttpEntity<>(headers), GitHubUser.class);
 
         if (response.getStatusCode().isError() || response.getBody() == null) {
             throw new GitHubOAuthException(EXHIBITION_VALIDATION_ERROR);
