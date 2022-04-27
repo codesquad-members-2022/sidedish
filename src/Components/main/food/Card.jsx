@@ -9,14 +9,19 @@ import {
 } from '../../../Assets/CommonStyle';
 import Title from '../../Title';
 
-const ImgWrap = styled.div`
-  position: relative;
-`;
-
-const ImgTag = styled.img`
-  display: block;
-  width: 100%;
-`;
+export default function Card({ cardData }) {
+  const CARD_IMG_DATA = {
+    img: cardData.image,
+    alt: cardData.alt,
+    delivery: cardData.delivery_type,
+  };
+  return (
+    <CardItem data-hash={cardData.detail_hash}>
+      <Img data={CARD_IMG_DATA} />
+      <Text data={cardData} />
+    </CardItem>
+  );
+}
 
 function Img({ data }) {
   const [isHover, setIsHover] = useState(false);
@@ -32,6 +37,87 @@ function Img({ data }) {
     </ImgWrap>
   );
 }
+
+function Delivery({ delivery_type }) {
+  if (!delivery_type) return;
+
+  const DELIVERY_INFO = delivery_type.map((type, idx) => (
+    <span key={idx}>{type}</span>
+  ));
+
+  return (
+    <DeleveryBg>
+      <DeleveryBox>{DELIVERY_INFO}</DeleveryBox>
+    </DeleveryBg>
+  );
+}
+
+function Text({ data }) {
+  return (
+    <TextWrap>
+      <Title
+        title={data.title}
+        fontSize="Medium"
+        fontWeight="Bold"
+        color="gray1"
+        as="h3"
+      />
+      <Description>{data.description}</Description>
+      <Price price={data} />
+      <Badge info={data.badge} />
+    </TextWrap>
+  );
+}
+
+function Price({ price }) {
+  const SALE_PRICE = price.s_price ? <span>{price.s_price}</span> : null;
+  const NORMAL_PRICE = price.n_price ? <span>{price.n_price}</span> : null;
+
+  return (
+    <PriceBox>
+      {SALE_PRICE}
+      {NORMAL_PRICE}
+    </PriceBox>
+  );
+}
+
+function Badge({ info }) {
+  if (!info) return;
+
+  const BADGES = info.map((item, idx) => {
+    return (
+      <BadgeItem key={idx} type={item}>
+        {item}
+      </BadgeItem>
+    );
+  });
+
+  return <BadgeBox>{BADGES}</BadgeBox>;
+}
+
+function getBadgeColor(type) {
+  switch (type) {
+    case '런칭특가':
+      return 'orange';
+    case '이벤트특가':
+      return 'green';
+    default:
+      return 'black';
+  }
+}
+
+const CardItem = styled.div`
+  cursor: pointer;
+`;
+
+const ImgWrap = styled.div`
+  position: relative;
+`;
+
+const ImgTag = styled.img`
+  display: block;
+  width: 100%;
+`;
 
 const DeleveryBg = styled.div`
   position: absolute;
@@ -65,21 +151,7 @@ const DeleveryBox = styled.div`
   }
 `;
 
-function Delivery({ delivery_type }) {
-  if (!delivery_type) return;
-
-  const DELIVERY_INFO = delivery_type.map((type, idx) => (
-    <span key={idx}>{type}</span>
-  ));
-
-  return (
-    <DeleveryBg>
-      <DeleveryBox>{DELIVERY_INFO}</DeleveryBox>
-    </DeleveryBg>
-  );
-}
-
-const TestWrap = styled.div`
+const TextWrap = styled.div`
   padding-top: 16px;
 `;
 
@@ -90,23 +162,6 @@ const Description = styled.p`
   color: ${({ theme }) => theme.Color.gray2};
   ${TextEllipsis}
 `;
-
-function Text({ data }) {
-  return (
-    <TestWrap>
-      <Title
-        title={data.title}
-        fontSize="Medium"
-        fontWeight="Bold"
-        color="gray1"
-        as="h3"
-      />
-      <Description>{data.description}</Description>
-      <Price price={data} />
-      <Badge info={data.badge} />
-    </TestWrap>
-  );
-}
 
 const PriceBox = styled.div`
   ${F_basicCenter}
@@ -124,18 +179,6 @@ const PriceBox = styled.div`
     text-decoration: line-through;
   }
 `;
-
-function Price({ price }) {
-  const SALE_PRICE = price.s_price ? <span>{price.s_price}</span> : null;
-  const NORMAL_PRICE = price.n_price ? <span>{price.n_price}</span> : null;
-
-  return (
-    <PriceBox>
-      {SALE_PRICE}
-      {NORMAL_PRICE}
-    </PriceBox>
-  );
-}
 
 const BadgeBox = styled.div`
   ${F_basic}
@@ -156,48 +199,3 @@ const BadgeItem = styled.span`
     margin-left: 8px;
   }
 `;
-
-function getBadgeColor(type) {
-  switch (type) {
-    case '런칭특가':
-      return 'orange';
-    case '이벤트특가':
-      return 'green';
-    default:
-      return 'black';
-  }
-}
-
-function Badge({ info }) {
-  if (!info) return;
-
-  const BADGES = info.map((item, idx) => {
-    return (
-      <BadgeItem key={idx} type={item}>
-        {item}
-      </BadgeItem>
-    );
-  });
-
-  return <BadgeBox>{BADGES}</BadgeBox>;
-}
-
-const CardItem = styled.div`
-  cursor: pointer;
-`;
-
-function Card({ cardData }) {
-  const CARD_IMG_DATA = {
-    img: cardData.image,
-    alt: cardData.alt,
-    delivery: cardData.delivery_type,
-  };
-  return (
-    <CardItem data-hash={cardData.detail_hash}>
-      <Img data={CARD_IMG_DATA} />
-      <Text data={cardData} />
-    </CardItem>
-  );
-}
-
-export default Card;
