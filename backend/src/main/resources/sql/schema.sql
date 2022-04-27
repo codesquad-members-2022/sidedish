@@ -27,13 +27,14 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`deliveries`
 
 CREATE TABLE IF NOT EXISTS `sidedish`.`event_tabs`
 (
-    `id`   INT         NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
+    `id`          INT         NOT NULL AUTO_INCREMENT,
+    `name`        VARCHAR(20) NOT NULL,
+    `description` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `sidedish`.`dishs`
+CREATE TABLE IF NOT EXISTS `sidedish`.`dishes`
 (
     `id`             BIGINT      NOT NULL AUTO_INCREMENT,
     `price`          INT         NOT NULL,
@@ -83,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`discount`
     INDEX `fk_discount_discount_policy1_idx` (`discount_policy_id` ASC) VISIBLE,
     CONSTRAINT `fk_discount_menu_card1`
         FOREIGN KEY (`dish_id`)
-            REFERENCES `sidedish`.`dishs` (`id`)
+            REFERENCES `sidedish`.`dishes` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `fk_discount_discount_policy1`
@@ -117,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`orders`
             ON UPDATE NO ACTION,
     CONSTRAINT `fk_orders_menu_card1`
         FOREIGN KEY (`menu_card_id`)
-            REFERENCES `sidedish`.`dishs` (`id`)
+            REFERENCES `sidedish`.`dishes` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
@@ -130,10 +131,10 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`images`
     `url`      VARCHAR(150) NOT NULL,
     `dish_id`  BIGINT       NOT NULL,
     PRIMARY KEY (`image_id`),
-    INDEX `fk_images_dishs1_idx` (`dish_id` ASC) VISIBLE,
-    CONSTRAINT `fk_images_dishs1`
+    INDEX `fk_images_dishes1_idx` (`dish_id` ASC) VISIBLE,
+    CONSTRAINT `fk_images_dishes1`
         FOREIGN KEY (`dish_id`)
-            REFERENCES `sidedish`.`dishs` (`id`)
+            REFERENCES `sidedish`.`dishes` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
