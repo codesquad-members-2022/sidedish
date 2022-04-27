@@ -23,7 +23,7 @@ class MainBackgroundView: UICollectionReusableView {
 
 extension MainBackgroundView {
     func setStyle() {
-        backgroundColor = .grey4
+        backgroundColor = .secondarySystemBackground
     }
 
 }
