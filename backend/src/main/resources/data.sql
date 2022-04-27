@@ -112,6 +112,18 @@ values (6, 23);
 insert into category_has_side_dish (category_id, side_dish_id)
 values (6, 24);
 
+insert into category_has_side_dish (category_id, side_dish_id)
+values (7, 25);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (7, 26);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (7, 27);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (7, 28);
+
 /* side_dish */
 
 insert into side_dish(id, name, description, price, accrual_rate)
@@ -185,6 +197,18 @@ values (23, '바지락초무침[밀키트]', '', 8800, 0.01);
 
 insert into side_dish(id, name, description, price, accrual_rate)
 values (24, '바지락애호박볶음', '쫄깃하고 아삭한', 4800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (25, '버섯불고기[밀키트]', '국내산 버섯4종류 듬뿍', 9000, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (26, '버섯불고기전골[밀키트]', '당일 우려낸 야채육수', 14800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (27, '양배추찜&우렁쌈장', '양배추찜&우렁쌈장', 5800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (28, '미니월남쌈[밀키트]', '다시 돌아온', 9800, 0.01);
 
 /* side_dish_image */
 
@@ -368,9 +392,53 @@ insert into side_dish_image(image_url, image_seq, side_dish_id)
 values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_3.png',
         3, 24 /* 바지락애호박볶음 */);
 
--- insert into side_dish_image(image_url, image_seq, side_dish_id)
--- values ('',
---         1, 25 /* 바지락애호박볶음 */);
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+        1, 25 /* 버섯불고기[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+        2, 25 /* 버섯불고기[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+        3, 25 /* 버섯불고기[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+        1, 26 /* 버섯불고기전골[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+        2, 26 /* 버섯불고기전골[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+        3, 26 /* 버섯불고기전골[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_1.png',
+        1, 27 /* 양배추찜&우렁쌈장 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_2.png',
+        2, 27 /* 양배추찜&우렁쌈장 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_3.png',
+        3, 27 /* 양배추찜&우렁쌈장 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+        1, 28 /* 미니월남쌈[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+        2, 28 /* 미니월남쌈[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+        3, 28 /* 미니월남쌈[밀키트] */);
 
 /* discount_event */
 
