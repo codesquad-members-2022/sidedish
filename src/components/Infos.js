@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const Infos = ({ cardInfo }) => {
-  const { title, description, price, discountedPrice, badge } = cardInfo;
+  const { title, price, discountedPrice, badge } = cardInfo;
   return (
     <StyledInfoContainer>
       <StyledInfo>{title}</StyledInfo>
-      <StyledInfo>{description}</StyledInfo>
+      <StyledInfo>{cardInfo?.description}</StyledInfo>
       <StyledInfo>{price}</StyledInfo>
       {discountedPrice && <StyledInfo>{discountedPrice}</StyledInfo>}
       {badge &&

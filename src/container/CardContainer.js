@@ -27,7 +27,13 @@ const getSlidingSize = (isMoveableSlide, sizeToMove, cardNum) => {
   return slidingSize;
 };
 
-const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
+const CardContainer = ({
+  cardInfos,
+  children,
+  hasButton,
+  cardNum,
+  handleModal,
+}) => {
   const initialHeadCardOrder = 1;
 
   const [curHeadCardOrder, setCurHeadCardOrder] =
@@ -143,6 +149,7 @@ const CardContainer = ({ cardInfos, children, hasButton, cardNum }) => {
           cardNum={cardNum}
           slidingSize={slidingSize}
           cardInfos={cardInfos}
+          handleModal={handleModal}
         />
       </StyledDiv>
     </StyledSection>
