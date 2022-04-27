@@ -5,7 +5,7 @@ import CardContainer from './container/CardContainer';
 import Tab from './components/Tab';
 import CategoryTitle from './components/CategoryTitle';
 
-const MainCard = ({ mainCardData }) => {
+const MainCard = ({ mainCardData, handleModal }) => {
   const [tabId, setTabId] = useState(0);
 
   const handleClickTab = ({ target }) => {
@@ -23,7 +23,11 @@ const MainCard = ({ mainCardData }) => {
   const cardNum = 3;
 
   return (
-    <CardContainer cardInfos={mainDatas} cardNum={cardNum}>
+    <CardContainer
+      cardInfos={mainDatas}
+      cardNum={cardNum}
+      handleModal={handleModal}
+    >
       <StyledTap>
         <CategoryTitle title={title} banner={banner} />
       </StyledTap>

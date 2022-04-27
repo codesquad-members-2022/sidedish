@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 import Card from './Card';
 
-const CardBox = ({ hasButton, cardNum, slidingSize, cardInfos }) => {
+const CardBox = ({
+  hasButton,
+  cardNum,
+  slidingSize,
+  cardInfos,
+  handleModal,
+}) => {
   return (
     <StyledCardContainer
       hasBtn={hasButton}
@@ -11,7 +17,7 @@ const CardBox = ({ hasButton, cardNum, slidingSize, cardInfos }) => {
       slidingSize={slidingSize}
     >
       {cardInfos.map((cardInfo, idx) => (
-        <StyledCard key={idx}>
+        <StyledCard key={idx} onClick={() => handleModal(cardInfo)}>
           <Card cardInfo={cardInfo} cardNum={cardNum} />
         </StyledCard>
       ))}
