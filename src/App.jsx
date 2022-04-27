@@ -7,7 +7,7 @@ import Template from 'template/Template';
 import theme from 'variable/theme';
 
 export default function App() {
-  const [isTemplateMode, setTemplateMode] = useState(true);
+  const [isTemplateMode, setTemplateMode] = useState(false);
   function handleKeyDown(e) {
     if (e.key === '`') {
       setTemplateMode(!isTemplateMode);
