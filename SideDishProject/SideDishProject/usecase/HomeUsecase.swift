@@ -32,18 +32,11 @@ final class HomeUsecase{
                 self.delegate?.updateDishComment(comments: [DishCategory.main.comment, DishCategory.soup.comment, DishCategory.side.comment])
                 self.delegate?.updateAllDishes(dishes: products)
                 self.updateImageData()
+                self.dishes = products
             case .failure(let error):
                 self.delegate?.updateFail(error: error)
             }
         }
-    }
-    
-    private func makeAllDishes(products: [Product]){
-        dishes[.main] = products.filter{$0.category == .main}
-        dishes[.soup] = products.filter{$0.category == .soup}
-        dishes[.side] = products.filter{$0.category == .side}
-        
-        
     }
     
     private func updateImageData(){
