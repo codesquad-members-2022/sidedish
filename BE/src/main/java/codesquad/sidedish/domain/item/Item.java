@@ -49,6 +49,19 @@ public class Item {
     public void initItemId(Long itemId) {
         this.itemId = itemId;
     }
+
+    public void reduceStock(int reduceQuantity) {
+        validateReduceQuantity(reduceQuantity);
+        this.stock -= reduceQuantity;
+    }
+
+    private void validateReduceQuantity(int reduceNumber) {
+        if (reduceNumber > this.stock) {
+            throw new IllegalArgumentException(
+                    String.format("최대 구입 가능 개수는 %d개입니다.", this.stock)
+            );
+        }
+    }
 }
 
 
