@@ -4,7 +4,7 @@ import Card from 'components/Card/Card';
 import { fetchData } from 'utils/utils';
 import { TEST_URL } from 'constants/api';
 
-const Slider = () => {
+const Slider = ({ title, id, display }) => {
   const VISIBLE_CARD_COUNT = 4;
   const MEDIUM_CARD_WIDTH = 302;
   const MEDIUM_CARD_MARGIN = 24;
@@ -82,8 +82,8 @@ const Slider = () => {
   }, []);
 
   return (
-    <SliderWrapper>
-      <SliderTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SliderTitle>
+    <SliderWrapper display={display}>
+      <SliderTitle>{title}</SliderTitle>
       <SliderContainer>
         <ArrowLeftIcon
           onClick={() => handleArrowClick('left', isLeftArrowActive)}

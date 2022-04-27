@@ -5,6 +5,7 @@ import { ReactComponent as ArrowRight } from 'assets/arrow_right.svg';
 const SliderWrapper = styled.div`
   padding: 60px 80px;
   position: relative;
+  display: ${({ display }) => display};
 `;
 
 const SliderTitle = styled.h2`
