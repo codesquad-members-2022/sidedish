@@ -5,7 +5,7 @@ enum Category: CaseIterable {
     case side
     case soup
     
-    var fileName: String{
+    var fileName: String {
         switch self {
         case .main:
             return "main"

@@ -3,7 +3,7 @@
   "body": [
     {
       "detail_hash": "HBBCC",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg",
       "alt": "새콤달콤 오징어무침",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "새콤달콤 오징어무침",
@@ -14,7 +14,7 @@
     },
     {
       "detail_hash": "H1939",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg",
       "alt": "호두 멸치볶음",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "호두 멸치볶음",
@@ -25,7 +25,7 @@
     },
     {
       "detail_hash": "H8EA5",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/26_ZIP_P_4001_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/26_ZIP_P_4001_T.jpg",
       "alt": "한돈 매콤 안심장조림",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "한돈 매콤 안심장조림",
@@ -36,7 +36,7 @@
     },
     {
       "detail_hash": "H602F",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg",
       "alt": "야채 어묵볶음",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "야채 어묵볶음",
@@ -47,7 +47,7 @@
     },
     {
       "detail_hash": "H9F0B",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/147_ZIP_P_7010_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/147_ZIP_P_7010_T.jpg",
       "alt": "오이소박이",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "오이소박이",
@@ -58,7 +58,7 @@
     },
     {
       "detail_hash": "H0FC6",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/268_ZIP_P_4023_T.jpg",
       "alt": "두부조림",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "두부조림",
@@ -67,7 +67,7 @@
     },
     {
       "detail_hash": "HCCFE",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/682_ZIP_P_5055_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/682_ZIP_P_5055_T.jpg",
       "alt": "미나리무침",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "미나리무침",
@@ -76,7 +76,7 @@
     },
     {
       "detail_hash": "HB9C1",
-      "image": "http://public.codesquad.kr/jk/storeapp/data/side/736_ZIP_P_5067_T.jpg",
+      "image": "https://public.codesquad.kr/jk/storeapp/data/side/736_ZIP_P_5067_T.jpg",
       "alt": "참외오이무침",
       "delivery_type": ["새벽배송", "전국택배"],
       "title": "참외오이무침",

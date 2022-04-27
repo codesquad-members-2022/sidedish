@@ -16,20 +16,25 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        let repository = Repository()
+        ordering = Ordering(repository: repository)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ordering = Ordering(repository: Repository())
         navigationItem.title = "Ordering"
         setFoodCollectionView()
         setLayout()
     }
     
-    private func setFoodCollectionView(){
+    private func setFoodCollectionView() {
         foodCollectionView.delegate = self
         foodCollectionView.dataSource = self
     }
     
-    private func setLayout(){
+    private func setLayout() {
         view.addSubview(foodCollectionView)
         NSLayoutConstraint.activate([
             foodCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -48,7 +53,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let ordering = ordering else { return 0 }
         let category = ordering.getCategoryWithIndex(index: section)
-        return ordering.getFoodCount(category: category)
+        return ordering.getFoodCountInCertainCategory(category: category)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -58,6 +63,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let index = indexPath.row
         if let food = ordering[index, category] {
             cell.receiveFood(food: food)
+            ordering.requesetFoodImage(imageUrl: food.imageUrl) { data in
+                cell.updateFoodImage(imageData: data)
+            }
         }
         return cell
     }
