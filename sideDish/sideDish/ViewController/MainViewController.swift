@@ -10,7 +10,7 @@ import Toaster
 
 class MainViewController: UIViewController {
     
-    let dummyHeaderData = ["모두가 좋아하는 든든한 메인 요리", "정성이 담긴 뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    let headerData = ["모두가 좋아하는 든든한 메인 요리", "정성이 담긴 뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
     
     var foodManager: FoodManager = FoodManager()
     
@@ -31,7 +31,6 @@ class MainViewController: UIViewController {
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.delegate = self
         collectionView.dataSource = self
-
     }
     
     func configureCollectionViewLayout() {
@@ -61,13 +60,12 @@ extension MainViewController: UICollectionViewDataSource {
         case 1: return foodManager.soupFood?.count ?? 0
         case 2: return foodManager.sideFood?.count ?? 0
         default:
-            return 10
+            return 0
         }
-        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return headerData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,9 +90,8 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
-        headerView.setTitle(text: dummyHeaderData[indexPath.section])
+        headerView.setTitle(text: headerData[indexPath.section])
         return headerView
     }
 

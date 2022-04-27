@@ -23,7 +23,7 @@ class FoodCell: UICollectionViewCell {
         label.text = "감질맛 나는 매콤한 양념"
         label.font = UIFont.systemFont(ofSize: 14)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
+        label.textColor = .GreyTextColor
         return label
     }()
     
@@ -49,7 +49,7 @@ class FoodCell: UICollectionViewCell {
         }
         
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
+        label.textColor = .GreyTextColor
         return label
     }()
     
@@ -97,7 +97,7 @@ class FoodCell: UICollectionViewCell {
     func setBadgeLabel(_ badge: [String]){
         for str in badge{
             let label = makeEventLabel(text: str)
-            stackView.addArrangedSubview(makeEventLabel(text: str))
+            stackView.addArrangedSubview(label)
         }
     }
     
@@ -106,7 +106,7 @@ class FoodCell: UICollectionViewCell {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.clipsToBounds = true
-        label.backgroundColor = UIColor(red: 0.502, green: 0.737, blue: 1, alpha: 1)
+        label.backgroundColor = .launcingBadgeColor
         label.textColor = .white
         label.layer.cornerRadius = 13
         label.font = UIFont.systemFont(ofSize: 12)
@@ -151,7 +151,6 @@ class FoodCell: UICollectionViewCell {
         
         self.contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         stackView.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
         stackView.leadingAnchor.constraint(equalTo: salePriceLabel.leadingAnchor).isActive = true
