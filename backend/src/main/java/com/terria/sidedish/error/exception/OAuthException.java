@@ -1,9 +1,10 @@
-package com.terria.sidedish.error;
+package com.terria.sidedish.error.exception;
 
+import com.terria.sidedish.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class GitHubOAuthException extends RuntimeException {
+public class OAuthException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
