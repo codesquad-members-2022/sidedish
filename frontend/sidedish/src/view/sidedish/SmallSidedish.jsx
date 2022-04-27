@@ -67,6 +67,7 @@ function SmallSidedish({ isVisible, section, title }) {
                 <Carousel
                     page={page}
                     onUpdatePage={onUpdatePage}
+                    currDataSize={smallSidedishes.length}
                     hasNext={hasNext}
                 >
                     <SidedishCards dishes={currSmallSidedishes}></SidedishCards>
