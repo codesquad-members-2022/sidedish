@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Api(tags = "OrderSheetController")
 @Validated
 @RestController
@@ -25,7 +27,7 @@ public class OrderSheetController {
             response = String.class
     )
     @PostMapping
-    public OrderSheetResponse makeOrderSheet(@ModelAttribute OrderSheetRequest orderSheetRequest) {
+    public OrderSheetResponse makeOrderSheet(@ModelAttribute @Valid OrderSheetRequest orderSheetRequest) {
         return orderSheetService.addOrderSheet(orderSheetRequest);
     }
 }
