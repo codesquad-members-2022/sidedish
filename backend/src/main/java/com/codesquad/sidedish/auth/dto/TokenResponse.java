@@ -1,4 +1,4 @@
-package com.codesquad.sidedish.auth;
+package com.codesquad.sidedish.auth.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
