@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "Pages/Main";
+import Main from "pages/Main";
 import Header from "components/Header";
 
 const App = () => {
@@ -11,6 +11,5 @@ const App = () => {
     </>
   );
 };
-
 
 export default App;
