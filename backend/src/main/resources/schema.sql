@@ -9,6 +9,7 @@ drop table if exists side_dish_image;
 drop table if exists discount_event;
 drop table if exists side_dish_has_discount_event;
 drop table if exists member;
+drop table if exists order_sheet;
 
 set
 foreign_key_checks = 1;
@@ -93,4 +94,14 @@ create table member
     scope        varchar(100) not null comment 'scope',
 
     unique (user_id, provider)
+);
+
+create table order_sheet
+(
+    id           bigint primary key auto_increment,
+    quantity     int      not null comment '주문 개수',
+    total_amount int      not null comment '총 가격',
+    created_at   datetime not null comment '주문 날짜',
+    side_dish_id bigint   not null comment '반찬 아이디',
+    member_id    bigint   not null comment '회원 아이디'
 );
