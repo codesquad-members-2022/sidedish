@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import {Colors} from '@/Constants';
+import { Colors, Fonts } from '@/Constants';
 
 import { CategoryProducts } from './CategoryProducts';
-
 
 const CategoryProductsListWrapper = styled.ul`
   padding: 0 80px;
@@ -28,16 +27,14 @@ const MoreButton = styled.button`
   }
 `;
 
-export const CategoryProductsList = props => {
+export const CategoryProductsList = ({ categoryList }) => {
   const [moreButtonClicked, setMoreButtonClicked] = useState(false);
   const [loadedCategoryProductsIdList, setLoadedCategoryProductsIdList] =
     useState([]);
 
   const handleClickMoreButton = () => {
     setMoreButtonClicked(true);
-    const allCategoryProductsIdList = props.categoryList.map(
-      category => category.id
-    );
+    const allCategoryProductsIdList = categoryList.map(category => category.id);
     const unloadedCategoryProductsIdList = allCategoryProductsIdList.filter(
       id => !loadedCategoryProductsIdList.includes(id)
     );
@@ -48,11 +45,14 @@ export const CategoryProductsList = props => {
   };
 
   useEffect(() => {
-    if (!props.categoryList.length) return;
+    if (!categoryList.length) {
+      return;
+    }
+
     const firstCategoryIdx = 0;
-    const firstCategoryId = props.categoryList[firstCategoryIdx].id;
+    const firstCategoryId = categoryList[firstCategoryIdx].id;
     setLoadedCategoryProductsIdList([firstCategoryId]);
-  }, [props.categoryList]);
+  }, [categoryList]);
 
   return (
     <CategoryProductsListWrapper>
@@ -60,7 +60,7 @@ export const CategoryProductsList = props => {
         <CategoryProducts key={categoryId} categoryId={categoryId} />
       ))}
       {!moreButtonClicked && (
-        <MoreButton onClick={handleClickMoreButton} className={'fonts-lg'}>
+        <MoreButton onClick={handleClickMoreButton} className={Fonts.LG}>
           모든 카테고리 보기
         </MoreButton>
       )}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { fetchData } from '@/Utils';
 
@@ -16,13 +16,30 @@ export const useFetch = url => {
   const [isError, setIsError] = useState(false);
   const [retry, setRetry] = useState(false);
 
+  const abortController = useRef(false);
+  const whileFetching = useRef(false);
+
   useEffect(() => {
-    fetchData(url)
+    if (whileFetching.current) abortController.current.abort();
+
+    abortController.current = new AbortController();
+    whileFetching.current = true;
+
+    setIsError(false);
+    setIsLoaded(false);
+    fetchData(url, { signal: abortController.current.signal })
       .then(responseData => {
+        whileFetching.current = false;
+
         setData(responseData);
         setIsLoaded(true);
       })
       .catch(err => {
+        if (err.name === 'AbortError') {
+          console.warn('aborted');
+          return;
+        }
+
         console.error(err);
         setIsError(true);
       });
@@ -42,7 +59,7 @@ export const useFetch = url => {
         setIsError(true);
         setRetry(false);
       });
-  }, [retry, url]);
+  }, [retry]);
 
   return [data, isLoaded, isError, setRetry];
 };

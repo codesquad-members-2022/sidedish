@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { IconFonts, Fonts } from '@/Constants';
+import { API_URL } from '@/Env';
 import { useFetch } from '@/Hooks';
 
 import { RetryButton } from '@/Components/Button';
@@ -48,7 +49,8 @@ const Slider = styled.div`
 
   .${SLIDE_CONTAINER} {
     transform: translate3d(
-      ${props => -(props.curSlideIndex * props.slideUnitWidth)}px,
+      ${({ curSlideIndex, slideUnitWidth }) =>
+        -(curSlideIndex * slideUnitWidth)}px,
       0,
       0
     );
@@ -101,6 +103,7 @@ const useSlide = ({ slideRef }) => {
 
   const handleClickPrevButton = () => {
     const nextSlideIndex = curSlideIndex - slideViewItemLength;
+
     if (nextSlideIndex < minSlideIndex) {
       setCurSlideIndex(minSlideIndex);
     } else {
@@ -110,6 +113,7 @@ const useSlide = ({ slideRef }) => {
 
   const handleClickNextButton = () => {
     const nextSlideIndex = curSlideIndex + slideViewItemLength;
+
     if (nextSlideIndex < minSlideIndex) {
       setCurSlideIndex(minSlideIndex);
     } else if (nextSlideIndex > maxSlideIndex) {
@@ -123,14 +127,15 @@ const useSlide = ({ slideRef }) => {
     if (!slideRef.current) {
       return;
     }
+
     const _maxSlideIndex =
       slideRef.current.children.length - slideViewItemLength;
+
     if (_maxSlideIndex < 0) {
       setMaxSlideIndex(minSlideIndex);
     } else {
       setMaxSlideIndex(_maxSlideIndex);
     }
-    console.log(2222);
   }, [slideRef.current]);
 
   return [
@@ -144,18 +149,9 @@ const useSlide = ({ slideRef }) => {
 
 /* ****** */
 
-const parse = categoryProductsData => {
-  const title = categoryProductsData.content[0].mainCategory;
-  return {
-    title,
-    content: categoryProductsData.content,
-  };
-};
-
-export const CategoryProducts = props => {
-  const categoryId = props.categoryId;
+export const CategoryProducts = ({ categoryId }) => {
   const [categoryProductsData, isLoaded, isError, setRetry] = useFetch(
-    `/category/${categoryId}`
+    `${API_URL}/categories/${categoryId}/items`
   );
 
   const slideRef = useRef(null);
@@ -183,14 +179,11 @@ export const CategoryProducts = props => {
   if (isError) return <RetryButton onClick={handleClickRetryButton} />;
   if (!isLoaded) return <LoadingSpinner />;
 
-  /* 임시: API 나오면 아마 삭제될 것 같습니다 */
-  const parsedCategoryProductsData = parse(categoryProductsData);
+  const categoryProducts = categoryProductsData.result_body;
 
   return (
     <CategoryProductsWrapper>
-      <Header className={Fonts.XL_BOLD}>
-        {parsedCategoryProductsData.title}
-      </Header>
+      <Header className={Fonts.XL_BOLD}>{categoryProducts.title}</Header>
       <SliderWrapper>
         <Slider
           margin={SLIDE_MARGIN}
@@ -198,11 +191,11 @@ export const CategoryProducts = props => {
           curSlideIndex={curSlideIndex}
         >
           <ProductCardList className={SLIDE_CONTAINER} ref={slideRef}>
-            {parsedCategoryProductsData.content.map(categoryProductData => (
+            {categoryProducts.contents.map(categoryProduct => (
               <ProductCard
                 size={'md'}
-                data={categoryProductData}
-                key={categoryProductData.id}
+                data={categoryProduct}
+                key={categoryProduct.id}
               />
             ))}
           </ProductCardList>

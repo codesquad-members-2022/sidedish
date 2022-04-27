@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
-import { fetchData } from '@/Utils';
+import { API_URL } from '@/Env';
+import { useFetch } from '@/Hooks';
 
+import { BestTemp } from './BestTemp';
 import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Components/Badge';
-import { ProductCard } from '@/Components/ProductCard';
 
-const BestProductWrapper = styled.div`
+const BestProductsWrapper = styled.div`
   display: flex;
   padding: 56px 80px;
   border-bottom: 1px solid ${Colors.LIGHT_GREY};
@@ -22,11 +23,6 @@ const Header = styled.div`
   margin-bottom: 8px;
 `;
 
-const ProductCardList = styled.ul`
-  display: flex;
-  margin-top: 34px;
-`;
-
 const Title = styled.span`
   margin-left: 10px;
 `;
@@ -37,42 +33,28 @@ const BadgeWrapper = styled.div`
 `;
 
 export const BestProducts = () => {
-  const [tabList, setTabList] = useState([]);
+  const [tabList, isLoaded] = useFetch(`${API_URL}/events`);
   const [selectedTabId, setSelectedTabId] = useState(null);
-  const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    fetchData('/events')
-      .then(tabListData => {
-        setTabList(tabListData.content);
-        setSelectedTabId(tabListData.content[0].id);
-      })
-      .catch(err => {
-        //TODO: 에러 핸들링
-        console.error(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (!selectedTabId) {
+    if (!isLoaded) {
       return;
     }
 
-    fetchData(`/event/${selectedTabId}`)
-      .then(selectedTabProductsData => {
-        setCardData(selectedTabProductsData.content);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }, [selectedTabId]);
+    const firstTabIndex = 0;
+    setSelectedTabId(tabList.result_body[firstTabIndex].id);
+  }, [isLoaded]);
 
   const onClickTab = clickedTabId => () => {
     setSelectedTabId(clickedTabId);
   };
 
+  if (!isLoaded) {
+    return;
+  }
+
   return (
-    <BestProductWrapper>
+    <BestProductsWrapper>
       <Header>
         <BadgeWrapper>
           <CategoryBadge />
@@ -84,20 +66,12 @@ export const BestProducts = () => {
       </Header>
 
       <TabList
-        tabData={tabList}
+        tabData={tabList.result_body}
         selectedTabId={selectedTabId}
         onClickTab={onClickTab}
       />
 
-      <ProductCardList>
-        {cardData.map(productCardData => (
-          <ProductCard
-            size={''}
-            data={productCardData}
-            key={productCardData.id}
-          />
-        ))}
-      </ProductCardList>
-    </BestProductWrapper>
+      <BestTemp bestProductsTabId={selectedTabId} />
+    </BestProductsWrapper>
   );
 };

@@ -4,7 +4,7 @@ import { Colors, Fonts } from '@/Constants';
 
 const getBadgeName = type => {
   switch (type) {
-    case 'launch':
+    case 'lunch':
       return '런칭특가';
     case 'event':
       return '이벤트특가';
@@ -15,7 +15,7 @@ const getBadgeName = type => {
 
 const getBadgeBackgroundColor = type => {
   switch (type) {
-    case 'launch':
+    case 'lunch':
       return Colors.ORANGE;
     case 'event':
       return Colors.GREEN;
@@ -28,16 +28,13 @@ const Badge = styled.button`
   padding: 6px 16px;
   color: ${Colors.WHITE};
   border-radius: 999px;
-  background-color: ${props => props.backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   display: inline-block;
 `;
 
 export const DiscountBadge = ({ type }) => {
   return (
-    <Badge
-      className={Fonts.SM}
-      backgroundColor={getBadgeBackgroundColor(type)}
-    >
+    <Badge className={Fonts.SM} backgroundColor={getBadgeBackgroundColor(type)}>
       {getBadgeName(type)}
     </Badge>
   );

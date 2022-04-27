@@ -25,11 +25,11 @@ const SubMenuList = styled.ul`
 export const Menu = ({ category, subMenuOpen }) => {
   return (
     <MenuWrapper>
-      <span>{category.main}</span>
+      <span>{category.title}</span>
       {subMenuOpen ? (
         <SubMenuList className={Fonts.SM}>
-          {category.subs.map((sub, idx) => (
-            <li key={idx}>{sub}</li>
+          {category.subCategories.map((subCategory) => (
+            <li key={subCategory.id}>{subCategory.title}</li>
           ))}
         </SubMenuList>
       ) : null}
