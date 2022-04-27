@@ -1,28 +1,31 @@
 package kr.codesquad.sidedish.domain;
 
+import org.springframework.data.relational.core.mapping.Column;
+
 public class Image {
 
     private final Long id;
-    private final String name;
+    @Column("NAME")
+    private final String path;
 
-    public Image(Long id, String name) {
+    public Image(Long id, String path) {
         this.id = id;
-        this.name = name;
+        this.path = path;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getPath() {
+        return path;
     }
 
     @Override
     public String toString() {
         return "Image{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", path='" + path + '\'' +
                 '}';
     }
 }

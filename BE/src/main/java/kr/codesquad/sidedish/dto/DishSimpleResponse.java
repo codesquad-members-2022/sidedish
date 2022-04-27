@@ -36,7 +36,7 @@ public class DishSimpleResponse {
 
     public static DishSimpleResponse of(Dish dish) {
         return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(),
-                dish.getImageName(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
+                dish.getImagePath(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
                 dish.getDeliveryType(), dish.getDiscountPolicy());
     }
 

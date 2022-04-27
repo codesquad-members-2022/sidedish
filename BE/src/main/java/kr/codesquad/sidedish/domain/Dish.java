@@ -81,8 +81,8 @@ public class Dish {
         return this.discountPolicy.calculate(this.price);
     }
 
-    public String getImageName(int imageIndex) {
-        return this.images.get(imageIndex).getName();
+    public String getImagePath(int imageIndex) {
+        return this.images.get(imageIndex).getPath();
     }
 
     public double getPointPercent() {

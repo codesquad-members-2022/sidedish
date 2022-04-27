@@ -40,4 +40,13 @@ class JdbcDishRepositoryTest {
 
         List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(1L, pageRequest);
     }
+
+    @Test
+    void findDishesByOtherCategoryId() {
+
+        List<Dish> dishesByOtherCategoryId = jdbcDishRepository.findDishesByOtherCategoryId(1L);
+        for (Dish dish : dishesByOtherCategoryId) {
+            System.out.println(dish);
+        }
+    }
 }

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.dto.DishDetailResponse;
+import kr.codesquad.sidedish.dto.DishRecommendation;
 import kr.codesquad.sidedish.dto.DishSimpleResponse;
 import kr.codesquad.sidedish.repository.JdbcDishRepository;
 import org.springframework.data.domain.PageRequest;
@@ -31,7 +32,19 @@ public class DishService {
         PageRequest p = PageRequest.of(currentPage, PAGE_SIZE);
 
         return jdbcDishRepository.findDishesByCategoryId(categoryId, p)
-                .stream().map(DishSimpleResponse::of)
+                .stream()
+                .map(DishSimpleResponse::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<DishRecommendation> findDishRecommendations(Long id) {
+        Dish dish = jdbcDishRepository.findById(id).orElseThrow();
+        Long categoryId = dish.getCategoryId();
+
+        List<Dish> dishesByOtherCategoryId = jdbcDishRepository.findDishesByOtherCategoryId(categoryId);
+
+        return dishesByOtherCategoryId.stream()
+                .map(DishRecommendation::from)
                 .collect(Collectors.toList());
     }
 
