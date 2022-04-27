@@ -1,3 +1,10 @@
+const cardSize = {
+  large: "41.1rem",
+  medium: "30.2rem",
+  small: "16rem",
+  gap: "2.4rem",
+};
+
 const fontSize = {
   display: "4rem",
   xLarge: "2.4rem",
@@ -28,6 +35,7 @@ const color = {
 };
 
 const theme = {
+  cardSize,
   fontSize,
   fontWeight,
   color,

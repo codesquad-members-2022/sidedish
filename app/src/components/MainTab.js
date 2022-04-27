@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import theme from "../styles/theme.js";
 import CardList from "./CardList.js";
 import { FlexMarginCenter } from "../styles/utils.js";
+import { Horizon } from "../styles/utils.js";
+
+const Wrapper = styled.div`
+  width: calc(144rem - 8rem * 2);
+  margin: 0 auto;
+`;
 
 const Header = styled(FlexMarginCenter)`
   box-sizing: border-box;
@@ -51,13 +57,6 @@ const Tab = styled(FlexMarginCenter)`
   padding-left: 8rem;
 `;
 
-const Horizon = styled.hr`
-  background-color: ${({ theme }) => theme.color.grey4};
-  height: 1px;
-  border: 0;
-  margin: 0;
-`;
-
 const MainTab = ({ dish }) => {
   const tabTexts = [
     "풍성한 고기 반찬",
@@ -99,7 +98,7 @@ const MainTab = ({ dish }) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Header>
         <Badge>
           <strong>기획전</strong>
@@ -121,18 +120,21 @@ const MainTab = ({ dish }) => {
           })}
         </Tab>
         <Horizon />
-        {tabCards.map((cards, index) => (
-          <CardList
-            key={tabKeys[index]}
-            cards={cards}
-            tabNumber={tabNumber}
-            index={index}
-            cardSize={"large"}
-          />
-        ))}
+        <Wrapper>
+          {tabCards.map((cards, index) => (
+            <CardList
+              key={tabKeys[index]}
+              cards={cards}
+              tabNumber={tabNumber}
+              index={index}
+              cardSize={theme.cardSize.large}
+              gap={theme.cardSize.gap}
+            />
+          ))}
+        </Wrapper>
         <Horizon />
       </Main>
-    </ThemeProvider>
+    </>
   );
 };
 

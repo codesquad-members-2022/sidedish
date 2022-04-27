@@ -1,17 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import theme from "../styles/theme.js";
+import { useContext } from "react";
+import styled from "styled-components";
 import { Badge } from "../styles/utils.js";
-
-const cardSize = {
-  large: '41.1rem',
-  medium: '30.2rem',
-  small: '16rem',
-};
+import { ModalContext } from "../contexts/ModalContext.js";
 
 const Wrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 const Badges = styled.div`
@@ -20,7 +15,7 @@ const Badges = styled.div`
 
 const Image = styled.img`
   display: block;
-  width: ${({ cardSize, size }) => cardSize[size]};
+  width: ${({ size }) => size};
 `;
 
 const Info = styled.div`
@@ -65,8 +60,8 @@ const Dimmer = styled.div`
   box-sizing: border-box;
   position: absolute;
   top: 0;
-  width: ${({ cardSize, size }) => cardSize[size]};
-  height: ${({ cardSize, size }) => cardSize[size]};
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
   background: ${({ theme }) => theme.color.black};
   opacity: 0.1;
 `;
@@ -98,9 +93,9 @@ const HoverInfo = styled.div`
 const Thumbnail = ({ src, alt, size, deliveryType }) => {
   return (
     <Wrapper>
-      <Image cardSize={cardSize} size={size} src={src} alt={alt} />
+      <Image size={size} src={src} alt={alt} />
       <DimmedLayer>
-        <Dimmer cardSize={cardSize} size={size}></Dimmer>
+        <Dimmer size={size}></Dimmer>
         <HoverInfo>
           <div className="info">{deliveryType[0]}</div>
           <hr className="line"></hr>
@@ -112,9 +107,16 @@ const Thumbnail = ({ src, alt, size, deliveryType }) => {
 };
 
 const Card = ({ card, size }) => {
+  const modal = useContext(ModalContext);
+
+  const handleCardClick = () => {
+    modal.setShowModal(!modal.showModal);
+    modal.setProductHash(card.detail_hash);
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Wrapper>
+    <>
+      <Wrapper onClick={handleCardClick}>
         <Thumbnail
           src={card.image}
           alt={card.alt}
@@ -131,23 +133,23 @@ const Card = ({ card, size }) => {
           <Badges>
             {card.badge
               ? card.badge
-                  .filter(badge => badge !== '메인특가')
-                  .map(badge =>
-                    badge === '런칭특가' ? (
-                      <Badge key={'lauching'} bgColor={'orange'}>
-                        {badge}
-                      </Badge>
-                    ) : (
-                      <Badge key={'event'} bgColor={'green'}>
-                        {badge}
-                      </Badge>
-                    ),
-                  )
+                .filter(badge => badge !== '메인특가')
+                .map(badge =>
+                  badge === '런칭특가' ? (
+                    <Badge key={'lauching'} bgColor={'orange'}>
+                      {badge}
+                    </Badge>
+                  ) : (
+                    <Badge key={'event'} bgColor={'green'}>
+                      {badge}
+                    </Badge>
+                  ),
+                )
               : null}
           </Badges>
         </Info>
       </Wrapper>
-    </ThemeProvider>
+    </>
   );
 };
 
