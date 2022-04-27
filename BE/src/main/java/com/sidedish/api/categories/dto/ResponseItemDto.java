@@ -5,6 +5,7 @@ import com.sidedish.domain.Images;
 import com.sidedish.domain.Item;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import lombok.Getter;
 
@@ -26,7 +27,7 @@ public class ResponseItemDto {
         this.description = item.getDescription();
         this.price = item.getPrice();
         this.badge = item.getBadge();
-        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)));
+        this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)).setScale(0, RoundingMode.FLOOR));
         this.rewardPoint = item.getRewardPoint();
         this.images = item.getImage();
     }

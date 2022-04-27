@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sidedish
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${ACCESS_ID}
+    password: ${ACCESS_PASSWORD}
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:/data/schema.sql
+      data-locations: classpath:/data/data.sql
+server:
+  port: 8080
