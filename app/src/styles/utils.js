@@ -26,6 +26,13 @@ export const Badge = styled.strong`
   color: ${({ theme }) => theme.color.white};
 `;
 
+export const Horizon = styled.hr`
+  background-color: ${({ theme }) => theme.color.grey4};
+  height: 1px;
+  border: 0;
+  margin: 0;
+`;
+
 export const Background = styled.div`
   position: absolute;
   top: 0;
