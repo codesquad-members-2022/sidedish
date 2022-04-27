@@ -7,4 +7,5 @@ import team31.codesuqad.sidedish.domain.EventTabs;
 public interface EventTabsRepository extends CrudRepository<EventTabs, Integer> {
 
     EventTabs findByName(@Param("name") String name);
+
 }

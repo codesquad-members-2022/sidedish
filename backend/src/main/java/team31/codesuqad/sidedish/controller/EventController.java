@@ -21,4 +21,5 @@ public class EventController {
         Event event = Event.valueOfOrNull(eventTab);
         return eventService.getEventTab(event);
     }
+
 }

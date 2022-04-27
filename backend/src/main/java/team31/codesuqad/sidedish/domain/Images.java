@@ -32,4 +32,5 @@ public class Images {
     public String getUrl() {
         return url;
     }
+
 }

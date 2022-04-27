@@ -17,4 +17,5 @@ public class Discount {
     public Integer getDiscountPolicyId() {
         return discountPolicyId;
     }
+
 }

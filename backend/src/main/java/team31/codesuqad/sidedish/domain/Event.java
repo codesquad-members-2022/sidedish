@@ -1,6 +1,7 @@
 package team31.codesuqad.sidedish.domain;
 
 public enum Event {
+
     MEAT,
     SIDE,
     SEASON,
@@ -9,8 +10,9 @@ public enum Event {
     public static Event valueOfOrNull(String eventTab) {
         try {
             return valueOf(eventTab.toUpperCase());
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return null;
         }
     }
+
 }

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SidedishApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SidedishApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SidedishApplication.class, args);
+    }
 
 }

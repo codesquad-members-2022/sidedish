@@ -18,4 +18,5 @@ public class DishesService {
     public List<Dishes> findAll() {
         return dishesRepository.findAll();
     }
+
 }

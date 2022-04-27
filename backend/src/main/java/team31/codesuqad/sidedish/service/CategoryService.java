@@ -16,4 +16,5 @@ public class CategoryService {
     public CategoryNames findAll() {
         return new CategoryNames(categoryRepository.findAll());
     }
+
 }

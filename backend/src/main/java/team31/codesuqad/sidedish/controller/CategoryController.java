@@ -14,7 +14,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/api/dish/categories")
+    @GetMapping("/api/dish/categorynames")
     public CategoryNames getCategoryNames() {
         return categoryService.findAll();
     }

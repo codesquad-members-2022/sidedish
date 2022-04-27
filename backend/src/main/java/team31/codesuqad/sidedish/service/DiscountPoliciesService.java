@@ -18,4 +18,5 @@ public class DiscountPoliciesService {
     public List<DiscountPolicies> findAll() {
         return discountPoliciesRepository.findAll();
     }
+
 }

@@ -9,4 +9,5 @@ public interface DiscountPoliciesRepository extends CrudRepository<DiscountPolic
 
     @Override
     List<DiscountPolicies> findAll();
+
 }

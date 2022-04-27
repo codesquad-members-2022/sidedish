@@ -88,4 +88,5 @@ public class Dishes {
     public List<DiscountPolicies> getEventBadge() {
         return eventBadge;
     }
+
 }

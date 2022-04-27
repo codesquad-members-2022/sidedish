@@ -26,4 +26,5 @@ public class EventTabs {
     public String getDescription() {
         return description;
     }
+
 }
