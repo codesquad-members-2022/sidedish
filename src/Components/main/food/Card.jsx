@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import {
   F_basic,
@@ -10,16 +11,6 @@ import Title from '../../Title';
 
 const ImgWrap = styled.div`
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-  }
 `;
 
 const ImgTag = styled.img`
@@ -28,13 +19,28 @@ const ImgTag = styled.img`
 `;
 
 function Img({ data }) {
+  const [isHover, setIsHover] = useState(false);
+
+  const hoverHandler = () => {
+    setIsHover(!isHover);
+  };
+
   return (
-    <ImgWrap>
+    <ImgWrap onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}>
       <ImgTag src={data.img} alt={data.alt} />
-      <Delivery delivery_type={data.delivery} />
+      {isHover ? <Delivery delivery_type={data.delivery} /> : null}
     </ImgWrap>
   );
 }
+
+const DeleveryBg = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+`;
 
 const DeleveryBox = styled.div`
   position: absolute;
@@ -66,7 +72,11 @@ function Delivery({ delivery_type }) {
     <span key={idx}>{type}</span>
   ));
 
-  return <DeleveryBox>{DELIVERY_INFO}</DeleveryBox>;
+  return (
+    <DeleveryBg>
+      <DeleveryBox>{DELIVERY_INFO}</DeleveryBox>
+    </DeleveryBg>
+  );
 }
 
 const TestWrap = styled.div`
