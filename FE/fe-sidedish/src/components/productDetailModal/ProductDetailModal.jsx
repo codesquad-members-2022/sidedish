@@ -4,6 +4,10 @@ import Portal from '../portal/Portal';
 import ProductImages from './ProductImages';
 import ProductInfo from './ProductInfo';
 import ProductOrder from './ProductOrder';
+import Category from '../category/Category';
+import { CARD_SIZE } from '../../constants/card';
+import { dish10 } from '../../data/dishes';
+import React from 'react';
 
 const ProductDetailModal = ({ productDetail, toggleModal }) => {
   const { orderable, images, menuName, originalPrice, discountedPrice, point, event } =
@@ -33,7 +37,9 @@ const ProductDetailModal = ({ productDetail, toggleModal }) => {
 
         <S.HorizontalLine color={BLACK} size={2} />
 
-        <S.RelateProductContainer>{/* 연관상품 슬라이더 */}</S.RelateProductContainer>
+        <S.RelateProductContainer>
+          <Category cardSize={CARD_SIZE.SMALL} {...dish10} />
+        </S.RelateProductContainer>
       </S.Modal>
       <S.Background onClick={toggleModal} />
     </S.Wrapper>

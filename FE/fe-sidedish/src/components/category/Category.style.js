@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { CARD_SIZE } from '../../constants/card';
 
 const Container = styled.section`
   margin-top: 50px;
+  ${({ cardSize }) => cardSize === CARD_SIZE.SMALL && SmallContainer}
 `;
 
 const Wrapper = styled.div`
@@ -18,8 +20,17 @@ const Title = styled.h2`
   margin-bottom: 40px;
 `;
 
-export {
-  Container,
-  Wrapper,
-  Title,
-};
+const SmallContainer = css`
+  margin-top: 0;
+  
+  ${Wrapper} {
+    padding: 0;
+  }
+
+  ${Title} {
+    font-size: ${({ theme }) => `${theme.fontSize.large}`};
+    margin-bottom: 28px;
+  }
+`;
+
+export { Container, Wrapper, Title };

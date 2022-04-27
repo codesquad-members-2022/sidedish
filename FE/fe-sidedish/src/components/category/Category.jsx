@@ -1,14 +1,12 @@
 import * as S from './Category.style';
-import { CARD_SIZE } from '../../constants/card';
 import Slide from '../slider/Slide';
 
-const Category = ({ category, categoryList }) => {
+const Category = ({ cardSize, category, categoryList }) => {
   return (
-    <S.Container>
+    <S.Container cardSize={cardSize}>
       <S.Wrapper>
         <S.Title>{category}</S.Title>
-        <Slide cardSize={CARD_SIZE.MEDIUM} cardList={categoryList} />
-        <Slide cardSize={CARD_SIZE.SMALL} cardList={categoryList} />
+        <Slide cardSize={cardSize} cardList={categoryList} />
       </S.Wrapper>
     </S.Container>
   );
