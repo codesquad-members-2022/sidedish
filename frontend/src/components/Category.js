@@ -13,17 +13,17 @@ const ExtendingButton = styled.div`
 const CarouselWrapper = styled.div`
   position: relative;
   padding: 56px 80px;
-`
+`;
 
-export const Category = ({ cats }) => {
+export const Category = ({ categories }) => {
   const [extended, setExtended] = useState(false);
-  const displayTargetCategories = extended ? cats : [cats[0]];
+  const displayTargetCategories = extended ? categories : [categories[0]];
 
   return (
     <>
       {displayTargetCategories.map((cat) => (
         <CarouselWrapper key={cat.id}>
-          <HorizontalLine  position={0} color={"Grey4"} />
+          <HorizontalLine position={0} color={"Grey4"} />
           <Carousel id={cat.id} name={cat.name} size={SIZES.medium} />
         </CarouselWrapper>
       ))}

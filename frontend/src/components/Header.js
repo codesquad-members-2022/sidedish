@@ -1,10 +1,15 @@
 import styled from "styled-components";
-import { custom_absolute, custom_flex, width_height_bypx } from "../styles/global";
+import {
+  custom_absolute,
+  custom_flex,
+  width_height_bypx,
+} from "../styles/global";
 import { useState } from "react";
-import { GnbMenu } from "./GnbMenu";
+
 import { Logo } from "../icons/Logo";
-import { HorizontalLine } from "./HorizontalLine";
+import { Line, HorizontalLine } from "./HorizontalLine";
 import { headerIcons } from "../icons/headerIcons";
+import { Gnb } from "./Gnb";
 
 const HeaderWrapper = styled.header`
   position: relative;
@@ -17,7 +22,7 @@ const HeaderWrapper = styled.header`
 const HeaderLogoWrapper = styled.div`
   margin: 16px 0px 0px 80px;
   height: 50px;
-  ${custom_flex('row', 'center')}
+  ${custom_flex("row", "center")}
 `;
 
 const HeaderLogo = () => (
@@ -25,12 +30,6 @@ const HeaderLogo = () => (
     <Logo />
   </HeaderLogoWrapper>
 );
-
-const GNB = styled.div`
-  margin: 28px;
-  ${custom_flex(`row`, `flex-start`, `center`)}
-  ${(props) => props.extended && `margin-bottom: 40px;`}
-`;
 
 const IconWrapper = styled.div`
   ${custom_flex("row", "center", "space-between")}
@@ -43,17 +42,11 @@ const Icon = styled.div`
   ${width_height_bypx(32, 32)}
 `;
 
-export const Header = ({ cats }) => {
-  const [extended, setExtended] = useState(false);
-
+export const Header = ({ categories }) => {
   return (
     <HeaderWrapper>
       <HeaderLogo />
-      <GNB onMouseEnter={() => setExtended(true)} onMouseLeave={() => setExtended(false)} extended={extended}>
-        {cats.map((cat, index) => (
-          <GnbMenu key={index} {...cat} extended={extended}></GnbMenu>
-        ))}
-      </GNB>
+      <Gnb categories={categories} />
       <IconWrapper>
         <Icon>{headerIcons.SearchIcon()}</Icon>
         <Icon>{headerIcons.MyPageIcon()}</Icon>

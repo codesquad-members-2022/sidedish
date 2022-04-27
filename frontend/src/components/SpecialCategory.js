@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { CardList } from "./CardList";
-import { SIZES } from "../convention";
+import { Queries, SIZES } from "../convention";
 import { useFetch } from "../fetcher";
 import { custom_flex, custom_font } from "../styles/global";
 import { HorizontalLine } from "./HorizontalLine";
@@ -16,7 +16,7 @@ const TitleWrapper = styled.div`
 
 const TitleBadge = styled.div`
   ${custom_font("Noto Sans KR", 16, 500, 26)}
-  background: ${({theme}) => theme.colors.Off_White};
+  background: ${({ theme }) => theme.colors.Off_White};
   border: 2px solid #1b1b1b;
   border-radius: 999px;
   box-sizing: border-box;
@@ -38,13 +38,17 @@ const TabItem = styled.li`
   margin-right: 32px;
   padding-bottom: 17px;
   ${custom_font("Noto Sans KR", 20, 500, 30, -0.008)}
-  ${custom_flex('row','center','center')}
-  ${(props) => props.selected && css`border-bottom: 2px solid black`}
+  ${custom_flex("row", "center", "center")}
+  ${(props) =>
+    props.selected &&
+    css`
+      border-bottom: 2px solid black;
+    `}
 `;
 
 export const SpecialCategory = ({ specialCategories }) => {
   const [selected, setSelected] = useState(specialCategories[0].id);
-  const categoryData = useFetch(selected, true);
+  const categoryData = useFetch(Queries.specialCategoryProducts, selected);
 
   return (
     <Wrapper>
@@ -64,7 +68,10 @@ export const SpecialCategory = ({ specialCategories }) => {
         ))}
         <HorizontalLine position={100} color={"Grey4"} />
       </TabBar>
-      <CardList products={categoryData?.products} cardSize={SIZES.large}></CardList>
+      <CardList
+        products={categoryData?.products}
+        cardSize={SIZES.large}
+      ></CardList>
     </Wrapper>
   );
 };

@@ -1,5 +1,3 @@
-import { width_height_bypx } from "./styles/global";
-
 export const tagConvetion = {
   1: {
     color: "Green",
@@ -14,8 +12,8 @@ export const tagConvetion = {
 export const cardGapLength = {
   large: 24,
   medium: 24,
-  small: 16
-}
+  small: 16,
+};
 
 export const thumbnailSize = {
   large: 411,
@@ -42,4 +40,25 @@ export const cardListArea = {
   large: [1281, 565],
   medium: [1280, 479],
   small: [864, 226],
+};
+export const Queries = {
+  categories: "categories",
+  specialCategories: "specialCategories",
+  specialCategoryProducts: "specialCategoryProducts",
+  categoryProducts: "categoryProducts",
+  product: "product",
+};
+
+export const requestQuery = {
+  queries: {
+    categories: (id = undefined) => "/mocks/categories.json",
+    specialCategories: (id = undefined) => "/mocks/specialCategories.json",
+    specialCategoryProducts: (id = undefined) =>
+      "/mocks/specialCategoryProducts.json",
+    product: (id = undefined) => "/mocks/product.json",
+    categoryProducts: (id = undefined) => "/mocks/categoryProducts.json",
+  },
+  makeQuery: (target, id) => {
+    return requestQuery.queries[target](id);
+  },
 };

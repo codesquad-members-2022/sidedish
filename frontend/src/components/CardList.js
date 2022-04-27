@@ -19,7 +19,7 @@ export const CardList = ({ products, cardSize, curIndex = 0 }) => {
   useEffect(() => {
     sliderRef.current.style.transition = `0.4s ease-out`;
     sliderRef.current.style.transform = `translateX(-${
-      curIndex * (24 + thumbnailSize[cardSize])
+      curIndex * (cardGapLength[cardSize] + thumbnailSize[cardSize])
     }px)`;
   }, [curIndex]);
   return (

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const HorizontalLine = styled.div`
-  position: absolute;
+export const Line = styled.div`
   width: 100%;
   height: 1px;
+  background: ${({ theme, color }) => theme.colors[color || "Grey4"]};
+`;
+export const HorizontalLine = styled(Line)`
+  position: absolute;
   left: 0vw;
-  top: ${({position}) => `${position}%`};
-  background-color: ${({ color, theme }) => theme.colors[color]};
-  `;
-  
-  // ${({ position }) => (position === "top" ? "top: 0px" : "bottom:0px")};
+  top: ${({ position }) => `${position}%`};
+`;
