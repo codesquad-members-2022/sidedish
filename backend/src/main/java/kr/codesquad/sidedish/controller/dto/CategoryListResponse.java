@@ -1,8 +1,9 @@
 package kr.codesquad.sidedish.controller.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -14,19 +15,19 @@ public class CategoryListResponse {
     @AllArgsConstructor
     public static class Element {
 
-        Long id;
-        String name;
-        String description;
+        private final Long id;
+        private final String name;
+        private final String description;
 
-        List<SubElement> subcategories;
+        private final List<SubElement> subcategories;
     }
 
     @Getter
     @AllArgsConstructor
     public static class SubElement {
 
-        Long id;
-        String name;
+        private final Long id;
+        private final String name;
     }
 
 }

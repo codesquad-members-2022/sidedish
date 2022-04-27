@@ -6,10 +6,10 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @RequiredArgsConstructor
-public class Theme {
+public class Discount {
 
     @Id
     private Long id;
     private final String name;
-
+    private final Float discountRate;
 }

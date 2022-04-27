@@ -2,14 +2,12 @@ package kr.codesquad.sidedish.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.ToString;
 
 @Getter
 @RequiredArgsConstructor
-public class Theme {
+@ToString
+public class VariantImage {
 
-    @Id
-    private Long id;
-    private final String name;
-
+    private final String url;
 }
