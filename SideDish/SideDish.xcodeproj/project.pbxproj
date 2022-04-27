@@ -36,6 +36,7 @@
 		B511E018281337B100B87FB7 /* RepositoryApplicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E017281337B100B87FB7 /* RepositoryApplicable.swift */; };
 		B511E01B2813DA8900B87FB7 /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01A2813DA8900B87FB7 /* MockRepository.swift */; };
 		B511E01D2813E2F900B87FB7 /* JSONHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */; };
+		B533884F281950A500072B5C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533884E281950A500072B5C /* DetailViewController.swift */; };
 		B5B0B8312810FA87005CE46B /* JSONHandler.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
 		B5B0B8322810FA87005CE46B /* Food.swift in Resources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
 		B5B0B8332810FA87005CE46B /* Ordering.swift in Resources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
@@ -95,6 +96,7 @@
 		B511E017281337B100B87FB7 /* RepositoryApplicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryApplicable.swift; sourceTree = "<group>"; };
 		B511E01A2813DA8900B87FB7 /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 		B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandlerTest.swift; sourceTree = "<group>"; };
+		B533884E281950A500072B5C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B5B0B83B281106EB005CE46B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B0B83D281106ED005CE46B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B5B0B83F28110726005CE46B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B0B83F28110726005CE46B /* MainViewController.swift */,
+				B533884E281950A500072B5C /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */,
 				B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */,
 				B50782C12818497700445859 /* MockDataCachingManager.swift in Sources */,
+				B533884F281950A500072B5C /* DetailViewController.swift in Sources */,
 				B50782B82816866900445859 /* NetworkHandler.swift in Sources */,
 				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
 				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
