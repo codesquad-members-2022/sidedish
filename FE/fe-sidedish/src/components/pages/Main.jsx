@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+
+import { CARD_SIZE } from '../../constants/card';
+
+import exhibition from '../../data/exhibition';
+import { dish10 } from "../../data/dishes";
+
 import Exhibition from "../exhibition/Exhibition";
 import Category from "../category/Category";
-import { dish10 } from "../../data/dishes";
-import { CARD_SIZE } from '../../constants/card';
 import AlertModal from '../modal/AlertModal';
 
 const Main = () => {
@@ -13,7 +17,7 @@ const Main = () => {
 
   return (
     <>
-      <Exhibition />
+      <Exhibition { ...exhibition } />
       <Category cardSize={CARD_SIZE.MEDIUM} {...dish10} />
       <button onClick={openAlertModal}>Open Alert Modal</button>
       {isAlertModalOpen && (

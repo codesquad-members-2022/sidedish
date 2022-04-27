@@ -1,18 +1,19 @@
-import { createPortal } from 'react-dom';
-import { Background, Container, Content, CloseButton } from './Modal.style';
+import * as S from './Modal.style';
+
+import { MODAL_TYPE } from '../../constants/portal';
+
+import Portal from '../portal/Portal';
 
 const AlertModal = ({ alertContent, setIsAlertModalOpen }) => {
-
   const closeAlertModal = () => setIsAlertModalOpen(false);
 
-  return createPortal(
-    <Background>
-      <Container>
-        <Content>{alertContent}</Content>
-        <CloseButton onClick={closeAlertModal}>확인</CloseButton>
-      </Container>
-    </Background>,
-    document.getElementById('portal'),
+  return (
+    <Portal modalType={MODAL_TYPE.ALERT}>
+      <S.Modal>
+        <S.Content>{alertContent}</S.Content>
+        <S.CloseButton onClick={closeAlertModal}>확인</S.CloseButton>
+      </S.Modal>
+    </Portal>
   );
 };
 

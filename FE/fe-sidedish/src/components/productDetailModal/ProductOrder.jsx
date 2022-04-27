@@ -8,13 +8,14 @@ import {
   COST_LABEL,
   COST_ITEM_SIZE,
   DELIVERY,
+  BUTTON_LABEL
 } from '../../constants/productDetailModal';
 import { formatPrice } from '../../utils';
 
 import IconButton from './IconButton';
 import CostItem from './CostItem';
 
-const ProductOrder = ({ orderable, price }) => {
+const ProductOrder = ({ orderable, price, openAlertModal }) => {
   const [amount, setAmount] = useState(AMOUNT_UNIT);
   const [deliveryFee, setDeliveryFee] = useState(DELIVERY.BASIC_FEE);
 
@@ -59,7 +60,7 @@ const ProductOrder = ({ orderable, price }) => {
           cost={formatPrice(deliveryFee)}
         />
       </S.TotalCostList>
-      <S.SubmitButton orderable={orderable}>{orderable ? '주문하기' : '품절'}</S.SubmitButton>
+      <S.SubmitButton orderable={orderable} onClick={openAlertModal}>{orderable ? BUTTON_LABEL.ORDERABLE : BUTTON_LABEL.SOLD_OUT}</S.SubmitButton>
     </S.PriceOrderContainer>
   );
 };

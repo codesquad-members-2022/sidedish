@@ -1,8 +1,16 @@
 import ReactDOM from 'react-dom';
+import * as S from './Portal.style';
 
-const Portal = ({ children, wrapperId }) => {
-  const wrapperEl = document.getElementById(wrapperId);
-  return ReactDOM.createPortal(children, wrapperEl);
+import { PORTAL_WRAPPER_ID } from '../../constants/productDetailModal';
+
+const Portal = ({ modalType, children, toggleModal, modalRef }) => {
+  const wrapperEl = document.getElementById(PORTAL_WRAPPER_ID);
+  return ReactDOM.createPortal(
+    <S.Background modalType={modalType} onClick={toggleModal} ref={modalRef}>
+      {children}
+    </S.Background>,
+    wrapperEl,
+  );
 };
 
 export default Portal;

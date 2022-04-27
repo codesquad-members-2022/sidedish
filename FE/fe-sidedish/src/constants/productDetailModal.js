@@ -1,4 +1,4 @@
-export const PORTAL_WRAPPER_ID = 'productDetailModal';
+export const PORTAL_WRAPPER_ID = 'portal';
 
 export const AMOUNT_UNIT = 1;
 
@@ -42,4 +42,9 @@ export const ICON_NAME = {
 export const LINE_SIZE = {
   THIN: 1,
   THICK: 2,
+};
+
+export const BUTTON_LABEL = {
+  SOLD_OUT: '품절',
+  ORDERABLE: '주문하기',
 };

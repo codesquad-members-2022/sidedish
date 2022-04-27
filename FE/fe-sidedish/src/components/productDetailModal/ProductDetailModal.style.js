@@ -3,18 +3,6 @@ import styled from 'styled-components';
 const EVENT = '이벤트특가';
 const SMALL = 'small';
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 3000;
-`;
-
 const Modal = styled.div`
   width: 960px;
   position: relative;
@@ -28,17 +16,6 @@ const CloseButton = styled.button`
   top: 32px;
   right: 48px;
   color: ${({ theme }) => theme.color.grey2};
-`;
-
-const Background = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: ${({ theme }) => theme.color.black};
-  opacity: 0.3;
-  z-index: 3000;
 `;
 
 const HorizontalLine = styled.div`
@@ -189,10 +166,8 @@ const SubmitButton = styled.button`
 `;
 
 export {
-  Wrapper,
   Modal,
   CloseButton,
-  Background,
   HorizontalLine,
   FloatContainer,
   ProductDetailContainer,

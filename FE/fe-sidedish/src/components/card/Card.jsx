@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import * as S from './Card.style';
 import { CARD_SIZE } from '../../constants/card';
 import Badges from './Badges';
@@ -10,13 +10,22 @@ import productDetail from '../../data/productDetail';
 const Card = ({ cardSize, dish }) => {
   const { menuName, description, image, originalPrice, saledPrice, event } = dish;
 
+  const modalRef = useRef(null);
+
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const toggleModal = () => (isOpenModal ? setIsOpenModal(false) : setIsOpenModal(true));
+  const toggleModal = e => {
+    (isOpenModal && e.target === modalRef.current) && setIsOpenModal(false);
+    !isOpenModal && setIsOpenModal(true);
+  };
 
   return (
     <>
       {isOpenModal && (
-        <ProductDetailModal productDetail={productDetail} toggleModal={toggleModal} />
+        <ProductDetailModal
+          productDetail={productDetail}
+          toggleModal={toggleModal}
+          modalRef={modalRef}
+        />
       )}
 
       <S.Container onClick={toggleModal}>
