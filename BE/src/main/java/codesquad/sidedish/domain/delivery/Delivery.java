@@ -10,6 +10,11 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class Delivery {
+
+    public static final int FREE_DELIVERY_FEE = 0;
+    public static final int DEFAULT_DELIVERY_FEE = 2500;
+    public static final int MINIMUM_PRICE_FOR_FREE_DELIVERY = 40000;
+
     private Long deliveryId;
     private int deliveryFee;
     private DeliveryType deliveryType;
