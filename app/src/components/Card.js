@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { useState, useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import theme from "../styles/theme.js";
+import { useContext } from "react";
+import styled from "styled-components";
 import { Badge } from "../styles/utils.js";
 import { ModalContext } from "../contexts/ModalContext.js";
 

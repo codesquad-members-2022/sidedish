@@ -46,14 +46,17 @@ function App() {
           >
             <MainTab dish={dishData} />
             {showModal && (
-              <Modal showModalPopup={showModalPopup} productHash={productHash} />
+              <Modal
+                showModalPopup={showModalPopup}
+                productHash={productHash}
+              />
             )}
             <Category dish={sideDish} category={"SIDE"} />
             <Category dish={soupDish} category={"SOUP"} />
             <Category dish={mainDish} category={"MAIN"} />
           </ModalContext.Provider>
-        </ThemeProvider>
-      </main>
+        </main>
+      </ThemeProvider>
     </>
   );
 }
