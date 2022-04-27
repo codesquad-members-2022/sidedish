@@ -24,8 +24,8 @@ public class Image {
     @Override
     public String toString() {
         return "Image{" +
-                "id=" + id +
-                ", path='" + path + '\'' +
-                '}';
+            "id=" + id +
+            ", path='" + path + '\'' +
+            '}';
     }
 }

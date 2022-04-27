@@ -31,7 +31,7 @@ public class OrderService {
         Dish dish = jdbcDishRepository.findById(dishId)
             .orElseThrow(() -> new BusinessException(ErrorCode.NoDishError));
         return new Reciept(orderRequest.getUserEmail(), dish.getName(),
-                quantity, dish.getDiscountPrice() * quantity);
+            quantity, dish.getDiscountPrice() * quantity);
     }
 
 

@@ -33,8 +33,8 @@ public class DishController {
 
     @GetMapping("")
     public ResponseEntity<List<DishSimpleResponse>> showPagedDishes(
-            @RequestParam("categoryId") Long categoryId,
-            @RequestParam("lastDishId") Long lastDishId) {
+        @RequestParam("categoryId") Long categoryId,
+        @RequestParam("lastDishId") Long lastDishId) {
 
         return ResponseEntity.ok(dishService.findNextDishes(categoryId, lastDishId));
     }

@@ -27,8 +27,8 @@ public class CategorizedDishes {
     @Override
     public String toString() {
         return "CategorizedDishes{" +
-                "category=" + category +
-                ", dishes=" + dishes +
-                '}';
+            "category=" + category +
+            ", dishes=" + dishes +
+            '}';
     }
 }

@@ -32,9 +32,9 @@ public class OAuthService {
     public GitHubToken getAccessToken(String code) {
         Map<String, String> requestBody = generateBody(code);
         RestTemplate restTemplate = new RestTemplate();
-        log.info("requestbody :",String.valueOf(requestBody));
+        log.info("requestbody :", String.valueOf(requestBody));
         return restTemplate.postForObject(ACCESS_TOKEN_URL, requestBody,
-                GitHubToken.class);
+            GitHubToken.class);
     }
 
     public String getUserEmail(GitHubToken token) throws JsonProcessingException {
@@ -44,7 +44,8 @@ public class OAuthService {
         HttpEntity<String> request = new HttpEntity<>(headers);
 
         headers.set("Authorization", token.getTokenHeaderString());
-        ResponseEntity<String> userResource = restTemplate.exchange(GET_RESOURCE_URL, HttpMethod.GET, request, String.class);
+        ResponseEntity<String> userResource = restTemplate.exchange(GET_RESOURCE_URL,
+            HttpMethod.GET, request, String.class);
         JsonNode jsonNode = objectMapper.readTree(userResource.getBody());
         for (JsonNode node : jsonNode) {
             if (node.get("primary").asBoolean()) {
@@ -56,10 +57,10 @@ public class OAuthService {
     }
 
 
-    private Map<String,String> generateBody(String code) {
+    private Map<String, String> generateBody(String code) {
         return Map.of("client_id", clientId,
-                    "client_secret", secret,
-                    "code", code);
+            "client_secret", secret,
+            "code", code);
     }
 
 }

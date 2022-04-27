@@ -3,7 +3,6 @@ package kr.codesquad.sidedish.controller;
 import kr.codesquad.sidedish.dto.SpecialEdition;
 import kr.codesquad.sidedish.service.EventService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

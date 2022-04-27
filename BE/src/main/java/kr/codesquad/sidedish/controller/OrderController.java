@@ -17,7 +17,8 @@ public class OrderController {
     }
 
     @PostMapping("/{dishId}")
-    public ResponseEntity<Reciept> orderDishes(@PathVariable Long dishId, @RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<Reciept> orderDishes(@PathVariable Long dishId,
+        @RequestBody OrderRequest orderRequest) {
         orderService.checkOrderPlaceable(dishId, orderRequest);
         return ResponseEntity.ok(orderService.placeOrder(dishId, orderRequest));
     }

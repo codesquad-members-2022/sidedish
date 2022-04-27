@@ -21,8 +21,8 @@ public class DishSimpleResponse {
     private final DiscountPolicy discountPolicy;
 
     public DishSimpleResponse(Long id, String name, String description, String image, int stock,
-                              int normalPrice, int discountPrice, DeliveryType deliveryType,
-                              DiscountPolicy discountPolicy) {
+        int normalPrice, int discountPrice, DeliveryType deliveryType,
+        DiscountPolicy discountPolicy) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,8 +36,9 @@ public class DishSimpleResponse {
 
     public static DishSimpleResponse of(Dish dish) {
         return new DishSimpleResponse(dish.getId(), dish.getName(), dish.getDescription(),
-                dish.getImagePath(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(), dish.getDiscountPrice(),
-                dish.getDeliveryType(), dish.getDiscountPolicy());
+            dish.getImagePath(MAIN_IMAGE_INDEX), dish.getStock(), dish.getPrice(),
+            dish.getDiscountPrice(),
+            dish.getDeliveryType(), dish.getDiscountPolicy());
     }
 
 
@@ -79,8 +80,12 @@ public class DishSimpleResponse {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DishSimpleResponse that = (DishSimpleResponse) o;
         return getId().equals(that.getId());
     }

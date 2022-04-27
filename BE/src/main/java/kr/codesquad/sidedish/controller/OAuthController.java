@@ -19,14 +19,14 @@ public class OAuthController {
     }
 
     @GetMapping("/oauth")
-    public String requestAccessToken(@RequestParam String code, HttpServletResponse httpServletResponse) throws IOException {
+    public String requestAccessToken(@RequestParam String code,
+        HttpServletResponse httpServletResponse) throws IOException {
         GitHubToken token = oAuthService.getAccessToken(code);
         String userEmail = oAuthService.getUserEmail(token);
         httpServletResponse.setHeader("userEmail", userEmail);
         System.out.println("userEmail = " + userEmail);
         return "/";
     }
-
 
 
 }

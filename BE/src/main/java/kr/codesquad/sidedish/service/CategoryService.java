@@ -21,7 +21,8 @@ public class CategoryService {
     private final JdbcDishRepository jdbcDishRepository;
     private final JdbcCategoryRepository jdbcCategoryRepository;
 
-    public CategoryService(JdbcDishRepository jdbcDishRepository, JdbcCategoryRepository jdbcCategoryRepository) {
+    public CategoryService(JdbcDishRepository jdbcDishRepository,
+        JdbcCategoryRepository jdbcCategoryRepository) {
         this.jdbcDishRepository = jdbcDishRepository;
         this.jdbcCategoryRepository = jdbcCategoryRepository;
     }
@@ -32,7 +33,7 @@ public class CategoryService {
             .orElseThrow(() -> new BusinessException(ErrorCode.NoCategoryError));
         List<Dish> dishesByCategoryId = jdbcDishRepository.findDishesByCategoryId(category.getId());
         List<DishSimpleResponse> dishSimpleResponses = dishesByCategoryId.stream()
-                .map(DishSimpleResponse::of).collect(Collectors.toList());
+            .map(DishSimpleResponse::of).collect(Collectors.toList());
 
         return new CategorizedDishes(category, dishSimpleResponses);
     }

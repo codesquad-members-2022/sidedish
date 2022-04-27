@@ -12,7 +12,8 @@ public class DishRecommendation {
     private final int normalPrice;
     private final int discountPrice;
 
-    public DishRecommendation(Long id, String name, String image, int normalPrice, int discountPrice) {
+    public DishRecommendation(Long id, String name, String image, int normalPrice,
+        int discountPrice) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -21,8 +22,9 @@ public class DishRecommendation {
     }
 
     public static DishRecommendation from(Dish dish) {
-        return new DishRecommendation(dish.getId(), dish.getName(), dish.getImagePath(MAIN_IMAGE_INDEX),
-                dish.getPrice(), dish.getDiscountPrice());
+        return new DishRecommendation(dish.getId(), dish.getName(),
+            dish.getImagePath(MAIN_IMAGE_INDEX),
+            dish.getPrice(), dish.getDiscountPrice());
     }
 
     public Long getId() {

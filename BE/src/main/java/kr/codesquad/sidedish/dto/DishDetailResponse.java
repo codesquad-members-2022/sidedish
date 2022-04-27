@@ -22,8 +22,9 @@ public class DishDetailResponse {
     private final List<Image> images;
 
 
-    public DishDetailResponse(Long id, String name, String description, int normalPrice, int discountPrice, int stock, int point,
-                              DiscountPolicy discountPolicy, DeliveryType deliveryType, List<Image> images) {
+    public DishDetailResponse(Long id, String name, String description, int normalPrice,
+        int discountPrice, int stock, int point,
+        DiscountPolicy discountPolicy, DeliveryType deliveryType, List<Image> images) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,9 +38,10 @@ public class DishDetailResponse {
     }
 
     public static DishDetailResponse from(Dish dish) {
-        return new DishDetailResponse(dish.getId(), dish.getName(), dish.getDescription(), dish.getPrice(),
-                dish.getDiscountPrice(), dish.getStock(), dish.getPoint(), dish.getDiscountPolicy(),
-                dish.getDeliveryType(), dish.getImages());
+        return new DishDetailResponse(dish.getId(), dish.getName(), dish.getDescription(),
+            dish.getPrice(),
+            dish.getDiscountPrice(), dish.getStock(), dish.getPoint(), dish.getDiscountPolicy(),
+            dish.getDeliveryType(), dish.getImages());
     }
 
     public Long getId() {
