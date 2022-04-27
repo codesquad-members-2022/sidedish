@@ -3,14 +3,16 @@ package com.team28.sidedish.controller.dto;
 import com.team28.sidedish.domain.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Schema(description = "상품 정보")
+import java.util.List;
+
+@Schema(description = "상품 상세조회 결과")
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ProductResponse {
+public class ProductDetailResponse {
 
     @Schema(description = "상품 id")
     private Long productId;
@@ -18,11 +20,14 @@ public class ProductResponse {
     @Schema(description = "상품명")
     private String productName;
 
-    @Schema(description = "대표 이미지 URL")
-    private String imageURL;
-
     @Schema(description = "상품 설명")
     private String description;
+
+    @Schema(description = "대표 이미지")
+    private List<ProductImageResponse> representImages;
+
+    @Schema(description = "상세설명 이미지")
+    private List<ProductImageResponse> detailImages;
 
     @Schema(description = "상품 가격")
     private Long price;
@@ -30,19 +35,23 @@ public class ProductResponse {
     @Schema(description = "할인된 가격")
     private Long discountPrice;
 
-    @Schema(description = "할인 이름")
-    private String discountName;
+    @Schema(description = "상품 재고")
+    private int stockQuantity;
 
-    public static ProductResponse from(Product product) {
-        return new ProductResponse(
+    @Schema(description = "할인 이름")
+    private String eventInfo;
+
+    public static ProductDetailResponse of(Product product, List<ProductImageResponse> representImages, List<ProductImageResponse> detailImages) {
+        return new ProductDetailResponse(
                 product.getId(),
                 product.getName(),
-                product.getRepresentImage(),
                 product.getDescription(),
+                representImages,
+                detailImages,
                 product.getPrice(),
                 product.getDiscountPrice(),
+                product.getStockQuantity(),
                 product.getDiscountName()
         );
     }
-
 }

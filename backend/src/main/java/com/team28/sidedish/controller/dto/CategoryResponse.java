@@ -16,4 +16,8 @@ public class CategoryResponse {
 
     @Schema(description = "카테고리 이름")
     private String categoryName;
+
+    public static CategoryResponse of(Long categoryId, String categoryName) {
+        return new CategoryResponse(categoryId, categoryName);
+    }
 }
