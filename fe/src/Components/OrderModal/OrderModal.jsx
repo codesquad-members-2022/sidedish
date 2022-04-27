@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
@@ -35,7 +35,6 @@ const OrderModalWrapper = styled.div`
   position: relative;
   flex-direction: column;
   background-color: ${Colors.OFF_WHITE};
-  display: flex;
   width: 960px;
 `;
 
@@ -59,8 +58,7 @@ const CloseButton = styled.button`
 `;
 
 export const OrderModal = () => {
-  const modalContext = ModalContext;
-  const [ModalDisplay, setModalDisplay] = useContext(modalContext);
+  const [ModalDisplay, setModalDisplay] = useContext(ModalContext);
 
   function onClickCloseBtn() {
     setModalDisplay(false);
