@@ -29,12 +29,12 @@ class MainViewController: UIViewController {
         setLayout()
     }
     
-    private func setFoodCollectionView(){
+    private func setFoodCollectionView() {
         foodCollectionView.delegate = self
         foodCollectionView.dataSource = self
     }
     
-    private func setLayout(){
+    private func setLayout() {
         view.addSubview(foodCollectionView)
         NSLayoutConstraint.activate([
             foodCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -63,7 +63,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let index = indexPath.row
         if let food = ordering[index, category] {
             cell.receiveFood(food: food)
-            ordering.requesetFoodImage(imageUrl: food.imageUrl){ data in
+            ordering.requesetFoodImage(imageUrl: food.imageUrl) { data in
                 cell.updateFoodImage(imageData: data)
             }
         }

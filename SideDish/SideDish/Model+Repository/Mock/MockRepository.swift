@@ -1,6 +1,6 @@
 import Foundation
 
-struct MockRepository: RepositoryApplicable{
+struct MockRepository: RepositoryApplicable {
     
     var delegate: RepositoryDelegate?
     

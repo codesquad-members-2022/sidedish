@@ -1,11 +1,11 @@
 import Alamofire
 import OSLog
 
-enum ContentType{
+enum ContentType {
     case json
     case image
     
-    var value: String{
+    var value: String {
         switch self {
         case .json:
             return "application/json"
@@ -15,12 +15,12 @@ enum ContentType{
     }
 }
 
-enum EndPoint{
+enum EndPoint {
     case main(category: String)
     case detail(detailHash: String)
     case mainImage(rawUrl: String)
     
-    var urlString: String{
+    var urlString: String {
         switch self {
         case .main(let category):
             return "https://api.codesquad.kr/onban/\(category)"
@@ -32,21 +32,21 @@ enum EndPoint{
     }
 }
 
-enum HttpMethod{
+enum HttpMethod {
     case get
     case post
 }
 
-struct NetworkHandler: NetworkHandlable{
+struct NetworkHandler: NetworkHandlable {
     
     private let logger: Logger
     weak var delegate: NetworkHandlerDelegate?
     
-    init(){
+    init() {
         logger = Logger()
     }
     
-    func request(url: EndPoint, method: HttpMethod, contentType: ContentType, completionHandler: @escaping (Data)->Void){
+    func request(url: EndPoint, method: HttpMethod, contentType: ContentType, completionHandler: @escaping (Data)->Void) {
         AF.request(url.urlString,
                           method: HTTPMethod(rawValue: "\(method)"),
                           parameters: nil,
@@ -54,7 +54,7 @@ struct NetworkHandler: NetworkHandlable{
                           headers: ["Content-Type":contentType.value])
         .validate(statusCode: 200..<300)
         .responseData{response in
-            switch response.result{
+            switch response.result {
             case .success(let data):
                 completionHandler(data)
                 DispatchQueue.global().async {

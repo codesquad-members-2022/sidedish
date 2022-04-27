@@ -6,12 +6,12 @@ class JSONHandlerTest: XCTestCase {
     private var jsonHandler: JSONHandlable!
     private var food: Food!
     
-    override func setUp(){
+    override func setUp() {
         jsonHandler = JSONHandler()
         food = Food(detailHash: "hash", alt: "alt", foodDescription: "description", normalPrice: "normalPrice", specialPrice: "specialPrice", deliveryInformation: ["deliveryInformation"], title: "title", imageUrl: "imageUrl", badges: ["badge"])
     }
 
-    func testConvertingObjectToJSON(){
+    func testConvertingObjectToJSON() {
         XCTAssertNotNil(jsonHandler.convertObjectToJSON(from: food))
     }
 

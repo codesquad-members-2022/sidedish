@@ -1,5 +1,5 @@
 import Foundation
 
-protocol NetworkHandlerDelegate: AnyObject{
+protocol NetworkHandlerDelegate: AnyObject {
     func cachingDataRequested(url: EndPoint, data: Data)
 }

@@ -12,7 +12,7 @@ struct Food: Codable {
     private (set) var imageUrl: String
     private (set) var badges: [String]
     
-    init(detailHash: String, alt: String, foodDescription: String, normalPrice: String, specialPrice: String, deliveryInformation: [String], title: String, imageUrl: String, badges: [String]){
+    init(detailHash: String, alt: String, foodDescription: String, normalPrice: String, specialPrice: String, deliveryInformation: [String], title: String, imageUrl: String, badges: [String]) {
         self.detailHash = detailHash
         self.alt = alt
         self.foodDescription = foodDescription
