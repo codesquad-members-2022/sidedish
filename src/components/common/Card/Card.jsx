@@ -12,18 +12,20 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
     <Wrap size={size}>
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
-          {HoverImg()}
+          <HoverImg />
           <img src={imageURL} alt="반찬" />
         </ImgWrap>
-        {Space()}
+        <Space />
         <Title />
-        {Description()}
+        <Description />
         <Prices>
           <Text size="MEDIUM" weight="MEDIUM" value={sellingPrice} />
           <Text size="BASE" weight="REGULAR" color="GREY_300" value={normalPrice} line />
         </Prices>
       </A>
-      <TagWrap>{Tags()}</TagWrap>
+      <TagWrap>
+        <Tags />
+      </TagWrap>
     </Wrap>
   );
 
