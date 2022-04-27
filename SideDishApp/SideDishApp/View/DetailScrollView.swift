@@ -141,38 +141,58 @@ final class DetailScrollView: UIScrollView {
     }
     
     private func setUpView() {
-        addSubview(contentView)
+        configureView()
         
-        contentView.addSubview(overViewImageScrollView)
-        contentView.addSubview(imagePageControl)
-        contentView.addSubview(detailContainerStackView)
+        addSubview(contentView)
+        configureContentView()
         
         detailContainerStackView.addArrangedSubview(mainInfoStackView)
-        mainInfoStackView.changeSpacingForDetailView()
-        mainInfoStackView.changeFontForDetailView()
-        
-        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
+        configureMainInfoStackView()
         
         detailContainerStackView.addArrangedSubview(subInfoStackView)
         
-        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
-        
         detailContainerStackView.addArrangedSubview(countContainerStackView)
+        configureCountContainerStackView()
+        
+        detailContainerStackView.addArrangedSubview(orderContainerStackView)
+        configureOrderContainerStackView()
+        
+        detailContainerStackView.addArrangedSubview(recipeImageStackView)
+        
+        insertSeparatorView()
+        layoutComponents()
+    }
+    
+    private func configureView() {
+        backgroundColor = .systemBackground
+    }
+    
+    private func configureContentView() {
+        contentView.addSubview(overViewImageScrollView)
+        contentView.addSubview(imagePageControl)
+        contentView.addSubview(detailContainerStackView)
+    }
+    
+    private func configureMainInfoStackView() {
+        mainInfoStackView.changeSpacingForDetailView()
+        mainInfoStackView.changeFontForDetailView()
+    }
+    
+    private func configureCountContainerStackView() {
         countContainerStackView.addArrangedSubview(countTitleLabel)
         countContainerStackView.addArrangedSubview(countLabel)
         countContainerStackView.addArrangedSubview(countStepper)
-        configureCountContainerStackView()
-        
-        detailContainerStackView.addArrangedSubview(UIView.makeSeparatorView())
-        
-        detailContainerStackView.addArrangedSubview(orderContainerStackView)
+        countContainerStackView.setCustomSpacing(150, after: countTitleLabel)
+    }
+    
+    private func configureOrderContainerStackView() {
         orderContainerStackView.addArrangedSubview(amountContainerStackView)
         amountContainerStackView.addArrangedSubview(amountTitleLabel)
         amountContainerStackView.addArrangedSubview(amountLabel)
         orderContainerStackView.addArrangedSubview(orderButton)
-        
-        detailContainerStackView.addArrangedSubview(recipeImageStackView)
-        
+    }
+    
+    private func layoutComponents() {
         layoutContentView()
         layoutOverViewImageScrollView()
         layoutImagePageControl()
@@ -184,6 +204,12 @@ final class DetailScrollView: UIScrollView {
     private func addPlaceholderView(count: Int) {
         for _ in 0..<count {
             recipeImageStackView.addArrangedSubview(UIView())
+        }
+    }
+    
+    private func insertSeparatorView() {
+        for index in stride(from: 1, to: 6, by: 2) {
+            detailContainerStackView.insertArrangedSubview(UIView.makeSeparator(), at: index)
         }
     }
 }
@@ -200,7 +226,7 @@ extension DetailScrollView {
         contentView.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor).isActive = true
         
         contentView.widthAnchor.constraint(equalTo: frameLayoutGuide.widthAnchor).isActive = true
-        contentLayoutGuide.bottomAnchor.constraint(equalTo: detailContainerStackView.bottomAnchor, constant: 100).isActive = true
+        contentLayoutGuide.bottomAnchor.constraint(equalTo: detailContainerStackView.bottomAnchor).isActive = true
     }
     
     private func layoutOverViewImageScrollView() {
@@ -222,10 +248,6 @@ extension DetailScrollView {
         detailContainerStackView.topAnchor.constraint(equalTo: overViewImageScrollView.bottomAnchor, constant: 24).isActive = true
         detailContainerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
         detailContainerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-    }
-    
-    private func configureCountContainerStackView() {
-        countContainerStackView.setCustomSpacing(150, after: countTitleLabel)
     }
     
     private func layoutCountTitleLabel() {
@@ -303,7 +325,7 @@ extension DetailScrollView {
 // MARK: - Private Extension
 
 private extension UIView {
-    static func makeSeparatorView() -> UIView {
+    static func makeSeparator() -> UIView {
         let view = UIView()
         view.backgroundColor = .systemGray4
         view.translatesAutoresizingMaskIntoConstraints = false
