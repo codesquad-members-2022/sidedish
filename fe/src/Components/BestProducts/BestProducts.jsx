@@ -49,7 +49,9 @@ export const BestProducts = () => {
     setSelectedTabId(clickedTabId);
   };
 
-  if (!isLoaded) return;
+  if (!isLoaded) {
+    return;
+  }
 
   return (
     <BestProductsWrapper>

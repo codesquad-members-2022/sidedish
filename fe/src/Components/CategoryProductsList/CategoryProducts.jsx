@@ -103,6 +103,7 @@ const useSlide = ({ slideRef }) => {
 
   const handleClickPrevButton = () => {
     const nextSlideIndex = curSlideIndex - slideViewItemLength;
+
     if (nextSlideIndex < minSlideIndex) {
       setCurSlideIndex(minSlideIndex);
     } else {
@@ -112,6 +113,7 @@ const useSlide = ({ slideRef }) => {
 
   const handleClickNextButton = () => {
     const nextSlideIndex = curSlideIndex + slideViewItemLength;
+
     if (nextSlideIndex < minSlideIndex) {
       setCurSlideIndex(minSlideIndex);
     } else if (nextSlideIndex > maxSlideIndex) {
@@ -125,8 +127,10 @@ const useSlide = ({ slideRef }) => {
     if (!slideRef.current) {
       return;
     }
+
     const _maxSlideIndex =
       slideRef.current.children.length - slideViewItemLength;
+
     if (_maxSlideIndex < 0) {
       setMaxSlideIndex(minSlideIndex);
     } else {

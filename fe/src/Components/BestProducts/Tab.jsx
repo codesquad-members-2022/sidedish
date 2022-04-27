@@ -16,6 +16,7 @@ const checkSelected = tabClassName => {
   if (tabClassName) {
     return 'selected';
   }
+
   return null;
 };
 

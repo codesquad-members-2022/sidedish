@@ -45,7 +45,10 @@ export const CategoryProductsList = ({ categoryList }) => {
   };
 
   useEffect(() => {
-    if (!categoryList.length) return;
+    if (!categoryList.length) {
+      return;
+    }
+
     const firstCategoryIdx = 0;
     const firstCategoryId = categoryList[firstCategoryIdx].id;
     setLoadedCategoryProductsIdList([firstCategoryId]);

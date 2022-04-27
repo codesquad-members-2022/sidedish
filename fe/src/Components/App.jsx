@@ -17,10 +17,14 @@ const App = () => {
   const [categoryList, isLoaded, isError] = useFetch(`${API_URL}/categories`);
   
   // TODO: 에러 발생시 보여줄 화면
-  if (isError) return null
+  if (isError) {
+    return null
+  }
 
   // TODO: 로딩중 보여줄 화면
-  if (!isLoaded) return null;
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
     <Root>

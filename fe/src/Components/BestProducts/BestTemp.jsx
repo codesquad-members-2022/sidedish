@@ -16,8 +16,13 @@ export const BestTemp = ({ bestProductsTabId }) => {
     `${API_URL}/events/${bestProductsTabId}/items`
   );
 
-  if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
-  if (!isLoaded) return <LoadingSpinner />;
+  if (isError) {
+    return <div>데이터를 불러오는데 실패했습니다.</div>;
+  }
+
+  if (!isLoaded) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <ProductCardList>
