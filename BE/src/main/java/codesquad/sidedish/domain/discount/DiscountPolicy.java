@@ -29,7 +29,7 @@ public class DiscountPolicy {
         this.discountPolicyId = discountPolicyId;
     }
 
-    public long calculateDiscountedPrice(long price) {
-        return (long)(price * (1 - discountRate));
+    public int calculateDiscountedPrice(int price) {
+        return (int)(price * (1 - discountRate));
     }
 }
