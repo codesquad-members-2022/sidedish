@@ -5,7 +5,7 @@ import { Colors, Fonts } from '@/Constants';
 import { API_URL } from '@/Env';
 import { useFetch } from '@/Hooks';
 
-import { BestTemp } from './BestTemp';
+import { Contents } from './Contents';
 import { TabList } from './TabList';
 
 import { CategoryBadge } from '@/Components/Badge';
@@ -71,7 +71,7 @@ export const BestProducts = () => {
         onClickTab={onClickTab}
       />
 
-      <BestTemp bestProductsTabId={selectedTabId} />
+      <Contents bestProductsTabId={selectedTabId} />
     </BestProductsWrapper>
   );
 };

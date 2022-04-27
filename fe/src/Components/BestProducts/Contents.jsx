@@ -11,7 +11,7 @@ const ProductCardList = styled.ul`
   margin-top: 34px;
 `;
 
-export const BestTemp = ({ bestProductsTabId }) => {
+export const Contents = ({ bestProductsTabId }) => {
   const [bestProducts, isLoaded, isError] = useFetch(
     `${API_URL}/events/${bestProductsTabId}/items`
   );
