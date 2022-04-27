@@ -124,12 +124,11 @@ extension DetailViewController {
                 switch result {
                 case .success(let data):
                     guard let data = data,
-                            let image = UIImage(data: data) else { return }
+                          let image = UIImage(data: data) else { return }
                     DispatchQueue.main.async {
                         self.detailScrollView.insertThumbNail(image: image, at: index)
                     }
                 case .failure(let failure):
-                    print(failure)
                     os_log(.error, "\(failure.localizedDescription)")
                 }
             }

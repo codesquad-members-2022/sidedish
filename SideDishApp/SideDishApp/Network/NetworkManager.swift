@@ -23,7 +23,6 @@ final class NetworkManager {
         // HTTP Method
         let httpMethod = endpoint.getHttpMethod().description
         urlRequest.httpMethod = httpMethod
-        
         // HTTP header
         let headers = endpoint.getHeaders()
         headers?.forEach { urlRequest.setValue($1 as? String, forHTTPHeaderField: $0) }
@@ -67,28 +66,19 @@ final class NetworkManager {
             // handling DecodingError
             do {
                 
-                guard let getImageBaseURL = urlRequest.url?.path else { return }
-
-                if getImageBaseURL == Path.image(path: getImageBaseURL).pathString {
-                    print("same")
-                }
-
+                //handling GetImage Case
+                let getImageBaseURL = urlRequest.description.replacingOccurrences(of: urlRequest.url?.path ?? "", with: "")
+                
                 if getImageBaseURL == BaseURL.image.urlString {
                     return completion(.success(data as? T))
                 }
                 
-                let deleteCase = HTTPMethod.delete.description
-                if urlRequest.httpMethod == HTTPMethod.delete.description {
-                    return completion(.success(deleteCase as? T ?? nil))
-                }
-                
                 let fetchedData = try JSONDecoder().decode(T.self, from: data) // Data -> T: Decodable
                 return completion(.success(fetchedData))
+                
             } catch {
-                return completion(.success(data as? T))
-//                return completion(.failure(.decodingError))
+                return completion(.failure(.decodingError))
             }
-            
         }
         dataTask.resume()
     }
