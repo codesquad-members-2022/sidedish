@@ -16,14 +16,14 @@ const sliderInfo = {
 
 export default function MenuSlider() {
   const [curSlideIdx, setCurSlideIdx] = useState(0);
-  const isFirstSlide = curSlideIdx === 0;
-  const isLastSlide = curSlideIdx === slideData.length - sliderInfo.visibleLength;
+  const isFirstSlide = curSlideIdx <= 0;
+  const isLastSlide = curSlideIdx >= slideData.length - sliderInfo.visibleLength;
 
   return (
     <Wrap>
       <Slider>
         <Slides curSlideIdx={curSlideIdx}>
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
+          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }, index) => (
             <li key={title}>
               <Card
                 size={size}
@@ -44,7 +44,7 @@ export default function MenuSlider() {
             icon="prev"
             width="11px"
             height="20px"
-            stroke={isFirstSlide ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
+            stroke={isFirstSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
           />
           <IconButton
             onClick={handleMovementToNext}
@@ -52,28 +52,31 @@ export default function MenuSlider() {
             icon="next"
             width="11px"
             height="20px"
-            stroke={isLastSlide ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
+            stroke={isLastSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
           />
         </ButtonWrap>
       </Slider>
     </Wrap>
   );
+
   function handleMovementToPrev() {
-    const newCurSlideIdx = moveSlideToLeft();
+    const newCurSlideIdx = decreaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
   }
 
   function handleMovementToNext() {
-    const newCurSlideIdx = moveSlideToRight();
+    const newCurSlideIdx = increaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
   }
-  function moveSlideToLeft() {
+
+  function decreaseCurSlideIndex() {
     if (isFirstSlide) {
       return 0;
     }
     return curSlideIdx - sliderInfo.visibleLength;
   }
-  function moveSlideToRight() {
+
+  function increaseCurSlideIndex() {
     if (isLastSlide) {
       return curSlideIdx;
     }
