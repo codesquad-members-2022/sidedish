@@ -25,4 +25,6 @@
     <string name="label_menu_detail_order_btn_title">주문하기</string>
     <string name="label_order_fail">주문이 취소\n되었습니다</string>
 
+    <string name="price_format">"%s원</string>
+
 </resources>

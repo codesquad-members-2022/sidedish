@@ -6,14 +6,16 @@
     <data>
 
         <import type="java.util.List" />
+
         <import type="android.view.View" />
+
         <variable
             name="detail"
             type="com.example.todo.sidedish.domain.model.MenuDetail" />
 
         <variable
-            name="event"
-            type="java.lang.String" />
+            name="totalPay"
+            type="java.lang.Integer" />
 
         <variable
             name="badge"
@@ -49,20 +51,18 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_item_detail_img"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </androidx.viewpager2.widget.ViewPager2>
+                    android:layout_height="match_parent"></androidx.viewpager2.widget.ViewPager2>
 
                 <TextView
+                    android:id="@+id/tv_viewpager_page_indicator"
                     style="@style/TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    app:totalPageNum= "@{totalPage}"
-                    app:nowPageNum=  "@{nowPage}"
-                    android:id="@+id/tv_viewpager_page_indicator"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginStart="176dp"
-                    />
+                    android:layout_marginBottom="20dp"
+                    app:nowPageNum="@{nowPage}"
+                    app:totalPageNum="@{totalPage}" />
             </FrameLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,8 +72,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fl_detail_info"
-                >
+                app:layout_constraintTop_toBottomOf="@id/fl_detail_info">
 
                 <TextView
                     android:id="@+id/tv_menu_title"
@@ -122,7 +121,6 @@
                 <TextView
                     android:id="@+id/btn_event"
                     style="@style/Caption.Purple2"
-                    android:visibility="@{badge.contains(@string/label_event) ? View.VISIBLE : View.GONE}"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginEnd="10dp"
@@ -132,13 +130,13 @@
                     android:paddingEnd="12dp"
                     android:paddingBottom="4dp"
                     android:text="@string/label_event"
+                    android:visibility="@{badge.contains(@string/label_event) ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price" />
 
                 <TextView
                     android:id="@+id/btn_launching"
                     style="@style/Caption.White"
-                    android:visibility="@{badge.contains(@string/label_launch) ? View.VISIBLE : View.GONE}"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:background="@drawable/badge_background_purple"
@@ -147,6 +145,7 @@
                     android:paddingEnd="12dp"
                     android:paddingBottom="4dp"
                     android:text="@string/label_launch"
+                    android:visibility="@{badge.contains(@string/label_launch) ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toEndOf="@id/btn_event"
                     app:layout_constraintTop_toBottomOf="@id/tv_menu_origin_price" />
 
@@ -311,6 +310,7 @@
                 <TextView
                     android:id="@+id/tv_total_pay_value"
                     style="@style/TextLarge.Bold"
+                    formatText="@{totalPay}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{detail.SPrice}"
@@ -337,9 +337,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_detail"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

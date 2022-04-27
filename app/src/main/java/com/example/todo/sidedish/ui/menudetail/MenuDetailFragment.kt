@@ -13,7 +13,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.todo.sidedish.R
 import com.example.todo.sidedish.databinding.FragmentMenuDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.roundToInt
 
 const val ORDER_COUNT_ZERO = 0
 
@@ -128,7 +127,7 @@ class MenuDetailFragment : Fragment() {
     private fun setTotalPay() {
         val totalCount = binding.tvOrderCountValue.text.toString().toInt()
         val menuPrice = splitMenuPrice(binding.tvMenuPrice.text.toString())
-        binding.tvTotalPayValue.text = "${totalCount * (menuPrice)} 원"
+        binding.totalPay = totalCount * menuPrice
     }
 
     private fun setMenuInfo() {
