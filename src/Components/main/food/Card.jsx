@@ -182,6 +182,10 @@ function Badge({ info }) {
   return <BadgeBox>{BADGES}</BadgeBox>;
 }
 
+const CardItem = styled.div`
+  cursor: pointer;
+`;
+
 function Card({ cardData }) {
   const CARD_IMG_DATA = {
     img: cardData.image,
@@ -189,10 +193,10 @@ function Card({ cardData }) {
     delivery: cardData.delivery_type,
   };
   return (
-    <div data-hash={cardData.detail_hash}>
+    <CardItem data-hash={cardData.detail_hash}>
       <Img data={CARD_IMG_DATA} />
       <Text data={cardData} />
-    </div>
+    </CardItem>
   );
 }
 
