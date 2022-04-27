@@ -88,14 +88,18 @@ public class Menu {
 		return description;
 	}
 
-	protected String getDefaultImage() {
-		return images.get(0).getUrl();
-	}
-
 	protected List<String> getImages() {
 		return images.stream()
 			.map(image -> image.getUrl())
 			.collect(Collectors.toList());
+	}
+
+	protected boolean availableForSale() {
+		return this.inventoryQuantity > 0;
+	}
+
+	public Category getCategory() {
+		return category;
 	}
 }
 
