@@ -97,7 +97,7 @@ class FoodCell: UICollectionViewCell {
     func setBadgeLabel(_ badge: [String]){
         for str in badge{
             let label = makeEventLabel(text: str)
-            stackView.addArrangedSubview(makeEventLabel(text: str))
+            stackView.addArrangedSubview(label)
         }
     }
     
@@ -151,7 +151,6 @@ class FoodCell: UICollectionViewCell {
         
         self.contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         stackView.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
         stackView.leadingAnchor.constraint(equalTo: salePriceLabel.leadingAnchor).isActive = true
