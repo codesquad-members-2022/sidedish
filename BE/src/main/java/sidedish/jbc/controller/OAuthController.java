@@ -18,7 +18,7 @@ public class OAuthController {
 
 	private static final String REDIRECT_GITHUB_URL =
 		"https://github.com/login/oauth/authorize?client_id=" + System.getenv("CLIENT_ID")
-			+ "&redirect_uri=http://localhost:8080/afterlogin";
+			+ "&redirect_uri=http://" + System.getenv("SERVER_IP") +":8080/afterlogin";
 	private static final String GITHUB_ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token";
 
 	@GetMapping("/login")
