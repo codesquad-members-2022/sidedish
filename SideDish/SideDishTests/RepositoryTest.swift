@@ -11,7 +11,7 @@ class RepositoryTest: XCTestCase {
 
     
     override func setUp(){
-        dataCache = MockDataCache()
+        dataCache = MockDataCachingManager()
         networkHandler = MockNetworkHandler()
         
         repository = Repository(networkHandler: networkHandler, jsonHandler: JSONHandler(), dataCache: dataCache)
