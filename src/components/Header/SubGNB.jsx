@@ -5,8 +5,8 @@ import Text from 'components/utils/Text';
 export default function SubGNB({ visible, SUB_GNB_INFO }) {
   return (
     <Wrap visible={visible}>
-      {SUB_GNB_INFO.SUB_GNB.map((subGnbName, index) => (
-        <SubGNBItem key={`${subGnbName}_${index}`}>
+      {SUB_GNB_INFO.SUB_GNB.map(subGnbName => (
+        <SubGNBItem key={subGnbName}>
           <a href="http://localhost:3000/">
             <Text value={subGnbName} />
           </a>

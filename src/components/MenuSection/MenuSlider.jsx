@@ -23,8 +23,8 @@ export default function MenuSlider() {
     <Wrap>
       <Slider>
         <Slides curSlideIdx={curSlideIdx}>
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }, index) => (
-            <li key={`${title}_${index}`}>
+          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
+            <li key={title}>
               <Card
                 size={size}
                 imageURL={imageURL}

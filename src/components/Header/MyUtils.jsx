@@ -21,8 +21,8 @@ const iconButtons = {
 export default function MyUtils() {
   return (
     <Wrap>
-      {Object.keys(iconButtons).map((iconName, index) => (
-        <li key={`${iconName}_${index}`}>
+      {Object.keys(iconButtons).map(iconName => (
+        <li key={iconName}>
           <IconButton
             icon={iconName}
             width={iconButtons[iconName].width}

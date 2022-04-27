@@ -17,7 +17,7 @@ export default function GNB() {
       <GNBItems>
         {GNB_INFO.map(({ GNB_NAME }, gnbIndex) => (
           <GNBItem
-            key={`${GNB_NAME}_${gnbIndex}`}
+            key={GNB_NAME}
             onMouseEnter={() => setSubGnbVisible(true)}
             onMouseLeave={() => setSubGnbVisible(false)}
           >

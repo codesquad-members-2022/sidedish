@@ -12,7 +12,7 @@ TabBar.defaultProps = {
 
 function getTabButton(tabName, index) {
   const isFirstTabButton = index === 0;
-  return <TabButton key={`${tabName}_${index}`} value={tabName} isSelected={isFirstTabButton} />;
+  return <TabButton key={tabName} value={tabName} isSelected={isFirstTabButton} />;
 }
 
 const Wrap = styled.div({

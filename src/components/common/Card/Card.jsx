@@ -61,7 +61,7 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
     if (isSizeSmall) {
       return null;
     }
-    return tags.map((tag, index) => <Tag key={`${tag}_${index}`} type={tag} />);
+    return tags.map(tag => <Tag key={tag} type={tag} />);
   }
 }
 
