@@ -8,12 +8,12 @@
 import Foundation
 
 class MiddleWareFactory {
-    static func make(useCase: SideDishUseCase) -> SideDishMiddleWare {
+    static func make(useCase: SideDishUseCase) -> SideDishModel {
         switch useCase {
         case .getCacheData:
-            return CacheImageRequestMiddleWare()
+            return CacheImageRequestModel()
         case .setCacheIndividually:
-            return CacheImageMiddleWare()
+            return CacheImageModel()
         }
     }
 }

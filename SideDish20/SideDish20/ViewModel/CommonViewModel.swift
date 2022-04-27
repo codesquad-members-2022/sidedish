@@ -9,9 +9,9 @@ import Foundation
 
 class CommonViewModel {
 
-    private var models = [SideDishUseCase: SideDishMiddleWare]()
+    private var models = [SideDishUseCase: SideDishModel]()
 
-    func getModel(useCase: SideDishUseCase) -> SideDishMiddleWare {
+    func getModel(useCase: SideDishUseCase) -> SideDishModel {
         if let middleWare = models[useCase] {
             return middleWare
         } else {
