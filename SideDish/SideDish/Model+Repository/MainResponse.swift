@@ -1,6 +1,6 @@
 import Foundation
 
-struct Response<T: Codable>: Codable {
+struct MainResponse<T: Codable>: Codable {
     let statusCode: Int
     let body: [T]
 }
