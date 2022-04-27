@@ -64,13 +64,18 @@ final class Ordering{
         }
     }
     
-    func getFoodCountInCertainCategory(category: Category) -> Int{
+    func getFoodCountInCertainCategory(category: Category) -> Int {
        return foodMap[category]?.count ?? 0
     }
     
-    func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Result<Data,Error>)->Void){
+    func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Result<Data,Error>)->Void) {
         let url = EndPoint.mainImage(rawUrl: imageUrl)
         repository.requestData(method: .get, contentType: .image, url: url, completionHandler: completionHandler)
+    }
+    
+    func requestFoodDetail(detailHash: String, completionHandler: @escaping (Result<Data,Error>)->Void) {
+        let url = EndPoint.detail(detailHash: detailHash)
+        repository.requestData(method: .get, contentType: .json, url: url, completionHandler: completionHandler)
     }
     
     subscript(index: Int = 0 , category: Category) -> Food? {
