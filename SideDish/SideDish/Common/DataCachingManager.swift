@@ -8,7 +8,7 @@ final class DataWrapper {
     }
 }
 
-final class DataCache: DataCacheable {
+final class DataCachingManager: DataCachingManagable {
     private let dataCache: NSCache<NSString, DataWrapper>
     
     init() {

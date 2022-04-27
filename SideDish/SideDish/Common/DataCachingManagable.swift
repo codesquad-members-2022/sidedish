@@ -1,6 +1,6 @@
 import Foundation
 
-protocol DataCacheable {
+protocol DataCachingManagable {
     func addCacheData(data: Data, key: String)
     func getCacheData(key: String)->Data?
 }
