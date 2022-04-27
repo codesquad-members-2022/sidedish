@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        let repository = Repository(networkHandler: NetworkHandler(), jsonHandler: JSONHandler(), dataCache: DataCache())
+        let repository = Repository()
         ordering = Ordering(repository: repository)
     }
     
