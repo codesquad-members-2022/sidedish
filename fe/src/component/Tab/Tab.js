@@ -24,10 +24,24 @@ const Tab = () => {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-    fetch("https://api.codesquad.kr/onban/main")
-      .then((res) => res.json())
-      .then((data) => setCards(data.body[activeTab]));
-  }, [activeTab]);
+    fetch("http://15.165.204.34:8080/api/v1/products/반찬/영양", {
+      headers: {
+        Origin: "http://15.165.204.34:8080/",
+        mode: "no-cors",
+        // "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((r) => r.json())
+      .then((r) => console.log(r));
+
+    console.log(1);
+  }, []);
+
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   Accept: "application/json",
+  // },
 
   const onClickHandler = ({ target }) => {
     setActiveTab(+target.id);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import ProductDetails from "./ProductDetail";
 import ModalSlider from "./ModalSlider";
@@ -33,12 +33,18 @@ const Modal = () => {
     setIsDisplayed(false);
   };
   return (
-    <ModalWrapper className={isDisplayed ? "" : "hidden"}>
-      <ProductDetails />
-      <ModalSlider />
-      <ModalCloseButton onClick={closeBtnClickHandler}>닫기</ModalCloseButton>
-    </ModalWrapper>
+    <>
+      {ReactDOM.createPortal(
+        <ModalWrapper className={isDisplayed ? "" : "hidden"}>
+          <ProductDetails />
+          <ModalSlider />
+          <ModalCloseButton onClick={closeBtnClickHandler}>
+            닫기
+          </ModalCloseButton>
+        </ModalWrapper>,
+        document.getElementById("modal")
+      )}
+    </>
   );
 };
-
 export default Modal;
