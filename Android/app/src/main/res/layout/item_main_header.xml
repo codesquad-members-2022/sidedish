@@ -24,13 +24,27 @@
             android:gravity="left|center_vertical"
             android:maxLines="2"
             android:text="@{mainResponseItem.headerText}"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintDimensionRatio="328:96"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.91"
             tools:text="모두가 좋아하는\n든든한 메인 요리" />
+
+        <TextView
+            android:id="@+id/tv_item_count"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_header"
+            app:layout_constraintWidth_percent="0.91"
+            app:layout_constraintDimensionRatio="328:24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Text_Medium_Regular.Grey2"
+            android:gravity="center_vertical"
+            tools:text = "5개 상품이 등록되어 있습니다."
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

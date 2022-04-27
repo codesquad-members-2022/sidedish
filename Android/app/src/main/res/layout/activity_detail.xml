@@ -555,6 +555,7 @@
                 app:layout_constraintBottom_toTopOf="@id/v_detail_empty_17"
                 app:layout_constraintStart_toEndOf="@id/gl_detail_4.44"
                 app:layout_constraintTop_toBottomOf="@id/v_detail_empty_16"
+                android:text="@string/item_count_description"
                 tools:text="수량" />
 
             <View

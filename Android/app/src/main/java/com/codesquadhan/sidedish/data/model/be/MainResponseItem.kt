@@ -21,5 +21,7 @@ data class MainResponseItem(
     val saleType: String = "",
     val viewType: Int = 2,
     val headerText: String = "",
-    var isWhite: Boolean = true
+    var isWhite: Boolean = true,
+    var itemCount: Int = 0,
+    var isHeaderClicked: Boolean = false
 )

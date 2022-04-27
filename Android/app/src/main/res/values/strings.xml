@@ -17,4 +17,7 @@
     <string name="order_fail_message">주문에 실패했습니다</string>
 
     <string name="dialog_ok">확인</string>
+    <string name="item_count_description">수량</string>
+
+    <string name="header_item_count">%d개 상품이 등록되어 있습니다.</string>
 </resources>

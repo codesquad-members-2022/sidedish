@@ -23,6 +23,15 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
     private val menuMainList = mutableListOf<MainResponseItem>()
     val menuMainListLd: LiveData<List<MainResponseItem>> = _menuMainListLd
 
+    private val _mainSectionMenuCountLd = MutableLiveData<Int>(0)
+    val mainSectionMenuCountLd: LiveData<Int> = _mainSectionMenuCountLd
+
+    private val _soupSectionMenuCountLd = MutableLiveData<Int>(0)
+    val soupSectionMenuCountLd: LiveData<Int> = _soupSectionMenuCountLd
+
+    private val _sideSectionMenuCountLd = MutableLiveData<Int>(0)
+    val sideSectionMenuCountLd: LiveData<Int> = _sideSectionMenuCountLd
+
     // CEH
     val ceh = CoroutineExceptionHandler { _, exception ->
         println("Something happend: $exception")
@@ -40,15 +49,15 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
             val soupResponse = async { menuRepository.getMenuList("soup") ?: throw RuntimeException("why..?") }
             val sideResponse = async { menuRepository.getMenuList("side") ?: throw RuntimeException("why..?") }
 
-            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "모두가 좋아하는\n든든한 메인 요리"))
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "모두가 좋아하는\n든든한 메인 요리", itemCount = mainResponse.await().size))
             menuMainList.addAll(mainResponse.await())
             _menuMainListLd.value = menuMainList
 
-            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리", isWhite = false))
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리", isWhite = false, itemCount = soupResponse.await().size))
             menuMainList.addAllAndSetIsWhite(soupResponse.await())
             _menuMainListLd.value = menuMainList
 
-            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬"))
+            menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬", itemCount = sideResponse.await().size))
             menuMainList.addAll(sideResponse.await())
             _menuMainListLd.value = menuMainList
 
