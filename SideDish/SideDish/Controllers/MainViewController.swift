@@ -20,8 +20,7 @@ class MainViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        let repository = Repository()
-        ordering = Ordering(repository: repository)
+        ordering = Ordering(repository: Repository())
         logger = Logger()
     }
     
