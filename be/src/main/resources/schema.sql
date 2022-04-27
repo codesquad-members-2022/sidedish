@@ -8,9 +8,9 @@ create table main_category
 
 create table sub_category
 (
-    id    bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    main_category_id bigint NOT NULL,
-    title varchar(255) NOT NULL,
+    id               bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    main_category_id bigint       NOT NULL,
+    title            varchar(255) NOT NULL,
     FOREIGN KEY (main_category_id) references main_category (id)
 );
 
@@ -43,18 +43,28 @@ create table item_event
 
 create table image
 (
-    id          bigint      NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    item_id     bigint      NOT NULL,
+    id          bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    item_id     bigint       NOT NULL,
     url         varchar(255) NOT NULL,
-    main_status boolean     NOT NULL,
+    main_status boolean      NOT NULL,
     FOREIGN KEY (item_id) references item (id)
+);
+create table member
+(
+    id           bigint       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email        varchar(60)  NOT NULL,
+    access_token varchar(255) NOT NULL,
+    `scope`      varchar(255) NOT NULL,
+    tokenType    varchar(255) NOT NULL
 );
 
 create table `order`
 (
     id             bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    member_id      bigint NOT NULL,
     item_id        bigint NOT NULL,
     order_quantity int    NOT NULL,
     total_price    int    NOT NULL,
-    FOREIGN KEY (item_id) references item (id)
+    FOREIGN KEY (item_id) references item (id),
+    FOREIGN KEY (member_id) references member (id)
 );

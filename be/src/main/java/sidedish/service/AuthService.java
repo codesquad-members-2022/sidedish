@@ -55,7 +55,15 @@ public class AuthService {
 
 	private Member getUserInfo(AccessToken accessToken) {
 		//헤더에 Authorization : bearer accessToken
+		String url = "https://api.github.com/user";
+		HttpHeaders header = new HttpHeaders();
+		//Authorization: token OAUTH-TOKEN
+		header.add("Accept", "application/vnd.github.v3+json");
+		header.add("Authorization", "token " + accessToken.getAccessToken());
 		//get요청으로 -> 유저정보 바디에서 가져와서 member에 넣고 반환
-		return null;
+		ResponseEntity<Member> response = new RestTemplate().exchange(url, HttpMethod.GET,
+			new HttpEntity<>(header), Member.class);
+		Member body = response.getBody();
+		return new Member(body.getEmail(), accessToken);
 	}
 }
