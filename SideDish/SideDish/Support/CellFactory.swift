@@ -8,7 +8,14 @@ protocol CellFactoryProtocol {
 
 final class CellFactory: CellFactoryProtocol {
     private let repository: DishCellRepositoryProtocol
-    private(set) var products: [ProductSort: [DishCellInfo]] = [:]
+    private(set) var products: [ProductSort: [DishCellInfo]] = [:] {
+        didSet {
+            let requiredSectionCount = 3
+            if products.count == requiredSectionCount {
+                self.onUpdate()
+            }
+        }
+    }
     var onUpdate: () -> Void = { }
 
     init(repository: DishCellRepositoryProtocol) {
@@ -22,18 +29,13 @@ final class CellFactory: CellFactoryProtocol {
                 switch result {
                 case .success(let data):
                     self?.products[sort] = data
-                    self?.onUpdate()
                 case .failure:
-                    // TODO: - error handling
                     print("\(sort.rawValue) error happend!!!")
                 }
             }
         }
     }
 
-    func fetchImageFromServer() {
-    }
-    
     func convertCell2Product() -> [ProductSort: [Product]] {
         var resultDictionary: [ProductSort: [Product]] = [ : ]
         for (key, value) in products {
