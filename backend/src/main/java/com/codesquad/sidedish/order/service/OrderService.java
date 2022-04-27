@@ -7,6 +7,7 @@ import com.codesquad.sidedish.item.exception.CategoryIdNotFoundException;
 import com.codesquad.sidedish.item.exception.ItemIdNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.codesquad.sidedish.order.domain.Order;
@@ -33,13 +34,13 @@ public class OrderService {
         Integer itemId = order.getItemId();
 
         Category category = categoryRepository.findByItemId(itemId)
-                .orElseThrow(() -> new CategoryIdNotFoundException("존재하지 않는 카테고리입니다."));
+                .orElseThrow(() -> new CategoryIdNotFoundException("존재하지 않는 카테고리입니다.", HttpStatus.NOT_FOUND));
 
         Item orderedItem = category.getItems()
                 .stream()
                 .filter(item -> item.getId().equals(itemId))
                 .findAny()
-                .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
+                .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다.", HttpStatus.NOT_FOUND));
 
         orderedItem.removeStock(order.getAmount());
 

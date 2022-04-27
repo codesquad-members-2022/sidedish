@@ -7,6 +7,7 @@ import com.codesquad.sidedish.item.exception.OutOfStockException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.http.HttpStatus;
 
 public class Item {
     @Id
@@ -86,7 +87,7 @@ public class Item {
 
     public void removeStock(Integer amount) {
         if (stock < amount) {
-            throw new OutOfStockException("재고가 부족합니다.");
+            throw new OutOfStockException("재고가 부족합니다.", HttpStatus.FORBIDDEN);
         }
         stock -= amount;
     }

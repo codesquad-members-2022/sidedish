@@ -1,15 +1,11 @@
 package com.codesquad.sidedish.order.controller;
 
-import com.codesquad.sidedish.item.exception.OutOfStockException;
 import com.codesquad.sidedish.order.dto.OrderItemDto;
 import com.codesquad.sidedish.order.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +27,5 @@ public class OrderController {
     @PostMapping("/order")
     public void order(@RequestBody OrderItemDto orderItemDto) {
         orderService.order(orderItemDto);
-    }
-
-    @ExceptionHandler(OutOfStockException.class)
-    public ResponseEntity<String> handleOutOfStockException(OutOfStockException e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
     }
 }

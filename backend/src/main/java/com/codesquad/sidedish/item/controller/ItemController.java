@@ -3,8 +3,6 @@ package com.codesquad.sidedish.item.controller;
 import com.codesquad.sidedish.item.dto.CategoryItemDto;
 import com.codesquad.sidedish.item.dto.CategoryItemsDto;
 import com.codesquad.sidedish.item.dto.DetailItemDto;
-import com.codesquad.sidedish.item.exception.CategoryIdNotFoundException;
-import com.codesquad.sidedish.item.exception.ItemIdNotFoundException;
 import com.codesquad.sidedish.item.service.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,9 +13,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "items", description = "반찬 조회 API")
 @RequestMapping("/items")
@@ -49,15 +48,5 @@ public class ItemController {
     @GetMapping("/detail/{id}")
     public DetailItemDto detail(@PathVariable int id) {
         return itemService.findById(id);
-    }
-
-    @ExceptionHandler(ItemIdNotFoundException.class)
-    public ResponseEntity<String> handleItemIdNotFoundException(ItemIdNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
-
-    @ExceptionHandler(CategoryIdNotFoundException.class)
-    public ResponseEntity<String> handleCategoryIdNotFoundException(CategoryIdNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }

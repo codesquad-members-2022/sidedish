@@ -1,19 +1,10 @@
 package com.codesquad.sidedish.item.exception;
 
-public class ItemIdNotFoundException extends RuntimeException {
-    public ItemIdNotFoundException() {
-        super();
-    }
+import com.codesquad.sidedish.exception.GlobalException;
+import org.springframework.http.HttpStatus;
 
-    public ItemIdNotFoundException(String message) {
-        super(message);
-    }
-
-    public ItemIdNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ItemIdNotFoundException(Throwable cause) {
-        super(cause);
+public class ItemIdNotFoundException extends GlobalException {
+    public ItemIdNotFoundException(String errorMessage, HttpStatus httpStatus) {
+        super(errorMessage, httpStatus);
     }
 }

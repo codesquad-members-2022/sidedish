@@ -1,19 +1,10 @@
 package com.codesquad.sidedish.item.exception;
 
-public class OutOfStockException extends RuntimeException {
-    public OutOfStockException() {
-        super();
-    }
+import com.codesquad.sidedish.exception.GlobalException;
+import org.springframework.http.HttpStatus;
 
-    public OutOfStockException(String message) {
-        super(message);
-    }
-
-    public OutOfStockException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public OutOfStockException(Throwable cause) {
-        super(cause);
+public class OutOfStockException extends GlobalException {
+    public OutOfStockException(String errorMessage, HttpStatus httpStatus) {
+        super(errorMessage, httpStatus);
     }
 }
