@@ -3,7 +3,10 @@ package com.codesquad.sidedish.user.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
+import com.codesquad.sidedish.user.exception.NotValidTokenException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -39,7 +42,7 @@ public class JwtTokenProvider {
         } catch (ExpiredJwtException e) {
             return e.getClaims().getSubject();
         } catch (JwtException e) {
-            throw new RuntimeException("유효하지 않은 토큰입니다.");
+            throw new NotValidTokenException("유효하지 않은 토큰입니다.", HttpStatus.UNAUTHORIZED);
         }
     }
 }

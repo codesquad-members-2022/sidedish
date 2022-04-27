@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.codesquad.sidedish.user.exception.NoTokenException;
 import com.codesquad.sidedish.user.service.JwtTokenProvider;
 
 @Component
@@ -27,23 +29,22 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws
         Exception {
 
-        resolveToken(request)
-            .ifPresent(token -> {
-                int userId = Integer.parseInt(tokenProvider.getPayload(token));
-                log.debug("token is : {}", token);
-                log.debug("userId is : {}", userId);
-                request.setAttribute("userId", userId);
-            });
-
-        return true;
+        Optional<String> token = resolveToken(request);
+        if (token.isPresent()) {
+            int userId = Integer.parseInt(tokenProvider.getPayload(token.get()));
+            log.debug("token is : {}", token);
+            log.debug("userId is : {}", userId);
+            request.setAttribute("userId", userId);
+            return true;
+        }
+        throw new NoTokenException("토큰이 없습니다. 로그인 먼저 해주세요.", HttpStatus.UNAUTHORIZED);
     }
 
     private Optional<String> resolveToken(HttpServletRequest request) {
         String authorizationInfo = request.getHeader("Authorization");
-        if (authorizationInfo.isEmpty()) {
-            throw new RuntimeException("토큰 정보가 없으니 받아오시오");
+        if (authorizationInfo == null) {
+            return Optional.empty();
         }
-
         String[] parts = authorizationInfo.split(" ");
         if (parts.length == 2 && parts[0].equals("Bearer")) {
             return Optional.ofNullable(parts[1]);
