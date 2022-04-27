@@ -104,4 +104,15 @@ public class ItemRepository {
                 .discountRate(rs.getDouble("dp.discount_rate"))
                 .build();
     }
+
+    public void updateStock(Item updateItem) {
+        String sql = "UPDATE item\n" +
+                "SET stock = :updateStock\n" +
+                "WHERE item_id = :itemId";
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("updateStock", updateItem.getStock());
+        parameters.put("itemId", updateItem.getItemId());
+        jdbcTemplate.update(sql, parameters);
+    }
 }
