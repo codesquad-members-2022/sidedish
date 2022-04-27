@@ -1,9 +1,11 @@
 DROP TABLE IF EXISTS image_file;
+DROP TABLE IF EXISTS user_order;
 DROP TABLE IF EXISTS sidedish;
 DROP TABLE IF EXISTS discount_policy;
 DROP TABLE IF EXISTS menu_category;
 DROP TABLE IF EXISTS event_category;
 DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE event
 (
@@ -70,3 +72,27 @@ CREATE TABLE image_file
     PRIMARY KEY (id),
     FOREIGN KEY (sidedish_id) REFERENCES sidedish (id)
 );
+
+CREATE TABLE user
+(
+    id    INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(32),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE user_order
+(
+    id                INT NOT NULL AUTO_INCREMENT,
+    user_id           INT NOT NULL,
+    sidedish_id       INT NOT NULL,
+    quantity    INT NOT NULL,
+    total_price       INT NOT NULL,
+    fee               INT NOT NULL,
+    point             INT NOT NULL,
+    created_datetime  TIMESTAMP,
+    modified_datetime TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (sidedish_id) REFERENCES sidedish (id)
+);
+
