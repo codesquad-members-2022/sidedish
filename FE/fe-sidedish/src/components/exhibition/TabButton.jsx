@@ -1,7 +1,11 @@
-import { Button } from "./Exhibition.style";
+import * as S from './Exhibition.style';
 
 const TapButton = ({ title, isActive }) => {
-  return <Button className={isActive ? "active" : ""}>{title}</Button>;
+  return (
+    <S.Button type='button' className={isActive ? 'active' : ''}>
+      {title}
+    </S.Button>
+  );
 };
 
 export default TapButton;

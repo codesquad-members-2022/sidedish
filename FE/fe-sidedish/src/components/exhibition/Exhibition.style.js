@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Container = styled.div`
   margin: 56px 0 0;
 `;
 
-const TitleWrapper = styled.div`
+const TitleContainer = styled.div`
   margin: 0 auto 24px;
   width: 1440px;
   padding: 0 80px;
@@ -29,7 +29,7 @@ const Badge = styled.div`
   overflow: hidden;
 `;
 
-const TapBarContainer = styled.div`
+const TapBarList = styled.ul`
   margin: 0 auto;
   width: 1440px;
   padding: 0 80px;
@@ -45,12 +45,13 @@ const Button = styled.button`
     border-bottom: 2px solid ${({ theme }) => theme.color.black};
   }
 `;
-const DishListWrapper = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.color.grey4};
-  border-bottom: 1px solid ${({ theme }) => theme.color.grey4};
+
+const HorizontalLine = styled.div`
+  height: 1px;
+  background-color: ${({ theme }) => theme.color.grey4};
 `;
 
-const DishListContainer = styled.ul`
+const MenuList = styled.ul`
   margin: 32px auto 56px;
   width: 1440px;
   padding: 0 80px;
@@ -58,13 +59,4 @@ const DishListContainer = styled.ul`
   gap: 24px;
 `;
 
-export {
-  Container,
-  TitleWrapper,
-  Title,
-  Badge,
-  TapBarContainer,
-  Button,
-  DishListWrapper,
-  DishListContainer,
-};
+export { Container, TitleContainer, Title, Badge, TapBarList, Button, HorizontalLine, MenuList };
