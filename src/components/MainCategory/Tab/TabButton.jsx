@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import COLOR from '../variable/color';
-import Text from './Text';
+import Text from 'components/utils/Text';
 
-export default function TabButton(props) {
-  const { value, isSelected } = props;
+export default function TabButton({ value, isSelected }) {
   return (
     <Wrap isSelected={isSelected}>
       <Text size="X_LARGE" value={value} />
@@ -19,6 +17,6 @@ TabButton.defaultProps = {
 const Wrap = styled.button({
   width: 'fit-content',
   height: '48px',
-  borderBottom: props => (props.isSelected ? `2px solid ${COLOR.BLACK}` : ''),
+  borderBottom: ({ isSelected, theme }) => (isSelected ? `2px solid ${theme.COLOR.BLACK[100]}` : '0'),
   cursor: 'pointer'
 });

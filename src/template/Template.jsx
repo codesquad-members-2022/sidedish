@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from '../components/Text';
-import Button from '../components/Button';
-import IconButton from '../components/IconButton';
-import MoreButton from '../components/MoreButton';
-import Tag from '../components/Tag';
-import TabButton from '../components/TabButton';
-import TabBar from '../components/TabBar';
-import Header from '../components/Header';
-import Card from '../components/Card';
+import Text from 'components/utils/Text';
+import Button from 'components/common/Button';
+import IconButton from 'components/common/IconButton';
+import MoreButton from 'components/MoreButton';
+import Tag from 'components/common/Card/Tag';
+import TabButton from 'components/MainCategory/Tab/TabButton';
+import TabBar from 'components/MainCategory/Tab/TabBar';
+import Header from 'components/Header/Header';
+import Card from 'components/common/Card/Card';
 
 export default function Template() {
   return (
@@ -49,23 +49,23 @@ export default function Template() {
       <br />
 
       <TemplateSubTitle>Gray1</TemplateSubTitle>
-      <Text color="GREY1" value="맛있는 반찬을 배달해드립니다." />
+      <Text color="GREY_100" value="맛있는 반찬을 배달해드립니다." />
       <br />
 
       <TemplateSubTitle>Gray2</TemplateSubTitle>
-      <Text color="GREY2" value="맛있는 반찬을 배달해드립니다." />
+      <Text color="GREY_200" value="맛있는 반찬을 배달해드립니다." />
       <br />
 
       <TemplateSubTitle>Gray3</TemplateSubTitle>
-      <Text color="GREY3" value="맛있는 반찬을 배달해드립니다." />
+      <Text color="GREY_300" value="맛있는 반찬을 배달해드립니다." />
       <br />
 
       <TemplateSubTitle>Gray4</TemplateSubTitle>
-      <Text color="GREY4" value="맛있는 반찬을 배달해드립니다." />
+      <Text color="GREY_400" value="맛있는 반찬을 배달해드립니다." />
       <br />
 
       <TemplateSubTitle>Off-White</TemplateSubTitle>
-      <Text color="OFF_WHITE" value="맛있는 반찬을 배달해드립니다." />
+      <Text color="WHITE_200" value="맛있는 반찬을 배달해드립니다." />
 
       <TemplateTitle>LABELS</TemplateTitle>
       <TemplateSubTitle>Event</TemplateSubTitle>

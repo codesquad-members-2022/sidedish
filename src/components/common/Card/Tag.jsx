@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from './Text';
-import COLOR from '../variable/color';
+import theme from 'variable/theme';
+import Text from 'components/utils/Text';
 
-export default function Tag(props) {
-  const { type } = props;
+export default function Tag({ type }) {
   return (
     <PillShape type={type}>
-      <Text size="SMALL" color="WHITE" value={type} />
+      <Text size="SMALL" color="WHITE_100" value={type} />
     </PillShape>
   );
 }
@@ -25,10 +24,10 @@ const PillShape = styled.div({
 
 function getColorByType(type) {
   if (type === '이벤트특가') {
-    return COLOR.GREEN;
+    return theme.COLOR.GREEN[100];
   }
   if (type === '런칭특가') {
-    return COLOR.ORANGE;
+    return theme.COLOR.ORANGE[100];
   }
   throw new Error('태그의 타입이 올바르지 않습니다.');
 }

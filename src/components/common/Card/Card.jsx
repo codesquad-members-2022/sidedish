@@ -1,57 +1,57 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Tag from './Tag';
-import Text from './Text';
-import HoverInfo from '../images/HoverInfo.png';
+import Tag from 'components/common/Card/Tag';
+import Text from 'components/utils/Text';
+import HoverInfo from 'images/HoverInfo.png';
 
-export default function Card(props) {
-  const { size, imageURL, title, desc, curPrice, prevPrice, tags } = props;
+export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {
   const [isHoverImg, setHoverImg] = useState(false);
   const isSmall = size === 'SMALL';
   return (
     <Wrap size={size}>
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
-          {getHoverImgBySize()}
+          {HoverImg()}
           <img src={imageURL} alt="반찬" />
         </ImgWrap>
-        {getSpaceBySize()}
-        {getTitle()}
-        {getDescriptionBySize()}
+        {Space()}
+        <Title />
+        {Description()}
         <Prices>
           <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
-          <Text size="BASE" weight="REGULAR" color="GREY3" value={prevPrice} line />
+          <Text size="BASE" weight="REGULAR" color="GREY_300" value={prevPrice} line />
         </Prices>
       </A>
-      <Tags>{getTags()}</Tags>
+      <TagWrap>{Tags()}</TagWrap>
     </Wrap>
   );
 
-  function getTitle() {
+  function Title() {
     if (isSmall) {
       return <Text value={title} />;
     }
     return <Text size="MEDIUM" weight="MEDIUM" value={title} />;
   }
 
-  function getHoverImgBySize() {
+  function HoverImg() {
     if (isSmall) return null;
-    return <HoverImg isHoverImg={isHoverImg} />;
+    return <DeliveryInfo isHoverImg={isHoverImg} />;
   }
 
-  function getSpaceBySize() {
+  function Space() {
     if (isSmall) return null;
-    return <Space />;
+    return <div />;
   }
 
-  function getDescriptionBySize() {
+  function Description() {
     if (isSmall) return null;
-    return <Text size="BASE" weight="REGULAR" color="GREY2" value={desc} />;
+    return <Text size="BASE" weight="REGULAR" color="GREY_200" value={desc} />;
   }
 
-  function getTags() {
+  function Tags() {
     if (isSmall) return null;
-    return tags.map(tag => <Tag type={tag} />);
+    return tags.map((tag, index) => <Tag key={`${tag}_${index}`} type={tag} />);
   }
 }
 
@@ -97,15 +97,13 @@ const Prices = styled.div({
   alignItems: 'center'
 });
 
-const Tags = styled.div({
+const TagWrap = styled.div({
   display: 'flex',
   gap: '8px',
   marginTop: '8px'
 });
 
-const Space = styled.div({});
-
-const HoverImg = styled.div({
+const DeliveryInfo = styled.div({
   width: '142px',
   height: '149px',
   backgroundImage: `url(${HoverInfo})`,

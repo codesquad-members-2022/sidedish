@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from './Text';
-import COLOR from '../variable/color';
+import Text from 'components/utils/Text';
 
-export default function MoreButton(props) {
-  const { value } = props;
+export default function MoreButton({ value }) {
   return (
     <Wrap>
       <Text size="X_LARGE" weight="REGULAR" value={value} />
@@ -17,7 +15,8 @@ MoreButton.defaultProps = {
 };
 
 const Wrap = styled.button({
-  padding: '16px 24px 16px 24px',
-  border: `1px solid ${COLOR.GREY4}`,
-  backgroundColor: COLOR.WHITE
+  margin: '0 auto',
+  padding: '16px 24px',
+  backgroundColor: ({ theme }) => theme.COLOR.WHITE[100],
+  border: ({ theme }) => `1px solid ${theme.COLOR.GREY[400]}`
 });
