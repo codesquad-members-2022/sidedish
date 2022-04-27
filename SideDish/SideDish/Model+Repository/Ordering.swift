@@ -70,12 +70,12 @@ final class Ordering{
     
     func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Result<Data,Error>)->Void) {
         let url = EndPoint.mainImage(rawUrl: imageUrl)
-        repository.requestData(method: .get, contentType: .image, url: url, completionHandler: completionHandler)
+        repository.requestBinaryData(method: .get, contentType: .image, url: url, completionHandler: completionHandler)
     }
     
-    func requestFoodDetail(detailHash: String, completionHandler: @escaping (Result<Data,Error>)->Void) {
+    func requestFoodDetail(detailHash: String, completionHandler: @escaping (Result<DetailResponse<FoodDetail>,Error>)->Void) {
         let url = EndPoint.detail(detailHash: detailHash)
-        repository.requestData(method: .get, contentType: .json, url: url, completionHandler: completionHandler)
+        repository.requestModelData(method: .get, contentType: .json, url: url, completionHandler: completionHandler)
     }
     
     subscript(index: Int = 0 , category: Category) -> Food? {
