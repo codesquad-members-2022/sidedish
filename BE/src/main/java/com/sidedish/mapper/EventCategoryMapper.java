@@ -5,7 +5,7 @@ import com.sidedish.dto.EventCategoryDto;
 
 public class EventCategoryMapper {
 
-    public EventCategoryDto convertToDto(EventCategory eventCategory) {
+    public static EventCategoryDto convertToDto(EventCategory eventCategory) {
         return new EventCategoryDto(eventCategory.getId(), eventCategory.getName());
     }
 

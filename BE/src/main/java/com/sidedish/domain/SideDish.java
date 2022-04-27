@@ -1,6 +1,7 @@
 package com.sidedish.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,11 +34,20 @@ public class SideDish {
     public String getMainImage() {
         String saveFileName = null;
         for (ImageFile imageFile : imageFiles) {
-            if (imageFile.hasMainImageType()) {
+            if (imageFile.isMainImageType()) {
                 saveFileName = imageFile.getSaveFileName();
             }
         }
 
         return saveFileName;
+    }
+
+    public List<String> getTotalImages() {
+        List<String> images = new ArrayList<>();
+        for (ImageFile imageFile : imageFiles) {
+            images.add(imageFile.getSaveFileName());
+        }
+
+        return images;
     }
 }

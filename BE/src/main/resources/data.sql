@@ -30,6 +30,8 @@ INSERT INTO sidedish (event_category_id, menu_category_id, name, description, pr
 INSERT INTO sidedish (event_category_id, menu_category_id, name, description, price, created_datetime, modified_datetime) VALUES (4, 1, '시금치 무침', '맛있어요!!', 4000, NOW(), NOW());
 
 INSERT INTO image_file (sidedish_id, file_name, save_file_name, content_type, image_type, delete_flag, created_datetime, modified_datetime) VALUES (1, '1_ma_1.png', 'img/1_ma_1.png', 'image/png', 'main', 0, NOW(), NOW());
+INSERT INTO image_file (sidedish_id, file_name, save_file_name, content_type, image_type, delete_flag, created_datetime, modified_datetime) VALUES (1, '1_et_2.png', 'img/1_et_2.png', 'image/png', 'main', 0, NOW(), NOW());
+INSERT INTO image_file (sidedish_id, file_name, save_file_name, content_type, image_type, delete_flag, created_datetime, modified_datetime) VALUES (1, '1_et_3.png', 'img/1_et_3.png', 'image/png', 'main', 0, NOW(), NOW());
 INSERT INTO image_file (sidedish_id, file_name, save_file_name, content_type, image_type, delete_flag, created_datetime, modified_datetime) VALUES (2, '2_ma_1.png', 'img/2_ma_1.png', 'image/png', 'main', 0, NOW(), NOW());
 INSERT INTO image_file (sidedish_id, file_name, save_file_name, content_type, image_type, delete_flag, created_datetime, modified_datetime) VALUES (3, '3_ma_1.png', 'img/3_ma_1.png', 'image/png', 'main', 0, NOW(), NOW());
 INSERT INTO image_file (sidedish_id, file_name, save_file_name, content_type, image_type, delete_flag, created_datetime, modified_datetime) VALUES (4, '4_ma_1.png', 'img/4_ma_1.png', 'image/png', 'main', 0, NOW(), NOW());
