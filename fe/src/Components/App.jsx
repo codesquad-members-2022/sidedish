@@ -6,7 +6,8 @@ import { useFetch } from '@/Hooks';
 import { BestProducts } from '@/Components/BestProducts';
 import { CategoryProductsList } from '@/Components/CategoryProductsList';
 import { Header } from '@/Components/Header';
-import { OrderPanel } from '@/Components/OrderModal';
+import { OrderModal } from '@/Components/OrderModal';
+import { ModalStore } from '@/Components/OrderModal';
 
 const Root = styled.div`
   width: 1440px;
@@ -15,10 +16,10 @@ const Root = styled.div`
 
 const App = () => {
   const [categoryList, isLoaded, isError] = useFetch(`${API_URL}/categories`);
-  
+
   // TODO: 에러 발생시 보여줄 화면
   if (isError) {
-    return null
+    return null;
   }
 
   // TODO: 로딩중 보여줄 화면
@@ -28,10 +29,12 @@ const App = () => {
 
   return (
     <Root>
-      <Header categoryList={categoryList.result_body} />
-      <BestProducts />
-      <CategoryProductsList categoryList={categoryList.result_body} />
-      <OrderPanel />
+      <ModalStore>
+        <Header categoryList={categoryList.result_body} />
+        <BestProducts />
+        <CategoryProductsList categoryList={categoryList.result_body} />
+        <OrderModal />
+      </ModalStore>
     </Root>
   );
 };

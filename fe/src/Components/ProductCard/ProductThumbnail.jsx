@@ -37,9 +37,16 @@ const Mask = styled.div`
   transition: opacity 150ms;
 `;
 
-export const ProductThumbnail = ({ imgUrl, morningDelivery }) => {
+export const ProductThumbnail = ({
+  imgUrl,
+  morningDelivery,
+  onclickThumbnail,
+}) => {
   return (
-    <ProductThumbnailWrapper className={'product-thumbnail'}>
+    <ProductThumbnailWrapper
+      className={'product-thumbnail'}
+      onClick={onclickThumbnail}
+    >
       {morningDelivery && <HoverInfo />}
       <Mask className={'mask'} />
       <img className={'product-img'} src={imgUrl} alt={'제품사진'} />
