@@ -49,8 +49,10 @@ public class GitHubAuthService {
             memberRepository.save(member);
         }
 
-        log.info("Member: {}", memberRepository.findByUserIdAndProvider(userId, provider)
-                .orElseThrow(() -> new OAuthException(NO_SUCH_MEMBER_ERROR)));
+        Member newMember = memberRepository.findByUserIdAndProvider(userId, provider)
+                .orElseThrow(() -> new OAuthException(NO_SUCH_MEMBER_ERROR));
+
+        log.info("Member: {}", newMember);
 
         return MemberResponse.from(member);
     }
