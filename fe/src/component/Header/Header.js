@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import GNB from "./GNB";
 import styled from "styled-components";
 

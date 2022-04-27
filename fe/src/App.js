@@ -1,19 +1,30 @@
-import "./App.css";
-import "./reset.css";
-
+import styled, { ThemeProvider } from "styled-components";
+import theme from "../src/style/theme.js";
 import Header from "./component/Header/Header";
 import Tab from "./component/Tab/Tab";
 import SubTitle from "./component/SubTitle/SubTitle";
-import Slide from "./component/bottom/Slide";
+import Slides from "./component/bottom/Slides";
+import GlobalStyle from "./style/globalStyle";
+import Modal from "./component/modal/Modal.js";
 
+const Container = styled.div`
+  width: 1440px;
+  margin: 0 auto;
+`;
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <SubTitle />
-      <Tab />
-      <Slide />
-    </div>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Container>
+          <Header />
+          <SubTitle />
+          <Tab />
+          <Slides />
+        </Container>
+        <Modal />
+      </ThemeProvider>
+    </>
   );
 }
 

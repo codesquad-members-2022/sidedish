@@ -1,8 +1,8 @@
-import List from "./List";
 import Card from "../UI/Card";
 import CardsWrapper from "../UI/CardsWrapper";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
+import constansts from "../../constants/constansts";
 
 const TabList = styled.ul`
   display: flex;
@@ -11,48 +11,51 @@ const TabList = styled.ul`
 
 const TabListItem = styled.li`
   margin-right: 30px;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   cursor: pointer;
   &.active {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.black};
   }
 `;
 
 const Tab = () => {
-  const [infor, setInfor] = useState([
-    { id: 1, title: "풍성한 고기반찬" },
-    { id: 2, title: "편리한 반찬세트" },
-    { id: 3, title: "맛있는 제철요리" },
-    { id: 4, title: "우리 아이 영향 반찬" },
-  ]);
-
   const [cards, setCards] = useState([]);
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-    setActiveTab("1");
+    fetch("http://15.165.204.34:8080/api/v1/products/반찬/영양", {
+      headers: {
+        Origin: "http://15.165.204.34:8080/",
+        mode: "no-cors",
+        // "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((r) => r.json())
+      .then((r) => console.log(r));
+
+    console.log(1);
   }, []);
 
-  useEffect(() => {
-    fetch("https://api.codesquad.kr/onban/main")
-      .then((res) => res.json())
-      .then((data) => setCards(data.body[activeTab]));
-  }, [activeTab]);
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   Accept: "application/json",
+  // },
 
-  const onClickHandler = (event) => {
-    setActiveTab(event.target.id);
+  const onClickHandler = ({ target }) => {
+    setActiveTab(+target.id);
   };
 
   return (
     <>
       <TabList>
-        {infor.map((v) => {
+        {constansts.tapInforList.map((v) => {
           return (
             <TabListItem
               id={v.id}
               key={v.id}
-              className={v.id.toString() === activeTab ? "active" : ""}
+              className={v.id === activeTab ? "active" : ""}
               onClick={onClickHandler}
             >
               {v.title}
@@ -63,6 +66,7 @@ const Tab = () => {
 
       <CardsWrapper>
         <Card
+          id={cards.detail_hash}
           key={cards.detail_hash}
           image={cards.image}
           alt={cards.alt}
@@ -71,6 +75,7 @@ const Tab = () => {
           s_price={cards.s_price}
           n_price={cards.n_price}
           badge={cards.badge}
+          delivery={cards.delivery_type}
         />
       </CardsWrapper>
     </>

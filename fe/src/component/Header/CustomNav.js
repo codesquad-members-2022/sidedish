@@ -1,34 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledNav = styled.nav`
+const InforNav = styled.nav`
   margin-top: 18px;
   margin-left: 15px;
 `;
 
-const StyledLi = styled.li`
+const NavLi = styled.li`
   margin-top: 10px;
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSize.small};
   &:hover {
     text-decoration: underline;
     cursor: pointer;
   }
 `;
 
-const StyledUl = styled.ul`
+const NavUl = styled.ul`
   display: none;
 `;
 
 const CustomNav = (props) => {
   return (
-    <StyledNav>
+    <InforNav>
       {props.infor.navTitle}
-      <StyledUl className="nav-List">
+      <NavUl className="nav-List">
         {props.infor.navList.map((v, i) => (
-          <StyledLi key={i}>{v}</StyledLi>
+          <NavLi key={i}>{v}</NavLi>
         ))}
-      </StyledUl>
-    </StyledNav>
+      </NavUl>
+    </InforNav>
   );
 };
 
