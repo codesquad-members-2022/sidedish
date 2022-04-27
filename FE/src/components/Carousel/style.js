@@ -22,7 +22,9 @@ export const AngleLeft = styled(AngleLeftSvg)`
   fill: #bcbcbc;
   position: absolute;
   top: 50%;
-  left: -20px;
+  left: -50px;
+  width: 50px;
+  height: 50px;
   &:hover {
     fill: #1b1b1b;
   }
@@ -31,7 +33,9 @@ export const AngleRight = styled(AngleRigthSvg)`
   fill: #bcbcbc;
   position: absolute;
   top: 50%;
-  right: -20px;
+  right: -50px;
+  width: 50px;
+  height: 50px;
   &:hover {
     fill: #1b1b1b;
   }

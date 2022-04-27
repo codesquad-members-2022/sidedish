@@ -29,8 +29,6 @@ export const Header = styled.div`
   }
 `;
 
-export const TitleBadge = styled.div``;
-
 export const Nav = styled.ul`
   display: flex;
   gap: 32px;

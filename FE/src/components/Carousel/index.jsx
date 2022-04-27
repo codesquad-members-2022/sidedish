@@ -2,7 +2,7 @@ import React from "react";
 import MealCard from "components/MealCard";
 import { AngleLeft, AngleRight, CarouselContainer, Container } from "./style";
 
-function getCarouselDesign(width, imageCount, imageSize) {
+const getCarouselDesign = (width, imageCount, imageSize) => {
   const size = imageSize;
   let count = imageCount;
 
@@ -13,13 +13,13 @@ function getCarouselDesign(width, imageCount, imageSize) {
   const gap = Math.floor((1280 - imageSize * count) / (count - 1));
   // BUG: gap값 구할 때 count가 1이면 Infinity가 출력 됨
   return { gap, size };
-}
+};
 
 const IMAGE_COUNT = 4;
-const IMAGE_SIZE = 300;
+const MEAL_IMAGE_SIZE = 300;
 
-function Carousel({ cards }) {
-  const { gap, size } = getCarouselDesign(1280, IMAGE_COUNT, IMAGE_SIZE);
+const Carousel = ({ cards }) => {
+  const { gap, size } = getCarouselDesign(1280, IMAGE_COUNT, MEAL_IMAGE_SIZE);
   return (
     <Container>
       <AngleLeft />
@@ -31,6 +31,6 @@ function Carousel({ cards }) {
       <AngleRight />
     </Container>
   );
-}
+};
 
 export default Carousel;

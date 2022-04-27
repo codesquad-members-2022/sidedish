@@ -1,30 +1,32 @@
-import { DISCOUNT_TYPE } from "constants";
 import React from "react";
 import { getMealImage } from "utils";
-import { Card, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContainer, SpanDivider } from "./style";
+import { Conatiner, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContainer, SpanDivider } from "./style";
+
+const changeNumberToKoreanLocale = (number) => `${number.toLocaleString("ko-KR")}원`;
+
+const showOriginalPrice = (originalPrice, fixedPrice) =>
+  originalPrice === fixedPrice ? <></> : <span>{changeNumberToKoreanLocale(fixedPrice)}</span>;
 
 const MealCard = ({ mealInfo, size }) => {
   const { productName, description, event: discountType, fixedPrice, image, originalPrice } = mealInfo;
   return (
-    <Card imageSize={size}>
+    <Conatiner imageSize={size}>
       <img src={getMealImage(image)} alt={productName} />
       <CardInfo>
-        <h4>{productName}</h4>
+        <h3>{productName}</h3>
         <p>{description}</p>
         <PriceContainer>
-          <span>{fixedPrice}</span>
-          <span>{originalPrice}</span>
+          <span>{changeNumberToKoreanLocale(fixedPrice)}</span>
+          <span>{showOriginalPrice(originalPrice, fixedPrice)}</span>
         </PriceContainer>
-        {discountType && (
-          <DiscoutType isLaunchingDiscount={discountType === DISCOUNT_TYPE.launching}>{discountType}</DiscoutType>
-        )}
+        {discountType && <DiscoutType discountType={discountType}>{discountType}</DiscoutType>}
       </CardInfo>
       <DeliveryServiceHoverContainer>
         <span>새벽배송</span>
         <SpanDivider />
         <span>전국택배</span>
       </DeliveryServiceHoverContainer>
-    </Card>
+    </Conatiner>
   );
 };
 export default MealCard;

@@ -3,7 +3,7 @@ import Loader from "components/Loader";
 import Carousel from "components/Carousel";
 import { Container, Header } from "./style";
 
-function MealContainer({ meals }) {
+const MealContainer = ({ meals }) => {
   const { mealHeader, mealCards } = meals;
   return (
     <Container>
@@ -11,6 +11,6 @@ function MealContainer({ meals }) {
       {mealCards.length ? <Carousel cards={mealCards} /> : <Loader />}
     </Container>
   );
-}
+};
 
 export default MealContainer;

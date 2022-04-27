@@ -1,3 +1,4 @@
+import { DISCOUNT_TYPE } from "constants";
 import styled from "styled-components";
 
 export const DeliveryServiceHoverContainer = styled.div`
@@ -23,7 +24,7 @@ export const DeliveryServiceHoverContainer = styled.div`
   }
 `;
 
-export const Card = styled.li`
+export const Conatiner = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -85,12 +86,20 @@ export const DiscoutType = styled.div`
   width: 76px;
   height: 30px;
   border-radius: 20px;
-  /* TODO: switch 문으로 바꾸기(분기처리에서 추가 속성이 추가될 수 있기 때문) */
-  background-color: ${({ theme: { color }, isLaunchingDiscount }) =>
-    isLaunchingDiscount ? color.orange : color.green};
+  background-color: ${({ theme: { color }, discountType }) => getEventColorType({ color, discountType })};
   color: ${({ theme: { color } }) => color.white};
   font-size: ${({ theme: { fontSize } }) => fontSize.xSmall};
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
   text-align: center;
   line-height: 30px;
 `;
+
+const getEventColorType = ({ color, discountType }) => {
+  switch (discountType) {
+    case DISCOUNT_TYPE.launching:
+      return color.orange;
+    case DISCOUNT_TYPE.event:
+      return color.green;
+    default:
+  }
+};
