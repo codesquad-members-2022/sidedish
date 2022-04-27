@@ -47,6 +47,18 @@ insert into category_has_side_dish (category_id, side_dish_id)
 values (1, 13);
 
 insert into category_has_side_dish (category_id, side_dish_id)
+values (1, 14);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (1, 15);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (1, 16);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (1, 17);
+
+insert into category_has_side_dish (category_id, side_dish_id)
 values (2, 5);
 
 insert into category_has_side_dish (category_id, side_dish_id)
@@ -56,7 +68,16 @@ insert into category_has_side_dish (category_id, side_dish_id)
 values (2, 7);
 
 insert into category_has_side_dish (category_id, side_dish_id)
-values (2, 8);
+values (2, 18);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (2, 19);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (2, 20);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (2, 21);
 
 insert into category_has_side_dish (category_id, side_dish_id)
 values (3, 1);
@@ -69,6 +90,27 @@ values (3, 3);
 
 insert into category_has_side_dish (category_id, side_dish_id)
 values (3, 4);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 22);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 23);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 24);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 25);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 26);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 27);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (3, 28);
 
 insert into category_has_side_dish (category_id, side_dish_id)
 values (4, 9);
@@ -482,3 +524,60 @@ values (7 /* 미역오이냉국 */, 1);
 
 insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
 values (10 /* 잡채 */, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (14, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (14, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (15, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (16, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (17, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (18, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (18, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (19, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (20, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (21, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (22, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (23, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (23, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (24, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (25, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (26, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (27, 1);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (27, 2);
+
+insert into side_dish_has_discount_event(side_dish_id, discount_event_id)
+values (28, 1);
