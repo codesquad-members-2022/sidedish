@@ -50,6 +50,20 @@ final class SideDishManager {
         }
     }
     
+    func getDetailDishThumbImages(hash: String) -> [Data]? {
+        guard let imageUrlList = getDetailDishFromHash(hash: hash)?.thumbImages else {
+            return nil
+        }
+        var imageDataList = [Data]()
+        for imageUrl in imageUrlList {
+            guard let image = HTTPManager.requestGetImageData(url: imageUrl) else {
+                return nil
+            }
+            imageDataList.append(image)
+        }
+        return imageDataList
+    }
+    
     func getDishFromSection(indexPath: IndexPath) -> MainCard.Body? {
         var dish: MainCard.Body?
         switch indexPath.section {
