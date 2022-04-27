@@ -15,7 +15,7 @@ class CommonViewModel {
         if let middleWare = models[useCase] {
             return middleWare
         } else {
-            let model = MiddleWareFactory.make(useCase: useCase)
+            let model = CacheModelFactory.make(useCase: useCase)
             models[useCase] = model
             return model
         }
