@@ -1,7 +1,10 @@
 package com.example.todo.sidedish.di
 
 import com.example.todo.sidedish.common.Constants
+import com.example.todo.sidedish.config.ORDER_BASE_URL
 import com.example.todo.sidedish.data.remote.OnBanApi
+import com.example.todo.sidedish.data.remote.order.OrderApi
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +27,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    @MenuRetrofit
     fun retrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(Constants.BASE_URL)
@@ -32,5 +36,18 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun menuService(retrofit: Retrofit): OnBanApi = retrofit.create(OnBanApi::class.java)
+    @OrderRetrofit
+    fun orderRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+        .baseUrl(ORDER_BASE_URL)
+        .client(okHttpClient)
+        .build()
+
+    @Singleton
+    @Provides
+    fun menuService(@MenuRetrofit retrofit: Retrofit): OnBanApi = retrofit.create(OnBanApi::class.java)
+
+    @Singleton
+    @Provides
+    fun orderService(@OrderRetrofit retrofit: Retrofit): OrderApi = retrofit.create(OrderApi::class.java)
 }

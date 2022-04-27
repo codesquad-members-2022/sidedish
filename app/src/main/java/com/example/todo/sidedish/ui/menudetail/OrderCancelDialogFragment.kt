@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.todo.sidedish.databinding.FragmentOrderCancelDialogBinding
 
-class OrderCancelDialogFragment : DialogFragment() {
+class OrderCancelDialogFragment(private val cancelTitle:String) : DialogFragment() {
 
     private lateinit var binding: FragmentOrderCancelDialogBinding
 
@@ -23,8 +23,11 @@ class OrderCancelDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.title = cancelTitle
         binding.btnOrder.setOnClickListener {
             dismiss()
         }
     }
+
+
 }
