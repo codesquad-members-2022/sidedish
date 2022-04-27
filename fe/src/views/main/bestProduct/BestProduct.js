@@ -8,22 +8,17 @@ import { ExhibitionTitle } from './title/exhibitionTitle';
 
 export function BestProduct() {
   const [exhibitionTitle, setExhibitionTitle] = useState('');
-  const [bestProductTab, setBestProductTab] = useState([]);
+  const [tabMenu, setTabMenu] = useState([]);
   const [tabList, setTabList] = useState([]);
   const [curTab, setCurTab] = useState(0);
-  const [sideDishCardDatas, setSideDishCardDatas] = useState([]);
+
   useEffect(() => {
     async function getExhibitionData() {
       const exhibitionData = await fetchData(API.exhibitions);
       const { exhibitionTitle, categoryResponses } = exhibitionData;
       setExhibitionTitle(exhibitionTitle);
-      setBestProductTab(categoryResponses);
-      setSideDishCardDatas(
-        categoryResponses.reduce((sideDishCardDatas, category) => {
-          sideDishCardDatas[category.categoryId] = category.sideDishCardResponses;
-          return sideDishCardDatas;
-        }, {})
-      );
+      setTabMenu(categoryResponses);
+
       const firstCategoryId = categoryResponses[0].categoryId;
       setCurTab(firstCategoryId);
     }
@@ -31,19 +26,26 @@ export function BestProduct() {
   }, []);
 
   useEffect(() => {
-    setTabList(sideDishCardDatas[curTab]);
-  }, [sideDishCardDatas, curTab]);
+    if (curTab === 0) {
+      return;
+    }
+    async function getSideDishDataByTabMenu() {
+      const { sideDishCardResponses } = await fetchData(`${API.categoryDishes}/${curTab}`);
+      setTabList(sideDishCardResponses);
+    }
+    getSideDishDataByTabMenu();
+  }, [curTab]);
 
   return (
     <StyledBestProduct>
       <BestProductHeader>
         <TitleWrapper flex align="center">
           <CategoryBadge>기획전</CategoryBadge>
-          <ExhibitionTitle title={exhibitionTitle}></ExhibitionTitle>
+          <ExhibitionTitle title={exhibitionTitle} />
         </TitleWrapper>
         <TabBar flex>
           <TabMenu
-            menus={bestProductTab}
+            menus={tabMenu}
             onMouseEnter={handleTabMouseEnter}
             onMouseLeave={handleTabMouseLeave}
             onClick={handleTabClick}
