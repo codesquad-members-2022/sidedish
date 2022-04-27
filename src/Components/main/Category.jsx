@@ -40,7 +40,11 @@ function CategoryItem({ category }) {
         <SlideWrapper>
           <SlideButton direction="prev" />
           <ListContainer>
-            <FoodList food={Food} vieewItemCount={category.viewItemCount} />
+            <FoodList
+              food={Food}
+              viewItemCount={category.viewItemCount}
+              itemGap="24px"
+            />
           </ListContainer>
           <SlideButton direction="next" />
         </SlideWrapper>
