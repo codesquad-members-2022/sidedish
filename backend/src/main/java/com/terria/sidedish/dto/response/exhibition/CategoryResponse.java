@@ -3,6 +3,7 @@ package com.terria.sidedish.dto.response.exhibition;
 import com.terria.sidedish.domain.entity.aggregate.Category;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @ApiModel
 @Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CategoryResponse {
 
     @ApiModelProperty(required = true, value = "카테고리 아이디")

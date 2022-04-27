@@ -3,6 +3,7 @@ package com.terria.sidedish.dto.response.sidedish;
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @ApiModel
 @Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class DiscountEventResponse {
 
     @ApiModelProperty(required = true, value = "할인 이벤트 아이디")

@@ -4,6 +4,7 @@ import com.terria.sidedish.domain.entity.aggregate.SideDish;
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 @ApiModel
 @Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SideDishCardResponse {
 
     @ApiModelProperty(required = true, value = "반찬 아이디")

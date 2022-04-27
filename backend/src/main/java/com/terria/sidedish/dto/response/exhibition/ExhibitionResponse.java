@@ -3,6 +3,7 @@ package com.terria.sidedish.dto.response.exhibition;
 import com.terria.sidedish.domain.entity.aggregate.Exhibition;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.util.List;
 @ApiModel
 @Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExhibitionResponse {
 
     @ApiModelProperty(required = true, value = "기획전 아이디")

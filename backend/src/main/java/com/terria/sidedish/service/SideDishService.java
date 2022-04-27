@@ -37,6 +37,13 @@ public class SideDishService {
         return new SideDishCardResponses(sideDishRepository.countByCategoryId(categoryId), sideDishCardResponses);
     }
 
+    public SideDishDetailResponse getById(long id) {
+        SideDish sideDish = sideDishRepository.findById(id)
+                .orElseThrow();
+
+        return SideDishDetailResponse.from(sideDish, getDiscountEvent(sideDish));
+    }
+
     private List<DiscountEvent> getDiscountEvent(SideDish sideDish) {
 
         return sideDish.getSideDishHasDiscountEvents().stream()
@@ -45,11 +52,5 @@ public class SideDishService {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());
-    }
-
-    public SideDishDetailResponse getById(long id) {
-
-        // TODO
-        return null;
     }
 }

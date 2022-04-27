@@ -67,11 +67,10 @@ public class SideDishController {
             )
     })
     @GetMapping("/{sideDishId}")
-    public SideDishDetailResponse getByCategoryId(
+    public SideDishDetailResponse getById(
             @PathVariable
             @Positive(message = "반찬 아이디 입력값이 부적절합니다.") long sideDishId) {
 
-        // TODO
-        return null;
+        return sideDishService.getById(sideDishId);
     }
 }
