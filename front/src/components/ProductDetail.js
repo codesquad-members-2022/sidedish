@@ -12,12 +12,17 @@ function ProductDetail({ dishes, showAlert }) {
     if (amount > 1) setAmount(amount - 1);
   }
 
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(() => resolve(), ms * 1000));
+  }
   function changeImage({ target }) {
     mainImage.current.src = target.src;
   }
-  function checkOrder() {
+  async function checkOrder() {
+    await delay(0.5);
     showAlert();
   }
+
   return (
     <DishDetail>
       <ProductImages>
