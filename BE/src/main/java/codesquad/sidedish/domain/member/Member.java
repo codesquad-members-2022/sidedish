@@ -1,6 +1,6 @@
 package codesquad.sidedish.domain.member;
 
-import codesquad.sidedish.domain.address.District;
+import codesquad.sidedish.domain.address.Address;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,24 +12,24 @@ import lombok.ToString;
 public class Member {
     private Long memberId;
     private String memberName;
-    private District district;
+    private Address address;
     private int mileage;
 
-    public Member(String memberName, District district) {
+    public Member(String memberName, Address address) {
         this.memberName = memberName;
-        this.district = district;
+        this.address = address;
     }
 
     @Builder
-    public Member(Long memberId, String memberName, District district, int mileage) {
+    public Member(Long memberId, String memberName, Address address, int mileage) {
         this.memberId = memberId;
         this.memberName = memberName;
-        this.district = district;
+        this.address = address;
         this.mileage = mileage;
     }
 
-    public boolean liveIn(District district) {
-        return this.district == district;
+    public boolean liveIn(String district) {
+        return address.getDistrict().equals(district);
     }
 
     public void initMemberId(Long memberId) {

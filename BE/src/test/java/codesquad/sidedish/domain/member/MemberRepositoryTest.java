@@ -1,6 +1,6 @@
 package codesquad.sidedish.domain.member;
 
-import codesquad.sidedish.domain.address.District;
+import codesquad.sidedish.domain.address.Address;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class MemberRepositoryTest {
     @Test
     @DisplayName("save() 메서드로 회원을 저장한 후, findById() 메서드로 조회하면 같은 회원이 반환되어야 한다.")
     void saveTest() {
-        Member saveMember = new Member("sampleName", District.SEOUL);
+        Member saveMember = new Member("sampleName", new Address("서울특별시", "강남구"));
         Long memberId = memberRepository.save(saveMember);
         log.info("saveMember = {}", saveMember);
         Member findMember = memberRepository.findById(memberId).get();
@@ -28,6 +28,4 @@ class MemberRepositoryTest {
 
         assertThat(findMember).isEqualTo(saveMember);
     }
-
-
 }

@@ -1,14 +1,12 @@
 package codesquad.sidedish.domain.member;
 
-import codesquad.sidedish.domain.address.District;
-import org.springframework.jdbc.core.RowCallbackHandler;
+import codesquad.sidedish.domain.address.Address;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -28,7 +26,8 @@ public class MemberRepository {
     public Long save(Member member) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("member_name", member.getMemberName());
-        parameters.put("district", member.getDistrict().name());
+        parameters.put("district", member.getAddress().getDistrict());
+        parameters.put("city", member.getAddress().getCity());
         parameters.put("mileage", member.getMileage());
         Long memberId = jdbcInsert.executeAndReturnKey(parameters).longValue();
         member.initMemberId(memberId);
@@ -37,7 +36,7 @@ public class MemberRepository {
     }
 
     public Optional<Member> findById(Long memberId) {
-        String sql = "select member_id, member_name, district, mileage\n" +
+        String sql = "select member_id, member_name, district, city, mileage\n" +
                 "from member\n" +
                 "where member_id = :memberId";
         Map<String, Object> parameters = new HashMap<>();
@@ -51,7 +50,7 @@ public class MemberRepository {
                 Member.builder()
                     .memberId(rs.getLong("member_id"))
                     .memberName(rs.getString("member_name"))
-                    .district(District.valueOf(rs.getString("district")))
+                    .address(new Address(rs.getString("district"), rs.getString("city")))
                     .mileage(rs.getInt("mileage"))
                     .build();
     }

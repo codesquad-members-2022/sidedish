@@ -1,6 +1,6 @@
 package codesquad.sidedish.web.controller;
 
-import codesquad.sidedish.domain.address.District;
+import codesquad.sidedish.domain.address.Address;
 import codesquad.sidedish.domain.member.Member;
 import codesquad.sidedish.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class TestController {
 
     @GetMapping
     public Member testMethod() {
-        Member sampleMember = new Member("sampleName", District.BUSAN);
+        Member sampleMember = new Member("sampleName", new Address("부산광역시", "서구"));
         Long saveId = memberRepository.save(sampleMember);
         log.info("saveId = {}", saveId);
         return memberRepository.findById(saveId).get();
