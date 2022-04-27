@@ -21,7 +21,7 @@ final class SideDishManager {
     
     private init() {}
     
-    func getDishes(type: Dish) {
+    func getDishes(type: Dish) { // <- Data
         let url = "https://api.codesquad.kr/onban/" + type.name
         HTTPManager.requestGet(url: url) { data in
             guard let dishes: MainCard = JSONConverter.decodeJsonObject(data: data) else { return }
@@ -55,11 +55,16 @@ final class SideDishManager {
             return nil
         }
         var imageDataList = [Data]()
+        
         for imageUrl in imageUrlList {
-            guard let image = HTTPManager.requestGetImageData(url: imageUrl) else {
-                return nil
+            guard let url = URL(string: imageUrl) else { return nil }
+            HTTPManager.loadData(url: url) { (data, error) in
+                // 다운로드받은 파일 데이터 처리
+                if let data = data {
+                    imageDataList.append(data)
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
             }
-            imageDataList.append(image)
         }
         return imageDataList
     }

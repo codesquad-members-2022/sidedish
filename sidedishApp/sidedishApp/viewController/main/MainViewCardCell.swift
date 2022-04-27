@@ -41,7 +41,6 @@ class MainViewCardCell: UICollectionViewCell {
     func setPropertiesValue(imageData: Data, dish: MainCard.Body) {
         DispatchQueue.main.async {
             self.cardImageView.image = UIImage(data: imageData)
-            
         }
         self.cardInfoVerticalStackView.setPropertiesValue(dish: dish)
     }

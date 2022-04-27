@@ -72,11 +72,17 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         }
         
+        ///
+        
         guard let imageDataList = sideDishManager.getDetailDishThumbImages(hash: dish.detailHash) else {
             return cell
         }
         
         cell.setPropertiesValue(imageData: imageDataList[0], dish: dish)
+        // 첫번째 이미지만 불러와보기
+        
+        self.dishCollectionView.reloadData()
+        
         return cell
     }
     
@@ -116,6 +122,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
 private extension MainViewController {
     func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(rawValue: "download"), object: sideDishManager)
         self.sideDishManager.getDishes(type: .main)
         self.sideDishManager.getDishes(type: .soup)
         self.sideDishManager.getDishes(type: .side)

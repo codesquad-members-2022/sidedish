@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 final class HTTPManager {
     enum HttpMethod: String {
@@ -17,6 +16,8 @@ final class HTTPManager {
             return self.rawValue
         }
     }
+    
+    static let fileDownloadPath = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)[0]
     
     static func requestGet(url: String, complete: @escaping (Data) -> ()) {
         guard let validURL = URL(string: url) else { return }
@@ -38,27 +39,61 @@ final class HTTPManager {
         }.resume()
     }
     
-    static func requestGetImageData(url: String) -> Data? {
+    static func downloadImage(url: URL, toFile file: URL, completion: @escaping (Error?) -> Void) {
         var result = Data()
-        
-        guard let validURL = URL(string: url) else { return nil }
        
-        var urlRequest = URLRequest(url: validURL)
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HttpMethod.get.getRawValue()
         
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let httpURLResponse = response as? HTTPURLResponse, (200..<300) ~= httpURLResponse.statusCode,
-                  let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                  let data = data, error == nil else {
-                print("image download fail : \(url)")
+        let downloadTask = URLSession.shared.downloadTask(with: urlRequest) { tempURL, response, error in
+            
+            guard let tempURL = tempURL else {
+                completion(error)
                 return
             }
-            
-            print(httpURLResponse)
-            print(mimeType)
-            print(data)
-            result = data
-        }.resume()
-        return result
+
+            do {
+                // 저장경로에 있는 파일 지우기
+                if FileManager.default.fileExists(atPath: file.path) {
+                    try FileManager.default.removeItem(at: file)
+                }
+                
+                // 임시경로의 파일을 새 저장경로에 저장
+                try FileManager.default.copyItem(at: tempURL, to: file)
+                
+                completion(nil)
+            } catch { // copyItem에서 발생할 수 있는 에러 처리
+                completion(error)
+            }
+        }
+        downloadTask.resume()
+    }
+    
+    static func loadData(url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        // TODO : 비동기? 데이터가 다운로드되기 전에 사용하려 해서 데이터가 없는 것...  - NotificationCenter로 다운로드되면 사용하기
+        var result = Data()
+        // 캐시 내의 URL로의 경로 지정
+        let fileCachePath = FileManager.default.temporaryDirectory.appendingPathComponent(
+            url.lastPathComponent,
+            isDirectory: false
+        )
+        // 캐시에 해당 이미지가 있으면 캐시의 이미지를 가져옴
+        do {
+            try result = Data(contentsOf: fileDownloadPath)
+            completion(result, nil)
+            return
+        } catch {
+            print(error)
+        }
+        
+        // 캐시에 해당 이미지가 없으면, 캐시에 그 이미지 다운로드
+        downloadImage(url: url, toFile: fileDownloadPath) { (error) in
+            do {
+                try result = Data(contentsOf: fileDownloadPath)
+                completion(result, error)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
