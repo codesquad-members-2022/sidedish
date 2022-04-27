@@ -108,11 +108,11 @@ insert into image (item_id, url, main_status)
 values (12, 'https://sidedish-06.s3.ap-northeast-2.amazonaws.com/images/side/side4-2.png', true);
 
 
-insert into dish_event (item_id, event_id)
+insert into item_event (item_id, event_id)
 values (1, 1);
-insert into dish_event (item_id, event_id)
+insert into item_event (item_id, event_id)
 values (2, 2);
-insert into dish_event (item_id, event_id)
+insert into item_event (item_id, event_id)
 values (3, 3);
-insert into dish_event (item_id, event_id)
+insert into item_event (item_id, event_id)
 values (4, 4);
