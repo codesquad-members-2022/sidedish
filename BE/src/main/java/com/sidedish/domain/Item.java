@@ -92,6 +92,10 @@ public class Item {
         return images;
     }
 
+    public Long getCategory() {
+        return category;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
