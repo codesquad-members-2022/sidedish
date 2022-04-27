@@ -1,5 +1,5 @@
-const handleError = async response => {
-  if (response.status >= 200 && response.status < 300) {
+const checkError = async response => {
+  if (response.status === 200) {
     const data = await response.json();
     return data;
   } else {
@@ -9,7 +9,7 @@ const handleError = async response => {
 
 const fetchData = async url => {
   const response = await fetch(url);
-  return handleError(response);
+  return checkError(response);
 };
 
 export { fetchData };

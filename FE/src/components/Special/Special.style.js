@@ -25,7 +25,7 @@ const SpecialBadge = styled.div`
 `;
 
 const SpecialTitle = styled.h1`
-  font-size: ${props => props.theme.fontSize.xLarge};
+  font-size: ${props => props.theme.fontSize.display};
   font-weight: ${props => props.theme.fontWeight.display};
   color: ${props => props.theme.colors.black};
 `;
