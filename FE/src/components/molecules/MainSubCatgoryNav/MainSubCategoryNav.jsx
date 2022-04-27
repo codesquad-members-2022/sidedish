@@ -1,12 +1,16 @@
-import "./MainSubCategoryNav.scss";
 import { navCategory } from "@/constant/constant.js";
+import { StyledHeaderMainCategory } from "../../atoms/List/HeaderMainCategory.styled";
+import { StyledHeaderSubCategory } from "../../atoms/List/HeaderSubCategory.styled";
 
-export function MainSubCategoryNav({ setIsShown }) {
-  const mainSubNav = navCategory.map(createSubCategory);
-
+export function MainSubCategoryNav({ className, setIsShown }) {
+  const mainSubNav = navCategory.map(
+    ({ mainCategory, subCategoryList }, mainIndex) => {
+      return createSubCategory(mainCategory, subCategoryList, mainIndex);
+    }
+  );
   return (
     <nav
-      className="category-nav"
+      className={className}
       onMouseEnter={() => {
         setIsShown(true);
       }}
@@ -16,19 +20,23 @@ export function MainSubCategoryNav({ setIsShown }) {
   );
 }
 
-function createSubCategory({ mainCategory, subCategoryList, id }) {
-  const subCategories = subCategoryList.map((subCategory, index) => {
+function createSubCategory(mainCategory, subCategoryList, mainIndex) {
+  const subCategories = subCategoryList.map((subCategory, subIndex) => {
     return (
-      <li className="category-nav__sub" key={`sub${index}`}>
-        {subCategory}
-      </li>
+      <StyledHeaderSubCategory
+        key={`sub${subIndex}`}
+        className="category-nav__sub"
+        subCategory={subCategory}
+      />
     );
   });
 
   return (
-    <li className="category-nav__main" key={id}>
-      <span>{mainCategory}</span>
-      <ul>{subCategories}</ul>
-    </li>
+    <StyledHeaderMainCategory
+      key={`main${mainIndex}`}
+      className="category-nav__main"
+      mainCategory={mainCategory}
+      subCategories={subCategories}
+    />
   );
 }

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Logo } from "@/components/atoms/Logo/Logo.jsx";
-import { Icons } from "@/components/molecules/Icons/Icons.jsx";
+import { StyledLogo } from "@/components/atoms/Logo/Logo.styled.js";
 import { HeaderNav } from "@/components/organisms/HeaderNav/HeaderNav.jsx";
-
+import { StyledIconContainer } from "@/components/molecules/Icons/Icons.styled";
 import "./Header.scss";
 
 export function Header() {
@@ -13,9 +12,9 @@ export function Header() {
         setIsShown(false);
       }}
     >
-      <Logo />
+      <StyledLogo className="logo" />
       <HeaderNav isShown={isShown} setIsShown={setIsShown} />
-      <Icons />
+      <StyledIconContainer className="icon-container" />
     </header>
   );
 }
