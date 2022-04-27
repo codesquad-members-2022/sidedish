@@ -27,11 +27,11 @@ public class OrderService {
         return productEntity.getStockQuantity() >= quantity;
     }
 
-    private void updateStock(Long productId, int quantity) {
+    private void decreaseStock(Long productId, int quantity) {
         ProductEntity productEntity = productRepository.findById(productId)
                 .orElseThrow(ProductNotFoundException::new);
 
-        productEntity.updateStock(quantity);
+        productEntity.decreaseStock(quantity);
         productRepository.save(productEntity);
     }
 
@@ -40,7 +40,7 @@ public class OrderService {
         if (!isEnoughStockCount(productId, quantity)) {
             throw new OutOfStockException();
         }
-        updateStock(productId, quantity);
+        decreaseStock(productId, quantity);
 
         OrdersEntity savedOrder = ordersRepository.save(new OrdersEntity(memberId));
         OrderProductsEntity savedOrderProduct = orderProductsRepository.save(new OrderProductsEntity(null, savedOrder.getId(), productId, quantity));

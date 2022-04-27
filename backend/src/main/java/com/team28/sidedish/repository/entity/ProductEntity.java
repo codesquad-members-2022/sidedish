@@ -24,7 +24,7 @@ public class ProductEntity {
     @MappedCollection(idColumn = "PRODUCT_ID")
     private Set<ProductImageEntity> productImages;
 
-    public void updateStock(int stockQuantity) {
+    public void decreaseStock(int stockQuantity) {
         this.stockQuantity -= stockQuantity;
     }
 }
