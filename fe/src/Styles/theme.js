@@ -3,6 +3,11 @@ const padding = {
   large: "80px",
 };
 
+const center = {
+  width: "1281px",
+  margin: "0 auto",
+};
+
 const colors = {
   black: "#1B1B1B",
   grey1: "#3F3F3F",
@@ -76,6 +81,6 @@ const regularFonts = {
   },
 };
 
-const theme = { padding, colors, boldFonts, regularFonts };
+const theme = { padding, center, colors, boldFonts, regularFonts };
 
 export default theme;

@@ -1,9 +1,6 @@
 import styled, { css } from "styled-components";
 
 const EventWrapper = styled.div`
-  > * {
-    padding: 0 ${({ theme: { padding } }) => padding.large};
-  }
   padding-top: 56px;
 `;
 
@@ -12,6 +9,7 @@ const EventTitle = styled.div`
   display: flex;
   align-items: center;
   vertical-align: middle;
+  ${({ theme: { center } }) => center}
 
   .logo {
     ${({ theme: { boldFonts, colors } }) => css`
