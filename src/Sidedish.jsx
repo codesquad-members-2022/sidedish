@@ -1,6 +1,6 @@
 import Header from 'components/Header/Header';
 import MainCategory from 'components/MainCategory/MainCategory';
-import MenuSlider from 'components/MenuSlider';
+import MenuSlider from 'components/MenuSection/MenuSection';
 import MoreButton from 'components/MoreButton';
 import React from 'react';
 import styled from 'styled-components';
