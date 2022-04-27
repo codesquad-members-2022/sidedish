@@ -28,7 +28,7 @@ public class SpecialMenuService {
 					.menuId(specialMenu.getMenuId())
 					.menuName(specialMenu.getMenuName())
 					.description(specialMenu.getDescription())
-					.image(specialMenu.getImageUrl())
+					.image(List.of(specialMenu.getImageUrl()))
 					.originalPrice(specialMenu.getPrice())
 					.build();
 				}).collect(Collectors.toList());
