@@ -18,7 +18,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 	@Query("SELECT * FROM PRODUCT WHERE dish_type = :dishType")
 	List<Product> loadDishListByType(@Param("dishType") String dishType);
 
-	@Query("SELECT * FROM PRODUCT WHERE dish_type = :dishType AND side_dish_type = :sideDishType")
+	@Query("SELECT * FROM PRODUCT WHERE dish_type = :dishType AND sidedish_type = :sideDishType")
 	List<Product> loadSideDishListByType(@Param("dishType") String dishType,
 		@Param("sideDishType") String sideDishType);
 
