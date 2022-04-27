@@ -46,6 +46,7 @@ public class Item {
         this.supportDawnDelivery = supportDawnDelivery;
     }
 
+
     public void initItemId(Long itemId) {
         this.itemId = itemId;
     }
@@ -61,6 +62,14 @@ public class Item {
                     String.format("최대 구입 가능 개수는 %d개입니다.", this.stock)
             );
         }
+    }
+
+    public int getDiscountedItemPrice() {
+        return discountPolicy.calculateDiscountedPrice(price);
+    }
+
+    public int getMileage() {
+        return (int)(getDiscountedItemPrice() * 0.01);
     }
 }
 
