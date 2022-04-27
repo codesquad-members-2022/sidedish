@@ -1,4 +1,4 @@
-package kr.codesquad.sidedish.dto;
+package kr.codesquad.sidedish.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,8 +10,8 @@ public class ProductDTO {
 	private Integer id;
 	private String name;
 	private String content;
-	private int price;
-	private int discountPrice;
+	private Integer price;
+	private Integer discountPrice;
 	private Integer quantity;
 	private String dishType;
 	private String sideDishType;

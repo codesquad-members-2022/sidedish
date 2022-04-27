@@ -3,8 +3,7 @@ package kr.codesquad.sidedish.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import kr.codesquad.sidedish.domain.Product;
-import kr.codesquad.sidedish.dto.ProductDTO;
-import kr.codesquad.sidedish.dto.RequestProduct;
+import kr.codesquad.sidedish.controller.RequestProduct;
 import kr.codesquad.sidedish.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,11 +28,11 @@ public class ProductService {
 	}
 
 	public ProductDTO findById(Integer id) {
-		return productRepository.findById(id).createDTO();
+		return productRepository.findById(id).get().createDTO();
 	}
 
-	public void ordered(RequestProduct requestProduct) {
-		Product originProduct = productRepository.findById(requestProduct.getId());
+	public void order(RequestProduct requestProduct) {
+		Product originProduct = productRepository.findById(requestProduct.getId()).get();
 		Product updateProduct = Product.updateQuantity(originProduct, requestProduct.getQuantity());
 		productRepository.updateQuantity(requestProduct.getId(), updateProduct);
 	}
