@@ -6,21 +6,27 @@ final class MockNetworkHandler: NetworkHandlable{
         Data(
                 """
                 {
-                  "statusCode": 200,
-                  "body": [
-                    {
-                      "detail_hash": "HBDEF",
-                      "image": "https://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-                      "alt": "오리 주물럭_반조리",
-                      "delivery_type": ["새벽배송", "전국택배"],
-                      "title": "오리 주물럭_반조리",
-                      "description": "감칠맛 나는 매콤한 양념",
-                      "n_price": "15,800원",
-                      "s_price": "12,640원",
-                      "badge": ["런칭특가"]
-                    }
-                  ]
+                  "hash": "H72C3",
+                  "data": {
+                    "top_image": "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
+                    "thumb_images": [
+                      "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_T.jpg",
+                      "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_S.jpg"
+                    ],
+                    "product_description": "김치찌개에는 역시 돼지고기",
+                    "point": "83원",
+                    "delivery_info": "서울 경기 새벽 배송 / 전국 택배 배송",
+                    "delivery_fee": "2,500원 (40,000원 이상 구매 시 무료)",
+                    "prices": ["9,300원", "8,370원"],
+                    "detail_section": [
+                      "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_D1.jpg",
+                      "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_D2.jpg",
+                      "http://public.codesquad.kr/jk/storeapp/data/soup/28_ZIP_P_1003_D3.jpg",
+                      "http://public.codesquad.kr/jk/storeapp/data/pakage_regular.jpg"
+                    ]
+                  }
                 }
+
                 """.utf8
         )
     }
@@ -35,6 +41,7 @@ final class MockNetworkHandler: NetworkHandlable{
             switch contentType {
             case .json:
                 completionHandler(.success(sampleJSONData))
+                delegate?.cachingDataRequested(url: url, data: sampleJSONData)
             case .image:
                 let mockImageData = Data()
                 completionHandler(.success(mockImageData))
