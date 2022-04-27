@@ -97,8 +97,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
     position: relative;
-    width: 1440px;
-    height: 2844px;
     background: #FFFFFF;
   }
 
@@ -147,3 +145,75 @@ export const Typography = css`
   letter-spacing: -0.004em;
   color: #1b1b1b;
 `;
+const custom_font = (
+  family = "Noto Sans KR",
+  size,
+  weight,
+  height,
+  spacing
+) => `
+  font-family: ${family};
+  font-size: ${size}px;
+  font-style: normal;
+  font-weight: ${weight};
+  font-size: ${size}px;
+  line-height: ${height}px;
+  letter-spacing: ${spacing}em;
+`;
+const custom_absolute = (
+  top = null,
+  right = null,
+  bottom = null,
+  left = null
+) => css`
+  position: absolute;
+  ${top ? `top:${top}px;` : ""}
+  ${left ? `left:${left}px;` : ""}
+  ${right ? `right:${right}px;` : ""}
+  ${bottom ? `bottom:${bottom}px;` : ""}
+`;
+const custom_static = (
+  top = null,
+  right = null,
+  bottom = null,
+  left = null
+) => {
+  return css`
+    ${custom_absolute(top, right, bottom, left)}
+    position: static;
+  `;
+};
+const custom_relative = (
+  top = null,
+  right = null,
+  bottom = null,
+  left = null
+) => css`
+  ${custom_absolute(top, right, bottom, left)};
+  position: relative;
+`;
+const flex_none = (order, mx, my) => css`
+  flex: none;
+  flex-grow: 0;
+  order: ${order};
+  margin: ${mx}px ${my}px;
+`;
+const width_height_bypx = (width = null, height = null) => `
+        ${width ? `width: ${width}px;` : ""}     
+        ${height ? `height: ${height}px;` : ""}
+    `;
+const custom_flex = (dir = "column", align = null, justify = null) => `
+        display: flex;
+        ${dir ? `flex-direction: ${dir};` : ""}
+        ${align ? `align-items: ${align};` : ""}
+        ${justify ? `justify-content: ${justify};` : ""}
+    `;
+export {
+  custom_font,
+  custom_relative,
+  custom_absolute,
+  custom_static,
+  custom_flex,
+  width_height_bypx,
+  flex_none,
+};

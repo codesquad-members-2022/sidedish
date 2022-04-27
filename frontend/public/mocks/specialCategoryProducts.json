@@ -1,5 +1,5 @@
 {
-  "category": {
+  "specialCategoryProducts": {
     "specialCategory_id": 1,
     "per_page": 3,
     "sort": "random",

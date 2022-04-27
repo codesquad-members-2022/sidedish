@@ -1,85 +1,38 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { ProductCard } from "./ProductCard";
-import { useEffect } from "react";
-import {
-  useCategories,
-  useFetch,
-  useProducts,
-  useSpecialCategories,
-} from "../fetcher";
+import { thumbnailSize, cardGapLength, cardListArea } from "../convention";
+import { width_height_bypx } from "../styles/global";
+import { useEffect, useRef } from "react";
 
-const CategoryTitle = styled.span`
-  ${(props) =>
-    props.size === "large" &&
-    css`
-      display: none;
-    `}
-
-  ${(props) =>
-    props.size === "medium" &&
-    css`
-      line-height: 38px;
-      font-size: 24px;
-    `}
-
-  ${(props) =>
-    props.size === "small" &&
-    css`
-      line-height: 30px;
-      font-size: 20px;
-    `}
-`;
-
-const ProductCardWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+const ShowingArea = styled.div`
   margin-top: 34px;
-  ${(props) =>
-    props.size === "large" &&
-    css`
-      width: 1281px;
-      height: 565px;
-    `}
-
-  ${(props) =>
-    props.size === "medium" &&
-    css`
-      width: 1280px;
-      height: 479px;
-    `}
-
-  ${(props) =>
-    props.size === "small" &&
-    css`
-      width: 864px;
-      height: 226px;
-    `}
+  overflow: hidden;
+  ${({ size }) => width_height_bypx(...cardListArea[size])}
 `;
 
-const SlideButtons = styled.div``;
+const ProductCardsWrapper = styled.div`
+  display: flex;
+`;
 
-export const CardList = ({ size, id, special = false }) => {
-  const categoryData = useFetch(id, special);
+export const CardList = ({ products, cardSize, curIndex = 0 }) => {
+  const sliderRef = useRef(null);
+  useEffect(() => {
+    sliderRef.current.style.transition = `0.4s ease-out`;
+    sliderRef.current.style.transform = `translateX(-${
+      curIndex * (cardGapLength[cardSize] + thumbnailSize[cardSize])
+    }px)`;
+  }, [curIndex]);
   return (
-    <>
-      {categoryData && (
-        <>
-          {!special && (
-            <CategoryTitle size={size}>
-              {categoryData["full_name"]}
-            </CategoryTitle>
-          )}
-          <ProductCardWrapper size={size}>
-            {categoryData.products.map((product) => (
-              <ProductCard
-                key={product.id}
-                size={size}
-                {...product}
-              ></ProductCard>
-            ))}
-          </ProductCardWrapper>
-        </>
-      )}
-    </>
+    <ShowingArea size={cardSize}>
+      <ProductCardsWrapper cardSize={cardSize} ref={sliderRef}>
+        {products?.map((product) => (
+          <ProductCard
+            key={product.id}
+            cardSize={cardSize}
+            {...product}
+          ></ProductCard>
+        ))}
+      </ProductCardsWrapper>
+    </ShowingArea>
   );
 };

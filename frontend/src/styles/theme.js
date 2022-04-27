@@ -40,46 +40,4 @@ export const theme = {
   fontWeights,
   heights,
   fontFamily,
-  custom_font: (family = "Noto Sans KR", size, weight, height, spacing) => `
-        font-family:${family};
-        font-size:${size}px;
-        font-style: normal;
-        font-weight: ${weight};
-        font-size: ${size}px;
-        line-height: ${height}px;
-        letter-spacing:${spacing}em;
-    `,
-  custom_absolute: (top = null, right = null, bottom = null, left = null) => `
-        position:absolute;
-        ${top ? `top:${top}px` : ""};
-        ${left ? `left:${left}px` : ""};
-        ${right ? `right:${right}px` : ""};
-        ${bottom ? `bottom:${bottom}px` : ""};
-    `,
-  custom_static: (top = null, right = null, bottom = null, left = null) => {
-    return `
-        ${theme.custom_absolute(top, right, bottom, left)}
-        position:static;    
-   `;
-  },
-  custom_relative: (top = null, right = null, bottom = null, left = null) => `
-        ${theme.custom_absolute(top, right, bottom, left)};
-        position:relative;
-    `,
-  flex_none: (order, mx, my) => `
-        flex: none;
-        flex-grow: 0;
-        order: ${order};
-        margin:${mx}px ${my}px;
-    `,
-  width_height_bypx: (width = null, height = null) => `
-        ${width ? `width: ${width}px` : ""};
-        ${height ? `height: ${height}px` : ""};
-    `,
-  custom_flex: (dir = "column", align = null, justify = null) => `
-        display: flex;
-        ${dir ? `flex-direction: ${dir}` : ""};
-        ${align ? `align-items: ${align}` : ""};
-        ${justify ? `justify-content: ${justify}` : ""};
-    `,
 };
