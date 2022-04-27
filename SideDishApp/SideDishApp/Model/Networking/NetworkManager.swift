@@ -10,41 +10,20 @@ import Alamofire
 
 struct NetworkManager {
 
-    func fetch<T: Endpoint & JSONEndpoint>(_ endpoint: T, completion: @escaping (T.DecodingType?) -> Void) {
-        guard let url = endpoint.url else {
-            SystemLog.fault(NetworkError.wrongEndPoint.localizedDescription)
-            return completion(nil)
-        }
+    func request<Request: APIRequestable>(_ request: Request, completion: @escaping (Request.Response?) -> Void) {
 
-        AF.request(url)
-            .validate()
-            .responseDecodable(of: T.DecodingType.self) { response in
-                switch response.result {
-                case .success(let data):
-                    return completion(data)
-                case .failure(let error):
-                    SystemLog.fault(error.localizedDescription)
-                    return completion(nil)
-                }
+        AF.request(request.url,
+                   method: request.method,
+                   parameters: request.queryItems,
+                   headers: HTTPHeaders(request.headers)
+        ).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                return completion(request.decode(data))
+            case .failure(let error):
+                SystemLog.fault(error.localizedDescription)
+                return completion(nil)
             }
-    }
-
-    func fetch<T: Endpoint>(_ endpoint: T, completion: @escaping (Data?) -> Void) {
-        guard let url = endpoint.url else {
-            SystemLog.fault(NetworkError.wrongEndPoint.localizedDescription)
-            return completion(nil)
         }
-
-        AF.request(url)
-            .validate()
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    return completion(data)
-                case .failure(let error):
-                    SystemLog.fault(error.localizedDescription)
-                    return completion(nil)
-                }
-            }
     }
 }

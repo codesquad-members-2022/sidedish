@@ -12,7 +12,7 @@ struct OrderInfoViewModel {
     public let totalPrice = Observable<Money<KRW>>(Money<KRW>(""))
 
     func order() {
-        // 주문 로직
+        // TODO: 주문 로직
     }
 
     func incrementAmount() {

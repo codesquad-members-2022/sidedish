@@ -17,7 +17,23 @@ class NetworkManagerTests: XCTestCase {
         XCTAssertEqual(1+1, two)
     }
 
-    func testNetworkMangerFetchImage() throws {
+    func testFetchProductDetail() throws {
+        let promise = XCTestExpectation(description: "Fetch product detail success")
+
+        let testHash = "HBDEF"
+        let request = ProductDetailRequest(from: testHash)
+        XCTAssertNotNil(request)
+
+        networkManager.request(request!) { data in
+            XCTAssertNotNil(data)
+            XCTAssertEqual(data?.hash, testHash)
+            promise.fulfill()
+        }
+
+        wait(for: [promise], timeout: 1)
+    }
+
+    func testFetchImage() throws {
         let promise = XCTestExpectation(description: "Fetch Image data success")
 
         // Prepare Stub
@@ -29,10 +45,10 @@ class NetworkManagerTests: XCTestCase {
             return XCTFail("Could not load test Image from bundle")
         }
 
-        let endpoint = ImageEndPoint(fileName: fileName, fileExtension: fileExtension)
-        XCTAssertNotNil(endpoint.url)
+        let request = ImageRequest(fileName: fileName, fileExtension: fileExtension)
+        XCTAssertNotNil(request)
 
-        networkManager.fetch(endpoint) { data in
+        networkManager.request(request!) { data in
             XCTAssertEqual(data, localImageData)
             promise.fulfill()
         }
@@ -41,13 +57,13 @@ class NetworkManagerTests: XCTestCase {
 
     }
 
-    func testNetworkManagerFetchProducts() throws {
-        let promise = XCTestExpectation(description: "Fetch products success")
+    func testFetchCategory() throws {
+        let promise = XCTestExpectation(description: "Fetch Category success")
 
-        let endpoint = CategoryEndpoint(from: .main)
-        XCTAssertNotNil(endpoint.url)
+        let request = CategoryRequest(from: .main)
+        XCTAssertNotNil(request)
 
-        networkManager.fetch(endpoint) { data in
+        networkManager.request(request!) { data in
             XCTAssertNotNil(data)
             promise.fulfill()
         }
