@@ -1,18 +1,18 @@
 package com.sidedish.web.dto;
 
 import com.sidedish.domain.product.EventBadge;
-import com.sidedish.domain.product.MainCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Set;
+
 @Getter
 @AllArgsConstructor
-public class MainCategoryProductDto {
+public class ProductDetailDto {
     private String productName;
-    private String description;
     private int earlyDelivery;
     private int price;
     private EventBadge eventBadge;
     private double discountRate;
-    private MainCategory mainCategory;
+    private Set<ImageDto> image;
 }

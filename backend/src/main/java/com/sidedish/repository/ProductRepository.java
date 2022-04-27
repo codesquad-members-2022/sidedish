@@ -13,6 +13,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("select * from product where main_category= :categoryName")
     List<Product> findAllMainCategoryProduct(@Param("categoryName") String category);
 
-    @Query("select * from product where event_category= :categoryName")
+    @Query("select * from product where event_category= :categoryName order by rand() limit 3")
     List<Product> findAllEventCategoryProduct(@Param("categoryName") String category);
 }

@@ -3,10 +3,8 @@ package com.sidedish.web.controller;
 import com.sidedish.servcie.ProductService;
 import com.sidedish.web.dto.EventCategoryProductDto;
 import com.sidedish.web.dto.MainCategoryProductDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.sidedish.web.dto.ProductDetailDto;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +26,10 @@ public class ProductController {
     @GetMapping("event")
     public List<EventCategoryProductDto> categoryList(@RequestParam("category") String eventCategory){
         return productService.findEventCategory(eventCategory);
+    }
+
+    @GetMapping("{id}")
+    public ProductDetailDto productDetail(@PathVariable("id") Long id){
+        return productService.findById(id);
     }
 }
