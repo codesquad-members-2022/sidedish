@@ -13,8 +13,9 @@ public class WebConfig implements WebMvcConfigurer {
 		Map<String, String> envs = System.getenv();
 		String awsIp = "http://" + envs.get("AWS_IP");
 		String localIp = "http://" + envs.get("LOCAL_IP");
+		String dnsName = envs.get("DNS_NAME");
 
 		registry.addMapping("/**")
-			.allowedOrigins(localIp, awsIp);
+			.allowedOrigins(localIp, awsIp, dnsName);
 	}
 }
