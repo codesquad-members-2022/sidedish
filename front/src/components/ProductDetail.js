@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Badges from './Badges';
 
 function ProductDetail({ dishes, showAlert }) {
-  const mainImage = useRef(dishes.images[0]);
   const [amount, setAmount] = useState(1);
+  const [mainImageIndex, setMainImageIndex] = useState(0);
   function addAmount() {
     setAmount(amount + 1);
   }
@@ -15,8 +15,8 @@ function ProductDetail({ dishes, showAlert }) {
   function delay(ms) {
     return new Promise(resolve => setTimeout(() => resolve(), ms * 1000));
   }
-  function changeImage({ target }) {
-    mainImage.current.src = target.src;
+  function changeMainImage(index) {
+    setMainImageIndex(index);
   }
   async function checkOrder() {
     await delay(0.5);
@@ -30,10 +30,10 @@ function ProductDetail({ dishes, showAlert }) {
   return (
     <DishDetail>
       <ProductImages>
-        <MainImage src={dishes.images[0]} ref={mainImage}></MainImage>
+        <MainImage src={dishes.images[mainImageIndex]}></MainImage>
         <SubImages>
           {dishes.images.map((src, index) => (
-            <SubImage key={index} src={src} onMouseEnter={changeImage}></SubImage>
+            <SubImage key={index} src={src} onMouseEnter={() => changeMainImage(index)}></SubImage>
           ))}
         </SubImages>
       </ProductImages>
