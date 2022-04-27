@@ -77,7 +77,7 @@ class FoodCell: UICollectionViewCell {
     // MARK: Image Attribute
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "tempFood")
+        imageView.image = UIImage()
         imageView.contentMode = .scaleAspectFit
         
         return imageView
@@ -90,7 +90,7 @@ class FoodCell: UICollectionViewCell {
         beforeSalePriceLabel.text = data.beforeSalePrice
         guard let badge = data.badge else { return }
         setBadgeLabel(badge)
-        myImageView.load(url: data.image)
+        myImageView.loadImage(url: data.image)
         
     }
     
