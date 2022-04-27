@@ -90,4 +90,8 @@ public class Item {
         }
         stock -= amount;
     }
+
+    public Integer calculatePoint() {
+        return (int) ((double) price * 0.01);
+    }
 }

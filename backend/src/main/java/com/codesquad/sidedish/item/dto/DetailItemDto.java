@@ -18,17 +18,20 @@ public class DetailItemDto {
     private String name;
     @Schema(description = "상품 가격(원가)", example = "15800")
     private Integer price;
+    @Schema(description = "적립금", example = "158")
+    private Integer point;
     @Schema(description = "메인 이미지 링크", example = "https://leejohy-springboot-build.s3.ap-northeast-2.amazonaws.com/2cdf7235b65a114abff05b9133f90085.jpeg")
     private String mainImageLink;
     private Set<ItemImage> detailImageLink;
 
-    public DetailItemDto(Integer id, String discountPolicy, Integer discountRate, String description, String name, Integer price, String mainImageLink, Set<ItemImage> detailImageLink) {
+    public DetailItemDto(Integer id, String discountPolicy, Integer discountRate, String description, String name, Integer price, Integer point, String mainImageLink, Set<ItemImage> detailImageLink) {
         this.id = id;
         this.discountPolicy = discountPolicy;
         this.discountRate = discountRate;
         this.description = description;
         this.name = name;
         this.price = price;
+        this.point = point;
         this.mainImageLink = mainImageLink;
         this.detailImageLink = detailImageLink;
     }
@@ -55,6 +58,10 @@ public class DetailItemDto {
 
     public Integer getPrice() {
         return price;
+    }
+
+    public Integer getPoint() {
+        return point;
     }
 
     public String getMainImageLink() {
