@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Container, CarouselItems, Icon } from "./Carousel.style";
 
-function Carousel({ children }) {
+function Carousel({ page, onClickRightBtn, hasNext, children }) {
     const [activeIndex, setActiveIndex] = useState(0);
     const updateIndex = (newIndex) => {
         if (newIndex < 0) {
@@ -13,6 +13,7 @@ function Carousel({ children }) {
 
         setActiveIndex(newIndex);
     };
+
     return (
         <Container>
             <Icon
@@ -41,8 +42,12 @@ function Carousel({ children }) {
             </CarouselItems>
             <Icon
                 onClick={() => {
-                    updateIndex(activeIndex + 1);
+                    if (hasNext) {
+                        updateIndex(activeIndex + 1);
+                        onClickRightBtn(page);
+                    }
                 }}
+                hasNext={hasNext}
                 className="icon"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

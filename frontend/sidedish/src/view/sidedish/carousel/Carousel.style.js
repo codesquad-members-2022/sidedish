@@ -15,6 +15,10 @@ const Icon = styled.svg`
     width: 24px;
     height: 24px;
     color: #bcbcbc;
+    &:active,
+    &:hover {
+        color: ${(props) => (props.hasNext ? "#1b1b1b" : "#bcbcbc")};
+    }
 `;
 
 export { Container, CarouselItems, Icon };

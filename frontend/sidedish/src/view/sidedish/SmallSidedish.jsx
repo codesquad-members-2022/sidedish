@@ -12,14 +12,15 @@ const theme = {
 
 function SmallSidedish({ isVisible, section, title }) {
     const [items, setItems] = useState(null);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         try {
-            getData(API.DISH_SECTION + section, setItems);
+            getData(API.DISH_SECTION + section + "&page=" + page, setItems);
         } catch (error) {
             console.error(error);
         }
-    }, [section]);
+    }, [section, page]);
 
     if (!isVisible) {
         return;
@@ -29,11 +30,19 @@ function SmallSidedish({ isVisible, section, title }) {
         return;
     }
 
+    const onClickRightBtn = (curPage) => {
+        setPage(curPage + 1);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Container>
                 <Title>{title}</Title>
-                <Carousel>
+                <Carousel
+                    page={page}
+                    onClickRightBtn={onClickRightBtn}
+                    hasNext={items.hasNext}
+                >
                     <CarouselItem>
                         <SidedishCards dishes={items.data}></SidedishCards>
                     </CarouselItem>
