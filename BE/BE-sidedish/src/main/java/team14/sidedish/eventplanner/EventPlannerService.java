@@ -19,16 +19,18 @@ public class EventPlannerService {
 
 	public EventPlannerDto.Ids readOngoingEventOf(List<Long> menuIds) {
 		List<EventPlanner> eventPlanners = eventPlannerRepository.findByMenuIdIn(menuIds);
-		LocalDate today = LocalDate.now();
-		List<EventPlannerDto.Id> eventPlannerIds = getOngoingEvents(eventPlanners, today);
+
+		List<EventPlannerDto.Id> eventPlannerIds = getOngoingEvents(eventPlanners);
 		return new EventPlannerDto.Ids(eventPlannerIds);
 	}
 
-	private List<EventPlannerDto.Id> getOngoingEvents(List<EventPlanner> eventPlanners, LocalDate today) {
+	private List<EventPlannerDto.Id> getOngoingEvents(List<EventPlanner> eventPlanners) {
+		LocalDate today = LocalDate.now();
 		return eventPlanners.stream()
-			.filter(planner -> (
-				(planner.getStartDate().isAfter(today) || planner.getStartDate().equals(today))
-				&& today.isBefore(planner.getStartDate().plusDays(planner.getDuration()))))
+			.filter(planner -> {
+					boolean isStartDate = planner.getStartDate().isBefore(today) || planner.getStartDate().equals(today);
+					boolean isDuration = today.isBefore(planner.getStartDate().plusDays(planner.getDuration()));
+					return isStartDate && isDuration;})
 			.map(eventPlanner -> {
 				Map<String, Long> menuAndEvent = eventPlanner.getMenuAndEvent();
 				return new EventPlannerDto.Id(

@@ -19,4 +19,10 @@ public class MenuApiController {
 		MenuDto.Response response = menuService.readExhibition(id);
 		return ResponseEntity.ok().body(response);
 	}
+
+	@GetMapping("/menu/{menu-id}")
+	public ResponseEntity<MenuDto.DetailResponse> readOne(@PathVariable("menu-id") Long menuId) {
+		MenuDto.DetailResponse detailResponse = menuService.readFrom(menuId);
+		return ResponseEntity.ok().body(detailResponse);
+	}
 }
