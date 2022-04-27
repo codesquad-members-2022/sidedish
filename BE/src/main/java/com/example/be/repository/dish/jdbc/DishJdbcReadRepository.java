@@ -1,4 +1,4 @@
-package com.example.be.repository.dish;
+package com.example.be.repository.dish.jdbc;
 
 import com.example.be.controller.dish.dto.PlanningDataRequest;
 import com.example.be.domain.dish.Badge;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class DishReadRepository {
+public class DishJdbcReadRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public DishReadRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public DishJdbcReadRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
@@ -30,7 +30,6 @@ public class DishReadRepository {
                     rs.getString("name"),
                     rs.getString("description"),
                     rs.getBigDecimal("normal_price"),
-                    rs.getBigDecimal("sale_price"),
                     Badge.valueOf(rs.getString("badge")),
                     DeliveryType.valueOf(rs.getString("delivery_type")),
                     rs.getString("thumbnail"),
