@@ -8,8 +8,9 @@ class OrderCountSectionView: UIView {
         }
     }
     
-    private var countTitle: UILabel = UILabel.customLabel(.dishLightGrey, "수량")
-    private var counter: UILabel = UILabel.customLabel(.dishGrey, "1")
+    private var countTitle = CustomLabel(title: "수량", font: .smallRegular, color: .dishGrey2)
+    
+    private var counter: UILabel = CustomLabel(title: "1", font: .mediumBold, color: .dishGrey1)
     
     private var buttons: UIStackView = {
         let stackView = UIStackView.customStackView(.horizontal, .fill)
@@ -25,14 +26,14 @@ class OrderCountSectionView: UIView {
         button.setTitle("-", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = UIColor.dishGrey4
+        button.backgroundColor = .dishGrey4
         return button
     }()
     
     private var separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.dishGrey3
+        view.backgroundColor = .dishGrey3
         return view
     }()
     
@@ -42,7 +43,7 @@ class OrderCountSectionView: UIView {
         button.setTitle("+", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = UIColor.dishGrey4
+        button.backgroundColor = .dishGrey4
         return button
     }()
     

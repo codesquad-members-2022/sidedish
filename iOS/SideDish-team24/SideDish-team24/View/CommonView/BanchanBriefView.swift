@@ -7,10 +7,10 @@ class BanchanBriefView: UIStackView {
         case detail
     }
     
-    private var dishTitle: UILabel = UILabel.customLabel(.dishBlack)
-    private var dishDescription: UILabel = UILabel.customLabel(.dishLightGrey)
-    private var price: UILabel = UILabel.customLabel(.dishBlack)
-    private var listPrice: UILabel = UILabel.customLabel(.dishLightGrey)
+    private var dishTitle: CustomLabel = CustomLabel()
+    private var dishDescription: CustomLabel = CustomLabel()
+    private var price: CustomLabel = CustomLabel()
+    private var listPrice: CustomLabel = CustomLabel()
     
     private var priceContainer: UIView = {
         let view = UIView()
@@ -49,7 +49,6 @@ class BanchanBriefView: UIStackView {
     func configure(title: String, description: String) {
         self.dishTitle.text = title
         self.dishDescription.text = description
-        
     }
     
     func configure(price: String, listPrice: String?) {
@@ -60,7 +59,7 @@ class BanchanBriefView: UIStackView {
     
     func configure(specialBadge: String?) {
         guard let specialBadge = specialBadge else { return }
-        self.specialPrices.addArrangedSubview(UILabel.customBadge("\(specialBadge)", .dishBlue))
+        self.specialPrices.addArrangedSubview(PaddingLabel(title: specialBadge, color: .dishPrimaryDark))
     }
     
     func removeBadges() {
@@ -81,15 +80,18 @@ private extension BanchanBriefView {
         
         switch type {
         case .brief:
-            self.dishDescription.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(600))
-            self.price.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(600))
+            self.dishTitle.setFont(font: .smallBold, color: .dishBlack)
+            self.dishDescription.setFont(font: .smallRegular, color: .dishGrey2)
+            self.price.setFont(font: .smallBold, color: .dishBlack)
+            self.listPrice.setFont(font: .smallRegular, color: .dishGrey2)
         case .detail:
-            self.dishTitle.font = UIFont.boldSystemFont(ofSize: 32)
-            self.dishDescription.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(600))
-            self.price.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(600))
-            self.listPrice.font = UIFont.systemFont(ofSize: 16)
+            self.dishTitle.setFont(font: .largeRegular, color: .dishBlack)
+            self.dishDescription.setFont(font: .mediumRegular, color: .dishGrey2)
+            self.price.setFont(font: .mediumBold, color: .dishGrey1)
+            self.listPrice.setFont(font: .middleRegular, color: .dishGrey2)
         }
     }
+    
     func layoutContainer() {
         self.badgeContainer.addSubview(self.specialPrices)
         self.priceContainer.addSubview(self.prices)

@@ -5,7 +5,7 @@ class BriefBanchanReusableView: UICollectionReusableView {
     static let identifier = "reusableHeader"
     
     private var title: UILabel = {
-        let label = UILabel.customLabel(.dishGrey, "모두가 좋아하는 \n든든한 요리 타이틀", 32)
+        let label = CustomLabel(title: "모두가 좋아하는 \n든든한 요리 타이틀", font: .largeRegular, color: .dishGrey1)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2
         return label

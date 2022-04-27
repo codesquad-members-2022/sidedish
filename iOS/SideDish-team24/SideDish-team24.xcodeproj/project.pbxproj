@@ -12,7 +12,7 @@
 		6C105839280E7FD500C0B462 /* BriefBanchanReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */; };
 		6C10583B280E893100C0B462 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C10583A280E893100C0B462 /* CGFloatExtension.swift */; };
 		6C162B7B280ED461003399BC /* DeliverySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C162B7A280ED461003399BC /* DeliverySectionView.swift */; };
-		6C162B7D280ED8F9003399BC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C162B7C280ED8F9003399BC /* UILabelExtension.swift */; };
+		6C162B7D280ED8F9003399BC /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C162B7C280ED8F9003399BC /* PaddingLabel.swift */; };
 		6C4CEF4728110DD000AFB684 /* BriefBanchanViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */; };
 		6C4CEF4B28111FA000AFB684 /* OrderCountSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */; };
 		6C4CEF502815400500AFB684 /* OrderCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF4F2815400500AFB684 /* OrderCount.swift */; };
@@ -24,6 +24,9 @@
 		6C4CEF612817BB0D00AFB684 /* BanchanBriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */; };
 		6C4CEF632817E2FB00AFB684 /* DetailBanchanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF622817E2FB00AFB684 /* DetailBanchanView.swift */; };
 		6C4CEF652817E76100AFB684 /* DetailViewBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */; };
+		6C4CEF812817F17200AFB684 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */; };
+		6C4CEF852817F3AD00AFB684 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */; };
+		6C4CEF892817FE2300AFB684 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF882817FE2300AFB684 /* CustomLabel.swift */; };
 		6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0801280D080000D2D401 /* AppDelegate.swift */; };
 		6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0803280D080000D2D401 /* SceneDelegate.swift */; };
 		6CEE0806280D080000D2D401 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0805280D080000D2D401 /* MainViewController.swift */; };
@@ -47,7 +50,7 @@
 		6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanReusableView.swift; sourceTree = "<group>"; };
 		6C10583A280E893100C0B462 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		6C162B7A280ED461003399BC /* DeliverySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySectionView.swift; sourceTree = "<group>"; };
-		6C162B7C280ED8F9003399BC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		6C162B7C280ED8F9003399BC /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanViewControllerExtension.swift; sourceTree = "<group>"; };
 		6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCountSectionView.swift; sourceTree = "<group>"; };
 		6C4CEF4F2815400500AFB684 /* OrderCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCount.swift; sourceTree = "<group>"; };
@@ -59,6 +62,9 @@
 		6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanBriefView.swift; sourceTree = "<group>"; };
 		6C4CEF622817E2FB00AFB684 /* DetailBanchanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBanchanView.swift; sourceTree = "<group>"; };
 		6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewBorder.swift; sourceTree = "<group>"; };
+		6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		6C4CEF882817FE2300AFB684 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		6CEE07FE280D080000D2D401 /* SideDish-team24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideDish-team24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEE0801280D080000D2D401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEE0803280D080000D2D401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,11 +111,11 @@
 				6C105831280E6A0E00C0B462 /* UIColorExtension.swift */,
 				6C105833280E6B9D00C0B462 /* StringExtension.swift */,
 				6C10583A280E893100C0B462 /* CGFloatExtension.swift */,
-				6C162B7C280ED8F9003399BC /* UILabelExtension.swift */,
 				6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */,
 				6C4CEF532815648800AFB684 /* UIButtonExtension.swift */,
 				6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */,
 				6C4CEF5C2816975700AFB684 /* IntExtension.swift */,
+				6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -153,9 +159,19 @@
 		6C4CEF6A2817ECA400AFB684 /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
+				6C162B7C280ED8F9003399BC /* PaddingLabel.swift */,
 				6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */,
+				6C4CEF882817FE2300AFB684 /* CustomLabel.swift */,
 			);
 			path = CommonView;
+			sourceTree = "<group>";
+		};
+		6C4CEF6B2817EFED00AFB684 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		6CEE07F5280D080000D2D401 = {
@@ -180,6 +196,7 @@
 		6CEE0800280D080000D2D401 /* SideDish-team24 */ = {
 			isa = PBXGroup;
 			children = (
+				6C4CEF6B2817EFED00AFB684 /* Font */,
 				F5D123B92817883200B9E6AF /* ViewModel */,
 				F56668C2280D95B4007ECAD0 /* ViewController */,
 				6CEE0819280D617300D2D401 /* Model */,
@@ -307,6 +324,7 @@
 				6C4CEF5728156F0900AFB684 /* .swiftlint.yml in Resources */,
 				6CEE080E280D080300D2D401 /* LaunchScreen.storyboard in Resources */,
 				6CEE080B280D080300D2D401 /* Assets.xcassets in Resources */,
+				6C4CEF812817F17200AFB684 /* SF-Pro-Display-Regular.otf in Resources */,
 				6CEE0809280D080000D2D401 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,11 +409,13 @@
 				F57135BE280E4ABB0040C5A4 /* BriefBanchanViewCell.swift in Sources */,
 				6CEE0818280D616E00D2D401 /* Dish.swift in Sources */,
 				6C105839280E7FD500C0B462 /* BriefBanchanReusableView.swift in Sources */,
+				6C4CEF892817FE2300AFB684 /* CustomLabel.swift in Sources */,
 				6C4CEF522815597900AFB684 /* OrderSectionView.swift in Sources */,
 				6C4CEF59281656FB00AFB684 /* StackViewExtension.swift in Sources */,
-				6C162B7D280ED8F9003399BC /* UILabelExtension.swift in Sources */,
+				6C162B7D280ED8F9003399BC /* PaddingLabel.swift in Sources */,
 				6C105832280E6A0E00C0B462 /* UIColorExtension.swift in Sources */,
 				F5F1A1AA280E4736006EFDE2 /* DetailBanchanViewController.swift in Sources */,
+				6C4CEF852817F3AD00AFB684 /* UIFontExtension.swift in Sources */,
 				6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */,
 				6C4CEF4B28111FA000AFB684 /* OrderCountSectionView.swift in Sources */,
 				F5D88C972816EEBA00EE9D91 /* BanchanViewModel.swift in Sources */,

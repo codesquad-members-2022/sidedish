@@ -2,9 +2,9 @@ import UIKit
 
 class OrderSectionView: UIView {
     
-    private let totalAmountTitleLabel: UILabel = UILabel.customLabel(.dishLightGrey, "총 주문금액", 18, 600)
-    private let totalAmountLabel: UILabel = UILabel.customLabel(.dishBlack, "12,640원", 32, 600)
-    private let orderButton: UIButton = UIButton.customButton("주문하기", .dishBlue)
+    private let totalAmountTitleLabel = CustomLabel(title: "총 주문금액", font: .mediumBold, color: .dishGrey2)
+    private let totalAmountLabel = CustomLabel(title: "12,640원", font: .largeBold, color: .dishBlack)
+    private let orderButton: UIButton = UIButton.customButton("주문하기", .dishPrimaryDark)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

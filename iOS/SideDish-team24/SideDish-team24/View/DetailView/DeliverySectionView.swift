@@ -2,12 +2,12 @@ import UIKit
 
 class DeliverySectionView: UIView {
     
-    private let reserveTitle = UILabel.customLabel(.dishLightGrey, "적립금")
-    private let reserve = UILabel.customLabel(.dishGrey, "126원")
-    private let deliveryTitle = UILabel.customLabel(.dishLightGrey, "배송정보")
-    private let deliveryInformation = UILabel.customLabel(.dishGrey, "서울 경기 새벽 배송, 전국 택배 배송")
-    private let deliveryFeeTitle = UILabel.customLabel(.dishLightGrey, "배송비")
-    private let deliveryFee = UILabel.customLabel( .dishGrey, "2,500원 (40,000원 이상 구매 시 무료")
+    private let reserveTitle = CustomLabel(title: "적립금", font: .smallRegular, color: .dishGrey1)
+    private let reserve = CustomLabel(title: "126원", font: .smallRegular, color: .dishGrey2)
+    private let deliveryTitle = CustomLabel(title: "배송정보", font: .smallRegular, color: .dishGrey1)
+    private let deliveryInformation = CustomLabel(title: "새벽배송, 택배배송", font: .smallRegular, color: .dishGrey2)
+    private let deliveryFeeTitle = CustomLabel(title: "배송비", font: .smallRegular, color: .dishGrey1)
+    private let deliveryFee = CustomLabel(title: "2,500원 (40,000원 이상 구매 시 무료)", font: .smallRegular, color: .dishGrey2)
     
     private let titleSection: UIStackView = UIStackView.customStackView(.vertical, .fillEqually, spacing: CGFloat.defaultInset)
     private let informationSection: UIStackView = UIStackView.customStackView(.vertical, .fillEqually, spacing: CGFloat.defaultInset)
