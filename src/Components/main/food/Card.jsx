@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
+  F_basic,
   F_basicCenter,
   F_Center,
   TextEllipsis,
@@ -127,14 +128,48 @@ function Price({ price }) {
 }
 
 const BadgeBox = styled.div`
+  ${F_basic}
   margin-top: 16px;
 `;
 
-function Badge({ info }) {
-  if (info) {
-    const BADGES = info.map((item, idx) => <span key={idx}>{item}</span>);
-    return <BadgeBox>{BADGES}</BadgeBox>;
+const BadgeItem = styled.span`
+  height: 30px;
+  padding: 0 16px;
+  border-radius: 15px;
+  line-height: 30px;
+  font-size: ${({ theme }) => theme.FontSize.XSmall};
+  font-weight: ${({ theme }) => theme.FontWeight.Bold};
+  color: ${({ theme }) => theme.Color.white};
+  background: ${({ type, theme: { Color } }) => Color[getBadgeColor(type)]};
+
+  & + span {
+    margin-left: 8px;
   }
+`;
+
+function getBadgeColor(type) {
+  switch (type) {
+    case '런칭특가':
+      return 'orange';
+    case '이벤트특가':
+      return 'green';
+    default:
+      return 'black';
+  }
+}
+
+function Badge({ info }) {
+  if (!info) return;
+
+  const BADGES = info.map((item, idx) => {
+    return (
+      <BadgeItem key={idx} type={item}>
+        {item}
+      </BadgeItem>
+    );
+  });
+
+  return <BadgeBox>{BADGES}</BadgeBox>;
 }
 
 function Card({ cardData }) {
