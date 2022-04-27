@@ -28,7 +28,7 @@
 		B50A0C52280EEEB000A49273 /* FoodTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C51280EEEB000A49273 /* FoodTest.swift */; };
 		B50A0C59280EF19B00A49273 /* OrderingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
 		B50A0C5C280EF78E00A49273 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
-		B50A0C5E280FF1E700A49273 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* Response.swift */; };
+		B50A0C5E280FF1E700A49273 /* MainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* MainResponse.swift */; };
 		B511E00E28123ECE00B87FB7 /* JSONHandlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */; };
 		B511E011281323A500B87FB7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E010281323A500B87FB7 /* Repository.swift */; };
 		B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E0132813269400B87FB7 /* RepositoryDelegate.swift */; };
@@ -37,10 +37,12 @@
 		B511E01B2813DA8900B87FB7 /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01A2813DA8900B87FB7 /* MockRepository.swift */; };
 		B511E01D2813E2F900B87FB7 /* JSONHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */; };
 		B533884F281950A500072B5C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533884E281950A500072B5C /* DetailViewController.swift */; };
+		B53388512819950A00072B5C /* FoodDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53388502819950A00072B5C /* FoodDetail.swift */; };
+		B533885328199D9200072B5C /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533885228199D9200072B5C /* DetailResponse.swift */; };
 		B5B0B8312810FA87005CE46B /* JSONHandler.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C5B280EF78E00A49273 /* JSONHandler.swift */; };
 		B5B0B8322810FA87005CE46B /* Food.swift in Resources */ = {isa = PBXBuildFile; fileRef = 376A6B98280EA78B0016F0CE /* Food.swift */; };
 		B5B0B8332810FA87005CE46B /* Ordering.swift in Resources */ = {isa = PBXBuildFile; fileRef = 376A6B9A280EA8040016F0CE /* Ordering.swift */; };
-		B5B0B8342810FA87005CE46B /* Response.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* Response.swift */; };
+		B5B0B8342810FA87005CE46B /* MainResponse.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C5D280FF1E700A49273 /* MainResponse.swift */; };
 		B5B0B8352810FA87005CE46B /* FoodTest.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C51280EEEB000A49273 /* FoodTest.swift */; };
 		B5B0B8362810FA87005CE46B /* OrderingTest.swift in Resources */ = {isa = PBXBuildFile; fileRef = B50A0C58280EF19B00A49273 /* OrderingTest.swift */; };
 		B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0B83B281106EB005CE46B /* AppDelegate.swift */; };
@@ -88,7 +90,7 @@
 		B50A0C51280EEEB000A49273 /* FoodTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTest.swift; sourceTree = "<group>"; };
 		B50A0C58280EF19B00A49273 /* OrderingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingTest.swift; sourceTree = "<group>"; };
 		B50A0C5B280EF78E00A49273 /* JSONHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
-		B50A0C5D280FF1E700A49273 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		B50A0C5D280FF1E700A49273 /* MainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainResponse.swift; sourceTree = "<group>"; };
 		B511E00D28123ECE00B87FB7 /* JSONHandlable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandlable.swift; sourceTree = "<group>"; };
 		B511E010281323A500B87FB7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		B511E0132813269400B87FB7 /* RepositoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,8 @@
 		B511E01A2813DA8900B87FB7 /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 		B511E01C2813E2F900B87FB7 /* JSONHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandlerTest.swift; sourceTree = "<group>"; };
 		B533884E281950A500072B5C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B53388502819950A00072B5C /* FoodDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetail.swift; sourceTree = "<group>"; };
+		B533885228199D9200072B5C /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 		B5B0B83B281106EB005CE46B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B0B83D281106ED005CE46B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B5B0B83F28110726005CE46B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -128,8 +132,10 @@
 			children = (
 				B511E0192813DA7A00B87FB7 /* Mock */,
 				376A6B98280EA78B0016F0CE /* Food.swift */,
+				B53388502819950A00072B5C /* FoodDetail.swift */,
 				376A6B9A280EA8040016F0CE /* Ordering.swift */,
-				B50A0C5D280FF1E700A49273 /* Response.swift */,
+				B50A0C5D280FF1E700A49273 /* MainResponse.swift */,
+				B533885228199D9200072B5C /* DetailResponse.swift */,
 				B511E010281323A500B87FB7 /* Repository.swift */,
 				B511E0132813269400B87FB7 /* RepositoryDelegate.swift */,
 				B511E017281337B100B87FB7 /* RepositoryApplicable.swift */,
@@ -361,7 +367,7 @@
 				B5B0B8312810FA87005CE46B /* JSONHandler.swift in Resources */,
 				B5B0B8322810FA87005CE46B /* Food.swift in Resources */,
 				B5B0B8332810FA87005CE46B /* Ordering.swift in Resources */,
-				B5B0B8342810FA87005CE46B /* Response.swift in Resources */,
+				B5B0B8342810FA87005CE46B /* MainResponse.swift in Resources */,
 				B5B0B8352810FA87005CE46B /* FoodTest.swift in Resources */,
 				B5B0B8362810FA87005CE46B /* OrderingTest.swift in Resources */,
 				B50A0C49280EEE4900A49273 /* side.json in Resources */,
@@ -462,12 +468,14 @@
 				B50782BA2816B7C300445859 /* NetworkHandlerDelegate.swift in Sources */,
 				B511E0142813269400B87FB7 /* RepositoryDelegate.swift in Sources */,
 				B50782C12818497700445859 /* MockDataCachingManager.swift in Sources */,
+				B53388512819950A00072B5C /* FoodDetail.swift in Sources */,
 				B533884F281950A500072B5C /* DetailViewController.swift in Sources */,
 				B50782B82816866900445859 /* NetworkHandler.swift in Sources */,
 				B5B0B83C281106EB005CE46B /* AppDelegate.swift in Sources */,
 				B5B0B84028110726005CE46B /* MainViewController.swift in Sources */,
 				B50782C328184B0200445859 /* MockNetworkHandler.swift in Sources */,
-				B50A0C5E280FF1E700A49273 /* Response.swift in Sources */,
+				B533885328199D9200072B5C /* DetailResponse.swift in Sources */,
+				B50A0C5E280FF1E700A49273 /* MainResponse.swift in Sources */,
 				B511E011281323A500B87FB7 /* Repository.swift in Sources */,
 				37EBAE8628113209000A941D /* FoodCollectionViewCell.swift in Sources */,
 				B5B0B83E281106ED005CE46B /* SceneDelegate.swift in Sources */,
