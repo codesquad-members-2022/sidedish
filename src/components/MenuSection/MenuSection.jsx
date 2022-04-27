@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Text from 'components/utils/Text';
-import Slider from 'components/Slider';
+import MenuSlider from 'components/MenuSection/MenuSlider';
 
-export default function MenuSlider() {
+export default function MenuSection() {
   return (
     <Wrap>
       <Title>
         <Text size="TITLE_3" weight="MEDIUM" value="식탁을 풍성하게 하는 정갈한 밑반찬" />
       </Title>
-      <Slider />
+      <MenuSlider />
     </Wrap>
   );
 }

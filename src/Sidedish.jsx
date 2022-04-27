@@ -1,6 +1,6 @@
 import Header from 'components/Header/Header';
 import MainCategory from 'components/MainCategory/MainCategory';
-import MenuSlider from 'components/MenuSlider';
+import MenuSlider from 'components/MenuSection/MenuSection';
 import MoreButton from 'components/MoreButton';
 import React from 'react';
 import styled from 'styled-components';
@@ -19,6 +19,7 @@ export default function Sidedish() {
 }
 
 const Main = styled.main({
-  borderTop: ({ theme }) => `1px solid ${theme.COLOR.BLACK[100]}`,
+  maxWidth: '1440px',
+  margin: '0 auto',
   paddingBottom: '56px'
 });
