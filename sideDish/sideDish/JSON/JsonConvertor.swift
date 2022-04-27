@@ -8,6 +8,18 @@
 import Foundation
 import OSLog
 
+enum NetworkError: String, Error {
+    case nodata
+    case decoding
+    case statusCode
+}
+
+extension NetworkError: CustomStringConvertible {
+    var description: String {
+        return self.rawValue
+    }
+}
+
 class JsonConvertor{
     
     static func mockLoad(file: String) -> [Food]?{
@@ -19,52 +31,24 @@ class JsonConvertor{
             let data = try Data(contentsOf: fileLocation)
             guard let result: Response = JsonConvertor.decodeJson(data: data) else { return nil }
             
-            if result.statusCode == 200 { return result.body } else { os_log(.debug, log: .default, "server is not valid") }
-            } catch {
-                os_log(.default, log: .default, "Decoding error ")
+            if result.statusCode == 200 {
+                return result.body
+            } else {
+                os_log(.debug, log: .default, "server is not valid \(NetworkError.statusCode)")
             }
-        return nil 
+        } catch {
+            os_log(.default, log: .default, "data is not load error \(NetworkError.nodata)")
+        }
+        
+        return nil
     }
     
     static func decodeJson<T: Codable>(data: Data) -> T?{
         do{
             let result = try JSONDecoder().decode(T.self, from: data)
             return result
-        } catch{
-            guard let error = error as? DecodingError else { return nil }
-            
-            switch error{
-            case .dataCorrupted(let context):
-                print(context.codingPath, context.debugDescription, context.underlyingError ?? "", separator: "\n")
-                return nil
-            default :
-                return nil
-            }
-        }
-    }
-    
-    static func decodeJsonArray<T: Codable>(data: Data) -> [T]?{
-        do{
-            let result = try JSONDecoder().decode([T].self, from: data)
-            return result
-        } catch{
-            guard let error = error as? DecodingError else { return nil }
-            
-            switch error{
-            case .dataCorrupted(let context):
-                print(context.codingPath, context.debugDescription, context.underlyingError ?? "", separator: "\n")
-                return nil
-            default :
-                return nil
-            }
-        }
-    }
-    
-    static func encodeJson<T: Codable>(param: T) -> Data?{
-        do{
-            let result = try JSONEncoder().encode(param)
-            return result
-        } catch{
+        } catch {
+            os_log(.default, log: .default, "Decoding error \(NetworkError.decoding)")
             return nil
         }
     }
