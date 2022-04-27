@@ -35,16 +35,7 @@ public class ItemDetailResponse {
         this.mileage = item.getMileage();
         this.supportDawnDelivery = item.isSupportDawnDelivery();
         this.stock = item.getStock();
-        this.mainImages = getItemImages(item, ItemImageType.MAIN);
-        this.subImages = getItemImages(item, ItemImageType.SUB);
+        this.mainImages = item.getMainImageUrls();
+        this.subImages = item.getSubImageUrls();
     }
-
-    private List<String> getItemImages(Item item, ItemImageType type) {
-        return item.getItemImages().stream()
-                .filter(itemImage -> itemImage.getItemImageType() == type)
-                .sorted(Comparator.comparing(ItemImage::getItemImageSequence))
-                .map(ItemImage::getItemImageUrl)
-                .collect(Collectors.toList());
-    }
-
 }

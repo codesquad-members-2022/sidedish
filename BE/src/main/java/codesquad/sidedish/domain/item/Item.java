@@ -6,7 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @EqualsAndHashCode
@@ -70,6 +72,22 @@ public class Item {
 
     public int getMileage() {
         return (int)(getDiscountedItemPrice() * 0.01);
+    }
+
+    public List<String> getMainImageUrls() {
+        return itemImages.stream()
+                .filter(itemImage -> itemImage.getItemImageType() == ItemImageType.MAIN)
+                .sorted(Comparator.comparing(ItemImage::getItemImageSequence))
+                .map(ItemImage::getItemImageUrl)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getSubImageUrls() {
+        return itemImages.stream()
+                .filter(itemImage -> itemImage.getItemImageType() == ItemImageType.SUB)
+                .sorted(Comparator.comparing(ItemImage::getItemImageSequence))
+                .map(ItemImage::getItemImageUrl)
+                .collect(Collectors.toList());
     }
 }
 
