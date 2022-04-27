@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -22,8 +24,9 @@ import com.codesquad.sidedish.user.domain.User;
 import com.codesquad.sidedish.user.domain.UserRepository;
 import com.codesquad.sidedish.user.dto.LoginResponse;
 import com.codesquad.sidedish.user.dto.UserProfileDto;
-import com.codesquad.sidedish.user.exception.GlobalException;
+import com.codesquad.sidedish.user.exception.UserInformationNotFound;
 
+@Transactional
 @Service
 public class LoginService {
 
@@ -56,15 +59,21 @@ public class LoginService {
         UserProfileDto userProfileDto = getUserProfile(token);
 
         // 정보 기반으로 User 만들기
-        User user = new User(userProfileDto.getOauthId(), userProfileDto.getName(), userProfileDto.getEmail());
+        User user = new User(userProfileDto.getOauthId(), userProfileDto.getName(), userProfileDto.getEmail(), token);
 
         // 저장하기
-        User savedUser = userRepository.save(user);
+        Optional<User> foundUser = userRepository.findByOAuthId(user.getOauthId());
 
-        // 토큰 발행하기
-        String accessToken = tokenProvider.createAccessToken(String.valueOf(savedUser.getId()));
+        if (foundUser.isEmpty()) {
+            user = userRepository.save(user);
+        }
 
-        // 반환하기
+        if (foundUser.isPresent()) {
+            user = foundUser.get();
+        }
+
+        // JWT token 반환하기
+        String accessToken = tokenProvider.createAccessToken(String.valueOf(user.getId()));
         return new LoginResponse("Bearer", accessToken);
     }
 
@@ -91,7 +100,7 @@ public class LoginService {
 
     private UserProfileDto getUserProfile(GithubToken token) {
         Map<String, Object> userProfileMap = getUserProfileFromOAuthServer(token)
-            .orElseThrow(GlobalException::new);
+            .orElseThrow(() -> new UserInformationNotFound("사용자 정보가 없습니다", HttpStatus.NOT_FOUND));
 
         return new UserProfileDto(
             String.valueOf(userProfileMap.get("id")),
