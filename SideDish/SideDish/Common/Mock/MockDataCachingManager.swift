@@ -1,6 +1,6 @@
 import Foundation
 
-final class MockDataCache: DataCachingManagable{
+final class MockDataCachingManager: DataCachingManagable{
     
     private var mockDataCache: [String:Data] = [:]
     var count: Int{
