@@ -4,7 +4,7 @@ import { Container, Title } from "./Sidedish.style";
 import { API } from "../../config";
 import SidedishCards from "./SidedishCards";
 import { getData } from "../../utils";
-import { CarouselItem, Carousel } from "./carousel/Carousel";
+import { Carousel } from "./carousel/Carousel";
 
 const theme = {
     size: "small",
@@ -30,8 +30,8 @@ function SmallSidedish({ isVisible, section, title }) {
         return;
     }
 
-    const onClickRightBtn = (curPage) => {
-        setPage(curPage + 1);
+    const onUpdatePage = (newPage) => {
+        setPage(newPage);
     };
 
     return (
@@ -40,12 +40,10 @@ function SmallSidedish({ isVisible, section, title }) {
                 <Title>{title}</Title>
                 <Carousel
                     page={page}
-                    onClickRightBtn={onClickRightBtn}
+                    onUpdatePage={onUpdatePage}
                     hasNext={items.hasNext}
                 >
-                    <CarouselItem>
-                        <SidedishCards dishes={items.data}></SidedishCards>
-                    </CarouselItem>
+                    <SidedishCards dishes={items.data}></SidedishCards>
                 </Carousel>
             </Container>
         </ThemeProvider>

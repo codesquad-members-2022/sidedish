@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Container, CarouselItems, Icon } from "./Carousel.style";
 
-function Carousel({ page, onClickRightBtn, hasNext, children }) {
+function Carousel({ page, onUpdatePage, hasNext, children }) {
     const [activeIndex, setActiveIndex] = useState(0);
     const updateIndex = (newIndex) => {
         if (newIndex < 0) {
@@ -18,8 +18,12 @@ function Carousel({ page, onClickRightBtn, hasNext, children }) {
         <Container>
             <Icon
                 onClick={() => {
-                    updateIndex(activeIndex - 1);
+                    if (page - 1 !== 0) {
+                        updateIndex(activeIndex - 1);
+                        onUpdatePage(page - 1);
+                    }
                 }}
+                clickable={page > 1}
                 className="icon"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -44,10 +48,10 @@ function Carousel({ page, onClickRightBtn, hasNext, children }) {
                 onClick={() => {
                     if (hasNext) {
                         updateIndex(activeIndex + 1);
-                        onClickRightBtn(page);
+                        onUpdatePage(page + 1);
                     }
                 }}
-                hasNext={hasNext}
+                clickable={hasNext}
                 className="icon"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -65,12 +69,4 @@ function Carousel({ page, onClickRightBtn, hasNext, children }) {
     );
 }
 
-function CarouselItem({ children }) {
-    return (
-        <div className="carousel-item" style={{ width: "100%" }}>
-            {children}
-        </div>
-    );
-}
-
-export { Carousel, CarouselItem };
+export { Carousel };

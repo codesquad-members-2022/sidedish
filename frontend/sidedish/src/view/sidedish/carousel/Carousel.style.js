@@ -17,7 +17,7 @@ const Icon = styled.svg`
     color: #bcbcbc;
     &:active,
     &:hover {
-        color: ${(props) => (props.hasNext ? "#1b1b1b" : "#bcbcbc")};
+        color: ${(props) => (props.clickable ? "#1b1b1b" : "#bcbcbc")};
     }
 `;
 
