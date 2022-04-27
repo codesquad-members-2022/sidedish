@@ -7,7 +7,7 @@ export const Container = styled.div`
   gap: 16px;
 `;
 
-export const Header = styled.header`
+export const Header = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 16px;

@@ -11,6 +11,9 @@ body {
 		font-size: ${({ theme }) => theme.fontSize.medium};
 		color: ${({ theme }) => theme.color.black};
 }
+button{
+	cursor:pointer;
+}
 `;
 
 export default GlobalStyle;

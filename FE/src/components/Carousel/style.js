@@ -27,7 +27,7 @@ export const AngleLeft = styled(AngleLeftSvg)`
     fill: #1b1b1b;
   }
 `;
-export const AngleRigth = styled(AngleRigthSvg)`
+export const AngleRight = styled(AngleRigthSvg)`
   fill: #bcbcbc;
   position: absolute;
   top: 50%;
