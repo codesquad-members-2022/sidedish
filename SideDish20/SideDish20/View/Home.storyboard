@@ -114,6 +114,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="376" id="y3b-Me-pAw"/>
                                         </constraints>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="gUX-QS-Qce"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="Nhh-QY-FbW"/>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오리 주물럭_반조리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S7-iy-waO" userLabel="productNameLabel">
                                         <rect key="frame" x="16" y="400" width="382" height="48"/>
@@ -311,8 +313,10 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="hzs-Vo-Wcu"/>
                                         </constraints>
                                     </stackView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uD6-Wk-5Ad">
-                                        <rect key="frame" x="149.5" y="350" width="115.5" height="26"/>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="uD6-Wk-5Ad">
+                                        <rect key="frame" x="158.5" y="350" width="97.5" height="26"/>
+                                        <color key="pageIndicatorTintColor" name="White"/>
+                                        <color key="currentPageIndicatorTintColor" name="Primary2"/>
                                     </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" name="White"/>
@@ -360,7 +364,7 @@
                                     <constraint firstItem="YXO-pw-Yvz" firstAttribute="leading" secondItem="8S7-iy-waO" secondAttribute="leading" id="rwX-89-CkX"/>
                                     <constraint firstItem="uc1-f2-ste" firstAttribute="top" secondItem="yCz-wk-rN0" secondAttribute="bottom" constant="26" id="wCL-Ro-6II"/>
                                     <constraint firstItem="EhW-8f-C0C" firstAttribute="leading" secondItem="8S7-iy-waO" secondAttribute="leading" id="yim-Pu-KpX"/>
-                                    <constraint firstItem="8S7-iy-waO" firstAttribute="top" secondItem="mEF-D6-VxK" secondAttribute="bottom" constant="24" id="zfM-fh-KGo"/>
+                                    <constraint firstItem="8S7-iy-waO" firstAttribute="top" secondItem="uD6-Wk-5Ad" secondAttribute="bottom" constant="24" id="zfM-fh-KGo"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="BzF-fs-LgJ"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="AQ2-1l-l8w"/>

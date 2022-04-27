@@ -41,6 +41,7 @@ class DetailViewController: UIViewController {
             
             let imageView = UIImageView(frame: rect)
             imageView.image = image
+            imageView.contentMode = .scaleAspectFit
             imageView.frame = rect
             imageScrollView.addSubview(imageView)
             rect = rect.offsetBy(dx: rect.width, dy: 0)
@@ -61,6 +62,20 @@ class DetailViewController: UIViewController {
     @IBAction func quantityStepperValueChanged(_ sender: UIStepper) {
         let value = Int(sender.value)
         quantityLabel.text = "\(value)"
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        let subViews = imageScrollView.subviews.filter({$0 is UIImageView})
+        
+        for (inx, imageView) in subViews.enumerated() {
+            imageView.frame.size.width = size.width
+            imageView.frame.origin.x = CGFloat(inx) * size.width
+            imageScrollView.contentSize.width = imageView.frame.maxX
+        }
+        
+        imageScrollView.setNeedsDisplay()
     }
 }
 
