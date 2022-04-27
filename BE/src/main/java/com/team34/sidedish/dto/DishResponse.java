@@ -11,8 +11,22 @@ public class DishResponse {
     private String mainImagePath;
     private String title;
     private String content;
-    private List<String> badges;
-    private List<String> categories;
+    private String badge;
+    private List<Long> categories;
+
+    public DishResponse(Long id, int originPrice, int discountPrice, boolean earlyDeliverable,
+        String mainImagePath, String title, String content, String badge,
+        List<Long> categories) {
+        this.id = id;
+        this.originPrice = originPrice;
+        this.discountPrice = discountPrice;
+        this.earlyDeliverable = earlyDeliverable;
+        this.mainImagePath = mainImagePath;
+        this.title = title;
+        this.content = content;
+        this.badge = badge;
+        this.categories = categories;
+    }
 
     public Long getId() {
         return id;
@@ -42,11 +56,11 @@ public class DishResponse {
         return content;
     }
 
-    public List<String> getBadges() {
-        return badges;
+    public String getBadge() {
+        return badge;
     }
 
-    public List<String> getCategories() {
+    public List<Long> getCategories() {
         return categories;
     }
 }
