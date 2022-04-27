@@ -68,26 +68,39 @@ public class MenuService {
 	}
 
 	public MenuDto.DetailResponse readFrom(Long menuId) {
-		Menu menu = menuRepository.findById(menuId)
+		Menu menuInfo = menuRepository.findById(menuId)
 			.orElseThrow(() -> new IllegalArgumentException("error of menuId - read"));
+		Menu.Category subjectOfCategory = menuInfo.getCategory();
 
-		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.of(menu.getMenuId()));
+		List<Menu> category = menuRepository.findByCategory(subjectOfCategory);  // todo 10개 - LessThanEqual() or Pageable
+		List<MenuDto.SubCategory> menus = getSubCategoryOf(category);
+		Set<Long> menuIds = getMenuIds(menus);
+		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
 		List<Long> eventIds = ids.getEventIds();
 		EventAndSalesDto eventAndSales = eventService.read(eventIds);
+		insertSalesAndEventBadge(menus, ids, eventAndSales);
+
+		MenuDto.SubCategory detailMenu = getDetailMenu(menuInfo, menus);
+		menus.remove(detailMenu);
 		MenuDto.DetailResponse response = new MenuDto.DetailResponse(
-			menu.getMenuId(),
-			menu.getName(),
-			menu.getDescription(),
-			menu.getPrice(),
-			menu.getImages());
+			detailMenu,
+			menuInfo.availableForSale(),
+			new MenuDto.CategoryResponse(subjectOfCategory.getId(), subjectOfCategory.getKoType(), menus));
 
-		menuDiscountAndEvent(ids, eventAndSales, response);   // 할인금액과 이벤트 적용
 		Function<Boolean, Integer> savedCharge = (isDiscounted) -> isDiscounted ?
-			response.getDiscountedPrice() :
-			response.getPrice().intValue();
+			response.getMenu().getDiscountedPrice() :
+			response.getMenu().getPrice().intValue();
 
-		response.setSavedCharge(savedCharge.apply(eventAndSales.hasDiscounted()));
+		Integer charge = savedCharge.apply(eventAndSales.hasDiscounted());
+		response.setSavedCharge(charge);
 		return response;
+	}
+
+	private MenuDto.SubCategory getDetailMenu(Menu menuInfo, List<MenuDto.SubCategory> menus) {
+		return menus.stream()
+			.filter(m -> m.getMenuId().equals(menuInfo.getMenuId()))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("error of selected menu id"));
 	}
 
 	private List<MenuDto.SubCategory> getSubCategoryOf(List<Menu> menus) {
@@ -97,7 +110,7 @@ public class MenuService {
 					.menuId(menu.getMenuId())
 					.menuName(menu.getName())
 					.description(menu.getDescription())
-					.image(menu.getDefaultImage())
+					.image(menu.getImages())
 					.originalPrice(menu.getPrice())
 					.build();
 			}).collect(Collectors.toList());
@@ -114,24 +127,20 @@ public class MenuService {
 		EventAndSalesDto eventAndSales) {
 		subCategories.stream()
 			.map(category -> {
-				menuDiscountAndEvent(ids, eventAndSales, category);
+				Optional<EventPlannerDto.Id> eventMenu = ids.findOngoingEvent(category);
+				if (eventMenu.isPresent()) {
+					EventPlannerDto.Id id = eventMenu.get();
+					BigDecimal discountedPrice = getDiscountedPrice(eventAndSales, category, id);
+					List<String> eventBadges = eventAndSales.getEventBadges(id);
+					category.setDiscountedPrice(discountedPrice);
+					category.setEvent(eventBadges);
+					return category;
+				}
+				category.setDiscountedPrice(BigDecimal.ZERO);
+				category.setEvent(List.of());
 				return category;
 			})
 			.collect(Collectors.toList());
-	}
-
-	private void menuDiscountAndEvent(EventPlannerDto.Ids ids, EventAndSalesDto eventAndSales,
-		MenuModel menuModel) {
-		Optional<EventPlannerDto.Id> eventMenu = ids.findOngoingEvent(menuModel);
-		if (eventMenu.isPresent()) {
-			EventPlannerDto.Id id = eventMenu.get();
-			BigDecimal discountedPrice = getDiscountedPrice(eventAndSales, menuModel, id);
-			List<String> eventBadges = eventAndSales.getEventBadges(id);
-			menuModel.setDiscountedPrice(discountedPrice);
-			menuModel.setEvent(eventBadges);
-		}
-		menuModel.setDiscountedPrice(BigDecimal.ZERO);
-		menuModel.setEvent(List.of());
 	}
 
 	private BigDecimal getDiscountedPrice(EventAndSalesDto eventAndSales, MenuModel category, EventPlannerDto.Id id) {
@@ -152,3 +161,21 @@ public class MenuService {
 			.collect(Collectors.toSet());
 	}
 }
+
+
+/**
+ * 타입 이용한 insertSalesAndEventBadge() 내 공통 메서드 분리 실패
+ */
+/*	private void menuDiscountAndEvent(EventPlannerDto.Ids ids, EventAndSalesDto eventAndSales,
+		MenuModel menuModel) {
+		Optional<EventPlannerDto.Id> eventMenu = ids.findOngoingEvent(menuModel);
+		if (eventMenu.isPresent()) {
+			EventPlannerDto.Id id = eventMenu.get();
+			BigDecimal discountedPrice = getDiscountedPrice(eventAndSales, menuModel, id);
+			List<String> eventBadges = eventAndSales.getEventBadges(id);
+			menuModel.setDiscountedPrice(discountedPrice);
+			menuModel.setEvent(eventBadges);
+		}
+		menuModel.setDiscountedPrice(BigDecimal.ZERO);
+		menuModel.setEvent(List.of());
+	}*/
