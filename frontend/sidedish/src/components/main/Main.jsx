@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ItemCards from "../itemCard/ItemCards";
 import Label from "../../core/Label";
-import carouselData from "../../carouselMockData.json";
 import {
   LABEL_ATTRIBUTES,
   CARD_LENGHTHS,
@@ -21,6 +20,7 @@ const Main = () => {
   const [lnbStateArr, setLnbStateArr] = useState([]);
   const [lnbState, setLnbState] = useState("");
   const [dataState, setDataState] = useState([]);
+  const [carouselData, setCarouselData] = useState();
   const [relatedListState, setRelatedListState] = useState(relatedMockData);
   const [allCategoryVisible, setAllCategoryVisible] = useState(false);
   const [cardClickState, setCardClickState] = useState(false);
@@ -57,14 +57,14 @@ const Main = () => {
   };
 
   const fetchCarouselData = async () => {
-    const carouselData = await fetchData("./carouselMockData.json");
+    const carouselDataa = await fetchData("carouselMockData.json");
+    setCarouselData(carouselDataa);
   };
 
   useEffect(() => {
     fetchLnb();
     fetchCardData("meat");
-    //fetchCarouselData();
-    console.log("ok");
+    fetchCarouselData();
   }, []);
 
   const mainLnb = (
@@ -98,11 +98,11 @@ const Main = () => {
         <DivisionLine height="1px" color="#EBEBEB" />
 
         <CarouselContainer allCategoryVisible={true}>
-          <CarouselTitle>{carouselData.categories[0].categoryName}</CarouselTitle>
+          <CarouselTitle>{carouselData?.categories[0]?.categoryName}</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselData.categories[0].dishes}
+            carouselCards={carouselData?.categories[0]?.dishes}
             cardLength={CARD_LENGHTHS.SMALL}
             cardCount={NUM_OF_CARD_ON_DISPLAY}
             cardMargin={CARD_MARGIN}
@@ -110,22 +110,22 @@ const Main = () => {
         </CarouselContainer>
 
         <CarouselContainer allCategoryVisible={allCategoryVisible}>
-          <CarouselTitle>{carouselData.categories[1].categoryName}</CarouselTitle>
+          <CarouselTitle>{carouselData?.categories[1]?.categoryName}</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselData.categories[1].dishes}
+            carouselCards={carouselData?.categories[1]?.dishes}
             cardLength={CARD_LENGHTHS.SMALL}
             cardCount={NUM_OF_CARD_ON_DISPLAY}
             cardMargin={CARD_MARGIN}
           />
         </CarouselContainer>
         <CarouselContainer allCategoryVisible={allCategoryVisible}>
-          <CarouselTitle>{carouselData.categories[2].categoryName}</CarouselTitle>
+          <CarouselTitle>{carouselData?.categories[2].categoryName}</CarouselTitle>
           <Carousel
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselData.categories[2].dishes}
+            carouselCards={carouselData?.categories[2]?.dishes}
             cardLength={CARD_LENGHTHS.SMALL}
             cardCount={NUM_OF_CARD_ON_DISPLAY}
             cardMargin={CARD_MARGIN}

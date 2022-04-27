@@ -4,13 +4,22 @@ import LeftArrowBtn from "../../core/LeftArrowBtn";
 import RightArrowBtn from "../../core/RightArrowBtn";
 import ItemCards from "../itemCard/ItemCards";
 
-const Carousel = ({ cardClickState, setCardClickState, carouselCards, cardLength, cardCount, cardMargin }) => {
+const Carousel = ({
+  cardClickState,
+  setCardClickState,
+  carouselCards,
+  cardLength,
+  cardCount,
+  cardMargin,
+}) => {
   const [positionState, setPositionState] = useState(-cardMargin);
   const carouselWidth = (+cardLength + cardMargin * 2) * cardCount;
   const currentPage = Math.abs(positionState + cardMargin) / carouselWidth;
 
   const calLengthToMove = (numOfRestCard) => {
-    return numOfRestCard < cardCount ? (+cardLength + cardMargin * 2) * numOfRestCard : carouselWidth;
+    return numOfRestCard < cardCount
+      ? (+cardLength + cardMargin * 2) * numOfRestCard
+      : carouselWidth;
   };
 
   const handleClickLeftBtn = () => {
@@ -22,8 +31,8 @@ const Carousel = ({ cardClickState, setCardClickState, carouselCards, cardLength
   };
 
   const handleClickRightBtn = () => {
-    if (positionState > -cardMargin - carouselCards.length * cardLength) {
-      const numOfRestCard = carouselCards.length - (currentPage + 1) * cardCount;
+    if (positionState > -cardMargin - carouselCards?.length * cardLength) {
+      const numOfRestCard = carouselCards?.length - (currentPage + 1) * cardCount;
       const lengthToMove = calLengthToMove(numOfRestCard);
       setPositionState(positionState - lengthToMove);
     }
@@ -40,7 +49,7 @@ const Carousel = ({ cardClickState, setCardClickState, carouselCards, cardLength
           <ItemCards
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            dataState={[...carouselCards]}
+            dataState={[...(carouselCards || [])]}
             cardLength={cardLength}
             cardMargin={cardMargin}
           />
@@ -48,7 +57,7 @@ const Carousel = ({ cardClickState, setCardClickState, carouselCards, cardLength
       </CarouselView>
 
       <RightArrowBtnSpan onClick={handleClickRightBtn}>
-        <RightArrowBtn isLast={(currentPage + 1) * cardCount === carouselCards.length} />
+        <RightArrowBtn isLast={(currentPage + 1) * cardCount === carouselCards?.length} />
       </RightArrowBtnSpan>
     </CarouselContainer>
   );
