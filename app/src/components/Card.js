@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme.js";
 import { Badge } from "../styles/utils.js";
+import { ModalContext } from "../contexts/ModalContext.js";
 
 const cardSize = {
   large: '41.1rem',
@@ -12,6 +13,7 @@ const cardSize = {
 
 const Wrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 const Badges = styled.div`
@@ -112,9 +114,16 @@ const Thumbnail = ({ src, alt, size, deliveryType }) => {
 };
 
 const Card = ({ card, size }) => {
+  const modal = useContext(ModalContext);
+
+  const handleCardClick = () => {
+    modal.setShowModal(!modal.showModal);
+    modal.setProductHash(card.detail_hash);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Wrapper>
+      <Wrapper onClick={handleCardClick}>
         <Thumbnail
           src={card.image}
           alt={card.alt}
@@ -131,18 +140,18 @@ const Card = ({ card, size }) => {
           <Badges>
             {card.badge
               ? card.badge
-                  .filter(badge => badge !== '메인특가')
-                  .map(badge =>
-                    badge === '런칭특가' ? (
-                      <Badge key={'lauching'} bgColor={'orange'}>
-                        {badge}
-                      </Badge>
-                    ) : (
-                      <Badge key={'event'} bgColor={'green'}>
-                        {badge}
-                      </Badge>
-                    ),
-                  )
+                .filter(badge => badge !== '메인특가')
+                .map(badge =>
+                  badge === '런칭특가' ? (
+                    <Badge key={'lauching'} bgColor={'orange'}>
+                      {badge}
+                    </Badge>
+                  ) : (
+                    <Badge key={'event'} bgColor={'green'}>
+                      {badge}
+                    </Badge>
+                  ),
+                )
               : null}
           </Badges>
         </Info>
