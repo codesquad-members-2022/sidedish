@@ -42,6 +42,7 @@
 		D08FCDFF280D09AD00176BF9 /* SideDish20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCDFE280D09AD00176BF9 /* SideDish20Tests.swift */; };
 		D08FCE09280D09AD00176BF9 /* SideDish20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCE08280D09AD00176BF9 /* SideDish20UITests.swift */; };
 		D08FCE0B280D09AD00176BF9 /* SideDish20UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FCE0A280D09AD00176BF9 /* SideDish20UITestsLaunchTests.swift */; };
+		D0E56E4028192EC600C10419 /* HomeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E3F28192EC600C10419 /* HomeResponseData.swift */; };
 		ECFFCFBC3266EC0FD7154F03 /* Pods_SideDish20Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAB2134DB39689073D8101F /* Pods_SideDish20Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		D08FCE04280D09AD00176BF9 /* SideDish20UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideDish20UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08FCE08280D09AD00176BF9 /* SideDish20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish20UITests.swift; sourceTree = "<group>"; };
 		D08FCE0A280D09AD00176BF9 /* SideDish20UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish20UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D0E56E3F28192EC600C10419 /* HomeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponseData.swift; sourceTree = "<group>"; };
 		D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20_SideDish20UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				D01CBC1A280F6D9100F806C9 /* HomeModel.swift */,
 				1B56E668280E823E0074E79F /* CacheImageRequestMiddleWare.swift */,
 				1B56E66A280E82480074E79F /* CacheImageMiddleWare.swift */,
+				D0E56E3F28192EC600C10419 /* HomeResponseData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				D01CBD0028111E9200F806C9 /* HomeHeaderCollectionReusableView.swift in Sources */,
 				1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
+				D0E56E4028192EC600C10419 /* HomeResponseData.swift in Sources */,
 				1BF2901728179BDF00493D2F /* DetailViewController.swift in Sources */,
 				1BF290192817AF2500493D2F /* HomeNavigationController.swift in Sources */,
 				1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */,

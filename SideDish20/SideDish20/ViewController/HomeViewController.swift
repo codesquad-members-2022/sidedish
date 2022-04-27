@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
 
         registerXib()
         addSampleData()
+        testSession()
     }
 
     private func registerXib() {
@@ -35,6 +36,42 @@ class HomeViewController: UIViewController {
             products.append(model)
         }
         collectionView.reloadData()
+    }
+    
+    private func testSession() {
+        guard let url = URL(string: "https://api.codesquad.kr/onban/main") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "content-type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print((response as? HTTPURLResponse)?.statusCode)
+                return
+            }
+                        
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let responseData = try decoder.decode(HomeResponseData.self, from: data)
+                
+                if responseData.statusCode == 200 {
+                    print(responseData)
+                } else {
+                    print("Error")
+                }
+            } catch {
+                print(error)
+            }
+        }.resume()
     }
 }
 
