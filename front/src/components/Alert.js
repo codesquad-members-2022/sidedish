@@ -20,6 +20,7 @@ const StyledAlert = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
 `;
 const Message = styled.div`
   margin: 16px;

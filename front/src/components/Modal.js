@@ -1,8 +1,28 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ProductDetail from './ProductDetail';
 import RelatedProduct from './RelatedProduct';
 
+function Modal({ dishes, hideModal, showModal, showAlert }) {
+  const relatedDishes = dishes.related_dishes;
+  function closeModal(e) {
+    if (e.target !== e.currentTarget) {
+      return;
+    } // 질문해보기!
+    hideModal();
+  }
+  return (
+    <ModalWrap onClick={closeModal}>
+      <PopupBox>
+        <PopupCloseButtonWrap>
+          <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
+        </PopupCloseButtonWrap>
+        <ProductDetail dishes={dishes} showAlert={showAlert}></ProductDetail>
+        <RelatedProduct relatedDishes={relatedDishes} showModal={showModal}></RelatedProduct>
+      </PopupBox>
+    </ModalWrap>
+  );
+}
 const ModalWrap = styled.div`
   position: fixed;
   width: 100vw;
@@ -39,26 +59,5 @@ const PopupCloseButton = styled.button`
   line-height: 26px;
   color: #777777;
 `;
-
-function Modal({ dishes, hideModal, showModal }) {
-  const relatedDishes = dishes.related_dishes;
-  function closeModal(e) {
-    if (e.target !== e.currentTarget) {
-      return;
-    } // 질문해보기!
-    hideModal();
-  }
-  return (
-    <ModalWrap onClick={closeModal}>
-      <PopupBox>
-        <PopupCloseButtonWrap>
-          <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
-        </PopupCloseButtonWrap>
-        <ProductDetail dishes={dishes}></ProductDetail>
-        <RelatedProduct relatedDishes={relatedDishes} showModal={showModal}></RelatedProduct>
-      </PopupBox>
-    </ModalWrap>
-  );
-}
 
 export default Modal;

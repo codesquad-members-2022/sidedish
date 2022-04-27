@@ -155,6 +155,7 @@ function App() {
   }
   function hideAlert() {
     setAlert({ show: false, message: '' });
+    hideModal();
   }
   function showModal(cardId) {
     setModal({ show: true, cardId });
@@ -165,7 +166,15 @@ function App() {
   return (
     <AppWrap>
       <GlobalStyles></GlobalStyles>
-      {modal.show && <Modal dishes={dishes} cardId={modal.cardId} hideModal={hideModal} showModal={showModal}></Modal>}
+      {modal.show && (
+        <Modal
+          dishes={dishes}
+          cardId={modal.cardId}
+          hideModal={hideModal}
+          showModal={showModal}
+          showAlert={showAlert}
+        ></Modal>
+      )}
       <Header categories={categories}></Header>
       <Promotion showModal={showModal}></Promotion>
       <Main categories={MainCategories} showModal={showModal}></Main>
