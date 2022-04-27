@@ -1,6 +1,6 @@
 import Foundation
 
 struct DetailResponse<T: Codable>: Codable {
-    let hash: Int
+    let hash: String
     let data: T
 }
