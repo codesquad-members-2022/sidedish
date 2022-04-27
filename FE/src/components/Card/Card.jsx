@@ -15,7 +15,11 @@ const Card = ({ data, size }) => {
   const [isMouseEnter, setIsMouseEnter] = useState(false);
 
   const handleThumbnailMouseEnter = () => {
-    setIsMouseEnter(!isMouseEnter);
+    setIsMouseEnter(true);
+  };
+
+  const handleThumbnailMouseLeave = () => {
+    setIsMouseEnter(false);
   };
 
   return (
@@ -24,7 +28,7 @@ const Card = ({ data, size }) => {
         src={data.thumbnail}
         size={size}
         onMouseEnter={handleThumbnailMouseEnter}
-        onMouseLeave={handleThumbnailMouseEnter}
+        onMouseLeave={handleThumbnailMouseLeave}
       >
         {isMouseEnter && <DeliveryIcon />}
       </Thumbnail>
