@@ -11,6 +11,6 @@ public interface CategoryRepository extends CrudRepository<Category, Integer> {
     @Override
     List<Category> findAll();
 
-    @Query("SELECT I.* FROM CATEGORY C JOIN ITEM I ON C.ID = I.CATEGORY_ID WHERE I.ID = :id")
-    Optional<Item> findByItemId(@Param("id") int id);
+    @Query("SELECT C.ID, C.NAME FROM category C JOIN item I ON C.ID = I.CATEGORY_ID WHERE I.ID = :id")
+    Optional<Category> findByItemId(@Param("id") int id);
 }

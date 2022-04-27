@@ -4,3 +4,8 @@ spring:
     url: ${MYSQL_DATABASE_URL}/sidedish
     username: ${MYSQL_DATABASE_USERNAME}
     password: ${MYSQL_DATABASE_PASSWORD}
+
+oauth2:
+  user:
+    github:
+      redirect-uri: http://13.209.145.70:8080/login/oauth

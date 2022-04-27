@@ -4,7 +4,6 @@ spring:
     url: jdbc:mysql://localhost:3306/test
     username: suntory
     password: tksxhfl
-
   sql:
     init:
       schema-locations: classpath:schema.sql
@@ -12,5 +11,5 @@ spring:
       mode: always
 
 logging:
-  level.com.codesquad.sidedish.item: debug
+  level.com.codesquad.sidedish: debug
   level.sql: debug
