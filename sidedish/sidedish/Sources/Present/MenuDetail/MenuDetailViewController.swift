@@ -45,9 +45,9 @@ class MenuDetailViewController: UIViewController {
         attribute.stackViewSpacing = 8
         attribute.titleFont = .systemFont(ofSize: 32, weight: .regular)
         attribute.titleTextColor = .black
-        attribute.discriptionFont = .systemFont(ofSize: 14, weight: .regular)
+        attribute.discriptionFont = .systemFont(ofSize: 18, weight: .regular)
         attribute.discriptionTextColor = .grey2
-        attribute.priceFont = .systemFont(ofSize: 32, weight: .regular)
+        attribute.priceFont = .systemFont(ofSize: 18, weight: .regular)
         attribute.priceTextColor = .grey1
         attribute.salePriceFont = .systemFont(ofSize: 16)
         attribute.salePriceTextColor = .grey2
