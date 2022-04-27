@@ -73,4 +73,330 @@ const icons = [
   },
 ];
 
-export { MenuDatas, icons };
+const event = {
+  eventName: "한 번 주문하면 두 번 반하는 반찬",
+  eventCategories: [
+    {
+      id: 1,
+      name: "풍성한 고기 반찬",
+    },
+    {
+      id: 2,
+      name: "편리한 반찬 세트",
+    },
+    {
+      id: 3,
+      name: "맛있는 제철 요리",
+    },
+    {
+      id: 4,
+      name: "우리 아이 영양 반찬",
+    },
+  ],
+};
+
+const categoryMenus = {
+  sideDishes: [
+    {
+      id: 1,
+      name: "오리 주물럭_반조리",
+      description: "감칠맛 나는 매콤한 양념",
+      dawnDeliveryFlag: true,
+      wholeNationDeliveryFlag: true,
+      price: 15800,
+      discountType: "런칭특가",
+      discountRate: 20,
+      saveFileName: "img/1_ma_1.png",
+    },
+    {
+      id: 2,
+      name: "소갈비찜",
+      description: "촉촉하게 벤 양념이 일품",
+      dawnDeliveryFlag: true,
+      wholeNationDeliveryFlag: false,
+      price: 28900,
+      discountType: "이벤트특가",
+      discountRate: 10,
+      saveFileName: "img/2_ma_1.png",
+    },
+    {
+      id: 4,
+      name: "돼지불갈비",
+      description: "맛있어요!!",
+      dawnDeliveryFlag: false,
+      wholeNationDeliveryFlag: true,
+      price: 10000,
+      discountType: null,
+      discountRate: 0,
+      saveFileName: "img/4_ma_1.png",
+    },
+  ],
+};
+
+const categoryFirstData = {
+  menuCategories: [
+    {
+      menuCategoryName: "식탁을 풍성하게 하는 정갈한 밑반찬",
+      sideDishes: [
+        {
+          id: 1,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "런칭특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+        {
+          id: 2,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "런칭특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+        {
+          id: 3,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "런칭특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+        {
+          id: 4,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "런칭특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+        {
+          id: 5,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "런칭특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+        {
+          id: 6,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "런칭특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+      ],
+    },
+  ],
+};
+
+const categoryRestData = {
+  menuCategories: [
+    {
+      menuCategoryName: "정성이 담긴 뜨끈뜨근 국물 요리",
+      sideDishes: [
+        {
+          id: 9,
+          name: "냉면",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 8000,
+          discountType: "이벤트 특가",
+          discountRate: 20,
+          saveFileName: "img/9_ma_1.png",
+        },
+      ],
+    },
+    {
+      menuCategoryName: "모두가 좋아하는 든든한 메인 요리",
+      sideDishes: [
+        {
+          id: 1,
+          name: "오리 주물럭_반조리",
+          description: "감칠맛 나는 매콤한 양념",
+          dawnDeliveryFlag: true,
+          wholeNationDeliveryFlag: true,
+          price: 15800,
+          discountType: "이벤트 특가",
+          discountRate: 20,
+          saveFileName: "img/1_ma_1.png",
+        },
+        {
+          id: 2,
+          name: "소갈비찜",
+          description: "촉촉하게 벤 양념이 일품",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 28900,
+          discountType: "런칭 특가",
+          discountRate: 10,
+          saveFileName: "img/2_ma_1.png",
+        },
+        {
+          id: 3,
+          name: "쭈꾸미 한돈 제육볶음_반조리",
+          description: "쫄깃한 쭈구미와 고소한 돼지고기가 일품",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 16900,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/3_ma_1.png",
+        },
+        {
+          id: 4,
+          name: "돼지불갈비",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 10000,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/4_ma_1.png",
+        },
+        {
+          id: 11,
+          name: "연어구이",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 10000,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/11_ma_1.png",
+        },
+        {
+          id: 12,
+          name: "광어구이",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 11000,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/12_ma_1.png",
+        },
+        {
+          id: 20,
+          name: "소갈비찜",
+          description: "촉촉하게 벤 양념이 일품",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 28900,
+          discountType: "런칭 특가",
+          discountRate: 10,
+          saveFileName: "img/2_ma_1.png",
+        },
+        {
+          id: 31,
+          name: "쭈꾸미 한돈 제육볶음_반조리",
+          description: "쫄깃한 쭈구미와 고소한 돼지고기가 일품",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 16900,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/3_ma_1.png",
+        },
+        {
+          id: 42,
+          name: "돼지불갈비",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 10000,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/4_ma_1.png",
+        },
+        {
+          id: 50,
+          name: "연어구이",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 10000,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/11_ma_1.png",
+        },
+        {
+          id: 51,
+          name: "광어구이",
+          description: "맛있어요!!",
+          dawnDeliveryFlag: false,
+          wholeNationDeliveryFlag: false,
+          price: 11000,
+          discountType: null,
+          discountRate: 0,
+          saveFileName: "img/12_ma_1.png",
+        },
+      ],
+    },
+  ],
+};
+
+const ImgSliderButtons = {
+  left: (
+    <svg
+      width="11"
+      height="20"
+      viewBox="0 0 11 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 18L1 10L9 2"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  right: (
+    <svg
+      width="11"
+      height="20"
+      viewBox="0 0 11 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2 18L10 10L2 2"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+};
+
+export {
+  MenuDatas,
+  icons,
+  event,
+  categoryMenus,
+  categoryFirstData,
+  categoryRestData,
+  ImgSliderButtons,
+};

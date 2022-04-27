@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import Menu from "./Menu";
-import StyledNav from "./Nav.styled";
+import Menu from "Component/Header/HeaderLeft/Menu";
+import StyledNav from "Component/Header/HeaderLeft/Nav.styled";
 
-const Nav = ({ state: { handleMouseEvent, isSubMenuOpen } }) => {
+const Nav = ({ state: { handleMouseEvent, isOpen } }) => {
   return (
     <StyledNav onMouseEnter={handleMouseEvent} onMouseLeave={handleMouseEvent}>
-      <Menu isOpen={isSubMenuOpen} />
+      <Menu isOpen={isOpen} />
     </StyledNav>
   );
 };

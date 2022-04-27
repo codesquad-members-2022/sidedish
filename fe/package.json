@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.26.1",
+    "msw": "^0.39.2",
     "polished": "^4.2.2",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
@@ -40,7 +42,11 @@
       "comma-dangle": 0,
       "linebreak-style": 0,
       "operator-linebreak": 0,
-      "implicit-arrow-linebreak": 0
+      "implicit-arrow-linebreak": 0,
+      "import/no-unresolved": "off",
+      "object-curly-newline": 0,
+      "react/jsx-boolean-value": 0,
+      "no-confusing-arrow": 0
     }
   },
   "browserslist": {
@@ -59,5 +65,8 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.6.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

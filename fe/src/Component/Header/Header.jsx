@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { MenuDatas } from "../../MockData/MockData";
-import StyledHeader from "./Header.styled";
-import HeaderRight from "./HeaderRight/HeaderRight";
-import HeaderLeft from "./HeaderLeft/HeaderLeft";
+import { MenuDatas } from "MockData/MockData";
+import StyledHeader from "Component/Header/Header.styled";
+import HeaderRight from "Component/Header/HeaderRight/HeaderRight";
+import HeaderLeft from "Component/Header/HeaderLeft/HeaderLeft";
 
 const maxSubMenuDataSize = MenuDatas.reduce((maxLength, curMenuData) => {
   const curLength = curMenuData.subMenu.length;
@@ -12,14 +12,13 @@ const maxSubMenuDataSize = MenuDatas.reduce((maxLength, curMenuData) => {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const isSubMenuOpen = isOpen;
   const handleMouseEvent = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <StyledHeader isOpen={isOpen} maxSubMenuDataSize={maxSubMenuDataSize}>
-      <HeaderLeft state={{ handleMouseEvent, isSubMenuOpen }} />
+      <HeaderLeft state={{ handleMouseEvent, isOpen }} />
       <HeaderRight />
     </StyledHeader>
   );
