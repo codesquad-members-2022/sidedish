@@ -53,9 +53,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
                     return UICollectionViewCell()
                 }
-        guard let main = model[.main] else { return UICollectionViewCell()}
-        guard let soup = model[.soup] else { return UICollectionViewCell()}
-        guard let side = model[.side] else { return UICollectionViewCell()}
+        guard let main = model[.main],
+              let soup = model[.soup],
+              let side = model[.side] else {
+                  return UICollectionViewCell()
+              }
+        
         let sectionNumber = indexPath.section
         switch sectionNumber {
         case 0:
@@ -65,7 +68,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case 2:
             cell.configure(with: side[indexPath.row])
         default:
-            assert(false)
+            return UICollectionViewCell()
         }
         return cell
     }
@@ -87,13 +90,22 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             headerView.setup(at: indexPath.section)
             return headerView
         default:
-            assert(false, "invalid element Type")
+            return UICollectionReusableView()
         }
     }
     // MARK: - Cell 이 클릭되게 만듦
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        let targetDish = model[indexPath.section][indexPath.item]
+        var targetSort: ProductSort = .main
+        switch indexPath.section {
+        case 1:
+            targetSort = .main
+        case 2:
+            targetSort = .soup
+        default:
+            targetSort = .side
+        }
+        guard let targetSection = model[targetSort] else { return }
+        let targetDish = targetSection[indexPath.item]
         let dishTitle = targetDish.title
         let detailHash = targetDish.hash
         let dishDetailViewModel = DishDetailViewModel(title: dishTitle,
