@@ -11,7 +11,7 @@ import Toast_Swift
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    private let viewModel = ProductCollectionViewModel()
+    private let viewModel = MainCollectionViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

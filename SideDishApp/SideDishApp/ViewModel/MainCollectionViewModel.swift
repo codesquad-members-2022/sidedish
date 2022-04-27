@@ -14,7 +14,7 @@ struct CategorySectionViewModel {
     var productVMs: [ProductCellViewModel]
 }
 
-struct ProductCollectionViewModel {
+struct MainCollectionViewModel {
 
     private let networkManager = NetworkManager()
     private var imageCache = NSCache<NSURL, NSData>()
