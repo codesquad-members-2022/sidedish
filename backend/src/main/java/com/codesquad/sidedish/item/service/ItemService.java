@@ -8,6 +8,7 @@ import com.codesquad.sidedish.item.dto.CategoryItemsDto;
 import com.codesquad.sidedish.item.dto.DetailItemDto;
 import com.codesquad.sidedish.item.dto.ItemDto;
 import com.codesquad.sidedish.item.exception.CategoryIdNotFoundException;
+import com.codesquad.sidedish.item.exception.ItemIdNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,8 +48,8 @@ public class ItemService {
                 .stream()
                 .filter(item -> item.getId() == id)
                 .findAny()
-                .map(item -> new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.getMainImageLink(), item.getItemImages()))
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 아이템입니다."));
+                .map(item -> new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.calculatePoint(), item.getMainImageLink(), item.getItemImages()))
+                .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다."));
     }
 
     public CategoryItemDto findByCategory(int categoryId) {
