@@ -109,6 +109,9 @@ values (6, 22);
 insert into category_has_side_dish (category_id, side_dish_id)
 values (6, 23);
 
+insert into category_has_side_dish (category_id, side_dish_id)
+values (6, 24);
+
 /* side_dish */
 
 insert into side_dish(id, name, description, price, accrual_rate)
