@@ -3,14 +3,19 @@ package com.codesquadhan.sidedish.di
 import com.codesquadhan.sidedish.network.DetailService
 import com.codesquadhan.sidedish.network.LoginService
 import com.codesquadhan.sidedish.network.MenuService
+import com.codesquadhan.sidedish.ui.common.Common
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
@@ -22,11 +27,9 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(interceptor: AppInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BASIC
-            })
+            .addInterceptor(interceptor)
             .build()
     }
 
@@ -56,6 +59,17 @@ object NetworkModule {
     @Singleton
     fun provideLoginApiService(retrofit: Retrofit): LoginService {
         return retrofit.create(LoginService::class.java)
+    }
+
+    @Singleton
+    class AppInterceptor @Inject constructor() : Interceptor {
+        @Throws(IOException::class)
+        override fun intercept(chain: Interceptor.Chain) : Response = with(chain) {
+            val newRequest = request().newBuilder()
+                .addHeader("Cookie", Common.JESSIONID)
+                .build()
+            proceed(newRequest)
+        }
     }
 
 }
