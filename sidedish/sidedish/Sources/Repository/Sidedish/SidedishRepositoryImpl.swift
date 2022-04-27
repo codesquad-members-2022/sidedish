@@ -9,7 +9,6 @@ import Combine
 import Foundation
 
 class SidedishRepositoryImpl: NetworkApiRepository<SidedishEndPoint>, SidedishRepository {
-    
     func loadMenu(_ type: Menu.Category) -> AnyPublisher<ApiResult<(Menu.Category, [Menu]), SessionError>, Never> {
         request(.loadMenu(type))
             .map { $0.decode(SidedishAPIResult.self) }
@@ -41,6 +40,12 @@ class SidedishRepositoryImpl: NetworkApiRepository<SidedishEndPoint>, SidedishRe
                     return ApiResult(value: nil, error: .statusCodeError)
                 }
             }
+            .eraseToAnyPublisher()
+    }
+    
+    func order(_ name: String, message: String) -> AnyPublisher<ApiResult<Void, SessionError>, Never> {
+        request(.order(name, message: message))
+            .map { $0.mapVoid() }
             .eraseToAnyPublisher()
     }
 }

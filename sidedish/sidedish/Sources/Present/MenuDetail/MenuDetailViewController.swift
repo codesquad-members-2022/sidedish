@@ -141,10 +141,10 @@ class MenuDetailViewController: UIViewController {
             .store(in: &cancellables)
 
         model.state.ordered
-            .sink {
+            .sink { [weak self] _ in
                 let alert = UIAlertController(title: "주문완료 ✅", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "완료", style: .cancel))
-                self.present(alert, animated: true)
+                self?.present(alert, animated: true)
             }.store(in: &cancellables)
         
         model.state.loadedThumbnail

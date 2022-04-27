@@ -74,7 +74,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
             }
             .switchToLatest()
             .share()
-
+        
         request
             .sink { [weak self] result in
                 guard let self = self else { return }

@@ -13,10 +13,7 @@ class NetworkApiRepository<Target: EndPoint> {
     
     func request(_ target: Target, session: URLSessionProtocol = URLSession.shared ) -> AnyPublisher<NetworkResult, Never> {
         provider = URLSessionProvider(session: session)
-        guard let url = target.baseURL?.appendingPathComponent(target.path) else {
-            return Future<NetworkResult, Never> { promise in promise(.success(NetworkResult(.pasingError))) }.eraseToAnyPublisher()
-        }
-        
+        let url = target.baseUrl.appendingPathComponent(target.path)        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = target.method.value
         urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
