@@ -68,27 +68,6 @@ public class DomainEntityMapper {
             productEntity.getBestCategory());
     }
 
-    public ProductEntity toProductEntityFromDomain(Product product) {
-        List<ImageEntity> imageEntities = toImageEntitiesFromDomain(product.getImages());
-        return new ProductEntity(
-            product.getId(),
-            product.getDiscountPolicy().getId(),
-            product.getDeliveryPolicy().getId(),
-            imageEntities,
-            product.getProductName(),
-            product.getDescription(),
-            product.getOriginalPrice(),
-            product.getStockQuantity(),
-            product.getMealCategory(),
-            product.getBestCategory());
-    }
-
-    private List<ImageEntity> toImageEntitiesFromDomain(List<Image> images) {
-        return images.stream()
-            .map(image -> new ImageEntity(image.getId(), image.getImageUrl()))
-            .collect(Collectors.toList());
-    }
-
     private DiscountPolicyEntity searchDiscountPolicyEntity(
         List<DiscountPolicyEntity> discountPolicies, ProductEntity productEntity) {
         for (DiscountPolicyEntity discountPolicyEntity : discountPolicies) {
@@ -113,7 +92,6 @@ public class DomainEntityMapper {
     private DiscountPolicy toDomainFromDiscountPolicyEntity(
         DiscountPolicyEntity discountPolicyEntity) {
         return new DiscountPolicy(
-            discountPolicyEntity.getId(),
             discountPolicyEntity.getPolicyName(),
             discountPolicyEntity.getDiscountRate());
     }
@@ -122,7 +100,6 @@ public class DomainEntityMapper {
         DeliveryPolicyEntity deliveryPolicyEntity) {
 
         return new DeliveryPolicy(
-            deliveryPolicyEntity.getId(),
             deliveryPolicyEntity.getDeliveryInfo(),
             deliveryPolicyEntity.getDeliveryCharge(),
             deliveryPolicyEntity.getFreeDeliveryOverAmount());
@@ -130,7 +107,7 @@ public class DomainEntityMapper {
 
     private List<Image> toDomainFromImageEntity(ProductEntity productEntity) {
         return productEntity.getImageEntities().stream()
-            .map(imageEntity -> new Image(imageEntity.getId(), imageEntity.getImageUrl()))
+            .map(imageEntity -> new Image(imageEntity.getImageUrl()))
             .collect(Collectors.toList());
     }
 }

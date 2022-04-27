@@ -7,7 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Image {
 
-	private Long id;
 	private String imageUrl;
 
 }
