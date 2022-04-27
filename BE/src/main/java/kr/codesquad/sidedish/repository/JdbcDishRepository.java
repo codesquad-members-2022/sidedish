@@ -21,9 +21,10 @@ public interface JdbcDishRepository extends CrudRepository<Dish, Long> {
 
     List<Dish> findDishesByCategoryId(Long categoryId, PageRequest pageRequest);
 
-
     @Modifying
     @Query("update dish set stock = stock - :quantity where id = :id")
     boolean updateStock(@Param("id") Long id, @Param("quantity") int quantity);
 
+    @Query("select * from dish where category_id != :categoryId order by rand() limit 3")
+    List<Dish> findDishesByOtherCategoryId(@Param("categoryId") Long categoryId);
 }

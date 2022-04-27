@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import kr.codesquad.sidedish.domain.Category;
 import kr.codesquad.sidedish.domain.Dish;
 import kr.codesquad.sidedish.dto.CategorizedDishes;
+import kr.codesquad.sidedish.dto.DishRecommendation;
 import kr.codesquad.sidedish.dto.DishSimpleResponse;
 import kr.codesquad.sidedish.repository.JdbcCategoryRepository;
 import kr.codesquad.sidedish.repository.JdbcDishRepository;
@@ -33,6 +34,4 @@ public class CategoryService {
 
         return new CategorizedDishes(category, dishSimpleResponses);
     }
-
-
 }

@@ -15,19 +15,21 @@ public class DishDetailResponse {
     private final String description;
     private final int normalPrice;
     private final int discountPrice;
+    private final int stock;
     private final int point;
     private final DiscountPolicy discountPolicy;
     private final DeliveryType deliveryType;
     private final List<Image> images;
 
 
-    public DishDetailResponse(Long id, String name, String description, int normalPrice, int discountPrice, int point,
+    public DishDetailResponse(Long id, String name, String description, int normalPrice, int discountPrice, int stock, int point,
                               DiscountPolicy discountPolicy, DeliveryType deliveryType, List<Image> images) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.normalPrice = normalPrice;
         this.discountPrice = discountPrice;
+        this.stock = stock;
         this.point = point;
         this.discountPolicy = discountPolicy;
         this.deliveryType = deliveryType;
@@ -36,7 +38,7 @@ public class DishDetailResponse {
 
     public static DishDetailResponse from(Dish dish) {
         return new DishDetailResponse(dish.getId(), dish.getName(), dish.getDescription(), dish.getPrice(),
-                dish.getDiscountPrice(), dish.getPoint(), dish.getDiscountPolicy(),
+                dish.getDiscountPrice(), dish.getStock(), dish.getPoint(), dish.getDiscountPolicy(),
                 dish.getDeliveryType(), dish.getImages());
     }
 
@@ -74,5 +76,9 @@ public class DishDetailResponse {
 
     public int getPoint() {
         return point;
+    }
+
+    public int getStock() {
+        return stock;
     }
 }
