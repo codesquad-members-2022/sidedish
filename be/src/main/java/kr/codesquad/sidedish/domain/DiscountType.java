@@ -30,7 +30,8 @@ public enum DiscountType {
 				return EVENT;
 			case "":
 				return NO_SALE;
+			default:
+				throw new CustomException(ErrorCode.DISH_TYPE_NOT_ALLOWED);
 		}
-		throw new CustomException(ErrorCode.DISH_TYPE_NOT_ALLOWED);
 	}
 }
