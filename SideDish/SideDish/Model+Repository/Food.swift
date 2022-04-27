@@ -3,12 +3,12 @@ import Foundation
 struct Food: Codable {
     
     private (set) var detailHash: String
-    private (set) var alt: String
+    private (set) var title: String
     private (set) var foodDescription: String
     private (set) var normalPrice: String
     private (set) var specialPrice: String
     private let deliveryInformation: [String]
-    private let title: String
+    private let alt: String
     private (set) var imageUrl: String
     private (set) var badges: [String]
     

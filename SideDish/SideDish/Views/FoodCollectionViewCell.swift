@@ -159,7 +159,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
     }
     
     func receiveFood(food: Food){
-        foodNameLabel.text = food.alt
+        foodNameLabel.text = food.title
         foodDescriptionLabel.text = food.foodDescription
         foodNormalPriceLabel.text = food.normalPrice
         foodSpecialPriceLabel.text = food.specialPrice

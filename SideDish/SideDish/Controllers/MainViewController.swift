@@ -46,13 +46,8 @@ class MainViewController: UIViewController {
         ])
     }
     
-    //임시로 네트워크 확인하기 위해 json 데이터를 디버깅 로그로 확인하는 로직을 추가(추후 제거 예정)
-    func moveToDetailView(data: Data, food: Food) {
-        if let jsonString = String(data: data, encoding: .utf8) {
-            self.logger?.debug("\(jsonString)")
-        }
-        
-        let detailViewController = DetailViewController(food: food)
+    func moveToDetailView(foodDetail: FoodDetail, foodTitle: String) {
+        let detailViewController = DetailViewController(foodDetail: foodDetail, foodTitle: foodTitle)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
@@ -79,8 +74,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.receiveFood(food: food)
             ordering.requesetFoodImage(imageUrl: food.imageUrl){ result in
                 switch result{
-                case.success(let data):
-                    cell.updateFoodImage(imageData: data)
+                case.success(let imageData):
+                    cell.updateFoodImage(imageData: imageData)
                 case .failure(let error):
                     self.logger?.error("\(error.localizedDescription)")
                 }
@@ -96,8 +91,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         ordering.requestFoodDetail(detailHash: food.detailHash){ result in
             switch result {
-            case .success(let data):
-                self.moveToDetailView(data: data, food: food)
+            case .success(let response):
+                self.moveToDetailView(foodDetail: response.data, foodTitle: food.title)
             case .failure(let error):
                 self.logger?.error("\(error.localizedDescription)")
             }

@@ -2,10 +2,12 @@ import UIKit
 
 final class DetailViewController: UIViewController{
     
-    private var food: Food
+    private var foodDetail: FoodDetail
+    private var foodTitle: String = ""
     
-    init(food: Food){
-        self.food = food
+    init(foodDetail: FoodDetail, foodTitle: String){
+        self.foodDetail = foodDetail
+        self.foodTitle = foodTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -14,7 +16,7 @@ final class DetailViewController: UIViewController{
     }
     
     override func viewDidLoad() {
-        navigationItem.title = food.alt
+        navigationItem.title = foodTitle
         view.backgroundColor = .white
     }
 }
