@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import HeaderCategory from 'Header/HeaderCategory';
 import { ReactComponent as CartImage } from 'image/cart.svg';
-import { ReactComponent as PersonImage } from 'image/person.svg';
 import { ReactComponent as SearchImage } from 'image/search.svg';
 import { CATEGORY_TEXTS } from 'MockData/dummyData';
+import HeaderLogin from './HeaderLogin';
 
 const HeaderLogo = styled.div`
   ${({ theme }) => theme.fontStyles.logo};
@@ -58,7 +58,6 @@ export default function Template() {
   const onMouseOut = () => {
     setSubCategoryOpen(false);
   };
-
   const categoryList = CATEGORY_TEXTS.map((category, index) => {
     return <HeaderCategory open={subCategoryOpen} key={index} category={category}></HeaderCategory>;
   });
@@ -67,7 +66,7 @@ export default function Template() {
     return (
       <>
         <CartImage className="icon" />
-        <PersonImage className="icon" />
+        <HeaderLogin />
         <SearchImage className="icon" />
       </>
     );
