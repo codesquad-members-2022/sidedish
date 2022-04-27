@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
     @Modifying
-    @Query("UPDATE item SET stock = :stock WHERE item_id = :item_Id")
+    @Query("UPDATE item SET stock = :stock WHERE item_id = :item_id")
     boolean updateStock(@Param("stock") Integer stock, @Param("item_id") Long itemId);
 }
 

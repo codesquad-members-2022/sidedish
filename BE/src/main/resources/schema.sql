@@ -7,8 +7,6 @@ DROP TABLE IF EXISTS best_type;
 DROP TABLE IF EXISTS delivery;
 DROP TABLE IF EXISTS user;
 
-
-
 CREATE TABLE user
 (
     user_id   BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -84,7 +82,6 @@ CREATE TABLE orders
     order_id    BIGINT AUTO_INCREMENT NOT NULL,
     item_id     BIGINT NOT NULL,
     user_id     BIGINT NOT NULL,
-    email     VARCHAR(30) NOT NULL,
     quantity    INTEGER NOT NULL,
     total_price BIGINT NOT NULL,
     PRIMARY KEY (order_id),
