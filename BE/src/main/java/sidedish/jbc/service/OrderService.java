@@ -44,7 +44,7 @@ public class OrderService {
 	}
 
 	private int getPoint(Menu menu, MenuOrder menuOrder) {
-		return (int) ((menu.getPrice() * ((100 - menu.getSaleType().getSalePercentage()) / 100))
+		return (int) ((menu.getPrice() * ((100 - menu.getSaleType().getSalePercentage()) / 100f))
 			* 0.01 * menuOrder.getQuantity());
 	}
 }

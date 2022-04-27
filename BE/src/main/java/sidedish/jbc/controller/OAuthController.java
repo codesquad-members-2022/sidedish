@@ -16,8 +16,10 @@ import sidedish.jbc.domain.OauthDto;
 @Controller
 public class OAuthController {
 
-	private static final String REDIRECT_GITHUB_URL = "https://github.com/login/oauth/authorize?client_id=" + System.getenv("CLIENT_ID") + "&redirect_uri=http://localhost:8080/afterlogin";
-	private static final String GITHUB_ACCESS_TOKEN = "https://github.com/login/oauth/access_token";
+	private static final String REDIRECT_GITHUB_URL =
+		"https://github.com/login/oauth/authorize?client_id=" + System.getenv("CLIENT_ID")
+			+ "&redirect_uri=http://localhost:8080/afterlogin";
+	private static final String GITHUB_ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token";
 
 	@GetMapping("/login")
 	public ResponseEntity<Object> login() throws URISyntaxException {
@@ -35,8 +37,10 @@ public class OAuthController {
 		}
 
 		RestTemplate restTemplate = new RestTemplate();
-		OauthDto oauthDto = new OauthDto(code, System.getenv("CLIENT_ID"), System.getenv("SECRET_CODE"));
-		String queryParam = restTemplate.postForObject(GITHUB_ACCESS_TOKEN, oauthDto, String.class);
+		OauthDto oauthDto = new OauthDto(code, System.getenv("CLIENT_ID"),
+			System.getenv("SECRET_CODE"));
+		String queryParam = restTemplate.postForObject(GITHUB_ACCESS_TOKEN_URL, oauthDto,
+			String.class);
 
 		if (queryParam.contains("error")) {
 			HttpHeaders httpHeaders = new HttpHeaders();
