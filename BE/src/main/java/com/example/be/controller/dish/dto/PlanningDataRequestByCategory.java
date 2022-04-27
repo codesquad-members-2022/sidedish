@@ -1,4 +1,4 @@
-package com.example.be.controller.dish;
+package com.example.be.controller.dish.dto;
 
 import com.example.be.controller.dish.dto.PlanningDataRequest;
 
