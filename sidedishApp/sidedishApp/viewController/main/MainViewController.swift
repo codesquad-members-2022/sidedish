@@ -72,15 +72,15 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         }
         
-        guard let imageDataList = sideDishManager.getDetailDishThumbImages(hash: dish.detailHash) else {
+        guard let imageData = sideDishManager.getMainDishImages(hash: dish.detailHash) else {
             return cell
         }
         
-        if imageDataList.isEmpty {
+        if imageData.isEmpty {
             cell.setPropertiesValue(dish: dish)
         } else {
             cell.setPropertiesValue(dish: dish)
-            cell.setImage(imageData: imageDataList[0]) // 1번째 썸네일로 설정
+            cell.setImage(imageData: imageData)
         }
         
         return cell
@@ -121,17 +121,23 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
 
 private extension MainViewController {
     func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager)
-        NotificationCenter.default.addObserver(self, selector: #selector(setMainDish), name: NSNotification.Name(rawValue: "download"), object: sideDishManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadMainCollectionView), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadMainCollectionView), name: NSNotification.Name(rawValue: "download"), object: sideDishManager)
         self.sideDishManager.getDishes(type: .main)
         self.sideDishManager.getDishes(type: .soup)
         self.sideDishManager.getDishes(type: .side)
         self.sideDishManager.getDetailDish()
     }
     
-    @objc func setMainDish() {
+    @objc func reloadMainCollectionView() {
         DispatchQueue.main.async {
             self.dishCollectionView.reloadData()
         }
+    }
+    
+    @objc func setDishImage() {
+//        guard let imageData = sideDishManager.getMainDishImages(hash: dish.detailHash) else {
+//            return
+//        }
     }
 }

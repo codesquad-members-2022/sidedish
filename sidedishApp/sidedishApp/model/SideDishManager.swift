@@ -50,23 +50,21 @@ final class SideDishManager {
         }
     }
     
-    func getDetailDishThumbImages(hash: String) -> [Data]? {
-        guard let imageUrlList = getDetailDishFromHash(hash: hash)?.thumbImages else {
+    func getMainDishImages(hash: String) -> Data? {
+        // sideDishManager에 API정보를 다 받아온 다음 실행
+        guard let imageURL = getMainDishImageURLFromHash(hash: hash) else {
             return nil
         }
-        var imageDataList = [Data]()
+        var imageData = Data()
         
-        for imageUrl in imageUrlList {
-            guard let url = URL(string: imageUrl) else { return nil }
-            HTTPManager.loadData(url: url) { (data, error) in
-                // 다운로드받은 파일 데이터 처리
-                if let data = data {
-                    imageDataList.append(data)
-                }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
+        HTTPManager.loadData(url: imageURL) { (data, error) in
+            // 다운로드받은 파일 데이터 처리
+            if let data = data {
+                imageData = data
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
         }
-        return imageDataList
+        return imageData
     }
     
     func getDishFromSection(indexPath: IndexPath) -> MainCard.Body? {
@@ -93,7 +91,7 @@ final class SideDishManager {
         }
         return detailCard
     }
-
+    
     func getDishCountFromSection(indexPath: IndexPath) -> Int? {
         var dishCount: Int?
         switch indexPath.section {
@@ -107,5 +105,30 @@ final class SideDishManager {
             return nil
         }
         return dishCount
+    }
+    
+    func getMainDishImageURLFromHash(hash: String) -> URL? {
+        guard let mainDishesBody = mainDishes?.body,
+              let soupDishesBody = soupDishes?.body,
+              let sideDishesBody = sideDishes?.body else {
+            return nil
+        }
+        
+        for dishBody in mainDishesBody {
+            if dishBody.detailHash == hash {
+                return URL(string: dishBody.imageURL)
+            }
+        }
+        for dishBody in soupDishesBody {
+            if dishBody.detailHash == hash {
+                return URL(string: dishBody.imageURL)
+            }
+        }
+        for dishBody in sideDishesBody {
+            if dishBody.detailHash == hash {
+                return URL(string: dishBody.imageURL)
+            }
+        }
+        return nil
     }
 }
