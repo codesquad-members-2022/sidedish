@@ -15,9 +15,21 @@ const F_basicCenter = css`
   align-items: center;
 `;
 
+const F_Center = css`
+  ${F_basic}
+  align-items: center;
+  justify-content: center;
+`;
+
 const F_BtweenCenter = css`
   ${F_basicCenter}
   justify-content: space-between;
+`;
+
+const TextEllipsis = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Color = {
@@ -32,4 +44,12 @@ const Color = {
   orange: '#FF8E14',
 };
 
-export { Inner, F_basic, F_basicCenter, F_BtweenCenter, Color };
+export {
+  Inner,
+  F_basic,
+  F_basicCenter,
+  F_BtweenCenter,
+  F_Center,
+  TextEllipsis,
+  Color,
+};
