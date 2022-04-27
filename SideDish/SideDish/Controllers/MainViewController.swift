@@ -46,6 +46,16 @@ class MainViewController: UIViewController {
         ])
     }
     
+    //임시로 네트워크 확인하기 위해 json 데이터를 디버깅 로그로 확인하는 로직을 추가(추후 제거 예정)
+    func moveToDetailView(data: Data, food: Food) {
+        if let jsonString = String(data: data, encoding: .utf8) {
+            self.logger?.debug("\(jsonString)")
+        }
+        
+        let detailViewController = DetailViewController(food: food)
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -77,5 +87,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let ordering = ordering else { return }
+        let category = ordering.getCategoryWithIndex(index: indexPath.section)
+        guard let food = ordering[indexPath.row,category] else { return }
+        
+        ordering.requestFoodDetail(detailHash: food.detailHash){ result in
+            switch result {
+            case .success(let data):
+                self.moveToDetailView(data: data, food: food)
+            case .failure(let error):
+                self.logger?.error("\(error.localizedDescription)")
+            }
+        }
     }
 }
