@@ -14,8 +14,8 @@
             type="com.example.todo.sidedish.domain.model.MenuDetail" />
 
         <variable
-            name="event"
-            type="java.lang.String" />
+            name="totalPay"
+            type="java.lang.Integer" />
 
         <variable
             name="badge"
@@ -311,6 +311,7 @@
                 <TextView
                     android:id="@+id/tv_total_pay_value"
                     style="@style/TextLarge.Bold"
+                    formatText="@{totalPay}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{detail.SPrice}"
