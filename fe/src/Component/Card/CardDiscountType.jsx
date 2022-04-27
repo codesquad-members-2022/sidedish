@@ -4,16 +4,18 @@ import PropTypes from "prop-types";
 const CardDiscountTypeDiv = styled.div`
   ${({ discountType, theme: { colors } }) => {
     switch (discountType) {
-      case "런칭특가":
+      case "런칭 특가":
         return css`
           background-color: ${colors.orange};
         `;
-      case "이벤트특가":
+      case "이벤트 특가":
         return css`
           background-color: ${colors.green};
         `;
       default:
-        return null;
+        return css`
+          background-color: ${colors.grey3};
+        `;
     }
   }}
 

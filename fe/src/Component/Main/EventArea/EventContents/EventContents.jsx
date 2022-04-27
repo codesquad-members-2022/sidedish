@@ -35,7 +35,7 @@ const EventContents = ({ selectedId }) => {
   };
 
   const eventCards = sideDishes.map((sideDish) => {
-    return <Card key={sideDish.id} props={sideDish} type="event" />;
+    return <Card key={sideDish.id} props={sideDish} type="large" />;
   });
 
   useEffect(() => {

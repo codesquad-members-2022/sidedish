@@ -1,16 +1,16 @@
 import styled, { css } from "styled-components";
 
 const CardLi = styled.li`
-  ${({ theme: { colors, boldFonts, regularFonts }, type }) => {
-    const imgWidth = {
-      event: 411,
-      category: 302,
-    };
+  ${({ theme: { colors, cardSize, boldFonts, regularFonts }, type }) => {
     return css`
       position: relative;
+      width: ${cardSize[type].width};
+      height: ${cardSize[type].height};
 
       img {
-        width: ${imgWidth[type]}px;
+        display: block;
+        width: ${cardSize[type].width};
+        height: ${cardSize[type].width};
       }
 
       .name {

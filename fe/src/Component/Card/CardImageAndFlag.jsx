@@ -12,7 +12,11 @@ const CardImageAndFlag = ({
 
   return (
     <div onMouseEnter={handleMouseEvent} onMouseLeave={handleMouseEvent}>
-      <CardImage src={saveFileName} alt={name} isHover={isHover} />
+      <CardImage
+        src={`http://3.36.89.161/${saveFileName}`}
+        alt={name}
+        isHover={isHover}
+      />
       <CardFlag
         isHover={isHover}
         flag={{ dawnDeliveryFlag, wholeNationDeliveryFlag }}

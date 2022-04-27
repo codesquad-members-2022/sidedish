@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const Normalize = createGlobalStyle`
+  .App {
+    font-family: "Noto Sans KR", sans-serif;
+  }
+  
   h1 {
     font-family: "Outfit", sans-serif;
     font-weight: 900;

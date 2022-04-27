@@ -11,6 +11,7 @@ const BtnShowAndHide = styled.button`
       ${regularFonts.large};
       border: solid 2px ${colors.grey4};
     `}
+  font-family: "Noto Sans KR", sans-serif;
   width: 203px;
   height: 62px;
   margin: 20px 0;
