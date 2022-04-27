@@ -25,7 +25,7 @@ struct ProductCellViewModel {
         self.badge = badge
     }
 
-    init(product: Product) {
+    init(product: ProductSummary) {
         self.init(title: product.title, description: product.description, imageURL: product.imageURL, originalPrice: product.originalPrice, salePrice: product.salePrice, badge: product.badge)
     }
 

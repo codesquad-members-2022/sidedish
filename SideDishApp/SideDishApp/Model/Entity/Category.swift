@@ -1,17 +1,24 @@
 //
-//  ProductType.swift
+//  Category.swift
 //  SideDishApp
 //
 //  Created by Kai Kim on 2022/04/19.
 //
 
-enum ProductType: String, CaseIterable {
+import Foundation
+
+struct Category {
+    let product: [ProductSummary]
+    let type: CategoryType
+}
+
+enum CategoryType: String, CaseIterable {
     case main
     case soup
     case side
 }
 
-extension ProductType {
+extension CategoryType {
     var index: Int {
         switch self {
         case .main:

@@ -10,7 +10,7 @@ import Foundation
 // This is going to represent single viewModel that drives productCollectionView
 
 struct CategorySectionViewModel {
-    var type: ProductType
+    var type: CategoryType
     var productVMs: [ProductCellViewModel]
 }
 
@@ -18,7 +18,7 @@ struct ProductCollectionViewModel {
 
     private let categoryManager = CategoryManager()
     private var imageCache = NSCache<NSURL, NSData>()
-    var categoryVMs: [ProductType: Observable<CategorySectionViewModel>]
+    var categoryVMs: [CategoryType: Observable<CategorySectionViewModel>]
 
     init () {
         let placeHolders = (0..<5).map({ _ in
@@ -32,7 +32,7 @@ struct ProductCollectionViewModel {
     }
 
     func countProduct(section: Int) -> Int {
-        let targetType = ProductType.allCases[section]
+        let targetType = CategoryType.allCases[section]
         guard let productVMs = categoryVMs[targetType]?.value?.productVMs else {return 0}
         return productVMs.count
     }
@@ -42,19 +42,24 @@ struct ProductCollectionViewModel {
     }
 
     subscript(_ indexPath: IndexPath) -> ProductCellViewModel? {
-        let targetType = ProductType.allCases[indexPath.section]
+        let targetType = CategoryType.allCases[indexPath.section]
         guard let productVMs = categoryVMs[targetType]?.value?.productVMs else {return nil}
         return productVMs[indexPath.item]
     }
 
     func fetchAllCategories() {
-        ProductType.allCases.forEach({
+        CategoryType.allCases.forEach({
             fetchCategories(of: $0)
         })
     }
 
-    private func fetchCategories(of type: ProductType) {
+    private func fetchCategories(of type: CategoryType) {
+
         categoryManager.fetchCategory(of: type) { category in
+            guard let category = category else {
+                return
+            }
+
             let productCellVMs = category.product.compactMap { product in
                 ProductCellViewModel(product: product)
             }

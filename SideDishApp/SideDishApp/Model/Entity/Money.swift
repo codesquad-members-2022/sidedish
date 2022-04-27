@@ -6,9 +6,9 @@
 //
 
 import Foundation
-struct Money<C: CurrencyFormatable> {
+struct Money<C: CurrencyFormattable> {
 
-    typealias C = CurrencyFormatable
+    typealias C = CurrencyFormattable
 
     var value: Decimal
 

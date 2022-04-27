@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Response: Codable {
+struct ProductsSummaryResponse: Codable {
     let statusCode: Int
-    let body: [Product]
+    let body: [ProductSummary]
 }
 
-struct Product: Codable {
+struct ProductSummary: Codable {
     let detailHash: String
     let imageURL: URL
     let alt: String

@@ -16,8 +16,9 @@ class CategoryManagerTests: XCTestCase {
         let promise = XCTestExpectation(description: "Fetch Category Success")
 
         categoryManager.fetchCategory(of: .main) { category in
-            XCTAssertEqual(category.type, .main)
-            XCTAssertTrue(category.product.count > 0)
+            XCTAssertNotNil(category)
+            XCTAssertEqual(category!.type, .main)
+            XCTAssertTrue(category!.product.count > 0)
             promise.fulfill()
         }
 
@@ -27,12 +28,13 @@ class CategoryManagerTests: XCTestCase {
     func testFetchImageData() {
 
         // Prepare Product to test fetch Image
-        var testProduct: Product?
+        var testProduct: ProductSummary?
 
         let fetchProductPromise = XCTestExpectation(description: "Fetch Product Success")
 
         categoryManager.fetchCategory(of: .main) { category in
-            testProduct = category.product[0]
+            XCTAssertNotNil(category)
+            testProduct = category!.product[0]
             fetchProductPromise.fulfill()
         }
 
