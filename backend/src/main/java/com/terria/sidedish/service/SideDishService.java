@@ -12,6 +12,7 @@ import com.terria.sidedish.repository.DiscountEventRepository;
 import com.terria.sidedish.repository.SideDishRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class SideDishService {
 
     private final DiscountEventRepository discountEventRepository;
 
+    @Transactional(readOnly = true)
     public SideDishCardResponses getByCategoryId(long categoryId, int page) {
         List<SideDishCardResponse> sideDishCardResponses = new ArrayList<>();
 
