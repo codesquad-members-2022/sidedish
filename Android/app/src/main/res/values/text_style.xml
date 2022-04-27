@@ -67,6 +67,13 @@
     <style name="Text_Badge_launching">
         <item name="android:textColor">@color/Primary3</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:text">@string/text_tag_launching</item>
+    </style>
+
+    <style name="Text_Badge_event">
+        <item name="android:textColor">@color/Primary2</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:text">@string/text_tag_event</item>
     </style>
 
 </resources>

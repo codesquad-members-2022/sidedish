@@ -12,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        isWhite="@{mainResponseItem.isWhite}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -52,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E1E1E1"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:src="@drawable/img_food_sample" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -84,7 +85,7 @@
             android:id="@+id/cv_tag"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:visibility="visible"
+            badgeVisible="@{mainResponseItem.saleType}"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toTopOf="@id/v_empty_2"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
@@ -95,7 +96,8 @@
                 android:id="@+id/cl_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@color/Primary1">
+                badgeBackground="@{mainResponseItem.saleType}"
+                tools:background="@color/Primary1">
 
                 <View
                     android:id="@+id/v_tag1_1"
@@ -108,12 +110,13 @@
 
                 <TextView
                     android:id="@+id/tv_tag"
-                    style="@style/Text_Badge_launching"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="@string/text_tag_launching"
+                    android:textSize="12sp"
+                    badgeText="@{mainResponseItem.saleType}"
+                    tools:text="@string/text_tag_launching"
                     app:layout_constraintBottom_toTopOf="@id/v_tag1_4"
                     app:layout_constraintEnd_toStartOf="@id/v_tag1_2"
                     app:layout_constraintHeight_percent="0.66"
@@ -172,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:text="@{@string/currency(mainResponseItem.price)}"
+            priceAmount="@{mainResponseItem.salePrice}"
             app:layout_constraintBottom_toTopOf="@id/v_empty_3"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
             app:layout_constraintTop_toTopOf="@id/v_empty_3_1"
@@ -192,12 +195,14 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:text="15,800원"
+            priceAmount="@{mainResponseItem.price}"
+            strikeThrough="@{mainResponseItem.saleType}"
             android:textColor="@color/Grey2"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_price_after_sale"
             app:layout_constraintStart_toEndOf="@id/v_empty_4"
-            app:layout_constraintTop_toTopOf="@id/tv_price_after_sale" />
+            app:layout_constraintTop_toTopOf="@id/tv_price_after_sale"
+            tools:text = "20000원"/>
 
         <View
             android:id="@+id/v_empty_5"

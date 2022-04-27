@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mainResponseItem"
             type="com.codesquadhan.sidedish.data.model.be.MainResponseItem" />
@@ -11,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        isWhite="@{mainResponseItem.isWhite}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.91"
-            tools:text="모두가 좋아하는\n든든한 메인 요리"/>
+            tools:text="모두가 좋아하는\n든든한 메인 요리" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

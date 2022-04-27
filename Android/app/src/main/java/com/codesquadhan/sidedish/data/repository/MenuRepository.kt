@@ -1,24 +1,20 @@
 package com.codesquadhan.sidedish.data.repository
 
-import com.codesquadhan.sidedish.data.model.be.MainResponse
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
-import com.codesquadhan.sidedish.data.model.onban.OnbanMainResponse
 import com.codesquadhan.sidedish.network.MenuService
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
+@Singleton
 class MenuRepository @Inject constructor(private val menuService: MenuService) {
 
-/*    suspend fun getOnbanMenu(): Response<OnbanMainResponse> {
-        return menuService.getMainMenu()
-    }*/
+    suspend fun getMenuList(type: String): List<MainResponseItem>? {
+        return menuService.getMenuList(type).getBodyOrThrow()
+    }
 
-    suspend fun getMainMenu(): Response<List<MainResponseItem>> = menuService.getMainMenu()
-    suspend fun getSoupMenu(): Response<List<MainResponseItem>> = menuService.getSoupMenu()
-    suspend fun getSideMenu(): Response<List<MainResponseItem>> = menuService.getSideMenu()
+    private fun <T> Response<T>.getBodyOrThrow(): T? {
+        return if (this.isSuccessful) this.body() else throw java.lang.RuntimeException("Network error, please try again later\n")
+    }
 
 }

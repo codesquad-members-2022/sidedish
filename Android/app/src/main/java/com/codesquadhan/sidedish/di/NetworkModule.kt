@@ -1,5 +1,6 @@
 package com.codesquadhan.sidedish.di
 
+import com.codesquadhan.sidedish.network.DetailService
 import com.codesquadhan.sidedish.network.MenuService
 import dagger.Module
 import dagger.Provides
@@ -13,9 +14,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule{
+object NetworkModule {
 
-    private const val BASE_URL = "http://52.79.50.206:8080/menus/"
+    private const val BASE_URL = "http://3.34.207.233:8080/menus/"
 
     @Provides
     @Singleton
@@ -43,5 +44,10 @@ object NetworkModule{
         return retrofit.create(MenuService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideDetailApiService(retrofit: Retrofit): DetailService {
+        return retrofit.create(DetailService::class.java)
+    }
 
 }
