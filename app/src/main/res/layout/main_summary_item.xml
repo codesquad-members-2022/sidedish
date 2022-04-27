@@ -123,7 +123,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/curve_corner_light_purple"
                 android:text="@string/event_price"
-                android:textColor="@color/primary" />
+                android:textColor="@color/primary"
+                android:visibility="@{foodInfo.badge.contains(@string/event_price)? View.VISIBLE : View.GONE}" />
 
             <TextView
                 android:id="@+id/launch_text"
@@ -132,7 +133,8 @@
                 android:layout_marginStart="4dp"
                 android:background="@drawable/curve_corner_purple"
                 android:text="@string/launch_price"
-                android:textColor="@color/primaryLight" />
+                android:textColor="@color/primaryLight"
+                android:visibility="@{foodInfo.badge.contains(@string/launch_price)? View.VISIBLE : View.GONE}" />
 
         </LinearLayout>
 
