@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import HeaderCategory from 'Header/HeaderCategory';
 import { ReactComponent as CartImage } from 'image/cart.svg';
-import { ReactComponent as PersonImage } from 'image/person.svg';
 import { ReactComponent as SearchImage } from 'image/search.svg';
 import { CATEGORY_TEXTS } from 'MockData/dummyData';
+import HeaderLogin from './HeaderLogin';
+import axios from 'axios';
 
 const HeaderLogo = styled.div`
   ${({ theme }) => theme.fontStyles.logo};
@@ -50,6 +51,8 @@ const IconTemplate = styled.div`
 
 export default function Template() {
   const [subCategoryOpen, setSubCategoryOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const token = localStorage.getItem('token');
 
   const onMouseOver = () => {
     setSubCategoryOpen(true);
@@ -57,6 +60,23 @@ export default function Template() {
 
   const onMouseOut = () => {
     setSubCategoryOpen(false);
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.get(
+        'https://github.com/login/oauth/authorize?client_id=7fa807988dbe1e60acc4&scope=user'
+      );
+      const data = await response.json();
+      console.log(data);
+      localStorage.setItem('token', data);
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
   };
 
   const categoryList = CATEGORY_TEXTS.map((category, index) => {
@@ -67,11 +87,17 @@ export default function Template() {
     return (
       <>
         <CartImage className="icon" />
-        <PersonImage className="icon" />
+        <HeaderLogin handleLogin={handleLogin}></HeaderLogin>
         <SearchImage className="icon" />
       </>
     );
   };
+
+  useEffect(() => {
+    if (token) {
+      setIsLogin(true);
+    }
+  }, [token]);
 
   return (
     <HeaderTemplate open={subCategoryOpen}>
