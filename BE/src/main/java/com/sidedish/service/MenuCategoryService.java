@@ -17,26 +17,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MenuCategoryService {
 
-    private static final String FIRST = "first";
-    private static final String REST = "rest";
-
     private final MenuCategoryRepository menuCategoryRepository;
     private final SideDishRepository sideDishRepository;
 
-    public MenuCategoryListDto getMenuCategories(String range) {
-        List<MenuCategoryDto> menuCategoryDtoList = null;
-
-        if (range.equals(FIRST)) {
-            menuCategoryDtoList = makeFirstMenuCategory();
-        }
-        else if (range.equals(REST)) {
-            menuCategoryDtoList = makeRestOfMenuCategories();
-        }
-
-        return new MenuCategoryListDto(menuCategoryDtoList);
-    }
-
-    private List<MenuCategoryDto> makeFirstMenuCategory() {
+    public MenuCategoryListDto makeFirstMenuCategory() {
         MenuCategory menuCategory = menuCategoryRepository.findFirstMenuCategory();
 
         String menuCategoryName = menuCategory.getName();
@@ -47,10 +31,10 @@ public class MenuCategoryService {
 
         MenuCategoryDto menuCategoryDto = new MenuCategoryDto(menuCategoryName, sideDishes);
 
-        return List.of(menuCategoryDto);
+        return new MenuCategoryListDto(List.of(menuCategoryDto));
     }
 
-    private List<MenuCategoryDto> makeRestOfMenuCategories() {
+    public MenuCategoryListDto makeRestOfMenuCategories() {
         List<MenuCategoryDto> menuCategoryDtoList = new ArrayList<>();
         List<MenuCategory> menuCategories = menuCategoryRepository.findRestOfMenuCategories();
 
@@ -65,6 +49,6 @@ public class MenuCategoryService {
             menuCategoryDtoList.add(menuCategoryDto);
         }
 
-        return menuCategoryDtoList;
+        return new MenuCategoryListDto(menuCategoryDtoList);
     }
 }

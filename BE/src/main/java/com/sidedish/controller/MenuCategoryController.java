@@ -15,8 +15,15 @@ public class MenuCategoryController {
 
     private final MenuCategoryService menuCategoryService;
 
-    @GetMapping("menu-categories/{range}/sidedishes")
-    public MenuCategoryListDto getMenuCategories(@PathVariable String range) {
-        return menuCategoryService.getMenuCategories(range);
+    @GetMapping("first-menu-category")
+    public MenuCategoryListDto getFirstMenuCategories() {
+        return menuCategoryService.makeFirstMenuCategory();
     }
+
+    @GetMapping("rest-menu-categories")
+    public MenuCategoryListDto getRestOfMenuCategories() {
+        return menuCategoryService.makeRestOfMenuCategories();
+    }
+
+
 }
