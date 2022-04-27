@@ -94,6 +94,21 @@ values (5, 17);
 insert into category_has_side_dish (category_id, side_dish_id)
 values (5, 18);
 
+insert into category_has_side_dish (category_id, side_dish_id)
+values (5, 19);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (5, 20);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (5, 21);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (6, 22);
+
+insert into category_has_side_dish (category_id, side_dish_id)
+values (6, 23);
+
 /* side_dish */
 
 insert into side_dish(id, name, description, price, accrual_rate)
@@ -149,6 +164,24 @@ values (17, '만가닥버섯볶음', '슴슴한 맛 건강푸드', 4000, 0.01);
 
 insert into side_dish(id, name, description, price, accrual_rate)
 values (18, '해파리냉채', '탱글탱글 톡 쏘는 매력', 3800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (19, '미역초무침', '새콤달콤 부들부들한 식감의', 3500, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (20, '무생채', '시원새콤 깔끔한 맛', 3500, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (21, '오징어도라지초무침', '새콤 향긋 국내산 도라지', 5800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (22, '취나물', '', 3800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (23, '바지락초무침[밀키트]', '', 8800, 0.01);
+
+insert into side_dish(id, name, description, price, accrual_rate)
+values (24, '바지락애호박볶음', '쫄깃하고 아삭한', 4800, 0.01);
 
 /* side_dish_image */
 
@@ -261,8 +294,80 @@ values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%B4%
         3, 18 /* 해파리냉채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('',
-        1, 18 /* 해파리냉채 */);
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
+        1, 19 /* 미역초무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
+        2, 19 /* 미역초무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
+        3, 19 /* 미역초무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AC%B4%EC%83%9D%EC%B1%84_1.png',
+        1, 20 /* 무생채 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AC%B4%EC%83%9D%EC%B1%84_2.png',
+        2, 20 /* 무생채 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AC%B4%EC%83%9D%EC%B1%84_3.png',
+        3, 20 /* 무생채 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
+        1, 21 /* 오징어도라지초무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
+        2, 21 /* 오징어도라지초무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
+        3, 21 /* 오징어도라지초무침 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%B7%A8%EB%82%98%EB%AC%BC_1.png',
+        1, 22 /* 취나물 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%B7%A8%EB%82%98%EB%AC%BC_2.png',
+        2, 22 /* 취나물 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%B7%A8%EB%82%98%EB%AC%BC_3.png',
+        3, 22 /* 취나물 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+        1, 23 /* 바지락초무침[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+        2, 23 /* 바지락초무침[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+        3, 23 /* 바지락초무침[밀키트] */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_1.png',
+        1, 24 /* 바지락애호박볶음 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_2.png',
+        2, 24 /* 바지락애호박볶음 */);
+
+insert into side_dish_image(image_url, image_seq, side_dish_id)
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_3.png',
+        3, 24 /* 바지락애호박볶음 */);
+
+-- insert into side_dish_image(image_url, image_seq, side_dish_id)
+-- values ('',
+--         1, 25 /* 바지락애호박볶음 */);
 
 /* discount_event */
 
