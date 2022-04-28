@@ -29,7 +29,7 @@ VALUES
     ('한우 소고기 미역국(냉동)', '한우와 미역을 푹 끓인 전통 미역국', false, 9800, 33, 'none', 'soup', 'kids'),
     ('한돈 청국장찌개', '청국장 특유의 구수한 맛', false, 9800, 88, 'event', 'soup', 'meat'),
     ('황기 닭곰탕(냉동)', '담백하고 깔끔한 맛', true, 9800, 52, 'launching', 'soup', 'kids'),
-    ('감자 짜글이', '칼칼한 맛이 일품인 밥도둑 짜글이', false, 8800, 99, 'none', 'main', 'side');
+    ('감자 짜글이', '칼칼한 맛이 일품인 밥도둑 짜글이', false, 8800, 99, 'none', 'main', 'kids');
 
 
 INSERT INTO image (product_id, image_path)
