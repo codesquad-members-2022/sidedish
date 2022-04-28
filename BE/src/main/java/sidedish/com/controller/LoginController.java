@@ -1,6 +1,7 @@
 package sidedish.com.controller;
 
 import java.net.URI;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,11 @@ public class LoginController {
 	}
 
 	@GetMapping("/login/callback")
-	public void login(@RequestParam String code) {
-		loginService.login(code);
+	public ResponseEntity<Object> login(@RequestParam String code, HttpSession session) {
+		Long userId = loginService.login(code);
+		session.setAttribute("userId", userId);
+		return ResponseEntity.status(HttpStatus.SEE_OTHER)
+			.location(URI.create("http://localhost:8080"))
+			.build();
 	}
 }
