@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Colors, Fonts } from '@/Constants';
+import { Colors, Fonts, ProductCardSize } from '@/Constants';
 
 import { PriceTag } from './PriceTag';
 import { ProductThumbnail } from './ProductThumbnail';
@@ -19,14 +19,14 @@ const ProductCardWrapper = styled.li`
   }
 
   ${({ size }) => {
-    return size === 'md'
+    return size === ProductCardSize.MD
       ? css`
           .product-thumbnail {
             width: 302px;
             height: 302px;
           }
         `
-      : size === 'sm'
+      : size === ProductCardSize.SM
       ? css`
           &:not(:last-child) {
             margin-right: 16px;
@@ -105,6 +105,7 @@ export const ProductCard = ({
   return (
     <ProductCardWrapper size={size} onClick={onClickThumbnail}>
       <ProductThumbnail
+        size={size}
         imgUrl={productImage.url}
         morningDelivery={morningDelivery}
         onClickThumbnail={onClickThumbnail}
@@ -120,7 +121,7 @@ export const ProductCard = ({
           }}
         />
       </PriceWrapper>
-      <PolicyBadge priceData={discountPolicy} />
+      {size !== ProductCardSize.SM && <PolicyBadge priceData={discountPolicy} />}
     </ProductCardWrapper>
   );
 };

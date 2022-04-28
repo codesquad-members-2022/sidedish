@@ -60,7 +60,7 @@ const LS_RADIUS = 50;
 const LS_BORDER_WIDTH = 10;
 const RT_MARGIN = 300;
 
-export const CategoryProducts = ({ categoryId }) => {
+export const CategoryProducts = ({ categoryId, productCardSize }) => {
   const [categoryProductsData, isLoaded, isError, setRetry] = useFetch(
     `${API_URL}/categories/${categoryId}/items`
   );
@@ -108,7 +108,7 @@ export const CategoryProducts = ({ categoryId }) => {
         >
           {categoryProducts.contents.map(categoryProduct => (
             <ProductCard
-              size={'md'}
+              size={productCardSize}
               data={categoryProduct}
               key={categoryProduct.id}
             />
@@ -116,11 +116,11 @@ export const CategoryProducts = ({ categoryId }) => {
         </ProductCardList>
       </Slider>
 
-      {/* Slider가 없을 때 */}
+      {/* Slider가 없을 때*/}
       {/*<ProductCardList>*/}
       {/*  {categoryProducts.contents.map(categoryProduct => (*/}
       {/*    <ProductCard*/}
-      {/*      size={'md'}*/}
+      {/*      size={productCardSize}*/}
       {/*      data={categoryProduct}*/}
       {/*      key={categoryProduct.id}*/}
       {/*    />*/}
