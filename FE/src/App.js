@@ -1,13 +1,13 @@
-import { Header } from "@src/components/Header/Header";
+import { Header } from "@/components/templates/Header/Header";
+import { Promotion } from "@/components/templates/Promotion/Promotion";
 import "./App.scss";
-import { Promotion } from "@src/components/Promotion/Promotion";
 
 function App() {
   return (
     <div>
       <Header />
       <main>
-        <Promotion />
+        <Promotion dataID="1" />
       </main>
     </div>
   );
