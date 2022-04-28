@@ -17,7 +17,7 @@ class SideDishTypeTestType {
         // when
 
         // then
-        assertThatThrownBy(() -> SideDishType.stringToEnum(sideDishType))
+        assertThatThrownBy(() -> SideDishType.fromName(sideDishType))
                 .isInstanceOf(CustomException.class)
                 .hasMessageContaining(ErrorCode.SIDE_DISH_TYPE_NOT_ALLOWED.getDetail());
     }

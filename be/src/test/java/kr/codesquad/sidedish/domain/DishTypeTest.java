@@ -17,7 +17,7 @@ class DishTypeTest {
         // when
 
         // then
-        assertThatThrownBy(() -> DishType.stringToEnum(dishType))
+        assertThatThrownBy(() -> DishType.fromName(dishType))
                 .isInstanceOf(CustomException.class)
                 .hasMessageContaining(ErrorCode.DISH_TYPE_NOT_ALLOWED.getDetail());
     }

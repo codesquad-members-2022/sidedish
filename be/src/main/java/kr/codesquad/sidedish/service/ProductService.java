@@ -27,14 +27,14 @@ public class ProductService {
 	}
 
 	public List<ProductDTO> loadDishListByType(DishType dishType) {
-		return productRepository.loadDishListByType(dishType.getType()).stream()
+		return productRepository.loadDishListByType(dishType.getName()).stream()
 			.map(p -> ProductDTO.from(p))
 			.collect(Collectors.toList());
 	}
 
 	public List<ProductDTO> loadSideDishListByType(DishType dishType, SideDishType sideDishType) {
 		ServiceValidator.checkDishTypeIsSide(dishType);
-		return productRepository.loadSideDishListByType(dishType.getType(), sideDishType.getType())
+		return productRepository.loadSideDishListByType(dishType.getName(), sideDishType.getName())
 			.stream()
 			.map(p -> ProductDTO.from(p))
 			.collect(Collectors.toList());

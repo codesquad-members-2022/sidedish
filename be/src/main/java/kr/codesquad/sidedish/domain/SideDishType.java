@@ -18,11 +18,11 @@ public enum SideDishType {
 
     ;
 
-    private final String type;
+    private final String name;
 
-    public static SideDishType stringToEnum(String type) {
+    public static SideDishType fromName(String text) {
         return Arrays.stream(values())
-                .filter(sideDish -> sideDish.type.equals(type))
+                .filter(sideDish -> sideDish.name.equals(text))
                 .findFirst()
                 .orElseThrow(() -> new CustomException(ErrorCode.SIDE_DISH_TYPE_NOT_ALLOWED));
     }
