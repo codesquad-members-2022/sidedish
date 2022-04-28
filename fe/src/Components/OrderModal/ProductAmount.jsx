@@ -28,12 +28,9 @@ const TotalCost = styled.span`
 const CurrentAmount = styled.span``;
 
 export const ProductAmount = ({ priceData }) => {
-  const [totalCost, setTotalCost] = useState(priceData);
-  // const [currentAmount, setCurrentAmount] = useState(1);
+  const { currentAmount, setCurrentAmount, totalCost, setTotalCost } =
+    useContext(ModalContext);
 
-  const { currentAmount, setCurrentAmount } = useContext(ModalContext);
-
-  // TODO: 상품 닫고 다시 클릭했을때 수량 가격 초기화
   const onClickPlus = () => {
     setCurrentAmount(currentAmount + 1);
     setTotalCost((currentAmount + 1) * priceData);

@@ -181,7 +181,8 @@ export const CategoryProducts = ({ categoryId }) => {
     setSlideUnitWidth(clientWidth / children.length);
   }, [isLoaded]);
 
-  if (isError) return <RetryButton onClick={handleClickRetryButton} margin={RT_MARGIN} />;
+  if (isError)
+    return <RetryButton onClick={handleClickRetryButton} margin={RT_MARGIN} />;
   if (!isLoaded)
     return (
       <LoadingSpinner

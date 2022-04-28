@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
 
+import { ModalContext } from './ModalContext';
 import { ProductAmount } from './ProductAmount';
 
 import { DiscountBadge } from '@/Components/Badge';
@@ -107,9 +109,7 @@ export const ProductInfo = ({
         </ProductOrderSpec>
 
         <ProductOrderInfo>
-          <li className={Fonts.XS}>
-            {(discountPolicy ? accumulate * price : price).toLocaleString()} 원
-          </li>
+          <li className={Fonts.XS}>{accumulate.toLocaleString()} 원</li>
           <li className={Fonts.XS}>이곳은 주소입니다</li>
           <li className={Fonts.XS}>{(3000).toLocaleString()} 원</li>
         </ProductOrderInfo>

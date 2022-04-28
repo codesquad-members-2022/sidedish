@@ -91,13 +91,17 @@ export const ProductCard = ({
   size,
 }) => {
   const modalContext = ModalContext;
-  const { ModalDisplay, setModalDisplay, setProductID } =
+
+  const { setModalDisplay, setProductID, setTotalCost, productPrice } =
     useContext(modalContext);
+
   const onClickThumbnail = () => {
+    setProductID(id);
     setModalDisplay(true);
-    setProductID(productId);
+    setTotalCost(productPrice);
   };
   const productImage = images[0];
+
   return (
     <ProductCardWrapper size={size} onClick={onClickThumbnail}>
       <ProductThumbnail

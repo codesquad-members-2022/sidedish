@@ -58,15 +58,16 @@ const CloseButton = styled.button`
 `;
 
 export const OrderModal = () => {
-  const { ModalDisplay, setModalDisplay, productDetail, setCurrentAmount } =
-    useContext(ModalContext);
+  const { ModalDisplay, productDetail, reset } = useContext(ModalContext);
 
   function onClickCloseBtn() {
-    setModalDisplay(false);
-    setCurrentAmount(1);
+    reset();
   }
-
   function OrderButtonEvent() {}
+
+  if (!productDetail) {
+    return;
+  }
 
   return (
     <ModalBackGround ModalOpen={ModalDisplay}>

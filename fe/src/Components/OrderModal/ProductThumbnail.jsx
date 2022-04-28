@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
+
+import { ModalContext } from './ModalContext';
 
 const SubProductList = styled.ul`
   display: flex;
@@ -38,7 +40,7 @@ const ProductPanel = styled.li`
 `;
 
 export const ProductThumbnail = ({ ProductThumbnailData }) => {
-  const [mainPanelImg, setMainPanelImg] = useState(ProductThumbnailData[0]);
+  const { mainPanelImg, setMainPanelImg } = useContext(ModalContext);
   const onClickSubPanel = e => {
     setMainPanelImg(e.target.src);
   };
@@ -49,13 +51,13 @@ export const ProductThumbnail = ({ ProductThumbnailData }) => {
         <img className="product-img" src={mainPanelImg} alt="제품 상세 사진" />
       </ProductPanel>
       <SubProductList>
-        {ProductThumbnailData.map((imgUrl, idx) => {
+        {ProductThumbnailData.map(productImgData => {
           return (
             <ProductPanel size={'sm'}>
               <img
-                src={imgUrl}
+                src={productImgData.url}
                 alt="제품 상세 사진"
-                key={idx}
+                key={productImgData.url.id}
                 className="product-img"
                 onClick={onClickSubPanel}
               />
