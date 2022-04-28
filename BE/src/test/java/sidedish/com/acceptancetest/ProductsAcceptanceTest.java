@@ -33,10 +33,10 @@ class ProductsAcceptanceTest {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-			.when()
+		.when()
 			.get("/api/products?meal=soup")
 
-			.then()
+		.then()
 			.statusCode(HttpStatus.OK.value())
 			.assertThat()
 			.body("[0].id", equalTo(5))
@@ -88,26 +88,26 @@ class ProductsAcceptanceTest {
 	}
 
 	@Test
-	void 만약_유요하지않은_product_id가_주어졌을때_음식_상세조회_실패() {
+	void 만약_유효하지않은_product_id가_주어졌을때_음식_상세조회_실패() {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-			.when()
+		.when()
 			.get("api/products/-1")
 
-			.then()
+		.then()
 			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
 
 	@Test
-	void 만약_유요한_product_id지만_해당_id음식_존재하지_않는경우_상세조회_실패() {
+	void 만약_유효한_product_id지만_해당_id음식_존재하지_않는경우_상세조회_실패() {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-			.when()
+		.when()
 			.get("api/products/999999")
 
-			.then()
+		.then()
 			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
 
@@ -116,10 +116,10 @@ class ProductsAcceptanceTest {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-			.when()
+		.when()
 			.get("/api/products/best?category=meat")
 
-			.then()
+		.then()
 			.statusCode(HttpStatus.OK.value())
 			.assertThat()
 			.body("[0].id", equalTo(1))
@@ -150,10 +150,10 @@ class ProductsAcceptanceTest {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-			.when()
+		.when()
 			.get("/api/products/best")
 
-			.then()
+		.then()
 			.statusCode(HttpStatus.BAD_REQUEST.value());
 	}
 
@@ -162,10 +162,10 @@ class ProductsAcceptanceTest {
 		given()
 			.accept(MediaType.APPLICATION_JSON_VALUE)
 
-			.when()
+		.when()
 			.get("/api/products/best?category=abc")
 
-			.then()
+		.then()
 			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
 }

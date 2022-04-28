@@ -1,9 +1,6 @@
 package sidedish.com.controller;
 
 import java.util.List;
-import javax.validation.constraints.Negative;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +22,12 @@ public class ProductsController {
 
 	@GetMapping
 	public List<ProductBasicTypeResponse> findProductsMealType(
-		@RequestParam @NotEmpty String meal) {
+		@RequestParam String meal) {
 		return productsService.findByMealType(meal);
 	}
 
 	@GetMapping("/{id}")
-	public ProductDetailTypeResponse findById(@PathVariable @Negative @NotNull Long id) {
+	public ProductDetailTypeResponse findById(@PathVariable Long id) {
 		return productsService.findById(id);
 	}
 

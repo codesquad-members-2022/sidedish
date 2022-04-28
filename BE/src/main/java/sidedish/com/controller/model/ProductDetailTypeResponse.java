@@ -17,9 +17,9 @@ public class ProductDetailTypeResponse {
 	private long fixedPrice;
 	private long originalPrice;
 	private String event;
-	private Long mileage;
+	private long mileage;
 	private String deliveryInfo;
-	private Long deliveryCharge;
-	private Long freeDeliveryOverAmount;
+	private long deliveryCharge;
+	private long freeDeliveryOverAmount;
 
 }
