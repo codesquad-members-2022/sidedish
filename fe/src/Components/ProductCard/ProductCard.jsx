@@ -111,7 +111,9 @@ export const ProductCard = ({
         onClickThumbnail={onClickThumbnail}
       />
       <Title className={Fonts.MD}>{title}</Title>
-      <Description className={Fonts.SM}>{description}</Description>
+      {size !== ProductCardSize.SM && (
+        <Description className={Fonts.SM}>{description}</Description>
+      )}
       <PriceWrapper>
         <PriceTag
           priceData={{
@@ -121,7 +123,9 @@ export const ProductCard = ({
           }}
         />
       </PriceWrapper>
-      {size !== ProductCardSize.SM && <PolicyBadge priceData={discountPolicy} />}
+      {size !== ProductCardSize.SM && (
+        <PolicyBadge priceData={discountPolicy} />
+      )}
     </ProductCardWrapper>
   );
 };

@@ -23,7 +23,7 @@ const ProductThumbnailWrapper = styled.div`
 
 const ProductPanel = styled.li`
   width: 392px;
-  height: 300px;
+  height: 340px;
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;

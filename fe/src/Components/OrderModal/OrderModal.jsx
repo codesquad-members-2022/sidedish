@@ -41,7 +41,7 @@ const SelectedProduct = styled.section`
   display: flex;
   position: relative;
 
-  padding: 48px 48px 0;
+  padding: 48px;
 
   .order-button {
     display: block;
