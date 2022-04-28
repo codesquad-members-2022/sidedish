@@ -16,7 +16,7 @@ interface SideDishRetrofitService {
     @GET("side")
     suspend fun getSideMenu(): Response<SideDishDto>
 
-    @GET("soup")
+    @GET("soupd")
     suspend fun getSoupMenu(): Response<SideDishDto>
 
     @GET("detail/{detailHash}")

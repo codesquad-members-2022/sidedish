@@ -19,6 +19,10 @@ class FoodListViewModel @Inject constructor(
     private val _openDetail = MutableLiveData<Event<Item.FoodInfo>>()
     val openDetail: LiveData<Event<Item.FoodInfo>> = _openDetail
 
+    private val _mainItems = MutableLiveData<List<Item>>()
+    private val _soupItems = MutableLiveData<List<Item>>()
+    private val _sideItems = MutableLiveData<List<Item>>()
+
     private val _items = MutableLiveData<List<Item>>()
     val items: LiveData<List<Item>> = _items
 
@@ -46,29 +50,31 @@ class FoodListViewModel @Inject constructor(
 
     fun openDetail(foodInfo: Item.FoodInfo) {
         _openDetail.value = Event(foodInfo)
-    }
 
-    fun getCategoryItemsCount(category: FoodCategory): Int {
-        val count = when (category) {
-            FoodCategory.MAIN -> mainItemsCount
-            FoodCategory.SOUP -> soupItemsCount
-            FoodCategory.SIDE -> sideItemsCount
-        }
-        return if (count == 0) 0
-        else count - 1
     }
 
     suspend fun updateItems(category: FoodCategory) {
+        var targetItems: MutableLiveData<List<Item>>? = null
         val newItems: List<Item> =
             withContext(Dispatchers.IO) {
                 when (category) {
-                    FoodCategory.MAIN -> getMainItems()
-                    FoodCategory.SOUP -> getSoupItems()
-                    FoodCategory.SIDE -> getSideItems()
+                    FoodCategory.MAIN -> {
+                        targetItems = _mainItems
+                        getMainItems()
+                    }
+                    FoodCategory.SOUP -> {
+                        targetItems = _soupItems
+                        getSoupItems()
+                    }
+                    FoodCategory.SIDE -> {
+                        targetItems = _sideItems
+                        getSideItems()
+                    }
                 }
             } ?: kotlin.run { return }
 
-        val tempItems = _items.value?.toMutableList() ?: mutableListOf()
+
+        val tempItems = targetItems?.value?.toMutableList() ?: mutableListOf()
 
         var sectionIndex = -1
         tempItems.forEachIndexed { itemIndex, item ->
@@ -96,6 +102,13 @@ class FoodListViewModel @Inject constructor(
             tempItems.removeAll(tempItems.slice(sectionIndex..sectionIndex + removedIndex))
             tempItems.addAll(sectionIndex, newItems)
         }
-        _items.value = tempItems.toList()
+
+        targetItems?.value = tempItems.toList()
+
+        val newItemsList = mutableListOf<Item>()
+        _mainItems.value?.let { newItemsList.addAll(it) }
+        _soupItems.value?.let { newItemsList.addAll(it) }
+        _sideItems.value?.let { newItemsList.addAll(it) }
+        _items.value = newItemsList
     }
 }

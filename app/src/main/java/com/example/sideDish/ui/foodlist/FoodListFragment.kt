@@ -20,10 +20,7 @@ import com.example.sideDish.ui.productdetail.DETAIL_HASH_KEY
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 @AndroidEntryPoint
@@ -69,16 +66,14 @@ class FoodListFragment : Fragment() {
             supervisorScope {
                 launch() {
                     adapter.updateCategoryItems(FoodCategory.MAIN)
-                }.join()
+                }
                 launch() {
-                    //throw Exception()
                     adapter.updateCategoryItems(FoodCategory.SOUP)
-                }.join()
+                }
                 launch() {
                     adapter.updateCategoryItems(FoodCategory.SIDE)
-                }.join()
+                }
             }
-
         }
     }
 
