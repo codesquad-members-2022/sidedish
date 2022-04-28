@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShippingInfoRepository extends CrudRepository<ShippingInfo, Integer> {
 
-	@Query("SELECT * FROM SHIPPING_INFO WHERE delivery_type = :delivery_type")
-	Optional<ShippingInfo> findByDeliveryType(@Param("delivery_type") Integer deliveryType);
+	@Query("SELECT * FROM SHIPPING_INFO WHERE delivery_form = :delivery_form")
+	Optional<ShippingInfo> findByDeliveryType(@Param("delivery_form") Integer deliveryType);
 }
