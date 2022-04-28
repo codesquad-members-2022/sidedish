@@ -5,24 +5,6 @@ const StyledSideDishContents = styled.div`
   width: 1280px;
 `;
 
-const PrevButton = styled.button`
-  position: absolute;
-  margin-top: 200px;
-  background-color: transparent;
-  border: none;
-
-  left: 36px;
-`;
-
-const NextButton = styled.button`
-  position: absolute;
-  margin-top: 200px;
-  background-color: transparent;
-  border: none;
-
-  right: 36px;
-`;
-
 const ShowAllCategoryButton = styled.button`
   display: flex;
   flex-direction: row;
@@ -30,23 +12,25 @@ const ShowAllCategoryButton = styled.button`
   padding: 16px 24px;
 
   position: absolute;
+
   width: 203px;
   height: 62px;
   left: 670px;
   ${({showAllCategory}) => {
     if (showAllCategory)
       return css`
-        top: 2602px;
+        top: 2700px;
       `;
     else
       return css`
-        top: 1502px;
+        top: 1552px;
       `;
   }}
 
   border: 1px solid #ebebeb;
   background-color: #fff;
   box-sizing: border-box;
+  margin-bottom: 50px;
 
   p {
     position: static;
@@ -62,4 +46,4 @@ const ShowAllCategoryButton = styled.button`
   }
 `;
 
-export {StyledSideDishContents, PrevButton, NextButton, ShowAllCategoryButton};
+export {StyledSideDishContents, ShowAllCategoryButton};

@@ -34,4 +34,8 @@ const postData = async (url, data) => {
   return handlePostError(response);
 };
 
-export {fetchData, postData};
+const hasClass = (element, className) => {
+  return element.classList.contains(className);
+};
+
+export {fetchData, postData, hasClass};
