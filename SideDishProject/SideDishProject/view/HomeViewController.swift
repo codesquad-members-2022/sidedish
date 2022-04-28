@@ -32,13 +32,16 @@ final class HomeViewController: UIViewController {
     }
     
     private func presentDetailViewController(uniqueId: UniqueID){
-        let detailViewController = ProductSceneContainer.makeViewController(sceneType: .detail(uniqueId: uniqueId))
+//        let detailViewController = ProductSceneContainer.makeViewController(sceneType: .detail(uniqueId: uniqueId))
+//        self.navigationController?.pushViewController(detailViewController, animated: true)
+//
+        let detailViewController = DetailViewController()
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
 }
 extension HomeViewController: ProductModelDelegate{
-    func updateImageData(imageData: [DishCategory : [Data]] ) {
+    func updateImageData(imageData: [DishCategory : [Data?]] ) {
         dishCollectionDataSource.setDishImages(images: imageData)
         homeView.collectionViewReloadData()
     }

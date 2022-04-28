@@ -9,7 +9,10 @@ import Foundation
 
 
 struct MockProductFactory{
-    private let randomNames: [DishCategory : [String]]  = [DishCategory(id: 1, name: "모두가 좋아하는 든든한 메인요리", count: 3) : ["삼겹살", "김치볶음밥", "제육볶음"], DishCategory(id: 2, name: "정성이 담긴 뜨끈한 국물요리", count: 3) : ["김치찌게", "된장찌게", "미역국"], DishCategory(id: 3, name: "식탁을 풍성하게 하는 정갈한 밑반찬", count: 3) : ["멸치볶음", "김", "콩자반"]]
+    private let mainDishNames: [String] = ["삼겹살", "김치볶음밥", "제육볶음"]
+    private let soupDishNames: [String] = ["김치찌게", "된장찌게", "미역국"]
+    private let sideDishNames: [String] = ["멸치볶음", "김", "콩자반"]
+    
     private let randomDiscriptions: [String] = ["ebony가 직접 만들었습니다." , "rosa가 직접 만들었습니다.", "구찌가 극찬하였습니다.", "데일이 먹고 울었습니다."]
     private let dishImageURLs: [String] = ["http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg","http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_D1.jpg", "http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_D2.jpg", "http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_D3.jpg"]
     private var events: [ProductEvent] = [.eventPrice(disCount: 0.15), .launchingPrice(disCount: 0.2), .none(disCount: 1.0)]
@@ -49,8 +52,19 @@ struct MockProductFactory{
     }
     
     private func randomName(cateogory: DishCategory) -> String{
-        guard let name = randomNames[cateogory]?.randomElement() else { return "" }
-        return String(name)
+        switch cateogory.id{
+        case 1:
+            guard let name = mainDishNames.randomElement() else { return "" }
+            return name
+        case 2:
+            guard let name = soupDishNames.randomElement() else { return "" }
+            return name
+        case 3:
+            guard let name = sideDishNames.randomElement() else { return "" }
+            return name
+        default:
+            return ""
+        }
     }
     
     private func randomPrice() -> Int{
