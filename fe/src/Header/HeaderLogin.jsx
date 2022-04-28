@@ -9,18 +9,51 @@ const LoginWrapper = styled.div`
 const AccountModal = styled.div`
   position: absolute;
   top: 40px;
-  left: -40px;
-  width: 200px;
-  heigth: 300px;
-  background: coral;
+  left: -80px;
+  min-width: 200px;
+  padding: 20px 40px;
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  border-radius: 20px;
+  color: ${({ theme }) => theme.colors.black};
+  background: #fff;
   text-align: center;
   display: ${(props) => (props.hover ? 'block' : 'none')};
 
   a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fontStyles.smallBold};
+  }
+
+  a:hover {
+    color: ${({ theme }) => theme.colors.green};
+  }
+
+  p {
+    margin-bottom: 8px;
+    ${({ theme }) => theme.fontStyles.smallBold};
+  }
+
+  button {
     display: inline-block;
-    padding: 20px;
-    background: transparent;
+    padding: 8px 16px;
     border: none;
+    border-radius: 16px;
+    ${({ theme }) => theme.fontStyles.xSmallBold};
+    background: ${({ theme }) => theme.colors.gray4};
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    background: green;
+    margin-bottom: 8px;
   }
 `;
 
@@ -31,14 +64,15 @@ const HeaderLogin = () => {
   const onMouseOut = () => setHover(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userImage');
     alert('로그아웃 되었습니다.');
     setIsLogin(false);
     setHover(false);
   };
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('userEmail');
     if (user) {
       setIsLogin(true);
     }
@@ -54,9 +88,13 @@ const HeaderLogin = () => {
                 Github 로그인
               </a>
             ) : (
-              <button to="/" onClick={handleLogout}>
-                로그아웃
-              </button>
+              <>
+                <img src={localStorage.getItem('userImage')} alt="UserProfileImage" />
+                <p>{localStorage.getItem('userEmail')}</p>
+                <button to="/" onClick={handleLogout}>
+                  로그아웃
+                </button>
+              </>
             )}
           </AccountModal>
           <PersonImage className="icon" />

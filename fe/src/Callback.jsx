@@ -12,11 +12,14 @@ const Callback = () => {
     const getToken = async () => {
       try {
         const response = await axios.get(`${oauthURI}${search}`);
-        console.log(response);
+
         if (response.data === 'success') {
-          //   const user = response.user;
-          const user = 'ADMIN';
-          localStorage.setItem('user', user);
+          const userEmail = response.headers.useremail;
+          const userImage =
+            response.headers.userImage ??
+            'http://www.classictvinfo.com/PerryMason/TVSeries1/Person.jpg';
+          localStorage.setItem('userEmail', userEmail);
+          localStorage.setItem('userImage', userImage);
           alert('이동');
           navigate('/');
         }
