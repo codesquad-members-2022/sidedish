@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Card from './Card';
 import left from '../images/left.png';
 import right from '../images/right.png';
+import CardSlider from './CardSlider';
 
 function CategoryMenu({ name, items, showModal }) {
   const [startCardIndex, setStartCardIndex] = useState(0);
@@ -33,13 +34,9 @@ function CategoryMenu({ name, items, showModal }) {
             <Image src={left}></Image>
           </Button>
         </ButtonWrapper>
-        <CardList>
-          {items
-            .filter((_, index) => index >= startCardIndex && index <= startCardIndex + (NUMBER_OF_CARDS - 1))
-            .map(item => (
-              <Card key={item.id} size={'medium'} item={item} showModal={showModal}></Card>
-            ))}
-        </CardList>
+        <CardListWrapper>
+          <CardSlider items={items} showModal={showModal} startCardIndex={startCardIndex} />
+        </CardListWrapper>
         <ButtonWrapper>
           <Button onClick={moveCardsRight} disabled={startCardIndex === items.length - NUMBER_OF_CARDS}>
             <Image src={right}></Image>
@@ -179,9 +176,14 @@ const Image = styled.img`
   max-height: 100%;
 `;
 const CardList = styled.div`
-  width: 100%;
+  width: 200%;
   display: flex;
-  justify-content: space-between;
+  flex-shrink: 0;
+  flex-basis: 302px;
+  gap: 10px;
+  /* justify-content: space-between; */
 `;
-
+const CardListWrapper = styled.div`
+  width: auto;
+`;
 export default CategoryMenu;
