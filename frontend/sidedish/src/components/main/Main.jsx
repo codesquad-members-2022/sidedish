@@ -46,13 +46,14 @@ const Main = () => {
   };
 
   const fetchLnb = async () => {
-    const lnbData = await fetchData(`${URL}/categorynames`);
-    setLnbStateArr(lnbData.categorynames);
-    setLnbState(lnbData.categorynames[0].name);
+    const lnbData = await fetchData(`http://localhost:3000/data`);
+    console.log(lnbData.categoryNames);
+    setLnbStateArr(lnbData.categoryNames);
+    setLnbState(lnbData.categoryNames[0].name);
   };
 
   const fetchCardData = async (foodType) => {
-    const cardData = await fetchData(`${URL}?event-tabs=${foodType}`);
+    const cardData = await fetchData(`http://localhost:3000/${foodType}`);
     setDataState(cardData.dishes);
   };
 
