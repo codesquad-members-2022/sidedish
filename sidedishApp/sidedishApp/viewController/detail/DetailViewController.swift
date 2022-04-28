@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var fullSizeVerticalScrollView: UIScrollView!
     
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var imageHorizontalScrollView: UIScrollView!
+    @IBOutlet weak var imageHorizontalCollectionView: UICollectionView!
     @IBOutlet weak var firstSectionView: UIView!
     @IBOutlet weak var secondSectionView: UIView!
     @IBOutlet weak var thirdSectionView: UIView!
@@ -25,6 +25,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        addNotification()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard let dish = detailDish else { return }
+        SideDishManager.shared.getDetailDishImages(dish: dish)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,20 +81,21 @@ private extension DetailViewController {
     }
     
     func configureImageScrollView() {
-        imageHorizontalScrollView.translatesAutoresizingMaskIntoConstraints = false
+        imageHorizontalCollectionView.isPagingEnabled = true
+        imageHorizontalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageHorizontalScrollView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor),
-            imageHorizontalScrollView.topAnchor.constraint(equalTo: self.stackView.topAnchor),
-            imageHorizontalScrollView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor),
-            imageHorizontalScrollView.heightAnchor.constraint(equalToConstant: 376),
-            imageHorizontalScrollView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor)
+            imageHorizontalCollectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor),
+            imageHorizontalCollectionView.topAnchor.constraint(equalTo: self.stackView.topAnchor),
+            imageHorizontalCollectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor),
+            imageHorizontalCollectionView.heightAnchor.constraint(equalToConstant: 376),
+            imageHorizontalCollectionView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor)
         ])
     }
     
     func configureFirstSectionView() {
         firstSectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstSectionView.topAnchor.constraint(equalTo: self.imageHorizontalScrollView.bottomAnchor, constant: 24),
+            firstSectionView.topAnchor.constraint(equalTo: self.imageHorizontalCollectionView.bottomAnchor, constant: 24),
             firstSectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor, constant: 16),
             firstSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16),
             firstSectionView.heightAnchor.constraint(equalToConstant: 200)
@@ -113,5 +120,23 @@ private extension DetailViewController {
             thirdSectionView.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor, constant: -16),
             thirdSectionView.heightAnchor.constraint(equalToConstant: 250)
         ])
+    }
+    
+    func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionView), name: NSNotification.Name(rawValue: "detail"), object: SideDishManager.shared)
+    }
+    
+    @objc
+    func reloadCollectionView() {
+        for data in SideDishManager.shared.detailImageThumbnail {
+            let image = UIImage(data: data)
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 375, height: 376))
+            imageView.image = image
+            self.imageHorizontalCollectionView.addSubview(imageView)
+        }
+        
+        DispatchQueue.main.async {
+            self.imageHorizontalCollectionView.reloadData()
+        }
     }
 }
