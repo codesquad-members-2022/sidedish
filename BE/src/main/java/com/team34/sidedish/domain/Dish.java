@@ -33,11 +33,6 @@ public class Dish {
             .collect(Collectors.toList());
     }
 
-    public int calculateDiscountPrice() {
-        Badge badge = Badge.of(tag);
-        return badge.calculateDiscountPrice(price);
-    }
-
     public String mainImagePath() {
         if (isImageExist()) {
             return images.get(MAIN_IMAGE_INDEX).getPath();

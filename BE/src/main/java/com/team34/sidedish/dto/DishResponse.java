@@ -1,5 +1,6 @@
 package com.team34.sidedish.dto;
 
+import com.team34.sidedish.domain.Badge;
 import com.team34.sidedish.domain.Dish;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class DishResponse {
     public DishResponse(Dish dish) {
         this.id = dish.getId();
         this.originPrice = dish.getPrice();
-        this.discountPrice = dish.calculateDiscountPrice();
+        this.discountPrice = Badge.calculateDiscountPrice(dish.getPrice(), dish.getTag());
         this.earlyDeliverable = dish.isEarlyDeliverable();
         this.mainImagePath = dish.mainImagePath();
         this.title = dish.getTitle();

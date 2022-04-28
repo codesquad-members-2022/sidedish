@@ -1,5 +1,6 @@
 package com.team34.sidedish.service;
 
+import com.team34.sidedish.domain.Badge;
 import com.team34.sidedish.domain.Category;
 import com.team34.sidedish.domain.Dish;
 import com.team34.sidedish.dto.DishDetailResponse;

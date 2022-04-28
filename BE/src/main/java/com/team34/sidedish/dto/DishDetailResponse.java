@@ -1,5 +1,6 @@
 package com.team34.sidedish.dto;
 
+import com.team34.sidedish.domain.Badge;
 import com.team34.sidedish.domain.Dish;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class DishDetailResponse {
 
     public DishDetailResponse(Dish dish, List<Dish> recommendedDishes) {
         this.originPrice = dish.getPrice();
-        this.discountPrice = dish.calculateDiscountPrice();
+        this.discountPrice = Badge.calculateDiscountPrice(dish.getPrice(), dish.getTag());
         this.deliveryFee = dish.getDeliveryFee();
         this.mileageRate = dish.getMileageRate();
         this.earlyDeliverable = dish.isEarlyDeliverable();
