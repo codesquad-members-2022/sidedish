@@ -35,7 +35,14 @@ function CategoryMenu({ name, items, showModal }) {
           </Button>
         </ButtonWrapper>
         <CardListWrapper>
-          <CardSlider items={items} showModal={showModal} startCardIndex={startCardIndex} />
+          <CardSlider
+            items={items}
+            showModal={showModal}
+            startCardIndex={startCardIndex}
+            cardSize={`medium`}
+            NUMBER_OF_CARDS={NUMBER_OF_CARDS}
+            width={1280}
+          />
         </CardListWrapper>
         <ButtonWrapper>
           <Button onClick={moveCardsRight} disabled={startCardIndex === items.length - NUMBER_OF_CARDS}>
