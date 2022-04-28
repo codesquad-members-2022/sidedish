@@ -43,7 +43,7 @@ const FlexBetween = styled.div`
 `;
 
 const Title = styled.h2`
-  margin: 18px 40px 20px 0;
+  margin: 18px 40px;
   font-size: 40px;
   font-weight: 900;
 `;

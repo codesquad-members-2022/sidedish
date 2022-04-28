@@ -12,10 +12,10 @@ const StyledModal = styled.div`
   border: 1px solid ${color.greyOne};
   font-size: 30px;
   background-color: white;
-  left: 15%;
-  top: 10%;
-  width: 75%;
-  height: 70%;
+  top: 20%;
+  left: 10%;
+  width: 1066px;
+  height: 962px;
   z-index: 10;
 `;
 

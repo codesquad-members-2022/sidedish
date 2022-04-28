@@ -9,6 +9,7 @@ const CardBox = ({
   slidingSize,
   cardInfos,
   handleModal,
+  isModalVisible,
 }) => {
   return (
     <StyledCardContainer
@@ -16,11 +17,25 @@ const CardBox = ({
       showingSlideCardNum={showingSlideCardNum}
       slidingSize={slidingSize}
     >
-      {cardInfos.map((cardInfo, idx) => (
-        <StyledCard key={idx} onClick={() => handleModal(cardInfo)}>
-          <Card cardInfo={cardInfo} showingSlideCardNum={showingSlideCardNum} />
-        </StyledCard>
-      ))}
+      {cardInfos.map((cardInfo, idx) =>
+        isModalVisible ? (
+          <StyledCard key={idx}>
+            <Card
+              cardInfo={cardInfo}
+              showingSlideCardNum={showingSlideCardNum}
+              isOpenModal={true}
+            />
+          </StyledCard>
+        ) : (
+          <StyledCard key={idx} onClick={() => handleModal(cardInfo)}>
+            <Card
+              cardInfo={cardInfo}
+              showingSlideCardNum={showingSlideCardNum}
+              isOpenModal={false}
+            />
+          </StyledCard>
+        )
+      )}
     </StyledCardContainer>
   );
 };

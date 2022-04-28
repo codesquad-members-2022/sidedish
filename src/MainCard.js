@@ -5,7 +5,7 @@ import CardContainer from './container/CardContainer';
 import Tab from './components/Tab';
 import CategoryTitle from './components/CategoryTitle';
 
-const MainCard = ({ mainCardData, handleModal }) => {
+const MainCard = ({ mainCardData, handleModal, isModalVisible }) => {
   const [tabId, setTabId] = useState(0);
 
   const handleClickTab = (id) => {
@@ -25,6 +25,7 @@ const MainCard = ({ mainCardData, handleModal }) => {
       cardInfos={mainDatas}
       handleModal={handleModal}
       showingSlideCardNum={showingSlideCardNum}
+      isModalVisible={isModalVisible}
     >
       <StyledTap>
         <CategoryTitle title={title} banner={banner} />

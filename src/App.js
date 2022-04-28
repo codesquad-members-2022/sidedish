@@ -5,7 +5,7 @@ import Header from './Header';
 import MainCard from './MainCard';
 import SubCard from './SubCard';
 import styled from 'styled-components';
-import { maxWidthBody } from './css/variables';
+import { body } from './css/variables';
 import Modal from './components/Modal';
 import CardOrderPage from './components/CardOrderPage';
 
@@ -19,6 +19,10 @@ const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleModal = (cardInfo) => {
+    if (isButtonVisible) {
+      return;
+    }
+
     setSelectedCardInfo(cardInfo);
     setIsModalVisible(true);
   };
@@ -54,6 +58,7 @@ const App = () => {
     first: '식탁을 풍성하게 하는 정갈한 밑반찬',
     second: '정성이 가득한 뜨끈뜨끈한 국물',
     third: '모두가 좋아하는 든든한 메인 요리',
+    fourth: '함께하면 더욱 맛있는 상품',
   };
 
   return (
@@ -64,10 +69,17 @@ const App = () => {
           <CardOrderPage
             selectedCardInfo={selectedCardInfo}
             onClick={() => setIsModalVisible(false)}
+            slideTitle={title.fourth}
+            cardInfos={sideDishData}
+            isModalVisible={isModalVisible}
           />
         </Modal>
       )}
-      <MainCard mainCardData={mainCardData} handleModal={handleModal} />
+      <MainCard
+        mainCardData={mainCardData}
+        handleModal={handleModal}
+        isModalVisible={isModalVisible}
+      />
       <SubCard dishData={mainDishData} title={title.first} />
       {isButtonVisible && (
         <>
@@ -83,7 +95,8 @@ const App = () => {
 };
 
 const StyledApp = styled.div`
-  width: ${maxWidthBody.width}px;
+  width: ${body.width}px;
+  position: relative;
   margin: 0 auto;
 `;
 

@@ -14,6 +14,7 @@ const CategoryTitle = ({ title, banner = null }) => {
 
 const StyledTitle = styled.div`
   display: flex;
+  margin: 0 0 20px 40px;
 `;
 
 const StyledSpan = styled.span`

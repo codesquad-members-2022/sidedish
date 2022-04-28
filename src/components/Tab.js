@@ -34,6 +34,7 @@ const StyledTab = styled.ul`
     border: 1px solid ${color.orange};
     border-radius: 5px;
   }
+  margin-left: 40px;
 `;
 
 export default Tab;

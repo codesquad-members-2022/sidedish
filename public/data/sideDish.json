@@ -68,6 +68,24 @@
       "description": "시원하고 아삭한 여름 생채 무침",
       "price": "8,600원",
       "discountedPrice": "4,300원"
+    },
+    {
+      "id": "HBBCC",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/48_ZIP_P_5008_T.jpg",
+      "title": "새콤달콤 오징어무침",
+      "description": "국내산 오징어를 새콤달콤하게",
+      "price": "7,500원",
+      "discountedPrice": "6,000원",
+      "badge": ["런칭특가"]
+    },
+    {
+      "id": "H1939",
+      "image": "http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg",
+      "title": "호두 멸치볶음",
+      "description": "잔멸치와 호두가 만나 짭쪼름하지만 고소하게!",
+      "price": "5,800원",
+      "discountedPrice": "5,220원",
+      "badge": ["이벤트특가"]
     }
   ]
 }
