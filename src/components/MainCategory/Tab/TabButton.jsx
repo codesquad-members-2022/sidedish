@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Text from 'components/utils/Text';
 
-export default function TabButton({ value, isSelected }) {
+export default function TabButton({ value, idx, isSelected, setSelectedTabNum }) {
   return (
-    <Wrap isSelected={isSelected}>
+    <Wrap onClick={() => setSelectedTabNum(idx)} isSelected={isSelected}>
       <Text size="X_LARGE" value={value} />
     </Wrap>
   );
