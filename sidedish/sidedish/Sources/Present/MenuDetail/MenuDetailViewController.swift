@@ -174,7 +174,9 @@ class MenuDetailViewController: UIViewController {
         }
         
         separator.forEach {
-            $0.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            $0.snp.makeConstraints {
+                $0.height.equalTo(1)
+            }
         }
 
         scrollView.snp.makeConstraints {
