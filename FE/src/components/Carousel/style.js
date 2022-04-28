@@ -12,10 +12,30 @@ export const Container = styled.div`
 
 export const CarouselContainer = styled.div`
   width: 100%;
-  display: flex;
   overflow: hidden;
-  justify-content: flex-start;
-  gap: ${({ gap }) => gap}px;
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    transform: translateX(${({ currentDisplay }) => currentDisplay + "px"});
+    transition: transform ease-in-out 1s;
+    gap: ${({ gap }) => gap}px;
+  }
+`;
+
+export const IndexStatusContainer = styled.ul`
+  position: absolute;
+  top: -10%;
+  right: ${({ gap }) => gap}px;
+  display: flex;
+  li {
+    background-color: ${({ theme: { color } }) => color.grey4};
+    width: 48px;
+    height: 20px;
+    margin-left: 8px;
+    &:nth-child(${({ activeIndex }) => activeIndex + 1}) {
+      background-color: ${({ theme: { color } }) => color.grey2};
+    }
+  }
 `;
 
 export const AngleLeft = styled(AngleLeftSvg)`
@@ -25,6 +45,7 @@ export const AngleLeft = styled(AngleLeftSvg)`
   left: -50px;
   width: 50px;
   height: 50px;
+  z-index: 5;
   &:hover {
     fill: #1b1b1b;
   }
@@ -36,6 +57,7 @@ export const AngleRight = styled(AngleRigthSvg)`
   right: -50px;
   width: 50px;
   height: 50px;
+  z-index: 5;
   &:hover {
     fill: #1b1b1b;
   }

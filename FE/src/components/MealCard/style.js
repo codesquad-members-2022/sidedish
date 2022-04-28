@@ -48,6 +48,7 @@ export const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 4px;
   h3 {
     color: ${({ theme: { color } }) => color.grey1};
     font-size: ${({ theme: { fontSize } }) => fontSize.medium};

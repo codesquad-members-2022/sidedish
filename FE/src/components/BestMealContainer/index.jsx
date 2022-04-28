@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "components/Loader";
 import MealCard from "components/MealCard";
-import { MOCK_BEST_MEAT, MOCK_SERVER_URL } from "constants";
+import { MOCK_SERVER_URL } from "constants";
 import { CardContainer, Container, Divider, Header, Nav, Tab } from "./style";
 
 const BEST_TITLE_BADGE = "기획전";
@@ -20,22 +20,15 @@ const BEST_MEAL_IMAGE_SIZE = 411;
 const BestMealContainer = () => {
   const [meals, setMeals] = useState([]);
   const [tabId, setTabId] = useState(DEFAULT_TAB_ID);
-
-  const findTargetTab = useCallback((id) => {
-    const targetTab = BEST_TAB_TYPE.find((tabObj) => tabObj.id === id);
-    if (!targetTab) {
-      return Error("해당 탭 정보가 없습니다.");
-    }
-    const categoryType = targetTab.apiParams;
-    return categoryType;
-  }, []);
+  const [activeTab, setActiveTab] = useState({
+    id: "",
+    apiParams: "",
+  });
 
   const fetchData = useCallback(async () => {
     try {
-      const categoryType = findTargetTab(tabId);
-      const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=${categoryType}`, {
+      const { data } = await axios.get(`${MOCK_SERVER_URL}/products/best?category=${activeTab.apiParams}`, {
         validateStatus: (status) => {
-
           return status >= 200 && status < 300;
         },
       });
@@ -43,17 +36,25 @@ const BestMealContainer = () => {
     } catch (error) {
       // BUG: 개발 과정에서 mock server나 api 에러가 났을 때 constant의 mock데이터 사용
       console.error(error);
-      setMeals(MOCK_BEST_MEAT);
     }
-  }, [findTargetTab, tabId]);
+  }, [tabId]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   const Tabs = () =>
-    BEST_TAB_TYPE.map(({ id, title }) => (
-      <Tab key={id} onClick={() => setTabId(id)} isSelected={tabId === id}>
+    BEST_TAB_TYPE.map(({ id, title, apiParams }) => (
+      <Tab
+        key={id}
+        onClick={() =>
+          setActiveTab({
+            id,
+            apiParams,
+          })
+        }
+        isSelected={tabId === id}
+      >
         {title}
       </Tab>
     ));
