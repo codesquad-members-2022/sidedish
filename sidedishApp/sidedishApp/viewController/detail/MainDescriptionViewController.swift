@@ -11,45 +11,42 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 32)
+        label.textColor = UIColor.customColor(.black)
+        label.font = UIFont.customFont(.sfRegularTitle)
         label.baselineAdjustment = .alignCenters
-        label.text = "오리 주물럭_반조리"
         return label
     }()
     
-    private lazy var subLabel: UILabel = {
+    private lazy var subtitleLabel: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
+        label.textColor = UIColor.customColor(.grey2)
+        label.font = UIFont.customFont(.sfRegularSubtitle)
         label.baselineAdjustment = .alignCenters
-        label.text = "감칠맛 나는 매콤한 양념"
         return label
     }()
     
     private lazy var salePrice: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
+        label.textColor = UIColor.customColor(.grey1)
+        label.font = UIFont.customFont(.sfSemiboldSalePrice)
         label.baselineAdjustment = .alignCenters
-        label.text = "12,640원"
         return label
     }()
     
     private lazy var rawPrice: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        label.textColor = UIColor.customColor(.grey2)
+        label.font = UIFont.customFont(.sfRegularRawPrice)
         return label
     }()
     
     private lazy var eventLabel: UILabel = {
         var label = UILabel()
         label.clipsToBounds = true
-        label.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.839, alpha: 1)
+        label.backgroundColor = UIColor.customColor(.primaryDark)
         label.layer.cornerRadius = 10
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
+        label.font = UIFont.customFont(.sfSemiboldEventLabel)
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
         label.text = "런칭특가"
@@ -58,12 +55,28 @@ class MainDescriptionViewController: UIViewController {
     
     private lazy var sectionBottom: UILabel = {
         var label = UILabel()
-        label.layer.backgroundColor = UIColor(red: 0.878, green: 0.878, blue: 0.878, alpha: 1).cgColor
+        label.layer.backgroundColor = UIColor.customColor(.grey3).cgColor
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func setLabelTexts(main: MainCard.Body?, detail: DetailCard.Body.DetailCardData?) {
+        guard let main = main, let detail = detail else { return }
+
+        titleLabel.text = main.title
+        subtitleLabel.text = main.description
+        
+        if detail.prices.count > 1 {
+            salePrice.text = detail.prices[1]
+            setRawPriceAttribute(label: rawPrice, text: detail.prices[0])
+        } else {
+            salePrice.text = detail.prices[0]
+            rawPrice.text = nil
+        }
+        
         setAllProperties()
     }
 }
@@ -91,14 +104,14 @@ private extension MainDescriptionViewController {
     }
     
     func configureSubLabel() {
-        self.view.addSubview(subLabel)
+        self.view.addSubview(subtitleLabel)
         
-        subLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            subLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
-            subLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            subLabel.widthAnchor.constraint(equalToConstant: 177),
-            subLabel.heightAnchor.constraint(equalToConstant: 24)
+            subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
+            subtitleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
@@ -107,22 +120,19 @@ private extension MainDescriptionViewController {
         
         salePrice.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            salePrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8),
+            salePrice.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8),
             salePrice.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            salePrice.widthAnchor.constraint(equalToConstant: 74),
             salePrice.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
     func configureRawPrice() {
-        setRawPriceAttribute(label: rawPrice, text: "15,800원")
         self.view.addSubview(rawPrice)
         
         rawPrice.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            rawPrice.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 8),
+            rawPrice.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8),
             rawPrice.leadingAnchor.constraint(equalTo: self.salePrice.trailingAnchor, constant: 8),
-            rawPrice.widthAnchor.constraint(equalToConstant: 64),
             rawPrice.heightAnchor.constraint(equalToConstant: 24)
         ])
     }

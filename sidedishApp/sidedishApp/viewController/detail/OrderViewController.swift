@@ -7,12 +7,12 @@
 
 import UIKit
 
-class OrderViewController: UIViewController{
+class OrderViewController: UIViewController {
     
     private lazy var countLabel: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
+        label.textColor = UIColor.customColor(.grey2)
+        label.font = UIFont.customFont(.sfRegularCountLabel)
         label.baselineAdjustment = .alignCenters
         label.text = "수량"
         return label
@@ -20,8 +20,8 @@ class OrderViewController: UIViewController{
     
     private lazy var countText: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 18)
+        label.textColor = UIColor.customColor(.grey1)
+        label.font = UIFont.customFont(.sfRegularCountText)
         label.baselineAdjustment = .alignCenters
         label.text = "1"
         return label
@@ -52,8 +52,8 @@ class OrderViewController: UIViewController{
     
     private lazy var accountLabel: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
+        label.textColor = UIColor.customColor(.grey2)
+        label.font = UIFont.customFont(.sfSemiboldAccountLabel)
         label.baselineAdjustment = .alignCenters
         label.text = "총 주문금액"
         return label
@@ -61,8 +61,8 @@ class OrderViewController: UIViewController{
     
     private lazy var accountText: UILabel = {
         var label = UILabel()
-        label.textColor = UIColor(red: 0.004, green: 0.004, blue: 0.004, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 32)
+        label.textColor = UIColor.customColor(.black)
+        label.font = UIFont.customFont(.sfSemiboldAccountText)
         label.baselineAdjustment = .alignCenters
         label.text = "12,640원"
         return label
@@ -73,7 +73,7 @@ class OrderViewController: UIViewController{
         button.layer.backgroundColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
         button.layer.cornerRadius = 12
         button.setTitle("주문하기", for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 18)
+        button.titleLabel?.font = UIFont.customFont(.sfSemiboldOrderButton)
         button.titleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.baselineAdjustment = .alignCenters
@@ -86,7 +86,7 @@ class OrderViewController: UIViewController{
     }
 }
 
-private extension OrderViewController{
+private extension OrderViewController {
     func setAllProperties() {
         configureSectionUpper()
         configureCountLabel()
@@ -199,7 +199,7 @@ private extension OrderViewController{
         ])
     }
     
-    func configureOrderButton(){
+    func configureOrderButton() {
         self.view.addSubview(orderButton)
         
         orderButton.translatesAutoresizingMaskIntoConstraints = false
