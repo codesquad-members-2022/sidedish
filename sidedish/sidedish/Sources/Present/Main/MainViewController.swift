@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
-    private let loginButton: UIButton = {
+    private let loginOutButton: UIButton = {
         let button = UIButton()
         button.setTitle("Logout", for: .normal)
         button.setTitleColor(UIColor.systemBlue, for: .normal)
@@ -85,13 +85,13 @@ class MainViewController: UIViewController {
                 self?.collectionView.reloadItems(at: [indexPath])
             }.store(in: &cancellables)
 
-        loginButton.publisher(for: .touchUpInside)
+        loginOutButton.publisher(for: .touchUpInside)
             .sink(receiveValue: model.action().tappedLogoutButton.send(_:))
             .store(in: &cancellables)
         
         model.state().presentLoginPage
             .map { .login }
-            .sink(receiveValue: switchRootWindowState(_:))
+            .sink { [weak self] state in self?.switchRootWindowState(state) }
             .store(in: &cancellables)
     }
     
@@ -119,7 +119,7 @@ class MainViewController: UIViewController {
     
     private func makeNavigationButtons() {
         navigationItem.backButtonTitle = "뒤로"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loginButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loginOutButton)
     }
 }
 

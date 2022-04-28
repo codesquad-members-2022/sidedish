@@ -39,7 +39,7 @@ class SplashViewController: UIViewController {
     
     private func bind() {
         model.state().presentNextView
-            .sink(receiveValue: switchRootWindowState(_:))
+            .sink { [weak self] state in self?.switchRootWindowState(state) }
             .store(in: &cancellables)
     }
 }

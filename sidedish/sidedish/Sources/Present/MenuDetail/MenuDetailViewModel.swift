@@ -57,9 +57,8 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModel
                 action().tappedMinusButton.map { -1 }
             )
             .map { [weak self] value -> Int in
-                var amount = (self?.state().amount.value ?? 0) + value
-                amount = amount < 1 ? 1 : amount
-                return amount
+                let amount = (self?.state().amount.value ?? 0) + value
+                return amount < 1 ? 1 : amount
             }
             .sink { [weak self] amount in
                 self?.state().amount.send(amount)
@@ -68,23 +67,22 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModel
             .store(in: &cancellables)
         
         let requestOrder = action().tappedOrderButton
-            .compactMap { [weak self] _ -> AnyPublisher<ApiResult<Void, SessionError>, Never>? in
+            .compactMap { [weak self] _ -> (String, String)? in
                 guard let userName = Container.userStore.user?.name,
                       let count = self?.state().amount.value else {
                     return nil
                 }
-
                 let message = "\(menu.title) \(count)개 주문!"
-                return self?.sidedishRepository.order(userName, message: message)
+                return (userName, message)
             }
+            .compactMap { [weak self] name, message in self?.sidedishRepository.order(name, message: message) }
             .switchToLatest()
             .share()
 
         requestOrder
             .compactMap { $0.value }
-            .sink { [weak self] _ in
-                self?.state().ordered.send()
-            }
+            .map { _ in }
+            .sink(receiveValue: state().ordered.send(_:))
             .store(in: &cancellables)
         
         requestDetail

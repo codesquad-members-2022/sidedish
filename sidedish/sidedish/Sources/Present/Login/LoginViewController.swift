@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
     private func bind() {
         model.state().presentMainView
             .map { .main }
-            .sink(receiveValue: switchRootWindowState(_:))
+            .sink { [weak self] state in self?.switchRootWindowState(state) }
             .store(in: &cancellables)
         
         googleLoginButton.publisher(for: .touchUpInside)
