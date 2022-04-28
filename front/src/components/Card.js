@@ -60,7 +60,7 @@ const StyledCard = styled.div`
 `;
 const Thumbnail = styled.div`
   position: relative;
-  height: ${({ theme, cardSize }) => theme.cardSizes[cardSize].height}px;
+  height: ${({ theme, cardSize }) => theme.cardSizes[cardSize].width}px;
 `;
 const Image = styled.img`
   display: block;
