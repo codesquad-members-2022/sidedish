@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.webkit.CookieManager
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityMainBinding
 import com.codesquadhan.sidedish.ui.common.Common
@@ -28,12 +27,22 @@ class MainActivity : AppCompatActivity() {
 
     private var JSESSIONID = ""
 
+    private var isWebviewError = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         setMainRv()
         setBtnGitHub()
+        setRefreshLayout()
+    }
+
+    private fun setRefreshLayout(){
+        binding.splLoginWebView.setOnRefreshListener {
+            binding.webView.loadUrl("http://3.34.207.233:8080/login")
+            binding.splLoginWebView.isRefreshing = false
+        }
     }
 
     private fun setBtnGitHub() {
@@ -44,7 +53,7 @@ class MainActivity : AppCompatActivity() {
              // 로그인 후 가정
              viewModel.getMainUIMenu()*/
             binding.clLogin.visibility = View.GONE
-            binding.clLoginWebView.visibility = View.VISIBLE
+            binding.splLoginWebView.visibility = View.VISIBLE
             setWebView()
         }
     }
@@ -75,23 +84,38 @@ class MainActivity : AppCompatActivity() {
 
     inner class CustomWebViewClient() : WebViewClient() {
 
+        override fun onReceivedError(
+            view: WebView?,
+            request: WebResourceRequest?,
+            error: WebResourceError?
+        ) {
+            super.onReceivedError(view, request, error)
+
+            isWebviewError = true
+            Log.d("AppTest", "webView Error!!!!!")
+        }
+
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
             Log.d("AppTest", "onPageFinished/ url : ${url}")
 
-            val cookies = CookieManager.getInstance().getCookie(url)
-            Log.d("AppTest", "onPageFinished/ cookie : ${cookies}")
+            if(!isWebviewError) {
+                val cookies = CookieManager.getInstance().getCookie(url)
+                Log.d("AppTest", "onPageFinished/ cookie : ${cookies}")
 
-            if (cookies.contains("JSESSIONID")) {
-                JSESSIONID = cookies.toString()
-                Common.JESSIONID = cookies.toString()
-                Log.d("AppTest", "login success, JSESSIONID : ${JSESSIONID}")
+                cookies?.let {
+                    if (it.contains("JSESSIONID")) {
+                        JSESSIONID = it
+                        Common.JESSIONID = it
+                        Log.d("AppTest", "login success, JSESSIONID : ${JSESSIONID}")
 
-
-                binding.clLoginWebView.isVisible = false
-                binding.clMain.isVisible = true
-                viewModel.getMainUIMenu()
+                        binding.splLoginWebView.isVisible = false
+                        binding.clMain.isVisible = true
+                        viewModel.getMainUIMenu()
+                    }
+                }
             }
+            isWebviewError = false
         }
     }
 
