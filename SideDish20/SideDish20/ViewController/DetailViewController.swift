@@ -48,8 +48,6 @@ class DetailViewController: UIViewController {
             imageScrollView.contentSize = CGSize(width: imageView.frame.maxX, height: imageScrollView.frame.height)
             imageScrollViewPageControl.numberOfPages = sequence
         }
-        
-        imageScrollView.setNeedsDisplay()
     }
     
     func setDetailImageView() {
@@ -74,8 +72,6 @@ class DetailViewController: UIViewController {
             imageView.frame.origin.x = CGFloat(inx) * size.width
             imageScrollView.contentSize.width = imageView.frame.maxX
         }
-        
-        imageScrollView.setNeedsDisplay()
     }
 }
 
