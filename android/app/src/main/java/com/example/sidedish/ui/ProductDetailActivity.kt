@@ -1,5 +1,6 @@
 package com.example.sidedish.ui
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -38,6 +39,8 @@ class ProductDetailActivity : AppCompatActivity() {
             TabLayoutMediator(binding.tabLayoutProductDetailIndicator, this) { tab, position ->
             }.attach()
         }
+
+        binding.tvProductDetailContentsOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
         binding.ibCountPlus.setOnClickListener {
             viewModel.setQuantity(ButtonState.PLUS)

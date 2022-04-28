@@ -96,7 +96,7 @@
             android:paddingEnd="12dp"
             android:textColor="#F2E7FE"
             android:textSize="12sp"
-            bind:updateVisible="@{products.discountName}"
+            bind:updateVisible="@{products.discountName != null}"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
             app:layout_constraintTop_toTopOf="parent" />
 
