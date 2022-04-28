@@ -18,13 +18,12 @@ const CarouselWrapper = styled.div`
 export const Category = ({ categories }) => {
   const [extended, setExtended] = useState(false);
   const displayTargetCategories = extended ? categories : [categories[0]];
-
   return (
     <>
       {displayTargetCategories.map((cat) => (
         <CarouselWrapper key={cat.id}>
           <HorizontalLine position={0} color={"Grey4"} />
-          <Carousel id={cat.id} name={cat.name} size={SIZES.medium} />
+          <Carousel id={cat.id} title={cat.description} size={SIZES.medium} />
         </CarouselWrapper>
       ))}
       <ExtendingButton onClick={() => setExtended(!extended)}>

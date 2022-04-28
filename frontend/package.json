@@ -2,6 +2,7 @@
   "name": "sidedish",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://52.78.14.127:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -37,8 +38,10 @@
     ]
   },
   "devDependencies": {
+
     "cypress": "^9.6.0",
     "cypress-react-selector": "^2.3.17",
     "eslint-plugin-cypress": "^2.12.1"
+
   }
 }

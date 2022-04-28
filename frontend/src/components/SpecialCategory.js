@@ -48,7 +48,7 @@ const TabItem = styled.li`
 
 export const SpecialCategory = ({ specialCategories }) => {
   const [selected, setSelected] = useState(specialCategories[0].id);
-  const { products } = useFetch(Queries.products, selected);
+  const { products } = useFetch(Queries.specialProducts, selected, selected);
 
   return (
     <>

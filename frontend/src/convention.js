@@ -32,30 +32,30 @@ export const SIZES = {
   medium: "medium",
   small: "small",
 };
-export const queries = {
-  category: (id) => `category_id=${id}`,
-  specialCategory: (id) => `special_category_id=${id}`,
-};
+
 export const cardListArea = {
   large: [1281, 565],
   medium: [1280, 479],
-  small: [864, 226],
+  small: [864, 226]
 };
+
 export const Queries = {
   categories: "categories",
-  specialCategories: "specialCategories",
   products: "products",
-  product: "product",
+  specialCategories: "specialCategories",
+  specialProducts: "specialProducts",
+  product: "product"
 };
 
 export const requestQuery = {
   queries: {
-    categories: (id = undefined) => "/mocks/categories.json",
-    specialCategories: (id = undefined) => "/mocks/specialCategories.json",
-    product: (id = undefined) => "/mocks/product.json",
-    products: (id = undefined) => "/mocks/categoryProducts.json",
+    categories: (id = undefined) => `/api/categories`,
+    products: (id = undefined) => `/api/products?categoryId=${id}`,
+    specialCategories: (id = undefined) => "/api/themes",
+    specialProducts: (id) => `/api/products?themeId=${id}`,
+    product: (id = undefined) => "/mocks/product.json"
   },
-  makeQuery: (target, id = undefined) => {
+  makeQuery: (target, id) => {
     return requestQuery.queries[target](id);
-  },
+  }
 };

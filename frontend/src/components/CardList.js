@@ -21,7 +21,7 @@ export const CardList = ({ products, cardSize, curIndex = 0 }) => {
     sliderRef.current.style.transform = `translateX(-${
       curIndex * (cardGapLength[cardSize] + thumbnailSize[cardSize])
     }px)`;
-  }, [curIndex]);
+  }, [curIndex, cardSize]);
   return (
     <ShowingArea size={cardSize}>
       <ProductCardsWrapper cardSize={cardSize} ref={sliderRef}>

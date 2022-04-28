@@ -91,14 +91,12 @@ const HoverInfoTextWrapper = styled.div`
   }
 `;
 
-const HoverInfo = ({ hover, early_morning_delivery, nationwide_delivery }) => (
-  <HoverInfoWrapper hover={hover}>
+const HoverInfo = ({ earlyMorningDelivery, nationwideDelivery }) => (
+  <HoverInfoWrapper>
     <HoverInfoTextWrapper>
-      {early_morning_delivery && <span>새벽 배송</span>}
-      {early_morning_delivery && nationwide_delivery && (
-        <HorizontalLine position={50} color={"Black"} />
-      )}
-      {nationwide_delivery && <span>전국 택배</span>}
+      {earlyMorningDelivery && <span>새벽 배송</span>}
+      {earlyMorningDelivery && nationwideDelivery && <HorizontalLine position={50} color={"Black"} />}
+      {nationwideDelivery && <span>전국 택배</span>}
     </HoverInfoTextWrapper>
   </HoverInfoWrapper>
 );
@@ -106,18 +104,17 @@ const HoverInfo = ({ hover, early_morning_delivery, nationwide_delivery }) => (
 export const ProductCard = ({
   cardSize,
   id,
-  primary_image,
+  primaryImage,
   name,
   description,
-  discount,
-  final_price,
-  price,
-  early_morning_delivery,
-  nationwide_delivery,
+  discounts,
+  finalPrice,
+  basePrice,
+  earlyMorningDelivery,
+  nationwideDelivery
 }) => {
   const [hover, setHover] = useState(false);
-  const { openedId, setOpenedId } = useContext(ModalContext);
-
+  const { setOpenedId } = useContext(ModalContext);
   return (
     <CardWrapper size={cardSize}>
       <ThumbnailWrapper
@@ -126,12 +123,9 @@ export const ProductCard = ({
         onMouseLeave={() => setHover(false)}
         onClick={(e) => setOpenedId(id)}
       >
-        <ProductImage hover={hover} src={primary_image} />
+        <ProductImage hover={hover} src={primaryImage} />
         {hover && cardSize !== SIZES.small && (
-          <HoverInfo
-            early_morning_delivery={early_morning_delivery}
-            nationwide_delivery={nationwide_delivery}
-          />
+          <HoverInfo earlyMorningDelivery={earlyMorningDelivery} nationwideDelivery={nationwideDelivery} />
         )}
       </ThumbnailWrapper>
 
@@ -145,17 +139,13 @@ export const ProductCard = ({
         >
           {name}
         </ProductName>
-        {cardSize !== SIZES.small && (
-          <ProductDescription>{description}</ProductDescription>
-        )}
+        {cardSize !== SIZES.small && <ProductDescription>{description}</ProductDescription>}
         <ProductPriceWrapper>
-          <ProductFinalPrice>
-            {final_price.toLocaleString() + "원"}
-          </ProductFinalPrice>
-          <ProductPrice>{price.toLocaleString() + "원" || ""}</ProductPrice>
+          <ProductFinalPrice>{finalPrice.toLocaleString() + "원"}</ProductFinalPrice>
+          <ProductPrice>{basePrice.toLocaleString() + "원" || ""}</ProductPrice>
         </ProductPriceWrapper>
       </ProductInfo>
-      <DiscountTag discount={discount} />
+      <DiscountTag discount={discounts} />
     </CardWrapper>
   );
 };
