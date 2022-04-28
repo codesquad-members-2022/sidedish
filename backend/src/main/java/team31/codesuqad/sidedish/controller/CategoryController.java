@@ -1,5 +1,6 @@
 package team31.codesuqad.sidedish.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import team31.codesuqad.sidedish.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/dish")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
 
     private CategoryService categoryService;
