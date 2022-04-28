@@ -8,9 +8,6 @@ import Combine
 import UIKit
 
 class MainViewController: UIViewController {
-    private let model: MainViewModelProtocol = MainViewModel()
-    private var cancellables = Set<AnyCancellable>()
-    
     private let underLineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +35,20 @@ class MainViewController: UIViewController {
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         return button
     }()
+    
+    private let model: MainViewModelProtocol
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(viewModel: MainViewModelProtocol) {
+        self.model = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         Log.debug("DeInit MainViewController")
@@ -167,7 +178,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let menu = model[indexPath] else {
             return
         }
-        let detailViewController = MenuDetailViewController(model: MenuDetailViewModel(menu: menu))
+        let detailViewController = MenuDetailViewController(model: MenuDetailViewModel(menu: menu, sidedishRepository: SidedishRepositoryImpl(), resourceRepository: ResourceRepositoryImpl()))
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

@@ -11,7 +11,17 @@ import UIKit
 class SplashViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
-    private var model: SplashViewModelProtocol = SplashViewModel()
+    private let model: SplashViewModelProtocol
+    
+    init(viewModel: SplashViewModelProtocol) {
+        self.model = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         Log.debug("DeInit SplashViewController")
@@ -20,7 +30,7 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.state.presentNextView
+        model.state().presentNextView
             .sink {
                 RootWindow.shared?.switchRootWindowState.send($0)
             }
@@ -29,6 +39,6 @@ class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        model.action.viewDidAppear.send()
+        model.action().viewDidAppear.send()
     }
 }

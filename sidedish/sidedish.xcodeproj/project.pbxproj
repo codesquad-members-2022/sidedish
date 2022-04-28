@@ -38,6 +38,11 @@
 		E0E62AF828197139005E350D /* DecodedBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62AF728197139005E350D /* DecodedBy.swift */; };
 		E0E62AFB281973B8005E350D /* PriceTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62AFA281973B8005E350D /* PriceTransformer.swift */; };
 		E0E62AFD28197C0A005E350D /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62AFC28197C0A005E350D /* Int+Extension.swift */; };
+		E0E62B03281985F5005E350D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62B02281985F5005E350D /* Environment.swift */; };
+		E0E62B06281A1D2D005E350D /* MenuDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62B05281A1D2D005E350D /* MenuDetailViewModelProtocol.swift */; };
+		E0E62B09281A1D8B005E350D /* MainViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62B08281A1D8B005E350D /* MainViewModelProtocol.swift */; };
+		E0E62B0B281A1DAE005E350D /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62B0A281A1DAE005E350D /* LoginViewModelProtocol.swift */; };
+		E0E62B0D281A1E29005E350D /* SplashViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E62B0C281A1E29005E350D /* SplashViewModelProtocol.swift */; };
 		E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */; };
 		E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */; };
 		E0EDD5A3280CF94700DBF9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EDD5A2280CF94700DBF9C6 /* Assets.xcassets */; };
@@ -96,6 +101,11 @@
 		E0E62AF728197139005E350D /* DecodedBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedBy.swift; sourceTree = "<group>"; };
 		E0E62AFA281973B8005E350D /* PriceTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTransformer.swift; sourceTree = "<group>"; };
 		E0E62AFC28197C0A005E350D /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		E0E62B02281985F5005E350D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		E0E62B05281A1D2D005E350D /* MenuDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		E0E62B08281A1D8B005E350D /* MainViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelProtocol.swift; sourceTree = "<group>"; };
+		E0E62B0A281A1DAE005E350D /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
+		E0E62B0C281A1E29005E350D /* SplashViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModelProtocol.swift; sourceTree = "<group>"; };
 		E0EDD596280CF94700DBF9C6 /* sidedish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidedish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EDD599280CF94700DBF9C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EDD59B280CF94700DBF9C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +211,7 @@
 			children = (
 				E0D380D62817E6C6009627A1 /* SplashViewController.swift */,
 				E0D380D82817E6CF009627A1 /* SplashViewModel.swift */,
+				E0E62B0C281A1E29005E350D /* SplashViewModelProtocol.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -211,6 +222,31 @@
 				E0E62AFA281973B8005E350D /* PriceTransformer.swift */,
 			);
 			path = DecoderBy;
+			sourceTree = "<group>";
+		};
+		E0E62B01281985E5005E350D /* NoCommit */ = {
+			isa = PBXGroup;
+			children = (
+				E0E62B02281985F5005E350D /* Environment.swift */,
+			);
+			path = NoCommit;
+			sourceTree = "<group>";
+		};
+		E0E62B042819961D005E350D /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				E0D380CB2816CFD4009627A1 /* Container.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		E0E62B07281A1D79005E350D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7345C9B0280EA0CA00F89135 /* CustomCollectionCell.swift */,
+				7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E0EDD58D280CF94700DBF9C6 = {
@@ -234,6 +270,7 @@
 		E0EDD598280CF94700DBF9C6 /* sidedish */ = {
 			isa = PBXGroup;
 			children = (
+				E0E62B01281985E5005E350D /* NoCommit */,
 				E0EDD5AF280D17A200DBF9C6 /* Sources */,
 				E0EDD5B0280D17AA00DBF9C6 /* Resources */,
 				E0EDD5B1280D17B800DBF9C6 /* Configuration */,
@@ -319,10 +356,10 @@
 		E0EDD5B6280D185100DBF9C6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E0E62B042819961D005E350D /* Container */,
 				E0E62AF928197384005E350D /* DecoderBy */,
 				E0D380CA2816CFB8009627A1 /* PropertyWrapper */,
 				E0D380C92816CFAF009627A1 /* View */,
-				E0D380CB2816CFD4009627A1 /* Container.swift */,
 				E0D380CD2816D01E009627A1 /* UserStore.swift */,
 				E0D380DC28182A56009627A1 /* Log.swift */,
 			);
@@ -332,10 +369,10 @@
 		E0EDD5B7280D186B00DBF9C6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E0E62B07281A1D79005E350D /* View */,
 				E0EDD5BB280D513700DBF9C6 /* MainViewController.swift */,
-				7345C9B0280EA0CA00F89135 /* CustomCollectionCell.swift */,
-				7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */,
 				7345C9A3280E4B4100F89135 /* MainViewModel.swift */,
+				E0E62B08281A1D8B005E350D /* MainViewModelProtocol.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -345,6 +382,7 @@
 			children = (
 				E0EDD5B9280D511A00DBF9C6 /* LoginViewController.swift */,
 				E0D380BE2816C0B7009627A1 /* LoginViewModel.swift */,
+				E0E62B0A281A1DAE005E350D /* LoginViewModelProtocol.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -377,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				E0FAAA50280EC9A800B36F4D /* View */,
+				E0E62B05281A1D2D005E350D /* MenuDetailViewModelProtocol.swift */,
 				E0FAAA45280D903600B36F4D /* MenuDetailViewController.swift */,
 				E0FAAA47280D91D600B36F4D /* MenuDetailViewModel.swift */,
 			);
@@ -544,16 +583,19 @@
 				E0FAAA3C280D881900B36F4D /* NetworkApiRepository.swift in Sources */,
 				73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */,
 				7345C9B1280EA0CA00F89135 /* CustomCollectionCell.swift in Sources */,
+				E0E62B0B281A1DAE005E350D /* LoginViewModelProtocol.swift in Sources */,
 				733D58442810F603007FC36F /* MenuInfoView.swift in Sources */,
 				E0D380CE2816D01E009627A1 /* UserStore.swift in Sources */,
 				E0EDD5BA280D511A00DBF9C6 /* LoginViewController.swift in Sources */,
 				E0FAAA5C280EF52400B36F4D /* UIConrtol+Extension.swift in Sources */,
+				E0E62B09281A1D8B005E350D /* MainViewModelProtocol.swift in Sources */,
 				E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */,
 				733D58422810EF1F007FC36F /* HTTPMethod.swift in Sources */,
 				E0D380D22816D467009627A1 /* Token.swift in Sources */,
 				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
 				E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */,
 				E0FAAA48280D91D600B36F4D /* MenuDetailViewModel.swift in Sources */,
+				E0E62B03281985F5005E350D /* Environment.swift in Sources */,
 				E0EDD59A280CF94700DBF9C6 /* AppDelegate.swift in Sources */,
 				E0D380BF2816C0B7009627A1 /* LoginViewModel.swift in Sources */,
 				E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */,
@@ -571,9 +613,11 @@
 				E0D380C82816CDC5009627A1 /* UserDefault.swift in Sources */,
 				E0FAAA42280D883200B36F4D /* EndPoint.swift in Sources */,
 				E0E62AF828197139005E350D /* DecodedBy.swift in Sources */,
+				E0E62B06281A1D2D005E350D /* MenuDetailViewModelProtocol.swift in Sources */,
 				E0D380D92817E6CF009627A1 /* SplashViewModel.swift in Sources */,
 				E0EDD59C280CF94700DBF9C6 /* SceneDelegate.swift in Sources */,
 				E0E62AFD28197C0A005E350D /* Int+Extension.swift in Sources */,
+				E0E62B0D281A1E29005E350D /* SplashViewModelProtocol.swift in Sources */,
 				E0FAAA5A280EEC9500B36F4D /* MenuAmountView.swift in Sources */,
 				E0D380C42816CC6D009627A1 /* LoginRepositoryImpl.swift in Sources */,
 				7345C9AB280E543200F89135 /* SidedishRepositoryImpl.swift in Sources */,

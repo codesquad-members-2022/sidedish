@@ -32,6 +32,10 @@ struct Menu: Decodable {
 }
 
 extension Menu {
+    var categoryCount: Int {
+        Category.allCases.count
+    }
+    
     enum Category: Int, CaseIterable {
         case main, soup, side
         

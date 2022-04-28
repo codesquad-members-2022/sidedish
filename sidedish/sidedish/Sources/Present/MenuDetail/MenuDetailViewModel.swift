@@ -8,14 +8,16 @@
 import Combine
 import Foundation
 
-struct MenuDetailViewModelAction {
+final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModelAction, MenuDetailViewModelState {
+    func action() -> MenuDetailViewModelAction { self }
+    
     let loadMenuDetail = PassthroughSubject<Void, Never>()
     let tappedPlusButton = PassthroughSubject<Void, Never>()
     let tappedMinusButton = PassthroughSubject<Void, Never>()
     let tappedOrderButton = PassthroughSubject<Void, Never>()
-}
-
-struct MenuDetailViewModelState {
+    
+    func state() -> MenuDetailViewModelState { self }
+    
     let loadedDetail = PassthroughSubject<(Menu, MenuDetail), Never>()
     let showError = PassthroughSubject<SessionError, Never>()
     let ordered = PassthroughSubject<Void, Never>()
@@ -23,37 +25,18 @@ struct MenuDetailViewModelState {
     let totalPrice = PassthroughSubject<Int, Never>()
     let loadedThumbnail = PassthroughSubject<(Int, URL), Never>()
     let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
-}
-
-protocol MenuDetailViewModelBinding {
-    func action() -> MenuDetailViewModelAction
-    func state() -> MenuDetailViewModelState
-}
-
-typealias MenuDetailViewModelProtcol = MenuDetailViewModelBinding
-
-final class MenuDetailViewModel: MenuDetailViewModelProtcol {
     
     private var cancellables = Set<AnyCancellable>()
-    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
-    private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
-        
-    private let detailAction = MenuDetailViewModelAction()
-    private let detailState = MenuDetailViewModelState()
-    
-    func action() -> MenuDetailViewModelAction {
-        detailAction
-    }
-    
-    func state() -> MenuDetailViewModelState {
-        detailState
-    }
+    private let sidedishRepository: SidedishRepository
+    private let resourceRepository: ResourceRepository
     
     deinit {
         Log.debug("DeInit MenuDetailViewModel")
     }
     
-    init(menu: Menu) {
+    init(menu: Menu, sidedishRepository: SidedishRepository, resourceRepository: ResourceRepository) {
+        self.sidedishRepository = sidedishRepository
+        self.resourceRepository = resourceRepository
         
         let requestDetail = action().loadMenuDetail
             .compactMap { [weak self] _ in self?.sidedishRepository.loadDetail(menu.hash) }
