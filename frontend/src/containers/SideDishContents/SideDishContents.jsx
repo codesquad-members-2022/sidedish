@@ -1,9 +1,8 @@
 import React, {useState, useRef} from "react";
 import {SideDishContentsList} from "components";
-// import './SideDishContents.css';
 import {StyledSideDishContents, ShowAllCategoryButton} from "./SideDishContents.styled";
 
-function SideDishContents() {
+function SideDishContents({openModal}) {
   const [showAllCategory, setShowAllCategory] = useState(false);
   const [buttonText, setButtonText] = useState("모든 카테고리 보기");
   const button = useRef();
@@ -16,7 +15,7 @@ function SideDishContents() {
   return (
     <StyledSideDishContents>
       <ul>
-        <SideDishContentsList showAllCategory={showAllCategory} />
+        <SideDishContentsList showAllCategory={showAllCategory} openModal={openModal} />
         <ShowAllCategoryButton
           onClick={() => handleShowAllCategory()}
           showAllCategory={showAllCategory}

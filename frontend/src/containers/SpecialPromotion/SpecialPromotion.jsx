@@ -13,7 +13,7 @@ import {eventCategory} from "data";
 import {specialPromotionIcon} from "constants";
 import {TabList, GoodsBlock} from "components";
 
-function SpecialPromotion() {
+function SpecialPromotion({openModal}) {
   const [tabState, setTabState] = useState({category: eventCategory[0].subTitle});
   const [goodsData, setGoodsData] = useState([]);
 
@@ -44,7 +44,12 @@ function SpecialPromotion() {
         <BestSideDishList>
           {goodsData.map(
             ({id, image, productName, description, price, eventBadge, early_delivery, discountedRate}) => (
-              <li key={id}>
+              <li
+                key={id}
+                onClick={() => {
+                  openModal(id);
+                }}
+              >
                 <GoodsBlock
                   thumb={image}
                   name={productName}
