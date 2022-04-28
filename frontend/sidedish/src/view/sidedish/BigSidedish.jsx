@@ -19,9 +19,8 @@ function BigSidedish() {
 
     useEffect(() => {
         try {
-            getData(
-                API.FESTIVAL + "한-번-주문하면-두-번-반하는-반찬",
-                setBigSidedishData
+            getData(API.FESTIVAL + "한-번-주문하면-두-번-반하는-반찬").then(
+                (data) => setBigSidedishData(data)
             );
         } catch (error) {
             console.error(error);
