@@ -19,6 +19,7 @@ struct ProductCollectionViewModel {
     private let categoryManager = CategoryManager()
     private var imageCache = NSCache<NSURL, NSData>()
     var categoryVMs: [CategoryType: Observable<CategorySectionViewModel>]
+    var headerHiddenStatus: [CategoryType: Bool]
 
     init () {
         let placeHolders = (0..<5).map({ _ in
@@ -29,6 +30,11 @@ struct ProductCollectionViewModel {
         categoryVMs = [.main: Observable<CategorySectionViewModel>(placeHolderCategory),
                          .side: Observable<CategorySectionViewModel>(),
                         .soup: Observable<CategorySectionViewModel>()]
+
+        headerHiddenStatus = [.main: true ,
+                             .soup: true,
+                            .side: true]
+
     }
 
     func countProduct(section: Int) -> Int {
@@ -54,7 +60,6 @@ struct ProductCollectionViewModel {
     }
 
     private func fetchCategories(of type: CategoryType) {
-
         categoryManager.fetchCategory(of: type) { category in
             guard let category = category else {
                 return

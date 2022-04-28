@@ -11,12 +11,11 @@ protocol HeaderViewDelegate: AnyObject {
 }
 
 class HeaderView: UICollectionReusableView {
-    
     static let identifier = "HeaderView"
     weak var delegate: HeaderViewDelegate?
     private let title =  UILabel()
-
     var counterView = UILabel()
+    var type: CategoryType?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,29 +29,14 @@ class HeaderView: UICollectionReusableView {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.counterView.isHidden = !counterView.isHidden
+        self.counterView.isHidden = true
     }
 
     private func configure() {
         addSubview(title)
         configureTitle()
         configureCounterView()
-
     }
-
-    private func configureCounterView() {
-
-        counterView.frame =  self.bounds
-        self.addSubview(counterView)
-        counterView.text = "선택된 해더"
-        counterView.numberOfLines = 1
-        counterView.isHidden = true
-        counterView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            counterView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4)
-        ])
-        }
 
     private func configureTitle() {
         title.frame = self.bounds
@@ -61,14 +45,19 @@ class HeaderView: UICollectionReusableView {
         title.textColor = .grey1
         title.text = ""
         title.numberOfLines = 2
-        title.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: self.topAnchor, constant: 24)
-        ])
     }
 
-    func setTitle(text: String) {
-        title.text = text
+    private func configureCounterView() {
+        counterView.frame =  self.bounds
+        self.addSubview(counterView)
+        counterView.textColor = .grey2
+        counterView.font = .mediumRegular
+        counterView.numberOfLines = 1
+        counterView.isHidden = true
+        counterView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            counterView.topAnchor.constraint(equalTo: title.bottomAnchor)
+        ])
     }
 
     private func setGestureRecoginzer() {
@@ -80,4 +69,15 @@ class HeaderView: UICollectionReusableView {
         self.delegate?.didTapHeader(sender: self)
     }
 
+    func setTitle(text: String) {
+        title.text = text
+    }
+
+    func setCounterView(_ count: Int) {
+        self.counterView.text = "\(count) 개의 상품이 등록되어 있습니다"
+    }
+
+    func setType(type: CategoryType) {
+        self.type = type
+    }
 }
