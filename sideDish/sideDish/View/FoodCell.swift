@@ -13,14 +13,12 @@ class FoodCell: UICollectionViewCell {
     
     private var titleLabel: UILabel = {
         var label = UILabel()
-        label.text = "오리 주물럭_반조리"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
     
     private var bodyLabel: UILabel = {
         var label = UILabel()
-        label.text = "감질맛 나는 매콤한 양념"
         label.font = UIFont.systemFont(ofSize: 14)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = .GreyTextColor
@@ -29,14 +27,12 @@ class FoodCell: UICollectionViewCell {
     
     private var salePriceLabel: UILabel = {
         var label = UILabel()
-        label.text = "12,640원"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
     
     private var beforeSalePriceLabel: UILabel = {
         var label = UILabel()
-        label.text = "15,800원"
         
         if let text = label.text {
             let attributeString = NSMutableAttributedString(string: label.text ?? "")
@@ -77,7 +73,6 @@ class FoodCell: UICollectionViewCell {
     // MARK: Image Attribute
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage()
         imageView.contentMode = .scaleAspectFit
         
         return imageView
