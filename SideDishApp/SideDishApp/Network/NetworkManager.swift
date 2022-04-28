@@ -23,7 +23,6 @@ final class NetworkManager {
         // HTTP Method
         let httpMethod = endpoint.getHttpMethod().description
         urlRequest.httpMethod = httpMethod
-        
         // HTTP header
         let headers = endpoint.getHeaders()
         headers?.forEach { urlRequest.setValue($1 as? String, forHTTPHeaderField: $0) }
@@ -47,14 +46,17 @@ final class NetworkManager {
             guard let self = self else {
                 return completion(.failure(.emptySession))
             }
+            
             // handling transportError
             if let error = error {
                 return completion(.failure(.transportError(error)))
             }
+            
             // handling NoDataError
             guard let data = data else {
                 return completion(.failure(.emptyData))
             }
+            
             // handling ServerError
             guard let statusCode = self.getStatusCode(response: response) else { return }
             guard 200..<300 ~= statusCode else {
@@ -63,17 +65,20 @@ final class NetworkManager {
             
             // handling DecodingError
             do {
-                let deleteCase: Any = HTTPMethod.delete.description
-                if urlRequest.httpMethod == HTTPMethod.delete.description {
-                    return completion(.success(deleteCase as? T ?? nil))
+                
+                // handling getImage Case
+                let getImageBaseURL = urlRequest.description.replacingOccurrences(of: urlRequest.url?.path ?? "", with: "")
+                
+                if getImageBaseURL == BaseURL.image.urlString {
+                    return completion(.success(data as? T))
                 }
                 
-                let fetchedData = try JSONDecoder().decode(T.self, from: data)
+                let fetchedData = try JSONDecoder().decode(T.self, from: data) // Data -> T: Decodable
                 return completion(.success(fetchedData))
+                
             } catch {
                 return completion(.failure(.decodingError))
             }
-            
         }
         dataTask.resume()
     }

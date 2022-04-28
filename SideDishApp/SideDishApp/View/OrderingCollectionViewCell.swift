@@ -22,50 +22,7 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var menuStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.alignment = .leading
-        stackView.distribution = .equalSpacing
-        return stackView
-    }()
-    
-    private lazy var menuInfoStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        return label
-    }()
-    
-    private lazy var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .systemGray
-        return label
-    }()
-    
-    private lazy var priceStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 4
-        stackView.distribution = .equalSpacing
-        return stackView
-    }()
-    
-    private lazy var badgeStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 4
-        stackView.distribution = .fillProportionally
-        return stackView
-    }()
+    private(set) lazy var menuStackView = MenuStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,8 +35,8 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        prepareForReuse(stackView: priceStackView)
-        prepareForReuse(stackView: badgeStackView)
+        prepareForReuse(stackView: menuStackView.priceStackView)
+        prepareForReuse(stackView: menuStackView.badgeStackView)
     }
     
     private func prepareForReuse(stackView: UIStackView) {
@@ -93,17 +50,14 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         cellView.addSubview(dishImageView)
         cellView.addSubview(menuStackView)
         
-        menuStackView.addArrangedSubview(menuInfoStackView)
-        menuInfoStackView.addArrangedSubview(titleLabel)
-        menuInfoStackView.addArrangedSubview(descriptionLabel)
-        menuInfoStackView.addArrangedSubview(priceStackView)
-        menuStackView.addArrangedSubview(badgeStackView)
-        
         layoutCellView()
         layoutMenuStackView()
-        layoutMenuInfoStackView()
     }
-    
+}
+
+// MARK: - View Layout
+
+extension OrderingCollectionViewCell {
     private func layoutCellView() {
         cellView.translatesAutoresizingMaskIntoConstraints = false
         cellView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
@@ -118,129 +72,12 @@ final class OrderingCollectionViewCell: UICollectionViewCell {
         menuStackView.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor, constant: 8).isActive = true
         menuStackView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
     }
-    
-    private func layoutMenuInfoStackView() {
-        menuInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        menuInfoStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 72).isActive = true
-    }
 }
 
 // MARK: - Providing Function
 
 extension OrderingCollectionViewCell {
-    func setDishImage(by imageName: String) {
-        let url = URL(string: imageName)
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: url!) else { return }
-            DispatchQueue.main.async {
-                self.dishImageView.image = UIImage(data: data)
-            }
-        }
-    }
-    
-    func setMenuTitle(by text: String) {
-        titleLabel.text = text
-    }
-    
-    func setMenuDescription(by text: String) {
-        descriptionLabel.text = text
-    }
-    
-    func setMenuPrice(originPrice: String?, discountedPrice: String?) {
-        guard let discountedPrice = discountedPrice else { return }
-        
-        if let originPrice = originPrice {
-            let discountedPriceLabel = UILabel.makeCurrentPriceLabel(price: discountedPrice)
-            let originPriceLabel = UILabel.makePreviousPriceLabel(price: originPrice)
-            priceStackView.addArrangedSubview(discountedPriceLabel)
-            priceStackView.addArrangedSubview(originPriceLabel)
-        } else {
-            let currentPriceLabel = UILabel.makeCurrentPriceLabel(price: discountedPrice)
-            priceStackView.addArrangedSubview(currentPriceLabel)
-        }
-    }
-    
-    private func convertTextStyleToStrikeThrough(label: UILabel) {
-        guard let text = label.text else { return }
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
-                                     value: NSUnderlineStyle.single.rawValue,
-                                     range: NSRange(location: 0, length: attributeString.length))
-        label.textColor = .systemGray
-        label.attributedText = attributeString
-    }
-    
-    func setBadges(by types: [String]?) {
-        guard let types = types else { return }
-        
-        types.forEach { type in
-            switch type {
-            case "런칭특가":
-                let badge = UILabel.makeBadge(title: "런칭특가", backgroundColor: UIColor.launchingBadgeBackground)
-                badgeStackView.addArrangedSubview(badge)
-            case "이벤트특가":
-                let badge = UILabel.makeBadge(title: "이벤트특가", backgroundColor: UIColor.eventBadgeBackground)
-                badgeStackView.addArrangedSubview(badge)
-            default:
-                let badge = UILabel.makeBadge(title: type, backgroundColor: UIColor.defaultBadgeBackground)
-                badgeStackView.addArrangedSubview(badge)
-            }
-        }
-    }
-}
-
-// MARK: - Private Extension
-
-private extension UILabel {
-    static func makeBadge(title: String, backgroundColor: UIColor) -> UILabel {
-        let label = PaddingLabel(padding: UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16))
-        label.text = title
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        label.textAlignment = .center
-        label.textColor = .white
-        label.backgroundColor = backgroundColor
-        label.layer.cornerRadius = 13
-        label.layer.masksToBounds = true
-        return label
-    }
-    
-    static func makeCurrentPriceLabel(price text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.textColor = .black
-        return label
-    }
-    
-    static func makePreviousPriceLabel(price text: String) -> UILabel {
-        let label = UILabel()
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
-                                     value: NSUnderlineStyle.single.rawValue,
-                                     range: NSRange(location: 0, length: attributeString.length))
-        label.attributedText = attributeString
-        label.textColor = .systemGray
-        return label
-    }
-}
-
-final class PaddingLabel: UILabel {
-    private var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    
-    convenience init(padding: UIEdgeInsets) {
-        self.init()
-        self.padding = padding
-    }
-    
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: padding))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        var contentSize = super.intrinsicContentSize
-        contentSize.height += padding.top + padding.bottom
-        contentSize.width += padding.left + padding.right
-        
-        return contentSize
+    func setMenu(image: UIImage) {
+        self.dishImageView.image = image
     }
 }

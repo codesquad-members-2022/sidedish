@@ -13,15 +13,13 @@ final class OrderingViewController: UIViewController {
     private var orderingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
     private var collectionViewDelegate = OrderingCollectionViewDelegate()
-    private let networkManger = NetworkManager(session: .shared)
+    private let networkManager = NetworkManager(session: .shared)
     
     private var collectionViewLayout: UICollectionViewLayout {
-        let itemHeight: CGFloat = 130.0
-        let headerHeigth: CGFloat = 130.0
-        
         let layout = UICollectionViewFlowLayout()
-        let itemSize = CGSize(width: view.frame.width, height: itemHeight)
-        layout.headerReferenceSize = CGSize(width: view.frame.width, height: headerHeigth)
+        let itemSize = CGSize(width: view.frame.width, height: 130)
+        let headerSize = CGSize(width: view.frame.width, height: 130)
+        layout.headerReferenceSize = headerSize
         layout.itemSize = itemSize
         return layout
     }
@@ -29,21 +27,36 @@ final class OrderingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        setUpDelegate()
+        setUpNavigaionBar()
         getSideDishInfo()
     }
     
     private func setUpView() {
         configureView()
-        collectionViewDelegate.delegate = self
-        
         view.addSubview(orderingCollectionView)
         configureOrderingCollectionView()
         layoutOrderingCollectionView()
     }
     
+    private func setUpDelegate() {
+        collectionViewDelegate.delegate = self
+    }
+    
     private func configureView() {
-        title = Constant.Title.orderingViewController
+        title = Constant.ViewControllerTitle.ordering
         view.backgroundColor = .systemBackground
+    }
+    
+    private func setUpNavigaionBar() {
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
     
     private func configureOrderingCollectionView() {
@@ -60,43 +73,43 @@ final class OrderingViewController: UIViewController {
     }
     
     private func getSideDishInfo() {
-        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let success):
-                guard let menus = success?.body else { return }
-                self.collectionViewDataSource.fetch(dishes: menus)
-                self.setHeaderViewDelegate()
-                
-                DispatchQueue.main.async {
-                    self.orderingCollectionView.reloadData()
+        Category.allCases.forEach { category in
+            networkManager.request(endpoint: EndPointCase.get(category: category).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let success):
+                    guard let menus = success?.body else { return }
+                    self.collectionViewDataSource.fetch(menus: menus, category: category)
+                    self.setHeaderViewDelegate()
+                    
+                    DispatchQueue.main.async {
+                        self.orderingCollectionView.reloadData()
+                    }
+                    
+                case .failure(let failure):
+                    os_log(.error, "\(failure.localizedDescription)")
                 }
-                
-            case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")
             }
         }
     }
     
     private func setHeaderViewDelegate() {
-        
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             let countOfSection = self.orderingCollectionView.numberOfSections
-
+            
             for sectionIndex in 0..<countOfSection {
                 guard let sectionHeaderView = self.orderingCollectionView.supplementaryView(
                     forElementKind: UICollectionView.elementKindSectionHeader,
                     at: IndexPath(row: 0, section: sectionIndex)) as? SectionHeaderView else { return }
-
                 sectionHeaderView.delegate = self
-                sectionHeaderView.setSectionNumber(number: sectionIndex)
             }
         }
     }
     
 }
 
-// MARK: - View Layouts
+// MARK: - View Layout
 
 extension OrderingViewController {
     private func layoutOrderingCollectionView() {
@@ -110,20 +123,21 @@ extension OrderingViewController {
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
     func didSelectItem(index: IndexPath) {
-        guard let item = collectionViewDataSource.getSelectedItem(at: index.item) else { return }
+        guard let menu = collectionViewDataSource.getSelectedItem(at: index) else { return }
+        let detailVC = DetailViewController(menu: menu)
+        navigationController?.pushViewController(detailVC, animated: true)
         
-        networkManger.request(endpoint: EndPointCase.getDetail(hash: item.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
+        networkManager.request(endpoint: EndPointCase.getDetail(hash: menu.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
             switch result {
-            case .success(let success):
-                //TODO: success handling
-                break
+            case .success(let data):
+                guard let menuDetail = data?.data else { return }
+                DispatchQueue.main.async {
+                    detailVC.setMenuDetail(menuDetail: menuDetail)
+                }
             case .failure(let failure):
                 os_log(.error, "\(failure.localizedDescription)")
             }
         }
-        let detailVC = DetailViewController()
-        detailVC.title = item.title
-        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
