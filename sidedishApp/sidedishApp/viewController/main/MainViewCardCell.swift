@@ -58,7 +58,6 @@ class MainViewCardCell: UICollectionViewCell {
     private func setUIConstraints() {
         congifureCardImageViewConstraint()
         configureCardInfoVerticalStackViewConstraint()
-        
     }
     
     private func congifureCardImageViewConstraint() {
@@ -67,7 +66,8 @@ class MainViewCardCell: UICollectionViewCell {
             cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             cardImageView.widthAnchor.constraint(equalToConstant: 120),
-            cardImageView.heightAnchor.constraint(equalToConstant: 120)
+            cardImageView.heightAnchor.constraint(equalToConstant: 120),
+            cardImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
     }
     
@@ -75,9 +75,10 @@ class MainViewCardCell: UICollectionViewCell {
         cardInfoVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cardInfoVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            cardInfoVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             cardInfoVerticalStackView.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
-            cardInfoVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
+            cardInfoVerticalStackView.heightAnchor.constraint(equalToConstant: 120),
+            cardInfoVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            cardInfoVerticalStackView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
     }
     

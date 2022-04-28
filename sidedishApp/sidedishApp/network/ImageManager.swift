@@ -43,13 +43,13 @@ final class ImageManager {
         let fileDownloadPath = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)[0]
         
         // 캐시에 해당 이미지가 있으면 캐시의 이미지를 가져옴
-        do {
-            try result = Data(contentsOf: fileDownloadPath)
-            completion(result, nil)
-            return
-        } catch {
-            print("캐시에 이미지 있음 : \(error)")
-        }
+//        do {
+//            try result = Data(contentsOf: fileDownloadPath)
+//            completion(result, nil)
+//            return
+//        } catch {
+//            print("캐시에 이미지 있음 : \(error)")
+//        }
         
         // 캐시에 해당 이미지가 없으면, 캐시에 그 이미지 다운로드 :
         downloadImage(url: url, toFile: fileDownloadPath) { (error) in
