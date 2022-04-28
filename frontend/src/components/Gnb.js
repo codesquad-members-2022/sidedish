@@ -32,6 +32,7 @@ export const Gnb = ({ categories }) => {
       onMouseEnter={() => setExtended(true)}
       onMouseLeave={() => setExtended(false)}
       extended={extended}
+      data-cy="headerMenu"
     >
       {categories.map((cat) => (
         <MenuWrapper key={cat.id}>
