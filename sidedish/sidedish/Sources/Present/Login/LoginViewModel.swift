@@ -21,6 +21,7 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
     
     let presentMainView = PassthroughSubject<Void, Never>()
     let presentGoogleLogin = PassthroughSubject<GIDConfiguration, Never>()
+    let showLoadingIndicator = PassthroughSubject<Bool, Never>()
     
     @Inject(\.userStore) private var userStore: UserStore
     @Inject(\.loginRepository) private var loginRepository: LoginRepository
@@ -43,6 +44,9 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
             .store(in: &cancellables)
         
         action().googleUser
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.state().showLoadingIndicator.send(true)
+            })
             .compactMap { user -> AuthCredential? in
                 guard let authentication = user?.authentication,
                       let idToken = authentication.idToken else {
@@ -52,7 +56,10 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
             }
             .compactMap { [weak self] credential in self?.loginRepository.googleLogin(authCredential: credential) }
             .switchToLatest()
-            .handleEvents(receiveOutput: { [weak self] user in self?.userStore.user = user })
+            .handleEvents(receiveOutput: { [weak self] user in
+                self?.userStore.user = user
+                self?.state().showLoadingIndicator.send(false)
+            })
             .map { _ in }
             .sink(receiveValue: state().presentMainView.send(_:))
             .store(in: &cancellables)

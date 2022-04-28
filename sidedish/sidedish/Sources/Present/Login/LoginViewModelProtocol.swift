@@ -17,6 +17,7 @@ protocol LoginViewModelAction {
 protocol LoginViewModelState {
     var presentMainView: PassthroughSubject<Void, Never> { get }
     var presentGoogleLogin: PassthroughSubject<GIDConfiguration, Never> { get }
+    var showLoadingIndicator: PassthroughSubject<Bool, Never> { get }
 }
 
 protocol LoginViewModelBinding {

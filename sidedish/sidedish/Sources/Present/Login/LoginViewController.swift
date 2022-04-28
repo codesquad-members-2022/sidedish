@@ -19,6 +19,13 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = false
+        indicator.isHidden = true
+        return indicator
+    }()
+    
     private var cancellables = Set<AnyCancellable>()
     private let model: LoginViewModelProtocol
     
@@ -60,6 +67,12 @@ class LoginViewController: UIViewController {
                     self.model.action().googleUser.send(user)
                 }
             }.store(in: &cancellables)
+        
+        model.state().showLoadingIndicator
+            .sink { [weak self] isShow in
+                self?.loadingIndicator.isHidden = !isShow
+                isShow ? self?.loadingIndicator.startAnimating() : self?.loadingIndicator.stopAnimating()
+            }.store(in: &cancellables)
     }
     
     private func attritbute() {
@@ -68,11 +81,16 @@ class LoginViewController: UIViewController {
     
     private func layout() {
         view.addSubview(googleLoginButton)
+        view.addSubview(loadingIndicator)
         
         googleLoginButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalTo(300)
             $0.height.equalTo(50)
+        }
+        
+        loadingIndicator.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
