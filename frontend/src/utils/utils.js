@@ -12,13 +12,26 @@ const fetchData = async url => {
   return handleError(response);
 };
 
-const putData = async (url, data) => {
+const handlePostError = async response => {
+  if (response.status === 201) {
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+    return true;
+  } else {
+    alert("죄송합니다. 재고가 부족한 상품입니다.");
+    return false;
+    //throw new Error("Fetch Failed");
+  }
+};
+
+const postData = async (url, data) => {
   const response = await fetch(url, {
-    method: "PUT",
+    method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data),
   });
-  return handleError(response);
+  return handlePostError(response);
 };
 
-export {fetchData, putData};
+export {fetchData, postData};

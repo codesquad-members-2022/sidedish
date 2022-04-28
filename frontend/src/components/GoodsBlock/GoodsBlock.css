@@ -2,6 +2,10 @@
      margin-right: 24px;
  }
 
+ .goodsBlock:hover{
+     cursor: pointer;
+ }
+
 .thumbContainer{
     position: relative;
 }
