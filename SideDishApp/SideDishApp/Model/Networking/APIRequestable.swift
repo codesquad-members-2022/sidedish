@@ -37,6 +37,12 @@ extension APIRequestable where Response: Decodable {
     }
 }
 
+extension APIRequestable where Response == Data {
+    func decode(_ data: Data) -> Response? {
+        return data
+    }
+}
+
 extension URLComponents {
     static let onbanBaseURLComponents: Self = {
         var components = URLComponents()
