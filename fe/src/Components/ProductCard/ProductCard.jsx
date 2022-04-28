@@ -91,9 +91,11 @@ export const ProductCard = ({
   size,
 }) => {
   const modalContext = ModalContext;
-  const [ModalDisplay, setModalDisplay] = useContext(modalContext);
+  const { ModalDisplay, setModalDisplay, setProductID } =
+    useContext(modalContext);
   const onClickThumbnail = () => {
     setModalDisplay(true);
+    setProductID(productId);
   };
   const productImage = images[0];
   return (
