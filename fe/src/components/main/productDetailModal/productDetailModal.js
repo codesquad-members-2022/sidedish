@@ -1,15 +1,19 @@
-import { DetailArea } from './imgArea/detailArea/detailArea';
+import { DetailArea } from './detailArea/detailArea';
 import { ImgArea } from './imgArea/imgArea';
-import { DimLayer, ModalContainer } from './productDetailModal.styled';
+import { DimLayer, ModalArea, ProductArea } from './productDetailModal.styled';
+import { RecommendArea } from './recommendArea/recommendArea';
 
 export function ProductDetailModal({ sideDishData }) {
   sideDishData = mockData;
   return (
     <DimLayer>
-      <ModalContainer flex>
-        <ImgArea urls={sideDishData.imageUrls}></ImgArea>
-        <DetailArea props={sideDishData}></DetailArea>
-      </ModalContainer>
+      <ModalArea flex direction="column">
+        <ProductArea flex>
+          <ImgArea urls={sideDishData.imageUrls}></ImgArea>
+          <DetailArea props={sideDishData}></DetailArea>
+        </ProductArea>
+        <RecommendArea></RecommendArea>
+      </ModalArea>
     </DimLayer>
   );
 }
@@ -20,8 +24,6 @@ var mockData = {
     'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
     'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
     'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
-    'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
-    'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
     'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
     'https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
   ],

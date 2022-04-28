@@ -12,7 +12,6 @@ export function SubImgArea({ urls, onClick }) {
           }}
         ></SubImg>
       ))}
-      ;
     </SubImgWrapper>
   );
 }

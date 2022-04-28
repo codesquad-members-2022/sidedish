@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { applyFlex } from '../../../../../../helper/utils';
+import { applyFlex } from '../../../../../helper/utils';
 
 export const StyledProductInfo = styled.div`
   padding-bottom: 24px;

@@ -1,4 +1,4 @@
-import { EventWrapper } from '../../../../../../common/productCard/eventWrapper/eventWrapper';
+import { EventWrapper } from '../../../../../common/productCard/eventWrapper/eventWrapper';
 import { FinalPrice, FinalPriceInfo, OriginPrice, StyledProductInfo, Title } from './productInfo.styled';
 
 export function ProductInfo({ props }) {
