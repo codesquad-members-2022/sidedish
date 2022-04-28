@@ -3,7 +3,7 @@
 - [x] ExceptionAdvice 중복제거
 - [x] getItemByDetailType 메서드로 전달되는 parameter의 애매한 이름 변경하기
 - [ ] itemController
-- [ ] 하드코딩보다는 HttpStatus를 사용 (ResultDto)
+- [x] 하드코딩보다는 HttpStatus를 사용 (ResultDto)
 - [ ] categoryController 중복제거 생각해보기
 - [ ] buildItems 메서드 매직넘버는 지양하기
 - [ ] findItemByDetailType에 인자로 enum 전달히기

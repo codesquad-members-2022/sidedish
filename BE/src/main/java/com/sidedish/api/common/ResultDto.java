@@ -1,6 +1,7 @@
 package com.sidedish.api.common;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 public class ResultDto {
@@ -14,7 +15,7 @@ public class ResultDto {
     }
 
     public static ResultDto ok() {
-        return new ResultDto(true, "ok");
+        return new ResultDto(true, HttpStatus.OK.name());
     }
 
     public static ResultDto error(Exception e) {
