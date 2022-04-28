@@ -1,4 +1,4 @@
-package com.example.sidedish
+package com.example.sidedish.ui.common
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
