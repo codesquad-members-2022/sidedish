@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 4.8rem 4.8rem 6.4rem 4.8rem;
+  padding: 4.8rem 4.8rem 0 4.8rem;
 `;
 
 const Header = styled.div`
@@ -56,20 +56,20 @@ const TotalPage = styled(DividePage)`
 const CardCarousel = styled.div`
   overflow: hidden;
   width: 86.4rem;
-  height: 22.6rem;
+  height: 23.6rem;
   margin-top: 2.8rem;
 `;
 
 const CardCarouselInner = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: 1.6rem;
+  gap: ${({ gap }) => `${gap / 10}rem`};
+  transition: all 1s;
 `;
 
 const Card = styled.div`
   flex-shrink: 0;
-  flex-basis: 16rem;
-  width: 16rem;
+  flex-basis: ${({ size }) => `${size / 10}rem`};
   cursor: pointer;
 `;
 
