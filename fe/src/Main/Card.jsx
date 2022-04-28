@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import axios from 'axios';
 import { SERVER_URL } from 'constant.js';
 import { FlexDiv } from 'common/FlexDiv';
 import CardDeliveryInfo from 'Main/CardDeliveryInfo';
@@ -9,6 +8,7 @@ import Modal from 'Modal';
 import ModalDetailContainer from 'Modal/ModalDetailContainer';
 import ModalImgWrapper from 'Modal/ModalImgWrapper';
 import { setPrice } from 'util';
+import { useFetch } from 'useFetch';
 
 const CardItem = styled.div`
   ${({ imageSize }) => {
@@ -113,6 +113,7 @@ const ModalTogetherContainer = styled.article`
 const Card = ({ item, imageSize }) => {
   const [hover, setHover] = useState(false);
   const [dishes, setDishes] = useState([]);
+  const [dish] = useFetch(`${SERVER_URL}dishes/${item.id}`);
 
   const onMouseOver = () => setHover(true);
 
@@ -122,23 +123,12 @@ const Card = ({ item, imageSize }) => {
 
   const openModal = () => {
     setModalVisible(true);
-    fetchData();
+    setDishes(dish);
   };
 
   const closeModal = () => {
     setModalVisible(false);
   };
-
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${SERVER_URL}dishes/${item.id}`);
-      if (data) {
-        setDishes(data);
-      }
-    } catch (error) {
-      throw new Error(error);
-    }
-  }, [item.id]);
 
   return (
     item && (

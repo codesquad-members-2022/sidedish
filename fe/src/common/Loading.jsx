@@ -1,19 +1,34 @@
 import styled from 'styled-components';
-import LoadingImage from 'image/loading.gif';
+import { FlexDiv } from 'common/FlexDiv';
 
 const LoadingWrapper = styled.div`
-  text-align: center;
+  height: 200px;
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
-  img {
-    width: 80px;
-    height: 80px;
+  .loading-spinner {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #383636;
+    border-radius: 50%;
+    animation: spinner 1.5s linear infinite;
   }
 `;
 
 const Loading = () => {
   return (
     <LoadingWrapper>
-      <img src={LoadingImage} alt="Loading..." />
+      <FlexDiv row={'center'}>
+        <div className="loading-spinner"></div>
+      </FlexDiv>
     </LoadingWrapper>
   );
 };
