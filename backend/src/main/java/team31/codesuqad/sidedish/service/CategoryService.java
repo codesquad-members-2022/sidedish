@@ -2,7 +2,6 @@ package team31.codesuqad.sidedish.service;
 
 import org.springframework.stereotype.Service;
 import team31.codesuqad.sidedish.controller.dto.AllCategoriesResponse;
-import team31.codesuqad.sidedish.controller.dto.CategoryNames;
 import team31.codesuqad.sidedish.controller.dto.CategoryResponse;
 import team31.codesuqad.sidedish.controller.dto.DishDto;
 import team31.codesuqad.sidedish.domain.Category;
@@ -24,10 +23,6 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
         this.dishesService = dishesService;
         this.discountPoliciesService = discountPoliciesService;
-    }
-
-    public CategoryNames findAll() {
-        return new CategoryNames(categoryRepository.findAll());
     }
 
     public AllCategoriesResponse findCategories() {
