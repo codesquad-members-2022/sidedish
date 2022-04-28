@@ -22,10 +22,10 @@ const SmallImg = styled.img`
   margin-right: 3px;
 `;
 
-const DetailImage = () => {
+const DetailImage = ({ image }) => {
   return (
     <ImageWrapper>
-      <TopImg src="http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg" />
+      <TopImg src={image} />
       <SmallImgWrapper>
         <SmallImg src="https://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_S.jpg" />
         <SmallImg src="http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg" />

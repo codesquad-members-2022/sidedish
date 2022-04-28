@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
+import { ModalContext } from "../../store/store";
 import StyledDeliveryIcon from "../icons/DeliveryIcon";
-
+import { priceToString } from "../../utils/utils";
 const CardImg = styled.img`
   ${({ size }) =>
     size === "small"
@@ -85,33 +86,44 @@ const CardWrapper = styled.div`
 `;
 
 const Card = (props) => {
+  const ctx = useContext(ModalContext);
+  const click = ({ target }) => {
+    ctx.setClickedId((prev) => (prev !== target.id ? target.id : prev));
+    ctx.setModalIsDisplayed(true);
+  };
+
   return (
-    <CardWrapper>
-      <CardImg
-        src={props.image}
-        alt={props.alt}
-        size={props.size}
-        id={props.id}
-        onClick={props.onSaveClickedId}
-      />
-      <CardTitle size={props.size}>{props.title}</CardTitle>
-      <CardDesc>{props.description}</CardDesc>
-      <span>{props.s_price}</span>
-      <CardOriginalPrice>{props.n_price}</CardOriginalPrice>
-      <CardBadgeWapper>
-        {!props.badge
-          ? ""
-          : props.badge.map((v, i) => (
+    <>
+      <CardWrapper>
+        <CardImg
+          src={props.image}
+          alt={props.alt}
+          size={props.size}
+          id={props.id}
+          onClick={click}
+        />
+        <CardTitle size={props.size}>{props.title}</CardTitle>
+        <CardDesc>{props.description}</CardDesc>
+        <span>
+          {props.discountPrice && `${priceToString(props.discountPrice)}`}
+        </span>
+        <CardOriginalPrice>
+          {props.originPrice && `${priceToString(props.originPrice)}`}
+        </CardOriginalPrice>
+        <CardBadgeWapper>
+          {props.badge &&
+            props.badge.split(",").map((v, i) => (
               <CardBadge info={v} key={i}>
                 {v}
               </CardBadge>
             ))}
-      </CardBadgeWapper>
-      <StyledDeliveryIcon
-        className={!!props.delivery && "deliveryIconIsActive"}
-        size={props.size}
-      />
-    </CardWrapper>
+        </CardBadgeWapper>
+        <StyledDeliveryIcon
+          className={"deliveryIconIsActive"}
+          size={props.size}
+        />
+      </CardWrapper>
+    </>
   );
 };
 

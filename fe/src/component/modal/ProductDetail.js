@@ -10,11 +10,11 @@ const ProductDetail = styled.div`
   border-bottom: 1px solid black;
 `;
 
-const ProductDetails = () => {
+const ProductDetails = ({ data }) => {
   return (
     <ProductDetail>
-      <DetailImage />
-      <DetailInfo />
+      <DetailImage image={data.imgUrl} />
+      <DetailInfo infoData={data} />
     </ProductDetail>
   );
 };

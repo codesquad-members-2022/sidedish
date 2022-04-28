@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 import ProductDetails from "./ProductDetail";
 import ModalSlider from "./ModalSlider";
-
+import { ModalContext } from "../../store/store";
 const ModalWrapper = styled.div`
   width: 900px;
   height: 794px;
@@ -13,7 +13,6 @@ const ModalWrapper = styled.div`
   top: 20%;
   left: 20%;
   padding: 50px 30px;
-
   &.hidden {
     display: none;
   }
@@ -27,20 +26,27 @@ const ModalCloseButton = styled.button`
   color: #777;
 `;
 
-const Modal = () => {
-  const [isDisplayed, setIsDisplayed] = useState(true);
-  const closeBtnClickHandler = () => {
-    setIsDisplayed(false);
+const Modal = (props) => {
+  const ctx = useContext(ModalContext);
+  const onClickHandler = () => {
+    ctx.setModalIsDisplayed(false);
   };
+
+  const [modalInfor, setModalInfor] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://15.165.204.34:8080/api/v1/products/${ctx.clickedId}/detail`)
+      .then((res) => res.json())
+      .then((data) => setModalInfor(data.data));
+  }, [ctx.clickedId]);
+
   return (
     <>
       {ReactDOM.createPortal(
-        <ModalWrapper className={isDisplayed ? "" : "hidden"}>
-          <ProductDetails />
+        <ModalWrapper className={ctx.isDisplayed ? "" : "hidden"}>
+          <ProductDetails data={modalInfor} />
           <ModalSlider />
-          <ModalCloseButton onClick={closeBtnClickHandler}>
-            닫기
-          </ModalCloseButton>
+          <ModalCloseButton onClick={onClickHandler}>닫기</ModalCloseButton>
         </ModalWrapper>,
         document.getElementById("modal")
       )}

@@ -48,12 +48,12 @@ const ModalSlider = () => {
   const [cards, setCards] = useState([]);
   const [cardListTranslateX, setCardListTranslateX] = useState(0);
   const [pageNum, setPageNum] = useState(1);
-  useEffect(() => {
-    fetch("https://api.codesquad.kr/onban/side")
-      .then((res) => res.json())
-      .then((res) => setCards(res.body));
-  }, []);
 
+  useEffect(() => {
+    fetch("http://15.165.204.34:8080/api/v1/products/반찬")
+      .then((res) => res.json())
+      .then((res) => setCards(res.data));
+  }, []);
   const max = -920;
   const maxPage = Math.ceil((166 * cards.length) / 895);
 
@@ -94,13 +94,14 @@ const ModalSlider = () => {
         >
           {cards.map((v) => (
             <Card
+              id={v.id}
+              key={v.id}
+              image={v.imgUrl}
+              alt={v.name}
+              title={v.name}
+              discountPrice={v.discountPrice}
+              originPrice={v.price}
               size="xSmall"
-              key={v.detail_hash}
-              image={v.image}
-              alt={v.alt}
-              title={v.title}
-              s_price={v.s_price}
-              n_price={v.n_price}
             />
           ))}
         </SlideCardsList>
