@@ -17,8 +17,9 @@ const sliderInfo = {
 export default function MenuSlider() {
   const [curSlideIdx, setCurSlideIdx] = useState(0);
   const [isMoving, setMoving] = useState(false);
-  const isFirstSlide = curSlideIdx <= 0;
-  const isLastSlide = curSlideIdx >= slideData.length - sliderInfo.visibleLength;
+
+  const isFirstSlide = slideIdx => slideIdx <= 0;
+  const isLastSlide = slideIdx => slideIdx >= menuData.length - sliderInfo.visibleLength;
 
   return (
     <Wrap>
@@ -30,7 +31,7 @@ export default function MenuSlider() {
             icon="prev"
             width="11px"
             height="20px"
-            stroke={isFirstSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            stroke={isFirstSlide(curSlideIdx) ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
             disabled={isMoving}
           />
           <IconButton
@@ -39,15 +40,11 @@ export default function MenuSlider() {
             icon="next"
             width="11px"
             height="20px"
-            stroke={isLastSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            stroke={isLastSlide(curSlideIdx) ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
             disabled={isMoving}
           />
         </ButtonWrap>
-        <Slides
-          // onTransitionstart={() => setMoving(true)} // 왜 안되지?
-          onTransitionEnd={() => setMoving(false)}
-          curSlideIdx={curSlideIdx}
-        >
+        <Slides onTransitionEnd={() => setMoving(false)} curSlideIdx={curSlideIdx}>
           {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
             <li key={title}>
               <Card
@@ -69,32 +66,32 @@ export default function MenuSlider() {
   function handleMovementToPrev() {
     const newCurSlideIdx = decreaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
-    disableButton();
+    disableButton(newCurSlideIdx);
   }
 
   function handleMovementToNext() {
     const newCurSlideIdx = increaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
-    disableButton();
+    disableButton(newCurSlideIdx);
   }
 
   function decreaseCurSlideIndex() {
-    if (isFirstSlide) {
+    if (isFirstSlide(curSlideIdx)) {
       return 0;
     }
     return curSlideIdx - sliderInfo.visibleLength;
   }
 
   function increaseCurSlideIndex() {
-    if (isLastSlide) {
+    if (isLastSlide(curSlideIdx)) {
       return curSlideIdx;
     }
     setMoving(true);
     return curSlideIdx + sliderInfo.visibleLength;
   }
 
-  function disableButton() {
-    if (isFirstSlide || isLastSlide) return;
+  function disableButton(newCurSlideIdx) {
+    if (isFirstSlide(newCurSlideIdx) || isLastSlide(newCurSlideIdx)) return;
     setMoving(true);
   }
 }
