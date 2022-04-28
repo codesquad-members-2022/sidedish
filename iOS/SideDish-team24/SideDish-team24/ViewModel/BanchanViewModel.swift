@@ -4,8 +4,8 @@ class BanchanViewModel {
     private let dish: Dish
     
     lazy var image: UIImage? = {
-        let data = try? Data(contentsOf: self.dish.image)
-        let image = UIImage(data: data!)
+        guard let data = try? Data(contentsOf: self.dish.image) else { return nil }
+        let image = UIImage(data: data)
         return image
     }()
     
