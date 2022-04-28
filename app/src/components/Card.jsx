@@ -17,9 +17,14 @@ const Card = ({ card, cardSize }) => {
   } = card;
   const modal = useContext(ModalContext);
 
+  const hideScrollbar = () => {
+    document.body.style.overflow = "hidden";
+  };
+
   const handleClickCard = () => {
     modal.setShowModal(!modal.showModal);
     modal.setProductHash(card.detail_hash);
+    hideScrollbar();
   };
 
   return (

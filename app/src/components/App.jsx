@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "./Header.jsx";
 import MainTab from "./MainTab.jsx";
 import Modal from "./Modal/Modal.jsx";
@@ -22,6 +22,7 @@ const fetchAllDishData = async () => {
 };
 
 function App() {
+  const randomRef = useRef(true);
   const [dishData, setDishData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [productHash, setProductHash] = useState("");
@@ -37,8 +38,13 @@ function App() {
     })();
   }, []);
 
+  const showScrollbar = () => {
+    document.body.style.overflow = "auto";
+  };
+
   const showModalPopup = () => {
     setShowModal(!showModal);
+    showScrollbar();
   };
 
   const getAllDish = () => {
@@ -54,7 +60,7 @@ function App() {
         <ModalContext.Provider
           value={{ showModal, setShowModal, setProductHash }}
         >
-          <MainTab dish={getAllDish()} />
+          <MainTab dish={getAllDish()} randomRef={randomRef} />
           {showModal && (
             <Modal showModalPopup={showModalPopup} productHash={productHash} />
           )}
