@@ -30,13 +30,6 @@ const SlideWindow = styled.div`
 `;
 
 const SlideButton = styled.button`
-  position: absolute;
-
-  top: 50%;
-  width: 32px;
-  height: 32px;
-  transform: translateY(-50%);
-
   &:hover {
     opacity: 0.7;
   }
@@ -51,7 +44,7 @@ const SlideButton = styled.button`
   }
 `;
 
-const useSlide = ({ slideRef, slideViewItemLength }) => {
+const useSlide = ({ mode, slideRef, slideViewItemLength }) => {
   const initialPageIndex = 1;
   const minSlideIndex = 0;
   const [curSlideIndex, setCurSlideIndex] = useState(minSlideIndex);
@@ -62,12 +55,10 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
 
   const handleClickPrevButton = () => {
     const tempSlideIndex = curSlideIndex - slideViewItemLength;
-    let nextSlideIndex;
+    let nextSlideIndex = tempSlideIndex;
 
-    if (tempSlideIndex < minSlideIndex) {
+    if (mode !== 'page' && tempSlideIndex < minSlideIndex) {
       nextSlideIndex = minSlideIndex;
-    } else {
-      nextSlideIndex = tempSlideIndex;
     }
 
     const nextSlidePageIndex =
@@ -78,14 +69,14 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
 
   const handleClickNextButton = () => {
     const tempSlideIndex = curSlideIndex + slideViewItemLength;
-    let nextSlideIndex;
+    let nextSlideIndex = tempSlideIndex;
 
-    if (tempSlideIndex < minSlideIndex) {
-      nextSlideIndex = minSlideIndex;
-    } else if (tempSlideIndex > maxSlideIndex) {
-      nextSlideIndex = maxSlideIndex;
-    } else {
-      nextSlideIndex = tempSlideIndex;
+    if (mode !== 'page') {
+      if (tempSlideIndex < minSlideIndex) {
+        nextSlideIndex = minSlideIndex;
+      } else if (tempSlideIndex > maxSlideIndex) {
+        nextSlideIndex = maxSlideIndex;
+      }
     }
 
     const nextSlidePageIndex =
@@ -102,8 +93,16 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
     const slideItemLength = slideRef.children.length;
     const _slideUnitWidth = slideRef.clientWidth / slideItemLength;
     const tempSlideIndex = slideItemLength - slideViewItemLength;
-    const _maxSlideIndex = tempSlideIndex < 0 ? minSlideIndex : tempSlideIndex;
-    const _lastPageIndex = Math.floor(slideItemLength / slideViewItemLength);
+
+    const _maxSlideIndex =
+      mode === 'page'
+        ? (Math.ceil(slideItemLength / slideViewItemLength) - 1) *
+          slideViewItemLength
+        : tempSlideIndex < 0
+        ? minSlideIndex
+        : tempSlideIndex;
+
+    const _lastPageIndex = Math.ceil(slideItemLength / slideViewItemLength);
 
     setSlideUnitWidth(_slideUnitWidth);
     setLastPageIndex(_lastPageIndex);
@@ -124,6 +123,7 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
 
 export const Slider = ({
   children,
+  mode,
   margin = 0,
   slideRef,
   animation,
@@ -132,6 +132,7 @@ export const Slider = ({
   nextIcon,
   prevButtonClassName,
   nextButtonClassName,
+  pageIndexWrapperClassName,
   curPageIndexClassName = null,
   lastPageIndexClassName = null,
 }) => {
@@ -145,6 +146,7 @@ export const Slider = ({
     handleClickSliderPrevButton,
     handleClickSliderNextButton,
   ] = useSlide({
+    mode,
     slideRef,
     slideViewItemLength: slideViewItemLength,
   });
@@ -162,23 +164,25 @@ export const Slider = ({
       <SlideButton
         className={prevButtonClassName}
         onClick={handleClickSliderPrevButton}
-        disabled={curSlideIndex === minSlideIndex}
+        disabled={curSlideIndex <= minSlideIndex}
       >
         {prevIcon || <span>◀</span>}
       </SlideButton>
       <SlideButton
         className={nextButtonClassName}
         onClick={handleClickSliderNextButton}
-        disabled={curSlideIndex === maxSlideIndex}
+        disabled={curSlideIndex >= maxSlideIndex}
       >
         {nextIcon || <span>▶</span>}
       </SlideButton>
-      {curPageIndexClassName && (
-        <span className={curPageIndexClassName}>{curPageIndex}</span>
-      )}
-      {curPageIndexClassName && (
-        <span className={lastPageIndexClassName}>{lastPageIndex}</span>
-      )}
+      <div className={pageIndexWrapperClassName}>
+        {curPageIndexClassName && (
+          <span className={curPageIndexClassName}>{curPageIndex}</span>
+        )}
+        {curPageIndexClassName && (
+          <span className={lastPageIndexClassName}>{lastPageIndex}</span>
+        )}
+      </div>
     </SliderWrapper>
   );
 };
