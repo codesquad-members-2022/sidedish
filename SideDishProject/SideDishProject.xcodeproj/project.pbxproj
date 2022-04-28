@@ -29,6 +29,7 @@
 		72C0302C281790EC00BCA552 /* DishCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C0302B281790EC00BCA552 /* DishCollectionDelegate.swift */; };
 		72C55BF2280EE1C600E55892 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C55BF1280EE1C600E55892 /* HomeView.swift */; };
 		72C82841281A64FB00B4A02D /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C82840281A64FB00B4A02D /* ProductAPI.swift */; };
+		72C82843281A658100B4A02D /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C82842281A658100B4A02D /* ProductService.swift */; };
 		72CD7074281645A500D8C46C /* MockDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD7073281645A500D8C46C /* MockDetailRepository.swift */; };
 		72F9D301280E921F00EFA22F /* MockProductFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9D300280E921F00EFA22F /* MockProductFactory.swift */; };
 		72F9D303280E923900EFA22F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9D302280E923900EFA22F /* Product.swift */; };
@@ -84,6 +85,7 @@
 		72C0302B281790EC00BCA552 /* DishCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionDelegate.swift; sourceTree = "<group>"; };
 		72C55BF1280EE1C600E55892 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		72C82840281A64FB00B4A02D /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
+		72C82842281A658100B4A02D /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		72CD7073281645A500D8C46C /* MockDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetailRepository.swift; sourceTree = "<group>"; };
 		72F9D300280E921F00EFA22F /* MockProductFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductFactory.swift; sourceTree = "<group>"; };
 		72F9D302280E923900EFA22F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				72CD7073281645A500D8C46C /* MockDetailRepository.swift */,
 				6FE405B7280E967800FD218C /* ProductRepository.swift */,
 				72C82840281A64FB00B4A02D /* ProductAPI.swift */,
+				72C82842281A658100B4A02D /* ProductService.swift */,
 			);
 			path = repository;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				72C55BF2280EE1C600E55892 /* HomeView.swift in Sources */,
 				729E8860280D8F700042ECC9 /* SceneDelegate.swift in Sources */,
 				72BE39B0280FE8EA000919EC /* DishCollectionDataSource.swift in Sources */,
+				72C82843281A658100B4A02D /* ProductService.swift in Sources */,
 				72BE39B2280FEB56000919EC /* DishCollectionViewCell.swift in Sources */,
 				72A4F4E328123EAD00DE19C9 /* DishCommetHeaderView.swift in Sources */,
 				72F9D303280E923900EFA22F /* Product.swift in Sources */,

@@ -31,7 +31,7 @@ struct Product{
     }
 }
 
-struct DishCategory: Hashable {
+struct DishCategory: Hashable, Codable {
     let id: Int
     let name: String
     let count: Int
