@@ -11,12 +11,11 @@ export function DeliveryCircle({ shippingInfo, hover }) {
 
   return (
     <StyledCircle flex direction="column" justify="center" align="center">
-      {deliveryType.map((delivery, idx) => {
-        if (!delivery) {
-          return false;
-        }
-        return <DeliveryInfo key={`${delivery}-${idx}`}>{delivery}</DeliveryInfo>;
-      })}
+      {deliveryType
+        .filter(delivery => delivery)
+        .map((delivery, idx) => (
+          <DeliveryInfo key={`${delivery}-${idx}`}>{delivery}</DeliveryInfo>
+        ))}
     </StyledCircle>
   );
 }
@@ -27,6 +26,6 @@ function parseShippingInfo(shippingInfo) {
   const checkDeliveryType = str => {
     return shippingInfo.includes(str) && str;
   };
-  const [earlyDelivery, allCountryDelivery] = [checkDeliveryType('새벽 배송'), checkDeliveryType('전국 택배')];
-  return [earlyDelivery, allCountryDelivery];
+  const [earlyDelivery, everywhereDelivery] = [checkDeliveryType('새벽 배송'), checkDeliveryType('전국 택배')];
+  return [earlyDelivery, everywhereDelivery];
 }

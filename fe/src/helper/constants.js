@@ -48,3 +48,8 @@ export const API = {
     return `http://54.180.92.20:8080/api/sidedishes/category/${id}?page=${page}`;
   },
 };
+
+export const eventsNumber = {
+  1: '이벤트특가',
+  2: '런칭특가',
+};
