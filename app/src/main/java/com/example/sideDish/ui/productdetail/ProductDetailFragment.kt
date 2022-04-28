@@ -5,23 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
-import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
 import com.example.sideDish.ui.foodlist.DETAIL_HASH_KEY
 import com.example.sideDish.ui.foodlist.TITLE_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
-
-/*const val PRODUCT_TITLE = */
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
