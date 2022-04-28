@@ -306,6 +306,26 @@ const GET_EVENT = [
   }),
 ];
 
+const getProductDetail = rest.get('/items/:iD', (req, res, ctx) => {
+  return res(
+    ctx.status(200),
+    ctx.delay(0),
+    ctx.json({
+      id: 1,
+      title: '오이피자',
+      price: 10000,
+      accumulate: 0.01,
+      discountPolicy: 'launch',
+      discountRate: 0.15,
+      images: [
+        'https://img.insight.co.kr/static/2019/06/26/700/f31l48lhp1v2tuq7ce8o.jpg',
+        'https://img.insight.co.kr/static/2019/06/26/700/5nmluh24cnp5h4rb3vj4.jpg',
+        'https://studyforus.com/files/attach/images/1816/212/461/aca7e1aed69a698c8896c641d77085dd.png',
+      ],
+    })
+  );
+});
+
 export const handlers = [
   GET_EVENTS,
   ...GET_EVENT,
