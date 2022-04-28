@@ -130,6 +130,7 @@ class MenuDetailViewController: UIViewController {
             .store(in: &cancellables)
 
         model.state().ordered
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 let alert = UIAlertController(title: "주문완료 ✅", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "완료", style: .cancel))

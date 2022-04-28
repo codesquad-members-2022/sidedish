@@ -38,7 +38,11 @@ extension SidedishEndPoint {
         case .loadMenu, .loadDetail:
             return nil
         case .order(let name, let message):
-            return ["channel": "#모바일ios-generic", "username": name, "text": message, "icon_emoji": ":ghost:"]
+            return ["payload":
+"""
+{"channel":"#모바일ios-generic","username":"\(name)","text":"\(message)","icon_emoji":":ghost:"}
+"""
+            ]
         }
     }
     var method: HTTPMethod {
@@ -47,6 +51,15 @@ extension SidedishEndPoint {
             return .get
         case .order:
             return .post
+        }
+    }
+    
+    var contentType: HttpContentType {
+        switch self {
+        case .order:
+            return .urlencode
+        default:
+            return .json
         }
     }
 }

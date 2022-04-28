@@ -32,7 +32,7 @@ struct Menu: Decodable {
 }
 
 extension Menu {
-    var categoryCount: Int {
+    static var categoryCount: Int {
         Category.allCases.count
     }
     

@@ -12,4 +12,5 @@ protocol EndPoint {
     var path: String { get }
     var parameter: [String: Any]? { get }
     var method: HTTPMethod { get }
+    var contentType: HttpContentType { get }
 }

@@ -20,6 +20,7 @@
 		D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */; };
 		E01B5210281A2428009918AE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B520F281A2427009918AE /* UIViewController+Extension.swift */; };
 		E01B5212281A34BF009918AE /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B5211281A34BF009918AE /* Inject.swift */; };
+		E01B5214281A7B9E009918AE /* HttpContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B5213281A7B9E009918AE /* HttpContentType.swift */; };
 		E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B128129D67009627A1 /* ResourceRepository.swift */; };
 		E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */; };
 		E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B52812A001009627A1 /* NetworkRepository.swift */; };
@@ -85,6 +86,7 @@
 		A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.debug.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.debug.xcconfig"; sourceTree = "<group>"; };
 		E01B520F281A2427009918AE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		E01B5211281A34BF009918AE /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
+		E01B5213281A7B9E009918AE /* HttpContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpContentType.swift; sourceTree = "<group>"; };
 		E0D380B128129D67009627A1 /* ResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepository.swift; sourceTree = "<group>"; };
 		E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepositoryImpl.swift; sourceTree = "<group>"; };
 		E0D380B52812A001009627A1 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				E0FAAA40280D883200B36F4D /* EndPoint.swift */,
 				E0FAAA41280D883200B36F4D /* ApiResult.swift */,
 				733D58412810EF1F007FC36F /* HTTPMethod.swift */,
+				E01B5213281A7B9E009918AE /* HttpContentType.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */,
 				733D58422810EF1F007FC36F /* HTTPMethod.swift in Sources */,
 				E0D380D22816D467009627A1 /* Token.swift in Sources */,
+				E01B5214281A7B9E009918AE /* HttpContentType.swift in Sources */,
 				E0FAAA46280D903600B36F4D /* MenuDetailViewController.swift in Sources */,
 				E0FAAA56280ED0C400B36F4D /* PaddingLabel.swift in Sources */,
 				E01B5212281A34BF009918AE /* Inject.swift in Sources */,
