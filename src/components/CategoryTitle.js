@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { color, slideBtn } from '../css/variables';
+import { color } from '../css/variables';
 
 const CategoryTitle = ({ title, banner = null }) => {
   return (
@@ -14,7 +14,6 @@ const CategoryTitle = ({ title, banner = null }) => {
 
 const StyledTitle = styled.div`
   display: flex;
-  margin-left: ${slideBtn.size + slideBtn.margin}px;
 `;
 
 const StyledSpan = styled.span`
@@ -26,7 +25,7 @@ const StyledSpan = styled.span`
 
 const StyledH2 = styled.h2`
   font-size: 35px;
-  font-weight: bolder;
+  font-weight: bold;
 `;
 
 const StyledH4 = styled.h4`

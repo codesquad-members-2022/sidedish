@@ -7,7 +7,7 @@ const Menu = ({ menuInfo }) => {
   return (
     <MenuBox>
       {menuInfo.map(({ url, alt }, idx) => (
-        <MenuIcon key={idx} src={url} alt={alt} />
+        <MenuIcon key={`${alt}-${idx}`} src={url} alt={alt} />
       ))}
     </MenuBox>
   );
