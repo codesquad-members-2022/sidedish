@@ -10,6 +10,7 @@ import com.sidedish.web.dto.ProductDetailDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,8 @@ public class ProductService {
         List<Product> products = productRepository.findAllMainCategoryProduct(mainCategory);
         List<MainCategoryProductDto> dtoList = new ArrayList<>();
         for (Product product : products) {
-            dtoList.add(new MainCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(),product.getMainCategory()));
+            String thumbnail = product.getImage().stream().findFirst().get().getImagePath();
+            dtoList.add(new MainCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(),product.getMainCategory(), thumbnail));
         }
         return dtoList;
     }
@@ -36,7 +38,8 @@ public class ProductService {
         List<Product> products = productRepository.findAllEventCategoryProduct(eventCategory);
         List<EventCategoryProductDto> dtoList = new ArrayList<>();
         for (Product product : products) {
-            dtoList.add(new EventCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(), product.getEventCategory()));
+            String thumbnail = product.getImage().stream().findFirst().get().getImagePath();
+            dtoList.add(new EventCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(), product.getEventCategory(), thumbnail));
         }
         return dtoList;
     }
@@ -49,6 +52,4 @@ public class ProductService {
         }
         return new ProductDetailDto(product.getProductName(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(),imageSet);
     }
-
-
 }
