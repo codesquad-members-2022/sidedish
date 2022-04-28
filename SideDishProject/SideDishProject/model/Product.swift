@@ -16,32 +16,28 @@ struct Product{
     let description: String
     let stock: Int
     let category: DishCategory
+    let imageUrl: String
     let event: [ProductEvent]
     
-    init(name: String, price: Int, description: String, stock: Int, category: DishCategory, event: [ProductEvent]) {
+    init(name: String, price: Int, description: String, stock: Int, category: DishCategory, imageUrl: String, event: [ProductEvent]) {
         self.id = UUID()
         self.name = name
         self.price = price
         self.description = description
         self.stock = stock
         self.category = category
+        self.imageUrl = imageUrl
         self.event = event
     }
 }
 
-enum DishCategory: CaseIterable, CustomStringConvertible{
-    case main
-    case soup
-    case side
-    var description: String{
-        switch self{
-        case .main:
-            return "메인음식"
-        case .side:
-            return "밑반찬"
-        case .soup:
-            return "국"
-        }
+struct DishCategory: Hashable {
+    let id: Int
+    let name: String
+    let count: Int
+    
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(id)
     }
 }
 

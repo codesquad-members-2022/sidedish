@@ -9,8 +9,9 @@ import Foundation
 
 
 struct MockProductFactory{
-    private let randomNames: [DishCategory : [String]]  = [.main : ["삼겹살", "김치볶음밥", "제육볶음"], .soup : ["김치찌게", "된장찌게", "미역국"], .side : ["멸치볶음", "김", "콩자반"]]
+    private let randomNames: [DishCategory : [String]]  = [DishCategory(id: 1, name: "모두가 좋아하는 든든한 메인요리", count: 3) : ["삼겹살", "김치볶음밥", "제육볶음"], DishCategory(id: 2, name: "정성이 담긴 뜨끈한 국물요리", count: 3) : ["김치찌게", "된장찌게", "미역국"], DishCategory(id: 3, name: "식탁을 풍성하게 하는 정갈한 밑반찬", count: 3) : ["멸치볶음", "김", "콩자반"]]
     private let randomDiscriptions: [String] = ["ebony가 직접 만들었습니다." , "rosa가 직접 만들었습니다.", "구찌가 극찬하였습니다.", "데일이 먹고 울었습니다."]
+    private let dishImageURLs: [String] = ["http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg","http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_D1.jpg", "http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_D2.jpg", "http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_D3.jpg"]
     private var events: [ProductEvent] = [.eventPrice(disCount: 0.15), .launchingPrice(disCount: 0.2), .none(disCount: 1.0)]
     private let makeCount: Int
     
@@ -33,7 +34,13 @@ struct MockProductFactory{
         let stock = randomStock()
         let name = randomName(cateogory: category)
         let productEvents = randomEvents()
-        return Product(name: name, price: price, description: discription, stock: stock, category: category, event: productEvents)
+        let imageUrl = randomImageUrl()
+        return Product(name: name, price: price, description: discription, stock: stock, category: category, imageUrl: imageUrl, event: productEvents)
+    }
+    
+    private func randomImageUrl() -> String{
+        guard let url = dishImageURLs.randomElement() else { return "" }
+        return url
     }
     
     private func randomEvents() -> [ProductEvent]{
@@ -59,9 +66,9 @@ struct MockProductFactory{
         return randomValue(min: 0, max: 10)
     }
     
-    private func randomCategory() -> DishCategory{
-        guard let category = DishCategory.allCases.randomElement() else { return .side }
-        return category
+    private func randomCategory() -> DishCategory {
+        let categories = [DishCategory(id: 1, name: "모두가 좋아하는 든든한 메인요리", count: 0), DishCategory(id: 2, name: "정성이 담긴 뜨끈한 국물요리", count: 0), DishCategory(id: 3, name: "식탁을 풍성하게 하는 정갈한 밑반찬", count: 0) ]
+        return categories.randomElement()!
     }
     
     private func randomValue(min: Int, max: Int) -> Int{
