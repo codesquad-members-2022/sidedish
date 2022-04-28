@@ -48,16 +48,17 @@ export const ProductAmount = ({ priceData }) => {
     <ProductAmountWrapper>
       <TotalAmount>
         <AmountButton
-          iconSrc={IconFonts.PLUS}
-          onClickIcon={onClickPlus}
-          label={'상품 추가'}
-        />
-
-        <CurrentAmount>{currentAmount}</CurrentAmount>
-        <AmountButton
           iconSrc={IconFonts.MINUS}
           onClickIcon={onClickMinus}
           label={'상품 추감'}
+        />
+
+        <CurrentAmount>{currentAmount}</CurrentAmount>
+
+        <AmountButton
+          iconSrc={IconFonts.PLUS}
+          onClickIcon={onClickPlus}
+          label={'상품 추가'}
         />
       </TotalAmount>
 
