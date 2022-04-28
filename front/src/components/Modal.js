@@ -49,8 +49,8 @@ const ModalWrap = styled.div`
 const PopupBox = styled.div`
   width: 960px;
   height: 994px;
-  background-color: #ffffff;
-  border: 2px solid #000000;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 2px solid ${({ theme }) => theme.colors.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,7 +70,7 @@ const PopupCloseButton = styled.button`
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-  color: #777777;
+  color: ${({ theme }) => theme.colors.gray2};
 `;
 
 export default Modal;
