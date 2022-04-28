@@ -72,6 +72,24 @@ public class Menu {
 		this.inventoryQuantity = inventoryQuantity;
 	}
 
+	protected List<String> getImages() {
+		return images.stream()
+			.map(image -> image.getUrl())
+			.collect(Collectors.toList());
+	}
+
+	protected boolean availableForSale() {
+		return this.inventoryQuantity > 0;
+	}
+
+	private boolean compareQuantity(int countOfOrder) {
+		return (this.inventoryQuantity - countOfOrder) >= 0;
+	}
+
+	public boolean availableForOrder(int countOfOrder) {
+		return this.availableForSale() || this.compareQuantity(countOfOrder);
+	}
+
 	protected Long getMenuId() {
 		return menuId;
 	}
@@ -86,16 +104,6 @@ public class Menu {
 
 	protected String getDescription() {
 		return description;
-	}
-
-	protected List<String> getImages() {
-		return images.stream()
-			.map(image -> image.getUrl())
-			.collect(Collectors.toList());
-	}
-
-	protected boolean availableForSale() {
-		return this.inventoryQuantity > 0;
 	}
 
 	public Category getCategory() {
