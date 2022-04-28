@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Queries, requestQuery } from "./convention";
 
-import { Categories, Product, Products, SpecialCategories } from "./product";
+import { Categories, Product, Products, SpecialCategories } from "./types";
 
 export type ResponseType = {
   [Queries.product]: Product;
@@ -11,10 +11,10 @@ export type ResponseType = {
 };
 export const useFetch = <T extends Queries>(
   target: T,
-  id = undefined,
+  id: number | undefined = undefined,
   ...deps: any[]
-): ResponseType => {
-  const [state, setState] = useState<ResponseType[T] | undefined>();
+): ResponseType[T] => {
+  const [state, setState] = useState<ResponseType[T] | any>({});
 
   useEffect(() => {
     try {

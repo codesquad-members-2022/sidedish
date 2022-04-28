@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useFetch } from "../fetcher";
 import { CardList } from "./CardList";
-import { cardNumPerPage, Queries, SIZES } from "../convention";
+import { cardNumPerPage, Queries } from "../convention";
 import { LeftArrowIcon } from "../icons/LeftArrowIcon";
 import { RightArrowIcon } from "../icons/RightArrowIcon";
+import { IDName, SizeProp, SIZES } from "../types";
 
-const CarouselTitle = styled.span`
+const CarouselTitle = styled.span<SizeProp>`
   ${(props) =>
     props.size === "medium" &&
     `
@@ -22,7 +23,7 @@ const CarouselTitle = styled.span`
     `}
 `;
 
-const CarouselButtonWrapper = styled.div`
+const CarouselButtonWrapper = styled.div<SizeProp & { dir: string }>`
   position: absolute;
   ${({ size, dir }) =>
     size === SIZES.medium
@@ -33,8 +34,12 @@ const CarouselButtonWrapper = styled.div`
       top: 51px;
       ${dir === "left" ? "right: 135px;" : "right: 57px;"}`}
 `;
-
-const CarouselButton = ({ size, dir, onBtnClick, isEndPage }) => (
+type ButtonType = SizeProp & {
+  dir: string;
+  onBtnClick: () => void;
+  isEndPage: boolean;
+};
+const CarouselButton = ({ size, dir, onBtnClick, isEndPage }: ButtonType) => (
   <CarouselButtonWrapper size={size} dir={dir} onClick={onBtnClick}>
     {dir === "left" ? (
       <LeftArrowIcon isEndPage={isEndPage} />
@@ -44,7 +49,11 @@ const CarouselButton = ({ size, dir, onBtnClick, isEndPage }) => (
   </CarouselButtonWrapper>
 );
 
-export const Carousel = ({ id, name, size }) => {
+export const Carousel = ({
+  id,
+  title,
+  size,
+}: { id: number; title: string } & SizeProp) => {
   const [curIndex, setCurIndex] = useState(0);
   const { requestDetail, products } = useFetch(Queries.products, id);
   const lastIndex = products?.length - cardNumPerPage[size];
@@ -61,8 +70,8 @@ export const Carousel = ({ id, name, size }) => {
     <>
       {products && (
         <>
-          <CarouselTitle size={size}>{requestDetail?.fullName}</CarouselTitle>
-          <CardList products={products} cardSize={size} curIndex={curIndex} />
+          <CarouselTitle size={size}>{title}</CarouselTitle>
+          <CardList products={products} size={size} curIndex={curIndex} />
           <CarouselButton
             size={size}
             onBtnClick={() => clickPrev()}

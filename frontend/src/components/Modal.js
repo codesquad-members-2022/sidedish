@@ -18,6 +18,7 @@ export const Modal = ({ openId }) => {
   const [count, setCount] = useState(1);
   const [primaryImage, setPrimaryImage] = useState("");
   const [variantImages, setVariantImages] = useState([]);
+
   const info = useFetch(Queries.product, openId);
   useEffect(() => {
     setPrimaryImage(info?.primary_image);

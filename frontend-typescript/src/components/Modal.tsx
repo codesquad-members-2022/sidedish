@@ -9,25 +9,26 @@ import {
 import { Plus, Minus } from "../icons/PlusMinus";
 import { DiscountTag } from "./DiscountTag";
 import { Carousel } from "./Carousel";
-import { Queries, SIZES } from "../convention";
+import { Queries } from "../convention";
 import { ModalContext } from "../ModalReducer";
 import { Line } from "./HorizontalLine";
 import { useFetch } from "../fetcher";
+import { Product, SIZES } from "../types";
 
-export const Modal = ({ openId }) => {
+export const Modal = ({ openId }: { openId: number }) => {
   const [count, setCount] = useState(1);
-  const [primaryImage, setPrimaryImage] = useState("");
-  const [variantImages, setVariantImages] = useState([]);
-  const [info, setInfo] = useState();
+  const [primaryImage, setPrimaryImage] = useState<string>("");
+  const [variantImages, setVariantImages] = useState<string[]>([]);
+  const [info, setInfo] = useState<Product | undefined>();
   const res = useFetch(Queries.product, openId);
   useEffect(() => {
     setInfo(res);
-    setPrimaryImage(info?.primary_image);
-    setVariantImages(info?.variant_image);
+    setPrimaryImage(res.primaryImage);
+    setVariantImages(res.variantImages);
   }, [res]);
   const { openedId, setOpenedId } = useContext(ModalContext);
 
-  const changePrimary = (key, img) => {
+  const changePrimary = (key: number, img: string) => {
     const newVariants = [...variantImages, primaryImage];
     const newPrimary = img;
     newVariants.splice(key, 1);
@@ -55,10 +56,10 @@ export const Modal = ({ openId }) => {
               <ProductOrderWrapper>
                 <ProductMainInfo>
                   <Name>{info.name}</Name>
-                  <PrimeCost>{info.price?.toLocaleString()}원</PrimeCost>
+                  <PrimeCost>{info.basePrice?.toLocaleString()}원</PrimeCost>
                   <BadgePrice>
-                    <DiscountTag discount={info.discount} />
-                    {info.final_price?.toLocaleString()}원
+                    <DiscountTag discounts={info.discounts} />
+                    {info.finalPrice?.toLocaleString()}원
                   </BadgePrice>
                 </ProductMainInfo>
                 <Line />
@@ -67,13 +68,13 @@ export const Modal = ({ openId }) => {
                   <div>{info.mileage?.toLocaleString()}원</div>
                   <div>배송정보</div>
                   <div>
-                    {info.eary_morning_delivery && "서울 경기 새벽배송"}{" "}
-                    {info.nationwide_delivery && "전국 택배배송"}
+                    {info.earlyMorningDelivery && "서울 경기 새벽배송"}{" "}
+                    {info.nationwideDelivery && "전국 택배배송"}
                   </div>
                   <div>배송비</div>
                   <div>
-                    {`${info.delivery_rate?.toLocaleString()}원
-                        (${info.free_delivery_threshold?.toLocaleString()}원 이상 주문시 무료)`}
+                    {`${info.deliveryRate?.toLocaleString()}원
+                        (${info.freeDeliveryThreshold?.toLocaleString()}원 이상 주문시 무료)`}
                   </div>
                 </ProductSubInfo>
                 <Line />
@@ -91,7 +92,7 @@ export const Modal = ({ openId }) => {
                   </TotalAmount>
                   <TotalCost>
                     <span className="total">총 주문금액</span>
-                    <span>{(info.final_price * count).toLocaleString()}원</span>
+                    <span>{(info.finalPrice * count).toLocaleString()}원</span>
                   </TotalCost>
                 </TotalWrapper>
                 <Button>
@@ -101,7 +102,11 @@ export const Modal = ({ openId }) => {
             </MainProduct>
             <Line color={"Black"} />
             <RelatedProduct>
-              <Carousel categoryID={1} size={SIZES.small}></Carousel>
+              <Carousel
+                id={1}
+                title={"함께하면 좋은 요리"}
+                size={SIZES.small}
+              ></Carousel>
             </RelatedProduct>
           </ModalWrapper>
         </ModalBackground>
@@ -133,7 +138,7 @@ const MainProduct = styled.div`
 
 const ProductImageWrapper = styled.div``;
 
-const PrimaryImage = styled.img`
+const PrimaryImage = styled.img<{ bgImg: string }>`
   ${width_height_bypx(392, 392)}
   background: url(${({ bgImg }) => bgImg});
   background-size: cover;

@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { CardList } from "./CardList";
-import { Queries, SIZES } from "../convention";
+import { Queries } from "../convention";
 import { useFetch } from "../fetcher";
 import { custom_flex, custom_font } from "../styles/global";
 import { HorizontalLine } from "./HorizontalLine";
+import { SIZES, SpecialCategories } from "../types";
 
 const Wrapper = styled.div`
   margin: 56px 0px;
@@ -34,7 +35,7 @@ const TabBar = styled.ul`
   display: flex;
 `;
 
-const TabItem = styled.li`
+const TabItem = styled.li<{ selected: boolean }>`
   margin-right: 32px;
   padding-bottom: 17px;
   ${custom_font("Noto Sans KR", 20, 500, 30, -0.008)}
@@ -46,10 +47,10 @@ const TabItem = styled.li`
     `}
 `;
 
-export const SpecialCategory = ({ specialCategories }) => {
-  const [selected, setSelected] = useState(specialCategories[0].id);
+export const SpecialCategory = ({ specialCategories }: SpecialCategories) => {
+  const [selected, setSelected] = useState<number>(specialCategories[0].id);
   const { products } = useFetch(Queries.products, selected);
-
+  console.log(products);
   return (
     <>
       {products && (
@@ -70,7 +71,7 @@ export const SpecialCategory = ({ specialCategories }) => {
             ))}
             <HorizontalLine position={100} color={"Grey4"} />
           </TabBar>
-          <CardList products={products} cardSize={SIZES.large}></CardList>
+          <CardList products={products} size={SIZES.large}></CardList>
         </Wrapper>
       )}
     </>

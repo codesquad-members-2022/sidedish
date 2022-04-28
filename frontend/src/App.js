@@ -16,10 +16,12 @@ const AppWrapper = styled.div`
 `;
 
 const App = () => {
+
   const { categories } = useFetch(Queries.categories);
   const { themes } = useFetch(Queries.specialCategories);
   //이름 specialCategories로 바뀌어야하는데 백엔드에 아직 반영이 안됨.
   const { openedId } = useContext(ModalContext);
+
 
   return (
     <>
