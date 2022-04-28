@@ -1,22 +1,24 @@
 package kr.codesquad.sidedish.controller;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import kr.codesquad.sidedish.domain.DishType;
 import kr.codesquad.sidedish.domain.SideDishType;
-import kr.codesquad.sidedish.exception.CustomException;
 import kr.codesquad.sidedish.response.CommonCode;
 import kr.codesquad.sidedish.response.CommonResponse;
-import kr.codesquad.sidedish.response.ErrorCode;
 import kr.codesquad.sidedish.service.ProductDTO;
 import kr.codesquad.sidedish.service.ProductService;
 import kr.codesquad.sidedish.service.ShippingInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Validated
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/products")
@@ -54,9 +56,10 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@GetMapping("/{id}/detail")
-	public ResponseEntity<CommonResponse> loadDetail(@PathVariable Integer id) {
-
-		checkForExistingId(id);
+	public ResponseEntity<CommonResponse> loadDetail(
+		@Min(value = 1, message = "1 미만의 상품 ID는 존재하지 않습니다.")
+		@Max(value = 24, message = "24 초과의 상품 ID는 존재하지 않습니다.")
+		@PathVariable Integer id) {
 
 		ProductDTO productDTO = productService.findById(id);
 
@@ -92,12 +95,5 @@ public class ProductController {
 				SideDishType.stringToEnum(sideDishType.get()));
 		}
 		return productService.loadDishListByType(DishType.stringToEnum(dishType));
-	}
-
-	private void checkForExistingId(Integer id) {
-		if (id < MinimumProductId ||
-			id > MaximumProductId) {
-			throw new CustomException(ErrorCode.PRODUCT_ID_NOT_ALLOWED);
-		}
 	}
 }
