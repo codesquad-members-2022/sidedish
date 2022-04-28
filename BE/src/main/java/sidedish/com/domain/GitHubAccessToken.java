@@ -1,4 +1,4 @@
-package sidedish.com.controller.model;
+package sidedish.com.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

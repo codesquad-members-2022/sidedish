@@ -1,6 +1,7 @@
 package sidedish.com.service;
 
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -9,18 +10,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import sidedish.com.controller.model.GitHubAccessToken;
+import sidedish.com.domain.GitHubAccessToken;
 import sidedish.com.domain.User;
+import sidedish.com.repository.UserRepository;
 
+@RequiredArgsConstructor
 @Service
 public class LoginService {
+	private final UserRepository userRepository;
 	private String clientId = "9819a665d5d8256d5ad6";
 	private String clientSecret = "684aa9107cd2d757809f7fb642bab01c041a06aa";
 	private String accessTokenApiUrl = "https://github.com/login/oauth/access_token";
 
-	public void login(String code) {
+	public Long login(String code) {
 		GitHubAccessToken accessToken = requestAccessToken(code);
 		User user = requestUser(accessToken);
+		User savedUser = userRepository.save(user);
+		User user1 = userRepository.findById(savedUser.getId()).orElseThrow();
+		System.out.println("user1 = " + user1);
+		return savedUser.getId();
 	}
 
 	private User requestUser(GitHubAccessToken accessToken) {
@@ -28,9 +36,11 @@ public class LoginService {
 		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 		httpHeaders.setBearerAuth(accessToken.getAccessToken());
 
-		return new RestTemplate()
+		User user = new RestTemplate()
 			.exchange("https://api.github.com/user", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), User.class).getBody();
+		user.setAccessToken(accessToken);
+		return user;
 	}
 
 	public GitHubAccessToken requestAccessToken(String code) {
