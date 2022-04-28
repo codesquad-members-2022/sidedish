@@ -1,19 +1,21 @@
 package kr.codesquad.sidedish.response;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+@Getter
 public class CommonResponse extends BasicResponse {
 
 	private Object data;
 
-	public CommonResponse(CommonCode commonCode) {
+	private CommonResponse(CommonCode commonCode) {
 		this.statusCode = commonCode.getHttpStatus().value();
 		this.statusName = commonCode.getHttpStatus().name();
 		this.message = commonCode.getDetail();
 	}
 
-	public CommonResponse(CommonCode commonCode, Object data) {
+	private CommonResponse(CommonCode commonCode, Object data) {
 		this.statusCode = commonCode.getHttpStatus().value();
 		this.statusName = commonCode.getHttpStatus().name();
 		this.message = commonCode.getDetail();
@@ -26,7 +28,11 @@ public class CommonResponse extends BasicResponse {
 			.body(this);
 	}
 
-	public Object getData() {
-		return data;
+	public static CommonResponse noContentCommonResponse() {
+		return new CommonResponse(CommonCode.SUCCESS_NO_CONTENT);
+	}
+
+	public static CommonResponse okCommonResponse(Object data) {
+		return new CommonResponse(CommonCode.SUCCESS, data);
 	}
 }

@@ -2,7 +2,6 @@ package kr.codesquad.sidedish.controller;
 
 import kr.codesquad.sidedish.domain.DishType;
 import kr.codesquad.sidedish.domain.SideDishType;
-import kr.codesquad.sidedish.response.CommonCode;
 import kr.codesquad.sidedish.response.CommonResponse;
 import kr.codesquad.sidedish.service.ProductDTO;
 import kr.codesquad.sidedish.service.ProductService;
@@ -18,6 +17,8 @@ import javax.validation.constraints.Min;
 import java.beans.PropertyEditorSupport;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static kr.codesquad.sidedish.response.CommonResponse.*;
 
 @Validated
 @RequiredArgsConstructor
@@ -63,7 +64,7 @@ public class ProductController {
                 .map(p -> ResponseSimpleProductInfo.from(p))
                 .collect(Collectors.toList());
 
-        return OKCommonResponse(simpleDTOs).toResponseEntity();
+        return okCommonResponse(simpleDTOs).toResponseEntity();
     }
 
     /**
@@ -82,7 +83,7 @@ public class ProductController {
                 .map(p -> ResponseSimpleProductInfo.from(p))
                 .collect(Collectors.toList());
 
-        return OKCommonResponse(simpleDTOs).toResponseEntity();
+        return okCommonResponse(simpleDTOs).toResponseEntity();
     }
 
     /**
@@ -100,7 +101,7 @@ public class ProductController {
         ResponseShippingInfo responseShippingInfo = ResponseShippingInfo.from(
                 shippingInfoService.findByDeliveryType(productDTO.getDeliveryType()));
 
-        return OKCommonResponse(
+        return okCommonResponse(
                 ResponseDetailProductInfo.from(productService.findById(id), responseShippingInfo))
                 .toResponseEntity();
     }
@@ -113,13 +114,5 @@ public class ProductController {
         productService.order(requestProduct);
 
         return noContentCommonResponse().toResponseEntity();
-    }
-
-    private CommonResponse noContentCommonResponse() {
-        return new CommonResponse(CommonCode.SUCCESS_NO_CONTENT);
-    }
-
-    private CommonResponse OKCommonResponse(Object data) {
-        return new CommonResponse(CommonCode.SUCCESS, data);
     }
 }
