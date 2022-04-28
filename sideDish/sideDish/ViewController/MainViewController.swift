@@ -10,6 +10,12 @@ import Toaster
 
 class MainViewController: UIViewController {
     
+    enum Section: Int{
+        case main = 0
+        case soup
+        case side
+    }
+    
     let headerData = ["모두가 좋아하는 든든한 메인 요리", "정성이 담긴 뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
     
     var foodManager: FoodManager = FoodManager()
@@ -56,9 +62,9 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section{
         
-        case 0: return foodManager.mainFood?.count ?? 0
-        case 1: return foodManager.soupFood?.count ?? 0
-        case 2: return foodManager.sideFood?.count ?? 0
+        case Section.main.rawValue: return foodManager.mainFood?.count ?? 0
+        case Section.soup.rawValue: return foodManager.soupFood?.count ?? 0
+        case Section.side.rawValue: return foodManager.sideFood?.count ?? 0
         default:
             return 0
         }
@@ -71,10 +77,10 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as? FoodCell else { return UICollectionViewCell() }
         
-        if indexPath.section == 0{
+        if indexPath.section == Section.main.rawValue{
             guard let main = foodManager.mainFood else { return UICollectionViewCell()}
             cell.setDomainFood(data: main[indexPath.item])
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == Section.soup.rawValue {
             guard let soup = foodManager.soupFood else { return UICollectionViewCell()}
             cell.setDomainFood(data: soup[indexPath.item])
         } else {
