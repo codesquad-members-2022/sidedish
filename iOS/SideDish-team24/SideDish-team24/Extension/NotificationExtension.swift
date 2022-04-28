@@ -5,9 +5,3 @@ extension Notification.Name {
     
     static let counterValueChanged: Notification.Name = Notification.Name("valueChanged")
 }
-
-enum NotificationKeyValue: String {
-    case count
-    case amount
-    case stepperValue
-}
