@@ -1,6 +1,5 @@
 package com.team34.sidedish.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
@@ -15,7 +14,7 @@ public class Category {
     private Long parentCategoryId;
 
     @MappedCollection(idColumn = "parent_category_id", keyColumn = "id")
-    private List<Category> children = new ArrayList<>();
+    private final List<Category> children;
 
     public Category(Long id, String name, boolean isEvent, Long parentCategoryId,
         List<Category> children) {
@@ -24,11 +23,6 @@ public class Category {
         this.isEvent = isEvent;
         this.parentCategoryId = parentCategoryId;
         this.children = children;
-    }
-
-    public void addCategory(Long id, String name, boolean isEvent, Long parentCategoryId,
-        List<Category> children) {
-        children.add(new Category(id, name, isEvent, parentCategoryId, children));
     }
 
     public void clearCategory() {

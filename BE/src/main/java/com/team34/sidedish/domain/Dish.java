@@ -22,10 +22,27 @@ public class Dish {
     private boolean earlyDeliverable;
 
     @MappedCollection(idColumn = "dish_id", keyColumn = "id")
-    private List<CategoryDish> categories;
+    private final List<CategoryDish> categories;
 
     @MappedCollection(idColumn = "dish_id", keyColumn = "id")
-    private List<DishImage> images;
+    private final List<DishImage> images;
+
+    public Dish(Long id, String title, String content, String tag, int price, int stock,
+        int deliveryFee, Integer freeShippingAmount, double mileageRate, boolean earlyDeliverable,
+        List<CategoryDish> categories, List<DishImage> images) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.tag = tag;
+        this.price = price;
+        this.stock = stock;
+        this.deliveryFee = deliveryFee;
+        this.freeShippingAmount = freeShippingAmount;
+        this.mileageRate = mileageRate;
+        this.earlyDeliverable = earlyDeliverable;
+        this.categories = categories;
+        this.images = images;
+    }
 
     public List<Long> categoryIds() {
         return categories.stream()
