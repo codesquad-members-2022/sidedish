@@ -1,5 +1,6 @@
 package com.example.sideDish.ui.productdetail
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,8 @@ import java.text.DecimalFormat
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
     private val viewModel by viewModels<FoodDetailViewModel>()
+    lateinit var hash: String
+    lateinit var title: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,32 +35,56 @@ class ProductDetailFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
+        binding.viewModel = viewModel
+
         showDetail()
         occurException()
         registerStepper()
         registerViewpager()
         orderProduct()
+        observeOrderSuccess()
 
         return binding.root
+    }
+
+    private fun observeOrderSuccess() {
+        viewModel.orderSuccess.observe(viewLifecycleOwner, EventObserver {
+            val builder = AlertDialog.Builder(requireContext())
+                .setMessage("해당 상품을 주문했습니다.")
+                .setPositiveButton(
+                    "확인"
+                ) { _, _ -> }
+                .create()
+                .show()
+            closeFragment()
+        })
     }
 
     private fun occurException() {
         viewModel.exceptionOccur.observe(viewLifecycleOwner, EventObserver {
             Toast.makeText(requireContext(), "반찬 세부 정보를 가져올 수 없습니다", Toast.LENGTH_SHORT).show()
-            parentFragmentManager.beginTransaction().remove(this).commit()
-            parentFragmentManager.popBackStack()
+            closeFragment()
         })
+    }
+
+    private fun closeFragment() {
+        parentFragmentManager.beginTransaction().remove(this).commit()
+        parentFragmentManager.popBackStack()
     }
 
     private fun orderProduct() {
         viewModel.orderOccur.observe(viewLifecycleOwner, EventObserver() {
-
+            viewModel.order(
+                title,
+                binding.stepper.value.text.toString().toInt(),
+                binding.textViewTotalCostFix.text.toString()
+            )
         })
     }
 
     private fun showDetail() {
-        val hash = arguments?.getString(DETAIL_HASH_KEY)
-        val title = arguments?.getString(TITLE_KEY)
+        hash = arguments?.getString(DETAIL_HASH_KEY).toString()
+        title = arguments?.getString(TITLE_KEY).toString()
         hash?.let { viewModel.getDetail(it) }
         binding.textViewDetailTitle.text = title
     }
