@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode
 @ToString
 public class Item {
+
+    private static final double MILEAGE_RATE = 0.01;
+
     private Long itemId;
     private String name;
     private String description;
@@ -72,7 +75,7 @@ public class Item {
     }
 
     public int getMileage() {
-        return (int)(getDiscountedItemPrice() * 0.01);
+        return (int)(getDiscountedItemPrice() * MILEAGE_RATE);
     }
 
     public List<String> getMainImageUrls() {
