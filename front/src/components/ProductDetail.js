@@ -117,7 +117,7 @@ const PrimeCost = styled.div`
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 8px;
-  color: #bcbcbc;
+  color: ${({ theme }) => theme.colors.gray3};
 `;
 const BadgeAndPrice = styled.div`
   display: flex;
@@ -132,8 +132,8 @@ const Price = styled.div`
 const Info = styled.div`
   display: flex;
   justify-content: flex-start;
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray4};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray4};
   box-sizing: border-box;
   padding: 17px 0;
   margin-bottom: 26px;
@@ -146,7 +146,7 @@ const InfoTitles = styled.div`
   justify-content: space-between;
 `;
 const PointTitle = styled.div`
-  color: #777777;
+  color: ${({ theme }) => theme.colors.gray2};
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -158,7 +158,7 @@ const InfoDetails = styled(InfoTitles)`
   height: 103px;
 `;
 const Point = styled(PointTitle)`
-  color: #1b1b1b;
+  color: ${({ theme }) => theme.colors.black};
 `;
 const Delivery = styled(Point)``;
 const DeliveryPrice = styled(Point)``;
@@ -179,7 +179,7 @@ const MinusButton = styled.button`
   font-size: 25px;
   display: grid;
   place-content: center start;
-  color: #777777;
+  color: ${({ theme }) => theme.colors.gray2};
 `;
 const Amount = styled.div`
   font-size: 16px;
@@ -197,7 +197,7 @@ const TotalCostTitle = styled.div`
   font-size: 16px;
   display: grid;
   place-content: center center;
-  color: #777777;
+  color: ${({ theme }) => theme.colors.gray2};
 `;
 const TotalCost = styled.div`
   font-size: 20px;
@@ -209,8 +209,8 @@ const OrderButton = styled.button`
   left: 472px;
   display: grid;
   place-content: center center;
-  background: #1b1b1b;
-  color: #ffffff;
+  background: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
   font-weight: 700;
   font-size: 18px;
 `;

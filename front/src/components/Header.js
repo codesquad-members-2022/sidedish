@@ -112,7 +112,7 @@ const Icons = styled.div`
 `;
 const SubCategory = styled.li`
   &:hover {
-    color: #ff8e14;
+    color: ${({ theme }) => theme.colors.orange};
     text-decoration: underline;
   }
   margin: 8px 0px;

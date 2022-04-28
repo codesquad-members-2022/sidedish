@@ -43,7 +43,7 @@ const CategoryShowButton = styled.button`
   letter-spacing: -0.008em;
   padding: 16px 24px;
   margin: 85px auto 56px auto;
-  border: 1px solid #ebebeb;
+  border: 1px solid ${({ theme }) => theme.colors.gray4};
 `;
 
 export default Main;

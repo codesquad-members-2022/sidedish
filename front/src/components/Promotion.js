@@ -48,9 +48,9 @@ const PromotionHeader = styled.div`
 `;
 const PromotionBadge = styled.div`
   padding: 8px 16px;
-  background: #f8f7f7;
+  background: ${({ theme }) => theme.colors.offWhite};
 
-  border: 2px solid #1b1b1b;
+  border: 2px solid ${({ theme }) => theme.colors.black};
   box-sizing: border-box;
   border-radius: 999px;
 `;
@@ -65,7 +65,7 @@ const TabBar = styled.ul`
 `;
 const Tab = styled.li`
   margin-right: 32px;
-  ${props => (props.selected ? `border-bottom: 1px solid black;` : '')}
+  ${props => (props.selected ? `border-bottom: 1px solid ${({ theme }) => theme.colors.black};` : '')}
   padding-bottom: 17px;
   font-weight: 500;
   font-size: 20px;
@@ -77,7 +77,7 @@ const Line = styled.div`
   width: 100vw;
   height: 1px;
 
-  background: #ebebeb;
+  background: ${({ theme }) => theme.colors.gray4};
 `;
 const CardList = styled.div`
   padding: 34px 0 56px 0;
