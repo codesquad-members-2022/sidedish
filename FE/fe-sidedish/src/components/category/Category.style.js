@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import { ButtonType } from './Category';
+import styled, { css } from 'styled-components';
+import { CARD_SIZE } from '../../constants/card';
 
 const Container = styled.section`
   margin-top: 50px;
+  ${({ cardSize }) => cardSize === CARD_SIZE.SMALL && SmallContainer}
 `;
 
 const Wrapper = styled.div`
@@ -19,37 +20,17 @@ const Title = styled.h2`
   margin-bottom: 40px;
 `;
 
-const Slide = styled.div`
-  position: relative;
+const SmallContainer = css`
+  margin-top: 0;
+  
+  ${Wrapper} {
+    padding: 0;
+  }
+
+  ${Title} {
+    font-size: ${({ theme }) => `${theme.fontSize.large}`};
+    margin-bottom: 28px;
+  }
 `;
 
-const SlideWrapper = styled.div`
-  overflow: hidden;
-`;
-
-const SlideButton = styled.button`
-  position: absolute;
-  top: 50%;
-  ${({ type }) => type === ButtonType.PREV && 'left: -60px;'}
-  ${({ type }) => type === ButtonType.NEXT && 'right: -60px;'}
-  width: 32px;
-  height: 32px;
-  font-size: 0;
-  transform: translateY(-50%);
-`;
-
-const CardList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-`;
-
-export {
-  Container,
-  Wrapper,
-  Title,
-  Slide,
-  SlideWrapper,
-  SlideButton,
-  CardList,
-};
+export { Container, Wrapper, Title };

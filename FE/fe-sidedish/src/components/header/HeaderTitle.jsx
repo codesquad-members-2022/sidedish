@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom";
-import { Title } from "./Header.style";
+import { Link } from 'react-router-dom';
+
+import * as S from './Header.style';
 
 const HeaderTitle = ({ title, href }) => {
+  const refreshPage = () => window.location.reload();
+
   return (
-    <Title>
-      <Link to="/" onClick={() => (window.location.href = href)}>
+    <S.Title>
+      <Link to={href} onClick={refreshPage}>
         {title}
       </Link>
-    </Title>
+    </S.Title>
   );
 };
 

@@ -1,11 +1,11 @@
-import { TitleWrapper, Title, Badge } from "./Exhibition.style";
+import * as S from './Exhibition.style';
 
 const ExhibitionTitle = ({ badge, title }) => {
   return (
-    <TitleWrapper>
-      <Badge>{badge}</Badge>
-      <Title>{title}</Title>
-    </TitleWrapper>
+    <S.TitleContainer>
+      <S.Badge>{badge}</S.Badge>
+      <S.Title>{title}</S.Title>
+    </S.TitleContainer>
   );
 };
 

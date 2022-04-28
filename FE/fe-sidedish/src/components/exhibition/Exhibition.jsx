@@ -1,19 +1,41 @@
-import { Container } from "./Exhibition.style";
-import ExhibitionTitle from "./ExhibitionTitle";
-import TapBar from "./TapBar";
-import DishList from "./DishList";
-import { dish3 } from "../../data/dishes";
+import { useState } from 'react';
 
-const Exhibition = () => {
+import * as S from './Exhibition.style';
+
+import ExhibitionTitle from './ExhibitionTitle';
+import ExhibitionMenus from './ExhibitionMenus';
+import TapButton from './TabButton';
+
+const BADGE_EXHIBITION = '기획전';
+
+const Exhibition = ({
+  exhibitionTitle,
+  categoryNameList,
+  specialCategories: { categoryId, subCategoryList },
+}) => {
+  const [activeTapId, setActiveTapId] = useState(categoryId);
+  const [menus, setMenus] = useState(subCategoryList);
+
+  const handleTapClick = id => {
+    if (activeTapId === id) return;
+    setActiveTapId(id);
+    setMenus(subCategoryList); // menus데이터를 fetch해서 받아와야함
+  };
+
   return (
-    <Container>
-      <ExhibitionTitle
-        badge={"기획전"}
-        title={"한 번 주문하면 두 번 반하는 반찬"}
-      />
-      <TapBar />
-      <DishList dishesData={dish3} />
-    </Container>
+    <S.Container>
+      <ExhibitionTitle badge={BADGE_EXHIBITION} title={exhibitionTitle} />
+      <S.TapBarList>
+        {categoryNameList.map(({ id, title }) => (
+          <li key={id} onClick={() => handleTapClick(id)}>
+            <TapButton isActive={activeTapId === id} title={title} />
+          </li>
+        ))}
+      </S.TapBarList>
+      <S.HorizontalLine />
+      <ExhibitionMenus menus={menus} />
+      <S.HorizontalLine />
+    </S.Container>
   );
 };
 
