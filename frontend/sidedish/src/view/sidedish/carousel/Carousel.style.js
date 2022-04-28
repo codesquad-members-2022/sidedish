@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const Container = styled.div`
     display: flex;
@@ -17,4 +17,41 @@ const Icon = styled.svg`
     }
 `;
 
-export { Container, Icon };
+const slideLeft2Right = keyframes`
+    from {
+        margin-left: 640px;
+        opacity: 1;
+    }
+    to {
+        margin-left: 0px;
+        opacity: 1;
+    }
+`;
+
+const slideRight2Left = keyframes`
+    from {
+        margin-left: -640px;
+        opacity: 1;
+    }
+    to {
+        margin-left: 0px;
+        opacity: 1;
+    }
+`;
+
+const CarouselItem = styled.div`
+    animation: ${(props) =>
+            props.direction === "L"
+                ? slideLeft2Right
+                : props.direction === "R"
+                ? slideRight2Left
+                : "none"}
+        0.4s ease-out;
+`;
+
+const Wrapper = styled.div`
+    width: 1280px;
+    overflow: hidden;
+`;
+
+export { Container, Icon, CarouselItem, Wrapper };

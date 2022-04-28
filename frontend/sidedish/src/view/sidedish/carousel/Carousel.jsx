@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Icon } from "./Carousel.style";
+import { Container, Icon, CarouselItem, Wrapper } from "./Carousel.style";
 
 const isClickable = (direction, params) => {
     if (direction === "R") {
@@ -11,30 +11,21 @@ const isClickable = (direction, params) => {
 };
 
 function Carousel({ page, onUpdatePage, currDataSize, hasNext, children }) {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const updateIndex = (newIndex) => {
-        if (newIndex < 0) {
-            newIndex = 0;
-        } else if (newIndex >= React.Children.count(children)) {
-            newIndex = React.Children.count(children) - 1;
-        }
-
-        setActiveIndex(newIndex);
-    };
+    const [direction, setDirection] = useState(null);
 
     const onClick = (direction) => {
         switch (direction) {
             case "L": {
                 if (isClickable("L", { page })) {
-                    updateIndex(activeIndex - 1);
                     onUpdatePage(page - 1);
+                    setDirection("L");
                 }
                 break;
             }
             case "R": {
                 if (isClickable("R", { hasNext, page, currDataSize })) {
-                    updateIndex(activeIndex + 1);
                     onUpdatePage(page + 1);
+                    setDirection("R");
                 }
                 break;
             }
@@ -60,7 +51,9 @@ function Carousel({ page, onUpdatePage, currDataSize, hasNext, children }) {
                     d="M15 19l-7-7 7-7"
                 />
             </Icon>
-            <div>{children}</div>
+            <Wrapper>
+                <CarouselItem direction={direction}>{children}</CarouselItem>
+            </Wrapper>
             <Icon
                 onClick={() => onClick("R")}
                 clickable={isClickable("R", { hasNext, page, currDataSize })}
