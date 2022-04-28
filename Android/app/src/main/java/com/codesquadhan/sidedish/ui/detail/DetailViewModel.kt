@@ -17,25 +17,22 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository) :
     ViewModel() {
 
-    private val _detailResponseLd = MutableLiveData<DetailResponse>()
-    val detailResponseLd = _detailResponseLd
+    private val _detailResponseLiveData = MutableLiveData<DetailResponse>()
+    val detailResponseLiveData = _detailResponseLiveData
 
-    private val _detailImageListLd = MutableLiveData<List<TopImageData>>()
+    private val _detailImageListLiveData = MutableLiveData<List<TopImageData>>()
     private val detailImageList = mutableListOf<TopImageData>()
-    val detailImageListLd: LiveData<List<TopImageData>> = _detailImageListLd
+    val detailImageListLiveData: LiveData<List<TopImageData>> = _detailImageListLiveData
 
-    private val _vpImageListLd = MutableLiveData<List<TopImageData>>()
+    private val _vpImageListLiveData = MutableLiveData<List<TopImageData>>()
     private val vpImageList = mutableListOf<TopImageData>()
-    val vpImageListLd: LiveData<List<TopImageData>> = _vpImageListLd
+    val vpImageListLiveData: LiveData<List<TopImageData>> = _vpImageListLiveData
 
-    private val _orderedFoodQuantityLD = MutableLiveData(1)
-    val orderedFoodQuantityLD: LiveData<Int> = _orderedFoodQuantityLD
+    private val _orderedFoodQuantityLiveData = MutableLiveData(1)
+    val orderedFoodQuantityLiveData: LiveData<Int> = _orderedFoodQuantityLiveData
 
-    val testCount = 10
-    val testPrice = 1000
-
-    private val _orderSuccessLd = MutableLiveData<Boolean>()
-    val orderSuccessLd = _orderSuccessLd
+    private val _orderSuccessLiveData = MutableLiveData<Boolean>()
+    val orderSuccessLiveData = _orderSuccessLiveData
 
     // CEH
     val ceh = CoroutineExceptionHandler { _, exception ->
@@ -49,14 +46,14 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
         Log.d("AppTest", "Something happend: $exception")
 
         // 수량 초과 시 or 네트워크 오류 시
-        _orderSuccessLd.value = false
+        _orderSuccessLiveData.value = false
     }
 
     fun getMenuDetail(id: Int) {
         viewModelScope.launch(ceh) {
             val detailResponse =
                 detailRepository.getMenuDetail(id) ?: throw RuntimeException("why..?")
-            _detailResponseLd.value = detailResponse
+            _detailResponseLiveData.value = detailResponse
 
             detailResponse.mainImage.forEachIndexed { index, url ->
                 vpImageList.add(TopImageData(index + 1, url))
@@ -65,27 +62,26 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
                 detailImageList.add(TopImageData(index + 1, url))
             }
 
-            _vpImageListLd.value = vpImageList
-            _detailImageListLd.value = detailImageList
+            _vpImageListLiveData.value = vpImageList
+            _detailImageListLiveData.value = detailImageList
         }
     }
 
     fun countUpOrDownOrderFoodQuantity(countUpOrDown: Int) {
-        _orderedFoodQuantityLD.value?.let {
+        _orderedFoodQuantityLiveData.value?.let {
             when (countUpOrDown) {
-                0 -> _orderedFoodQuantityLD.value = it + 1
-                else -> _orderedFoodQuantityLD.value = if (it - 1 < 1) 1 else it - 1
+                1 -> _orderedFoodQuantityLiveData.value = it + 1
+                -1 -> _orderedFoodQuantityLiveData.value = if (it - 1 < 1) 1 else it - 1
             }
         }
     }
 
-
     // 재고 초과한 값으로 주문 시 response의 isSuccessful이 false가 되면서 repository에서 던진 예외가 ceh에서 잡힌다
     fun orderFood(menuId: Int) {
-        _orderedFoodQuantityLD.value?.let {
+        _orderedFoodQuantityLiveData.value?.let {
             viewModelScope.launch(cehOrder) {
                 detailRepository.orderFood(menuId, it)
-                _orderSuccessLd.value = true
+                _orderSuccessLiveData.value = true
             }
         }
     }

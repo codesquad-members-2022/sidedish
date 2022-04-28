@@ -5,7 +5,8 @@ import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 fun <T> MutableList<T>.addAllAndSetIsWhite(menuList: List<T>) {
     this.addAll(menuList)
     menuList.forEach {
-        it as MainResponseItem
-        it.isWhite = false
+        if (it is MainResponseItem) {
+            it.isWhite = false
+        }
     }
 }

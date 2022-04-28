@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
-import com.codesquadhan.sidedish.data.repository.LoginRepository
 import com.codesquadhan.sidedish.data.repository.MenuRepository
 import com.codesquadhan.sidedish.ui.common.ViewType.HEADER_VIEW_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,20 +17,11 @@ import com.codesquadhan.sidedish.ui.common.addAllAndSetIsWhite
 import kotlinx.coroutines.CoroutineExceptionHandler
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val menuRepository: MenuRepository, private val loginRepository: LoginRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val menuRepository: MenuRepository): ViewModel() {
 
-    private val _menuMainListLd = MutableLiveData<List<MainResponseItem>>()
+    private val _menuMainListLiveData = MutableLiveData<List<MainResponseItem>>()
     private val menuMainList = mutableListOf<MainResponseItem>()
-    val menuMainListLd: LiveData<List<MainResponseItem>> = _menuMainListLd
-
-    private val _mainSectionMenuCountLd = MutableLiveData<Int>(0)
-    val mainSectionMenuCountLd: LiveData<Int> = _mainSectionMenuCountLd
-
-    private val _soupSectionMenuCountLd = MutableLiveData<Int>(0)
-    val soupSectionMenuCountLd: LiveData<Int> = _soupSectionMenuCountLd
-
-    private val _sideSectionMenuCountLd = MutableLiveData<Int>(0)
-    val sideSectionMenuCountLd: LiveData<Int> = _sideSectionMenuCountLd
+    val menuMainListLiveData: LiveData<List<MainResponseItem>> = _menuMainListLiveData
 
     // CEH
     val ceh = CoroutineExceptionHandler { _, exception ->
@@ -59,24 +49,17 @@ class MainViewModel @Inject constructor(private val menuRepository: MenuReposito
 
             menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "모두가 좋아하는\n든든한 메인 요리", itemCount = mainResponse.await().size))
             menuMainList.addAll(mainResponse.await())
-            _menuMainListLd.value = menuMainList
+            _menuMainListLiveData.value = menuMainList
 
             menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "정성이 담긴\n뜨끈뜨끈 국물 요리", isWhite = false, itemCount = soupResponse.await().size))
             menuMainList.addAllAndSetIsWhite(soupResponse.await())
-            _menuMainListLd.value = menuMainList
+            _menuMainListLiveData.value = menuMainList
 
             menuMainList.add(MainResponseItem( viewType = HEADER_VIEW_TYPE, headerText = "식탁을 풍성하게 하는\n정갈한 밑반찬", itemCount = sideResponse.await().size))
             menuMainList.addAll(sideResponse.await())
-            _menuMainListLd.value = menuMainList
+            _menuMainListLiveData.value = menuMainList
 
             Log.d("AppTest", "total data : $menuMainList")
-        }
-    }
-
-    // 로그인
-    fun doLogin(){
-        viewModelScope.launch(loginCeh) {
-            loginRepository.doLogin()
         }
     }
 }

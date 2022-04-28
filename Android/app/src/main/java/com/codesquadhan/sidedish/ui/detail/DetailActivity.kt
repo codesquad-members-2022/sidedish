@@ -18,15 +18,19 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var detailAdapter: DetailAdapter
     private val detailViewModel: DetailViewModel by viewModels()
+    private var menuId = 0
 
-    private var ID = 0
+    enum class Count(val value: Int) {
+        UP(1),
+        DOWN(-1)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
-        ID = intent.getIntExtra("id", 0)
-        Log.d("AppTest", "menuId : $ID")
+        menuId = intent.getIntExtra("id", 0)
+        Log.d("AppTest", "menuId : $menuId")
         binding.viewModel = detailViewModel
         binding.lifecycleOwner = this
 
@@ -36,9 +40,9 @@ class DetailActivity : AppCompatActivity() {
         setDetailInfo()
         countUpOrDownQuantity()
         setOrderFoodQuantity()
-        orderFood(ID)
+        orderFood(menuId)
         setOrderResultDialog()
-        detailViewModel.getMenuDetail(ID)
+        detailViewModel.getMenuDetail(menuId)
     }
 
     private fun setViewPagerListener() {
@@ -53,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setDetailInfo() {
-        detailViewModel.detailResponseLd.observe(this) {
+        detailViewModel.detailResponseLiveData.observe(this) {
             binding.detailInfo = it
         }
     }
@@ -65,7 +69,7 @@ class DetailActivity : AppCompatActivity() {
             //orientation = ViewPager2.ORIENTATION_HORIZONTAL
         }
 
-        detailViewModel.vpImageListLd.observe(this) {
+        detailViewModel.vpImageListLiveData.observe(this) {
             viewPagerAdapter.submitList(it.toList())
             binding.tvTotalPage.text = it.size.toString()
         }
@@ -77,23 +81,23 @@ class DetailActivity : AppCompatActivity() {
             adapter = detailAdapter
         }
 
-        detailViewModel.detailImageListLd.observe(this) {
+        detailViewModel.detailImageListLiveData.observe(this) {
             detailAdapter.submitList(it.toList())
         }
     }
 
     private fun countUpOrDownQuantity() {
         binding.ivCountDown.setOnClickListener {
-            detailViewModel.countUpOrDownOrderFoodQuantity(-1)
+            detailViewModel.countUpOrDownOrderFoodQuantity(Count.DOWN.value)
         }
 
         binding.ivCountUp.setOnClickListener {
-            detailViewModel.countUpOrDownOrderFoodQuantity(0)
+            detailViewModel.countUpOrDownOrderFoodQuantity(Count.UP.value)
         }
     }
 
     private fun setOrderFoodQuantity() {
-        detailViewModel.orderedFoodQuantityLD.observe(this) {
+        detailViewModel.orderedFoodQuantityLiveData.observe(this) {
             binding.tvItemCount.text = it.toString()
         }
     }
@@ -104,20 +108,19 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setOrderResultDialog(){
-        detailViewModel.orderSuccessLd.observe(this){
-            if(it){
+    private fun setOrderResultDialog() {
+        detailViewModel.orderSuccessLiveData.observe(this) {
+            if (it) {
                 // 주문 성공 다이얼로그
                 openDialog(getString(R.string.order_success_message))
-            }
-            else{
+            } else {
                 // 주문 실패 다이얼로그
                 openDialog(getString(R.string.order_fail_message))
             }
         }
     }
 
-    private fun openDialog(message: String){ // 성공, 실패 둘다 확인 누르면 뒤로가기 처리
+    private fun openDialog(message: String) { // 성공, 실패 둘다 확인 누르면 뒤로가기 처리
         MaterialAlertDialogBuilder(this)
             .setMessage(message)
             .setPositiveButton(getString(R.string.dialog_ok)) { dialog, which ->

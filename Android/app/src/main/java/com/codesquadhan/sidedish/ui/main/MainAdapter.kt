@@ -1,6 +1,5 @@
 package com.codesquadhan.sidedish.ui.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -43,7 +42,7 @@ class MainAdapter(private val itemClick: (id: Int) -> Unit) :
         val currentItem = getItem(position)
 
         when (currentItem.viewType) {
-            HEADER_VIEW_TYPE -> (holder as MainHeaderViewHolder).bind(currentItem, position)
+            HEADER_VIEW_TYPE -> (holder as MainHeaderViewHolder).bind(currentItem)
             FOOD_VIEW_TYPE -> (holder as MainFoodViewHolder).bind(currentItem, itemClick)
         }
 
@@ -53,24 +52,28 @@ class MainAdapter(private val itemClick: (id: Int) -> Unit) :
         return getItem(position).viewType
     }
 
-    inner class MainHeaderViewHolder(private val binding: ItemMainHeaderBinding) :
+    class MainHeaderViewHolder(private val binding: ItemMainHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(mainResponseItem: MainResponseItem, position: Int) {
+        fun bind(mainResponseItem: MainResponseItem) {
             binding.mainResponseItem = mainResponseItem
             binding.tvMainHeader.text = mainResponseItem.headerText
 
-            binding.tvItemCount.text = binding.root.context.getString(R.string.header_item_count, mainResponseItem.itemCount)
+            binding.tvItemCount.text = binding.root.context.getString(
+                R.string.header_item_count,
+                mainResponseItem.itemCount
+            )
             binding.tvItemCount.isVisible = mainResponseItem.isHeaderClicked
             binding.root.setOnClickListener {
                 binding.tvItemCount.isVisible = true
-                getItem(position).isHeaderClicked = true
+//                getItem(position).isHeaderClicked = true
+                mainResponseItem.isHeaderClicked = true
             }
         }
 
     }
 
-    inner class MainFoodViewHolder(private val binding: ItemMainFoodBinding) :
+    class MainFoodViewHolder(private val binding: ItemMainFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(mainResponseItem: MainResponseItem, itemClick: (id: Int) -> Unit) {

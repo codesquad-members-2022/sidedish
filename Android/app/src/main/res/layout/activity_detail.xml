@@ -446,7 +446,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
-                android:text="@string/delivery_fee"
+                android:text="@string/detail_delivery_fee"
                 app:layout_constraintBottom_toBottomOf="@+id/v_detail_tv_7"
                 app:layout_constraintStart_toEndOf="@+id/gl_detail_4.44"
                 app:layout_constraintTop_toTopOf="@+id/v_detail_tv_7"
@@ -552,10 +552,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
+                android:text="@string/item_count_description"
                 app:layout_constraintBottom_toTopOf="@id/v_detail_empty_17"
                 app:layout_constraintStart_toEndOf="@id/gl_detail_4.44"
                 app:layout_constraintTop_toBottomOf="@id/v_detail_empty_16"
-                android:text="@string/item_count_description"
                 tools:text="수량" />
 
             <View
@@ -592,11 +592,11 @@
             <TextView
                 android:id="@+id/tv_total_price"
                 style="@style/Text_Large_Bold"
+                orderCount="@{viewModel.orderedFoodQuantityLiveData}"
+                salePrice="@{viewModel.detailResponseLiveData.salePrice}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
-                orderCount="@{viewModel.orderedFoodQuantityLD}"
-                salePrice="@{viewModel.detailResponseLd.salePrice}"
                 app:layout_constraintBottom_toBottomOf="@id/v_empty_19"
                 app:layout_constraintEnd_toStartOf="@id/gl_detail_95.56"
                 app:layout_constraintTop_toTopOf="@id/v_empty_19"

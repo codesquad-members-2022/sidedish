@@ -1,7 +1,6 @@
 package com.codesquadhan.sidedish.ui.main
 
 import android.content.Intent
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     private fun setMainRv() {
         mainAdapter = makeMainAdapter()
         binding.rvMain.adapter = mainAdapter
-        viewModel.menuMainListLd.observe(this) {
+        viewModel.menuMainListLiveData.observe(this) {
             mainAdapter.submitList(it.toList())
         }
     }
