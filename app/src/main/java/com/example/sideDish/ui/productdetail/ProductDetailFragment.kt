@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
-import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
 import com.example.sideDish.ui.foodlist.DETAIL_HASH_KEY
 import com.example.sideDish.ui.foodlist.TITLE_KEY
@@ -35,21 +32,34 @@ class ProductDetailFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
-        val hash = arguments?.getString(DETAIL_HASH_KEY)
-        val title = arguments?.getString(TITLE_KEY)
-        hash?.let { viewModel.getDetail(it) }
-        binding.textViewDetailTitle.text = title
+        showDetail()
+        occurException()
+        registerStepper()
+        registerViewpager()
+        orderProduct()
 
+        return binding.root
+    }
+
+    private fun occurException() {
         viewModel.exceptionOccur.observe(viewLifecycleOwner, EventObserver {
             Toast.makeText(requireContext(), "반찬 세부 정보를 가져올 수 없습니다", Toast.LENGTH_SHORT).show()
             parentFragmentManager.beginTransaction().remove(this).commit()
             parentFragmentManager.popBackStack()
         })
+    }
 
-        registerStepper()
-        registerViewpager()
+    private fun orderProduct() {
+        viewModel.orderOccur.observe(viewLifecycleOwner, EventObserver() {
 
-        return binding.root
+        })
+    }
+
+    private fun showDetail() {
+        val hash = arguments?.getString(DETAIL_HASH_KEY)
+        val title = arguments?.getString(TITLE_KEY)
+        hash?.let { viewModel.getDetail(it) }
+        binding.textViewDetailTitle.text = title
     }
 
     private fun registerStepper() {

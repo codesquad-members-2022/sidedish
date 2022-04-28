@@ -24,6 +24,9 @@ class FoodDetailViewModel @Inject constructor(
     private val _exceptionOccur = MutableLiveData<Event<Boolean>>()
     val exceptionOccur = _exceptionOccur
 
+    private val _orderOccur = MutableLiveData<Event<Order>>()
+    val orderOccur: LiveData<Event<Order>> = _orderOccur
+
     val orderCount = MutableLiveData<Int>(0)
 
     private val ceh = CoroutineExceptionHandler { _, exception ->
@@ -33,8 +36,12 @@ class FoodDetailViewModel @Inject constructor(
 
     fun getDetail(hash: String) {
         viewModelScope.launch(ceh) {
-           // throw Exception()
+            // throw Exception()
             _detail.value = repository.getDetail(hash)
         }
+    }
+
+    fun order() {
+        _orderOccur.value = Event(Order())
     }
 }
