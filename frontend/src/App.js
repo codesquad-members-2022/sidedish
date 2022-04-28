@@ -1,17 +1,12 @@
-import {
-  useCategories,
-  useFetch,
-  useFetch1,
-  useSpecialCategories,
-} from "./fetcher";
+import styled from "styled-components";
+import { useContext } from "react";
+import { ModalContext } from "./ModalReducer";
+import { Queries } from "./convention";
+import { useFetch } from "./fetcher";
 import { Header } from "./components/Header";
 import { SpecialCategory } from "./components/SpecialCategory";
 import { Category } from "./components/Category";
-import styled from "styled-components";
 import { Modal } from "./components/Modal";
-import { ModalContext } from "./ModalReducer";
-import { useContext } from "react";
-import { Queries } from "./convention";
 
 const AppWrapper = styled.div`
   width: 100vw;
@@ -22,19 +17,17 @@ const AppWrapper = styled.div`
 
 const App = () => {
   const { categories } = useFetch(Queries.categories);
-  const { specialCategories } = useFetch(Queries.specialCategories);
-
-  const { openedId, setOpenedId } = useContext(ModalContext);
+  const { themes } = useFetch(Queries.specialCategories);
+  //이름 specialCategories로 바뀌어야하는데 백엔드에 아직 반영이 안됨.
+  const { openedId } = useContext(ModalContext);
 
   return (
     <>
-      {categories && specialCategories && (
+      {categories && themes && (
         <AppWrapper>
-          <Header categories={categories}></Header>
-          <SpecialCategory
-            specialCategories={specialCategories}
-          ></SpecialCategory>
-          <Category categories={categories}></Category>
+          <Header categories={categories} />
+          <SpecialCategory specialCategories={themes} />
+          <Category categories={categories} />
           {openedId >= 0 && <Modal openId={openedId} />}
         </AppWrapper>
       )}
