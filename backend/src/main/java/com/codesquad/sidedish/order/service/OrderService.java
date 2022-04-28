@@ -27,16 +27,15 @@ public class OrderService {
     }
 
     public void order(OrderItemDto orderItemDto) {
-        Order order = orderItemDto.toEntity();
-        Integer itemId = order.getItemId();
+        Integer itemId = orderItemDto.getItemId();
 
         Item orderedItem = itemRepository.findById(itemId)
                 .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다.", HttpStatus.NOT_FOUND));
 
-        orderedItem.removeStock(order.getAmount());
+        orderedItem.removeStock(orderItemDto.getAmount());
 
         itemRepository.save(orderedItem);
-        Order savedOrder = orderRepository.save(order);
+        Order savedOrder = orderRepository.save(orderItemDto.toEntity());
 
         log.info("savedOrder : {}", savedOrder);
     }
