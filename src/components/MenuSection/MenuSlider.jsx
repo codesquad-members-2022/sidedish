@@ -14,7 +14,7 @@ const sliderInfo = {
   visibleLength: 4
 };
 
-export default function MenuSlider() {
+export default function MenuSlider({ setClickedCard }) {
   const [curSlideIdx, setCurSlideIdx] = useState(0);
   const [isMoving, setMoving] = useState(false);
   const isFirstSlide = curSlideIdx <= 0;
@@ -51,6 +51,7 @@ export default function MenuSlider() {
           {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
             <li key={title}>
               <Card
+                setClickedCard={setClickedCard}
                 size={size}
                 imageURL={imageURL}
                 title={title}

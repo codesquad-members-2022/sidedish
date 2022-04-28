@@ -10,7 +10,7 @@ const TAB_NAMES = ['정갈한 밑반찬', '뜨끈뜨끈 국물 요리', '든든�
 const END_POINT = 'https://api.codesquad.kr/onban/';
 const PATHs = ['main', 'soup', 'side'];
 
-export default function MainCategory() {
+export default function MainCategory({ setClickedCard }) {
   const [selectedTabNum, setSelectedTabNum] = useState(0);
   const [sideDishes, setSideDishes] = useState(sideDishDummyData);
 
@@ -25,7 +25,7 @@ export default function MainCategory() {
         <Text size="40px" weight="BOLD" value={MAIN_CATEGORY_TITLE} />
       </Title>
       <TabBar tabNames={TAB_NAMES} selectedTabNum={selectedTabNum} setSelectedTabNum={setSelectedTabNum} />
-      <Contents sideDishes={sideDishes[selectedTabNum] || []} />
+      <Contents setClickedCard={setClickedCard} sideDishes={sideDishes[selectedTabNum] || []} />
     </Wrap>
   );
 
