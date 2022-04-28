@@ -149,26 +149,22 @@ class CategoryIntegrationTest {
         requestThenResult.andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
-                .andExpect(jsonPath("_links.self").exists())
+                .andExpect(jsonPath("item.links[0].rel").value("self"))
                 .andDo(document("search-single",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
-                        links(
-                                linkWithRel("self").description("link to self")
-                        ),
                         responseHeaders(
                                 headerWithName(HttpHeaders.CONTENT_TYPE).description("Content type")
                         ),
                         relaxedResponseFields(
-                                fieldWithPath("_links.self").description("link of main type item"),
-                                fieldWithPath("id").description("id of item"),
-                                fieldWithPath("title").description("title of item"),
-                                fieldWithPath("description").description("description of item"),
-                                fieldWithPath("price").description("price of item"),
-                                fieldWithPath("badge").description("badge of item"),
-                                fieldWithPath("discountPrice").description("discountPrice of item"),
-                                fieldWithPath("rewardPoint").description("rewardPoint of item"),
-                                fieldWithPath("images").description("images of item")
+                                fieldWithPath("item.id").description("id of item"),
+                                fieldWithPath("item.title").description("title of item"),
+                                fieldWithPath("item.description").description("description of item"),
+                                fieldWithPath("item.price").description("price of item"),
+                                fieldWithPath("item.badge").description("badge of item"),
+                                fieldWithPath("item.discountPrice").description("discountPrice of item"),
+                                fieldWithPath("item.rewardPoint").description("rewardPoint of item"),
+                                fieldWithPath("item.images").description("images of item")
                         )
                 ));
     }

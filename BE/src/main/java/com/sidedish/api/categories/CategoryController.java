@@ -60,6 +60,7 @@ public class CategoryController {
     @GetMapping("/items/{itemId}")
     public ResponseSingleItemDto getSingleItem(@PathVariable Long itemId, @RequestParam(defaultValue = "1") Long pageId, @RequestParam(defaultValue = "5") int pageCount) {
         Item findItem = itemService.findItemById(itemId);
+        ItemResource itemResource = new ItemResource(findItem);
 
         List<Item> items = itemService.suggestAnotherTypeItems(itemId, pageId, pageCount);
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
@@ -67,6 +68,6 @@ public class CategoryController {
         responseMainType.add(linkTo(methodOn(CategoryController.class).getSingleItem(itemId ,pageId, pageCount)).withSelfRel());
         responseMainType.add(linkTo(methodOn(CategoryController.class).getSingleItem(itemId,pageId-1, pageCount)).withRel("prev-page"));
         responseMainType.add(linkTo(methodOn(CategoryController.class).getSingleItem(itemId, pageId+1, pageCount)).withRel("next-page"));
-        return new ResponseSingleItemDto(findItem, responseMainType);
+        return new ResponseSingleItemDto(itemResource, responseMainType);
     }
 }
