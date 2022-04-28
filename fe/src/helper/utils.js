@@ -57,3 +57,7 @@ export function getUrlWithIdPage({ url, id, page }) {
   page = page || 0;
   return `${url}/${id}?page=${page}`;
 }
+
+export function getWonTemplate(number) {
+  return `${number.toLocaleString()}원`;
+}

@@ -5,7 +5,7 @@ import { applyFlex, fetchData, getUrlWithIdPage } from '../../../helper/utils';
 import { Category } from './category/category';
 import { ExtendBtn } from './category/extendBtn';
 
-export function CategoryArea() {
+export function CategoryArea({ setModal }) {
   const [categoryState, setCategoryState] = useState([]);
   const [activeCategory, setActiveCategory] = useState([]);
   const [buttonState, setButtonState] = useState('보기');
@@ -61,6 +61,7 @@ export function CategoryArea() {
           key={categoryState[idx].categoryId}
           title={categoryState[idx].categoryTitle}
           sideDishCardResponses={categoryState[idx].sideDishCardResponses}
+          onClick={setModal}
         />
       ))}
       <ExtendBtn buttonState={buttonState} onClick={handleClick}></ExtendBtn>

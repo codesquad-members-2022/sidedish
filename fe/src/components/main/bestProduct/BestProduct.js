@@ -6,7 +6,7 @@ import { fetchData, getRandomNumberAsCount, getUrlWithIdPage } from '../../../he
 import { API, EXHIBITION_ID } from '../../../helper/constants.js';
 import { ExhibitionTitle } from './title/exhibitionTitle';
 
-export function BestProduct() {
+export function BestProduct({ setModal }) {
   const [exhibitionTitle, setExhibitionTitle] = useState('');
   const [tabMenu, setTabMenu] = useState([]);
   const [tabList, setTabList] = useState([]);
@@ -60,7 +60,7 @@ export function BestProduct() {
           />
         </TabBar>
       </BestProductHeader>
-      <TabList tabList={tabList} />
+      <TabList tabList={tabList} setModal={setModal} />
     </StyledBestProduct>
   );
 }

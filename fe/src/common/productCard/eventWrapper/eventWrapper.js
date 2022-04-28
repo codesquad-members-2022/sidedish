@@ -1,6 +1,7 @@
 import { Event, StyledWrapper } from './eventWrapper.styled';
 
 export function EventWrapper({ events, size }) {
+  size = size || 'large';
   if (size === 'small') {
     return;
   }
