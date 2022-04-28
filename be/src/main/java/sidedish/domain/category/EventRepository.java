@@ -9,4 +9,6 @@ import sidedish.domain.item.Item;
 
 @Repository
 public interface EventRepository extends CrudRepository<EventCategory, Long> {
+
+    List<EventCategory> findAll();
 }

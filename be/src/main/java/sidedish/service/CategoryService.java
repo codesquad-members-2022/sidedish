@@ -1,6 +1,5 @@
 package sidedish.service;
 
-import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sidedish.domain.category.CategoryRepository;
@@ -23,7 +22,7 @@ public class CategoryService {
     private final DtoMapper mapper;
 
     public List<MainCategory> findCategories() {
-        return Lists.newArrayList(categoryRepository.findAll());
+        return categoryRepository.findAll();
     }
 
     public ResponseItemsDto findCategoryItems(Long categoryId) {
