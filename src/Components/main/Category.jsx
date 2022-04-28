@@ -43,13 +43,13 @@ export function Category({ info }) {
     setViewCategory(info);
   };
 
-  const CATEGORIES = viewCategory.map((category) => {
+  const Categories = viewCategory.map((category) => {
     return <CategoryItem category={category} key={category.path} />;
   });
 
   return (
     <CategoryContainer>
-      {CATEGORIES}
+      {Categories}
       {!isViewAll ? (
         <CategoryButton onClick={categoryViewHandler}>
           모든 카테고리 보기

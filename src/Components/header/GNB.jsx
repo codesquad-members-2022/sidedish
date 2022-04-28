@@ -56,10 +56,6 @@ const GNB = ({ list, isHover, setIsHover }) => {
     setIsHover(!isHover);
   };
 
-  useEffect(() => {
-    setIsHover(false);
-  }, []);
-
   return (
     <GNB_style
       onMouseEnter={mouseHandler}

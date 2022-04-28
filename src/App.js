@@ -13,7 +13,7 @@ function App() {
       setHasData(true);
     }
     setData();
-  }, [hasData]);
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <div className="App">

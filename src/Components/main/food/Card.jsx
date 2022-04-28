@@ -10,14 +10,14 @@ import {
 import Title from '../../Title';
 
 export default function Card({ cardData }) {
-  const CARD_IMG_DATA = {
+  const CardImgData = {
     img: cardData.image,
     alt: cardData.alt,
     delivery: cardData.delivery_type,
   };
   return (
     <CardItem data-hash={cardData.detail_hash}>
-      <Img data={CARD_IMG_DATA} />
+      <Img data={CardImgData} />
       <Text data={cardData} />
     </CardItem>
   );
