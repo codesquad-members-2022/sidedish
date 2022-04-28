@@ -31,20 +31,33 @@ public class ItemController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "반찬 목록 조회 성공", content = @Content(schema = @Schema(implementation = CategoryItemsDto.class))),
-            @ApiResponse(responseCode = "404", description = "존재하지 않는 카테고리 접근", content = @Content)
+            @ApiResponse(responseCode = "200",
+                    description = "반찬 목록 조회 성공",
+                    content = @Content(schema = @Schema(implementation = CategoryItemsDto.class))),
+            @ApiResponse(responseCode = "404",
+                    description = "존재하지 않는 카테고리 접근",
+                    content = @Content)
     })
-    @Operation(summary = "반찬 목록 조회", description = "특정 카테고리의 판매하는 반찬의 목록을 조회합니다.", parameters = @Parameter(name = "categoryId", description = "카테고리의 id (메인=1,국물=2,밑반찬=3)"))
+    @Operation(summary = "반찬 목록 조회",
+            description = "특정 카테고리의 판매하는 반찬의 목록을 조회합니다.",
+            parameters = @Parameter(name = "categoryId",
+            description = "카테고리의 id (메인=1,국물=2,밑반찬=3)"))
     @GetMapping("/{categoryId}")
-    public CategoryItemDto itemList(@PathVariable int categoryId) {
+    public CategoryItemDto showItemsInCategory(@PathVariable int categoryId) {
         return itemService.findByCategory(categoryId);
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "반찬 조회 성공", content = @Content(schema = @Schema(implementation = DetailItemDto.class))),
-            @ApiResponse(responseCode = "404", description = "존재하지 않는 리소스 접근", content = @Content)
+            @ApiResponse(responseCode = "200",
+                    description = "반찬 조회 성공",
+                    content = @Content(schema = @Schema(implementation = DetailItemDto.class))),
+            @ApiResponse(responseCode = "404",
+                    description = "존재하지 않는 리소스 접근",
+                    content = @Content)
     })
-    @Operation(summary = "반찬 상세정보 조회", description = "판매하는 반찬의 상세 정보를 확인합니다.", parameters = @Parameter(name = "id", description = "반찬의 id"))
+    @Operation(summary = "반찬 상세정보 조회",
+            description = "판매하는 반찬의 상세 정보를 확인합니다.",
+            parameters = @Parameter(name = "id", description = "반찬의 id"))
     @GetMapping("/detail/{id}")
     public DetailItemDto detail(@PathVariable int id) {
         return itemService.findById(id);
