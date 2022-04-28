@@ -14,24 +14,29 @@ public class ProductEntity {
 	@Id
 	private final Long id;
 	private final Long discountPolicyId;
-	@MappedCollection(idColumn = "ID", keyColumn = "ID")
+	private final Long deliveryPolicyId;
+	@MappedCollection(idColumn = "PRODUCT_ID", keyColumn = "ID")
 	private final List<ImageEntity> imageEntities;
 	private final String productName;
 	private final String description;
 	private final long originalPrice;
+	private final long stockQuantity;
 	private final String mealCategory;
 	private final String bestCategory;
 
 	@PersistenceConstructor
 	public ProductEntity(Long id, Long discountPolicyId,
-		List<ImageEntity> imageEntities, String productName, String description, long originalPrice,
-		String mealCategory, String bestCategory) {
+		Long deliveryPolicyId, List<ImageEntity> imageEntities, String productName,
+		String description, long originalPrice, long stockQuantity, String mealCategory,
+		String bestCategory) {
 		this.id = id;
 		this.discountPolicyId = discountPolicyId;
+		this.deliveryPolicyId = deliveryPolicyId;
 		this.imageEntities = imageEntities;
 		this.productName = productName;
 		this.description = description;
 		this.originalPrice = originalPrice;
+		this.stockQuantity = stockQuantity;
 		this.mealCategory = mealCategory;
 		this.bestCategory = bestCategory;
 	}
