@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
     github_id VARCHAR(39) NOT NULL COMMENT 'Github 유저 ID',
-    username  VARCHAR(39) NOT NULL COMMENT '유저가 서비스에서 사용할 이름',
+    username  VARCHAR(39) COMMENT '유저가 서비스에서 사용할 이름',
     point     INT         NOT NULL DEFAULT 0 COMMENT '유저가 보유한 포인트',
     PRIMARY KEY (github_id)
 );

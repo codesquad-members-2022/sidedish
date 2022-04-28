@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class JwtFactory {
 
-    private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public static String create(User user, int expiredTime) {
         // https://github.com/jwtk/jjwt#quickstart
