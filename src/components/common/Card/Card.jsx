@@ -12,55 +12,42 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
     <Wrap size={size}>
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
-          <HoverImg />
+          {isSizeSmall ? null : <HoverImg />}
           <img src={imageURL} alt="반찬" />
         </ImgWrap>
-        <Space />
-        <Title />
-        <Description />
+        {isSizeSmall ? null : <Space />}
+        {isSizeSmall ? <SmallTitle /> : <Title />}
+        {isSizeSmall ? null : <Description />}
         <Prices>
           <Text size="MEDIUM" weight="MEDIUM" value={sellingPrice} />
           <Text size="BASE" weight="REGULAR" color="GREY_300" value={normalPrice} line />
         </Prices>
       </A>
-      <TagWrap>
-        <Tags />
-      </TagWrap>
+      <TagWrap>{isSizeSmall ? null : <Tags />}</TagWrap>
     </Wrap>
   );
 
+  function SmallTitle() {
+    return <Text value={title} />;
+  }
+
   function Title() {
-    if (isSizeSmall) {
-      return <Text value={title} />;
-    }
     return <Text size="MEDIUM" weight="MEDIUM" value={title} />;
   }
 
   function HoverImg() {
-    if (isSizeSmall) {
-      return null;
-    }
     return <DeliveryInfo isHoverImg={isHoverImg} />;
   }
 
   function Space() {
-    if (isSizeSmall) {
-      return null;
-    }
     return <div />;
   }
 
   function Description() {
-    if (isSizeSmall) {
-      return null;
-    }
     return <Text size="BASE" weight="REGULAR" color="GREY_200" value={desc} />;
   }
 
   function Tags() {
-    if (isSizeSmall) {
-      return null;
-    }
     return tags.map(tag => <Tag key={tag} type={tag} />);
   }
 }
