@@ -6,28 +6,13 @@ module.exports = {
   mode: "development",
   devtool: "eval",
   resolve: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     alias: { "@": path.resolve(__dirname, "src") },
-=======
->>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
-=======
-    alias: { "@src": path.resolve(__dirname, "src") },
->>>>>>> c7c1f6e ([#6] Chore: webpack.config.js에 절대경로 alias 설정)
-=======
-    alias: { "@": path.resolve(__dirname, "src") },
->>>>>>> 82dc859 (Chore: config의 절대경로 alias 수정)
     extensions: [".js", ".jsx", ".css", ".scss"],
   },
   entry: path.join(__dirname, "src", "index.js"),
   output: {
     filename: "[name].js",
-<<<<<<< HEAD
     path: path.resolve(__dirname, "build"),
-=======
-    path: path.resolve(__dirname, "dist"),
->>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
   },
   module: {
     rules: [

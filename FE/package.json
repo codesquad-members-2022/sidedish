@@ -5,13 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve",
-<<<<<<< HEAD
     "build": "webpack",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production"
-=======
-    "build": "webpack"
->>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
   },
   "author": "",
   "license": "ISC",
@@ -21,10 +17,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6a903a6 ([#13] Chore: babel transform-runtime-plugin 설치, 설정)
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
@@ -38,20 +30,6 @@
     "scss-loader": "^0.0.1",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.5",
-<<<<<<< HEAD
-=======
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
-    "babel-loader": "^8.2.5",
-    "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.7.1",
-    "html-webpack-plugin": "^5.5.0",
-    "sass-loader": "^12.6.0",
-    "scss-loader": "^0.0.1",
-    "style-loader": "^3.3.1",
->>>>>>> ccf5e4b ([#6] Chore: CRA 없이 React 빌드 환경 구축)
-=======
->>>>>>> 9e68d79 ([#39] Chore:  styled-components, babel-plugin-styled-components 설치)
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
