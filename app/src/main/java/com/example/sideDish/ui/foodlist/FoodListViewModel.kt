@@ -30,21 +30,21 @@ class FoodListViewModel @Inject constructor(
     private var soupItemsCount = 0
     private var sideItemsCount = 0
 
-    private suspend fun getMainItems(): List<Item>? {
+    private suspend fun getMainItems(): List<Item> {
         val mainItems = remoteRepository.getMenu(FoodCategory.MAIN)
-        mainItemsCount = mainItems?.size ?: 0
+        mainItemsCount = mainItems.size
         return mainItems
     }
 
-    private suspend fun getSoupItems(): List<Item>? {
+    private suspend fun getSoupItems(): List<Item> {
         val soupItems = remoteRepository.getMenu(FoodCategory.SOUP)
-        soupItemsCount = soupItems?.size ?: 0
+        soupItemsCount = soupItems.size
         return soupItems
     }
 
-    private suspend fun getSideItems(): List<Item>? {
+    private suspend fun getSideItems(): List<Item> {
         val sideItems = remoteRepository.getMenu(FoodCategory.SIDE)
-        sideItemsCount = sideItems?.size ?: 0
+        sideItemsCount = sideItems.size
         return sideItems
     }
 
@@ -71,7 +71,8 @@ class FoodListViewModel @Inject constructor(
                         getSideItems()
                     }
                 }
-            } ?: kotlin.run { return }
+            }
+        if (newItems.isEmpty()) return;
 
 
         val tempItems = targetItems?.value?.toMutableList() ?: mutableListOf()
