@@ -5,11 +5,15 @@ import {
     Title,
     Description,
     PriceContainer,
-    Price,
+    ClientPrice,
+    OriginPrice,
     EventBadge,
 } from "./Card.style";
 
-function EventBadges(eventBadges) {
+function EventBadges({ eventBadges }) {
+    if (!eventBadges.length) {
+        return;
+    }
     return eventBadges.map((eventBadge, idx) => (
         <EventBadge
             key={idx}
@@ -29,17 +33,12 @@ function Card({
     eventBadges,
 }) {
     const originPrice = (
-        <Price isClientPrice={false}>{fixedPrice.toLocaleString()}원</Price>
+        <OriginPrice>{fixedPrice.toLocaleString()}원</OriginPrice>
     );
     const clientPrice = (
-        <Price isClientPrice>
-            {fixedPrice === discountPrice
-                ? fixedPrice.toLocaleString()
-                : discountPrice.toLocaleString()}
-            원
-        </Price>
+        <ClientPrice>{discountPrice.toLocaleString()}원</ClientPrice>
     );
-    const eventTags = eventBadges ? EventBadges(eventBadges) : null;
+    const isDiscounted = fixedPrice !== discountPrice;
 
     return (
         <li>
@@ -53,11 +52,11 @@ function Card({
                     <PriceContainer>
                         <>
                             {clientPrice}
-                            {fixedPrice !== discountPrice && originPrice}
+                            {isDiscounted && originPrice}
                         </>
                     </PriceContainer>
                 </TextContainer>
-                {eventTags}
+                <EventBadges eventBadges={eventBadges} />
             </div>
         </li>
     );

@@ -10,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Noto Sans KR";
         font-style: normal;
     }
+    button {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+    }
 `;
 
 export default GlobalStyle;

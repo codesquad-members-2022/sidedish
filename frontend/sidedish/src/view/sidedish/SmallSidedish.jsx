@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { Container, Title } from "./Sidedish.style";
+import { Container, SmallDishTitle } from "./Sidedish.style";
 import { API } from "../../config";
 import SidedishCards from "./SidedishCards";
 import { getData } from "../../utils";
 import { Carousel } from "./carousel/Carousel";
 
-const theme = {
-    size: "small",
-};
+function SmallSidedish({ isVisible, category }) {
+    const { title, section } = category;
 
-function SmallSidedish({ isVisible, section, title }) {
     const [smallSidedishes, setSmallSidedishes] = useState(null);
     const [page, setPage] = useState(1);
     const [lastCachedPage, setLastPage] = useState(0);
@@ -18,7 +15,7 @@ function SmallSidedish({ isVisible, section, title }) {
 
     useEffect(() => {
         try {
-            if (lastCachedPage < page) {
+            if (lastCachedPage < page && isVisible) {
                 getData(API.DISH_SECTION + section + "&page=" + page).then(
                     (data) => {
                         if (page === 1) {
@@ -37,7 +34,7 @@ function SmallSidedish({ isVisible, section, title }) {
         } catch (error) {
             console.error(error);
         }
-    }, [section, smallSidedishes, page, lastCachedPage]);
+    }, [isVisible, section, smallSidedishes, page, lastCachedPage]);
 
     if (!isVisible) {
         return;
@@ -61,19 +58,17 @@ function SmallSidedish({ isVisible, section, title }) {
     const currSmallSidedishes = getCurrSmallSidedishes();
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container>
-                <Title>{title}</Title>
-                <Carousel
-                    page={page}
-                    onUpdatePage={onUpdatePage}
-                    currDataSize={smallSidedishes.length}
-                    hasNext={hasNext}
-                >
-                    <SidedishCards dishes={currSmallSidedishes}></SidedishCards>
-                </Carousel>
-            </Container>
-        </ThemeProvider>
+        <Container>
+            <SmallDishTitle>{title}</SmallDishTitle>
+            <Carousel
+                page={page}
+                onUpdatePage={onUpdatePage}
+                currDataSize={smallSidedishes.length}
+                hasNext={hasNext}
+            >
+                <SidedishCards dishes={currSmallSidedishes}></SidedishCards>
+            </Carousel>
+        </Container>
     );
 }
 

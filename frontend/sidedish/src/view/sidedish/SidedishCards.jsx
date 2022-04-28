@@ -1,7 +1,7 @@
-import { CardsContainer } from "./Sidedish.style";
+import { BigCardsContainer, SmallCardsContainer } from "./Sidedish.style";
 import Card from "./card/Card";
 
-function SidedishCards({ dishes }) {
+function SidedishCards({ dishes, isBigCards }) {
     if (!dishes) {
         return <p>데이터가 아직 완성되지 않았어요</p>;
     }
@@ -18,7 +18,10 @@ function SidedishCards({ dishes }) {
         />
     ));
 
-    return <CardsContainer>{sidedishCards}</CardsContainer>;
+    if (isBigCards) {
+        return <BigCardsContainer>{sidedishCards}</BigCardsContainer>;
+    }
+    return <SmallCardsContainer>{sidedishCards}</SmallCardsContainer>;
 }
 
 export default SidedishCards;

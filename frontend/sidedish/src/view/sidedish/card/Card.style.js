@@ -40,14 +40,21 @@ const PriceContainer = styled.div`
     gap: 8px;
 `;
 
-const Price = styled.span`
-    font-weight: ${(props) => (props.isClientPrice ? "500" : "400")};
-    font-size: ${(props) => (props.isClientPrice ? "1.6rem" : "1.4rem")};
-    line-height: ${(props) => (props.isClientPrice ? "26px" : "24px")};
+const ClientPrice = styled.span`
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 26px;
+    color: #1b1b1b;
     letter-spacing: -0.008em;
-    text-decoration-line: ${(props) =>
-        props.isClientPrice ? "none" : "line-through"};
-    color: ${(props) => (props.isClientPrice ? "#1b1b1b" : "#bcbcbc")};
+`;
+
+const OriginPrice = styled.span`
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 24px;
+    letter-spacing: -0.008em;
+    text-decoration-line: line-through;
+    color: #bcbcbc;
 `;
 
 const EventBadge = styled.span`
@@ -75,6 +82,7 @@ export {
     Title,
     Description,
     PriceContainer,
-    Price,
+    ClientPrice,
+    OriginPrice,
     EventBadge,
 };

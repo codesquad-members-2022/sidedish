@@ -3,9 +3,11 @@ import styled from "styled-components";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    border-bottom: ${(props) =>
-        props.theme.size === "big" ? "1px solid #ebebeb" : "none"};
     padding: 56px 0px;
+`;
+
+const BigContainer = styled(Container)`
+    border-bottom: 1px solid #ebebeb;
 `;
 
 const Header = styled.div`
@@ -13,10 +15,6 @@ const Header = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: ${(props) =>
-        props.theme.size === "big" ? "4rem" : "small" ? "2rem" : ""};
-    font-weight: ${(props) =>
-        props.theme.size === "big" ? 700 : "small" ? 500 : 0};
     line-height: 58px;
     letter-spacing: -0.004em;
     text-align: left;
@@ -24,15 +22,37 @@ const Title = styled.h2`
     width: 1280px;
 `;
 
+const BigDishTitle = styled(Title)`
+    font-size: 4rem;
+    font-weight: 700;
+`;
+
+const SmallDishTitle = styled(Title)`
+    font-size: 2rem;
+    font-weight: 500;
+`;
+
 const CardsContainer = styled.ul`
     display: grid;
-    grid-template-columns: repeat(
-        ${(props) => (props.theme.size === "big" ? 3 : "small" ? 4 : 0)},
-        1fr
-    );
     gap: 24px;
     margin: 34px auto;
     width: 1280px;
 `;
 
-export { Container, Header, Title, CardsContainer };
+const BigCardsContainer = styled(CardsContainer)`
+    grid-template-columns: repeat(3, 1fr);
+`;
+
+const SmallCardsContainer = styled(CardsContainer)`
+    grid-template-columns: repeat(4, 1fr);
+`;
+
+export {
+    Container,
+    BigContainer,
+    Header,
+    BigDishTitle,
+    SmallDishTitle,
+    BigCardsContainer,
+    SmallCardsContainer,
+};
