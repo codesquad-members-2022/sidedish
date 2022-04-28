@@ -3,16 +3,21 @@ import styled from 'styled-components';
 
 import Card from './Card';
 
-const CardBox = ({ hasButton, cardNum, slidingSize, cardInfos }) => {
+const CardBox = ({
+  hasButton,
+  showingSlideCardNum,
+  slidingSize,
+  cardInfos,
+}) => {
   return (
     <StyledCardContainer
       hasBtn={hasButton}
-      cardNum={cardNum}
+      showingSlideCardNum={showingSlideCardNum}
       slidingSize={slidingSize}
     >
       {cardInfos.map((cardInfo, idx) => (
         <StyledCard key={idx}>
-          <Card cardInfo={cardInfo} cardNum={cardNum} />
+          <Card cardInfo={cardInfo} showingSlideCardNum={showingSlideCardNum} />
         </StyledCard>
       ))}
     </StyledCardContainer>

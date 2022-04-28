@@ -49,13 +49,16 @@ const App = () => {
         title={'식탁을 풍성하게 하는 정갈한 밑반찬'}
       />
       {isVisible && (
-        <SubCard dishData={soupData} title={'정성이 가득한 뜨끈뜨끈한 국물'} />
-      )}
-      {isVisible && (
-        <SubCard
-          dishData={sideDishData}
-          title={'모두가 좋아하는 든든한 메인 요리'}
-        />
+        <>
+          <SubCard
+            dishData={soupData}
+            title={'정성이 가득한 뜨끈뜨끈한 국물'}
+          />
+          <SubCard
+            dishData={sideDishData}
+            title={'모두가 좋아하는 든든한 메인 요리'}
+          />
+        </>
       )}
       <StyledButton onClick={handleClickMoreCard}>
         {isVisible ? closeBtn : openBtn}
