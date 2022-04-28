@@ -13,7 +13,7 @@ final class OrderingViewController: UIViewController {
     private var orderingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
     private var collectionViewDelegate = OrderingCollectionViewDelegate()
-    private let networkManger = NetworkManager(session: .shared)
+    private let networkManager = NetworkManager(session: .shared)
     
     private var collectionViewLayout: UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -74,7 +74,7 @@ final class OrderingViewController: UIViewController {
     
     private func getSideDishInfo() {
         Category.allCases.forEach { category in
-            networkManger.request(endpoint: EndPointCase.get(category: category).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
+            networkManager.request(endpoint: EndPointCase.get(category: category).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
                 guard let self = self else { return }
                 switch result {
                 case .success(let success):
@@ -127,7 +127,7 @@ extension OrderingViewController: CollectionViewSelectionDetectable {
         let detailVC = DetailViewController(menu: menu)
         navigationController?.pushViewController(detailVC, animated: true)
         
-        networkManger.request(endpoint: EndPointCase.getDetail(hash: menu.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
+        networkManager.request(endpoint: EndPointCase.getDetail(hash: menu.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
             switch result {
             case .success(let data):
                 guard let menuDetail = data?.data else { return }

@@ -77,13 +77,7 @@ extension OrderingCollectionViewCell {
 // MARK: - Providing Function
 
 extension OrderingCollectionViewCell {
-    func setDishImage(by imageName: String) {
-        let url = URL(string: imageName)
-        DispatchQueue.global().async {
-            guard let data = try? Data(contentsOf: url!) else { return }
-            DispatchQueue.main.async {
-                self.dishImageView.image = UIImage(data: data)
-            }
-        }
+    func setMenu(image: UIImage) {
+        self.dishImageView.image = image
     }
 }
