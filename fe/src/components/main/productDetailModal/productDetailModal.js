@@ -1,3 +1,4 @@
+import { DetailArea } from './imgArea/detailArea/detailArea';
 import { ImgArea } from './imgArea/imgArea';
 import { DimLayer, ModalContainer } from './productDetailModal.styled';
 
@@ -5,9 +6,9 @@ export function ProductDetailModal({ sideDishData }) {
   sideDishData = mockData;
   return (
     <DimLayer>
-      <ModalContainer>
+      <ModalContainer flex>
         <ImgArea urls={sideDishData.imageUrls}></ImgArea>
-        {/* <DetailWrapper></DetailWrapper> */}
+        <DetailArea props={sideDishData}></DetailArea>
       </ModalContainer>
     </DimLayer>
   );

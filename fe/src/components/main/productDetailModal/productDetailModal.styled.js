@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { applyFlex } from '../../../helper/utils';
 
 export const DimLayer = styled.div`
   position: fixed;
@@ -10,6 +11,7 @@ export const DimLayer = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  ${({ flex }) => applyFlex({ flex })}
   position: fixed;
   top: 50%;
   left: 50%;
