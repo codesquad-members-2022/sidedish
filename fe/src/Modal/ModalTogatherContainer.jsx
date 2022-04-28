@@ -34,7 +34,7 @@ const RightArrow = styled(RightArrowIcon)`
   margin-left: 17px;
 
   path {
-    stroke: ${({ theme }) => theme.colors.black};
+    stroke: ${({ theme }) => theme.colors.gray3};
   }
 `;
 
@@ -60,7 +60,7 @@ const ModalTogatherContainer = () => {
             <LeftArrow />
             <span className="page__current">1</span>
             <span className="page__slash">/</span>
-            <span className="page__last">2</span>
+            <span className="page__last">1</span>
             <RightArrow />
           </PageNav>
         </FlexDiv>
