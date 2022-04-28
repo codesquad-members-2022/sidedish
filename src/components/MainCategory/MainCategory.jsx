@@ -73,7 +73,8 @@ export default function MainCategory() {
 }
 
 const Wrap = styled.div({
-  padding: '56px 80px'
+  padding: '56px 80px',
+  borderBottom: ({ theme }) => `1px solid ${theme.COLOR.GREY[400]}`
 });
 
 const Title = styled.h2({

@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Text from 'components/utils/Text';
 
-export default function MoreButton({ value }) {
+export default function MoreButton({ value, setClikedMoreBtn }) {
   return (
-    <Wrap>
+    <Wrap onClick={setClikedMoreBtn}>
       <Text size="X_LARGE" weight="REGULAR" value={value} />
     </Wrap>
   );

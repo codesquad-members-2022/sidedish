@@ -15,8 +15,7 @@ export default function MenuSection() {
 }
 
 const Wrap = styled.div({
-  padding: '56px 80px',
-  borderTop: ({ theme }) => `1px solid ${theme.COLOR.GREY[400]}`
+  padding: '56px 80px'
 });
 
 const Title = styled.h3({
