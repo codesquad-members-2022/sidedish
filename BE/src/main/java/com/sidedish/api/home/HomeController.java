@@ -24,20 +24,23 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class HomeController {
 
+    private static final long DEFAULT_PAGE_ID = 1L;
+    private static final int DEFAULT_PAGE_COUNT = 4;
+    private static final int DEFAULT_DETAIL_PAGE_COUNT = 3;
     private final ItemService itemService;
 
     @GetMapping
     public ResponseHomeDto getHome() {
         List<Item> findItems = itemService.findItemByDetailType("풍성한_고기_반찬");
         List<ResponseItemDto> detailItems = buildDetailItems(findItems);
-        CollectionModel<ItemResource> mainResources = buildItems(CategoryType.MAIN, 1L, 4);
+        CollectionModel<ItemResource> mainResources = buildItems(CategoryType.MAIN, DEFAULT_PAGE_ID, DEFAULT_PAGE_COUNT);
         return new ResponseHomeDto(detailItems, mainResources);
     }
 
     @GetMapping("/additional")
     public ResponseAdditionalDto getAdditionalCategory(){
-        CollectionModel<ItemResource> soupResources = buildItems(CategoryType.SOUP, 1L, 4);
-        CollectionModel<ItemResource> sideResources = buildItems(CategoryType.SIDE, 1L, 4);
+        CollectionModel<ItemResource> soupResources = buildItems(CategoryType.SOUP, DEFAULT_PAGE_ID, DEFAULT_PAGE_COUNT);
+        CollectionModel<ItemResource> sideResources = buildItems(CategoryType.SIDE, DEFAULT_PAGE_ID, DEFAULT_PAGE_COUNT);
         return new ResponseAdditionalDto(soupResources, sideResources);
     }
 
@@ -53,7 +56,7 @@ public class HomeController {
     private List<ResponseItemDto> buildDetailItems(List<Item> findItems) {
         return findItems.stream()
                 .map(ResponseItemDto::new)
-                .limit(3)
+                .limit(DEFAULT_DETAIL_PAGE_COUNT)
                 .collect(Collectors.toList());
     }
 }

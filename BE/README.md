@@ -5,7 +5,7 @@
 - [ ] itemController
 - [x] 하드코딩보다는 HttpStatus를 사용 (ResultDto)
 - [ ] categoryController 중복제거 생각해보기
-- [ ] buildItems 메서드 매직넘버는 지양하기
+- [x] buildItems 메서드 매직넘버는 지양하기
 - [ ] findItemByDetailType에 인자로 enum 전달히기
 - [ ] ResponseAdditionalDto 생성자 고민해보기
 - [ ] OrderRequest에서 id를 null로 보낸경우에도 QuantityException가 발생하지 않을까요??
