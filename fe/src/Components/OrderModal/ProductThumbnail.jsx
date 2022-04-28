@@ -22,6 +22,10 @@ const ProductPanel = styled.li`
           height: 72px;
           overflow: hidden;
           margin: 8px 8px 0 0;
+
+          &:hover {
+            opacity: 0.6;
+          }
         `
       : null;
   }}
