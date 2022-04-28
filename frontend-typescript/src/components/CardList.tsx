@@ -23,6 +23,7 @@ export const CardList = ({
   size: cardSize,
   curIndex = 0,
 }: ListProp) => {
+  console.log(products);
   const sliderRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (sliderRef.current) {
