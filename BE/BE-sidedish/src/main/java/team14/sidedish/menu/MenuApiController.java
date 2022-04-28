@@ -1,5 +1,6 @@
 package team14.sidedish.menu;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +26,25 @@ import team14.sidedish.order.OrderDto;
 @RequestMapping("/api/sidedish")
 public class MenuApiController {
 	private final MenuService menuService;
+	// TODO /category/more -> 내부적으로 PAGE 자체 처리
 
-	@GetMapping("/{id}")
-	public ResponseEntity<MenuDto.Response> readAll(@PathVariable("id") int specialMenuId) {
-		MenuDto.Response response = menuService.readExhibition(specialMenuId);
+	@GetMapping("/{special-menu-id}")
+	public ResponseEntity<MenuDto.Response> readAll(@PathVariable("special-menu-id") int specialMenuId, @RequestParam("page") final int page) {
+		PageRequest pageable = PageRequest.of(page, 10);
+		MenuDto.Response response = menuService.readExhibition(specialMenuId, pageable);
+		return ResponseEntity.ok().body(response);
+	}
+
+	/**
+	 * 웰컴페이지 하단 카테고리 별 다음 슬라이드(page=1) 요청
+	 * @param categoryId
+	 * @param page
+	 * @return
+	 */
+	@GetMapping("/category/{category-id}")
+	public ResponseEntity<MenuDto.CategoryResponse> readListFrom(@PathVariable("category-id") int categoryId, @RequestParam("page") final int page) {
+		PageRequest pageable = PageRequest.of(page, 10);
+		MenuDto.CategoryResponse response = menuService.readListFrom(categoryId, pageable);
 		return ResponseEntity.ok().body(response);
 	}
 
@@ -38,10 +54,26 @@ public class MenuApiController {
 		return ResponseEntity.ok().body(detailResponse);
 	}
 
+	/**
+	 * 메뉴 상세조회 하단의 함께보면 좋은 메뉴목록에서 슬라이드 다음 요청시
+	 * - (사용자 입장에서 URL 을 맞춰야 하지 않을까 싶어서)
+	 * @param categoryId
+	 * @param page
+	 * @return
+	 */
+	@GetMapping("menu/category/{category-id}")
+	public ResponseEntity<MenuDto.CategoryResponse> readOneSubNext(
+		@PathVariable("category-id") int categoryId,
+		@RequestParam(value = "page") final int page) {
+		PageRequest pageable = PageRequest.of(page, 10);
+		MenuDto.CategoryResponse response = menuService.readListFrom(categoryId, pageable);
+		return ResponseEntity.ok().body(response);
+	}
+
 	@PostMapping("/menu/order")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void update(@Valid @RequestBody OrderDto.Request request) {
-		menuService.update(request);
+	public ResponseEntity<OrderDto.Response> create(@Valid @RequestBody OrderDto.Request request) {
+		OrderDto.Response response = menuService.createOrder(request);
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
 	@ExceptionHandler(InvalidOrderException.class)
