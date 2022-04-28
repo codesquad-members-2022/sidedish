@@ -66,7 +66,7 @@ final class NetworkManager {
             // handling DecodingError
             do {
                 
-                //handling GetImage Case
+                // handling getImage Case
                 let getImageBaseURL = urlRequest.description.replacingOccurrences(of: urlRequest.url?.path ?? "", with: "")
                 
                 if getImageBaseURL == BaseURL.image.urlString {

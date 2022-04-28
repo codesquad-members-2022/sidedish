@@ -201,12 +201,6 @@ final class DetailScrollView: UIScrollView {
         layoutOrderButton()
     }
     
-    private func addPlaceholderView(count: Int) {
-        for _ in 0..<count {
-            recipeImageStackView.addArrangedSubview(UIView())
-        }
-    }
-    
     private func insertSeparatorView() {
         for index in stride(from: 1, to: 6, by: 2) {
             detailContainerStackView.insertArrangedSubview(UIView.makeSeparator(), at: index)
@@ -283,34 +277,22 @@ extension DetailScrollView {
         self.overViewImageScrollView.addSubview(imageView)
     }
     
-    func setRecipe(images: [String]) {
-        addPlaceholderView(count: images.count)
-        
-        for (imageIndex, imageName) in images.enumerated() {
-            let url = URL(string: imageName)
-            
-            DispatchQueue.global().async {
-                guard let data = try? Data(contentsOf: url!) else { return }
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    
-                    let image = UIImage(data: data)
-                    let imageView = UIImageView(image: image)
-                    
-                    let baseWidth = self.detailContainerStackView.frame.size.width
-                    
-                    guard let adjustedHeight = imageView.calculateAdjustedHeight(baseWidth: baseWidth) else { return }
-                    
-                    imageView.translatesAutoresizingMaskIntoConstraints = false
-                    imageView.heightAnchor.constraint(equalToConstant: adjustedHeight).isActive = true
-                    
-                    self.recipeImageStackView.insertArrangedSubview(imageView, at: imageIndex)
-                }
-            }
+    func addPlaceholderView(count: Int) {
+        for _ in 0..<count {
+            recipeImageStackView.addArrangedSubview(UIView())
         }
     }
     
+    func setRecipe(image: UIImage, at index: Int) {
+        let imageView = UIImageView(image: image)
+        
+        let baseWidth = self.detailContainerStackView.frame.size.width
+        guard let adjustedHeight = imageView.calculateAdjustedHeight(baseWidth: baseWidth) else { return }
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: adjustedHeight).isActive = true
+        
+        self.recipeImageStackView.insertArrangedSubview(imageView, at: index)
+    }
 }
 
 // MARK: - Private Extension

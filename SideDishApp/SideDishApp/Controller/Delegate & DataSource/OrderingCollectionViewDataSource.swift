@@ -9,11 +9,11 @@ import UIKit
 
 final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var headers: [String] = [Constant.SectionHeaderText.main,
-                                     Constant.SectionHeaderText.soup,
-                                     Constant.SectionHeaderText.side]
+    private var headers: [Category] = [Category.main,
+                                       Category.soup,
+                                       Category.side]
     
-    private var menus: [Menu] = []
+    private var menus: [Category: [Menu]] = [:]
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return headers.count
@@ -29,25 +29,38 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
             for: indexPath
         ) as? SectionHeaderView else { return UICollectionReusableView() }
         
-        supplementaryView.setTitle(title: headers[indexPath.section])
+        supplementaryView.setTitle(title: headers[indexPath.section].headerValue)
         supplementaryView.setSectionNumber(number: indexPath.section)
         return supplementaryView
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menus.count
+        switch self.headers[section] {
+        case .main:
+            return menus[Category.main]?.count ?? 0
+        case .soup:
+            return menus[Category.soup]?.count ?? 0
+        case .side:
+            return menus[Category.side]?.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.Identifier.orderingViewCell, for: indexPath) as? OrderingCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        return configure(cell: cell, at: indexPath.item)
+        switch self.headers[indexPath.section] {
+        case .main:
+            return configure(cell: cell, menu: menus[Category.main]?[indexPath.row])
+        case .soup:
+            return configure(cell: cell, menu: menus[Category.soup]?[indexPath.row])
+        case .side:
+            return configure(cell: cell, menu: menus[Category.side]?[indexPath.row])
+        }
     }
     
-    private func configure(cell: OrderingCollectionViewCell, at index: Int) -> OrderingCollectionViewCell {
-        let dish = menus[index]
+    private func configure(cell: OrderingCollectionViewCell, menu: Menu?) -> OrderingCollectionViewCell {
+        guard let dish = menu else { return OrderingCollectionViewCell() }
         cell.setDishImage(by: dish.image)
         cell.menuStackView.setTitle(by: dish.title)
         cell.menuStackView.setDescription(by: dish.description)
@@ -56,11 +69,18 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
         return cell
     }
     
-    func fetch(dishes: [Menu]) {
-        menus = dishes
+    func fetch(menus: [Menu], category: Category) {
+        self.menus[category] = menus
     }
     
-    func getSelectedItem(at index: Int) -> Menu? {
-        return menus[index]
+    func getSelectedItem(at index: IndexPath) -> Menu? {
+        switch self.headers[index.section] {
+        case .main:
+            return menus[Category.main]?[index.row]
+        case .soup:
+            return menus[Category.soup]?[index.row]
+        case .side:
+            return menus[Category.side]?[index.row]
+        }
     }
 }

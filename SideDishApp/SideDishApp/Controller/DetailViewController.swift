@@ -62,7 +62,7 @@ final class DetailViewController: UIViewController {
         guard let menuDetail = menuDetail else { return }
         setSubInfo(by: menuDetail)
         setThumbNail(images: menuDetail.thumb_images)
-        detailScrollView.setRecipe(images: menuDetail.detail_section)
+        setRecipe(images: menuDetail.detail_section)
     }
     
     private func setSubInfo(by menuDetail: MenuDetail) {
@@ -71,10 +71,6 @@ final class DetailViewController: UIViewController {
         
         guard let price = menuDetail.prices.last else { return }
         detailScrollView.setPrice(text: price)
-    }
-    
-    func setMenuDetail(menuDetail: MenuDetail?) {
-        self.menuDetail = menuDetail
     }
 }
 
@@ -94,6 +90,14 @@ extension DetailViewController {
 extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detailScrollView.imagePageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
+    }
+}
+
+// MARK: - Providing Function
+
+extension DetailViewController {
+    func setMenuDetail(menuDetail: MenuDetail?) {
+        self.menuDetail = menuDetail
     }
 }
 
@@ -120,7 +124,7 @@ extension DetailViewController {
             guard let imageURL = URL(string: image) else { return }
             networkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
                 guard let self = self else { return }
-
+                
                 switch result {
                 case .success(let data):
                     guard let data = data,
@@ -135,4 +139,26 @@ extension DetailViewController {
         }
     }
     
+    func setRecipe(images: [String]) {
+        detailScrollView.addPlaceholderView(count: images.count)
+        
+        for (index, imagePath) in images.enumerated() {
+            guard let imageURL = URL(string: imagePath) else { return }
+            
+            networkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let data):
+                    guard let data = data,
+                          let image = UIImage(data: data) else { return }
+                    DispatchQueue.main.async {
+                        self.detailScrollView.setRecipe(image: image, at: index)
+                    }
+                case .failure(let failure):
+                    os_log(.error, "\(failure.localizedDescription)")
+                }
+            }
+        }
+    }
 }
