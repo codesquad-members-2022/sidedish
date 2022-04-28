@@ -12,7 +12,11 @@ protocol RepositoryProtocol {
 }
 
 class RemoteRepository: RepositoryProtocol {
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManagerProtocol
+
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
+    }
 
 	private var baseURL: URL? {
 		return try? URL(string: "https://" + Configuration.value(for: "ServerURL"))

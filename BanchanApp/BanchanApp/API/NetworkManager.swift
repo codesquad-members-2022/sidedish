@@ -7,7 +7,11 @@
 
 import Foundation
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetchData<T: Codable>(request: URLRequest, type: T.Type, completion: @escaping ((NetworkResult<T>) -> Void))
+}
+
+class NetworkManager: NetworkManagerProtocol {
     private let session: URLSessionProtocol
 
     init(session: URLSessionProtocol = URLSession.shared) {
