@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sidedish.com.controller.model.UserResponse;
 import sidedish.com.service.LoginService;
 
 @RequiredArgsConstructor
@@ -34,8 +35,13 @@ public class LoginController {
 
 	@GetMapping("/login/callback")
 	public ResponseEntity<Object> login(@RequestParam String code, HttpSession session) {
-		Long userId = loginService.login(code);
-		session.setAttribute("userId", userId);
+		UserResponse user = loginService.login(code);
+		session.setAttribute("userId", user.getId());
+
+		/**
+		 * TODO : 프론트 협의해야함
+		 */
+//		return user;
 		return ResponseEntity.status(HttpStatus.SEE_OTHER)
 			.location(URI.create("http://localhost:8080"))
 			.build();

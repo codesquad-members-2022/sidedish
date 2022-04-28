@@ -56,10 +56,10 @@ create table orders
 create table user
 (
     id               bigint auto_increment primary key,
-    user_name        varchar(100)  not null,
-    avatar_image_url text          not null,
-    email            varchar(1000) not null,
-    access_token     text          not null,
-    token_type       varchar       not null,
-    scope            varchar       not null
+    user_name        varchar(100) not null,
+    avatar_image_url text         not null,
+    email            varchar(1000),
+    access_token     text         not null,
+    token_type       varchar      not null,
+    scope            varchar      not null
 );

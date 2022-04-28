@@ -3,9 +3,13 @@ package sidedish.com.config;
 import java.util.Map;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import sidedish.com.interceptor.LoginInterceptor;
 
 @Configuration
+@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
 	@Override
@@ -17,5 +21,11 @@ public class WebConfig implements WebMvcConfigurer {
 
 		registry.addMapping("/**")
 			.allowedOrigins(localIp, awsIp, dnsName);
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LoginInterceptor())
+			.addPathPatterns("/api/products/*/order");
 	}
 }
