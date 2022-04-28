@@ -1,5 +1,6 @@
 package com.team34.sidedish.dto;
 
+import com.team34.sidedish.domain.Dish;
 import java.util.List;
 
 public class DishResponse {
@@ -26,6 +27,18 @@ public class DishResponse {
         this.content = content;
         this.badge = badge;
         this.categories = categories;
+    }
+
+    public DishResponse(Dish dish) {
+        this.id = dish.getId();
+        this.originPrice = dish.getPrice();
+        this.discountPrice = dish.calculateDiscountPrice();
+        this.earlyDeliverable = dish.isEarlyDeliverable();
+        this.mainImagePath = dish.mainImagePath();
+        this.title = dish.getTitle();
+        this.content = dish.getContent();
+        this.badge = dish.getTag();
+        this.categories = dish.categoryIds();
     }
 
     public Long getId() {

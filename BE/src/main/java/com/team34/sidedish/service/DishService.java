@@ -30,7 +30,7 @@ public class DishService {
 
         dishRepository.findAll()
             .forEach(dish -> {
-                DishResponse dishResponse = dish.toDishResponse();
+                DishResponse dishResponse = new DishResponse(dish);
                 if (isEventDish(dish)) {
                     eventItems.add(dishResponse);
                 }
@@ -54,6 +54,6 @@ public class DishService {
         // TODO: 추천 아이템 로직 개선(다른 카테고리의 상품이 추천되도록)
         Collections.shuffle(dishes);
         List<Dish> recommendedDishes = dishes.subList(0, 10);
-        return dish.toDishDetailResponse(recommendedDishes);
+        return new DishDetailResponse(dish, recommendedDishes);
     }
 }

@@ -1,7 +1,5 @@
 package com.team34.sidedish.domain;
 
-import com.team34.sidedish.dto.DishDetailResponse;
-import com.team34.sidedish.dto.DishResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.annotation.Id;
@@ -35,42 +33,12 @@ public class Dish {
             .collect(Collectors.toList());
     }
 
-    public DishResponse toDishResponse() {
-        return new DishResponse(
-            id,
-            price,
-            calculateDiscountPrice(),
-            earlyDeliverable,
-            mainImagePath(),
-            title,
-            content,
-            tag,
-            categoryIds()
-        );
-    }
-
-    public DishDetailResponse toDishDetailResponse(List<Dish> recommendedDishes) {
-        return new DishDetailResponse(
-            price,
-            calculateDiscountPrice(),
-            deliveryFee,
-            mileageRate,
-            earlyDeliverable,
-            freeShippingAmount,
-            title,
-            content,
-            getImagePaths(),
-            tag,
-            recommendedDishes.stream().map(Dish::toDishResponse).collect(Collectors.toList())
-        );
-    }
-
-    private int calculateDiscountPrice() {
+    public int calculateDiscountPrice() {
         Badge badge = Badge.of(tag);
         return badge.calculateDiscountPrice(price);
     }
 
-    private String mainImagePath() {
+    public String mainImagePath() {
         if (isImageExist()) {
             return images.get(MAIN_IMAGE_INDEX).getPath();
         }
@@ -81,7 +49,55 @@ public class Dish {
         return images.size() > 0;
     }
 
-    private List<String> getImagePaths() {
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public int getDeliveryFee() {
+        return deliveryFee;
+    }
+
+    public Integer getFreeShippingAmount() {
+        return freeShippingAmount;
+    }
+
+    public double getMileageRate() {
+        return mileageRate;
+    }
+
+    public boolean isEarlyDeliverable() {
+        return earlyDeliverable;
+    }
+
+    public List<CategoryDish> getCategories() {
+        return categories;
+    }
+
+    public List<DishImage> getImages() {
+        return images;
+    }
+
+    public List<String> getImagePaths() {
         return images.stream()
             .map(DishImage::getPath)
             .collect(Collectors.toList());

@@ -1,6 +1,8 @@
 package com.team34.sidedish.dto;
 
+import com.team34.sidedish.domain.Dish;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DishDetailResponse {
 
@@ -16,22 +18,18 @@ public class DishDetailResponse {
     private String badge;
     private List<DishResponse> recommendedItems;
 
-    public DishDetailResponse(int originPrice, int discountPrice, int deliveryFee,
-        double mileageRate,
-        boolean earlyDeliverable, Integer freeShippingAmount, String title, String content,
-        List<String> images, String badge,
-        List<DishResponse> recommendedItems) {
-        this.originPrice = originPrice;
-        this.discountPrice = discountPrice;
-        this.deliveryFee = deliveryFee;
-        this.mileageRate = mileageRate;
-        this.earlyDeliverable = earlyDeliverable;
-        this.freeShippingAmount = freeShippingAmount;
-        this.title = title;
-        this.content = content;
-        this.images = images;
-        this.badge = badge;
-        this.recommendedItems = recommendedItems;
+    public DishDetailResponse(Dish dish, List<Dish> recommendedDishes) {
+        this.originPrice = dish.getPrice();
+        this.discountPrice = dish.calculateDiscountPrice();
+        this.deliveryFee = dish.getDeliveryFee();
+        this.mileageRate = dish.getMileageRate();
+        this.earlyDeliverable = dish.isEarlyDeliverable();
+        this.title = dish.getTitle();
+        this.content = dish.getContent();
+        this.images = dish.getImagePaths();
+        this.badge = dish.getTag();
+        this.recommendedItems = recommendedDishes.stream().map(DishResponse::new).collect(
+            Collectors.toList());
     }
 
     public int getOriginPrice() {
