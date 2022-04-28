@@ -20,63 +20,65 @@ VALUES (3,'오리주물럭','맛있는 오리고기와 오징어의 조합',1580
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id)
 VALUES (2,'한돈 돼지 김치 찌개','김치찌개는 역시 한돈이지',9900,8910,10,2,
-        '',
+        'https://user-images.githubusercontent.com/92678171/164161008-3a697930-6267-4785-8a9a-7fdb27a033e3.png',
         1);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (1,'호두 멸치볶음','잔멸치와 호두가 만나 짭쪼롬하지만 고소하지',5800,5220,10,2,
-        '',
+        'https://user-images.githubusercontent.com/92678171/164161461-6f47d7e2-51ed-4e27-b6e6-4a146ac917ed.png',
         2,2);
 INSERT INTO item (category_id, item_name, description, original_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (1,'달래장','간장게장 뺨치는 밥도둑', 4000,10,3,
-        '',
+        'http://zipbanchan.godohosting.com/detail_page/8_muchim/707_ZIP_P_5057_S.jpg',
         2,3);
 INSERT INTO item (category_id, item_name, description, original_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (1,'미나리 무침','향긋하고 고소한 봄나물', 4800,10, 3,
-        '',
+        'https://zipbanchan.godohosting.com/detail_page/8_muchim/682_ZIP_P_5055_S.jpg',
         2,3);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (1,'새콤달콤 유채나물 무침','새콤달콤보다 더 새콤달콤한 유채나물 무침',4800, 4320, 10, 2,
-        '',
+        'http://zipbanchan.godohosting.com/detail_page/8_muchim/1330_ZIP_P_5117_S.jpg',
         2,3);
 INSERT INTO item (category_id, item_name, description, original_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (1,'새콤 오이무생채','아이들이 먹기 좋은 깔끔한 무생채', 3500, 10,3,
-        '',
+        'http://zipbanchan.godohosting.com/detail_page/5_kid/1422_ZIP_P_5150_S.jpg',
         1,4);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (2,'아이들 된장국', '아이들도 먹지 좋은 맵지 않은 된장국', 8800, 7920, 10, 2,
-        '',
+        'http://zipbanchan.godohosting.com/detail_page/5_kid/561_ZIP_P_1026_S.jpg',
         3, 4);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (1, '계란말이','두툼하고 부드러운 계란말이',5800,5220, 10,2,
-        '',
+        'http://zipbanchan.godohosting.com/detail_page/5_kid/346_ZIP_P_3021_S.jpg',
         3, 4);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id)
 VALUES (2, '시래기 된장국','구수하면서 시원한 맛', 7800,7020,10,2,
-        '',
+        'https://zipbanchan.godohosting.com/800X800px/9_soup/176_ZIP_P_2004_T.jpg',
         2);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id)
 VALUES (2,'콩나물국','국내산 콩나물로 더 건강하게', 6800,6120, 10,2,
-        '',
+        'https://zipbanchan.godohosting.com/800X800px/9_soup/1391_ZIP_P_2045_T.jpg',
         1);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (3, '소갈비찜', '맛있는 소갈비와 양념의 조합', 28900, 26010, 10, 2,
-        '',
+        'https://user-images.githubusercontent.com/92678171/164163185-ca08cdbc-3b24-4628-ae97-516f4d721c8d.png',
         3,1);
 INSERT INTO item (category_id, item_name, description, original_price, stock, label_id, main_image,
                   delivery_id, best_id)
 VALUES (3, '쭈꾸미 한돈 제육볶음','쭈꾸미와 한돈의 조합', 16900, 10, 3,
-        '',
+        'https://user-images.githubusercontent.com/92678171/164163448-948d6b95-8e42-46fb-8e3c-87e84de729a7.png',
         3,1);
 INSERT INTO images (item_id, detail_images)
-VALUES (1, 'http://zipbanchan.godohosting.com/detail_page/3_main/1351/1351_ZIP_P_0108_how_to_cook_1.jpg,http://zipbanchan.godohosting.com/detail_page/3_main/1351/1351_ZIP_P_0108_damumsae.jpg'),
-       (2, 'http://img4.tmon.kr/cdn3/deals/2019/07/18/2268874298/2268874298_front_37JotJSrqK.jpg'), (2, 'http://zipbanchan.godohosting.com/detail_page/3_main/513/513_ZIP_P_8013_S.jpg');
+VALUES (1, 'http://zipbanchan.godohosting.com/detail_page/3_main/1351/1351_ZIP_P_0108_how_to_cook_1.jpg'),(1, 'http://zipbanchan.godohosting.com/detail_page/3_main/1351/1351_ZIP_P_0108_damumsae.jpg'),
+       (2, 'http://img4.tmon.kr/cdn3/deals/2019/07/18/2268874298/2268874298_front_37JotJSrqK.jpg'), (2, 'http://zipbanchan.godohosting.com/detail_page/3_main/513/513_ZIP_P_8013_S.jpg'),
+       (3, 'http://zipbanchan.godohosting.com/detail_page/7_fry/17_ZIP_P_6014_S.jpg'), (3, 'http://zipbanchan.godohosting.com/detail_page/damumsae/10104.jpg'),
+       (4, 'http://zipbanchan.godohosting.com/detail_page/8_muchim/707_ZIP_P_5057_S.jpg');
