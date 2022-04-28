@@ -49,6 +49,7 @@ const Modal = ({ showModalPopup, productHash }) => {
   }, []);
 
   const handleMouseOverDetailImg = ({ target }) => {
+    console.log("!");
     setProductImg(target.src);
   };
 
