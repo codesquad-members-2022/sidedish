@@ -1,14 +1,35 @@
 {
   "1": {
     "productName": "쭈꾸미 한돈 제육볶음_반조리",
-    "earlyDelivery": 1,
-    "price": 16900,
-    "eventBadge": "none",
-    "discountRate": 0,
+    "earlyDelivery": true,
+    "price": 15800,
+    "eventBadge": "launching",
+    "discountRate": 0.2,
     "image": [
       {
         "id": 7,
-        "imagePath": "https://imageserver.com/example1.jpg"
+        "imagePath": "https://crcf.cookatmarket.com/product/images/2020/09/mata_1599459539_5287_720.jpg"
+      },
+      {
+        "id": 8,
+        "imagePath": "https://imageserver.com/example2.jpg"
+      },
+      {
+        "id": 9,
+        "imagePath": "https://imageserver.com/example3.jpg"
+      }
+    ]
+  },
+  "2": {
+    "productName": "소갈비찜",
+    "earlyDelivery": false,
+    "price": 28900,
+    "eventBadge": "event",
+    "discountRate": 0.1,
+    "image": [
+      {
+        "id": 7,
+        "imagePath": "https://mblogthumb-phinf.pstatic.net/MjAxODA5MTZfMjQz/MDAxNTM3MTA5OTEyOTg0.sI-pOmBovt-SCWKzMdKBwBGHHTvTIJ9TWchLLH_UgZIg.kPc3Lqgn1iWqx-NxhrJiJWD0i1P4clYnwtQTrwyJ3UEg.JPEG.dew36/image_4937538991537109879126.jpg?type=w800"
       },
       {
         "id": 8,
@@ -222,7 +243,7 @@
       "price": 6210,
       "eventBadge": "event",
       "discountedRate": 10
-    },    
+    },
     {
       "id": 24,
       "image": "https://crcf.cookatmarket.com/product/images/2020/09/mata_1599459539_5287_720.jpg",

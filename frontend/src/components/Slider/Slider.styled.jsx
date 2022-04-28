@@ -3,16 +3,12 @@ import styled, {css} from "styled-components";
 const PrevButton = styled.button`
   position: absolute;
   margin-top: 200px;
-  background-color: transparent;
-  border: none;
   left: 36px;
 `;
 
 const NextButton = styled.button`
   position: absolute;
   margin-top: 200px;
-  background-color: transparent;
-  border: none;
   right: 36px;
 `;
 

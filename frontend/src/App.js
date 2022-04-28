@@ -8,8 +8,12 @@ const GlobalStyles = createGlobalStyle`
   ${reset}
   font-family: 'Noto Sans KR';
   font-style: normal;
+  button{
+      background-color: transparent;
+      border: none;
+  }
   button:hover{
-    cursor:pointer;
+      cursor:pointer;
   }
 `;
 

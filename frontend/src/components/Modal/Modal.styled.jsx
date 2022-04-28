@@ -21,17 +21,19 @@ const ModalBlock = styled.div`
 `;
 
 const CloseButton = styled.button`
-  background: transparent;
-  border: none;
+  float: right;
 `;
 
 const InnerModalBlock = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ProductImages = styled.div`
   width: 392px;
   height: 472px;
+  margin-right: 32px;
 `;
 
 const MainThumb = styled.img`
@@ -44,11 +46,63 @@ const SubThumb = styled.img`
   height: 72px;
 `;
 
-const Product = styled.div``;
+const ProductDetails = styled.div`
+  display: flex;
+  height: 466px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+  position: relative;
+`;
 
 const ProductInfo = styled.div`
   width: 440px;
   height: 237px;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 440px;
+    height: 1px;
+    background-color: #ebebeb;
+  }
+`;
+
+const ProductName = styled.h1`
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 54px;
+`;
+
+const PriceBox = styled.div`
+  display: flex;
+  margin-bottom: 40px;
+`;
+
+const ProductPrice = styled.div`
+  margin-left: 8px;
+  display: flex;
+
+  .discountedPrice {
+    font-weight: 500;
+    font-size: 20px;
+  }
+`;
+
+const OrderBox = styled.div`
+  display: flex;
+`;
+
+const OrderCountBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 153px;
+`;
+
+const TotalPriceBox = styled.div`
+  display: flex;
 `;
 
 const OrderButton = styled.button`
@@ -59,6 +113,21 @@ const OrderButton = styled.button`
   font-weight: 700;
   font-size: 18px;
 `;
+
+const TotalPriceTitle = styled.p`
+  font-weight: 400;
+  font-size: 16px;
+  color: #777777;
+  line-height: 22px;
+  margin-right: 16px;
+`;
+
+const TotalPrice = styled.p`
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const OrderCount = styled.p``;
 
 const SuccessOrder = styled.h1`
   text-align: center;
@@ -72,8 +141,17 @@ export {
   ProductImages,
   MainThumb,
   SubThumb,
-  Product,
+  ProductDetails,
   ProductInfo,
   OrderButton,
   SuccessOrder,
+  PriceBox,
+  ProductPrice,
+  OrderBox,
+  TotalPriceBox,
+  OrderCountBox,
+  TotalPriceTitle,
+  TotalPrice,
+  OrderCount,
+  ProductName,
 };
