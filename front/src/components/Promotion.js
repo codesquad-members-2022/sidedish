@@ -65,7 +65,7 @@ const TabBar = styled.ul`
 `;
 const Tab = styled.li`
   margin-right: 32px;
-  ${props => (props.selected ? `border-bottom: 1px solid ${({ theme }) => theme.colors.black};` : '')}
+  ${({ theme, selected }) => selected && `border-bottom: 1px solid ${theme.colors.black};`}
   padding-bottom: 17px;
   font-weight: 500;
   font-size: 20px;
