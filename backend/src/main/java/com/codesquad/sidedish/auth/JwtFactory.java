@@ -20,7 +20,7 @@ public class JwtFactory {
             .setHeader(createJwtHeader())
             .setClaims(createJwtClaims(user))
             .setExpiration(new Date(now.getTime() + expiredTime))
-            .signWith(key)
+            .signWith(key, SignatureAlgorithm.HS256)
             .compact();
     }
 
