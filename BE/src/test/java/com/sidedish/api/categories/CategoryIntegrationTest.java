@@ -95,11 +95,11 @@ class CategoryIntegrationTest {
         requestThenResult.andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
-                .andExpect(jsonPath("_embedded.responseItemDtoList[0]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList[1]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList[2]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList[3]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList.length()").value(4))
+                .andExpect(jsonPath("itemResource[0]").exists())
+                .andExpect(jsonPath("itemResource[1]").exists())
+                .andExpect(jsonPath("itemResource[2]").exists())
+                .andExpect(jsonPath("itemResource[3]").exists())
+                .andExpect(jsonPath("itemResource.length()").value(4))
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.prev-page").exists())
                 .andExpect(jsonPath("_links.next-page").exists())
@@ -119,14 +119,14 @@ class CategoryIntegrationTest {
                         ),
                         relaxedResponseFields(
                                 fieldWithPath("_links.self").description("link of main type item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].id").description("id of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].title").description("title of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].description").description("description of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].price").description("price of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].badge").description("Event name of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].discountPrice").description("discountPrice of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].rewardPoint").description("rewardPoint of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].images").description("images of item")
+                                fieldWithPath("itemResource[0].id").description("id of item"),
+                                fieldWithPath("itemResource[0].title").description("title of item"),
+                                fieldWithPath("itemResource[0].description").description("description of item"),
+                                fieldWithPath("itemResource[0].price").description("price of item"),
+                                fieldWithPath("itemResource[0].badge").description("Event name of item"),
+                                fieldWithPath("itemResource[0].discountPrice").description("discountPrice of item"),
+                                fieldWithPath("itemResource[0].rewardPoint").description("rewardPoint of item"),
+                                fieldWithPath("itemResource[0].images").description("images of item")
                         )
                 ));
     }
