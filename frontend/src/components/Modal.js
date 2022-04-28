@@ -15,15 +15,15 @@ import { Line } from "./HorizontalLine";
 import { useFetch } from "../fetcher";
 
 export const Modal = ({ openId }) => {
-  const [info, setInfo] = useState();
   const [count, setCount] = useState(1);
-  const [primaryImage, setPrimaryImage] = useState();
-  const [variantImages, setVariantImages] = useState();
+  const [primaryImage, setPrimaryImage] = useState("");
+  const [variantImages, setVariantImages] = useState([]);
+  const [info, setInfo] = useState();
   const res = useFetch(Queries.product, openId);
   useEffect(() => {
     setInfo(res);
-    setPrimaryImage(res?.primary_image);
-    setVariantImages(res?.variant_image);
+    setPrimaryImage(info?.primary_image);
+    setVariantImages(info?.variant_image);
   }, [res]);
   const { openedId, setOpenedId } = useContext(ModalContext);
 
@@ -43,7 +43,7 @@ export const Modal = ({ openId }) => {
               <ProductImageWrapper>
                 <PrimaryImage bgImg={primaryImage}></PrimaryImage>
                 <VariantWrapper>
-                  {variantImages.map((img, key) => (
+                  {variantImages?.map((img, key) => (
                     <VariantImage
                       key={key}
                       bgImg={img}
@@ -55,16 +55,16 @@ export const Modal = ({ openId }) => {
               <ProductOrderWrapper>
                 <ProductMainInfo>
                   <Name>{info.name}</Name>
-                  <PrimeCost>{info.price.toLocaleString()}원</PrimeCost>
+                  <PrimeCost>{info.price?.toLocaleString()}원</PrimeCost>
                   <BadgePrice>
                     <DiscountTag discount={info.discount} />
-                    {info.final_price.toLocaleString()}원
+                    {info.final_price?.toLocaleString()}원
                   </BadgePrice>
                 </ProductMainInfo>
                 <Line />
                 <ProductSubInfo>
                   <div>적립금</div>
-                  <div>{info.mileage.toLocaleString()}원</div>
+                  <div>{info.mileage?.toLocaleString()}원</div>
                   <div>배송정보</div>
                   <div>
                     {info.eary_morning_delivery && "서울 경기 새벽배송"}{" "}
@@ -72,8 +72,8 @@ export const Modal = ({ openId }) => {
                   </div>
                   <div>배송비</div>
                   <div>
-                    {`${info.delivery_rate.toLocaleString()}원
-                        (${info.free_delivery_threshold.toLocaleString()}원 이상 주문시 무료)`}
+                    {`${info.delivery_rate?.toLocaleString()}원
+                        (${info.free_delivery_threshold?.toLocaleString()}원 이상 주문시 무료)`}
                   </div>
                 </ProductSubInfo>
                 <Line />

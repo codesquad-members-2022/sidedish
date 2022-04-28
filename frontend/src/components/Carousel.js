@@ -46,8 +46,8 @@ const CarouselButton = ({ size, dir, onBtnClick, isEndPage }) => (
 
 export const Carousel = ({ id, name, size }) => {
   const [curIndex, setCurIndex] = useState(0);
-  const categoryData = useFetch(Queries.categoryProducts, id);
-  const lastIndex = categoryData?.products.length - cardNumPerPage[size];
+  const { requestDetail, products } = useFetch(Queries.products, id);
+  const lastIndex = products?.length - cardNumPerPage[size];
   const clickNext = () => {
     if (curIndex >= lastIndex) return;
     setCurIndex((prev) => Math.min(prev + cardNumPerPage[size], lastIndex));
@@ -59,24 +59,24 @@ export const Carousel = ({ id, name, size }) => {
 
   return (
     <>
-      <CarouselTitle size={size}>{categoryData?.full_name}</CarouselTitle>
-      <CardList
-        products={categoryData?.products}
-        cardSize={size}
-        curIndex={curIndex}
-      />
-      <CarouselButton
-        size={size}
-        onBtnClick={() => clickPrev()}
-        dir={"left"}
-        isEndPage={curIndex === 0}
-      />
-      <CarouselButton
-        size={size}
-        onBtnClick={() => clickNext()}
-        dir={"right"}
-        isEndPage={curIndex === lastIndex}
-      />
+      {products && (
+        <>
+          <CarouselTitle size={size}>{requestDetail?.fullName}</CarouselTitle>
+          <CardList products={products} cardSize={size} curIndex={curIndex} />
+          <CarouselButton
+            size={size}
+            onBtnClick={() => clickPrev()}
+            dir={"left"}
+            isEndPage={curIndex === 0}
+          />
+          <CarouselButton
+            size={size}
+            onBtnClick={() => clickNext()}
+            dir={"right"}
+            isEndPage={curIndex === lastIndex}
+          />
+        </>
+      )}
     </>
   );
 };

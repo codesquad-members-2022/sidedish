@@ -48,30 +48,31 @@ const TabItem = styled.li`
 
 export const SpecialCategory = ({ specialCategories }) => {
   const [selected, setSelected] = useState(specialCategories[0].id);
-  const categoryData = useFetch(Queries.specialCategoryProducts, selected);
+  const { products } = useFetch(Queries.products, selected);
 
   return (
-    <Wrapper>
-      <TitleWrapper>
-        <TitleBadge>기획전</TitleBadge>
-        <Title>한 번 주문하면 두 번 반하는 반찬</Title>
-      </TitleWrapper>
-      <TabBar>
-        {specialCategories.map((specialCategory) => (
-          <TabItem
-            key={specialCategory.id}
-            selected={selected === specialCategory.id}
-            onClick={() => setSelected(specialCategory.id)}
-          >
-            {specialCategory.name}
-          </TabItem>
-        ))}
-        <HorizontalLine position={100} color={"Grey4"} />
-      </TabBar>
-      <CardList
-        products={categoryData?.products}
-        cardSize={SIZES.large}
-      ></CardList>
-    </Wrapper>
+    <>
+      {products && (
+        <Wrapper>
+          <TitleWrapper>
+            <TitleBadge>기획전</TitleBadge>
+            <Title>한 번 주문하면 두 번 반하는 반찬</Title>
+          </TitleWrapper>
+          <TabBar>
+            {specialCategories.map((specialCategory) => (
+              <TabItem
+                key={specialCategory.id}
+                selected={selected === specialCategory.id}
+                onClick={() => setSelected(specialCategory.id)}
+              >
+                {specialCategory.name}
+              </TabItem>
+            ))}
+            <HorizontalLine position={100} color={"Grey4"} />
+          </TabBar>
+          <CardList products={products} cardSize={SIZES.large}></CardList>
+        </Wrapper>
+      )}
+    </>
   );
 };

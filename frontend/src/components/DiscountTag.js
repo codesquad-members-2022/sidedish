@@ -23,7 +23,7 @@ export const TagWrapper = styled.ul`
 export const DiscountTag = ({ discount }) => {
   return (
     <TagWrapper>
-      {discount.map(({ id, name }, key) => (
+      {discount?.map(({ id, name }, key) => (
         <TagItem key={key} id={id}>
           <span>{name}</span>
         </TagItem>

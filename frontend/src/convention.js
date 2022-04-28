@@ -44,8 +44,7 @@ export const cardListArea = {
 export const Queries = {
   categories: "categories",
   specialCategories: "specialCategories",
-  specialCategoryProducts: "specialCategoryProducts",
-  categoryProducts: "categoryProducts",
+  products: "products",
   product: "product",
 };
 
@@ -53,12 +52,10 @@ export const requestQuery = {
   queries: {
     categories: (id = undefined) => "/mocks/categories.json",
     specialCategories: (id = undefined) => "/mocks/specialCategories.json",
-    specialCategoryProducts: (id = undefined) =>
-      "/mocks/specialCategoryProducts.json",
     product: (id = undefined) => "/mocks/product.json",
-    categoryProducts: (id = undefined) => "/mocks/categoryProducts.json",
+    products: (id = undefined) => "/mocks/categoryProducts.json",
   },
-  makeQuery: (target, id) => {
+  makeQuery: (target, id = undefined) => {
     return requestQuery.queries[target](id);
   },
 };
