@@ -17,8 +17,9 @@ class SplashViewModel: SplashViewModelProtocol, SplashViewModelAction, SplashVie
     
     let presentNextView = PassthroughSubject<RootWindow.State, Never>()
     
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.loginRepository) private var loginRepository: LoginRepository
     private var cancellables = Set<AnyCancellable>()
-    private let loginRepository: LoginRepository = LoginRepositoryImpl()
     
     deinit {
         Log.debug("DeInit SplashViewModel")
@@ -28,7 +29,7 @@ class SplashViewModel: SplashViewModelProtocol, SplashViewModelAction, SplashVie
         action().viewDidAppear
             .compactMap { [weak self] _ in self?.loginRepository.getUser() }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.userStore.user = $0 })
+            .handleEvents(receiveOutput: { [weak self] user in self?.userStore.user = user })
             .map { user -> RootWindow.State in user == nil ? .login : .main }
             .sink(receiveValue: state().presentNextView.send(_:))
             .store(in: &cancellables)

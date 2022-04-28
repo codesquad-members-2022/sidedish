@@ -39,9 +39,9 @@ extension RootWindow {
             case .splash:
                 return SplashViewController(viewModel: SplashViewModel())
             case .login:
-                return LoginViewController(viewModel: LoginViewModel(loginRepository: LoginRepositoryImpl()))
+                return LoginViewController(viewModel: LoginViewModel())
             case .main:
-                return UINavigationController(rootViewController: MainViewController(viewModel: MainViewModel(sidedishRepository: SidedishRepositoryImpl(), resourceRepository: ResourceRepositoryImpl(), loginRepository: LoginRepositoryImpl())))
+                return UINavigationController(rootViewController: MainViewController(viewModel: MainViewModel()))
             }
         }
     }

@@ -9,6 +9,11 @@ import UIKit
 
 extension UIViewController {
     func switchRootWindowState(_ state: RootWindow.State) {
-        Container.rootWindow?.switchRootWindowState.send(state)
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let sceneDelegate = windowScene.delegate as? SceneDelegate,
+              let rootWindow = sceneDelegate.window else {
+            return
+        }
+        rootWindow.switchRootWindowState.send(state)
     }
 }

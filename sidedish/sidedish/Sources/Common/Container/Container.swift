@@ -8,15 +8,16 @@
 import Foundation
 import UIKit
 
-enum Container {
-    static let userStore = UserStore()
+class Container {
+    static var shared = Container()
     
-    static var rootWindow: RootWindow? {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let sceneDelegate = windowScene.delegate as? SceneDelegate,
-              let rootWindow = sceneDelegate.window else {
-            return nil
-        }
-        return rootWindow
-    }
+    private init() { }
+    
+    lazy var userStore = UserStore()
+    
+    lazy var sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
+
+    lazy var resourceRepository: ResourceRepository = ResourceRepositoryImpl()
+
+    lazy var loginRepository: LoginRepository = LoginRepositoryImpl()
 }
