@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Fonts, IconFonts } from '@/Constants';
+import { Fonts, IconFonts, ProductCardSize } from '@/Constants';
 import { API_URL } from '@/Env';
 import { useFetch } from '@/Hooks';
 
@@ -95,7 +95,7 @@ const ProductCardList = styled.ul`
 
 const LS_RADIUS = 50;
 
-export const RelatedProducts = ({ categoryId = 1, productCardSize = 'sm' }) => {
+export const RelatedProducts = ({ categoryId }) => {
   const [categoryProductsData, isLoaded, isError, setRetry] = useFetch(
     `${API_URL}/categories/${categoryId}/items`
   );
@@ -140,7 +140,7 @@ export const RelatedProducts = ({ categoryId = 1, productCardSize = 'sm' }) => {
           >
             {categoryProductsData.result_body.contents.map(relatedProduct => (
               <ProductCard
-                size={productCardSize}
+                size={ProductCardSize.SM}
                 data={relatedProduct}
                 key={relatedProduct.id}
               />

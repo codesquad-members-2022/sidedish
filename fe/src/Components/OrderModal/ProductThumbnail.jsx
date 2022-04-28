@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
 import { ModalContext } from './ModalContext';
@@ -65,12 +65,11 @@ export const ProductThumbnail = ({ ProductThumbnailData }) => {
         <img className="product-img" src={mainPanelImg} alt="제품 상세 사진" />
       </ProductPanel>
       <SubProductList>
-        {ProductThumbnailData.map((productImgData) => (
-          <ProductPanel size={'sm'}>
+        {ProductThumbnailData.map(productImgData => (
+          <ProductPanel size={'sm'} key={productImgData.id}>
             <img
               src={productImgData.url}
               alt="제품 상세 사진"
-              key={productImgData.url.id}
               className="product-img"
               onClick={onClickSubPanel}
             />

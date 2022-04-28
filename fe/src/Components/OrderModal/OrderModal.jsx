@@ -56,13 +56,13 @@ const CloseButton = styled.button`
   right: 48px;
   width: 30px;
   height: 26px;
-  
+
   &:hover {
     opacity: 0.7;
   }
 `;
 
-export const OrderModal = () => {
+export const OrderModal = ({ categoryId }) => {
   const { ModalDisplay, productDetail, reset } = useContext(ModalContext);
 
   function onClickCloseBtn() {
@@ -87,7 +87,7 @@ export const OrderModal = () => {
           {productDetail && <ProductInfo productData={productDetail} />}
         </SelectedProduct>
 
-        <RelatedProducts />
+        <RelatedProducts categoryId={categoryId} />
       </OrderModalWrapper>
     </ModalBackGround>
   );
