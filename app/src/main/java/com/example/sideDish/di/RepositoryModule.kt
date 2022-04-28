@@ -1,9 +1,7 @@
 package com.example.sideDish.di
 
-import com.example.sideDish.data.source.DetailRemoteRepository
-import com.example.sideDish.data.source.DetailRepository
-import com.example.sideDish.data.source.FoodRemoteRepository
-import com.example.sideDish.data.source.FoodRepository
+import com.example.sideDish.data.source.*
+import com.example.sideDish.network.OrderRetrofitService
 import com.example.sideDish.network.SideDishRetrofitService
 import dagger.Module
 import dagger.Provides
@@ -25,4 +23,11 @@ object RepositoryModule {
     fun provideFoodRepository(retrofitService: SideDishRetrofitService): FoodRepository {
         return FoodRemoteRepository(retrofitService)
     }
+
+    @Singleton
+    @Provides
+    fun provideOrderRepository(orderRetrofitService: OrderRetrofitService): OrderRepository {
+        return OrderRepository(orderRetrofitService)
+    }
+
 }
