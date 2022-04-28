@@ -11,6 +11,8 @@ const SlideWindow = styled.div`
   overflow: hidden;
 
   > * {
+    width: auto !important;
+    display: inline-flex !important;
     overflow: visible !important;
     transform: translate3d(
       ${({ curSlideIndex, slideUnitWidth }) =>
@@ -49,16 +51,13 @@ const SlideButton = styled.button`
   }
 `;
 
-const Icon = styled.i`
-  font-size: 24px;
-`;
-
 const useSlide = ({ slideRef, slideViewItemLength }) => {
   const initialPageIndex = 1;
   const minSlideIndex = 0;
   const [curSlideIndex, setCurSlideIndex] = useState(minSlideIndex);
   const [maxSlideIndex, setMaxSlideIndex] = useState(minSlideIndex);
-  const [slidePageIndex, setSlidePageIndex] = useState(initialPageIndex);
+  const [curPageIndex, setCurPageIndex] = useState(initialPageIndex);
+  const [lastPageIndex, setLastPageIndex] = useState(initialPageIndex);
   const [slideUnitWidth, setSlideUnitWidth] = useState(0);
 
   const handleClickPrevButton = () => {
@@ -74,7 +73,7 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
     const nextSlidePageIndex =
       Math.floor(nextSlideIndex / slideViewItemLength) + 1;
     setCurSlideIndex(nextSlideIndex);
-    setSlidePageIndex(nextSlidePageIndex);
+    setCurPageIndex(nextSlidePageIndex);
   };
 
   const handleClickNextButton = () => {
@@ -92,7 +91,7 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
     const nextSlidePageIndex =
       Math.floor(nextSlideIndex / slideViewItemLength) + 1;
     setCurSlideIndex(nextSlideIndex);
-    setSlidePageIndex(nextSlidePageIndex);
+    setCurPageIndex(nextSlidePageIndex);
   };
 
   useEffect(() => {
@@ -100,15 +99,15 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
       return;
     }
 
-    const _maxSlideIndex = slideRef.children.length - slideViewItemLength;
+    const slideItemLength = slideRef.children.length;
+    const _slideUnitWidth = slideRef.clientWidth / slideItemLength;
+    const tempSlideIndex = slideItemLength - slideViewItemLength;
+    const _maxSlideIndex = tempSlideIndex < 0 ? minSlideIndex : tempSlideIndex;
+    const _lastPageIndex = Math.floor(slideItemLength / slideViewItemLength);
 
-    setSlideUnitWidth(slideRef.clientWidth / slideRef.children.length);
-
-    if (_maxSlideIndex < 0) {
-      setMaxSlideIndex(minSlideIndex);
-    } else {
-      setMaxSlideIndex(_maxSlideIndex);
-    }
+    setSlideUnitWidth(_slideUnitWidth);
+    setLastPageIndex(_lastPageIndex);
+    setMaxSlideIndex(_maxSlideIndex);
   }, [slideRef, slideViewItemLength]);
 
   return [
@@ -116,27 +115,33 @@ const useSlide = ({ slideRef, slideViewItemLength }) => {
     minSlideIndex,
     maxSlideIndex,
     slideUnitWidth,
-    slidePageIndex,
+    curPageIndex,
+    lastPageIndex,
     handleClickPrevButton,
     handleClickNextButton,
   ];
 };
 
-export const MySlider = ({
+export const Slider = ({
   children,
-  margin,
+  margin = 0,
   slideRef,
   animation,
   slideViewItemLength,
+  prevIcon,
+  nextIcon,
   prevButtonClassName,
   nextButtonClassName,
+  curPageIndexClassName = null,
+  lastPageIndexClassName = null,
 }) => {
   const [
     curSlideIndex,
     minSlideIndex,
     maxSlideIndex,
     slideUnitWidth,
-    slidePageIndex,
+    curPageIndex,
+    lastPageIndex,
     handleClickSliderPrevButton,
     handleClickSliderNextButton,
   ] = useSlide({
@@ -159,15 +164,21 @@ export const MySlider = ({
         onClick={handleClickSliderPrevButton}
         disabled={curSlideIndex === minSlideIndex}
       >
-        <Icon className={'ic-prev'} />
+        {prevIcon || <span>◀</span>}
       </SlideButton>
       <SlideButton
         className={nextButtonClassName}
         onClick={handleClickSliderNextButton}
         disabled={curSlideIndex === maxSlideIndex}
       >
-        <Icon className={'ic-next'} />
+        {nextIcon || <span>▶</span>}
       </SlideButton>
+      {curPageIndexClassName && (
+        <span className={curPageIndexClassName}>{curPageIndex}</span>
+      )}
+      {curPageIndexClassName && (
+        <span className={lastPageIndexClassName}>{lastPageIndex}</span>
+      )}
     </SliderWrapper>
   );
 };

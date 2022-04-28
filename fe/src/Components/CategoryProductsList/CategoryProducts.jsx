@@ -8,17 +8,20 @@ import { useFetch } from '@/Hooks';
 import { RetryButton } from '@/Components/Button';
 import { LoadingSpinner } from '@/Components/LoadingSpinner';
 import { ProductCard } from '@/Components/ProductCard';
-import { MySlider } from '@/Components/Slider';
+import { Slider } from '@/Components/Slider';
 
 /* 슬라이더 */
-const prevButtonClassName = 'prevButton';
-const nextButtonClassName = 'nextButton';
-/*const SLIDE_VIEW_LENGTH = 4;
-const SLIDE_MARGIN = 24;
-const SLIDE_CONTAINER = 'slide-container';
+const SLIDE_VIEW_LENGTH = 4;
+const SLIDER_MARGIN = 24;
 const SLIDER_PREV_BUTTON = 'slider-prev-button';
 const SLIDER_NEXT_BUTTON = 'slider-next-button';
-/* ****** */
+const SLIDER_CUR_PAGE = 'cur-page';
+const SLIDER_LAST_PAGE = 'last-page';
+
+const ControllerIcon = styled.i`
+  font-size: 24px;
+`
+/**********/
 
 const CategoryProductsWrapper = styled.li`
   width: 1280px;
@@ -32,11 +35,11 @@ const CategoryProductsWrapper = styled.li`
     margin-bottom: 80px;
   }
 
-  .prevButton {
+  .${SLIDER_PREV_BUTTON} {
     left: -60px;
   }
 
-  .nextButton {
+  .${SLIDER_NEXT_BUTTON} {
     right: -60px;
   }
 `;
@@ -48,6 +51,8 @@ const Header = styled.header`
 const ProductCardList = styled.ul`
   display: inline-flex;
   justify-content: flex-start;
+  overflow: hidden;
+  width: 100%;
 `;
 
 const LS_MARGIN = 300;
@@ -81,18 +86,20 @@ export const CategoryProducts = ({ categoryId }) => {
   }
 
   const categoryProducts = categoryProductsData.result_body;
-/*  console.log('slidePageIndex', slidePageIndex);*/
+
   return (
     <CategoryProductsWrapper>
       <Header className={Fonts.XL_BOLD}>{categoryProducts.title}</Header>
 
-      <MySlider
-        margin={0}
+      <Slider
+        margin={SLIDER_MARGIN}
         slideRef={mySlideRef}
         animation={true}
-        slideViewItemLength={4}
-        prevButtonClassName={prevButtonClassName}
-        nextButtonClassName={nextButtonClassName}
+        slideViewItemLength={SLIDE_VIEW_LENGTH}
+        prevButtonClassName={SLIDER_PREV_BUTTON}
+        nextButtonClassName={SLIDER_NEXT_BUTTON}
+        prevIcon={<ControllerIcon className={IconFonts.PREV_BUTTON} />}
+        nextIcon={<ControllerIcon className={IconFonts.NEXT_BUTTON} />}
       >
         <ProductCardList
           ref={e => {
@@ -107,7 +114,18 @@ export const CategoryProducts = ({ categoryId }) => {
             />
           ))}
         </ProductCardList>
-      </MySlider>
+      </Slider>
+
+      {/* Slider가 없을 때 */}
+      {/*<ProductCardList>*/}
+      {/*  {categoryProducts.contents.map(categoryProduct => (*/}
+      {/*    <ProductCard*/}
+      {/*      size={'md'}*/}
+      {/*      data={categoryProduct}*/}
+      {/*      key={categoryProduct.id}*/}
+      {/*    />*/}
+      {/*  ))}*/}
+      {/*</ProductCardList>*/}
     </CategoryProductsWrapper>
   );
 };
