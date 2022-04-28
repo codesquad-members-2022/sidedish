@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { Container, Icon, CarouselItem, Wrapper } from "./Carousel.style";
 
@@ -38,37 +37,45 @@ function Carousel({ page, onUpdatePage, currDataSize, hasNext, children }) {
             <Icon
                 onClick={() => onClick("L")}
                 clickable={isClickable("L", { page })}
-                className="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
             >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 19l-7-7 7-7"
-                />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 19l-7-7 7-7"
+                    />
+                </svg>
             </Icon>
             <Wrapper>
                 <CarouselItem direction={direction}>{children}</CarouselItem>
             </Wrapper>
             <Icon
                 onClick={() => onClick("R")}
-                clickable={isClickable("R", { hasNext, page, currDataSize })}
-                className="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
+                clickable={isClickable("R", {
+                    hasNext,
+                    page,
+                    currDataSize,
+                })}
             >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                    />
+                </svg>
             </Icon>
         </Container>
     );

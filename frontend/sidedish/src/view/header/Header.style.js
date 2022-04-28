@@ -41,9 +41,11 @@ const Icons = styled.ul`
 `;
 
 const Icon = styled.li`
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
+    svg {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
 `;
 
 const SubMenu = styled.ul`
