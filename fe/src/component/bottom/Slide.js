@@ -56,14 +56,12 @@ const Slide = ({ title, cardData, alwaysDisplayed, isDisplayed }) => {
     >
       <SlideTitle>{title}</SlideTitle>
       <SlideCardWrapper>
-        <SlideCardsList
-          currentTranslateX={cardListTranslateX.toString() + "px"}
-        >
+        <SlideCardsList currentTranslateX={`${cardListTranslateX}px`}>
           {cardData.map((v) => {
             return (
               <Card
-                id={v.id}
                 size="small"
+                id={v.id}
                 key={v.id}
                 image={v.imgUrl}
                 alt={v.name}

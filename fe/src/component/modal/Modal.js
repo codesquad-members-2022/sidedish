@@ -4,6 +4,8 @@ import styled from "styled-components";
 import ProductDetails from "./ProductDetail";
 import ModalSlider from "./ModalSlider";
 import { ModalContext } from "../../store/store";
+import { myfetch } from "../../utils/utils";
+
 const ModalWrapper = styled.div`
   width: 900px;
   height: 794px;
@@ -13,6 +15,7 @@ const ModalWrapper = styled.div`
   top: 20%;
   left: 20%;
   padding: 50px 30px;
+  z-index: 99;
   &.hidden {
     display: none;
   }
@@ -26,7 +29,7 @@ const ModalCloseButton = styled.button`
   color: #777;
 `;
 
-const Modal = (props) => {
+const Modal = () => {
   const ctx = useContext(ModalContext);
   const onClickHandler = () => {
     ctx.setModalIsDisplayed(false);
@@ -35,9 +38,9 @@ const Modal = (props) => {
   const [modalInfor, setModalInfor] = useState([]);
 
   useEffect(() => {
-    fetch(`http://15.165.204.34:8080/api/v1/products/${ctx.clickedId}/detail`)
-      .then((res) => res.json())
-      .then((data) => setModalInfor(data.data));
+    myfetch(
+      `http://15.165.204.34:8080/api/v1/products/${ctx.clickedId}/detail`
+    ).then((data) => setModalInfor(data.data));
   }, [ctx.clickedId]);
 
   return (

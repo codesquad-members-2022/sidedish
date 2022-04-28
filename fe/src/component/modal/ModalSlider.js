@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Card from "../UI/Card";
 import { useState, useEffect } from "react";
 import { LeftIcon, RightIcon } from "../icons/SlideIcon";
+import { myfetch } from "../../utils/utils";
 
 const ModalSlideWrppaer = styled.div`
   height: 313px;
@@ -50,9 +51,9 @@ const ModalSlider = () => {
   const [pageNum, setPageNum] = useState(1);
 
   useEffect(() => {
-    fetch("http://15.165.204.34:8080/api/v1/products/반찬")
-      .then((res) => res.json())
-      .then((res) => setCards(res.data));
+    myfetch("http://15.165.204.34:8080/api/v1/products/반찬").then((res) =>
+      setCards(res.data)
+    );
   }, []);
   const max = -920;
   const maxPage = Math.ceil((166 * cards.length) / 895);

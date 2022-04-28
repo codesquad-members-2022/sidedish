@@ -14,7 +14,6 @@ const StyledBtn = styled.button`
   border: 1px dotted ${({ theme }) => theme.colors.grey1};
   font-size: ${({ theme }) => theme.fontSize.large};
   margin: 0 auto;
-  // z-index: 99;
 `;
 
 const More = ({ onchange, isDisplayed }) => {

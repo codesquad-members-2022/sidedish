@@ -57,8 +57,6 @@ const ProductInfoWrapper = styled.div`
   padding-bottom: 15px;
 `;
 
-// ProductInfoWrapper
-
 const ProductPriceWrapper = styled.div`
   display: flex;
   height: 80px;
@@ -96,7 +94,6 @@ const ProductAmountCountWrapper = styled.div`
   height: 30px;
   justify-content: space-between;
   align-items: center;
-
   display: flex;
 `;
 

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { ModalContext } from "../../store/store";
 import StyledDeliveryIcon from "../icons/DeliveryIcon";
 import { priceToString } from "../../utils/utils";
+
 const CardImg = styled.img`
   ${({ size }) =>
     size === "small"

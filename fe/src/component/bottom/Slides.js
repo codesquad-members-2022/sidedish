@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import Slide from "./Slide";
 import More from "./More";
 import constansts from "../../constants/constansts";
-import Modal from "../modal/Modal";
+import { myfetch } from "../../utils/utils";
 
 const Slides = () => {
   const [cardsInfor, setCardInfor] = useState([]);
   const [isDisplayed, setIsDisplayed] = useState(false);
-  const myfetch = (url) => {
-    return fetch(url).then((res) => res.json());
-  };
 
   useEffect(() => {
     const url = constansts.SlideINfor.map(
       (v) => `${constansts.MAIN_API_URL}${v.postfix}`
     );
+
     const data = Promise.all(url.map(myfetch));
     data
       .then((res) =>
@@ -28,7 +26,7 @@ const Slides = () => {
   }, []);
 
   const onChangeSlideDisplay = () => {
-    isDisplayed ? setIsDisplayed(false) : setIsDisplayed(true);
+    setIsDisplayed(!isDisplayed);
   };
 
   return (
