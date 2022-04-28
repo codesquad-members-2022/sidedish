@@ -37,4 +37,16 @@ public class DiscountPoliciesService {
         }
     }
 
+    public void mappingDishToDiscountPolicies(Dishes dish) {
+        Map<Integer, DiscountPolicies> discountPoliciesMap = findAll().stream()
+                .collect(Collectors.toMap(DiscountPolicies::getId, Function.identity()));
+
+        List<DiscountPolicies> discountPolicies = dish.getDiscounts().stream()
+                .map(Discount::getDiscountPolicyId)
+                .map(discountPoliciesMap::get)
+                .collect(Collectors.toList());
+        dish.setEventBadge(discountPolicies);
+
+    }
+
 }
