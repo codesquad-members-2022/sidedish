@@ -26,9 +26,9 @@ function Icon({ icon, width, height, fill, stroke }) {
   return <IconComponent width={width} height={height} fill={fill} stroke={stroke} />;
 }
 
-export default function IconButton({ icon, width, height, fill, stroke, onClick, as }) {
+export default function IconButton({ icon, width, height, fill, stroke, onClick, as, disabled }) {
   return (
-    <Wrap as={as} onClick={onClick}>
+    <Wrap as={as} onClick={onClick} disabled={disabled}>
       <Icon icon={icon} width={width} height={height} fill={fill} stroke={stroke} />
     </Wrap>
   );

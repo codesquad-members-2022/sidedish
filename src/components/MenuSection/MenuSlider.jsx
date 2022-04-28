@@ -16,14 +16,19 @@ const sliderInfo = {
 
 export default function MenuSlider() {
   const [curSlideIdx, setCurSlideIdx] = useState(0);
+  const [isMoving, setMoving] = useState(false);
   const isFirstSlide = curSlideIdx <= 0;
   const isLastSlide = curSlideIdx >= slideData.length - sliderInfo.visibleLength;
 
   return (
     <Wrap>
       <Slider>
-        <Slides curSlideIdx={curSlideIdx}>
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }, index) => (
+        <Slides
+          // onTransitionstart={() => setMoving(true)} // 왜 안되지?
+          onTransitionEnd={() => setMoving(false)}
+          curSlideIdx={curSlideIdx}
+        >
+          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
             <li key={title}>
               <Card
                 size={size}
@@ -45,6 +50,7 @@ export default function MenuSlider() {
             width="11px"
             height="20px"
             stroke={isFirstSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            disabled={isMoving}
           />
           <IconButton
             onClick={handleMovementToNext}
@@ -53,6 +59,7 @@ export default function MenuSlider() {
             width="11px"
             height="20px"
             stroke={isLastSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            disabled={isMoving}
           />
         </ButtonWrap>
       </Slider>
@@ -62,11 +69,13 @@ export default function MenuSlider() {
   function handleMovementToPrev() {
     const newCurSlideIdx = decreaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
+    setMoving(true);
   }
 
   function handleMovementToNext() {
     const newCurSlideIdx = increaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
+    setMoving(true);
   }
 
   function decreaseCurSlideIndex() {
