@@ -19,9 +19,9 @@ const Icon = styled.button`
     }
 `;
 
-const slideLeft2Right = keyframes`
+const slideRight2Left = keyframes`
     from {
-        margin-left: 640px;
+        margin-left: 800px;
         opacity: 1;
     }
     to {
@@ -30,9 +30,9 @@ const slideLeft2Right = keyframes`
     }
 `;
 
-const slideRight2Left = keyframes`
+const slideLeft2Right = keyframes`
     from {
-        margin-left: -640px;
+        margin-left: -1100px;
         opacity: 1;
     }
     to {
@@ -48,7 +48,7 @@ const CarouselItem = styled.div`
                 : props.direction === "R"
                 ? slideRight2Left
                 : "none"}
-        0.4s ease-out;
+        0.25s ease-out;
 `;
 
 const Wrapper = styled.div`
