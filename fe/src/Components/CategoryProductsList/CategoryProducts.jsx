@@ -15,12 +15,10 @@ const SLIDE_VIEW_LENGTH = 4;
 const SLIDER_MARGIN = 24;
 const SLIDER_PREV_BUTTON = 'slider-prev-button';
 const SLIDER_NEXT_BUTTON = 'slider-next-button';
-const SLIDER_CUR_PAGE = 'cur-page';
-const SLIDER_LAST_PAGE = 'last-page';
 
 const ControllerIcon = styled.i`
   font-size: 24px;
-`
+`;
 /**********/
 
 const CategoryProductsWrapper = styled.li`
@@ -33,6 +31,14 @@ const CategoryProductsWrapper = styled.li`
 
   &:last-child {
     margin-bottom: 80px;
+  }
+
+  .${SLIDER_PREV_BUTTON}, .${SLIDER_NEXT_BUTTON} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
   }
 
   .${SLIDER_PREV_BUTTON} {
@@ -65,7 +71,7 @@ export const CategoryProducts = ({ categoryId, productCardSize }) => {
     `${API_URL}/categories/${categoryId}/items`
   );
 
-  const [mySlideRef, setMySlideRef] = useState(null);
+  const [slideRef, setSlideRef] = useState(null);
 
   const handleClickRetryButton = () => {
     setRetry(true);
@@ -93,7 +99,7 @@ export const CategoryProducts = ({ categoryId, productCardSize }) => {
 
       <Slider
         margin={SLIDER_MARGIN}
-        slideRef={mySlideRef}
+        slideRef={slideRef}
         animation={true}
         slideViewItemLength={SLIDE_VIEW_LENGTH}
         prevButtonClassName={SLIDER_PREV_BUTTON}
@@ -103,7 +109,7 @@ export const CategoryProducts = ({ categoryId, productCardSize }) => {
       >
         <ProductCardList
           ref={e => {
-            setMySlideRef(e);
+            setSlideRef(e);
           }}
         >
           {categoryProducts.contents.map(categoryProduct => (
@@ -116,7 +122,7 @@ export const CategoryProducts = ({ categoryId, productCardSize }) => {
         </ProductCardList>
       </Slider>
 
-      {/* Slider가 없을 때*/}
+      {/*Slider가 없을 때*/}
       {/*<ProductCardList>*/}
       {/*  {categoryProducts.contents.map(categoryProduct => (*/}
       {/*    <ProductCard*/}
