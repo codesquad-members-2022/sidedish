@@ -18,12 +18,12 @@ const Header = () => {
   };
 
   return (
-    <Navbar onMouseEnter={handleNavbarOpen} onMouseLeave={handleNavbarClose}>
+    <Navbar>
       <Logo />
       <Menu>
         {menuData.map((v, i) => {
           return (
-            <MenuBox key={i}>
+            <MenuBox key={i} onMouseEnter={handleNavbarOpen} onMouseLeave={handleNavbarClose}>
               <MainMenu>{v.main}</MainMenu>
               <SubMenuList isOpen={isNavbarOpen}>
                 {v.sub.map((name, i) => {
