@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import team31.codesuqad.sidedish.controller.dto.DetailedDishDto;
 import team31.codesuqad.sidedish.controller.dto.DiscountDto;
 import team31.codesuqad.sidedish.controller.dto.DishDto;
+import team31.codesuqad.sidedish.controller.dto.RecommandDto;
 import team31.codesuqad.sidedish.domain.Deliveries;
 import team31.codesuqad.sidedish.domain.Dishes;
 import team31.codesuqad.sidedish.domain.Images;
@@ -37,6 +38,27 @@ public class DishesService {
                 .orElseThrow(() -> new RuntimeException("딜러버리 정보가 없습니다."));
 
         return new DetailedDishDto(dish, deliveries);
+    }
+
+    public RecommandDto findSideDishes(Integer page) {
+        List<Dishes> allDishes = findAll();
+        List<Dishes> dishes = allDishes.stream()
+                .filter(dish -> dish.getCategoryId() == 1)
+                .collect(Collectors.toList());
+
+        int size = dishes.size();
+        int pageCount = (size / 5) + 1;
+        int end = page * 5;
+        int start = end - 5;
+        if (size < end) {
+            end = size;
+        }
+
+        List<Dishes> dishesList = dishes.subList(start, end);
+        discountPoliciesService.mappingDiscountPolicies(dishesList);
+        List<DishDto> dishDtos = makeDishDto(dishesList);
+        return new RecommandDto(dishDtos, pageCount);
+
     }
 
     public List<DishDto> makeDishDto(List<Dishes> dishes) {
