@@ -1,5 +1,6 @@
 package com.example.sidedish.data.datasource
 
+import com.example.sidedish.data.OrderMenu
 import com.example.sidedish.data.dto.Item
 import com.example.sidedish.data.dto.JwtDTO
 import com.example.sidedish.data.dto.MenuDetailDTO
@@ -13,4 +14,6 @@ interface DataSource {
     suspend fun getFoodDetail(token: String, id: Int): Response<MenuDetailDTO>
 
     suspend fun getJWT(code: String): Response<JwtDTO>
+
+    suspend fun orderMenu(token: String, menu: OrderMenu): Response<Unit>
 }

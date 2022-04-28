@@ -1,13 +1,11 @@
 package com.example.sidedish.network
 
+import com.example.sidedish.data.OrderMenu
 import com.example.sidedish.data.dto.Item
 import com.example.sidedish.data.dto.JwtDTO
 import com.example.sidedish.data.dto.MenuDetailDTO
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiClient {
 
@@ -27,4 +25,10 @@ interface ApiClient {
     suspend fun getJWT(
         @Query("code") code: String
     ): Response<JwtDTO>
+
+    @POST("/order")
+    suspend fun orderMenu(
+        @Header("Authorization") token: String,
+        @Body body: OrderMenu
+    ): Response<Unit>
 }

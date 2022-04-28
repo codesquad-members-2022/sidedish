@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.sidedish.data.Menu
 import com.example.sidedish.data.repository.MenuListRepository
 import com.example.sidedish.data.MenuModel
+import com.example.sidedish.data.OrderMenu
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -42,14 +43,15 @@ class MenuListViewModel @Inject constructor(
 
     private lateinit var jwt: String
 
+    private val ceh = CoroutineExceptionHandler { _, _ ->
+        error.value = "네트워크 연결 실패"
+    }
+
     fun load() {
         _count.value = 0
         val supervisorJob = SupervisorJob()
 
-        val ceh = CoroutineExceptionHandler { _, _ ->
-            error.value = "네트워크 연결 실패"
-        }
-        Log.d("TAG", jwt)
+
         viewModelScope.launch(supervisorJob + ceh) {
             kotlin.runCatching {
                 listOf(
@@ -70,10 +72,6 @@ class MenuListViewModel @Inject constructor(
     }
 
     fun loadFoodDetail(key: Int) {
-        val ceh = CoroutineExceptionHandler { _, _ ->
-            error.value = "네트워크 연결 실패"
-        }
-
         viewModelScope.launch(ceh) {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
@@ -90,13 +88,20 @@ class MenuListViewModel @Inject constructor(
     }
 
     fun getJWT(code: String, move: (() -> (Unit))) {
-        val ceh = CoroutineExceptionHandler { _, _ ->
-            error.value = "네트워크 연결 실패"
-        }
         viewModelScope.launch(ceh) {
             jwt = repository.getJWT(code)
             Log.d("TAG", jwt)
             move()
+        }
+    }
+
+    fun orderMenu() {
+        viewModelScope.launch() {
+            if(_count.value == 0) {
+                return@launch
+            }
+            val menu = OrderMenu(_selectedFoodDetail.value!!.id!!, _count.value!!)
+            repository.orderMenu(jwt, menu)
         }
     }
 
@@ -118,5 +123,10 @@ class MenuListViewModel @Inject constructor(
         } else {
             _price.value = _detailPrice.value?.let { _count.value?.times(it) }
         }
+    }
+
+    fun pushBackCountToZero() {
+        _count.value = 0
+        _price.value = 0
     }
 }

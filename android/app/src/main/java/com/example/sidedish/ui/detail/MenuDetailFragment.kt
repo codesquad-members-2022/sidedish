@@ -45,6 +45,7 @@ class MenuDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.selectedFoodDetail.observe(viewLifecycleOwner) { detail ->
+            viewModel.pushBackCountToZero()
             val imageList = mutableListOf<FoodImage>()
             with(binding) {
                 foodDetail = detail
@@ -60,8 +61,11 @@ class MenuDetailFragment : Fragment() {
         with(binding) {
             lifecycleOwner = this@MenuDetailFragment
             menuViewModel = viewModel
+            btOrder.setOnClickListener {
+                viewModel.orderMenu()
+                val dialog = OrderDialog()
+                dialog.show(this@MenuDetailFragment.parentFragmentManager, "OrderCompleteDialogFragment")
+            }
         }
-
     }
-
 }

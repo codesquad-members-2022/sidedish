@@ -307,7 +307,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/tv_order"
+                android:id="@+id/bt_order"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginStart="16dp"
