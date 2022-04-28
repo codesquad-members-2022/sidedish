@@ -42,11 +42,11 @@ extension RootWindow {
         var viewController: UIViewController {
             switch self {
             case .splash:
-                return SplashViewController()
+                return SplashViewController(viewModel: SplashViewModel())
             case .login:
-                return LoginViewController()
+                return LoginViewController(viewModel: LoginViewModel(loginRepository: LoginRepositoryImpl()))
             case .main:
-                return UINavigationController(rootViewController: MainViewController())
+                return UINavigationController(rootViewController: MainViewController(viewModel: MainViewModel(sidedishRepository: SidedishRepositoryImpl(), resourceRepository: ResourceRepositoryImpl(), loginRepository: LoginRepositoryImpl())))
             }
         }
     }

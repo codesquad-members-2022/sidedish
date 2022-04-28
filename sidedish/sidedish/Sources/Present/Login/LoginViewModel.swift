@@ -11,44 +11,27 @@ import FirebaseCore
 import Foundation
 import GoogleSignIn
 
-struct LoginViewModelAction {
+class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewModelState {
+    func action() -> LoginViewModelAction { self }
+    
     let tappedGoogleLogin = PassthroughSubject<Void, Never>()
     let googleUser = PassthroughSubject<GIDGoogleUser?, Never>()
-}
-
-struct LoginViewModelState {
+    
+    func state() -> LoginViewModelState { self }
+    
     let presentMainView = PassthroughSubject<Void, Never>()
     let presentGoogleLogin = PassthroughSubject<GIDConfiguration, Never>()
-}
-
-protocol LoginViewModelBinding {
-    func action() -> LoginViewModelAction
-    func state() -> LoginViewModelState
-}
-
-typealias LoginViewModelProtocol = LoginViewModelBinding
-
-class LoginViewModel: LoginViewModelProtocol {
     
     private var cancellables = Set<AnyCancellable>()
-    private let loginRepository: LoginRepository = LoginRepositoryImpl()
-    
-    private let loginAction = LoginViewModelAction()
-    private let loginState = LoginViewModelState()
-    
-    func action() -> LoginViewModelAction {
-        loginAction
-    }
-    
-    func state() -> LoginViewModelState {
-        loginState
-    }
+    private let loginRepository: LoginRepository
     
     deinit {
         Log.debug("DeInit LoginViewModel")
     }
     
-    init() {
+    init(loginRepository: LoginRepository) {
+        self.loginRepository = loginRepository
+        
         action().tappedGoogleLogin
             .compactMap { _ -> GIDConfiguration? in
                 guard let clientId = FirebaseApp.app()?.options.clientID else {

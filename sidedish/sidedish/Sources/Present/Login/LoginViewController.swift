@@ -19,7 +19,17 @@ class LoginViewController: UIViewController {
     }()
     
     private var cancellables = Set<AnyCancellable>()
-    private var model: LoginViewModelProtocol = LoginViewModel()
+    private let model: LoginViewModelProtocol
+    
+    init(viewModel: LoginViewModelProtocol) {
+        self.model = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         Log.debug("DeInit LoginViewController")

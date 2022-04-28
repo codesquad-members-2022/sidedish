@@ -8,52 +8,26 @@
 import Combine
 import Foundation
 
-struct MainViewModelAction {
+class MainViewModel: MainViewModelBinding, MainViewModelProperty, MainViewModelAction, MainViewModelState {
+    func action() -> MainViewModelAction { self }
+    
     let viewDidLoad = PassthroughSubject<Void, Never>()
     let tappedLogoutButton = PassthroughSubject<Void, Never>()
-}
-
-struct MainViewModelState {
+    
+    func state() -> MainViewModelState { self }
+    
     let userData = PassthroughSubject<User, Never>()
     let loadedData = PassthroughSubject<Menu.Category, Never>()
     let loadedImage = PassthroughSubject<IndexPath, Never>()
     let presentLoginPage = PassthroughSubject<Void, Never>()
-}
-
-protocol MainViewModelBinding {
-    func action() -> MainViewModelAction
-    func state() -> MainViewModelState
-}
-
-protocol MainViewModelProperty {
-    subscript(_ indexPath: IndexPath) -> Menu? { get }
-    func getThumbnailUrl(indexPath: IndexPath) -> URL?
-    func getMenuCount(_ type: Menu.Category) -> Int
-}
-
-typealias MainViewModelProtocol = MainViewModelBinding & MainViewModelProperty
-typealias Menus = [Menu]
-
-class MainViewModel: MainViewModelBinding, MainViewModelProperty {
-    private var cancellables = Set<AnyCancellable>()
     
-    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
-    private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
-    private let loginRepository: LoginRepository = LoginRepositoryImpl()
+    private var cancellables = Set<AnyCancellable>()
+    private let sidedishRepository: SidedishRepository
+    private let resourceRepository: ResourceRepository
+    private let loginRepository: LoginRepository
     
     private var menus = [Menu.Category: Menus]()
     private var thumbnailImages = [IndexPath: URL]()
-    
-    private let mainAction = MainViewModelAction()
-    private let mainState = MainViewModelState()
-    
-    func action() -> MainViewModelAction {
-        mainAction
-    }
-    
-    func state() -> MainViewModelState {
-        mainState
-    }
     
     subscript(_ indexPath: IndexPath) -> Menu? {
         guard let type = Menu.Category(rawValue: indexPath.section),
@@ -68,7 +42,11 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
         Log.debug("DeInit MainViewModel")
     }
     
-    init() {
+    init(sidedishRepository: SidedishRepository, resourceRepository: ResourceRepository, loginRepository: LoginRepository) {
+        self.sidedishRepository = sidedishRepository
+        self.resourceRepository = resourceRepository
+        self.loginRepository = loginRepository
+        
         action().viewDidLoad
             .compactMap { Container.userStore.user }
             .sink(receiveValue: state().userData.send(_:))

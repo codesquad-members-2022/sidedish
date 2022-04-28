@@ -8,39 +8,29 @@
 import Combine
 import Foundation
 
-struct SplashViewModelAction {
-    let viewDidAppear = PassthroughSubject<Void, Never>()
-}
-
-struct SplashViewModelState {
-    let presentNextView = PassthroughSubject<RootWindow.State, Never>()
-}
-
-protocol SplashViewModelBinding {
-    var action: SplashViewModelAction { get }
-    var state: SplashViewModelState { get }
-}
-
-typealias SplashViewModelProtocol = SplashViewModelBinding
-
-class SplashViewModel: SplashViewModelProtocol {
-    private let loginRepository: LoginRepository = LoginRepositoryImpl()
-    private var cancellables = Set<AnyCancellable>()
+class SplashViewModel: SplashViewModelProtocol, SplashViewModelAction, SplashViewModelState {
+    func action() -> SplashViewModelAction { self }
     
-    let action = SplashViewModelAction()
-    let state = SplashViewModelState()
+    let viewDidAppear = PassthroughSubject<Void, Never>()
+    
+    func state() -> SplashViewModelState { self }
+    
+    let presentNextView = PassthroughSubject<RootWindow.State, Never>()
+    
+    private var cancellables = Set<AnyCancellable>()
+    private let loginRepository: LoginRepository = LoginRepositoryImpl()
     
     deinit {
         Log.debug("DeInit SplashViewModel")
     }
     
     init() {
-        action.viewDidAppear
+        action().viewDidAppear
             .compactMap { [weak self] _ in self?.loginRepository.getUser() }
             .switchToLatest()
             .handleEvents(receiveOutput: { Container.userStore.user = $0 })
             .map { user -> RootWindow.State in user == nil ? .login : .main }
-            .sink(receiveValue: state.presentNextView.send(_:))
+            .sink(receiveValue: state().presentNextView.send(_:))
             .store(in: &cancellables)
     }
 }
