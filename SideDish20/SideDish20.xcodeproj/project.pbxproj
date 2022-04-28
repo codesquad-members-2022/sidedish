@@ -17,6 +17,8 @@
 		1B5AA83A28192E0000C89D70 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AA83928192E0000C89D70 /* CommonViewModel.swift */; };
 		1B5AA83D28192E1B00C89D70 /* CacheModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AA83B28192E1B00C89D70 /* CacheModelFactory.swift */; };
 		1B5AA83E28192E1B00C89D70 /* SideDishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AA83C28192E1B00C89D70 /* SideDishModel.swift */; };
+		1B5AA843281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AA841281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift */; };
+		1B5AA844281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5AA842281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib */; };
 		1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */; };
 		1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA1E193280EDE720032FF88 /* DishViewModel.swift */; };
 		1BF2901728179BDF00493D2F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2901628179BDF00493D2F /* DetailViewController.swift */; };
@@ -79,6 +81,8 @@
 		1B5AA83928192E0000C89D70 /* CommonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		1B5AA83B28192E1B00C89D70 /* CacheModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheModelFactory.swift; sourceTree = "<group>"; };
 		1B5AA83C28192E1B00C89D70 /* SideDishModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDishModel.swift; sourceTree = "<group>"; };
+		1B5AA841281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		1B5AA842281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailCollectionViewCell.xib; sourceTree = "<group>"; };
 		1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCommons.swift; sourceTree = "<group>"; };
 		1BA1E193280EDE720032FF88 /* DishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewModel.swift; sourceTree = "<group>"; };
 		1BF2901628179BDF00493D2F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				D01CBC15280F673000F806C9 /* HomeCollectionViewCell.swift */,
 				D01CBC16280F673000F806C9 /* HomeCollectionViewCell.xib */,
 				D01CBCFE28111E9200F806C9 /* HomeHeaderCollectionReusableView.swift */,
+				1B5AA842281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib */,
+				1B5AA841281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 				D01CBC18280F673000F806C9 /* HomeCollectionViewCell.xib in Resources */,
 				D08FCDEF280D09AB00176BF9 /* Main.storyboard in Resources */,
 				D0007A0F280E593300997AC5 /* SF-Pro-Display-Bold.otf in Resources */,
+				1B5AA844281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib in Resources */,
 				D0007A0D280E590600997AC5 /* SF-Pro-Display-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,6 +604,7 @@
 				D0E56E4C2819373500C10419 /* HomeViewModel.swift in Sources */,
 				D01CBC1B280F6D9100F806C9 /* HomeModel.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
+				1B5AA843281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift in Sources */,
 				D01CBD0028111E9200F806C9 /* HomeHeaderCollectionReusableView.swift in Sources */,
 				1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
