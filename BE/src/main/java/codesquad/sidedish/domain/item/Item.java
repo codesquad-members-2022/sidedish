@@ -1,6 +1,7 @@
 package codesquad.sidedish.domain.item;
 
 import codesquad.sidedish.domain.discount.DiscountPolicy;
+import codesquad.sidedish.exception.NotEnoughStockException;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -60,7 +61,7 @@ public class Item {
 
     private void validateReduceQuantity(int reduceNumber) {
         if (reduceNumber > this.stock) {
-            throw new IllegalArgumentException(
+            throw new NotEnoughStockException(
                     String.format("최대 구입 가능 개수는 %d개입니다.", this.stock)
             );
         }
