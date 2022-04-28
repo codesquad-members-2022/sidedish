@@ -99,27 +99,42 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="B1F-sX-Dun">
-                                        <rect key="frame" x="0.0" y="52" width="390" height="633"/>
+                                        <rect key="frame" x="0.0" y="52" width="390" height="624"/>
                                         <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-kk-e7n">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="375"/>
-                                                <viewLayoutGuide key="contentLayoutGuide" id="vWt-15-7nW"/>
-                                                <viewLayoutGuide key="frameLayoutGuide" id="jvo-SI-dpA"/>
-                                            </scrollView>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-ve-OrU">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="366"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lCe-HF-yUi">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LA0-qO-Jhl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rEf-yC-iCs">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-sP-7BI">
-                                                <rect key="frame" x="0.0" y="375" width="390" height="80"/>
+                                                <rect key="frame" x="0.0" y="366" width="390" height="80"/>
                                                 <connections>
                                                     <segue destination="iGG-Gn-fRw" kind="embed" identifier="firstSection" id="fCt-5H-DgY"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ds-sl-mPb">
-                                                <rect key="frame" x="0.0" y="455" width="390" height="74"/>
+                                                <rect key="frame" x="0.0" y="446" width="390" height="74"/>
                                                 <connections>
                                                     <segue destination="ZOK-MW-p1m" kind="embed" identifier="secondSection" id="PXj-YL-Y33"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugP-ya-KTg">
-                                                <rect key="frame" x="0.0" y="529" width="390" height="104"/>
+                                                <rect key="frame" x="0.0" y="520" width="390" height="104"/>
                                                 <connections>
                                                     <segue destination="mKr-iP-6LT" kind="embed" identifier="thirdSection" id="fYQ-rt-Io0"/>
                                                 </connections>
@@ -138,7 +153,7 @@
                     <connections>
                         <outlet property="firstSectionView" destination="CpA-sP-7BI" id="ybv-TL-qL4"/>
                         <outlet property="fullSizeVerticalScrollView" destination="6kA-qc-yYr" id="PZS-Lg-faY"/>
-                        <outlet property="imageHorizontalScrollView" destination="pFS-kk-e7n" id="jm2-Vv-pCb"/>
+                        <outlet property="imageHorizontalCollectionView" destination="gP6-ve-OrU" id="9qz-hp-9YE"/>
                         <outlet property="secondSectionView" destination="3ds-sl-mPb" id="zbJ-jH-g8h"/>
                         <outlet property="stackView" destination="B1F-sX-Dun" id="XFG-t1-5DK"/>
                         <outlet property="thirdSectionView" destination="ugP-ya-KTg" id="OLG-Pf-RrC"/>
@@ -146,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjd-Qo-xaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1008" y="84"/>
+            <point key="canvasLocation" x="1007.2463768115942" y="83.705357142857139"/>
         </scene>
         <!--FirstSectionViewController-->
         <scene sceneID="SwR-Ni-xDI">

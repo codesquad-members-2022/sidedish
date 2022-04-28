@@ -19,6 +19,7 @@ final class SideDishManager {
     private(set) var selectedDish: DetailCard?
     private(set) var imageUrlList = [(String, URL)]() // hash, imageURL
     private(set) var dataDictionary = [String: Data]() // hash, imageData
+    private(set) var detailImageThumbnail = [Data]()
     
     static let shared = SideDishManager()
     
@@ -128,6 +129,20 @@ final class SideDishManager {
         sideDishesBody.forEach {
             guard let url = URL(string: $0.imageURL) else { return }
             imageUrlList.append(($0.detailHash, url))
+        }
+    }
+    
+    func getDetailDishImages(dish: DetailCard.Body.DetailCardData) {
+        
+        for urlString in dish.thumbImages {
+            guard let url = URL(string: urlString) else { return }
+            
+            ImageManager.loadData(url: url) { (data, error) in
+                guard let data = data else { return }
+
+                self.detailImageThumbnail.append(data)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "detail"), object: self)
+            }
         }
     }
 }
