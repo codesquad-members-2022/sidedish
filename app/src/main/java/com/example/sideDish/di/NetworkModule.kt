@@ -1,5 +1,6 @@
 package com.example.sideDish.di
 
+import com.example.sideDish.network.OrderRetrofitService
 import com.example.sideDish.network.SideDishRetrofitService
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,11 @@ object NetworkModule {
     fun provideRetrofitService(): SideDishRetrofitService {
         return SideDishRetrofitService.create()
     }
+
+    @Singleton
+    @Provides
+    fun provideOrderRetrofitService(): OrderRetrofitService {
+        return OrderRetrofitService.create()
+    }
+
 }
