@@ -36,6 +36,7 @@
 		6CEE080E280D080300D2D401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080C280D080300D2D401 /* LaunchScreen.storyboard */; };
 		6CEE0818280D616E00D2D401 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0817280D616E00D2D401 /* Dish.swift */; };
 		6CEF72C0281A642A000BCB4E /* NotificationKeyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF72BF281A642A000BCB4E /* NotificationKeyValue.swift */; };
+		6CEF72C3281A65F1000BCB4E /* SideDishable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF72C2281A65F1000BCB4E /* SideDishable.swift */; };
 		C6593D15DB8049FB6831B879 /* Pods_SideDish_team24.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */; };
 		F56668C1280D86B0007ECAD0 /* Dishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56668C0280D86B0007ECAD0 /* Dishes.swift */; };
 		F57135BB280E49930040C5A4 /* BriefBanchanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57135BA280E49930040C5A4 /* BriefBanchanViewController.swift */; };
@@ -78,6 +79,7 @@
 		6CEE080F280D080300D2D401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CEE0817280D616E00D2D401 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		6CEF72BF281A642A000BCB4E /* NotificationKeyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeyValue.swift; sourceTree = "<group>"; };
+		6CEF72C2281A65F1000BCB4E /* SideDishable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishable.swift; sourceTree = "<group>"; };
 		E5F547B859D2A20736FC1BCD /* Pods-SideDish-team24.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish-team24.debug.xcconfig"; path = "Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24.debug.xcconfig"; sourceTree = "<group>"; };
 		E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish_team24.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56668C0280D86B0007ECAD0 /* Dishes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dishes.swift; sourceTree = "<group>"; };
@@ -221,11 +223,20 @@
 		6CEE0819280D617300D2D401 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6CEF72C1281A65E7000BCB4E /* Protocol */,
 				6CEE0817280D616E00D2D401 /* Dish.swift */,
 				F56668C0280D86B0007ECAD0 /* Dishes.swift */,
 				F5F2088E28163805004F50A3 /* MockData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6CEF72C1281A65E7000BCB4E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6CEF72C2281A65F1000BCB4E /* SideDishable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		78A24B8C1BA5531D53170259 /* Frameworks */ = {
@@ -425,6 +436,7 @@
 				6C4CEF852817F3AD00AFB684 /* UIFontExtension.swift in Sources */,
 				6CEF72C0281A642A000BCB4E /* NotificationKeyValue.swift in Sources */,
 				6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */,
+				6CEF72C3281A65F1000BCB4E /* SideDishable.swift in Sources */,
 				6C4CEF4B28111FA000AFB684 /* OrderCountSectionView.swift in Sources */,
 				F5D88C972816EEBA00EE9D91 /* BanchanViewModel.swift in Sources */,
 				6C162B7B280ED461003399BC /* DeliverySectionView.swift in Sources */,

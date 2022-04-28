@@ -6,13 +6,13 @@ final class Dish {
     private(set) var price: Int
     private(set) var stock: Int
     private(set) var type: String
-    private(set) var image: URL
+    private(set) var image: URL?
     private(set) var description: String
     
     private(set) var listPrice: Int?
     private(set) var discountPolicy: String?
     
-    init(id: String, name: String, price: Int, stock: Int, type: String, image: URL, description: String, listPrice: Int?, discountPolicy: String?) {
+    init(id: String, name: String, price: Int, stock: Int, type: String, image: URL?, description: String, listPrice: Int?, discountPolicy: String?) {
         self.id = id
         self.name = name
         self.price = price

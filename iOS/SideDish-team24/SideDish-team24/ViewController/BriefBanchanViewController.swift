@@ -3,14 +3,10 @@ import UIKit
 class BriefBanchanViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet private weak var briefBanchanList: UICollectionView!
-    private let mockData = MockData()
-    var tmp: [Dishes] = []
+    let allDishes: SideDishable = MockData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tmp.append(mockData.mainDishes)
-        tmp.append(mockData.soupDishes)
-        tmp.append(mockData.sideDishes)
         self.registerCollectionView()
     }
 }
@@ -31,8 +27,7 @@ private extension BriefBanchanViewController {
         if recognizer.state == UIGestureRecognizer.State.ended {
             let tappedLocation = recognizer.location(in: self.briefBanchanList)
             guard let tappedIndexPath = self.briefBanchanList.indexPathForItem(at: tappedLocation) else { return }
-
-            guard let dish = tmp[tappedIndexPath.section][tappedIndexPath.item] else { return }
+            guard let dish = allDishes[tappedIndexPath.section][tappedIndexPath.item] else { return }
             let dishViewModel = BanchanViewModel(dish: dish)
             
             guard let detailView = self.storyboard?.instantiateViewController(withIdentifier: "detailBanchanViewController") as? DetailBanchanViewController else { return }

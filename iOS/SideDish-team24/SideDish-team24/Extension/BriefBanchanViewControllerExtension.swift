@@ -3,7 +3,7 @@ import UIKit
 extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tmp[section].count
+        return allDishes[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -15,7 +15,7 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BriefBanchanViewCell.cellId, for: indexPath) as? BriefBanchanViewCell else {
             return UICollectionViewCell()
         }
-        if let targetDish: Dish = tmp[indexPath.section][indexPath.row] {
+        if let targetDish: Dish = allDishes[indexPath.section][indexPath.row] {
             let dishViewModel = BanchanViewModel(dish: targetDish)
             guard let special = dishViewModel.discountPolicy else { return UICollectionViewCell() }
             
@@ -44,7 +44,7 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BriefBanchanReusableView.identifier, for: indexPath) as? BriefBanchanReusableView else {return UICollectionReusableView()}
-            headerView.setTitle(to: tmp[indexPath.section].type)
+            headerView.setTitle(to: allDishes[indexPath.section].type)
             return headerView
         } else {
             return UICollectionReusableView()
@@ -56,7 +56,7 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return tmp.count
+        return allDishes.count
     }
     
 }
