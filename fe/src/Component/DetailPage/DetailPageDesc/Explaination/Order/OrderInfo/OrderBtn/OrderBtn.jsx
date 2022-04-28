@@ -32,9 +32,9 @@ const OrderBtn = ({ count, handler }) => {
   };
 
   const handleOrderButton = async () => {
-    const { status, data } = await postOrder();
+    const { data } = await postOrder();
 
-    dataTools.handleStatus({ handler, status, data });
+    dataTools.handleStatus({ handler, data });
   };
 
   return <OrderBtnStyle onClick={handleOrderButton}>주문하기</OrderBtnStyle>;

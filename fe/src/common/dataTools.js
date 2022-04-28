@@ -7,18 +7,11 @@ const dataTools = {
       };
     }),
 
-  handleStatus: ({ handler, status, data }) => {
+  handleStatus: ({ handler, data }) => {
     const { handleAlert, setAlertMessage } = handler;
 
-    switch (status) {
-      case 200:
-      case 400:
-      case 401:
-      default:
-        handleAlert();
-        setAlertMessage(data.message);
-        break;
-    }
+    handleAlert();
+    setAlertMessage(data.message);
   },
 };
 
