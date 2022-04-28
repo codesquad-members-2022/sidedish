@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "api", produces = "text/plain; charset=utf8")
+@RequestMapping(value = "api", produces = "application/json; charset=utf8")
 public class LoginController {
 
     private final LoginService loginService;
@@ -28,7 +28,7 @@ public class LoginController {
         String publicEmail = userEmails.get(0);
         httpSession.setAttribute("email", publicEmail);
 
-        return new ResponseEntity<>("로그인이 정상적으로 처리되었습니다.", HttpStatus.OK);
+        ResponseMessage message = new ResponseMessage(HttpStatus.OK, "로그인이 정상적으로 처리되었습니다.", publicEmail);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
-
 }

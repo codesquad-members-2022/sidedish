@@ -32,12 +32,12 @@ public class UserOrderController {
 
         Integer stock = sideDishService.getStockOfSideDish(sideDishOrderDto.getSidedishId());
         if (sideDishOrderDto.getQuantity() > stock) {
-            ResponseMessage message = new ResponseMessage(HttpStatus.NOT_FOUND, "재고가 부족합니다.");
+            ResponseMessage message = new ResponseMessage(HttpStatus.NOT_FOUND, "재고가 부족합니다.", email);
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
 
         userOrderService.saveUserOrder(sideDishOrderDto, email);
-        ResponseMessage message = new ResponseMessage(HttpStatus.OK, "주문이 처리되었습니다.");
+        ResponseMessage message = new ResponseMessage(HttpStatus.OK, "주문이 처리되었습니다.", email);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }

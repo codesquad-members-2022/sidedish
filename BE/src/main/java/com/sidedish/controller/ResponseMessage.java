@@ -8,9 +8,16 @@ public class ResponseMessage {
 
     private HttpStatus status;
     private String message;
+    private String email;
 
     public ResponseMessage(HttpStatus status, String message) {
         this.status = status;
         this.message = message;
+    }
+
+    public ResponseMessage(HttpStatus status, String message, String email) {
+        this.status = status;
+        this.message = message;
+        this.email = email;
     }
 }

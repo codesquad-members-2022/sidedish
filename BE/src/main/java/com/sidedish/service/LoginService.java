@@ -23,8 +23,9 @@ public class LoginService {
     private final UserRepository userRepository;
 
     private static final String CLIENT_ID = "52d17ef5577e55a18ca3";
+    private static final String SCOPE = "user/emails";
     private static final String GITHUB_AUTHORIZATION_SERVER_URL = "https://github.com/login/oauth/access_token";
-    private static final String GITHUB_RESOURCE_SERVER_EMAIL_API_URL = "https://api.github.com/user/emails";
+    private static final String GITHUB_RESOURCE_SERVER_EMAIL_API_URL = "https://api.github.com/" + SCOPE;
     private static final String GITHUB_EMAIL_API_ACCEPT_HEADER = "application/vnd.github.v3+json";
 
     public AccessToken getAccessToken(String code) {
