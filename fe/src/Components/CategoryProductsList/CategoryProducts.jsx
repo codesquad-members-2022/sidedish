@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { IconFonts, Fonts } from '@/Constants';
@@ -32,9 +32,9 @@ const ProductCardList = styled.ul`
 `;
 
 /* 슬라이더 */
-const SLIDE_CONTAINER = 'slide-container';
-const SLIDE_MARGIN = 24;
 const SLIDE_VIEW_LENGTH = 4;
+const SLIDE_MARGIN = 24;
+const SLIDE_CONTAINER = 'slide-container';
 const SLIDER_PREV_BUTTON = 'slider-prev-button';
 const SLIDER_NEXT_BUTTON = 'slider-next-button';
 
@@ -54,7 +54,8 @@ const Slider = styled.div`
       0,
       0
     );
-    transition: transform 250ms ease-in-out;
+    transition: ${({ animation }) =>
+      animation ? 'transform 250ms ease-in-out' : 'none'};
 
     > * {
       margin-right: ${({ margin }) => margin}px;
@@ -95,58 +96,72 @@ const Icon = styled.i`
   font-size: 24px;
 `;
 
-const useSlide = ({ slideRef }) => {
+const useSlide = ({ slideRef, slideViewItemLength, }) => {
+  const initialPageIndex = 1;
   const minSlideIndex = 0;
-  const slideViewItemLength = SLIDE_VIEW_LENGTH;
   const [curSlideIndex, setCurSlideIndex] = useState(minSlideIndex);
   const [maxSlideIndex, setMaxSlideIndex] = useState(minSlideIndex);
+  const [slidePageIndex, setSlidePageIndex] = useState(initialPageIndex);
+  const [slideUnitWidth, setSlideUnitWidth] = useState(0);
 
   const handleClickPrevButton = () => {
-    const nextSlideIndex = curSlideIndex - slideViewItemLength;
+    const tempSlideIndex = curSlideIndex - slideViewItemLength;
+    let nextSlideIndex;
 
-    if (nextSlideIndex < minSlideIndex) {
-      setCurSlideIndex(minSlideIndex);
+    if (tempSlideIndex < minSlideIndex) {
+      nextSlideIndex = minSlideIndex;
     } else {
-      setCurSlideIndex(nextSlideIndex);
+      nextSlideIndex = tempSlideIndex;
     }
+
+    const nextSlidePageIndex = Math.floor(nextSlideIndex / slideViewItemLength) + 1;
+    setCurSlideIndex(nextSlideIndex);
+    setSlidePageIndex(nextSlidePageIndex);
   };
 
   const handleClickNextButton = () => {
-    const nextSlideIndex = curSlideIndex + slideViewItemLength;
+    const tempSlideIndex = curSlideIndex + slideViewItemLength;
+    let nextSlideIndex;
 
-    if (nextSlideIndex < minSlideIndex) {
-      setCurSlideIndex(minSlideIndex);
-    } else if (nextSlideIndex > maxSlideIndex) {
-      setCurSlideIndex(maxSlideIndex);
+    if (tempSlideIndex < minSlideIndex) {
+      nextSlideIndex = minSlideIndex;
+    } else if (tempSlideIndex > maxSlideIndex) {
+      nextSlideIndex = maxSlideIndex;
     } else {
-      setCurSlideIndex(nextSlideIndex);
+      nextSlideIndex = tempSlideIndex;
     }
+
+    const nextSlidePageIndex = Math.floor(nextSlideIndex / slideViewItemLength) + 1;
+    setCurSlideIndex(nextSlideIndex);
+    setSlidePageIndex(nextSlidePageIndex);
   };
 
   useEffect(() => {
-    if (!slideRef.current) {
+    if (!slideRef) {
       return;
     }
 
-    const _maxSlideIndex =
-      slideRef.current.children.length - slideViewItemLength;
+    const _maxSlideIndex = slideRef.children.length - slideViewItemLength;
+
+    setSlideUnitWidth(slideRef.clientWidth / slideRef.children.length);
 
     if (_maxSlideIndex < 0) {
       setMaxSlideIndex(minSlideIndex);
     } else {
       setMaxSlideIndex(_maxSlideIndex);
     }
-  }, [slideRef.current]);
+  }, [slideRef, slideViewItemLength]);
 
   return [
     curSlideIndex,
     minSlideIndex,
     maxSlideIndex,
+    slideUnitWidth,
+    slidePageIndex,
     handleClickPrevButton,
     handleClickNextButton,
   ];
 };
-
 /* ****** */
 
 const LS_MARGIN = 300;
@@ -159,31 +174,29 @@ export const CategoryProducts = ({ categoryId }) => {
     `${API_URL}/categories/${categoryId}/items`
   );
 
-  const slideRef = useRef(null);
-  const [slideUnitWidth, setSlideUnitWidth] = useState(0);
+  const [slideRef, setSlideRef] = useState(null);
   const [
     curSlideIndex,
     minSlideIndex,
     maxSlideIndex,
+    slideUnitWidth,
+    slidePageIndex,
     handleClickSliderPrevButton,
     handleClickSliderNextButton,
   ] = useSlide({
     slideRef,
+    slideViewItemLength: SLIDE_VIEW_LENGTH,
   });
 
   const handleClickRetryButton = () => {
     setRetry(true);
   };
 
-  useEffect(() => {
-    if (!isLoaded) return;
-    const { clientWidth, children } = slideRef.current;
-    setSlideUnitWidth(clientWidth / children.length);
-  }, [isLoaded]);
-
-  if (isError)
+  if (isError) {
     return <RetryButton onClick={handleClickRetryButton} margin={RT_MARGIN} />;
-  if (!isLoaded)
+  }
+
+  if (!isLoaded) {
     return (
       <LoadingSpinner
         margin={LS_MARGIN}
@@ -191,9 +204,10 @@ export const CategoryProducts = ({ categoryId }) => {
         borderWidth={LS_BORDER_WIDTH}
       />
     );
+  }
 
   const categoryProducts = categoryProductsData.result_body;
-
+  console.log('slidePageIndex', slidePageIndex);
   return (
     <CategoryProductsWrapper>
       <Header className={Fonts.XL_BOLD}>{categoryProducts.title}</Header>
@@ -202,8 +216,14 @@ export const CategoryProducts = ({ categoryId }) => {
           margin={SLIDE_MARGIN}
           slideUnitWidth={slideUnitWidth}
           curSlideIndex={curSlideIndex}
+          animation={false}
         >
-          <ProductCardList className={SLIDE_CONTAINER} ref={slideRef}>
+          <ProductCardList
+            className={SLIDE_CONTAINER}
+            ref={e => {
+              setSlideRef(e);
+            }}
+          >
             {categoryProducts.contents.map(categoryProduct => (
               <ProductCard
                 size={'md'}
