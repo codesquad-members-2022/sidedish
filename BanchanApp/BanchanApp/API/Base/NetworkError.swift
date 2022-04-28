@@ -14,6 +14,6 @@ enum NetworkError: Int, Error {
     case internalServer = 500
     case endpointError = 503
     case timeout = 504
-    case unknownError
+    case unknownError = 1000
     case parsingError
 }
