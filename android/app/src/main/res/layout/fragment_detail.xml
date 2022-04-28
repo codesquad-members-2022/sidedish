@@ -6,8 +6,12 @@
     <data>
 
         <variable
+            name="menuViewModel"
+            type="com.example.sidedish.ui.viewmodel.MenuListViewModel" />
+
+        <variable
             name="foodDetail"
-            type="com.example.sidedish.data.Detail" />
+            type="com.example.sidedish.data.Menu" />
 
     </data>
 
@@ -36,7 +40,7 @@
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="요리 이름" />
+                android:text="@{foodDetail.name}" />
 
             <TextView
                 android:id="@+id/tv_body"
@@ -48,7 +52,7 @@
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{foodDetail.productDescription}" />
+                android:text="@{foodDetail.description}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,19 +64,22 @@
                 <TextView
                     android:id="@+id/tv_event_amount"
                     style="@style/title_style.price"
+                    discountRate="@{foodDetail.discountRate}"
+                    price="@{foodDetail.price}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:ellipsize="end"
-                    android:text="@{foodDetail.prices[0]}" />
+                    android:ellipsize="end" />
 
                 <TextView
                     android:id="@+id/tv_discounted_amount"
+                    discountRate="@{foodDetail.discountRate}"
+                    originalPrice="@{foodDetail.price}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="4dp"
-                    android:ellipsize="end"
-                    android:text="@{foodDetail.prices[1]}" />
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end" />
 
             </LinearLayout>
 
@@ -86,21 +93,29 @@
 
                 <TextView
                     style="@style/event_style"
+                    launchingPolicy="@{foodDetail.discountPolicy}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/background_badge_event"
-                    android:padding="4dp"
-                    android:text="이벤트 특가" />
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/launching_event" />
 
                 <TextView
                     style="@style/event_style.launching_price"
+                    eventPolicy="@{foodDetail.discountPolicy}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/background_badge_limited"
-                    android:padding="4dp"
-                    android:text="이벤트 특가" />
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/event_promotion" />
 
             </LinearLayout>
 
@@ -135,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    tools:text="@{foodDetail.point}" />
+                    tools:text="값 없음" />
 
             </LinearLayout>
 
@@ -153,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    android:text="배송정보" />
+                    android:text="@string/delivery_info" />
 
                 <TextView
                     android:id="@+id/tv_shipment_way"
@@ -162,7 +177,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    tools:text="@{foodDetail.deliveryInfo}" />
+                    android:text="@string/delivery_method" />
 
             </LinearLayout>
 
@@ -180,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    android:text="배송비" />
+                    android:text="@string/delivery_fee" />
 
                 <TextView
                     android:id="@+id/tv_shipment_fee"
@@ -189,7 +204,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    android:text="@{foodDetail.deliveryFee}" />
+                    android:text="@string/delivery_price" />
 
             </LinearLayout>
 
@@ -217,7 +232,9 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="122dp"
                     android:backgroundTint="@color/white"
+                    android:contentDescription="@string/subtract_amount"
                     android:elevation="0dp"
+                    android:onClick="@{()->menuViewModel.subtractCount()}"
                     android:src="@drawable/ic_minus_vector"
                     app:backgroundTint="@color/white" />
 
@@ -229,7 +246,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:padding="10dp"
-                    android:text="1" />
+                    android:text="@{String.valueOf(menuViewModel.count)}" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fb_order_more"
@@ -237,7 +254,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/white"
+                    android:contentDescription="@string/amount_add"
                     android:elevation="0dp"
+                    android:onClick="@{()->menuViewModel.addCount()}"
                     android:src="@drawable/ic_baseline_add_24"
                     app:backgroundTint="@color/white" />
 
@@ -263,10 +282,10 @@
                     style="@style/normal_style"
                     android:layout_width="87dp"
                     android:layout_height="24dp"
-                    android:layout_gravity="right|center"
+                    android:layout_gravity="start|center"
                     android:layout_marginEnd="24dp"
                     android:padding="4dp"
-                    android:text="총 주문금액" />
+                    android:text="@string/total_amount" />
 
                 <View
                     android:layout_width="0dp"
@@ -276,12 +295,12 @@
                 <TextView
                     android:id="@+id/tv_total_amount"
                     style="@style/normal_style"
+                    totalAmount="@{menuViewModel.price}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
+                    android:layout_gravity="end|center"
                     android:layout_marginEnd="16dp"
                     android:padding="4dp"
-                    android:text="@{(foodDetail.prices[1] == null) ? foodDetail.prices[0] : foodDetail.prices[1]}"
                     android:textSize="32sp"
                     android:textStyle="bold" />
 
@@ -298,6 +317,7 @@
 
             <ImageView
                 android:id="@+id/iv_detail1"
+                imageUrl="@{foodDetail.detailImageLink[0].imageLink}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -307,6 +327,7 @@
 
             <ImageView
                 android:id="@+id/iv_detail2"
+                imageUrl="@{foodDetail.detailImageLink[0].imageLink}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -315,6 +336,7 @@
 
             <ImageView
                 android:id="@+id/iv_detail3"
+                imageUrl="@{foodDetail.detailImageLink[0].imageLink}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

@@ -1,23 +1,30 @@
 package com.example.sidedish.network
 
-import com.example.sidedish.data.Food
-import com.example.sidedish.data.FoodDetail
+import com.example.sidedish.data.dto.Item
+import com.example.sidedish.data.dto.JwtDTO
+import com.example.sidedish.data.dto.MenuDetailDTO
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiClient {
-    @GET("/onban/main")
-    suspend fun getMainFoodList(): Response<Food>
 
-    @GET("/onban/soup")
-    suspend fun getSoupFoodList(): Response<Food>
+    @GET("/items/{categoryId}")
+    suspend fun getMenuList(
+        @Header("Authorization") token: String,
+        @Path("categoryId") category: Int
+    ):Response<Item>
 
-    @GET("/onban/side")
-    suspend fun getSideFoodList(): Response<Food>
-
-    @GET("/onban/detail/{detail_hash}")
+    @GET("/items/detail/{id}")
     suspend fun getProductDetail(
-        @Path("detail_hash") detailHash: String
-    ): Response<FoodDetail>
+        @Header("Authorization") token: String,
+        @Path("id") detailHash: Int
+    ): Response<MenuDetailDTO>
+
+    @GET("/login/oauth")
+    suspend fun getJWT(
+        @Query("code") code: String
+    ): Response<JwtDTO>
 }

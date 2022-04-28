@@ -10,4 +10,18 @@
     <string name="soup_header">정성이 담긴 \n뜨끈뜨끈 국물 요리</string>
     <string name="side_header">식탁을 풍성하게 하는 \n정갈한 밑반찬</string>
     <string name="order_dish">주문하기</string>
+    <string name="currency">%s원</string>
+    <string name="delivery_price">2,500원 (40,000원 이상 구매 시 무료)</string>
+    <string name="delivery_method">서울 경기 새벽배송, 전국 택배 배송</string>
+    <string name="delivery_info">배송정보</string>
+    <string name="delivery_fee">배송비</string>
+    <string name="subtract_amount">subtract</string>
+    <string name="amount_add">add</string>
+    <string name="total_amount">총 주문금액</string>
+    <string name="launching_event">런칭특가</string>
+    <string name="event_promotion">이벤트특가</string>
+    <string name="github_client_id">11c78664d145c3664830</string>
+    <string name="login">login</string>
+    <string name="github_redirect_url">test://github-auth</string>
+    <string name="loading">loading</string>
 </resources>

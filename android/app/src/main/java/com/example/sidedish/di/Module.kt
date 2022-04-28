@@ -1,7 +1,7 @@
 package com.example.sidedish.di
 
-import com.example.sidedish.data.MenuListDataSource
-import com.example.sidedish.data.MenuListRepository
+import com.example.sidedish.data.datasource.MenuListDataSource
+import com.example.sidedish.data.repository.MenuListRepository
 import com.example.sidedish.network.ApiClient
 import dagger.Module
 import dagger.Provides
@@ -11,13 +11,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val BASE_URL = "https://api.codesquad.kr"
+    private const val BASE_URL = "http://13.209.145.70:8080/"
 
     @Provides
     @Singleton
@@ -46,16 +45,12 @@ object NetworkModule {
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.RUNTIME)
-    annotation class RemoteMenuDataSource
-
     @Singleton
-    @RemoteMenuDataSource
     @Provides
     fun provideMenuDataSource(apiClient: ApiClient): MenuListDataSource {
         return MenuListDataSource(apiClient)
     }
+
 }
 
 
@@ -66,7 +61,7 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideRepository(
-        @AppModule.RemoteMenuDataSource menuListDataSource: MenuListDataSource
+        menuListDataSource: MenuListDataSource
     ): MenuListRepository {
         return MenuListRepository(menuListDataSource)
     }
