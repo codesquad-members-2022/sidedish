@@ -13,7 +13,6 @@ import UIKit
 class LoginViewController: UIViewController {
     let googleLoginButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("구글 로그인", for: .normal)
         button.backgroundColor = .red
         return button
