@@ -5,3 +5,5 @@ enum ProductSort: String, CaseIterable {
     case soup = "/soup"
     case side = "/side"
 }
+
+typealias ProductModel = [ProductSort: [Product]]

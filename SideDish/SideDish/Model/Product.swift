@@ -17,14 +17,6 @@ struct Product {
         self.description = origin.bodyDescription
         self.salePrice = origin.salePrice
         self.normalPrice = origin.normalPrice
-        self.discountType = {
-            var result: [DiscountType] = []
-            origin.badge?.forEach({ string in
-                if let type = DiscountType(string) {
-                    result.append(type)
-                }
-            })
-            return result.isEmpty ? nil : result
-        }()
+        self.discountType = origin.badge?.filter { DiscountType($0) != nil}.map { DiscountType($0)! }
+        }
     }
-}

@@ -1,18 +1,15 @@
 import Foundation
 
-protocol DishCellViewModelProtocol {
-    func fetchData()
-    var onUpdate: () -> Void { get }
-}
-
-final class DishCellViewModel: DishCellViewModelProtocol {
-    private let repository: DishCellRepositoryProtocol
+final class DishCellViewModel {
+    private let factory =  CellFactory(repository: DishCellRepository())
+    private(set) var model: ProductModel?
     var onUpdate: () -> Void = { }
 
-    init(repository: DishCellRepositoryProtocol) {
-        self.repository = repository
-    }
-
     func fetchData() {
+        factory.onUpdate = {
+            self.model = self.factory.convertCell2Product()
+            self.onUpdate()
+        }
+        self.factory.fetchData()
     }
 }
