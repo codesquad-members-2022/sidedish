@@ -10,9 +10,12 @@ import sidedish.jbc.interceptor.LoginCheckInterceptor;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+	private final LoginCheckInterceptor loginCheckInterceptor;
 	private final MenuTypeConvertor menuTypeConvertor;
 
-	public WebConfig(MenuTypeConvertor menuTypeConvertor) {
+	public WebConfig(LoginCheckInterceptor loginCheckInterceptor,
+		MenuTypeConvertor menuTypeConvertor) {
+		this.loginCheckInterceptor = loginCheckInterceptor;
 		this.menuTypeConvertor = menuTypeConvertor;
 	}
 
@@ -23,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoginCheckInterceptor())
+		registry.addInterceptor(loginCheckInterceptor)
 			.order(1)
 			.addPathPatterns("/menus", "/menus/detail/**");
 	}

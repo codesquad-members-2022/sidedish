@@ -36,7 +36,7 @@ public class OrderService {
 		}
 		MenuOrderResponse menuOrderResponse = new MenuOrderResponse(orderRepository.save(menuOrder),
 			menu);
-		menuRepository.updateStock(menuId, remainStock);
+		menuRepository.updateStock(remainStock, menuId);
 		userRepository.updatePoint(request.getUserId(), getPoint(menu, menuOrder));
 		Optional<User> user = userRepository.findById(request.getUserId());
 		System.out.println(user.get());
