@@ -13,16 +13,19 @@ const TAB_TEXTS = [
 
 const TAB_KEYS = ["meat", "convenient", "season", "nutrition"];
 
-const MainTab = ({ dish }) => {
+const MainTab = ({ dish, randomRef }) => {
   const [tabNumber, setTabNumber] = useState(0);
   const [tabCards, setTabCards] = useState([]);
 
   useEffect(() => {
     if (dish.length === 0) return;
 
-    const shuffle = selectDish();
-    const shuffleCards = ShuffleCards(shuffle);
-    setTabCards(shuffleCards);
+    if (randomRef.current) {
+      const shuffle = selectDish();
+      const shuffleCards = ShuffleCards(shuffle);
+      setTabCards(shuffleCards);
+      randomRef.current = false;
+    }
   }, [dish]);
 
   const selectDish = () => {

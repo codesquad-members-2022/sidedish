@@ -69,7 +69,7 @@ const Modal = ({ showModalPopup, productHash }) => {
       {product && (
         <>
           <Background zIndex={1}></Background>
-          <Popup>
+          <Popup scrollTop={document.scrollingElement.scrollTop}>
             <ProductDetailModal
               product={product}
               productImg={productImg}
@@ -92,7 +92,7 @@ const Modal = ({ showModalPopup, productHash }) => {
 
 const Popup = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
