@@ -52,3 +52,8 @@ export function getRandomNumberAsCount({ min, max, count }) {
   }
   return [...answerSet];
 }
+
+export function getUrlWithIdPage({ url, id, page }) {
+  page = page || 0;
+  return `${url}/${id}?page=${page}`;
+}

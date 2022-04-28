@@ -42,11 +42,13 @@ export const buttonIcons = {
 };
 
 export const API = {
-  exhibitions: `http://54.180.92.20:8080/api/exhibitions/2`,
-  category: `http://54.180.92.20:8080/api/exhibitions/1`,
-  categoryDishes: (id, page = 0) => {
-    return `http://54.180.92.20:8080/api/sidedishes/category/${id}?page=${page}`;
-  },
+  exhibitions: `http://54.180.92.20:8080/api/exhibitions`,
+  categoryDishes: `http://54.180.92.20:8080/api/sidedishes/category`,
+};
+
+export const EXHIBITION_ID = {
+  category: 1,
+  exhibitions: 2,
 };
 
 export const eventsNumber = {
