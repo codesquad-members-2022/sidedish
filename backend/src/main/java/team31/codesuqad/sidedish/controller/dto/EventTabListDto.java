@@ -4,14 +4,14 @@ import java.util.List;
 
 public class EventTabListDto {
 
-    private final List<EventTabDto> categorynames;
+    private final List<EventTabDto> eventTabs;
 
     public EventTabListDto(List<EventTabDto>  eventTabList) {
-        categorynames = eventTabList;
+        eventTabs = eventTabList;
     }
 
-    public List<EventTabDto> getCategorynames() {
-        return categorynames;
+    public List<EventTabDto> getEventTabs() {
+        return eventTabs;
     }
 
 }

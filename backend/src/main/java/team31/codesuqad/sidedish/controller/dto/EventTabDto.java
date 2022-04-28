@@ -2,8 +2,6 @@ package team31.codesuqad.sidedish.controller.dto;
 
 import team31.codesuqad.sidedish.domain.EventTabs;
 
-import java.util.Locale;
-
 public class EventTabDto {
 
     private Integer id;
