@@ -10,7 +10,8 @@ import Foundation
 final class SideDishManager {
     
     static let mainIdentifier = "SideDishManager"
-    static let detailIdentifier = "SideDishManagerDetailModel"
+    static let detailIdentifier = "SideDishManagerDetail"
+    static let downloadIdentifier = "SideDishManagerDownload"
     
     private(set) var mainDishes: MainCard?
     private(set) var soupDishes: MainCard?
@@ -102,7 +103,7 @@ final class SideDishManager {
                 if let data = data {
                     self.dataDictionary[hash] = data
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: SideDishManager.downloadIdentifier), object: self)
             }
         }
     }
