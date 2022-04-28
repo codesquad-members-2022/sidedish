@@ -13,6 +13,14 @@ const OrderButtonWrapper = styled.button`
   height: 58px;
   right: 0px;
   bottom: 20px;
+
+  &: hover {
+    opacity: 0.8;
+  }
+
+  &: active {
+    opacity: 0.4;
+  }
 `;
 
 export const OrderButton = ({ ContentsText, onClick }) => {
