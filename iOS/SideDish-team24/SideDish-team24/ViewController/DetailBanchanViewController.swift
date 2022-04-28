@@ -60,11 +60,9 @@ private extension DetailBanchanViewController {
                                          listPrice: banchanViewModel.listPrice)
         self.detailBanchanView.configure(specialBadge: banchanViewModel.discountPolicy)
         
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             let image = banchanViewModel.image
-            DispatchQueue.main.sync {
-                self.detailBanchanView.configure(image: image)
-            }
+            self.detailBanchanView.configure(image: image)
         }
     }
     
