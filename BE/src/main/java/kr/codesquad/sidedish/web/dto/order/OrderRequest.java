@@ -1,7 +1,9 @@
 package kr.codesquad.sidedish.web.dto.order;
 
 import kr.codesquad.sidedish.domain.Order;
+import lombok.Getter;
 
+@Getter
 public class OrderRequest {
     private Long itemId;
     private Long userId;
@@ -23,19 +25,4 @@ public class OrderRequest {
         return Order.newOrder(this.itemId, this.userId, this.quantity, this.totalPrice);
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public Long getTotalPrice() {
-        return totalPrice;
-    }
 }

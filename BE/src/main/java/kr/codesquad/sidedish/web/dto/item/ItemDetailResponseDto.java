@@ -2,11 +2,13 @@ package kr.codesquad.sidedish.web.dto.item;
 
 import kr.codesquad.sidedish.domain.Image;
 import kr.codesquad.sidedish.domain.Item;
+import lombok.Getter;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class ItemDetailResponseDto {
 
     private Long itemId;
@@ -37,39 +39,4 @@ public class ItemDetailResponseDto {
                 item.getImages().stream().map(Image::getDetailImages).collect(Collectors.toList()));
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public Long getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public Long getDiscountPrice() {
-        return discountPrice;
-    }
-
-    public Integer getLabelId() {
-        return labelId;
-    }
-
-    public String getMainImage() {
-        return mainImage;
-    }
-
-    public Integer getDeliveryId() {
-        return deliveryId;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
 }

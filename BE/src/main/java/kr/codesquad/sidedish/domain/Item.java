@@ -1,10 +1,12 @@
 package kr.codesquad.sidedish.domain;
 
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.List;
 
+@Getter
 public class Item {
 
     @Id
@@ -41,51 +43,4 @@ public class Item {
         this.stock = this.getStock() - quantity;
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Long getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public Long getDiscountPrice() {
-        return discountPrice;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public Integer getLabelId() {
-        return labelId;
-    }
-
-    public String getMainImage() {
-        return mainImage;
-    }
-
-    public Integer getDeliveryId() {
-        return deliveryId;
-    }
-
-    public Long getBestId() {
-        return bestId;
-    }
-
-    public List<Image> getImages() {
-        return images;
-    }
 }
