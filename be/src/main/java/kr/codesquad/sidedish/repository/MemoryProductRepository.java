@@ -9,14 +9,12 @@ import java.util.stream.Collectors;
 import kr.codesquad.sidedish.domain.Product;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class MemoryProductRepository implements ProductRepository {
+public class MemoryProductRepository {
 
 	private static final Map<Integer, Product> store = new HashMap<>();
 
 	private static final AtomicInteger sequence = new AtomicInteger();
 
-	@Override
 	public Optional<Product> findById(Integer id) {
 
 		Optional<Product> optional = Optional.ofNullable(store.get(id));
@@ -24,7 +22,6 @@ public class MemoryProductRepository implements ProductRepository {
 		return optional;
 	}
 
-	@Override
 	public List<Product> loadListByType(String dishType, String sideDishType) {
 		return store.values().stream()
 			.filter(p -> p.isSameDishType(dishType))
@@ -32,13 +29,11 @@ public class MemoryProductRepository implements ProductRepository {
 			.collect(Collectors.toList());
 	}
 
-	@Override
 	public Product updateQuantity(Integer id, Product product) {
 		store.put(id, product);
 		return product;
 	}
 
-	@Override
 	public List<Product> findAll() {
 		return null;
 	}
