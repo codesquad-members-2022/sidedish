@@ -1,6 +1,5 @@
 package com.example.sidedish.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,6 @@ import com.example.sidedish.repository.MainRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.system.measureTimeMillis
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
