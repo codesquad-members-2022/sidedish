@@ -15,6 +15,9 @@ export function DeliveryLabel({ deliveryID, isHovered, setIsHovered }) {
             onMouseEnter={() => {
               setIsHovered(true);
             }}
+            onMouseLeave={() => {
+              setIsHovered(false);
+            }}
           />
         </label>
       )}
