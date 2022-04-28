@@ -20,6 +20,7 @@ public class Dishes {
     private Integer point;
     private Integer eventTabsId;
     private Integer categoryId;
+    private Integer deliveryId;
 
     @MappedCollection(idColumn = "dish_id", keyColumn = "dish_id")
     private List<Images> images;
@@ -84,6 +85,10 @@ public class Dishes {
 
     public Integer getCategoryId() {
         return categoryId;
+    }
+
+    public Integer getDeliveryId() {
+        return deliveryId;
     }
 
     public List<Images> getImages() {
