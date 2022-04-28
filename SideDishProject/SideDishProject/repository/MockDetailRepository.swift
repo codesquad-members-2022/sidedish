@@ -16,16 +16,9 @@ protocol ProductDetailRepository {
 }
 
 final class MockDetailRepository: ProductDetailRepository {
-    // var detailFactory = DetailFactory()
-    
     init() {
-        //self.products = MockProductFactory(makeCount: 10).makeRandomProducts()
     }
     
     func fetchOne(id: UniqueID, completion: @escaping (Result<Product, DetailRespositoryError>) -> Void) {
-//        guard let result = Result else {
-//            return completion(.failure(.fetchError))
-//        }
-//        completion(.success(result))
     }
 }

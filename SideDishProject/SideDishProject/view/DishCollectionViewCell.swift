@@ -8,7 +8,6 @@
 import UIKit
 
 final class DishCollectionViewCell: UICollectionViewCell{
-    static let identifier = "DishCollectionViewCell"
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -98,7 +97,7 @@ final class DishCollectionViewCell: UICollectionViewCell{
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setEventUIConstraint(){
+    func setEventUIConstraint(){
         basicView.addSubview(eventButton)
         eventButton.translatesAutoresizingMaskIntoConstraints = false
         eventConstraints = [descriptionTitleLabel.bottomAnchor.constraint(equalTo: dishImageView.centerYAnchor, constant: -10),
@@ -116,7 +115,7 @@ final class DishCollectionViewCell: UICollectionViewCell{
         eventConstraints.map{$0.isActive = true}
     }
     
-    private func setNonEventUIConstraint(){
+    func setNonEventUIConstraint(){
         nonEventConstraints = [ descriptionTitleLabel.centerYAnchor.constraint(equalTo: dishImageView.centerYAnchor),
                                 descriptionTitleLabel.leadingAnchor.constraint(equalTo: dishImageView.trailingAnchor,constant: 10),
                                 descriptionTitleLabel.trailingAnchor.constraint(equalTo: basicView.trailingAnchor,constant: -10),
@@ -133,17 +132,12 @@ final class DishCollectionViewCell: UICollectionViewCell{
     func updateUIProperty(with product: Product){
         dishTitleLabel.text = product.name
         descriptionTitleLabel.text = product.description
-        
-        let isContainEvent = product.event.contains { event in
-            if case .none = event {
-                return false
-            }
-            return true
-        }
-        isContainEvent ? setNonEventUIConstraint() : setEventUIConstraint()
     }
     
     func updateImage(data: Data){
         dishImageView.image = UIImage(data: data)
     }
+}
+extension UICollectionViewCell{
+    static var identifier = String(describing: self)
 }

@@ -10,12 +10,12 @@ import UIKit
 final class DishCollectionDataSource: NSObject{
     private var dishes: [DishCategory : [Product]] = [:]
     private var dishComments: [String] = []
-    private var dishImages: [DishCategory : [Data]] = [:]
+    private var dishImages: [DishCategory : [Data?]] = [:]
     func setDishes(dishes: [DishCategory : [Product]]){
         self.dishes = dishes
     }
     
-    func setDishImages(images: [DishCategory : [Data]]){
+    func setDishImages(images: [DishCategory : [Data?]]){
         self.dishImages = images
     }
     
@@ -58,6 +58,13 @@ extension DishCollectionDataSource: UICollectionViewDataSource{
             return cell
         }
         cell.updateUIProperty(with: product)
+        let isContainEvent = product.event.contains { event in
+            if case .none = event {
+                return false
+            }
+            return true
+        }
+        isContainEvent ? cell.setNonEventUIConstraint() : cell.setEventUIConstraint()
         
         if !(dishImages.isEmpty){
             guard let category = findCategory(by: indexPath.section),

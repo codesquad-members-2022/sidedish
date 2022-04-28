@@ -10,7 +10,7 @@ import Foundation
 final class HomeUsecase{
 
     private let repository: ProductRepository
-    private var selectedIndex: IndexPath?
+    private var selectedProduct: IndexPath?
     weak var delegate: ProductModelDelegate?
     private var dishes: [DishCategory : [Product]] = [:]
     
@@ -19,7 +19,7 @@ final class HomeUsecase{
     }
     
     func setSelectedIndex(indexPath: IndexPath){
-        self.selectedIndex = indexPath
+        self.selectedProduct = indexPath
         for (index,dish) in dishes.enumerated() {
             if indexPath.section == index {
                 let product = dish.value[indexPath.row]
@@ -61,6 +61,6 @@ protocol ProductModelDelegate: AnyObject{
     func updateDishComment(comments: [String])
     func updateAllDishes(dishes: [DishCategory : [Product]])
     func updateFail(error: Error)
-    func updateImageData(imageData: [DishCategory : [Data]])
+    func updateImageData(imageData: [DishCategory : [Data?]])
     func selected(id: UniqueID)
 }

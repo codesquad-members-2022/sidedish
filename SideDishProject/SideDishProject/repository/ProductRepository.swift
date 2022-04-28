@@ -7,7 +7,7 @@ enum ProductRepositoryError: Error {
 protocol ProductRepository {
     func fetchAll(completion: @escaping (Result<[DishCategory: [Product]], ProductRepositoryError>) -> Void)
     func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void)
-    func fetchImage(completion: @escaping (Result<[DishCategory : [Data]] , ProductRepositoryError>) -> Void)
+    func fetchImage(completion: @escaping (Result<[DishCategory : [Data?]] , ProductRepositoryError>) -> Void)
 }
 
 final class MockProductRepository {
@@ -19,12 +19,12 @@ final class MockProductRepository {
     }
 }
 extension MockProductRepository: ProductRepository{
-
-    func fetchImage(completion: @escaping (Result<[DishCategory : [Data]] , ProductRepositoryError>) -> Void) {
-        var imageData: [DishCategory : [Data]]  = [:]
+    func fetchImage(completion: @escaping (Result<[DishCategory : [Data?]] , ProductRepositoryError>) -> Void) {
+        var imageData: [DishCategory : [Data?]]  = [:]
         let group = DispatchGroup()
         for product in products{
-            guard let index: Int = dishes[product.category]?.firstIndex(where: { factor in
+            guard let categoryDishes = dishes[product.category] else { return }
+            guard let index: Int = categoryDishes.firstIndex(where: { factor in
                 if factor.id == product.id{
                     return true
                 }
@@ -39,7 +39,7 @@ extension MockProductRepository: ProductRepository{
                 }
                 if imageData[product.category] == nil{
                     guard let count = self.dishes[product.category]?.count else { return }
-                    imageData[product.category] = [Data](repeating: Data(), count: count)
+                    imageData[product.category] = [Data?](repeating: nil, count: count)
                 }
                 imageData[product.category]?[index] = data
                 group.leave()
