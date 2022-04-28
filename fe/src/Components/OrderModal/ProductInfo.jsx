@@ -5,6 +5,7 @@ import { Colors, Fonts } from '@/Constants';
 import { ProductAmount } from './ProductAmount';
 
 import { DiscountBadge } from '@/Components/Badge';
+
 const ProductInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,22 +69,6 @@ const Price = styled.span`
   margin-left: 8px;
 `;
 
-const CheckPrice = ({ priceData: { price, discountPolicy, discountRate } }) => {
-  if (!discountPolicy) {
-    return <Price className={Fonts.LG}>{price} 원</Price>;
-  }
-
-  return (
-    <>
-      <OriginalPrice className={Fonts.SM}>{price} 원</OriginalPrice>
-      <ListPrice>
-        <DiscountBadge type={discountPolicy} />
-        <Price className={Fonts.LG}>{price - price * discountRate} 원</Price>
-      </ListPrice>
-    </>
-  );
-};
-
 export const ProductInfo = ({
   productData: {
     id,
@@ -99,7 +84,6 @@ export const ProductInfo = ({
   return (
     <ProductInfoWrapper>
       <Title className={Fonts.LG}>{title}</Title>
-      {/* <CheckPrice priceData={{ price, discountPolicy, discountRate }} /> */}
       {discountPolicy ? (
         <>
           <OriginalPrice className={Fonts.SM}>{price} 원</OriginalPrice>
