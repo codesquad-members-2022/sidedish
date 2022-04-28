@@ -36,7 +36,6 @@ private extension BriefBanchanViewController {
             let dishViewModel = BanchanViewModel(dish: dish)
             
             guard let detailView = self.storyboard?.instantiateViewController(withIdentifier: "detailBanchanViewController") as? DetailBanchanViewController else { return }
-            detailView.title = dishViewModel.title
             detailView.setTarget(with: dishViewModel)
             
             self.navigationController?.pushViewController(detailView, animated: true)

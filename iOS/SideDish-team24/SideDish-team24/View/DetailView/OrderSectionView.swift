@@ -37,7 +37,7 @@ private extension OrderSectionView {
     
     func changeAmountValue(noti: Notification) {
         guard let amount = noti.userInfo?[NotificationKeyValue.amount] as? Int else { return }
-        self.totalAmountLabel.text = "\(amount.convertToWon())"
+        self.totalAmountLabel.text = amount.convertToWon()
     }
     
     func layoutTitleLabel() {

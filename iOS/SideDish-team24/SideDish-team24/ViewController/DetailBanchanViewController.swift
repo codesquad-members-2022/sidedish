@@ -53,7 +53,7 @@ private extension DetailBanchanViewController {
     
     func configure() {
         guard let banchanViewModel = banchanViewModel else { return }
-
+        self.title = banchanViewModel.title
         self.detailBanchanView.configure(title: banchanViewModel.title,
                                          description: banchanViewModel.description,
                                          price: banchanViewModel.price,
