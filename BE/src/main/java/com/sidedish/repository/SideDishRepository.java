@@ -25,4 +25,7 @@ public interface SideDishRepository extends CrudRepository<SideDish, Integer> {
         + "FROM sidedish s LEFT JOIN discount_policy d ON s.discount_policy_id = d.id "
         + "WHERE s.id = :id")
     SideDish findBySideDishId(@Param("id") Integer id);
+
+    @Query("SELECT stock FROM sidedish WHERE id = :id")
+    Integer findStockBySideDishId(@Param("id") Integer id);
 }

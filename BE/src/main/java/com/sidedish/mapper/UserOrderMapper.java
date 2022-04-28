@@ -1,8 +1,6 @@
 package com.sidedish.mapper;
 
-import com.sidedish.domain.SideDish;
 import com.sidedish.domain.UserOrder;
-import com.sidedish.dto.SideDishDto;
 import com.sidedish.dto.SideDishOrderDto;
 import java.time.LocalDateTime;
 

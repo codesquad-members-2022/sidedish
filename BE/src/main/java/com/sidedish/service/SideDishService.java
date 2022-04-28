@@ -52,4 +52,8 @@ public class SideDishService {
 
         return SideDishMapper.convertToSideDishDetailsDto(sideDish, recommendedSideDishes);
     }
+
+    public Integer getStockOfSideDish(Integer id) {
+        return sideDishRepository.findStockBySideDishId(id);
+    }
 }

@@ -10,6 +10,7 @@ public class User {
 
     @Id
     private Integer id;
-    private String email;
+    private String publicEmail;
+    private String privateEmail;
 
 }

@@ -1,6 +1,7 @@
 package com.sidedish.service;
 
-import java.util.Arrays;
+import com.sidedish.domain.User;
+import com.sidedish.repository.UserRepository;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,43 +20,61 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class LoginService {
 
-    private final String url = "https://github.com/login/oauth/access_token";
+    private final UserRepository userRepository;
 
-    public String getUserEmail(String code) {
-        AccessToken accessToken = getAccessToken(code);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Accept", "application/vnd.github.v3+json");
-        httpHeaders.set("Authorization", accessToken.getAuthorizationValue());
+    private static final String CLIENT_ID = "52d17ef5577e55a18ca3";
+    private static final String GITHUB_AUTHORIZATION_SERVER_URL = "https://github.com/login/oauth/access_token";
+    private static final String GITHUB_RESOURCE_SERVER_EMAIL_API_URL = "https://api.github.com/user/emails";
+    private static final String GITHUB_EMAIL_API_ACCEPT_HEADER = "application/vnd.github.v3+json";
 
-        HttpEntity<?> request = new HttpEntity<>(httpHeaders);
-        ResponseEntity<Object[]> response = new RestTemplate().exchange(
-            "https://api.github.com/user/emails",
-            HttpMethod.GET,
-            request,
-            Object[].class
-        );
-        Object[] userEmails = response.getBody();
-        LinkedHashMap primaryEmail = (LinkedHashMap) userEmails[0];
-
-        return (String) primaryEmail.get("email");
-    }
-
-    private AccessToken getAccessToken(String code) {
+    public AccessToken getAccessToken(String code) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         Map<String, String> header = new HashMap<>();
-        header.put("Accept", "application/json"); //json 형식으로 응답 받음
+        header.put("Accept", "application/json");
         headers.setAll(header);
 
         MultiValueMap<String, String> requestPayloads = new LinkedMultiValueMap<>();
         Map<String, String> requestPayload = new HashMap<>();
-        requestPayload.put("client_id", "52d17ef5577e55a18ca3");
-        requestPayload.put("client_secret", "e60b022aea41c5af02238dd77a93db8fb9df5c48");
+        requestPayload.put("client_id", CLIENT_ID);
+        requestPayload.put("client_secret", System.getenv("CLIENT_SECRET"));
         requestPayload.put("code", code);
         requestPayloads.setAll(requestPayload);
 
         HttpEntity<?> request = new HttpEntity<>(requestPayloads, headers);
-        ResponseEntity<?> response = new RestTemplate().postForEntity(url, request, AccessToken.class);
+        ResponseEntity<?> response = new RestTemplate().postForEntity(
+            GITHUB_AUTHORIZATION_SERVER_URL, request, AccessToken.class);
         return (AccessToken) response.getBody();
     }
 
+    public List<String> getUserEmails(AccessToken accessToken) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Accept", GITHUB_EMAIL_API_ACCEPT_HEADER);
+        httpHeaders.set("Authorization", accessToken.getAuthorizationValue());
+
+        HttpEntity<?> request = new HttpEntity<>(httpHeaders);
+        ResponseEntity<Object[]> response = new RestTemplate().exchange(
+            GITHUB_RESOURCE_SERVER_EMAIL_API_URL,
+            HttpMethod.GET,
+            request,
+            Object[].class
+        );
+
+        Object[] userEmails = response.getBody();
+
+        String publicEmail = (String) ((LinkedHashMap) userEmails[0]).get("email");
+        String privateEmail = (String) ((LinkedHashMap) userEmails[1]).get("email");
+
+        return List.of(publicEmail, privateEmail);
+    }
+
+    public void saveUserEmail(List<String> userEmails) {
+        String publicEmail = userEmails.get(0);
+        String privateEmail = userEmails.get(1);
+
+        Integer userId = userRepository.findIdByEmail(publicEmail);
+        if (userId == null) {
+            User user = new User(null, publicEmail, privateEmail);
+            userRepository.save(user);
+        }
+    }
 }

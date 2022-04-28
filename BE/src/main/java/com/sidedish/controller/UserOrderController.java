@@ -1,10 +1,10 @@
 package com.sidedish.controller;
 
 import com.sidedish.dto.SideDishOrderDto;
+import com.sidedish.service.SideDishService;
 import com.sidedish.service.UserOrderService;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,22 +14,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api")
-@Slf4j
+@RequestMapping(value = "api", produces = "application/json; charset=utf8")
 public class UserOrderController {
 
     private final UserOrderService userOrderService;
+    private final SideDishService sideDishService;
 
     @PostMapping("sidedish-order")
-    public ResponseEntity orderSideDishDetails(@RequestBody SideDishOrderDto sideDishOrderDto, HttpSession httpSession) {
+    public ResponseEntity<ResponseMessage> orderSideDishDetails(@RequestBody SideDishOrderDto sideDishOrderDto, HttpSession httpSession) {
+
         String email = (String) httpSession.getAttribute("email");
-        log.info("dto: {}", sideDishOrderDto);
 
         if (email == null) {
-            return new ResponseEntity<>("fail", HttpStatus.NOT_FOUND);
+            ResponseMessage message = new ResponseMessage(HttpStatus.UNAUTHORIZED, "로그인이 되어있지 않습니다.");
+            return new ResponseEntity<>(message, HttpStatus.UNAUTHORIZED);
         }
-        userOrderService.saveUserOrder(sideDishOrderDto, "abc@abc");
-        return new ResponseEntity<>("success", HttpStatus.OK);
-    }
 
+        Integer stock = sideDishService.getStockOfSideDish(sideDishOrderDto.getSidedishId());
+        if (sideDishOrderDto.getQuantity() > stock) {
+            ResponseMessage message = new ResponseMessage(HttpStatus.NOT_FOUND, "재고가 부족합니다.");
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+
+        userOrderService.saveUserOrder(sideDishOrderDto, email);
+        ResponseMessage message = new ResponseMessage(HttpStatus.OK, "주문이 처리되었습니다.");
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 }

@@ -2,6 +2,7 @@ package com.sidedish.controller;
 
 import com.sidedish.service.AccessToken;
 import com.sidedish.service.LoginService;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,19 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api")
+@RequestMapping(value = "api", produces = "text/plain; charset=utf8")
 public class LoginController {
 
     private final LoginService loginService;
 
-    //Todo
     @GetMapping("github-login")
     public ResponseEntity login(@RequestParam String code, HttpSession httpSession) {
-        String email = loginService.getUserEmail(code);
-        System.out.println("email:" + email);
-        httpSession.setAttribute("email", email);
+        AccessToken accessToken = loginService.getAccessToken(code);
+        List<String> userEmails = loginService.getUserEmails(accessToken);
+        loginService.saveUserEmail(userEmails);
 
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        String publicEmail = userEmails.get(0);
+        httpSession.setAttribute("email", publicEmail);
+
+        return new ResponseEntity<>("로그인이 정상적으로 처리되었습니다.", HttpStatus.OK);
     }
 
 }
