@@ -50,6 +50,7 @@ class FoodListViewModel @Inject constructor(
 
     fun openDetail(foodInfo: Item.FoodInfo) {
         _openDetail.value = Event(foodInfo)
+
     }
 
     suspend fun updateItems(category: FoodCategory) {
