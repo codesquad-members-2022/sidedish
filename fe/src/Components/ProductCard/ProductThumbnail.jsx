@@ -6,8 +6,8 @@ import { ProductCardSize } from '@/Constants/ProductCardSize';
 
 const ProductThumbnailWrapper = styled.div`
   position: relative;
-  width: 411px;
-  height: 411px;
+  width: 410px;
+  height: 410px;
 
   .product-img {
     display: block;

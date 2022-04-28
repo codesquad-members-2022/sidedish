@@ -9,6 +9,7 @@ import { ProductCard } from '@/Components/ProductCard';
 const ProductCardList = styled.ul`
   display: flex;
   margin-top: 34px;
+  overflow-x: auto;
 `;
 
 const LS_MARGIN = 260;
