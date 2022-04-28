@@ -1,35 +1,40 @@
 package kr.codesquad.sidedish.web.dto.item;
 
+import kr.codesquad.sidedish.domain.Image;
 import kr.codesquad.sidedish.domain.Item;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
-public class ItemListResponseDto {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ItemDetailResponseDto {
 
     private Long itemId;
     private String itemName;
-    private String description;
     private Long originalPrice;
     private Long discountPrice;
     private Integer labelId;
     private String mainImage;
     private Integer deliveryId;
-    private Long bestId;
+    private Integer stock;
+    private List<String> images;
 
-    public ItemListResponseDto(Long itemId, String itemName, String description, Long originalPrice, Long discountPrice, Integer labelId, String mainImage, Integer deliveryId, Long bestId) {
+    public ItemDetailResponseDto(Long itemId, String itemName, Long originalPrice, Long discountPrice, Integer labelId, String mainImage, Integer deliveryId, Integer stock, List<String> images) {
         this.itemId = itemId;
         this.itemName = itemName;
-        this.description = description;
         this.originalPrice = originalPrice;
         this.discountPrice = discountPrice;
         this.labelId = labelId;
         this.mainImage = mainImage;
         this.deliveryId = deliveryId;
-        this.bestId = bestId;
+        this.stock = stock;
+        this.images = images;
     }
 
-    public static ItemListResponseDto of(Item item) {
-        return new ItemListResponseDto(item.getItemId(), item.getItemName(), item.getDescription(),
-                item.getOriginalPrice(), item.getDiscountPrice(), item.getLabelId(), item.getMainImage(),
-                item.getDeliveryId(), item.getBestId());
+    public static ItemDetailResponseDto of(Item item) {
+        return new ItemDetailResponseDto(item.getItemId(), item.getItemName(), item.getOriginalPrice(),
+                item.getDiscountPrice(), item.getLabelId(), item.getMainImage(), item.getDeliveryId(), item.getStock(),
+                item.getImages().stream().map(Image::getDetailImages).collect(Collectors.toList()));
     }
 
     public Long getItemId() {
@@ -38,10 +43,6 @@ public class ItemListResponseDto {
 
     public String getItemName() {
         return itemName;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public Long getOriginalPrice() {
@@ -64,7 +65,11 @@ public class ItemListResponseDto {
         return deliveryId;
     }
 
-    public Long getBestId() {
-        return bestId;
+    public Integer getStock() {
+        return stock;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }

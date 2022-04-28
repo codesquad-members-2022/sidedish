@@ -1,79 +1,87 @@
 package kr.codesquad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+
+import java.util.List;
 
 public class Item {
 
     @Id
-    private final Long item_id;
-    private final Long category_id;
-    private final String item_name;
+    private final Long itemId;
+    private final Long categoryId;
+    private final String itemName;
     private final String description;
-    private final Integer or_price;
-    private final Integer dc_price;
-    private final Integer stock;
-    private final Integer label_id;
-    private final String main_image;
-    private final Integer delivery_id;
-    private final Long best_id;
+    private final Long originalPrice;
+    private final Long discountPrice;
+    private final Integer labelId;
+    private final String mainImage;
+    private final Integer deliveryId;
+    private final Long bestId;
+    private Integer stock;
+    @MappedCollection(idColumn = "item_id", keyColumn = "image_id")
+    private List<Image> images;
 
-    public Item(Long item_id, Long category_id, String item_name, String description, Integer or_price,
-                Integer dc_price, Integer stock, Integer label_id, String main_image, Integer delivery_id, Long best_id) {
-        this.item_id = item_id;
-        this.category_id = category_id;
-        this.item_name = item_name;
+    public Item(Long itemId, Long categoryId, String itemName, String description, Long originalPrice, Long discountPrice, Integer labelId, String mainImage, Integer deliveryId, Long bestId, Integer stock, List<Image> images) {
+        this.itemId = itemId;
+        this.categoryId = categoryId;
+        this.itemName = itemName;
         this.description = description;
-        this.or_price = or_price;
-        this.dc_price = dc_price;
+        this.originalPrice = originalPrice;
+        this.discountPrice = discountPrice;
+        this.labelId = labelId;
+        this.mainImage = mainImage;
+        this.deliveryId = deliveryId;
+        this.bestId = bestId;
         this.stock = stock;
-        this.label_id = label_id;
-        this.main_image = main_image;
-        this.delivery_id = delivery_id;
-        this.best_id = best_id;
+        this.images = images;
     }
 
-    public Long getItem_id() {
-        return item_id;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public String getItem_name() {
-        return item_name;
+    public String getItemName() {
+        return itemName;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Integer getOr_price() {
-        return or_price;
+    public Long getOriginalPrice() {
+        return originalPrice;
     }
 
-    public Integer getDc_price() {
-        return dc_price;
+    public Long getDiscountPrice() {
+        return discountPrice;
     }
 
     public Integer getStock() {
         return stock;
     }
 
-    public Integer getLabel_id() {
-        return label_id;
+    public Integer getLabelId() {
+        return labelId;
     }
 
-    public String getMain_image() {
-        return main_image;
+    public String getMainImage() {
+        return mainImage;
     }
 
-    public Integer getDelivery_id() {
-        return delivery_id;
+    public Integer getDeliveryId() {
+        return deliveryId;
     }
 
-    public Long getBest_id() {
-        return best_id;
+    public Long getBestId() {
+        return bestId;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
 }
