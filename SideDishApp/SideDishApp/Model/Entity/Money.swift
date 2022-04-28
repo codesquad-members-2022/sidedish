@@ -8,7 +8,7 @@
 import Foundation
 struct Money<C: CurrencyFormattable> {
 
-    typealias C = CurrencyFormattable
+    typealias Currency = CurrencyFormattable
 
     var value: Decimal
 
