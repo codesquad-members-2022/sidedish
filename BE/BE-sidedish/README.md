@@ -1,12 +1,14 @@
 ### rest api
 
-| URL                                           | 기능                    |
-|-----------------------------------------------|-----------------------|
-| GET /api/sidedish/{special-menu-id}           | 첫 페이지 조회 + 추천메뉴(random) |
-| GET /api/sidedish/exhibition/{special-menu-id} | 첫 페이지 내 다른 추천메뉴만 요청   |
-| GET /api/sidedish/more                        | 첫화면 더보기 버튼 클릭         |
-| GET /api/sidedish/menu/{menu-id}              | 메뉴 상세 보기              |
-| POST /api/sidedish/menu/order       | 주문하기                  |
+| URL                                                    | 기능                                        |
+|--------------------------------------------------------|-------------------------------------------|
+| GET /api/sidedish/{special-menu-id}?page=0             | 첫 페이지 조회 + 추천메뉴(random)                   |
+| GET /api/sidedish/exhibition/{special-menu-id}         | 첫 페이지 내 다른 추천메뉴만 요청                       |
+| GET /api/sidedish/category/more                        | 첫화면 더보기 버튼 클릭                             |
+| GET /api/sidedish/category/{category-id}?page=0        | 기획전 하단 카테고리별 다음 슬라이드(page=1) 요청           |
+| GET /api/sidedish/menu/{menu-id}                       | 메뉴 상세 보기                                  |
+| GET /api/sidedish/menu/category/{category-id}?page=1   | 메뉴 상세 보기 안 "함께하면 좋은 메뉴" 의 다음 슬라이드 요청      |
+| POST /api/sidedish/menu/order                          | 주문하기                                      |
 
 
 
