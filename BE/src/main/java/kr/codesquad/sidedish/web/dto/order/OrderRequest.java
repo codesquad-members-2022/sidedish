@@ -3,10 +3,15 @@ package kr.codesquad.sidedish.web.dto.order;
 import kr.codesquad.sidedish.domain.Order;
 import lombok.Getter;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 @Getter
 public class OrderRequest {
     private Long itemId;
     private Long userId;
+    @NotNull
+    @Min(1)
     private Integer quantity;
     private Long totalPrice;
 

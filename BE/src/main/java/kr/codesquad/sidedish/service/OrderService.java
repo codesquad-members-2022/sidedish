@@ -8,8 +8,6 @@ import kr.codesquad.sidedish.web.dto.order.OrderRequest;
 import kr.codesquad.sidedish.web.dto.order.OrderResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class OrderService {
 
