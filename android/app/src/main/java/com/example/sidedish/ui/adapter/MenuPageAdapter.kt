@@ -23,7 +23,8 @@ import java.text.DecimalFormat
 private const val HEADER = 0
 private const val ITEM = 1
 
-class MenuPageAdapter(private val listener: MenuItemClickListener) : ListAdapter<MenuModel, RecyclerView.ViewHolder>(MenuDiffUtil) {
+class MenuPageAdapter(private val listener: MenuItemClickListener) :
+    ListAdapter<MenuModel, RecyclerView.ViewHolder>(MenuDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -45,7 +46,7 @@ class MenuPageAdapter(private val listener: MenuItemClickListener) : ListAdapter
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder) {
+        when (holder) {
             is HeaderViewHolder -> {
                 holder.bind(getItem(position) as Category)
             }
@@ -103,14 +104,16 @@ class MenuPageAdapter(private val listener: MenuItemClickListener) : ListAdapter
                     with(binding) {
                         tvLaunchingCostBadge.visibility = View.VISIBLE
                         tvLaunchingCostBadge.text = sale
-                        tvLaunchingCostBadge.background = root.context.getDrawable(R.drawable.background_badge_event)
+                        tvLaunchingCostBadge.background =
+                            root.context.getDrawable(R.drawable.background_badge_event)
                     }
                 }
                 "이벤트특가" -> {
                     with(binding) {
                         tvLaunchingCostBadge.visibility = View.VISIBLE
                         tvLaunchingCostBadge.text = sale
-                        tvLaunchingCostBadge.background = root.context.getDrawable(R.drawable.background_badge_limited)
+                        tvLaunchingCostBadge.background =
+                            root.context.getDrawable(R.drawable.background_badge_limited)
                         tvLaunchingCostBadge.setTextColor(Color.WHITE)
                     }
                 }

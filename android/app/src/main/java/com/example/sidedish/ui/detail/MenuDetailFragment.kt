@@ -25,7 +25,7 @@ class MenuDetailFragment : Fragment() {
         FragmentDetailBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: MenuListViewModel by viewModels()
+    private val viewModel: MenuListViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

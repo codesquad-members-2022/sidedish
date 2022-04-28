@@ -40,30 +40,24 @@ class MenuListViewModel @Inject constructor(
 
     private val _discountRate = MutableLiveData<Int>()
 
-    init {
-        load()
-        _count.value = 0
-    }
+    private lateinit var jwt: String
 
-    private fun load() {
+    fun load() {
+        _count.value = 0
         val supervisorJob = SupervisorJob()
 
         val ceh = CoroutineExceptionHandler { _, _ ->
             error.value = "네트워크 연결 실패"
         }
-
+        Log.d("TAG", jwt)
         viewModelScope.launch(supervisorJob + ceh) {
             kotlin.runCatching {
                 listOf(
-                    async(Dispatchers.IO) { repository.getMenuList(MAIN_MENU) },
-                    async(Dispatchers.IO) { repository.getMenuList(SOUP) },
-                    async(Dispatchers.IO) { repository.getMenuList(SIDE_MENU) }
+                    async(Dispatchers.IO) { repository.getMenuList(jwt, MAIN_MENU) },
+                    async(Dispatchers.IO) { repository.getMenuList(jwt, SOUP) },
+                    async(Dispatchers.IO) { repository.getMenuList(jwt, SIDE_MENU) }
                 ).awaitAll()
             }.onSuccess {
-//                val menuList = it
-//                _mainMenuList.value = menuList[0]
-//                _soupMenuList.value = menuList[1]
-//                _sideMenuList.value = menuList[2]
                 val menuList = mutableListOf<MenuModel>()
                 it.forEach { item ->
                     menuList.addAll(item)
@@ -83,14 +77,26 @@ class MenuListViewModel @Inject constructor(
         viewModelScope.launch(ceh) {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    repository.getSelectedFoodDetail(key)
+                    repository.getSelectedFoodDetail(jwt, key)
                 }
             }.onSuccess {
                 _selectedFoodDetail.value = it
-                _detailPrice.value = it.let { it?.price!!.times((100 - it.discountRate!!)).div(100)}
+                _detailPrice.value =
+                    it.let { it?.price!!.times((100 - it.discountRate!!)).div(100) }
             }.onFailure {
                 throw NetworkErrorException("network error")
             }
+        }
+    }
+
+    fun getJWT(code: String, move: (() -> (Unit))) {
+        val ceh = CoroutineExceptionHandler { _, _ ->
+            error.value = "네트워크 연결 실패"
+        }
+        viewModelScope.launch(ceh) {
+            jwt = repository.getJWT(code)
+            Log.d("TAG", jwt)
+            move()
         }
     }
 
