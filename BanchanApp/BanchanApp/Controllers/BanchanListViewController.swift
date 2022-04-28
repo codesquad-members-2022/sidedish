@@ -22,7 +22,7 @@ class BanchanListViewController: UICollectionViewController {
     }
 
 	private func bind() {
-		self.viewModel?.banchans.bind(listener: { _ in
+        self.viewModel?.banchans.bind(listener: { _ in
 			DispatchQueue.main.async {
 				self.collectionView.reloadData()
 			}

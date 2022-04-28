@@ -12,6 +12,8 @@ protocol RepositoryProtocol {
 }
 
 class RemoteRepository: RepositoryProtocol {
+    private let networkManager = NetworkManager()
+
 	private var baseURL: URL? {
 		return try? URL(string: "https://" + Configuration.value(for: "ServerURL"))
 	}
@@ -25,18 +27,13 @@ class RemoteRepository: RepositoryProtocol {
 
 		let request = URLRequest(url: url)
 
-		URLSession.shared.dataTask(with: request) { data, _, error in
-			// TODO: Error handling
-			guard let data = data, error == nil else { return }
-
-			let jsonDecoder = JSONDecoder()
-
-			do {
-				let result = try jsonDecoder.decode(ProductResponse.self, from: data)
-				completion(result.body)
-			} catch {
-				completion([])
-			}
-		}.resume()
+        self.networkManager.fetchData(request: request, type: ProductResponse.self) { result in
+            switch result {
+            case .success(let products):
+                completion(products.body)
+            default:
+                print(result)
+            }
+        }
 	}
 }

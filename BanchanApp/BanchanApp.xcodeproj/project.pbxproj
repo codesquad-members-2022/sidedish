@@ -14,6 +14,12 @@
 		E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A35B280E94B4001598D4 /* CarouselView.swift */; };
 		E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A35E280E9750001598D4 /* UIView+Extension.swift */; };
 		E439A361280EB1CD001598D4 /* BanchanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */; };
+		E459D2DB281A248B00A1AF26 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459D2DA281A248B00A1AF26 /* NetworkManager.swift */; };
+		E459D2DE281A332100A1AF26 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459D2DD281A332100A1AF26 /* URLSessionMock.swift */; };
+		E459D2E0281A334000A1AF26 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459D2DF281A334000A1AF26 /* URLSession+Extension.swift */; };
+		E459D2E2281A335500A1AF26 /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459D2E1281A335500A1AF26 /* URLSessionDataTaskMock.swift */; };
+		E459D2E4281A359100A1AF26 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459D2E3281A359100A1AF26 /* NetworkResult.swift */; };
+		E459D2E6281A3C3900A1AF26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459D2E5281A3C3900A1AF26 /* NetworkError.swift */; };
 		E46620072817BDF700C28C04 /* Banchan.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46620062817BDF700C28C04 /* Banchan.swift */; };
 		E46620092817C18400C28C04 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46620082817C18400C28C04 /* Price.swift */; };
 		E466200B2817C2BE00C28C04 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E466200A2817C2BE00C28C04 /* RemoteRepository.swift */; };
@@ -50,6 +56,12 @@
 		E439A35B280E94B4001598D4 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		E439A35E280E9750001598D4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E439A360280EB1CD001598D4 /* BanchanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanDetailViewController.swift; sourceTree = "<group>"; };
+		E459D2DA281A248B00A1AF26 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E459D2DD281A332100A1AF26 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		E459D2DF281A334000A1AF26 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
+		E459D2E1281A335500A1AF26 /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
+		E459D2E3281A359100A1AF26 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		E459D2E5281A3C3900A1AF26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E46620062817BDF700C28C04 /* Banchan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banchan.swift; sourceTree = "<group>"; };
 		E46620082817C18400C28C04 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 		E466200A2817C2BE00C28C04 /* RemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
@@ -125,6 +137,27 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		E459D2D9281A223C00A1AF26 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E459D2DA281A248B00A1AF26 /* NetworkManager.swift */,
+				E459D2DC281A331900A1AF26 /* Base */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E459D2DC281A331900A1AF26 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E459D2DD281A332100A1AF26 /* URLSessionMock.swift */,
+				E459D2E1281A335500A1AF26 /* URLSessionDataTaskMock.swift */,
+				E459D2DF281A334000A1AF26 /* URLSession+Extension.swift */,
+				E459D2E3281A359100A1AF26 /* NetworkResult.swift */,
+				E459D2E5281A3C3900A1AF26 /* NetworkError.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		E466200E2817CCF600C28C04 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +218,7 @@
 			children = (
 				E4C6B775280CFA7D001C14F7 /* AppDelegate.swift */,
 				E4C6B777280CFA7D001C14F7 /* SceneDelegate.swift */,
+				E459D2D9281A223C00A1AF26 /* API */,
 				E439A35D280E9742001598D4 /* Utility */,
 				E466200E2817CCF600C28C04 /* Services */,
 				E4ED54DB2819122900202DDB /* Repository */,
@@ -366,10 +400,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E459D2DE281A332100A1AF26 /* URLSessionMock.swift in Sources */,
 				E46620162817D10F00C28C04 /* BanchanListViewModel.swift in Sources */,
 				6FCDA43A280E552000EB8DF6 /* ProductSectionHeader.swift in Sources */,
 				E46620102817CCFC00C28C04 /* Service.swift in Sources */,
 				6FCDA43E280E954500EB8DF6 /* ProductDetailView.swift in Sources */,
+				E459D2E2281A335500A1AF26 /* URLSessionDataTaskMock.swift in Sources */,
 				E4D7DA0F2816AC3800C65CD9 /* ProductDetail.swift in Sources */,
 				E46620182817F25B00C28C04 /* UIStackView+Extension.swift in Sources */,
 				E439A35F280E9750001598D4 /* UIView+Extension.swift in Sources */,
@@ -378,8 +414,10 @@
 				E48748A52810FE8200959D88 /* PriceTag.swift in Sources */,
 				E4D7DA0D2816ABA100C65CD9 /* Product.swift in Sources */,
 				E46620072817BDF700C28C04 /* Banchan.swift in Sources */,
+				E459D2E0281A334000A1AF26 /* URLSession+Extension.swift in Sources */,
 				E4C6B77A280CFA7D001C14F7 /* BanchanListViewController.swift in Sources */,
 				E46620142817D10200C28C04 /* Observable.swift in Sources */,
+				E459D2E6281A3C3900A1AF26 /* NetworkError.swift in Sources */,
 				E4A5143928124C2B0056C953 /* BadgeLabel.swift in Sources */,
 				E4C6B776280CFA7D001C14F7 /* AppDelegate.swift in Sources */,
 				E439A361280EB1CD001598D4 /* BanchanDetailViewController.swift in Sources */,
@@ -387,10 +425,12 @@
 				E46620092817C18400C28C04 /* Price.swift in Sources */,
 				E466200B2817C2BE00C28C04 /* RemoteRepository.swift in Sources */,
 				E4C6B778280CFA7D001C14F7 /* SceneDelegate.swift in Sources */,
+				E459D2E4281A359100A1AF26 /* NetworkResult.swift in Sources */,
 				6FCDA440280E964900EB8DF6 /* ProductDetailCell.swift in Sources */,
 				E4A5143B28124C490056C953 /* UILabel+Extension.swift in Sources */,
 				E4ED54D92819121000202DDB /* ImageManager.swift in Sources */,
 				E466200D2817C91300C28C04 /* ProductResponse.swift in Sources */,
+				E459D2DB281A248B00A1AF26 /* NetworkManager.swift in Sources */,
 				E439A35C280E94B4001598D4 /* CarouselView.swift in Sources */,
 				E4BA18C62816A0DB00C19349 /* UIFont+Extension.swift in Sources */,
 				E4BA18BE2816479E00C19349 /* UIImage+Extension.swift in Sources */,

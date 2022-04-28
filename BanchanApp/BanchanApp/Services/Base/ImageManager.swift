@@ -29,6 +29,7 @@ class ImageManager {
 			return
 		}
 
+        // TODO: FileManager 를 통해 Application Support 에 저장된 이미지 조회
 		guard pendingResponses[url] == nil else {
 			pendingResponses[url]?.append(completion)
 			return
@@ -36,6 +37,7 @@ class ImageManager {
 
 		pendingResponses[url] = [completion]
 
+        // TODO: DownloadTask 로 교체
 		URLSession.shared.dataTask(with: url as URL) { data, _, error in
 			guard
 				let data = data, error == nil, let completions = self.pendingResponses[url] else { return }

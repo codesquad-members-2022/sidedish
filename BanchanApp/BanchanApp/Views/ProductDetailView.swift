@@ -64,7 +64,8 @@ class ProductDetailView: UIView {
         let stackView: UIStackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
         stackView.axis = .vertical
 		stackView.alignment = .leading
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
+        stackView.spacing = 5
 
         self.addSubview(stackView)
 
