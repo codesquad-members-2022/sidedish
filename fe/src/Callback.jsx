@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_SUCCESS_TEXT } from 'constant';
+import { SERVER_URL } from 'constant';
 
 const Callback = () => {
-  const oauthURI = `http://3.37.194.187:8080/oauth`;
+  const oauthURI = `${SERVER_URL}oauth`;
 
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -13,13 +15,13 @@ const Callback = () => {
       try {
         const response = await axios.get(`${oauthURI}${search}`);
 
-        if (response.data === 'success') {
+        if (response.data === API_SUCCESS_TEXT) {
           const userEmail = response.headers.useremail;
-          const userImage =
-            response.headers.userImage ??
+          const avataUrl =
+            response.headers.avataurl ??
             'http://www.classictvinfo.com/PerryMason/TVSeries1/Person.jpg';
           localStorage.setItem('userEmail', userEmail);
-          localStorage.setItem('userImage', userImage);
+          localStorage.setItem('avataUrl', avataUrl);
           alert('이동');
           navigate('/');
         }

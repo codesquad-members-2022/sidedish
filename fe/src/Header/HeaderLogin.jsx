@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as PersonImage } from 'image/person.svg';
+import { PROD_GITHUB_CALLBACK_URL } from 'constant';
 
 const LoginWrapper = styled.div`
   position: relative;
@@ -26,11 +27,11 @@ const AccountModal = styled.div`
   }
 
   a:hover {
-    color: ${({ theme }) => theme.colors.green};
+    color: ${({ theme }) => theme.colors.blue};
   }
 
   p {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     ${({ theme }) => theme.fontStyles.smallBold};
   }
 
@@ -45,13 +46,14 @@ const AccountModal = styled.div`
   }
 
   button:hover {
-    background: ${({ theme }) => theme.colors.orange};
+    background: ${({ theme }) => theme.colors.blue};
     color: ${({ theme }) => theme.colors.white};
   }
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     background: green;
     margin-bottom: 8px;
   }
@@ -65,7 +67,7 @@ const HeaderLogin = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('userEmail');
-    localStorage.removeItem('userImage');
+    localStorage.removeItem('avataUrl');
     alert('로그아웃 되었습니다.');
     setIsLogin(false);
     setHover(false);
@@ -84,12 +86,10 @@ const HeaderLogin = () => {
         <>
           <AccountModal hover={hover} onMouseOut={onMouseOut}>
             {!isLogin ? (
-              <a href="https://github.com/login/oauth/authorize?client_id=7fa807988dbe1e60acc4&redirect_uri=http://localhost:3000/callback&scope=user">
-                Github 로그인
-              </a>
+              <a href={PROD_GITHUB_CALLBACK_URL}>Github 로그인</a>
             ) : (
               <>
-                <img src={localStorage.getItem('userImage')} alt="UserProfileImage" />
+                <img src={localStorage.getItem('avataUrl')} alt="UserProfileImage" />
                 <p>{localStorage.getItem('userEmail')}</p>
                 <button to="/" onClick={handleLogout}>
                   로그아웃
