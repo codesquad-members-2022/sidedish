@@ -13,7 +13,7 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
           {isSizeSmall ? null : <HoverImg />}
-          <img src={imageURL} alt="반찬" />
+          <img width={getWidthBySize(size)} height={getWidthBySize(size)} src={imageURL} alt="반찬" />
         </ImgWrap>
         {isSizeSmall ? null : <Space />}
         {isSizeSmall ? <SmallTitle /> : <Title />}
