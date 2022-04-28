@@ -13,5 +13,5 @@ data class FoodDetail(
 )
 
 fun FoodDetail.isEmpty(): Boolean {
-    return originalPrice.isEmpty()
+    return discountedPrice.isEmpty()
 }
