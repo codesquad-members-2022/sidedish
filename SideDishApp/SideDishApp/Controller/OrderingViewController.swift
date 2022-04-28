@@ -73,20 +73,22 @@ final class OrderingViewController: UIViewController {
     }
     
     private func getSideDishInfo() {
-        networkManger.request(endpoint: EndPointCase.get(category: .main).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let success):
-                guard let menus = success?.body else { return }
-                self.collectionViewDataSource.fetch(dishes: menus)
-                self.setHeaderViewDelegate()
-                
-                DispatchQueue.main.async {
-                    self.orderingCollectionView.reloadData()
+        Category.allCases.forEach { category in
+            networkManger.request(endpoint: EndPointCase.get(category: category).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let success):
+                    guard let menus = success?.body else { return }
+                    self.collectionViewDataSource.fetch(menus: menus, category: category)
+                    self.setHeaderViewDelegate()
+                    
+                    DispatchQueue.main.async {
+                        self.orderingCollectionView.reloadData()
+                    }
+                    
+                case .failure(let failure):
+                    os_log(.error, "\(failure.localizedDescription)")
                 }
-                
-            case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")
             }
         }
     }
@@ -121,7 +123,7 @@ extension OrderingViewController {
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
     func didSelectItem(index: IndexPath) {
-        guard let menu = collectionViewDataSource.getSelectedItem(at: index.item) else { return }
+        guard let menu = collectionViewDataSource.getSelectedItem(at: index) else { return }
         let detailVC = DetailViewController(menu: menu)
         navigationController?.pushViewController(detailVC, animated: true)
         
