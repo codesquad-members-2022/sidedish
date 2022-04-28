@@ -20,4 +20,8 @@
     <string name="total_amount">총 주문금액</string>
     <string name="launching_event">런칭특가</string>
     <string name="event_promotion">이벤트특가</string>
+    <string name="github_client_id">11c78664d145c3664830</string>
+    <string name="login">login</string>
+    <string name="github_redirect_url">test://github-auth</string>
+    <string name="loading">loading</string>
 </resources>

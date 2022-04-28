@@ -15,7 +15,7 @@ fun applyPriceFormat(view: TextView, price: Int) {
 
 @BindingAdapter("price", "discountRate")
 fun applyPriceDiscount(view: TextView, price: Int, discountRate: Int?) {
-    if(discountRate == null) {
+    if (discountRate == null) {
         applyPriceFormat(view, price)
     } else {
         val discountPrice = ((100 - discountRate) * price) / 100
@@ -24,8 +24,8 @@ fun applyPriceDiscount(view: TextView, price: Int, discountRate: Int?) {
 }
 
 @BindingAdapter("originalPrice", "discountRate")
-fun showOriginalPrice(view: TextView, price:Int, discountRate: Int?) {
-    if(discountRate == null) {
+fun showOriginalPrice(view: TextView, price: Int, discountRate: Int?) {
+    if (discountRate == null) {
         view.visibility = View.INVISIBLE
     } else {
         view.visibility = View.VISIBLE
@@ -35,7 +35,7 @@ fun showOriginalPrice(view: TextView, price:Int, discountRate: Int?) {
 }
 
 @BindingAdapter("totalAmount")
-fun applyTotalAmount(view: TextView, totalPrice: Int){
+fun applyTotalAmount(view: TextView, totalPrice: Int) {
     applyPriceFormat(view, totalPrice)
 }
 
