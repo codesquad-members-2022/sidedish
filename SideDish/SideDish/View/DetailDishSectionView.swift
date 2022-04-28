@@ -55,8 +55,7 @@ class DetailDishSectionView: UIView {
 
     private let eventBadgeLabel: PaddingLabel = {
         var label = PaddingLabel()
-        label.topInset = 4; label.bottomInset = 4
-        label.leftInset = 16; label.rightInset = 16
+        label.setEdgeInset(top: 4, bottom: 4, left: 16, right: 16)
         label.font = UIFont.init(name: Font.sfBold, size: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,8 +69,7 @@ class DetailDishSectionView: UIView {
 
     private let launchingBadgeLabel: PaddingLabel = {
         var label = PaddingLabel()
-        label.topInset = 4; label.bottomInset = 4
-        label.leftInset = 16; label.rightInset = 16
+        label.setEdgeInset(top: 4, bottom: 4, left: 16, right: 16)
         label.font = UIFont.init(name: Font.sfBold, size: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false

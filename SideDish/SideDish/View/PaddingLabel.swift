@@ -23,4 +23,11 @@ class PaddingLabel: UILabel {
 
         return super.drawText(in: rect.inset(by: insets))
     }
+
+    func setEdgeInset(top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat) {
+        topInset = top
+        bottomInset = bottom
+        leftInset = left
+        rightInset = right
+    }
 }
