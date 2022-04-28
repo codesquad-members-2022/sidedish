@@ -44,9 +44,8 @@ class LoginViewController: UIViewController {
     
     private func bind() {
         model.state().presentMainView
-            .sink {
-                RootWindow.shared?.switchRootWindowState.send(.main)
-            }
+            .map { .main }
+            .sink(receiveValue: switchRootWindowState(_:))
             .store(in: &cancellables)
         
         googleLoginButton.publisher(for: .touchUpInside)

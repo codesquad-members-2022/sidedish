@@ -18,6 +18,7 @@
 		7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */; };
 		73AE8D2F280D5A6000C803DF /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */; };
 		D411DAF8AFA72A5C22FBD871 /* Pods_sidedish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C78CEDA642E6FD91272C9 /* Pods_sidedish.framework */; };
+		E01B5210281A2428009918AE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B520F281A2427009918AE /* UIViewController+Extension.swift */; };
 		E0D380B228129D67009627A1 /* ResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B128129D67009627A1 /* ResourceRepository.swift */; };
 		E0D380B428129DAF009627A1 /* ResourceRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */; };
 		E0D380B62812A001009627A1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D380B52812A001009627A1 /* NetworkRepository.swift */; };
@@ -81,6 +82,7 @@
 		7345C9B2280FF12300F89135 /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
 		73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "sidedish/Sources/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		A186CCF40DA6B5B43A1B54D9 /* Pods-sidedish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedish.debug.xcconfig"; path = "Target Support Files/Pods-sidedish/Pods-sidedish.debug.xcconfig"; sourceTree = "<group>"; };
+		E01B520F281A2427009918AE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		E0D380B128129D67009627A1 /* ResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepository.swift; sourceTree = "<group>"; };
 		E0D380B328129DAF009627A1 /* ResourceRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepositoryImpl.swift; sourceTree = "<group>"; };
 		E0D380B52812A001009627A1 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				73AE8D2E280D5A6000C803DF /* UIColor+Extention.swift */,
 				733D584528112E96007FC36F /* String+Extension.swift */,
 				E0E62AFC28197C0A005E350D /* Int+Extension.swift */,
+				E01B520F281A2427009918AE /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				733D584628112E96007FC36F /* String+Extension.swift in Sources */,
 				7345C9A6280E522D00F89135 /* SidedishEndPoint.swift in Sources */,
 				7345C9B3280FF12300F89135 /* CollectionViewHeader.swift in Sources */,
+				E01B5210281A2428009918AE /* UIViewController+Extension.swift in Sources */,
 				E0FAAA4F280E867900B36F4D /* MenuDetail.swift in Sources */,
 				E0D380C82816CDC5009627A1 /* UserDefault.swift in Sources */,
 				E0FAAA42280D883200B36F4D /* EndPoint.swift in Sources */,

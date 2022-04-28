@@ -90,9 +90,8 @@ class MainViewController: UIViewController {
             .store(in: &cancellables)
         
         model.state().presentLoginPage
-            .sink {
-                RootWindow.shared?.switchRootWindowState.send(.login)
-            }
+            .map { .login }
+            .sink(receiveValue: switchRootWindowState(_:))
             .store(in: &cancellables)
     }
     
