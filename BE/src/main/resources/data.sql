@@ -191,6 +191,8 @@ insert into dish(category_id, event_id, name, description, stock, price, point_p
 values (3, 2, '백김치', '맵지않게 싸악', 100, 9900, 0.3, '전국택배', '정가');
 insert into dish(category_id, event_id, name, description, stock, price, point_percent, delivery_type, discount_policy)
 values (3, 1, '참치마요', '참지말고 싸악', 100, 6900, 0.5, '새벽배송', '런칭특가');
+insert into dish(category_id, event_id, name, description, stock, price, point_percent, delivery_type, discount_policy)
+values (3, 1, '치킨마요', '참치말고 싸악', 100, 6900, 0.5, '새벽배송', '런칭특가');
 
 insert into image(name, dish_id) values ('https://file.mk.co.kr/meet/neds/2020/11/image_readtop_2020_1140065_16046234494420999.jpg',31);
 insert into image(name, dish_id) values ('https://file.mk.co.kr/meet/neds/2020/11/image_readmed_2020_1140065_16046234494421000.jpg',31);

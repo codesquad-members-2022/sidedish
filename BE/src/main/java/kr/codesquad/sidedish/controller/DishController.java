@@ -31,14 +31,6 @@ public class DishController {
         return ResponseEntity.ok(one);
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<DishSimpleResponse>> showPagedDishes(
-        @RequestParam("categoryId") Long categoryId,
-        @RequestParam("lastDishId") Long lastDishId) {
-
-        return ResponseEntity.ok(dishService.findNextDishes(categoryId, lastDishId));
-    }
-
     @GetMapping("/{id}/recommend")
     public ResponseEntity<List<DishRecommendation>> showRecommendation(@PathVariable Long id) {
         return ResponseEntity.ok(dishService.findDishRecommendations(id));

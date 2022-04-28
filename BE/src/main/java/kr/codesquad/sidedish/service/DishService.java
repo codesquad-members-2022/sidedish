@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class DishService {
 
     private final JdbcDishRepository jdbcDishRepository;
-    private final int PAGE_SIZE = 4;
 
     public DishService(JdbcDishRepository jdbcDishRepository) {
         this.jdbcDishRepository = jdbcDishRepository;
@@ -28,16 +27,6 @@ public class DishService {
             .orElseThrow(() -> new BusinessException(ErrorCode.NoDishError));
 
         return DishDetailResponse.from(dish);
-    }
-
-    public List<DishSimpleResponse> findNextDishes(Long categoryId, Long lastDishId) {
-        int currentPage = (int) (lastDishId / PAGE_SIZE);
-        PageRequest p = PageRequest.of(currentPage, PAGE_SIZE);
-
-        return jdbcDishRepository.findDishesByCategoryId(categoryId, p)
-            .stream()
-            .map(DishSimpleResponse::of)
-            .collect(Collectors.toList());
     }
 
     public List<DishRecommendation> findDishRecommendations(Long id) {
