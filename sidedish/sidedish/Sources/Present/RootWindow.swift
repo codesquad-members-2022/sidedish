@@ -9,11 +9,6 @@ import Combine
 import UIKit
 
 class RootWindow: UIWindow {
-    static var shared: RootWindow? {
-        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
-        return window as? RootWindow
-    }
-    
     private var cancellables = Set<AnyCancellable>()
     let switchRootWindowState = PassthroughSubject<State, Never>()
     

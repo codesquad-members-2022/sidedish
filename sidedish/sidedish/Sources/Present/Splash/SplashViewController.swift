@@ -29,16 +29,17 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        model.state().presentNextView
-            .sink {
-                RootWindow.shared?.switchRootWindowState.send($0)
-            }
-            .store(in: &cancellables)
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         model.action().viewDidAppear.send()
+    }
+    
+    private func bind() {
+        model.state().presentNextView
+            .sink(receiveValue: switchRootWindowState(_:))
+            .store(in: &cancellables)
     }
 }
