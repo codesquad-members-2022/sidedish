@@ -57,6 +57,13 @@ public class Menu {
 				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException("no category name"));
 		}
+
+		public static Category from(int id) {
+			return Arrays.stream(Category.values())
+				.filter(it -> it.getId() == id)
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException("no category id"));
+		}
 	}
 
 	protected static Menu of(String name, String description, BigDecimal price, String category, int inventoryQuantity) {
