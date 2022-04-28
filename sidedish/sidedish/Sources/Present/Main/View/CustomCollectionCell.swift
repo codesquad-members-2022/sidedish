@@ -13,11 +13,9 @@ class CustomCollectionCell: UICollectionViewCell {
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
-        imageView.image = UIImage(named: "testimage")
         return imageView
     }()
     
@@ -34,7 +32,6 @@ class CustomCollectionCell: UICollectionViewCell {
         attribute.salePriceTextColor = .grey2
         attribute.badgeStackViewSpacing = 4
         let view = MenuInfoView(attribute: attribute)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -52,16 +49,17 @@ class CustomCollectionCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(menuInfoView)
         
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            imageView.widthAnchor.constraint(equalToConstant: imageSize),
-            imageView.heightAnchor.constraint(equalToConstant: imageSize),
-            
-            menuInfoView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            menuInfoView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-            menuInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
+        imageView.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.top)
+            make.leading.equalTo(contentView.snp.leading).offset(16)
+            make.width.height.equalTo(imageSize)
+        }
+        
+        menuInfoView.snp.makeConstraints { make in
+            make.centerY.equalTo(imageView.snp.centerY)
+            make.leading.equalTo(imageView.snp.trailing).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-16)
+        }
     }
 }
 
