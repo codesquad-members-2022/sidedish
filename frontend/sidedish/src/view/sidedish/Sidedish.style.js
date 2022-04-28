@@ -44,7 +44,8 @@ const BigCardsContainer = styled(CardsContainer)`
 `;
 
 const SmallCardsContainer = styled(CardsContainer)`
-    grid-template-columns: repeat(4, 1fr);
+    width: 1932px;
+    grid-template-columns: repeat(6, 1fr);
 `;
 
 export {

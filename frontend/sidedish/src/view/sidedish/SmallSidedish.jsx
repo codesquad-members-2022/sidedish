@@ -50,13 +50,26 @@ function SmallSidedish({ isVisible, category }) {
 
     const getCurrSmallSidedishes = () => {
         if (4 * page >= smallSidedishes.length) {
-            return smallSidedishes.slice(smallSidedishes.length - 4);
+            return [
+                smallSidedishes.length - 5 >= 0
+                    ? smallSidedishes[smallSidedishes.length - 5]
+                    : null,
+                ...smallSidedishes.slice(smallSidedishes.length - 4),
+                null,
+            ];
         }
-        return smallSidedishes.slice(4 * (page - 1), 4 * page);
+        return [
+            page <= 1 ? null : smallSidedishes[4 * (page - 1) - 1],
+            ...smallSidedishes.slice(4 * (page - 1), 4 * page),
+            4 * page >= smallSidedishes.length
+                ? null
+                : smallSidedishes[4 * page],
+        ];
     };
 
     const currSmallSidedishes = getCurrSmallSidedishes();
 
+    console.log(currSmallSidedishes);
     return (
         <Container>
             <SmallDishTitle>{title}</SmallDishTitle>

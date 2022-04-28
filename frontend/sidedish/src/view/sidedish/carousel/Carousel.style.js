@@ -21,27 +21,28 @@ const Icon = styled.button`
 
 const slideRight2Left = keyframes`
     from {
-        margin-left: 800px;
+        margin-left: 326px;
         opacity: 1;
     }
     to {
-        margin-left: 0px;
+        margin-left: -326px;
         opacity: 1;
     }
 `;
 
 const slideLeft2Right = keyframes`
     from {
-        margin-left: -1100px;
+        margin-left: -1000px;
         opacity: 1;
     }
     to {
-        margin-left: 0px;
+        margin-left: -326px;
         opacity: 1;
     }
 `;
 
 const CarouselItem = styled.div`
+    margin-left: -326px;
     animation: ${(props) =>
             props.direction === "L"
                 ? slideLeft2Right

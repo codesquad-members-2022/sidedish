@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { Container, Icon, CarouselItem, Wrapper } from "./Carousel.style";
 
