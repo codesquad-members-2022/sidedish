@@ -8,7 +8,7 @@
 import Foundation
 
 enum SidedishEndPoint: EndPoint {
-    case loadMenu(_ type: Sidedish.Menu)
+    case loadMenu(_ type: Menu.Category)
     case loadDetail(_ hash: String)
 }
 

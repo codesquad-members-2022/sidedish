@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>465028827099-bhe92hfp6ib80ti0mp6diho4kllqa6vl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.465028827099-bhe92hfp6ib80ti0mp6diho4kllqa6vl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDuYDD5snyRe0g9b8czkejWAg-qo2C8Cng</string>
+	<key>GCM_SENDER_ID</key>
+	<string>465028827099</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.codesquad.team21.sidedish</string>
+	<key>PROJECT_ID</key>
+	<string>sidedish-576ba</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sidedish-576ba.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:465028827099:ios:9482fc3c611d8dabec49fe</string>
+	<key>DATABASE_URL</key>
+	<string>https://sidedish-576ba-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

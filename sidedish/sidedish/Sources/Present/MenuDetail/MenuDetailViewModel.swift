@@ -16,10 +16,12 @@ struct MenuDetailViewModelAction {
 }
 
 struct MenuDetailViewModelState {
-    let loadedDetail = PassthroughSubject<(Sidedish, MenuDetail), Never>()
+    let loadedDetail = PassthroughSubject<(Menu, MenuDetail), Never>()
     let showError = PassthroughSubject<SessionError, Never>()
     let ordered = PassthroughSubject<Void, Never>()
     let amount = CurrentValueSubject<Int, Never>(1)
+    let loadedThumbnail = PassthroughSubject<(Int, URL), Never>()
+    let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
 }
 
 protocol MenuDetailViewModelBinding {
@@ -33,21 +35,27 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
     
     private var cancellables = Set<AnyCancellable>()
     private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
+    private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
     
     let action = MenuDetailViewModelAction()
     let state = MenuDetailViewModelState()
     
-    init(menu: Sidedish) {
+    deinit {
+        Log.debug("DeInit MenuDetailViewModel")
+    }
+    
+    init(menu: Menu) {
         
         let requestDetail = action.loadMenuDetail
-            .map { self.sidedishRepository.loadDetail(menu.hash) }
+            .compactMap { [weak self] _ in self?.sidedishRepository.loadDetail(menu.hash) }
             .switchToLatest()
             .share()
         
         requestDetail
             .compactMap { $0.value }
-            .sink {
-                self.state.loadedDetail.send((menu, $0))
+            .sink { [weak self] detail in
+                self?.state.loadedDetail.send((menu, detail))
+                self?.loadImage(detail: detail)
             }
             .store(in: &cancellables)
         
@@ -56,8 +64,8 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
                 action.tappedPlusButton.map { 1 },
                 action.tappedMinusButton.map { -1 }
             )
-            .map {
-                var amount = self.state.amount.value + $0
+            .map { [weak self] value in
+                var amount = (self?.state.amount.value ?? 0) + value
                 amount = amount < 0 ? 0 : amount
                 return amount
             }
@@ -72,5 +80,21 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
             .compactMap { $0.error }
             .sink(receiveValue: state.showError.send(_:))
             .store(in: &cancellables)
+    }
+    
+    private func loadImage(detail: MenuDetail) {
+        detail.thumbImages.enumerated().forEach { index, url in
+            resourceRepository.loadImage(url)
+                .sink { [weak self] fileUrl in
+                    self?.state.loadedThumbnail.send((index, fileUrl))
+                }.store(in: &self.cancellables)
+        }
+        
+        detail.detailSection.enumerated().forEach { index, url in
+            resourceRepository.loadImage(url)
+                .sink { [weak self] fileUrl in
+                    self?.state.loadedDetailSection.send((index, fileUrl))
+                }.store(in: &self.cancellables)
+        }
     }
 }

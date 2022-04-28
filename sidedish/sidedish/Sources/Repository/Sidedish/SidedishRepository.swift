@@ -8,6 +8,6 @@ import Combine
 import Foundation
 
 protocol SidedishRepository {
-    func loadMenu(_ type: Sidedish.Menu) -> AnyPublisher<ApiResult<(Sidedish.Menu, [Sidedish]), SessionError>, Never>
+    func loadMenu(_ type: Menu.Category) -> AnyPublisher<ApiResult<(Menu.Category, [Menu]), SessionError>, Never>
     func loadDetail(_ hash: String) -> AnyPublisher<ApiResult<MenuDetail, SessionError>, Never>
 }

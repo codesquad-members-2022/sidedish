@@ -28,7 +28,7 @@ class MenuDetailViewController: UIViewController {
     private let thumbnailImageView: ThumbnailImageView = {
         let thumbnailView = ThumbnailImageView()
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailView.backgroundColor = .red
+
         return thumbnailView
     }()
     
@@ -41,12 +41,17 @@ class MenuDetailViewController: UIViewController {
     }()
     
     private let infoView: MenuInfoView = {
-        let attribute = MenuInfoAttribute(stackViewSpacing: 8,
-                                          titleFont: .systemFont(ofSize: 32, weight: .regular), titleTextColor: .black,
-                                          discriptionFont: .systemFont(ofSize: 14, weight: .regular), discriptionTextColor: .grey2,
-                                          priceFont: .systemFont(ofSize: 18, weight: .bold), priceTextColor: .grey1,
-                                          salePriceFont: .systemFont(ofSize: 16), salePriceTextColor: .grey2,
-                                          badgeStackViewSpacing: 4)
+        let attribute = MenuInfoAttribute()
+        attribute.stackViewSpacing = 8
+        attribute.titleFont = .systemFont(ofSize: 32, weight: .regular)
+        attribute.titleTextColor = .black
+        attribute.discriptionFont = .systemFont(ofSize: 14, weight: .regular)
+        attribute.discriptionTextColor = .grey2
+        attribute.priceFont = .systemFont(ofSize: 32, weight: .regular)
+        attribute.priceTextColor = .grey1
+        attribute.salePriceFont = .systemFont(ofSize: 16)
+        attribute.salePriceTextColor = .grey2
+        attribute.badgeStackViewSpacing = 4
         let view = MenuInfoView(attribute: attribute)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -57,12 +62,18 @@ class MenuDetailViewController: UIViewController {
     private let amountView = MenuAmountView()
     
     private let orderView = MenuOrderView()
+    
+    private let sectionView = MenuSectionView()
 
     private let separator = (0..<3).map { _ -> UIView in
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .grey3
         return view
+    }
+    
+    deinit {
+        Log.debug("DeInit MenuDetailViewController")
     }
     
     init(model: MenuDetailViewModelProtcol) {
@@ -87,16 +98,19 @@ class MenuDetailViewController: UIViewController {
     private func bind() {
         model.state.loadedDetail
             .receive(on: DispatchQueue.main)
-            .sink { menu, detail in
-                self.title = detail.description
-                self.infoView.changeTitleLabel(text: menu.title)
-                self.infoView.changeDescriptionLabel(text: menu.description)
-                self.infoView.changePriceLabel(text: menu.price)
-                self.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
-                self.infoView.changeSaleBadge(menu.badge)
-                self.subInfoView.setData(detail)
+            .sink { [weak self] menu, detail in
+                self?.title = menu.title
+                self?.infoView.changeTitleLabel(text: menu.title)
+                self?.infoView.changeDescriptionLabel(text: menu.description)
+                self?.infoView.changePriceLabel(text: menu.price)
+                self?.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
+                self?.infoView.changeSaleBadge(menu.badge)
+                self?.subInfoView.setData(detail)
+                self?.orderView.setTotalPrice(menu.price)
+                self?.thumbnailImageView.makeImageView(count: detail.thumbImages.count)
+                self?.sectionView.makeImageView(count: detail.detailSection.count)
             }.store(in: &cancellables)
-//
+
         model.state.showError
             .sink { _ in
                 //TODO: 에러 처리
@@ -111,8 +125,8 @@ class MenuDetailViewController: UIViewController {
             .store(in: &cancellables)
 
         model.state.amount
-            .sink {
-                self.amountView.amount = $0
+            .sink { [weak self] amount in
+                self?.amountView.amount = amount
             }
             .store(in: &cancellables)
 
@@ -122,8 +136,20 @@ class MenuDetailViewController: UIViewController {
 
         model.state.ordered
             .sink {
-                // TODO: 주문완료 처리
+                let alert = UIAlertController(title: "주문완료 ✅", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "완료", style: .cancel))
+                self.present(alert, animated: true)
             }.store(in: &cancellables)
+        
+        model.state.loadedThumbnail
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: thumbnailImageView.setImage(_:_:))
+            .store(in: &cancellables)
+        
+        model.state.loadedDetailSection
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: sectionView.setImage(_:_:))
+            .store(in: &cancellables)
     }
 
     private func attribute() {
@@ -136,7 +162,7 @@ class MenuDetailViewController: UIViewController {
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(infoStackView)
 
-        let infoViews = [infoView, separator[0], subInfoView, separator[1], amountView, separator[2], orderView]
+        let infoViews = [infoView, separator[0], subInfoView, separator[1], amountView, separator[2], orderView, sectionView]
         infoViews.forEach {
             infoStackView.addArrangedSubview($0)
         }

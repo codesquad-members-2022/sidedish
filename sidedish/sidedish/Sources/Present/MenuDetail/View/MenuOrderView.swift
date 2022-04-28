@@ -15,7 +15,6 @@ class MenuOrderView: UIView {
         label.font = .systemFont(ofSize: 32, weight: .bold)
         label.textAlignment = .right
         label.textColor = .black
-        label.text = "12,666원"
         return label
     }()
     
@@ -75,6 +74,7 @@ class MenuOrderView: UIView {
         ])
     }
     
-    func setData(_ data: MenuDetail) {
+    func setTotalPrice(_ totalPrice: String) {
+        totalPriceLabel.text = totalPrice
     }
 }
