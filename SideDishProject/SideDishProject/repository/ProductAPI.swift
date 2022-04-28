@@ -18,7 +18,7 @@ enum ProductAPI{
         case .categories:
             return URL(string: Self.baseURL + "categories")
         case .products:
-            return URL(string: Self.baseURL + "products")
+            return URL(string: Self.baseURL + "products?categoryId=1")
         }
     }
     

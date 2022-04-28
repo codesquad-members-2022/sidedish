@@ -6,7 +6,6 @@ enum ProductRepositoryError: Error {
 
 protocol ProductRepository {
     func fetchAll(completion: @escaping (Result<[DishCategory: [Product]], ProductRepositoryError>) -> Void)
-    func fetchList(by category: DishCategory, completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void)
     func fetchImage(completion: @escaping (Result<[DishCategory : [Data?]] , ProductRepositoryError>) -> Void)
 }
 

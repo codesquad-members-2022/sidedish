@@ -31,17 +31,30 @@ struct Product{
     }
 }
 
+struct ProductDTO: Codable{
+    let id: Int
+    let name: String
+    let imageUrl: String
+    let description: String
+    let price: Int
+    let discount_price: Int
+    let events: [String]
+}
+
 struct DishCategory: Hashable, Codable {
     let id: Int
     let name: String
     let count: Int
+    let description: String
     
     func hash(into hasher: inout Hasher) {
         return hasher.combine(id)
     }
 }
 
-enum ProductEvent: CustomStringConvertible{
+
+
+enum ProductEvent: CustomStringConvertible, Codable{
     
     case eventPrice(disCount: Double)
     case launchingPrice(disCount: Double)

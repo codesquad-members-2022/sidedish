@@ -12,7 +12,8 @@ final class ProductSceneContainer {
     static func makeViewController(sceneType: SceneType) -> UIViewController{
         switch sceneType{
         case .home:
-            let model = HomeUsecase(repository: MockProductRepository())
+            //let model = HomeUsecase(repository: MockProductRepository())
+            let model = HomeUsecase(repository: ProductNetworkRepository(service: ProductService()))
             let viewController = HomeViewController.create(with: model)
             return UINavigationController(rootViewController: viewController)
         case .detail(let uniqueId):
@@ -23,7 +24,7 @@ final class ProductSceneContainer {
     
     enum SceneType{
         case home
-        case detail(uniqueId: UniqueID)
+        case detail(uniqueId: Int)
     }
 }
 
