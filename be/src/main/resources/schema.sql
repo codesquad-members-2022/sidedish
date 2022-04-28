@@ -1,4 +1,4 @@
-drop table if exists `order`, image, item_event, item, event_category, sub_category, main_category;
+drop table if exists `order`, member, image, item_event, item, event_category, sub_category, main_category;
 
 create table main_category
 (
@@ -55,7 +55,7 @@ create table member
     email        varchar(60)  NOT NULL,
     access_token varchar(255) NOT NULL,
     `scope`      varchar(255) NOT NULL,
-    tokenType    varchar(255) NOT NULL
+    token_type    varchar(255) NOT NULL
 );
 
 create table `order`

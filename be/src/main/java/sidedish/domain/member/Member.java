@@ -21,4 +21,13 @@ public class Member {
 		this.email = email;
 		this.accessToken = accessToken;
 	}
+
+	@Override
+	public String toString() {
+		return "Member{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", accessToken=" + accessToken +
+				'}';
+	}
 }
