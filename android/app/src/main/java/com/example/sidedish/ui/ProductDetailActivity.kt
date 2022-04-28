@@ -58,7 +58,7 @@ class ProductDetailActivity : AppCompatActivity() {
             viewModel.postProductCount(makePostRequest())
         }
 
-        viewModel.error.observe(this) { errorMessage ->
+        viewModel.errorMessage.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
