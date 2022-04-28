@@ -17,13 +17,13 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping("/categorynames")
-    public EventTabListDto getCategoryNames() {
+    @GetMapping("/event-tabs")
+    public EventTabListDto showEventTabs() {
         return eventService.findAll();
     }
 
     @GetMapping
-    public CategoryResponse showEventTab(@RequestParam("event-tabs") String eventTab) {
+    public CategoryResponse showEventTabDishes(@RequestParam("event-tabs") String eventTab) {
         Event event = Event.valueOfOrNull(eventTab);
         return eventService.getEventTab(event);
     }
