@@ -44,3 +44,8 @@ export const Background = styled.div`
   opacity: 0.5;
   z-index: ${({ zIndex }) => zIndex};
 `;
+
+export const Wrapper = styled.div`
+  position: relative;
+  cursor: pointer;
+`;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useState, useCallback } from "react";
 import Category from "./Category.js";
-import { Horizon } from "../styles/utils.js";
+import { Horizon } from "../styled-components/utils.js";
 
 const MainCategories = ({ data }) => {
   const [isFold, setIsFold] = useState(true);
 
-  const handleMoreBtnClick = useCallback(() => {
+  const handleClickMoreBtn = useCallback(() => {
     if (isFold) {
       setIsFold(false);
     } else {
@@ -32,7 +32,7 @@ const MainCategories = ({ data }) => {
         </>
       ))}
       <Wrapper>
-        <MoreBtn onClick={handleMoreBtnClick}>모든 카테고리 보기</MoreBtn>
+        <MoreBtn onClick={handleClickMoreBtn}>모든 카테고리 보기</MoreBtn>
       </Wrapper>
     </>
   );

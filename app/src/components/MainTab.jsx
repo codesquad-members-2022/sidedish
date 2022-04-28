@@ -1,10 +1,90 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import theme from "../styles/theme.js";
+import theme from "../styled-components/theme.js";
 import CardList from "./CardList.js";
-import { FlexMarginCenter } from "../styles/utils.js";
-import { Horizon } from "../styles/utils.js";
+import { FlexMarginCenter } from "../styled-components/utils.js";
+import { Horizon } from "../styled-components/utils.js";
 
+const TAB_TEXTS = [
+  "풍성한 고기 반찬",
+  "편리한 반찬 세트",
+  "맛있는 제철 요리",
+  "우리 아이 영양 반찬",
+];
+
+const TAB_KEYS = ["meat", "convenient", "season", "nutrition"];
+
+const MainTab = ({ dish }) => {
+  const [tabNumber, setTabNumber] = useState(0);
+  const [tabCards, setTabCards] = useState([]);
+
+  useEffect(() => {
+    if (dish.length === 0) return;
+
+    const shuffle = selectDish();
+    const shuffleCards = ShuffleCards(shuffle);
+    setTabCards(shuffleCards);
+  }, [dish]);
+
+  const selectDish = () => {
+    const seletedDish = [...dish].sort(() => Math.random() - 0.5);
+    return seletedDish;
+  };
+
+  const ShuffleCards = (shuffle) => {
+    const tabCards = [];
+    for (let i = 0, count = 0; i < TAB_TEXTS.length; i++) {
+      tabCards[i] = shuffle.slice(count, count + 3);
+      count += 3;
+    }
+
+    return tabCards;
+  };
+
+  const handleClickTab = (index) => {
+    setTabNumber(index);
+  };
+
+  return (
+    <>
+      <Header>
+        <Badge>
+          <strong>기획전</strong>
+        </Badge>
+        <Title>한 번 주문하면 두 번 반하는 반찬</Title>
+      </Header>
+      <Main>
+        <Tab as={"ul"}>
+          {TAB_TEXTS.map((text, index) => {
+            return (
+              <li
+                key={index}
+                className={`tab-item ${tabNumber === index ? "active" : null}`}
+                onClick={() => handleClickTab(index)}
+              >
+                {text}
+              </li>
+            );
+          })}
+        </Tab>
+        <Horizon />
+        <Wrapper>
+          {tabCards.map((cards, index) => (
+            <CardList
+              key={TAB_KEYS[index]}
+              cards={cards}
+              tabNumber={tabNumber}
+              index={index}
+              cardSize={theme.cardSize.large}
+              gap={theme.cardSize.gap}
+            />
+          ))}
+        </Wrapper>
+        <Horizon />
+      </Main>
+    </>
+  );
+};
 const Wrapper = styled.div`
   width: calc(144rem - 8rem * 2);
   margin: 0 auto;
@@ -56,86 +136,5 @@ const Tab = styled(FlexMarginCenter)`
   line-height: 3rem;
   padding-left: 8rem;
 `;
-
-const TAB_TEXTS = [
-  "풍성한 고기 반찬",
-  "편리한 반찬 세트",
-  "맛있는 제철 요리",
-  "우리 아이 영양 반찬",
-];
-const TAB_KEYS = ["meat", "convenient", "season", "nutrition"];
-
-const MainTab = ({ dish }) => {
-  console.log(dish);
-  const [tabNumber, setTabNumber] = useState(0);
-  const [tabCards, setTabCards] = useState([]);
-
-  useEffect(() => {
-    if (dish.length === 0) return;
-
-    const shuffle = selectDish();
-    const shuffleCards = ShuffleCards(shuffle);
-    setTabCards(shuffleCards);
-  }, [dish]);
-
-  const selectDish = () => {
-    const seletedDish = [...dish].sort(() => Math.random() - 0.5);
-    return seletedDish;
-  };
-
-  const ShuffleCards = (shuffle) => {
-    const tabCards = [];
-    for (let i = 0, count = 0; i < TAB_TEXTS.length; i++) {
-      tabCards[i] = shuffle.slice(count, count + 3);
-      count += 3;
-    }
-
-    return tabCards;
-  };
-
-  const handleTabClick = (index) => {
-    setTabNumber(index);
-  };
-
-  return (
-    <>
-      <Header>
-        <Badge>
-          <strong>기획전</strong>
-        </Badge>
-        <Title>한 번 주문하면 두 번 반하는 반찬</Title>
-      </Header>
-      <Main>
-        <Tab as={"ul"}>
-          {TAB_TEXTS.map((text, index) => {
-            return (
-              <li
-                key={index}
-                className={`tab-item ${tabNumber === index ? "active" : null}`}
-                onClick={() => handleTabClick(index)}
-              >
-                {text}
-              </li>
-            );
-          })}
-        </Tab>
-        <Horizon />
-        <Wrapper>
-          {tabCards.map((cards, index) => (
-            <CardList
-              key={TAB_KEYS[index]}
-              cards={cards}
-              tabNumber={tabNumber}
-              index={index}
-              cardSize={theme.cardSize.large}
-              gap={theme.cardSize.gap}
-            />
-          ))}
-        </Wrapper>
-        <Horizon />
-      </Main>
-    </>
-  );
-};
 
 export default MainTab;

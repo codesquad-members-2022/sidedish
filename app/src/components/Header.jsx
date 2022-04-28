@@ -1,69 +1,5 @@
 import styled from "styled-components";
 
-const Logo = styled.h1`
-  font-family: "Outfit";
-  font-size: ${({ theme }) => theme.fontSize.display};
-  font-weight: ${({ theme }) => theme.fontWeight.logo};
-  margin-left: 8rem;
-  margin-right: 4rem;
-  line-height: 5rem;
-`;
-
-const Gnb = styled.nav`
-  .gnb {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.2rem; 
-    width: 35.2rem;
-  }
-  
-  .gnb:hover {
-    margin-bottom: 4.1rem;
-  }
-  
-  .gnb:hover .lnb {
-    display: block;
-  }
-  
-  .gnb-item {
-    font-size: ${({ theme }) => theme.fontSize.medium};
-    font-weight: ${({ theme }) => theme.fontWeight.regular};
-    line-height: 2.6rem;
-  }
-  
-  .lnb {
-    display: none;
-    font-size: ${({ theme }) => theme.fontSize.small};
-    margin-top: 1.6rem;
-  }
-
-  .lnb-item {
-    margin-top 0.8rem;
-  }
-`;
-
-const HeaderContainer = styled.div`
-  max-height: 19rem;
-  min-height: 8.3rem;
-  border-bottom: 1px solid ${({ theme }) => theme.color.black};
-`;
-
-const HeaderContent = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  margin: 0 auto;
-  padding-top: 1.6rem;
-  width: 144rem;
-`;
-
-const Icons = styled.ul`
-  display: flex;
-  margin: 1.2rem 8.5rem 0 auto;
-  gap: 2.6rem;
-  height: 2.8rem;
-  align-items: center;
-`;
-
 const GNB = () => {
   return (
     <Gnb>
@@ -154,4 +90,67 @@ const Header = () => {
   );
 };
 
+const Logo = styled.h1`
+  font-family: "Outfit";
+  font-size: ${({ theme }) => theme.fontSize.display};
+  font-weight: ${({ theme }) => theme.fontWeight.logo};
+  margin-left: 8rem;
+  margin-right: 4rem;
+  line-height: 5rem;
+`;
+
+const Gnb = styled.nav`
+  .gnb {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.2rem; 
+    width: 35.2rem;
+  }
+  
+  .gnb:hover {
+    margin-bottom: 4.1rem;
+  }
+  
+  .gnb:hover .lnb {
+    display: block;
+  }
+  
+  .gnb-item {
+    font-size: ${({ theme }) => theme.fontSize.medium};
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
+    line-height: 2.6rem;
+  }
+  
+  .lnb {
+    display: none;
+    font-size: ${({ theme }) => theme.fontSize.small};
+    margin-top: 1.6rem;
+  }
+
+  .lnb-item {
+    margin-top 0.8rem;
+  }
+`;
+
+const HeaderContainer = styled.div`
+  max-height: 19rem;
+  min-height: 8.3rem;
+  border-bottom: 1px solid ${({ theme }) => theme.color.black};
+`;
+
+const HeaderContent = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  margin: 0 auto;
+  padding-top: 1.6rem;
+  width: 144rem;
+`;
+
+const Icons = styled.ul`
+  display: flex;
+  margin: 1.2rem 8.5rem 0 auto;
+  gap: 2.6rem;
+  height: 2.8rem;
+  align-items: center;
+`;
 export default Header;

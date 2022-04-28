@@ -48,12 +48,12 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
     }
   }, [currentPage]);
 
-  const handleRArrowClick = () => {
+  const handleClickRArrow = () => {
     if (currentPage === SLIDER_INFO.NUM_OF_PAGE) return;
     setCurrentPage(currentPage + 1);
   };
 
-  const handleLArrowClick = () => {
+  const handleClickLArrow = () => {
     if (currentPage === 1) return;
     setCurrentPage(currentPage - 1);
   };
@@ -64,7 +64,7 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
         img={`${process.env.PUBLIC_URL}/images/${
           currentPage === 1 ? "Arrow_grey.svg" : "Arrow_black.svg"
         }`}
-        onClick={handleLArrowClick}
+        onClick={handleClickLArrow}
       />
       <RightArrow
         img={`${process.env.PUBLIC_URL}/images/${
@@ -72,7 +72,7 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
             ? "Arrow_grey.svg"
             : "Arrow_black.svg"
         }`}
-        onClick={handleRArrowClick}
+        onClick={handleClickRArrow}
       />
       <Wrapper>
         <CardList

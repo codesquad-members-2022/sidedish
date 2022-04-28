@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import Header from "./Header.js";
-import MainTab from "./MainTab.js";
-import Modal from "./Modal/Modal.js";
-import MainCategories from "./MainCategories.js";
+import Header from "./Header.jsx";
+import MainTab from "./MainTab.jsx";
+import Modal from "./Modal/Modal.jsx";
+import MainCategories from "./MainCategories.jsx";
 import { ModalContext } from "../contexts/ModalContext.js";
 
-const fetchDishData = (type) => {
-  return fetch(`https://api.codesquad.kr/onban/${type}`)
-    .then((res) => res.json())
-    .then((data) => data);
+const fetchDishData = async (type) => {
+  const res = await fetch(`https://api.codesquad.kr/onban/${type}`);
+  const data = res.json();
+  return data;
 };
 
 const fetchAllDishData = async () => {

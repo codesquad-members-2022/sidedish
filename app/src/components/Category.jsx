@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import theme from "../styles/theme.js";
-import Slider from "./Slider.js";
+import theme from "../styled-components/theme.js";
+import Slider from "./Slider.jsx";
 
 const TITLE = {
   SIDE: "식탁을 풍성하게 하는 정갈한 밑반찬",
