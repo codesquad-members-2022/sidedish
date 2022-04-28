@@ -17,23 +17,23 @@ class NetworkManagerTests: XCTestCase {
         XCTAssertEqual(1+1, two)
     }
 
-    func testFetchProducts() throws {
-        let promise = XCTestExpectation(description: "Fetch products success")
+    func testFetchProductDetail() throws {
+        let promise = XCTestExpectation(description: "Fetch product detail success")
 
-        networkManager.fetchProducts(of: ProductType.main) { result in
-            switch result {
-            case .success(let products):
-                SystemLog.info(products.debugDescription)
-                promise.fulfill()
-            case .failure(let error):
-                SystemLog.fault(error.localizedDescription)
-            }
+        let testHash = "HBDEF"
+        let request = ProductDetailRequest(from: testHash)
+        XCTAssertNotNil(request)
+
+        networkManager.request(request!) { data in
+            XCTAssertNotNil(data)
+            XCTAssertEqual(data?.hash, testHash)
+            promise.fulfill()
         }
 
         wait(for: [promise], timeout: 1)
     }
 
-    func testFetchImageData() throws {
+    func testFetchImage() throws {
         let promise = XCTestExpectation(description: "Fetch Image data success")
 
         // Prepare Stub
@@ -42,27 +42,32 @@ class NetworkManagerTests: XCTestCase {
 
         guard let localImageURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension),
               let localImageData = try? Data(contentsOf: localImageURL) else {
-            return XCTFail()
+            return XCTFail("Could not load test Image from bundle")
         }
 
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "public.codesquad.kr"
-        components.path = "/jk/storeapp/data/main/"
-        components.path += "\(fileName).\(fileExtension)"
-        guard let url = components.url else { return }
+        let request = ImageRequest(fileName: fileName, fileExtension: fileExtension)
+        XCTAssertNotNil(request)
 
-        networkManager.fetchImageData(url: url) { result in
-            switch result {
-            case .success(let data):
-                XCTAssertEqual(localImageData, data)
-                promise.fulfill()
-            case .failure(let error):
-                SystemLog.fault(error.localizedDescription)
-                XCTFail()
-            }
+        networkManager.request(request!) { data in
+            XCTAssertEqual(data, localImageData)
+            promise.fulfill()
         }
 
-        wait(for: [promise], timeout: 2)
+        wait(for: [promise], timeout: 1)
+
+    }
+
+    func testFetchCategory() throws {
+        let promise = XCTestExpectation(description: "Fetch Category success")
+
+        let request = CategoryRequest(from: .main)
+        XCTAssertNotNil(request)
+
+        networkManager.request(request!) { data in
+            XCTAssertNotNil(data)
+            promise.fulfill()
+        }
+
+        wait(for: [promise], timeout: 1)
     }
 }

@@ -10,13 +10,13 @@ import XCTest
 
 class ProductTest: XCTestCase {
 
-    var products: [Product]!
+    var products: [ProductSummary]!
 
     override func setUpWithError() throws {
         if let dataURL = Bundle.main.url(forResource: "mockProductData", withExtension: "json") {
             let data = try Data(contentsOf: dataURL)
             let decorder = JSONDecoder()
-            let fetchedData = try decorder.decode(Response.self, from: data)
+            let fetchedData = try decorder.decode(CategoryResponse.self, from: data)
             self.products = fetchedData.body
             }
     }

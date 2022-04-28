@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct DetailData: Codable {
+struct ProductDetailResponse: Codable {
+    let hash: String
+    let data: ProductDetail
+}
+
+struct ProductDetail: Codable {
     let topImageURL: URL
     let thumbImagesURL: [URL]
     let productDescription: String

@@ -11,14 +11,14 @@ import OSLog
 
 class ProductDetailDecordingTest: XCTestCase {
 
-    var prodcutDetail: ProductDetail!
+    var productDetailResponse: ProductDetailResponse!
 
     override func setUpWithError() throws {
         if let dataURL = Bundle.main.url(forResource: "mockProductDetailData", withExtension: "json") {
             let data = try Data(contentsOf: dataURL)
-            let decorder = JSONDecoder()
-            let fetchedData = try decorder.decode(ProductDetail.self, from: data)
-            self.prodcutDetail = fetchedData
+            let decoder = JSONDecoder()
+            let fetchedData = try decoder.decode(ProductDetailResponse.self, from: data)
+            self.productDetailResponse = fetchedData
             }
     }
 
@@ -28,33 +28,33 @@ class ProductDetailDecordingTest: XCTestCase {
         let deliveryInfo = "서울 경기 새벽 배송 / 전국 택배 배송"
         let deliveryFee = "2,500원 (40,000원 이상 구매 시 무료)"
 
-        XCTAssertEqual(prodcutDetail.hash, hash)
-        XCTAssertEqual(prodcutDetail.data.productDescription, description)
-        XCTAssertEqual(prodcutDetail.data.deliveryInfo, deliveryInfo)
-        XCTAssertEqual(prodcutDetail.data.deliveryFee, deliveryFee)
+        XCTAssertEqual(productDetailResponse.hash, hash)
+        XCTAssertEqual(productDetailResponse.data.productDescription, description)
+        XCTAssertEqual(productDetailResponse.data.deliveryInfo, deliveryInfo)
+        XCTAssertEqual(productDetailResponse.data.deliveryFee, deliveryFee)
 
     }
 
     func testURL() throws {
         let URL = URL(string: "http://public.codesquad.kr/jk/storeapp/data/main/675_ZIP_P_0057_T.jpg")
-        XCTAssertEqual(prodcutDetail.data.topImageURL, URL)
+        XCTAssertEqual(productDetailResponse.data.topImageURL, URL)
     }
 
     func testImageURLCount()  throws {
         let thumbImageURLCount = 2
         let detailSectionImageURLCount = 4
 
-        XCTAssertEqual(prodcutDetail.data.thumbImagesURL.count, thumbImageURLCount)
-        XCTAssertEqual(prodcutDetail.data.detailSectionURL.count, detailSectionImageURLCount)
+        XCTAssertEqual(productDetailResponse.data.thumbImagesURL.count, thumbImageURLCount)
+        XCTAssertEqual(productDetailResponse.data.detailSectionURL.count, detailSectionImageURLCount)
     }
 
     func testMoneyMatch() throws {
         let point = "78원"
         let priceCount = 1
         let priceValue = "7,800원"
-        XCTAssertEqual(prodcutDetail.data.point.priceTag, point)
-        XCTAssertEqual(prodcutDetail.data.prices.count, priceCount)
-        XCTAssertEqual(prodcutDetail.data.prices.first!.priceTag, priceValue)
+        XCTAssertEqual(productDetailResponse.data.point.priceTag, point)
+        XCTAssertEqual(productDetailResponse.data.prices.count, priceCount)
+        XCTAssertEqual(productDetailResponse.data.prices.first!.priceTag, priceValue)
     }
 
 }
