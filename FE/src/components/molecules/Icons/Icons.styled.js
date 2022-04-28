@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icons } from "./icons.jsx";
+import { Icons } from "./Icons.jsx";
 
 export const StyledIconContainer = styled(Icons)`
   display: flex;
