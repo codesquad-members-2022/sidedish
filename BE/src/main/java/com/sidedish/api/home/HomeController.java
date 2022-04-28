@@ -5,6 +5,7 @@ import com.sidedish.api.categories.dto.ItemResource;
 import com.sidedish.api.categories.dto.ResponseItemDto;
 import com.sidedish.api.home.dto.ResponseHomeDto;
 import com.sidedish.domain.CategoryType;
+import com.sidedish.domain.DetailCategoryType;
 import com.sidedish.domain.Item;
 import com.sidedish.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class HomeController {
 
     @GetMapping
     public ResponseHomeDto getHome() {
-        List<Item> findItems = itemService.findItemByDetailType("풍성한_고기_반찬");
+        List<Item> findItems = itemService.findItemByDetailType(DetailCategoryType.MEAT.getDetailType());
         List<ResponseItemDto> detailItems = buildDetailItems(findItems);
         CollectionModel<ItemResource> mainResources = buildItems(CategoryType.MAIN, DEFAULT_PAGE_ID, DEFAULT_PAGE_COUNT);
         return new ResponseHomeDto(detailItems, mainResources);
