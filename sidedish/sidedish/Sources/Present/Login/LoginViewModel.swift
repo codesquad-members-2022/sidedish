@@ -44,6 +44,7 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
             .store(in: &cancellables)
         
         action().googleUser
+            .filter { $0 != nil }
             .handleEvents(receiveOutput: { [weak self] _ in
                 self?.state().showLoadingIndicator.send(true)
             })
