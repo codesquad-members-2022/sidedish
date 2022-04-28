@@ -4,12 +4,6 @@ import Badges from './Badges';
 
 function Card({ size, item, showModal }) {
   const { id, image, title, contents, origin_price, discount_price, early_delivery, badge_title } = item;
-  const cardSizes = {
-    large: { width: 411, height: 565 },
-    medium: { width: 302, height: 456 },
-    small: { width: 160, height: 226 },
-  };
-
   const [isHover, setIsHover] = useState(false);
 
   function showDelevery() {
@@ -19,8 +13,8 @@ function Card({ size, item, showModal }) {
     setIsHover(false);
   }
   return (
-    <StyledCard key={id} cardSize={cardSizes[size]} onClick={() => showModal(id)}>
-      <Thumbnail height={cardSizes[size].width} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
+    <StyledCard key={id} cardSize={size} onClick={() => showModal(id)}>
+      <Thumbnail cardSize={size} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
         <Image src={image}></Image>
         {size !== 'small' && isHover && (
           <HoverThumbnail>
@@ -57,31 +51,31 @@ function Card({ size, item, showModal }) {
   );
 }
 
-Card.defaultProps = {
-  size: 'large',
-  item: {
-    id: 0,
-    image: 'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-    title: '스테이크',
-    contents: '스테이크 먹고싶다',
-    origin_price: 50000,
-    discount_price: 39800,
-    early_delivery: true,
-    badge_title: ['이벤트특가', '런칭특가'],
-    categories: ['메인 요리'],
-  },
-};
+// Card.defaultProps = {
+//   size: 'large',
+//   item: {
+//     id: 0,
+//     image: 'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
+//     title: '스테이크',
+//     contents: '스테이크 먹고싶다',
+//     origin_price: 50000,
+//     discount_price: 39800,
+//     early_delivery: true,
+//     badge_title: ['이벤트특가', '런칭특가'],
+//     categories: ['메인 요리'],
+//   },
+// };
 
 const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: ${props => props.cardSize.width}px;
-  height: ${props => props.cardSize.height}px;
+  width: ${({ theme, cardSize }) => theme.cardSizes[cardSize].width}px;
+  height: ${({ theme, cardSize }) => theme.cardSizes[cardSize].height}px;
 `;
 const Thumbnail = styled.div`
   position: relative;
-  height: ${props => props.height}px;
+  height: ${({ theme, cardSize }) => theme.cardSizes[cardSize].height}px;
 `;
 const Image = styled.img`
   display: block;

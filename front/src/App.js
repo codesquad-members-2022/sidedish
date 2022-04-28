@@ -5,8 +5,9 @@ import Promotion from './components/Promotion';
 import GlobalStyles from './GlobalStyles';
 import Alert from './components/Alert';
 import Main from './components/Main';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { fetchCategories, fetchDishes, fetchEventCategories } from './api';
+import theme from './theme';
 
 function App() {
   const [alert, setAlert] = useState({ show: false, message: '' });
@@ -57,24 +58,26 @@ function App() {
     initFetchAndSet();
   }, []);
   return (
-    <AppWrap>
-      <GlobalStyles></GlobalStyles>
-      {modal.show && (
-        <Modal dishId={modal.dishId} hideModal={hideModal} showModal={showModal} showAlert={showAlert}></Modal>
-      )}
-      {categories && promotions && (
-        <>
-          <Header categories={categories}></Header>
-          <Promotion
-            title={'둘이 먹다 하나가 죽어도 모르는 반찬'}
-            promotions={promotions}
-            showModal={showModal}
-          ></Promotion>
-          <Main categories={categoryItems} showModal={showModal}></Main>
-        </>
-      )}
-      {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
-    </AppWrap>
+    <ThemeProvider theme={theme}>
+      <AppWrap>
+        <GlobalStyles></GlobalStyles>
+        {modal.show && (
+          <Modal dishId={modal.dishId} hideModal={hideModal} showModal={showModal} showAlert={showAlert}></Modal>
+        )}
+        {categories && promotions && (
+          <>
+            <Header categories={categories}></Header>
+            <Promotion
+              title={'둘이 먹다 하나가 죽어도 모르는 반찬'}
+              promotions={promotions}
+              showModal={showModal}
+            ></Promotion>
+            <Main categories={categoryItems} showModal={showModal}></Main>
+          </>
+        )}
+        {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
+      </AppWrap>
+    </ThemeProvider>
   );
 }
 
