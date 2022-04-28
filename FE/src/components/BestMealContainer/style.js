@@ -23,6 +23,7 @@ export const Header = styled.div`
     border-radius: 20px;
     line-height: 42px;
     text-align: center;
+    margin-bottom: 20px;
   }
 
   > h2 {

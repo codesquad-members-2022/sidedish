@@ -81,11 +81,13 @@ export const NavIcons = styled.div`
       width: 30px;
       height: 30px;
       transition: all 0.2s;
+      path {
+        fill: ${({ theme: { color } }) => color.orange};
+      }
     }
   }
 `;
 
-//FIXME Logo 접근가능? hover or cursor:pointer 넣고싶음.
 export const Logo = styled(LogoImg)``;
 
 export const Search = styled(SearchImg)``;

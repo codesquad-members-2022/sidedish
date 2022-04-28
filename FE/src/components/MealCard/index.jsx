@@ -5,7 +5,7 @@ import { Conatiner, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceC
 const changeNumberToKoreanLocale = (number) => `${number.toLocaleString("ko-KR")}원`;
 
 const showOriginalPrice = (originalPrice, fixedPrice) =>
-  originalPrice === fixedPrice ? <></> : <span>{changeNumberToKoreanLocale(fixedPrice)}</span>;
+  originalPrice === fixedPrice ? <></> : <span>{changeNumberToKoreanLocale(originalPrice)}</span>;
 
 const DeliveryOnHover = () => (
   <DeliveryServiceHoverContainer>

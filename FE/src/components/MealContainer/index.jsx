@@ -1,16 +1,16 @@
 import React from "react";
-import Loader from "components/Loader";
 import Carousel from "components/Carousel";
 import { Container, Header } from "./style";
 import MealCard from "components/MealCard";
+import Loader from "components/Loader";
 
 // 캐러셀
 const IMAGE_COUNT = 4;
 const MEAL_IMAGE_SIZE = 300;
 const parentWidth = 1280;
 
-const MealContainer = ({ meals }) => {
-  const { mealHeader, mealCards } = meals;
+const MealContainer = ({ containerInfo }) => {
+  const { mealHeader, mealCards } = containerInfo;
   return (
     <Container>
       <Header>{mealHeader}</Header>
