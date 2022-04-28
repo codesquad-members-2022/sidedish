@@ -3,6 +3,7 @@ import { applyFlex } from '../../../../../helper/utils';
 
 export const StyledCostInfo = styled.div`
   ${({ flex, justify }) => applyFlex({ flex, justify })}
+  ${({ stock }) => `visibility: ${stock === 0 ? 'hidden' : 'visible'};`}
   padding:26px 0px;
 `;
 
@@ -33,4 +34,8 @@ export const Label = styled.div`
 export const Content = styled.div`
   margin-left: 20px;
   font-size: 30px;
+`;
+
+export const StyledStockOverFlow = styled.div`
+  color: red;
 `;

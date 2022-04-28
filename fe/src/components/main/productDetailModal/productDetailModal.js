@@ -5,12 +5,9 @@ import { DimLayer, ModalArea, ProductArea } from './productDetailModal.styled';
 import { RecommendArea } from './recommendArea/recommendArea';
 
 export function ProductDetailModal({ sideDishData, setModal }) {
-  console.log(sideDishData);
-
-  // if (!sideDishData) {
-  //   return;
-  // }
-  sideDishData = mockData;
+  if (!sideDishData) {
+    return;
+  }
   return (
     <DimLayer>
       <ModalArea flex direction="column">

@@ -11,7 +11,7 @@ import {
   MoveArea,
 } from './category.styled';
 
-export function Category({ title, sideDishCardResponses }) {
+export function Category({ title, sideDishCardResponses, onClick }) {
   const [positionState, setPositionState] = useState({
     left: 0,
     right: Math.min(sideDishCardResponses.length, 3),
@@ -51,7 +51,7 @@ export function Category({ title, sideDishCardResponses }) {
         <CardArea>
           <MoveArea flex position={positionState} onTransitionEnd={handleTransitionEnd}>
             {sideDishCardResponses.map((product, idx) => {
-              return <ProductCard product={product} size="medium" key={idx}></ProductCard>;
+              return <ProductCard product={product} size="medium" key={idx} onClick={onClick}></ProductCard>;
             })}
           </MoveArea>
         </CardArea>
