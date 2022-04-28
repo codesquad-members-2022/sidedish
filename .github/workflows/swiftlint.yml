@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Run Swiftlint
-        run: swiftlint --config sideDishApp/.github/workflows/.swiftlint.yml
+        run: swiftlint --config sidDishApp/.swiftlint.yml
