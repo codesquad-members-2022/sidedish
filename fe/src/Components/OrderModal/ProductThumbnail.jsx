@@ -35,7 +35,6 @@ const ProductPanel = styled.li`
 
 export const ProductThumbnail = ({ ProductThumbnailData }) => {
   const [mainPanelImg, setMainPanelImg] = useState(ProductThumbnailData[0]);
-
   const onClickSubPanel = e => {
     setMainPanelImg(e.target.src);
   };
