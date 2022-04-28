@@ -71,7 +71,8 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModel
                       let count = self?.state().amount.value else {
                     return nil
                 }
-                let message = "\(menu.title) \(count)개 주문!"
+                let totalPrice = (menu.price * count).printCurrency()
+                let message = "코드스쿼드 주문!!\n주문상품: \(menu.title)\n주문갯수: \(count)개\n주문금액: \(totalPrice)"
                 return (userName, message)
             }
             .compactMap { [weak self] name, message in self?.sidedishRepository.order(name, message: message) }
