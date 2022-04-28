@@ -1,9 +1,15 @@
+import { CloseBtn } from './closeBtn/closeBtn';
 import { DetailArea } from './detailArea/detailArea';
 import { ImgArea } from './imgArea/imgArea';
 import { DimLayer, ModalArea, ProductArea } from './productDetailModal.styled';
 import { RecommendArea } from './recommendArea/recommendArea';
 
-export function ProductDetailModal({ sideDishData }) {
+export function ProductDetailModal({ sideDishData, setModal }) {
+  console.log(sideDishData);
+
+  // if (!sideDishData) {
+  //   return;
+  // }
   sideDishData = mockData;
   return (
     <DimLayer>
@@ -13,6 +19,7 @@ export function ProductDetailModal({ sideDishData }) {
           <DetailArea props={sideDishData}></DetailArea>
         </ProductArea>
         <RecommendArea></RecommendArea>
+        <CloseBtn onClick={setModal}></CloseBtn>
       </ModalArea>
     </DimLayer>
   );
