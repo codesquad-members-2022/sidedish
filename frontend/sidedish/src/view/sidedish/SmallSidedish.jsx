@@ -5,6 +5,29 @@ import SidedishCards from "./SidedishCards";
 import { getData } from "../../utils";
 import { Carousel } from "./carousel/Carousel";
 
+const getCurrSmallSidedishes = (page, smallSidedishes) => {
+    const numberOfDishes = smallSidedishes.length;
+    if (4 * page >= numberOfDishes) {
+        const haveBeforeCard = numberOfDishes - 5 >= 0;
+        const beforeCard = haveBeforeCard
+            ? smallSidedishes[numberOfDishes - 5]
+            : null;
+
+        return [beforeCard, ...smallSidedishes.slice(numberOfDishes - 4), null];
+    }
+    const haveBeforeCard = page > 1;
+    const haveAfterCard = 4 * page < numberOfDishes;
+    const beforeCard = haveBeforeCard
+        ? smallSidedishes[4 * (page - 1) - 1]
+        : null;
+    const afterCard = haveAfterCard ? smallSidedishes[4 * page] : null;
+    return [
+        beforeCard,
+        ...smallSidedishes.slice(4 * (page - 1), 4 * page),
+        afterCard,
+    ];
+};
+
 function SmallSidedish({ isVisible, category }) {
     const { title, section } = category;
 
@@ -48,28 +71,8 @@ function SmallSidedish({ isVisible, category }) {
         setPage(newPage);
     };
 
-    const getCurrSmallSidedishes = () => {
-        if (4 * page >= smallSidedishes.length) {
-            return [
-                smallSidedishes.length - 5 >= 0
-                    ? smallSidedishes[smallSidedishes.length - 5]
-                    : null,
-                ...smallSidedishes.slice(smallSidedishes.length - 4),
-                null,
-            ];
-        }
-        return [
-            page <= 1 ? null : smallSidedishes[4 * (page - 1) - 1],
-            ...smallSidedishes.slice(4 * (page - 1), 4 * page),
-            4 * page >= smallSidedishes.length
-                ? null
-                : smallSidedishes[4 * page],
-        ];
-    };
+    const currSmallSidedishes = getCurrSmallSidedishes(page, smallSidedishes);
 
-    const currSmallSidedishes = getCurrSmallSidedishes();
-
-    console.log(currSmallSidedishes);
     return (
         <Container>
             <SmallDishTitle>{title}</SmallDishTitle>

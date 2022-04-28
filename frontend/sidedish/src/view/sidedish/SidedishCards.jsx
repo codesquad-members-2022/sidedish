@@ -1,5 +1,6 @@
 import { BigCardsContainer, SmallCardsContainer } from "./Sidedish.style";
 import Card from "./card/Card";
+import { getRandomKey } from "../../utils";
 
 function SidedishCards({ dishes, isBigCards }) {
     if (!dishes) {
@@ -8,7 +9,7 @@ function SidedishCards({ dishes, isBigCards }) {
 
     const sidedishCards = dishes.map((dish) => {
         if (!dish) {
-            return <div></div>;
+            return <div key={getRandomKey()}></div>;
         }
         return (
             <Card
