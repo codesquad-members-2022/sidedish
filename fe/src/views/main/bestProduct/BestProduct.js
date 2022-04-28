@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { TabMenu } from './tabMenu/tabMenu.js';
 import { TabList } from './tabList/tabList.js';
 import { BestProductHeader, CategoryBadge, StyledBestProduct, TabBar, TitleWrapper } from './BestProduct.styled';
-import { fetchData } from '../../../helper/utils';
+import { fetchData, getRandomNumberAsCount } from '../../../helper/utils';
 import { API } from '../../../helper/constants.js';
 import { ExhibitionTitle } from './title/exhibitionTitle';
 
@@ -31,7 +31,9 @@ export function BestProduct() {
     }
     async function getSideDishDataByTabMenu() {
       const { sideDishCardResponses } = await fetchData(API.categoryDishes(curTab));
-      setTabList(sideDishCardResponses);
+      const randomIndex = getRandomNumberAsCount({ min: 0, max: sideDishCardResponses.length, count: 3 });
+      const sideDishCardResponsesForRender = randomIndex.map(idx => sideDishCardResponses[idx]);
+      setTabList(sideDishCardResponsesForRender);
     }
     getSideDishDataByTabMenu();
   }, [curTab]);
