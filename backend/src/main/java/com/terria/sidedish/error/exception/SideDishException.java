@@ -1,14 +1,10 @@
 package com.terria.sidedish.error.exception;
 
 import com.terria.sidedish.error.ErrorCode;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class SideDishException extends RuntimeException {
+public class SideDishException extends SideDishApplicationException {
 
-    private final ErrorCode errorCode;
-
-    public ErrorCode getErrorCode() {
-        return errorCode;
+    public SideDishException(ErrorCode errorCode) {
+        super(errorCode);
     }
 }

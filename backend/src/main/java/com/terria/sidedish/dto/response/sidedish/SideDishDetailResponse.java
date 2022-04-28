@@ -57,10 +57,6 @@ public class SideDishDetailResponse {
 
     public static SideDishDetailResponse from(SideDish sideDish, List<DiscountEvent> discountEvents) {
 
-        double totalDiscountRate = discountEvents.stream()
-                .mapToDouble(DiscountEvent::getDiscountRate)
-                .sum();
-
         return new SideDishDetailResponse(
                 sideDish.getId(),
                 sideDish.getSideDishImages().stream()
@@ -68,10 +64,10 @@ public class SideDishDetailResponse {
                         .collect(Collectors.toList()),
                 sideDish.getName(),
                 sideDish.getDescription(),
-                (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 10 * 10,
+                getDiscountPrice(sideDish, discountEvents),
                 sideDish.getPrice(),
                 sideDish.getStock(),
-                (int) (sideDish.getPrice() * sideDish.getAccrualRate()),
+                getAccrualAmount(sideDish),
                 sideDish.getShippingInfo(),
                 sideDish.getShippingFee(),
                 sideDish.getExemptionCondition(),
@@ -79,5 +75,17 @@ public class SideDishDetailResponse {
                         .map(DiscountEventResponse::from)
                         .collect(Collectors.toList())
         );
+    }
+
+    private static int getDiscountPrice(SideDish sideDish, List<DiscountEvent> discountEvents) {
+        double totalDiscountRate = discountEvents.stream()
+                .mapToDouble(DiscountEvent::getDiscountRate)
+                .sum();
+
+        return (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 10 * 10;
+    }
+
+    private static int getAccrualAmount(SideDish sideDish) {
+        return (int) (sideDish.getPrice() * sideDish.getAccrualRate());
     }
 }

@@ -33,7 +33,9 @@ public class SideDishService {
     public SideDishCardResponses getByCategoryId(long categoryId, int page) {
         List<SideDishCardResponse> sideDishCardResponses = new ArrayList<>();
 
-        for (SideDish sideDish : sideDishRepository.findByCategoryId(categoryId, page * ITEM_COUNT, ITEM_COUNT)) {
+        List<SideDish> sideDishes = sideDishRepository.findByCategoryId(categoryId, page * ITEM_COUNT, ITEM_COUNT);
+
+        for (SideDish sideDish : sideDishes) {
             sideDishCardResponses.add(SideDishCardResponse.from(sideDish, getDiscountEvent(sideDish)));
         }
 

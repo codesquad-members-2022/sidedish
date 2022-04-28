@@ -1,9 +1,7 @@
 package com.terria.sidedish.error;
 
-import com.terria.sidedish.error.exception.ExhibitionException;
-import com.terria.sidedish.error.exception.OAuthException;
-import com.terria.sidedish.error.exception.OrderException;
-import com.terria.sidedish.error.exception.SideDishException;
+import com.terria.sidedish.error.exception.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
@@ -26,26 +24,8 @@ public class HandlerAdvice {
         return new ResponseEntity<>(new ErrorResponse<>(messages), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(OAuthException.class)
-    private ResponseEntity<ErrorResponse<String>> handleOAuthException(OAuthException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
-    }
-
-    @ExceptionHandler(ExhibitionException.class)
-    private ResponseEntity<ErrorResponse<String>> handleExhibitionException(ExhibitionException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
-    }
-
-    @ExceptionHandler(SideDishException.class)
-    private ResponseEntity<ErrorResponse<String>> handleSideDishException(SideDishException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
-    }
-
-    @ExceptionHandler(OrderException.class)
-    private ResponseEntity<ErrorResponse<String>> handleOrderException(OrderException e) {
+    @ExceptionHandler(SideDishApplicationException.class)
+    private ResponseEntity<ErrorResponse<String>> handleOAuthException(SideDishApplicationException e) {
         ErrorCode errorCode = e.getErrorCode();
         return new ResponseEntity<>(new ErrorResponse<>(errorCode.getMessage()), errorCode.getStatus());
     }
