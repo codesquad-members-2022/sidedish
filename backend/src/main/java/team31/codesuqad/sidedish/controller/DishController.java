@@ -7,6 +7,7 @@ import team31.codesuqad.sidedish.service.DishesService;
 
 @RestController
 @RequestMapping("/api/dish")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DishController {
 
     private final DishesService dishesService;
