@@ -13,7 +13,8 @@ import com.example.todo.sidedish.domain.model.MenuItem
 const val VIEW_TYPE_HEADER = 0
 const val VIEW_TYPE_ITEM = 1
 
-class MenuAdapter(private val itemClick : (hash: String, title:String, badges:List<String>?)-> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(private val itemClick: (hash: String, title: String, badges: List<String>?) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var menuItems = mutableListOf<MenuItem>()
 
@@ -33,7 +34,7 @@ class MenuAdapter(private val itemClick : (hash: String, title:String, badges:Li
             }
             is ItemViewHolder -> {
                 val item = menuItems[position] as Menu
-                holder.bind(item,itemClick)
+                holder.bind(item, itemClick)
             }
         }
     }
@@ -50,14 +51,9 @@ class MenuAdapter(private val itemClick : (hash: String, title:String, badges:Li
     fun submitHeaderAndItemList(items: Map<DishType, List<Menu>?>) {
         val menuItems = mutableListOf<MenuItem>()
         items.entries.forEach { entry ->
-            entry.value?.let {
-                val header = Header(entry.key, dishCount = it.size)
-                menuItems.add(header)
-                menuItems.addAll(it)
-            }?: kotlin.run {
-                val header = Header(entry.key)
-                menuItems.add(header)
-            }
+            val header = Header(entry.key, dishCount = entry.value?.size ?: 0)
+            menuItems.add(header)
+            if (!entry.value.isNullOrEmpty()) menuItems.addAll(entry.value!!)
         }
         this.menuItems = menuItems
         notifyDataSetChanged()
@@ -79,7 +75,10 @@ class MenuAdapter(private val itemClick : (hash: String, title:String, badges:Li
     inner class ItemViewHolder(private val binding: ItemMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Menu,itemClick : (hash: String, title:String, badges:List<String>?)-> Unit) {
+        fun bind(
+            item: Menu,
+            itemClick: (hash: String, title: String, badges: List<String>?) -> Unit
+        ) {
             binding.item = item
             binding.root.setOnClickListener {
                 itemClick.invoke(item.detailHash, item.title, item.badge)
