@@ -1,5 +1,4 @@
-import styled, { ThemeProvider } from "styled-components";
-import theme from "../styles/theme.js";
+import styled from "styled-components";
 
 const Logo = styled.h1`
   font-family: "Outfit";
@@ -143,17 +142,15 @@ const IconMenu = () => {
 
 const Header = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <HeaderContainer>
-        <HeaderContent>
-          <Logo>
-            <a href="#">Ordering</a>
-          </Logo>
-          <GNB />
-          <IconMenu />
-        </HeaderContent>
-      </HeaderContainer>
-    </ThemeProvider>
+    <HeaderContainer>
+      <HeaderContent>
+        <Logo>
+          <a href="#">Ordering</a>
+        </Logo>
+        <GNB />
+        <IconMenu />
+      </HeaderContent>
+    </HeaderContainer>
   );
 };
 

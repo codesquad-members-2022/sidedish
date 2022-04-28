@@ -57,16 +57,16 @@ const Tab = styled(FlexMarginCenter)`
   padding-left: 8rem;
 `;
 
+const TAB_TEXTS = [
+  "풍성한 고기 반찬",
+  "편리한 반찬 세트",
+  "맛있는 제철 요리",
+  "우리 아이 영양 반찬",
+];
+const TAB_KEYS = ["meat", "convenient", "season", "nutrition"];
+
 const MainTab = ({ dish }) => {
-  const tabTexts = [
-    "풍성한 고기 반찬",
-    "편리한 반찬 세트",
-    "맛있는 제철 요리",
-    "우리 아이 영양 반찬",
-  ];
-
-  const tabKeys = ["meat", "convenient", "season", "nutrition"];
-
+  console.log(dish);
   const [tabNumber, setTabNumber] = useState(0);
   const [tabCards, setTabCards] = useState([]);
 
@@ -85,7 +85,7 @@ const MainTab = ({ dish }) => {
 
   const ShuffleCards = (shuffle) => {
     const tabCards = [];
-    for (let i = 0, count = 0; i < tabTexts.length; i++) {
+    for (let i = 0, count = 0; i < TAB_TEXTS.length; i++) {
       tabCards[i] = shuffle.slice(count, count + 3);
       count += 3;
     }
@@ -107,7 +107,7 @@ const MainTab = ({ dish }) => {
       </Header>
       <Main>
         <Tab as={"ul"}>
-          {tabTexts.map((text, index) => {
+          {TAB_TEXTS.map((text, index) => {
             return (
               <li
                 key={index}
@@ -123,7 +123,7 @@ const MainTab = ({ dish }) => {
         <Wrapper>
           {tabCards.map((cards, index) => (
             <CardList
-              key={tabKeys[index]}
+              key={TAB_KEYS[index]}
               cards={cards}
               tabNumber={tabNumber}
               index={index}

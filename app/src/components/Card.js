@@ -90,12 +90,12 @@ const HoverInfo = styled.div`
   }
 `;
 
-const Thumbnail = ({ src, alt, size, deliveryType }) => {
+const Thumbnail = ({ src, alt, cardSize, deliveryType }) => {
   return (
     <Wrapper>
-      <Image size={size} src={src} alt={alt} />
+      <Image size={cardSize} src={src} alt={alt} />
       <DimmedLayer>
-        <Dimmer size={size}></Dimmer>
+        <Dimmer size={cardSize}></Dimmer>
         <HoverInfo>
           <div className="info">{deliveryType[0]}</div>
           <hr className="line"></hr>
@@ -106,7 +106,8 @@ const Thumbnail = ({ src, alt, size, deliveryType }) => {
   );
 };
 
-const Card = ({ card, size }) => {
+const Card = ({ card, cardSize }) => {
+  const { image, alt, delivery_type, title, description, s_price, n_price, badge } = card;
   const modal = useContext(ModalContext);
 
   const handleCardClick = () => {
@@ -118,34 +119,33 @@ const Card = ({ card, size }) => {
     <>
       <Wrapper onClick={handleCardClick}>
         <Thumbnail
-          src={card.image}
-          alt={card.alt}
-          size={size}
-          deliveryType={card.delivery_type}
+          src={image}
+          alt={alt}
+          cardSize={cardSize}
+          deliveryType={delivery_type}
         />
         <Info>
-          <Title>{card.title}</Title>
-          <Desc>{card.description}</Desc>
+          <Title>{title}</Title>
+          <Desc>{description}</Desc>
           <div>
-            <SPrice>{card.s_price}</SPrice>
-            <NPrice>{card.n_price}</NPrice>
+            <SPrice>{s_price}</SPrice>
+            <NPrice>{n_price}</NPrice>
           </div>
           <Badges>
-            {card.badge
-              ? card.badge
-                .filter(badge => badge !== '메인특가')
-                .map(badge =>
-                  badge === '런칭특가' ? (
-                    <Badge key={'lauching'} bgColor={'orange'}>
-                      {badge}
-                    </Badge>
-                  ) : (
-                    <Badge key={'event'} bgColor={'green'}>
-                      {badge}
-                    </Badge>
-                  ),
-                )
-              : null}
+            {badge && badge
+              .filter(badge => badge !== '메인특가')
+              .map(badge =>
+                badge === '런칭특가' ? (
+                  <Badge key={'lauching'} bgColor={'orange'}>
+                    {badge}
+                  </Badge>
+                ) : (
+                  <Badge key={'event'} bgColor={'green'}>
+                    {badge}
+                  </Badge>
+                ),
+              )
+            }
           </Badges>
         </Info>
       </Wrapper>

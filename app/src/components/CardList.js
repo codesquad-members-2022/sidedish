@@ -16,8 +16,8 @@ const CardList = ({
       display={tabNumber === index ? "flex" : "none"}
       gap={gap}
     >
-      {cards.map((card, index) => (
-        <Card key={index} card={card} size={cardSize} />
+      {cards.map((card) => (
+        <Card key={card.detail_hash} card={card} cardSize={cardSize} />
       ))}
     </CardConatiner>
   );
