@@ -40,7 +40,7 @@ class MenuDetailViewModel @Inject constructor(
     private val coroutineExceptionHandler: CoroutineExceptionHandler =
         CoroutineExceptionHandler { _, throwable ->
             Log.e(Constants.COROUTINE_EXCEPTION_TAG, ": ${throwable.message}")
-            _errorMessage.value =  Constants.COROUTINE_ERROR
+            _errorMessage.value = Constants.COROUTINE_ERROR
         }
 
     fun getDetail(hash: String) {
