@@ -1,6 +1,8 @@
 package team31.codesuqad.sidedish.service;
 
 import org.springframework.stereotype.Service;
+import team31.codesuqad.sidedish.controller.dto.EventTabDto;
+import team31.codesuqad.sidedish.controller.dto.EventTabListDto;
 import team31.codesuqad.sidedish.controller.dto.DishDto;
 import team31.codesuqad.sidedish.controller.dto.CategoryResponse;
 import team31.codesuqad.sidedish.domain.*;
@@ -21,6 +23,15 @@ public class EventService {
         this.eventTabsRepository = eventTabsRepository;
         this.dishesService = dishesService;
         this.discountPoliciesService = discountPoliciesService;
+    }
+
+    public EventTabListDto findAll() {
+        List<EventTabDto> eventTabList = eventTabsRepository.findAll()
+                .stream()
+                .map(EventTabDto::new)
+                .collect(Collectors.toList());
+
+        return new EventTabListDto(eventTabList);
     }
 
     public CategoryResponse getEventTab(Event event) {
