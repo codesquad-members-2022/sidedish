@@ -177,33 +177,30 @@ class MenuDetailViewController: UIViewController {
             $0.heightAnchor.constraint(equalToConstant: 1).isActive = true
         }
 
-        let safeArea = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-
-            scrollView.contentLayoutGuide.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.contentLayoutGuide.rightAnchor.constraint(equalTo: view.rightAnchor),
-            scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: safeArea.topAnchor),
-
-            contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-
-            thumbnailImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            thumbnailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            thumbnailImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
-
-            infoStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            infoStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            infoStackView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 24),
-            infoStackView.bottomAnchor.constraint(equalTo: infoViews[infoViews.count - 1].bottomAnchor),
-
-            contentView.bottomAnchor.constraint(equalTo: infoStackView.bottomAnchor),
-            scrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: contentView.heightAnchor)
-        ])
+        scrollView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        scrollView.contentLayoutGuide.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(contentView.snp.bottom)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(scrollView)
+            $0.bottom.equalTo(infoStackView)
+        }
+        
+        thumbnailImageView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(contentView)
+            $0.height.equalTo(contentView.snp.width)
+        }
+        
+        infoStackView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(contentView).inset(16)
+            $0.top.equalTo(thumbnailImageView.snp.bottom).offset(24)
+            $0.bottom.equalTo(infoViews[infoViews.count - 1])
+        }
     }
 }

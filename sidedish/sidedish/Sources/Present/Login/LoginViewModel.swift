@@ -24,6 +24,7 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
     
     @Inject(\.userStore) private var userStore: UserStore
     @Inject(\.loginRepository) private var loginRepository: LoginRepository
+    
     private var cancellables = Set<AnyCancellable>()
     
     deinit {

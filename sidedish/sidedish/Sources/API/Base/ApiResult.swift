@@ -9,6 +9,6 @@ import Combine
 import Foundation
 
 struct ApiResult<T, Error: Swift.Error> {
-    public private(set) var value: T?
-    public private(set) var error: Error?
+    private(set) var value: T?
+    private(set) var error: Error?
 }

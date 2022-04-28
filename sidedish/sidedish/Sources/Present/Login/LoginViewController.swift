@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SnapKit
 import GoogleSignIn
 import UIKit
 
@@ -68,11 +69,10 @@ class LoginViewController: UIViewController {
     private func layout() {
         view.addSubview(googleLoginButton)
         
-        NSLayoutConstraint.activate([
-            googleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            googleLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            googleLoginButton.widthAnchor.constraint(equalToConstant: 300),
-            googleLoginButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        googleLoginButton.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(300)
+            $0.height.equalTo(50)
+        }
     }
 }
