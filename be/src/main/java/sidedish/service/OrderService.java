@@ -25,7 +25,7 @@ public class OrderService {
             return new ResponseDto(HttpStatus.BAD_REQUEST, null);
         }
 
-        orderRepository.save(new Order(item, requestOrderDto));
+        orderRepository.save(new Order(item, requestOrderDto.getQuantity()));
         item.reduceQuantity(requestOrderDto.getQuantity());
         itemRepository.save(item);
 
