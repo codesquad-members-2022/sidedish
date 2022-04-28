@@ -9,6 +9,8 @@ const CardContainer = ({
   children,
   hasButton,
   showingSlideCardNum,
+  handleModal,
+  isModalVisible,
 }) => {
   const [slidingSize, setSlidingSize] = useState(0);
 
@@ -24,6 +26,7 @@ const CardContainer = ({
         handleClickSlide={handleClickSlide}
         cardInfos={cardInfos}
         hasButton={hasButton}
+        isModalVisible={isModalVisible}
       />
       <StyledDiv>
         <CardBox
@@ -31,6 +34,8 @@ const CardContainer = ({
           showingSlideCardNum={showingSlideCardNum}
           slidingSize={slidingSize}
           cardInfos={cardInfos}
+          handleModal={handleModal}
+          isModalVisible={isModalVisible}
         />
       </StyledDiv>
     </StyledSection>

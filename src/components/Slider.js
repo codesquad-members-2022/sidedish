@@ -9,6 +9,7 @@ const Slider = ({
   handleClickSlide,
   cardInfos,
   hasButton,
+  isModalVisible,
 }) => {
   const initialHeadCardOrder = 1;
 
@@ -132,11 +133,13 @@ const Slider = ({
             icon={'◀'}
             disabled={disabledPrevBtn}
             onClick={handleClickPrev}
+            isModalVisible={isModalVisible}
           />
           <StyledRightButton
             icon={'▶'}
             disabled={disabledNextBtn}
             onClick={handleClickNext}
+            isModalVisible={isModalVisible}
           />
         </>
       )}
@@ -146,19 +149,21 @@ const Slider = ({
 
 const StyledButton = styled(Button)`
   font-size: ${slideBtn.size}px;
-  margin: 210px ${slideBtn.margin}px 0 0;
+  margin-right: ${slideBtn.margin}px;
   padding: 0px;
   height: 0px;
 `;
 
 const StyledLeftButton = styled(StyledButton)`
   position: absolute;
+  margin-top: ${({ isModalVisible }) => (isModalVisible ? 70 : 150)}px;
   left: 0px;
   z-index: 1;
 `;
 
 const StyledRightButton = styled(StyledButton)`
   position: absolute;
+  margin-top: ${({ isModalVisible }) => (isModalVisible ? 70 : 150)}px;
   right: 0px;
   z-index: 1;
 `;

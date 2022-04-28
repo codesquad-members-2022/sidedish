@@ -5,13 +5,27 @@ import Header from './Header';
 import MainCard from './MainCard';
 import SubCard from './SubCard';
 import styled from 'styled-components';
-import { maxWidthBody } from './css/variables';
+import { body } from './css/variables';
+import Modal from './components/Modal';
+import CardOrderPage from './components/CardOrderPage';
 
 const App = () => {
   const [mainCardData, setMainCardData] = useState([]);
   const [mainDishData, setMainDishData] = useState([]);
   const [sideDishData, setSideDishData] = useState([]);
   const [soupData, setSoupData] = useState([]);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const [selectedCardInfo, setSelectedCardInfo] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleModal = (cardInfo) => {
+    if (isButtonVisible) {
+      return;
+    }
+
+    setSelectedCardInfo(cardInfo);
+    setIsModalVisible(true);
+  };
 
   const getSideDishData = async (url, setData) => {
     const response = await fetchData(url);
@@ -31,44 +45,58 @@ const App = () => {
     getSideDishData(soupUrl, setSoupData);
   }, []);
 
-  const [isVisible, setIsVisible] = useState(false);
-
   const handleClickMoreCard = () => {
-    setIsVisible(!isVisible);
+    setIsButtonVisible(!isButtonVisible);
   };
 
-  const openBtn = '모든 카테고리 보기';
-  const closeBtn = '열린 카테고리 닫기';
+  const btn = {
+    open: '모든 카테고리 보기',
+    close: '열린 카테고리 닫기',
+  };
+
+  const title = {
+    first: '식탁을 풍성하게 하는 정갈한 밑반찬',
+    second: '정성이 가득한 뜨끈뜨끈한 국물',
+    third: '모두가 좋아하는 든든한 메인 요리',
+    fourth: '함께하면 더욱 맛있는 상품',
+  };
 
   return (
     <StyledApp>
       <Header />
-      <MainCard mainCardData={mainCardData} />
-      <SubCard
-        dishData={mainDishData}
-        title={'식탁을 풍성하게 하는 정갈한 밑반찬'}
+      {isModalVisible && (
+        <Modal>
+          <CardOrderPage
+            selectedCardInfo={selectedCardInfo}
+            onClick={() => setIsModalVisible(false)}
+            slideTitle={title.fourth}
+            cardInfos={sideDishData}
+            isModalVisible={isModalVisible}
+          />
+        </Modal>
+      )}
+      <MainCard
+        mainCardData={mainCardData}
+        handleModal={handleModal}
+        isModalVisible={isModalVisible}
       />
-      {isVisible && (
+      <SubCard dishData={mainDishData} title={title.first} />
+      {isButtonVisible && (
         <>
-          <SubCard
-            dishData={soupData}
-            title={'정성이 가득한 뜨끈뜨끈한 국물'}
-          />
-          <SubCard
-            dishData={sideDishData}
-            title={'모두가 좋아하는 든든한 메인 요리'}
-          />
+          <SubCard dishData={soupData} title={title.second} />
+          <SubCard dishData={sideDishData} title={title.third} />
         </>
       )}
       <StyledButton onClick={handleClickMoreCard}>
-        {isVisible ? closeBtn : openBtn}
+        {isButtonVisible ? btn.close : btn.open}
       </StyledButton>
     </StyledApp>
   );
 };
 
 const StyledApp = styled.div`
-  width: ${maxWidthBody.width}px;
+  width: ${body.width}px;
+  position: relative;
   margin: 0 auto;
 `;
 
