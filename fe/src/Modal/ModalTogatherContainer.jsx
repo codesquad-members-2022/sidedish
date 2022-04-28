@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { MAIN_ITEMS } from 'MockData/dummyData';
 import { ReactComponent as LeftArrowIcon } from 'image/leftArrow.svg';
 import { ReactComponent as RightArrowIcon } from 'image/rightArrow.svg';
 import { FlexDiv } from 'common/FlexDiv';
+import { SERVER_URL, DISH_TOGATHER_MAX_COUNT } from 'constant';
+import { useFetch } from 'useFetch';
 import Card from 'Main/Card';
-import { DISH_TOGATHER_MAX_COUNT } from 'constant';
+import Loading from 'common/Loading';
+import ErrorComponent from 'common/Error';
 
 const Header = styled.div`
   margin-bottom: 28px;
@@ -36,12 +38,18 @@ const RightArrow = styled(RightArrowIcon)`
   }
 `;
 
-const DishTogatherContainer = () => {
-  const items = MAIN_ITEMS.data
+const ModalTogatherContainer = () => {
+  const [dishes, isLoading, isError] = useFetch(`${SERVER_URL}dishes/1/recommend`);
+
+  const items = dishes
     .map((item) => {
       return <Card key={item.id} item={item} imageSize={'small'}></Card>;
     })
     .slice(0, DISH_TOGATHER_MAX_COUNT);
+
+  if (isError) {
+    return <ErrorComponent />;
+  }
 
   return (
     <>
@@ -57,9 +65,9 @@ const DishTogatherContainer = () => {
           </PageNav>
         </FlexDiv>
       </Header>
-      <FlexDiv>{items}</FlexDiv>
+      {isLoading ? <Loading /> : <FlexDiv>{items}</FlexDiv>}
     </>
   );
 };
 
-export default DishTogatherContainer;
+export default ModalTogatherContainer;
