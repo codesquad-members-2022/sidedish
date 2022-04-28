@@ -1,10 +1,8 @@
-import Icon from './Icon';
-
 export default function MinusIcon() {
   return (
-    <Icon
-      width="32"
-      height="32"
+    <svg
+      width="18"
+      height="18"
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -12,10 +10,10 @@ export default function MinusIcon() {
       <path
         d="M9 16H23"
         stroke="#1B1B1B"
-        stroke-width="2"
-        stroke-linecap="square"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeLinejoin="round"
       />
-    </Icon>
+    </svg>
   );
 }
