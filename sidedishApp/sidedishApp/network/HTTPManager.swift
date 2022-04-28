@@ -8,20 +8,12 @@
 import Foundation
 
 final class HTTPManager {
-    enum HttpMethod: String {
-        case get = "GET"
-        case post = "POST"
-        
-        func getRawValue() -> String {
-            return self.rawValue
-        }
-    }
     
     static func requestGet(url: String, complete: @escaping (Data) -> ()) {
         guard let validURL = URL(string: url) else { return }
        
         var urlRequest = URLRequest(url: validURL)
-        urlRequest.httpMethod = HttpMethod.get.getRawValue()
+        urlRequest.httpMethod = HTTPMethod.get.getRawValue()
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data else { return }

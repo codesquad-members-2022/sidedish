@@ -27,6 +27,7 @@
 		009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E8280EEDC900D0FF1A /* CardFactory.swift */; };
 		00A903B8281785AA00E1402E /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A903B7281785AA00E1402E /* Dish.swift */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
+		00F6F882281A66E600ABC694 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F6F881281A66E600ABC694 /* HTTPMethod.swift */; };
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
 		D24CF2282812484300677D3D /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24CF2272812484300677D3D /* DetailCard.swift */; };
 		D267E823281A36C600499F15 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E822281A36C600499F15 /* ImageManager.swift */; };
@@ -61,6 +62,7 @@
 		009361E8280EEDC900D0FF1A /* CardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
 		00A903B7281785AA00E1402E /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		00F6F881281A66E600ABC694 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D24CF2272812484300677D3D /* DetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCard.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		0037166C281649DC0052F690 /* network */ = {
 			isa = PBXGroup;
 			children = (
+				00F6F881281A66E600ABC694 /* HTTPMethod.swift */,
 				0037166D28164B2C0052F690 /* HTTPManager.swift */,
 				D267E822281A36C600499F15 /* ImageManager.swift */,
 				0037166F281682C30052F690 /* JSONConverter.swift */,
@@ -341,6 +344,7 @@
 				D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */,
 				009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */,
 				D24CF2282812484300677D3D /* DetailCard.swift in Sources */,
+				00F6F882281A66E600ABC694 /* HTTPMethod.swift in Sources */,
 				0037166B281641130052F690 /* UIFontExtension.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,

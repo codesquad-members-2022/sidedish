@@ -50,58 +50,33 @@ extension MainViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        var dish: MainCard.Body
-        // var dishImageData: Data
-        
         switch indexPath.section { // 섹션 번호!
         case 0:
-            print("섹션1")
             guard let mainDishes = sideDishManager.mainDishes else { return cell }
-            dish = mainDishes.body[indexPath.item]
+            let dish = mainDishes.body[indexPath.item]
             cell.setPropertiesValue(dish: dish)
             
-            //guard let dishImageData = sideDishManager.getMainDishImages(hash: dish.detailHash) else { return cell }
             guard let image = self.sideDishManager.dataDictionary[dish.detailHash] else { return cell }
             cell.setImage(imageData: image)
         case 1:
-            print("섹션2")
             guard let soupDishes = sideDishManager.soupDishes else { return cell }
-            dish = soupDishes.body[indexPath.item]
+            let dish = soupDishes.body[indexPath.item]
             cell.setPropertiesValue(dish: dish)
             
-            //guard let dishImageData = sideDishManager.getMainDishImages(hash: dish.detailHash) else { return cell }
-            //cell.setImage(imageData: dishImageData)
             guard let image = self.sideDishManager.dataDictionary[dish.detailHash] else { return cell }
             cell.setImage(imageData: image)
         case 2:
-            print("섹션3")
             guard let sideDishes = sideDishManager.sideDishes else {
                 return cell
             }
-            dish = sideDishes.body[indexPath.item]
+            let dish = sideDishes.body[indexPath.item]
             cell.setPropertiesValue(dish: dish)
             
-            //guard let dishImageData = sideDishManager.getMainDishImages(hash: dish.detailHash) else { return cell }
-            //cell.setImage(imageData: dishImageData)
             guard let image = self.sideDishManager.dataDictionary[dish.detailHash] else { return cell }
             cell.setImage(imageData: image)
         default:
             return cell
         }
-//        cell.setPropertiesValue(dish: dish)
-        
-//        guard let imageData = sideDishManager.getMainDishImages(hash: dish.detailHash) else {
-//            return cell
-//        }
-        
-//        if imageData.isEmpty {
-//            print("이미지 없음")
-//            cell.setPropertiesValue(dish: dish)
-//        } else {
-//            print("이미지 있음")
-//            // cell.setPropertiesValue(dish: dish)
-//            cell.setImage(imageData: imageData)
-//        }
         
         return cell
     }
@@ -125,7 +100,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // 셀 아이템 선택 시
-        guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
         guard let dish = self.sideDishManager.getDishFromSection(indexPath: indexPath), let detail = self.sideDishManager.getDetailDishFromHash(hash: dish.detailHash) else { return }
         detailVC.selectedDish = dish
         detailVC.detailDish = detail
@@ -141,30 +116,25 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
 
 private extension MainViewController {
     func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setDishImage), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadMainCollectionView), name: NSNotification.Name(rawValue: "download"), object: sideDishManager) // 이미지 1개가 다운로드될 때마다 호출
+        NotificationCenter.default.addObserver(self, selector: #selector(setDishAndGetImage), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager) // dish 데이터 다운로드 후 이미지 셋팅 메서드 호출
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadImage), name: NSNotification.Name(rawValue: SideDishManager.downloadIdentifier), object: sideDishManager) // 이미지 1개가 다운로드될 때마다 호출
         self.sideDishManager.getDishes(type: .main)
         self.sideDishManager.getDishes(type: .soup)
         self.sideDishManager.getDishes(type: .side)
         self.sideDishManager.getDetailDish()
     }
     
-    @objc func reloadMainCollectionView() {
+    @objc
+    private func setDishAndGetImage() {
         DispatchQueue.main.async {
-            self.dishCollectionView.reloadData()
-            print("reloaded - section data")
+            self.dishCollectionView.reloadData() // 받아온 dish 데이터 보여주고
         }
+        self.sideDishManager.getMainDishImages() // 이미지 다운로드 시작
     }
     
-    @objc
-    private func setDishImage() {
+    @objc func reloadImage() {
         DispatchQueue.main.async {
-            self.dishCollectionView.reloadData()
+            self.dishCollectionView.reloadData() // 받아온 dish 이미지 보여주기
         }
-        self.sideDishManager.getMainDishImages()
-//        DispatchQueue.main.async { // 리로드에서 무한루프 발생 : 셀 이미지 업데이트 -> 리로드 -> 셀 이미지 -> 리로드 ....
-//            self.dishCollectionView.reloadData()
-//            print("reloaded - image data")
-//        }
     }
 }

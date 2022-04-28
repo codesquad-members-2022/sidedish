@@ -8,6 +8,9 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    static let identifier = "DetailViewController"
+    
     @IBOutlet weak var fullSizeVerticalScrollView: UIScrollView!
     
     @IBOutlet weak var stackView: UIStackView!
