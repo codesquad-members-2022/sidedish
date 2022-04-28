@@ -1,11 +1,10 @@
-package com.codesquad.sidedish.auth;
+package com.codesquad.sidedish.auth.client;
 
-import com.codesquad.sidedish.auth.dto.TokenResponse;
-import com.codesquad.sidedish.auth.dto.UserResponse;
+import com.codesquad.sidedish.auth.domain.GithubToken;
+import com.codesquad.sidedish.auth.domain.GithubUser;
+import com.codesquad.sidedish.auth.domain.OAuthProperties;
+import com.codesquad.sidedish.auth.domain.OAuthProvider;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -14,42 +13,41 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
-@PropertySource("classpath:oauth.properties")
-public class AuthClient {
+public class GithubAuthClient implements AuthClient<GithubToken, GithubUser> {
 
-    @Value("${oauth.client_id}")
-    private String clientId;
-    @Value("${oauth.client_secret}")
-    private String clientSecret;
+    private final OAuthProvider provider;
 
-    public TokenResponse getTokenResponse(String code) {
+    GithubAuthClient(OAuthProperties properties) {
+        this.provider = properties.getProvider("github");
+    }
+
+    public GithubToken getToken(String code) {
         return WebClient.create()
             .post()
-            .uri(URI.create("https://github.com/login/oauth/access_token"))
+            .uri(URI.create(provider.getAccessTokenPath()))
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .accept(MediaType.APPLICATION_JSON)
-            .acceptCharset(StandardCharsets.UTF_8)
             .bodyValue(createTokenBody(code))
             .retrieve()
-            .bodyToMono(TokenResponse.class)
+            .bodyToMono(GithubToken.class)
             .block();
     }
 
-    public UserResponse getUserResponse(String accessToken) {
+    public GithubUser getUser(String accessToken) {
         return WebClient.create()
             .get()
-            .uri(URI.create("https://api.github.com/user"))
+            .uri(URI.create(provider.getResourcePath()))
             .header(HttpHeaders.ACCEPT, "application/vnd.github.v3+json")
             .header(HttpHeaders.AUTHORIZATION, "token " + accessToken)
             .retrieve()
-            .bodyToMono(UserResponse.class)
+            .bodyToMono(GithubUser.class)
             .block();
     }
 
     private MultiValueMap<String, Object> createTokenBody(String code) {
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("client_id", clientId);
-        body.add("client_secret", clientSecret);
+        body.add("client_id", provider.getClientId());
+        body.add("client_secret", provider.getClientSecret());
         body.add("code", code);
         return body;
     }

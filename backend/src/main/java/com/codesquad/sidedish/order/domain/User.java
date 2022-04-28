@@ -36,8 +36,13 @@ public class User {
         this.point = point;
     }
 
-    public void update(String githubId, String username) {
-        this.githubId = githubId;
-        this.username = username;
+    public User update(User user) {
+        if (user == null) {
+            return null;
+        }
+
+        this.githubId = user.githubId;
+        this.username = user.username;
+        return this;
     }
 }
