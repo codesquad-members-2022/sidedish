@@ -34,7 +34,8 @@ public class OrderService {
 		if (remainStock < 0) {
 			throw new IllegalStateException("재고가 부족합니다.");
 		}
-		MenuOrderResponse menuOrderResponse = new MenuOrderResponse(orderRepository.save(menuOrder), menu);
+		MenuOrderResponse menuOrderResponse = new MenuOrderResponse(orderRepository.save(menuOrder),
+			menu);
 		menuRepository.updateStock(menuId, remainStock);
 		userRepository.updatePoint(request.getUserId(), getPoint(menu, menuOrder));
 		Optional<User> user = userRepository.findById(request.getUserId());
@@ -44,7 +45,7 @@ public class OrderService {
 	}
 
 	private int getPoint(Menu menu, MenuOrder menuOrder) {
-		return (int) ((menu.getPrice() * ((100 - menu.getSaleType().getSalePercentage()) / 100f))
+		return (int) (menu.getSaleType().calculateSalePrice(menu.getPrice())
 			* 0.01 * menuOrder.getQuantity());
 	}
 }
