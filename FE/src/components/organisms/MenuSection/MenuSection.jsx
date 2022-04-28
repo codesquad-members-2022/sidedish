@@ -14,9 +14,11 @@ export function MenuSection({ dataName, dataID }) {
     // fetchData(DATA_URL).then((data) => setCards(data));
   }, [dataID]);
 
-  const menuArticles = cards.map((card, index) => {
-    return <MenuArticle card={card} index={index} key={`article${index}`} />;
-  });
-
-  return <section className="menu-section">{menuArticles}</section>;
+  return (
+    <section className="menu-section">
+      {cards.map((card, index) => (
+        <MenuArticle card={card} index={index} key={`article${index}`} />
+      ))}
+    </section>
+  );
 }
