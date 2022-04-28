@@ -11,24 +11,27 @@ export function CategoryArea() {
   const [buttonState, setButtonState] = useState('보기');
 
   useEffect(() => {
-    async function addSideDishesToCategory(categoryResponses) {
-      for (let categoryResponse of categoryResponses) {
-        const { categoryId } = categoryResponse;
-        const { totalCount, sideDishCardResponses } = await fetchData(API.categoryDishes(categoryId, 0));
-
-        for (let page = 1; page * 4 < totalCount; page++) {
-          const { sideDishCardResponses: sideDishes } = await fetchData(API.categoryDishes(categoryId, page));
-          sideDishes.forEach(sideDish => {
-            sideDishCardResponses.push(sideDish);
-          });
-        }
-        categoryResponse.totalCount = totalCount;
-        categoryResponse.sideDishCardResponses = sideDishCardResponses;
-      }
+    async function addSideDishesToAllCategory(categoryResponses) {
+      await Promise.all(categoryResponses.map(categoryResponse => addSideDishesToCategory(categoryResponse)));
     }
+
+    async function addSideDishesToCategory(categoryResponse) {
+      const { categoryId } = categoryResponse;
+      const { totalCount, sideDishCardResponses } = await fetchData(API.categoryDishes(categoryId, 0));
+
+      for (let page = 1; page * 4 < totalCount; page++) {
+        const { sideDishCardResponses: sideDishes } = await fetchData(API.categoryDishes(categoryId, page));
+        sideDishes.forEach(sideDish => {
+          sideDishCardResponses.push(sideDish);
+        });
+      }
+      categoryResponse.totalCount = totalCount;
+      categoryResponse.sideDishCardResponses = sideDishCardResponses;
+    }
+
     async function getCategoryData() {
       const { categoryResponses } = await fetchData(API.category);
-      await addSideDishesToCategory(categoryResponses);
+      await addSideDishesToAllCategory(categoryResponses);
       setCategoryState(categoryResponses);
       setActiveCategory([0]);
     }
