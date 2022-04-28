@@ -55,11 +55,11 @@ struct MainCollectionViewModel {
 
     private func fetchCategories(of type: CategoryType) {
 
-        guard let request = CategoryRequest(from: type) else {
+        guard let categoryRequest = CategoryRequest(from: type) else {
             return
         }
 
-        networkManager.request(request) { categoryResponse in
+        categoryRequest.execute { categoryResponse in
             guard let productCellVMs = categoryResponse?.body.compactMap({ productSummary in
                 ProductCellViewModel(product: productSummary)
             }) else { return }
@@ -74,11 +74,11 @@ struct MainCollectionViewModel {
             return completion(image)
         }
 
-        guard let request = ImageRequest(url: url) else {
+        guard let imageRequest = ImageRequest(url: url) else {
             return
         }
 
-        networkManager.request(request) { data in
+        imageRequest.execute { data in
             guard let data = data as? NSData else {
                 return completion(nil)
             }
