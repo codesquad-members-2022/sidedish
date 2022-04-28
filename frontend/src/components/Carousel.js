@@ -44,7 +44,7 @@ const CarouselButton = ({ size, dir, onBtnClick, isEndPage }) => (
   </CarouselButtonWrapper>
 );
 
-export const Carousel = ({ id, name, size }) => {
+export const Carousel = ({ id, title, size }) => {
   const [curIndex, setCurIndex] = useState(0);
   const { requestDetail, products } = useFetch(Queries.products, id);
   const lastIndex = products?.length - cardNumPerPage[size];
@@ -61,7 +61,7 @@ export const Carousel = ({ id, name, size }) => {
     <>
       {products && (
         <>
-          <CarouselTitle size={size}>{requestDetail?.fullName}</CarouselTitle>
+          <CarouselTitle size={size}>{title}</CarouselTitle>
           <CardList products={products} cardSize={size} curIndex={curIndex} />
           <CarouselButton
             size={size}

@@ -18,14 +18,12 @@ export const Modal = ({ openId }) => {
   const [count, setCount] = useState(1);
   const [primaryImage, setPrimaryImage] = useState("");
   const [variantImages, setVariantImages] = useState([]);
-  const [info, setInfo] = useState();
-  const res = useFetch(Queries.product, openId);
+  const info = useFetch(Queries.product, openId);
   useEffect(() => {
-    setInfo(res);
     setPrimaryImage(info?.primary_image);
     setVariantImages(info?.variant_image);
-  }, [res]);
-  const { openedId, setOpenedId } = useContext(ModalContext);
+  }, [info]);
+  const { setOpenedId } = useContext(ModalContext);
 
   const changePrimary = (key, img) => {
     const newVariants = [...variantImages, primaryImage];
@@ -34,6 +32,7 @@ export const Modal = ({ openId }) => {
     setVariantImages(newVariants);
     setPrimaryImage(newPrimary);
   };
+
   return (
     <>
       {info && (
@@ -79,9 +78,7 @@ export const Modal = ({ openId }) => {
                 <Line />
                 <TotalWrapper>
                   <TotalAmount>
-                    <IconWrapper
-                      onClick={() => setCount((prev) => Math.max(prev - 1, 0))}
-                    >
+                    <IconWrapper onClick={() => setCount((prev) => Math.max(prev - 1, 0))}>
                       <Minus />
                     </IconWrapper>
                     <span>{count}</span>
@@ -101,7 +98,11 @@ export const Modal = ({ openId }) => {
             </MainProduct>
             <Line color={"Black"} />
             <RelatedProduct>
-              <Carousel categoryID={1} size={SIZES.small}></Carousel>
+              <Carousel
+                id={Math.floor(Math.random() * 3 + 1)}
+                title={"함께하면 좋은 요리"}
+                size={SIZES.small}
+              ></Carousel>
             </RelatedProduct>
           </ModalWrapper>
         </ModalBackground>
