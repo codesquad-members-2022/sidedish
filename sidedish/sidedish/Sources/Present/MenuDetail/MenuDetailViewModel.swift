@@ -27,17 +27,15 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModel
     let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
     
     private var cancellables = Set<AnyCancellable>()
-    private let sidedishRepository: SidedishRepository
-    private let resourceRepository: ResourceRepository
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.sidedishRepository) private var sidedishRepository: SidedishRepository
+    @Inject(\.resourceRepository) private var resourceRepository: ResourceRepository
     
     deinit {
         Log.debug("DeInit MenuDetailViewModel")
     }
     
     init(menu: Menu, sidedishRepository: SidedishRepository, resourceRepository: ResourceRepository) {
-        self.sidedishRepository = sidedishRepository
-        self.resourceRepository = resourceRepository
-        
         let requestDetail = action().loadMenuDetail
             .compactMap { [weak self] _ in self?.sidedishRepository.loadDetail(menu.hash) }
             .switchToLatest()
@@ -68,7 +66,7 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModel
         
         let requestOrder = action().tappedOrderButton
             .compactMap { [weak self] _ -> (String, String)? in
-                guard let userName = Container.userStore.user?.name,
+                guard let userName = self?.userStore.user?.name,
                       let count = self?.state().amount.value else {
                     return nil
                 }

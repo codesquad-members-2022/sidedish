@@ -21,10 +21,11 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty, MainViewModelA
     let loadedImage = PassthroughSubject<IndexPath, Never>()
     let presentLoginPage = PassthroughSubject<Void, Never>()
     
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.sidedishRepository) private var sidedishRepository: SidedishRepository
+    @Inject(\.resourceRepository) private var resourceRepository: ResourceRepository
+    @Inject(\.loginRepository) private var loginRepository: LoginRepository
     private var cancellables = Set<AnyCancellable>()
-    private let sidedishRepository: SidedishRepository
-    private let resourceRepository: ResourceRepository
-    private let loginRepository: LoginRepository
     
     private var menus = [Menu.Category: Menus]()
     private var thumbnailImages = [IndexPath: URL]()
@@ -42,13 +43,9 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty, MainViewModelA
         Log.debug("DeInit MainViewModel")
     }
     
-    init(sidedishRepository: SidedishRepository, resourceRepository: ResourceRepository, loginRepository: LoginRepository) {
-        self.sidedishRepository = sidedishRepository
-        self.resourceRepository = resourceRepository
-        self.loginRepository = loginRepository
-        
+    init() {
         action().viewDidLoad
-            .compactMap { Container.userStore.user }
+            .compactMap { [weak self] _ in self?.userStore.user }
             .sink(receiveValue: state().userData.send(_:))
             .store(in: &cancellables)
         
@@ -82,7 +79,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty, MainViewModelA
         action().tappedLogoutButton
             .compactMap { [weak self] _ in self?.loginRepository.signOut() }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.userStore.user = nil })
+            .handleEvents(receiveOutput: { [weak self] _ in self?.userStore.user = nil })
             .sink(receiveValue: state().presentLoginPage.send(_:))
             .store(in: &cancellables)
     }

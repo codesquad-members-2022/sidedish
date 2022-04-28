@@ -22,16 +22,15 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
     let presentMainView = PassthroughSubject<Void, Never>()
     let presentGoogleLogin = PassthroughSubject<GIDConfiguration, Never>()
     
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.loginRepository) private var loginRepository: LoginRepository
     private var cancellables = Set<AnyCancellable>()
-    private let loginRepository: LoginRepository
     
     deinit {
         Log.debug("DeInit LoginViewModel")
     }
     
-    init(loginRepository: LoginRepository) {
-        self.loginRepository = loginRepository
-        
+    init() {
         action().tappedGoogleLogin
             .compactMap { _ -> GIDConfiguration? in
                 guard let clientId = FirebaseApp.app()?.options.clientID else {
@@ -52,7 +51,7 @@ class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewMod
             }
             .compactMap { [weak self] credential in self?.loginRepository.googleLogin(authCredential: credential) }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.userStore.user = $0 })
+            .handleEvents(receiveOutput: { [weak self] user in self?.userStore.user = user })
             .map { _ in }
             .sink(receiveValue: state().presentMainView.send(_:))
             .store(in: &cancellables)
