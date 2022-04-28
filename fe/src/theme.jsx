@@ -12,9 +12,15 @@ const colors = {
   white: '#FFFFFF',
   green: '#6DD028',
   orange: '#FF8E14',
+  blue: '#4186f1',
 };
 
 const fontStyles = {
+  order: {
+    fontWeight: 700,
+    fontSize: '18px',
+    lineHeight: '26px',
+  },
   logo: {
     fontWeight: 900,
     fontSize: '40px',

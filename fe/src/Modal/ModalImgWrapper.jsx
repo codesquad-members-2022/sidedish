@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const ImgWrapper = styled.div`
@@ -10,11 +10,13 @@ const ImgWrapper = styled.div`
     ${({ theme }) => theme.modalImgSize.main};
     margin-bottom: 8px;
   }
+`;
 
-  img {
-    ${({ theme }) => theme.modalImgSize.side};
-    background: ${({ theme }) => theme.colors.gray3};
-  }
+const SubImage = styled.img`
+  display: inline-block;
+  ${({ theme }) => theme.modalImgSize.side};
+  background: ${({ theme }) => theme.colors.gray3};
+  cursor: pointer;
 `;
 
 const Grid = styled.div`
@@ -23,21 +25,47 @@ const Grid = styled.div`
   grid-column-gap: 8px;
 `;
 
-const ModalImgWrapper = ({ title, images }) => {
-  const [mainImage, ...subImages] = images;
+const ModalImgWrapper = ({ images }) => {
+  const [dishes, setDishes] = useState(images);
+
+  const handleSubImageClick = ({ currentTarget }) => {
+    const newImages = [...dishes];
+    const clickedImage = newImages.filter((dish) => dish.id === Number(currentTarget.id))[0];
+    const clickedImageIdx = newImages.indexOf(clickedImage);
+    newImages.splice(clickedImageIdx, 1);
+    const mainImage = newImages.shift();
+    newImages.push(mainImage);
+    newImages.unshift(clickedImage);
+    setDishes(newImages);
+  };
+
+  const main = dishes[0];
+  const mainImage = (
+    <img key={main.id} id={main.id} src={main.path} alt={main.name} className="first" />
+  );
+
+  const subImages = dishes.map((image, index) => {
+    return (
+      index !== 0 && (
+        <SubImage
+          key={image.id}
+          src={image.path}
+          alt={image.name}
+          id={image.id}
+          onClick={handleSubImageClick}
+        />
+      )
+    );
+  });
 
   return (
     images && (
       <ImgWrapper>
-        <img src={mainImage.path} alt={title} className="first" />
-        <Grid>
-          {subImages.map((image) => (
-            <img key={image.id} src={image.path} alt="" />
-          ))}
-        </Grid>
+        {mainImage}
+        <Grid>{subImages}</Grid>
       </ImgWrapper>
     )
   );
 };
 
-export default React.memo(ModalImgWrapper);
+export default ModalImgWrapper;
