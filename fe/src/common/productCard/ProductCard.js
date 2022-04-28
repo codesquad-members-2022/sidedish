@@ -40,7 +40,7 @@ export function ProductCard({ product, size, onClick }) {
         <Price>{`${product.price.toLocaleString()}원`}</Price>
       </PriceWrapper>
       <EventWrapper events={product.discountEventResponses} size={size} />
-      <DeliveryCircle hover={hover} shippingInfo={product.shippingInfo} />
+      <DeliveryCircle size={size} hover={hover} shippingInfo={product.shippingInfo} />
     </CardWrapper>
   );
 }

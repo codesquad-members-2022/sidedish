@@ -10,6 +10,8 @@ export const Header = styled.div`
 `;
 
 export const Main = styled.div`
+  ${({ flex }) => applyFlex({ flex })}
+  margin-top:50px;
   * {
     margin-right: 16px;
   }

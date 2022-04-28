@@ -1,10 +1,7 @@
 import { DeliveryInfo, StyledCircle } from './deliveryCircle.styled';
 
-export function DeliveryCircle({ shippingInfo, hover }) {
-  if (!shippingInfo) {
-    return;
-  }
-  if (!hover) {
+export function DeliveryCircle({ shippingInfo, hover, size }) {
+  if (!shippingInfo || !hover || size === 'small') {
     return;
   }
   const deliveryType = parseShippingInfo(shippingInfo);
