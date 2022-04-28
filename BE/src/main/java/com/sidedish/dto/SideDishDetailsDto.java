@@ -6,15 +6,15 @@ import lombok.Getter;
 @Getter
 public class SideDishDetailsDto {
 
-    private Integer id;
-    private String name;
-    private boolean dawnDeliveryFlag;
-    private boolean wholeNationDeliveryFlag;
-    private Integer price;
-    private String discountType;
-    private Integer discountRate;
-    private List<String> imageFiles;
-    private List<SideDishDto> recommendedSideDishes;
+    private final Integer id;
+    private final String name;
+    private final boolean dawnDeliveryFlag;
+    private final boolean wholeNationDeliveryFlag;
+    private final Integer price;
+    private final String discountType;
+    private final Integer discountRate;
+    private final List<String> imageFiles;
+    private final List<SideDishDto> recommendedSideDishes;
 
     public SideDishDetailsDto(Integer id, String name, boolean dawnDeliveryFlag,
         boolean wholeNationDeliveryFlag, Integer price, String discountType,

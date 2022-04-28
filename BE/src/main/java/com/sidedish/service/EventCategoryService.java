@@ -39,19 +39,4 @@ public class EventCategoryService {
         return null;
     }
 
-    public SideDishListDto getSideDishList(Integer eventCategoryId) {
-        List<SideDish> sideDishes = sideDishRepository.findAllByEventCategoryId(eventCategoryId);
-
-        return new SideDishListDto(shuffleSideDishes(sideDishes));
-    }
-
-    private List<SideDishDto> shuffleSideDishes(List<SideDish> sideDishes) {
-        Collections.shuffle(sideDishes);
-
-        return sideDishes.stream()
-            .limit(3)
-            .map(SideDishMapper::convertToSideDishDto)
-            .collect(Collectors.toList());
-    }
-
 }

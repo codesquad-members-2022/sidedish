@@ -62,8 +62,8 @@ CREATE TABLE image_file
 (
     id                INT         NOT NULL AUTO_INCREMENT,
     sidedish_id       INT         NOT NULL,
-    file_name         VARCHAR(32),
-    save_file_name    VARCHAR(32),
+    file_name         VARCHAR(32) COMMENT 'example.png',
+    save_file_name    VARCHAR(32) COMMENT 'img/example.png',
     content_type      VARCHAR(32) COMMENT 'image/png, image/jpg 등',
     image_type        VARCHAR(32) NOT NULL COMMENT 'ma : 메인 사진, etc : 기타 사진',
     delete_flag       TINYINT(1) DEFAULT 0 COMMENT '삭제 유무 : 존재 0, 삭제 : 1',

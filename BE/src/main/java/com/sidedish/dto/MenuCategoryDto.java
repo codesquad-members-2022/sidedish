@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 public class MenuCategoryDto {
 
-    private String menuCategoryName;
-    private List<SideDishDto> sideDishes;
+    private final String menuCategoryName;
+    private final List<SideDishDto> sideDishes;
 
     public MenuCategoryDto(String menuCategoryName,
         List<SideDishDto> sideDishes) {

@@ -20,7 +20,7 @@ public class MenuCategoryService {
     private final MenuCategoryRepository menuCategoryRepository;
     private final SideDishRepository sideDishRepository;
 
-    public MenuCategoryListDto makeFirstMenuCategory() {
+    public MenuCategoryListDto findFirstMenuCategoryWithSideDishes() {
         MenuCategory menuCategory = menuCategoryRepository.findFirstMenuCategory();
 
         String menuCategoryName = menuCategory.getName();
@@ -34,7 +34,7 @@ public class MenuCategoryService {
         return new MenuCategoryListDto(List.of(menuCategoryDto));
     }
 
-    public MenuCategoryListDto makeRestOfMenuCategories() {
+    public MenuCategoryListDto findRestOfCategoryWithSideDishes() {
         List<MenuCategoryDto> menuCategoryDtoList = new ArrayList<>();
         List<MenuCategory> menuCategories = menuCategoryRepository.findRestOfMenuCategories();
 
