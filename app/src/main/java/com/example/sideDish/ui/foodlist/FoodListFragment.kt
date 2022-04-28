@@ -19,8 +19,9 @@ import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
-import java.lang.Exception
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 const val DETAIL_HASH_KEY = "hash"
 const val TITLE_KEY = "title"
