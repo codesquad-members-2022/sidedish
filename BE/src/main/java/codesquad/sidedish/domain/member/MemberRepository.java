@@ -54,4 +54,18 @@ public class MemberRepository {
                     .mileage(rs.getInt("mileage"))
                     .build();
     }
+
+    public void update(Member updateMember) {
+        String sql = "UPDATE member\n" +
+                "SET member_name = :memberName, district = :district, city = :city, mileage = :mileage\n" +
+                "WHERE member_id = :memberId";
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("memberId", updateMember.getMemberId());
+        parameters.put("memberName", updateMember.getMemberName());
+        parameters.put("district", updateMember.getAddress().getDistrict());
+        parameters.put("city", updateMember.getAddress().getCity());
+        parameters.put("mileage", updateMember.getMileage());
+
+        jdbcTemplate.update(sql, parameters);
+    }
 }

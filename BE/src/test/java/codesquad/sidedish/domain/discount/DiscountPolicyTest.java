@@ -13,10 +13,10 @@ class DiscountPolicyTest {
     @Test
     @DisplayName("calculateDiscountedPrice 메서드는 할인된 가격을 반환해야 한다.")
     void calculateTest() {
-        long itemPrice = 10000;
+        int itemPrice = 10000;
         DiscountPolicy discountPolicy = new DiscountPolicy("이벤트 특가", 0.1);
 
-        long discountedPrice = discountPolicy.calculateDiscountedPrice(itemPrice);
+        int discountedPrice = discountPolicy.calculateDiscountedPrice(itemPrice);
         assertThat(discountedPrice).isEqualTo(9000);
     }
 
