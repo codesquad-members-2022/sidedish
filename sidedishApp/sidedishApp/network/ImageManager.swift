@@ -9,18 +9,9 @@ import Foundation
 
 final class ImageManager {
     
-    enum HttpMethod: String {
-        case get = "GET"
-        case post = "POST"
-        
-        func getRawValue() -> String {
-            return self.rawValue
-        }
-    }
-    
     static func downloadImage(url: URL, toFile file: URL, completion: @escaping (Error?) -> Void) {
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = HttpMethod.get.getRawValue()
+        urlRequest.httpMethod = HTTPMethod.get.getRawValue()
         
         let downloadTask = URLSession.shared.downloadTask(with: urlRequest) { tempURL, response, error in
             
