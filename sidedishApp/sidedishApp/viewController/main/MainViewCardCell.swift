@@ -23,7 +23,7 @@ class MainViewCardCell: UICollectionViewCell {
         var stackView = MainViewCardInfo()
         stackView.axis = .vertical
         stackView.alignment = .leading
-        // stackView.distribution = .fillProportionally
+        stackView.distribution = .fillProportionally
         stackView.spacing = 5
         return stackView
     }()
@@ -31,11 +31,13 @@ class MainViewCardCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
+        setUIConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUI()
+        setUIConstraints()
     }
     
     func setPropertiesValue(dish: MainCard.Body) {
@@ -51,7 +53,6 @@ class MainViewCardCell: UICollectionViewCell {
     private func setUI() {
         self.addSubview(cardImageView)
         self.addSubview(cardInfoVerticalStackView)
-        setUIConstraints()
     }
     
     private func setUIConstraints() {
@@ -63,8 +64,8 @@ class MainViewCardCell: UICollectionViewCell {
     private func congifureCardImageViewConstraint() {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             cardImageView.widthAnchor.constraint(equalToConstant: 120),
             cardImageView.heightAnchor.constraint(equalToConstant: 120)
         ])
@@ -75,7 +76,7 @@ class MainViewCardCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             cardInfoVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             cardInfoVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            cardInfoVerticalStackView.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor),
+            cardInfoVerticalStackView.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
             cardInfoVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
         ])
     }
