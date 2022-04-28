@@ -306,22 +306,34 @@ const GET_EVENT = [
   }),
 ];
 
-const getProductDetail = rest.get('/items/:iD', (req, res, ctx) => {
+const getProductDetail = rest.get(`${API_URL}/items/:id`, (req, res, ctx) => {
   return res(
     ctx.status(200),
     ctx.delay(0),
     ctx.json({
-      id: 1,
-      title: '오이피자',
-      price: 10000,
-      accumulate: 0.01,
-      discountPolicy: 'launch',
-      discountRate: 0.15,
-      images: [
-        'https://img.insight.co.kr/static/2019/06/26/700/f31l48lhp1v2tuq7ce8o.jpg',
-        'https://img.insight.co.kr/static/2019/06/26/700/5nmluh24cnp5h4rb3vj4.jpg',
-        'https://studyforus.com/files/attach/images/1816/212/461/aca7e1aed69a698c8896c641d77085dd.png',
-      ],
+      "result_code": 200,
+      "result_message": "OK",
+      "result_body": {
+        "id": 1,
+        "title": "오리주물럭",
+        "description": "감칠맛나는 매콤한 양념",
+        "price": 15800,
+        "quantity": 5,
+        "accumulate": 158,
+        "discountPolicy": "lunch",
+        "discountRate": 0.1,
+        "morningDelivery": false,
+        "images": [
+          {
+            "id": 1,
+            "url": "https://img.insight.co.kr/static/2019/06/26/700/f31l48lhp1v2tuq7ce8o.jpg"
+          },
+          {
+            "id": 2,
+            "url": "https://cdn.mindgil.com/news/photo/202004/69068_2873_1455.jpg"
+          }
+        ]
+      }
     })
   );
 });
@@ -331,4 +343,5 @@ export const handlers = [
   ...GET_EVENT,
   GET_CATEGORIES,
   ...GET_CATEGORY,
+  getProductDetail,
 ];
