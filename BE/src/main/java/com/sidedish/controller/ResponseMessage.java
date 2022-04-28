@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 @Getter
 public class ResponseMessage {
 
-    private HttpStatus status;
-    private String message;
+    private final HttpStatus status;
+    private final String message;
     private String email;
 
     public ResponseMessage(HttpStatus status, String message) {

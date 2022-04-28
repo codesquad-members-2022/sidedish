@@ -1,7 +1,6 @@
 package com.sidedish.controller;
 
 import com.sidedish.dto.EventCategoryListDto;
-import com.sidedish.dto.SideDishListDto;
 import com.sidedish.service.EventCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

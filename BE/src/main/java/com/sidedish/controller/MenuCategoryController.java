@@ -24,5 +24,4 @@ public class MenuCategoryController {
         return menuCategoryService.findRestOfCategoryWithSideDishes();
     }
 
-
 }

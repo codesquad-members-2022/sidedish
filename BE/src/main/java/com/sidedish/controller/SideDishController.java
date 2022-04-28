@@ -4,7 +4,6 @@ import com.sidedish.domain.SideDish;
 import com.sidedish.dto.SideDishDetailsDto;
 import com.sidedish.dto.SideDishDto;
 import com.sidedish.dto.SideDishListDto;
-import com.sidedish.service.EventCategoryService;
 import com.sidedish.service.SideDishService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

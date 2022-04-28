@@ -1,17 +1,12 @@
 package com.sidedish.service;
 
 import com.sidedish.domain.Event;
-import com.sidedish.domain.SideDish;
 import com.sidedish.dto.EventCategoryDto;
 import com.sidedish.dto.EventCategoryListDto;
-import com.sidedish.dto.SideDishDto;
-import com.sidedish.dto.SideDishListDto;
 import com.sidedish.mapper.EventCategoryMapper;
-import com.sidedish.mapper.SideDishMapper;
 import com.sidedish.repository.EventCategoryRepository;
 import com.sidedish.repository.EventRepository;
 import com.sidedish.repository.SideDishRepository;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +18,6 @@ public class EventCategoryService {
 
     private final EventRepository eventRepository;
     private final EventCategoryRepository eventCategoryRepository;
-    private final SideDishRepository sideDishRepository;
 
     public EventCategoryListDto getEventCategories() {
         for (Event event : eventRepository.findAll()) {

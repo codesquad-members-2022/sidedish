@@ -20,7 +20,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("github-login")
-    public ResponseEntity login(@RequestParam String code, HttpSession httpSession) {
+    public ResponseEntity<ResponseMessage> login(@RequestParam String code, HttpSession httpSession) {
         AccessToken accessToken = loginService.getAccessToken(code);
         List<String> userEmails = loginService.getUserEmails(accessToken);
         loginService.saveUserEmail(userEmails);
