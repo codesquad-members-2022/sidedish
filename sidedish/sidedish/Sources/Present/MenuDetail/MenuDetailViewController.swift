@@ -14,27 +14,16 @@ class MenuDetailViewController: UIViewController {
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isPagingEnabled = false
         return scrollView
     }()
 
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let contentView = UIView()
 
-    private let thumbnailImageView: ThumbnailImageView = {
-        let thumbnailView = ThumbnailImageView()
-        thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-
-        return thumbnailView
-    }()
+    private let thumbnailImageView = ThumbnailImageView()
     
     private let infoStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 24
         return stackView
