@@ -11,7 +11,6 @@ class MenuSectionView: UIView {
     
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         return stackView
     }()
@@ -29,24 +28,26 @@ class MenuSectionView: UIView {
     private func layout() {
         addSubview(contentStackView)
         
-        NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: topAnchor),
-            contentStackView.leftAnchor.constraint(equalTo: leftAnchor),
-            contentStackView.rightAnchor.constraint(equalTo: rightAnchor),
-            
-            heightAnchor.constraint(equalTo: contentStackView.heightAnchor)
-        ])
+        contentStackView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+        }
+        self.snp.makeConstraints { make in
+            make.height.equalTo(contentStackView)
+        }
     }
     func makeImageView(count: Int) {
         let imageViews = (0..<count).map { _ -> UIImageView in
             let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.contentMode = .scaleToFill
             contentStackView.addArrangedSubview(imageView)
-            imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+            contentStackView.snp.makeConstraints { make in
+                make.width.equalToSuperview()
+            }
             return imageView
         }
-        contentStackView.trailingAnchor.constraint(equalTo: imageViews[imageViews.count - 1].trailingAnchor).isActive = true
+        contentStackView.snp.makeConstraints { make in
+            make.trailing.equalTo(imageViews[imageViews.count - 1])
+        }
     }
     
     func setImage(_ index: Int, _ fileUrl: URL) {
@@ -56,6 +57,8 @@ class MenuSectionView: UIView {
         }
         let aspect = frame.width / image.size.width
         imageView.image = image
-        imageView.heightAnchor.constraint(equalToConstant: image.size.height * aspect).isActive = true
+        imageView.snp.makeConstraints { make in
+            make.height.equalTo(image.size.height * aspect)
+        }
     }
 }

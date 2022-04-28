@@ -28,7 +28,6 @@ class MenuDetailViewController: UIViewController {
     private let thumbnailImageView: ThumbnailImageView = {
         let thumbnailView = ThumbnailImageView()
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-
         return thumbnailView
     }()
     

@@ -13,9 +13,9 @@ import UIKit
 class LoginViewController: UIViewController {
     let googleLoginButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("구글 로그인", for: .normal)
         button.backgroundColor = .red
+        button.layer.cornerRadius = 30
         return button
     }()
     
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
         googleLoginButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalTo(300)
-            $0.height.equalTo(50)
+            $0.height.equalTo(60)
         }
         
         loadingIndicator.snp.makeConstraints {
