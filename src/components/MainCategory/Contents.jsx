@@ -45,6 +45,7 @@ export default function MainCategory() {
     <Wrap>
       {SIDE_DISHES.map(({ image, title, description, s_price, n_price, badge }) => (
         <Card
+          key={title}
           size="LARGE"
           imageURL={image}
           title={title}

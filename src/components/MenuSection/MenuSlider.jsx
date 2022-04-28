@@ -23,25 +23,6 @@ export default function MenuSlider() {
   return (
     <Wrap>
       <Slider>
-        <Slides
-          // onTransitionstart={() => setMoving(true)} // 왜 안되지?
-          onTransitionEnd={() => setMoving(false)}
-          curSlideIdx={curSlideIdx}
-        >
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
-            <li key={title}>
-              <Card
-                size={size}
-                imageURL={imageURL}
-                title={title}
-                desc={desc}
-                curPrice={curPrice}
-                prevPrice={prevPrice}
-                tags={tags}
-              />
-            </li>
-          ))}
-        </Slides>
         <ButtonWrap>
           <IconButton
             onClick={handleMovementToPrev}
@@ -62,6 +43,25 @@ export default function MenuSlider() {
             disabled={isMoving}
           />
         </ButtonWrap>
+        <Slides
+          // onTransitionstart={() => setMoving(true)} // 왜 안되지?
+          onTransitionEnd={() => setMoving(false)}
+          curSlideIdx={curSlideIdx}
+        >
+          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
+            <li key={title}>
+              <Card
+                size={size}
+                imageURL={imageURL}
+                title={title}
+                desc={desc}
+                curPrice={curPrice}
+                prevPrice={prevPrice}
+                tags={tags}
+              />
+            </li>
+          ))}
+        </Slides>
       </Slider>
     </Wrap>
   );
@@ -69,13 +69,13 @@ export default function MenuSlider() {
   function handleMovementToPrev() {
     const newCurSlideIdx = decreaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
-    setMoving(true);
+    disableButton();
   }
 
   function handleMovementToNext() {
     const newCurSlideIdx = increaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
-    setMoving(true);
+    disableButton();
   }
 
   function decreaseCurSlideIndex() {
@@ -89,7 +89,13 @@ export default function MenuSlider() {
     if (isLastSlide) {
       return curSlideIdx;
     }
+    setMoving(true);
     return curSlideIdx + sliderInfo.visibleLength;
+  }
+
+  function disableButton() {
+    if (isFirstSlide || isLastSlide) return;
+    setMoving(true);
   }
 }
 
