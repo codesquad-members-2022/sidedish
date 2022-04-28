@@ -1,0 +1,12 @@
+github:
+  secret: ${GITHUB_SECRET}
+  client:
+    id: ${GITHUB_CLIENT_ID}
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG

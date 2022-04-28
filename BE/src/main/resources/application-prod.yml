@@ -1,0 +1,19 @@
+github:
+  secret: ${GITHUB_SECRET}
+  client:
+    id: ${GITHUB_CLIENT_ID}
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_DATABASE_URL}
+    username: ${MYSQL_DATABASE_USERNAME}
+    password: ${MYSQL_DATABASE_PASSWORD}
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG
