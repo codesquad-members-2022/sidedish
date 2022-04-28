@@ -6,44 +6,44 @@ INSERT INTO `user` (github_id, username)
 VALUES ('nathan29849', 'Nathan');
 
 -- festival
-INSERT INTO dish (title, description, price)
-VALUES ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', 15800);
-INSERT INTO dish (title, description, price)
-VALUES ('소갈비찜', '촉촉하게 밴 양념이 일품', 28900);
-INSERT INTO dish (title, description, price)
-VALUES ('쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', 16900);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', 15800, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('소갈비찜', '촉촉하게 밴 양념이 일품', 28900, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', 16900, 1000);
 
 -- side
-INSERT INTO dish (title, description, price)
-VALUES ('새콤달콤 오징어무침', '국내산 오징어를 새콤달콤하게', 7500);
-INSERT INTO dish (title, description, price)
-VALUES ('호두 멸치볶음', '잔멸치와 호두가 만나 짭조름하지만 고소하게!', 5800);
-INSERT INTO dish (title, description, price)
-VALUES ('한돈 매콤 안심장조림', '부드러운 한돈 안심살의 매콤함', 6900);
-INSERT INTO dish (title, description, price)
-VALUES ('야채 어묵볶음', '첨가물 없는 순수어묵과 야채의 만남', 4900);
-INSERT INTO dish (title, description, price)
-VALUES ('오이소박이', NULL, 7300);
-INSERT INTO dish (title, description, price)
-VALUES ('미나리무침', NULL, 4300);
-INSERT INTO dish (title, description, price)
-VALUES ('참외오이무침', NULL, 4300);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('새콤달콤 오징어무침', '국내산 오징어를 새콤달콤하게', 7500, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('호두 멸치볶음', '잔멸치와 호두가 만나 짭조름하지만 고소하게!', 5800, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('한돈 매콤 안심장조림', '부드러운 한돈 안심살의 매콤함', 6900, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('야채 어묵볶음', '첨가물 없는 순수어묵과 야채의 만남', 4900, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('오이소박이', NULL, 7300, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('미나리무침', NULL, 4300, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('참외오이무침', NULL, 4300, 1000);
 
 -- soup
-INSERT INTO dish (title, description, price)
-VALUES ('한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', 9300);
-INSERT INTO dish (title, description, price)
-VALUES ('된장찌개', '특별하지 않아서 더 좋은 우리맛', 8800);
-INSERT INTO dish (title, description, price)
-VALUES ('미역오이냉국', '여름엔 시원한 냉국이 최고', 7500);
-INSERT INTO dish (title, description, price)
-VALUES ('동태찌개', '겨울철 보양식으로 안성맞춤', 10900);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('한돈 돼지 김치찌개', '김치찌개에는 역시 돼지고기', 9300, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('된장찌개', '특별하지 않아서 더 좋은 우리맛', 8800, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('미역오이냉국', '여름엔 시원한 냉국이 최고', 7500, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('동태찌개', '겨울철 보양식으로 안성맞춤', 10900, 1000);
 
 -- main
-INSERT INTO dish (title, description, price)
-VALUES ('잡채', '탱글한 면과 맛깔진 고명이 가득', 12900);
-INSERT INTO dish (title, description, price)
-VALUES ('간장 코다리조림', '쫀득한 코디를 국내산 간장소스로 맛있게 조렸어요', 14900);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('잡채', '탱글한 면과 맛깔진 고명이 가득', 12900, 1000);
+INSERT INTO dish (title, description, price, stock)
+VALUES ('간장 코다리조림', '쫀득한 코디를 국내산 간장소스로 맛있게 조렸어요', 14900, 1000);
 
 -- image
 INSERT INTO dish_image (dish_id, image_path, sequence)
@@ -85,15 +85,10 @@ INSERT INTO dish_image (dish_id, image_path)
 VALUES (16, 'https://bit.ly/3xKYvgR');
 
 -- delivery
-INSERT INTO delivery (detail)
-VALUES ('서울 경기 새벽 배송');
-INSERT INTO delivery (detail)
-VALUES ('전국 택배 배송');
-
-INSERT INTO dish_delivery (dish_id, delivery_id)
-VALUES (1, 1);
-INSERT INTO dish_delivery (dish_id, delivery_id)
-VALUES (1, 2);
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (1, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (1, 'DL002');
 
 -- category : festival
 INSERT INTO category (section_id, category_name, is_festival)
@@ -171,37 +166,31 @@ VALUES (15, 9);
 INSERT INTO dish_category (dish_id, category_id)
 VALUES (16, 10);
 
--- event badge
-INSERT INTO event_badge (event_badge_name, discount)
-VALUES ('런칭특가', 20);
-INSERT INTO event_badge (event_badge_name, discount)
-VALUES ('이벤트특가', 10);
-
 -- dish with event badge : 런칭특가
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (1, 1);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (4, 1);
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (1, 'DC001');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (4, 'DC001');
 
 -- dish with event badge : 이벤트특가
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (2, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (5, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (6, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (7, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (8, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (11, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (12, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (13, 2);
-INSERT INTO dish_event_badge (dish_id, event_badge_id)
-VALUES (15, 2);
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (2, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (5, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (6, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (7, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (8, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (11, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (12, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (13, 'DC002');
+INSERT INTO dish_discount (dish_id, discount_code)
+VALUES (15, 'DC002');
 
 -- recommend
 INSERT INTO dish_recommend (recommender_id, recommendee_id)

@@ -1,12 +1,12 @@
 package com.codesquad.sidedish.category;
 
+import com.codesquad.sidedish.category.domain.Category;
+import com.codesquad.sidedish.category.domain.DishRef;
+import com.codesquad.sidedish.category.dto.CategoryResponse;
 import com.codesquad.sidedish.dish.DishRepository;
 import com.codesquad.sidedish.dish.domain.Dish;
-import com.codesquad.sidedish.event_badge.EventBadgeRepository;
-import com.codesquad.sidedish.event_badge.domain.EventBadge;
-import com.codesquad.sidedish.util.MapperUtil;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,22 +17,19 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final DishRepository dishRepository;
-    private final EventBadgeRepository eventBadgeRepository;
 
     public List<CategoryResponse> groupDishBySection(String sectionName) {
         List<Category> categories = categoryRepository.findBySectionName(sectionName);
-        List<Dish> dishes = dishRepository.findBySectionName(sectionName);
-        List<EventBadge> eventBadges = eventBadgeRepository.findAll();
-        MapperUtil.mapEventBadges(dishes, eventBadges);
 
-        Map<Integer, List<Dish>> dishMap = dishes.stream()
-            .collect(Collectors.groupingBy(Dish::getCategoryId));
+        List<Integer> dishIds = categories.stream()
+            .map(Category::getDishes)
+            .flatMap(Set::stream)
+            .map(DishRef::getDishId)
+            .collect(Collectors.toList());
+        List<Dish> dishes = dishRepository.findByIdIn(dishIds);
 
-        for (Category category : categories) {
-            category.setDishes(dishMap.get(category.getId()));
-        }
         return categories.stream()
-            .map(CategoryResponse::from)
+            .map(category -> CategoryResponse.of(category, dishes))
             .collect(Collectors.toList());
     }
 }

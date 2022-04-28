@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export MYSQL_DATABASE_URL=""
+export MYSQL_DATABASE_USERNAME=""
+export MYSQL_DATABASE_PASSWORD=""
+
 cd back_sidedish/backend
 
 git fetch
@@ -22,4 +26,4 @@ rm -rf build
 git merge origin/backend
 ./gradlew bootJar
 
-nohup java -jar build/libs/sidedish-0.0.1-SNAPSHOT.jar &
+nohup java -jar build/libs/sidedish-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &

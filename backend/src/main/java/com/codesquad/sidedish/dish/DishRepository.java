@@ -8,24 +8,37 @@ import org.springframework.data.repository.query.Param;
 
 public interface DishRepository extends CrudRepository<Dish, Integer> {
 
-    @Query(value = "select d.dish_id, d.title, d.description, d.price, d.stock,"
-        + " di.dish_image_id, di.image_path, dc.category_id"
-        + " from dish d"
-        + " left outer join dish_image di on d.dish_id = di.dish_id and di.sequence = 1"
+    @Query(value = "select d.* from dish d"
         + " join dish_category dc on d.dish_id = dc.dish_id"
         + " join category sub on dc.category_id = sub.category_id"
         + " join category sec on sub.section_id = sec.category_id and sec.category_name = :section_name"
-        + " order by d.dish_id",
-        rowMapperClass = DishRowMapper.class)
-    List<Dish> findBySectionName(@Param("section_name") String sectionName);
+        + " order by d.dish_id"
+        + " limit :limit offset :offset")
+    List<Dish> findBySectionName(
+        @Param("section_name") String sectionName,
+        @Param("limit") Integer limit,
+        @Param("offset") Integer offset
+    );
 
-    @Query(value = "select d.dish_id, d.title, d.description, d.price, d.stock,"
-        + " di.dish_image_id, di.image_path, dc.category_id"
-        + " from dish d"
-        + " left outer join dish_image di on d.dish_id = di.dish_id and di.sequence = 1"
+    @Query(value = "select d.* from dish d"
         + " join dish_category dc on d.dish_id = dc.dish_id"
         + " join category sub on dc.category_id = sub.category_id and sub.category_name = :category_name"
-        + " order by d.dish_id",
-        rowMapperClass = DishRowMapper.class)
-    List<Dish> findByCategoryName(@Param("category_name") String categoryName);
+        + " order by d.dish_id"
+        + " limit :limit offset :offset")
+    List<Dish> findByCategoryName(
+        @Param("category_name") String categoryName,
+        @Param("limit") Integer limit,
+        @Param("offset") Integer offset
+    );
+
+    @Query(value = "select d.* from dish d"
+        + " where dish_id in (:dish_ids)"
+        + " limit :limit offset :offset")
+    List<Dish> findByIdIn(
+        @Param("dish_ids") List<Integer> dishIds,
+        @Param("limit") Integer limit,
+        @Param("offset") Integer offset
+    );
+
+    List<Dish> findByIdIn(List<Integer> dishIds);
 }

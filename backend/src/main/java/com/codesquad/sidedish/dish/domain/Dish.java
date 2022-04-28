@@ -1,49 +1,86 @@
 package com.codesquad.sidedish.dish.domain;
 
-import com.codesquad.sidedish.event_badge.domain.EventBadge;
-import java.util.List;
+import com.codesquad.sidedish.exception.ErrorCode;
+import com.codesquad.sidedish.exception.GoneException;
+import com.codesquad.sidedish.other.DiscountPolicy;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 @Getter
 @ToString
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Dish {
 
     @Id
     @Column(value = "dish_id")
     private Integer id;
 
-    private final Integer categoryId;
-    private final String title;
-    private final String description;
-    private final Integer price;
-    private final Integer stock;
+    private String title;
+    private String description;
+    private Integer price;
+    private Integer stock;
 
-    // relation
-    @Transient
-    private List<EventBadge> eventBadges;
-    @Transient
-    private DishImage dishImage;
+    @MappedCollection(idColumn = "dish_id")
+    private Set<DishDiscount> discounts = new HashSet<>();
 
-    public Dish(Integer id, String title, String description, Integer price, Integer stock,
-        Integer categoryId) {
+    @MappedCollection(idColumn = "dish_id")
+    private Set<DishImage> images = new HashSet<>();
+
+    @MappedCollection(idColumn = "dish_id")
+    private Set<DishDelivery> deliveries = new HashSet<>();
+
+    @MappedCollection(idColumn = "recommender_id")
+    private Set<RecommendRef> recommends = new HashSet<>();
+
+    public Dish(Integer id, String title, String description, Integer price, Integer stock) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.stock = stock;
-        this.categoryId = categoryId;
     }
 
-    public void setEventBadges(List<EventBadge> eventBadges) {
-        this.eventBadges = eventBadges;
+    private void setDiscounts(Set<DishDiscount> discounts) {
+        this.discounts = discounts;
     }
 
-    public void setDishImage(DishImage dishImage) {
-        this.dishImage = dishImage;
+    private void setDishImages(Set<DishImage> images) {
+        this.images = images;
+    }
+
+    private void setDeliveries(Set<DishDelivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public void setRecommends(Set<RecommendRef> recommends) {
+        this.recommends = recommends;
+    }
+
+    public int getDiscountPrice() {
+        BigDecimal totalRate = discounts.stream()
+            .map(DishDiscount::getCode)
+            .map(DiscountPolicy::from)
+            .map(DiscountPolicy::getRate)
+            .map(rate -> 1 - rate)
+            .map(BigDecimal::new)
+            .reduce(BigDecimal.ONE, BigDecimal::multiply);
+
+        return (int) (price * totalRate.doubleValue());
+    }
+
+    public void sold(int quantity) {
+        if (stock < quantity) {
+            throw new GoneException(ErrorCode.DISH_OUT_OF_STOCK);
+        }
+        stock -= quantity;
     }
 
 }

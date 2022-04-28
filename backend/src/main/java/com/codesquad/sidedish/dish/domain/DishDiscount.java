@@ -6,8 +6,9 @@ import org.springframework.data.relational.core.mapping.Column;
 
 @Getter
 @ToString
-public class DishDelivery {
+public class DishDiscount {
 
-    @Column("delivery_code")
+    @Column("discount_code")
     private String code;
+
 }
