@@ -11,7 +11,7 @@ struct Food: Codable{
     private(set) var detailHash: String
     private(set) var title: String
     private(set) var description: String
-    private(set) var image: URL
+    private(set) var imageURL: URL
     private(set) var alt: String
     private(set) var badge: [String]?
     private(set) var deliveryType: [String]
@@ -22,7 +22,7 @@ struct Food: Codable{
         case detailHash = "detail_hash"
         case title
         case description
-        case image
+        case imageURL = "image"
         case alt
         case badge
         case deliveryType = "delivery_type"
