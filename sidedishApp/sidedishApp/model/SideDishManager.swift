@@ -16,8 +16,8 @@ final class SideDishManager {
     private(set) var soupDishes: MainCard?
     private(set) var sideDishes: MainCard?
     private(set) var selectedDish: DetailCard?
-    private(set) var dataDictionary = [String: Data]()
-    private(set) var imageURLs = [(String, URL)]()
+    private(set) var imageUrlList = [(String, URL)]() // hash, imageURL
+    private(set) var dataDictionary = [String: Data]() // hash, imageData
     
     static let shared = SideDishManager()
     
@@ -92,65 +92,41 @@ final class SideDishManager {
         return dishCount
     }
     
-    func getMainDishImages() {//-> Data? {
-        // sideDishManager에 API정보를 다 받아온 다음 실행
-//        guard let imageURL = getMainDishImageURLFromHash(hash: hash) else {
-//            return nil
-//        }
-//        var imageData = Data()
+    func getMainDishImages() {
         
-        getMainDishImageURLFromHash()
+        getMainDishImageURLFromHash() // imageUrlList에 이미지 url 셋팅
         
-        for (hash, url) in imageURLs {
+        for (hash, url) in imageUrlList {
             ImageManager.loadData(url: url) { (data, error) in
-                // 다운로드받은 파일 데이터 처리
+                // 이미지 url로부터 이미지 다운로드
                 if let data = data {
                     self.dataDictionary[hash] = data
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "download"), object: self)
             }
         }
-        
-        //return imageData
     }
     
-    private func getMainDishImageURLFromHash() {//(hash: String) -> URL? {
+    private func getMainDishImageURLFromHash() {
         guard let mainDishesBody = mainDishes?.body,
               let soupDishesBody = soupDishes?.body,
               let sideDishesBody = sideDishes?.body else {
-            return //nil
+            return
         }
         
         mainDishesBody.forEach {
             guard let url = URL(string: $0.imageURL) else { return }
-            imageURLs.append(($0.detailHash, url))
+            imageUrlList.append(($0.detailHash, url))
         }
         
         soupDishesBody.forEach {
             guard let url = URL(string: $0.imageURL) else { return }
-            imageURLs.append(($0.detailHash, url))
+            imageUrlList.append(($0.detailHash, url))
         }
         
         sideDishesBody.forEach {
             guard let url = URL(string: $0.imageURL) else { return }
-            imageURLs.append(($0.detailHash, url))
+            imageUrlList.append(($0.detailHash, url))
         }
-        
-//        for dishBody in mainDishesBody {
-//            if dishBody.detailHash == hash {
-//                return URL(string: dishBody.imageURL)
-//            }
-//        }
-//        for dishBody in soupDishesBody {
-//            if dishBody.detailHash == hash {
-//                return URL(string: dishBody.imageURL)
-//            }
-//        }
-//        for dishBody in sideDishesBody {
-//            if dishBody.detailHash == hash {
-//                return URL(string: dishBody.imageURL)
-//            }
-//        }
-//        return nil
     }
 }

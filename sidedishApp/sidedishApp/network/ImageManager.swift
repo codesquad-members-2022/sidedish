@@ -17,9 +17,6 @@ final class ImageManager {
             return self.rawValue
         }
     }
-
-    // 캐시에 이미지 다운로드해 저장
-    static let fileDownloadPath = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)[0]
     
     static func downloadImage(url: URL, toFile file: URL, completion: @escaping (Error?) -> Void) {
         var urlRequest = URLRequest(url: url)
@@ -51,11 +48,9 @@ final class ImageManager {
     
     static func loadData(url: URL, completion: @escaping (Data?, Error?) -> Void) {
         var result = Data()
-        // 캐시 내의 URL로의 경로 지정
-        let fileCachePath = FileManager.default.temporaryDirectory.appendingPathComponent(
-            url.lastPathComponent,
-            isDirectory: false
-        )
+        // 캐시 내의 URL로의 경로 지정. 캐시에 이미지 다운로드해 저장
+        let fileDownloadPath = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)[0]
+        
         // 캐시에 해당 이미지가 있으면 캐시의 이미지를 가져옴
         do {
             try result = Data(contentsOf: fileDownloadPath)
@@ -74,6 +69,5 @@ final class ImageManager {
                 print("캐시에 이미지가 없어 새로 다운로드 : \(error)")
             }
         }
-        // TODO : 이전에 다운받은 이미지가 있어서 매번 그 이미지를 가져오는 상황.
     }
 }
