@@ -86,16 +86,18 @@ export const ProductInfo = ({
       <Title className={Fonts.LG}>{title}</Title>
       {discountPolicy ? (
         <>
-          <OriginalPrice className={Fonts.SM}>{price} 원</OriginalPrice>
+          <OriginalPrice className={Fonts.SM}>
+            {price.toLocaleString()} 원
+          </OriginalPrice>
           <ListPrice>
             <DiscountBadge type={discountPolicy} />
             <Price className={Fonts.LG}>
-              {price - price * discountRate} 원
+              {(price - price * discountRate).toLocaleString()} 원
             </Price>
           </ListPrice>
         </>
       ) : (
-        <Price className={Fonts.LG}>{price} 원</Price>
+        <Price className={Fonts.LG}>{price.toLocaleString()} 원</Price>
       )}
       <DeliveryInfo>
         <ProductOrderSpec>
@@ -106,10 +108,10 @@ export const ProductInfo = ({
 
         <ProductOrderInfo>
           <li className={Fonts.XS}>
-            {discountPolicy ? accumulate * price : price} 원
+            {(discountPolicy ? accumulate * price : price).toLocaleString()} 원
           </li>
           <li className={Fonts.XS}>이곳은 주소입니다</li>
-          <li className={Fonts.XS}>3000 원</li>
+          <li className={Fonts.XS}>{(3000).toLocaleString()} 원</li>
         </ProductOrderInfo>
       </DeliveryInfo>
 

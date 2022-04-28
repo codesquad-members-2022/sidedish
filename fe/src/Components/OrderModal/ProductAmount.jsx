@@ -64,7 +64,7 @@ export const ProductAmount = ({ priceData }) => {
         />
       </TotalAmount>
 
-      <TotalCost>{totalCost} 원</TotalCost>
+      <TotalCost>{totalCost.toLocaleString()} 원</TotalCost>
     </ProductAmountWrapper>
   );
 };
