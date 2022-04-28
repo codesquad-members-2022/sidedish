@@ -1,13 +1,25 @@
-import { ThemeProvider } from "styled-components";
 import { useState, useEffect } from "react";
-import { Reset } from "styled-reset";
-import theme from "../styles/theme.js";
 import Header from "./Header.js";
 import MainTab from "./MainTab.js";
 import Modal from "./Modal/Modal.js";
-import setData from "../store/store.js";
 import MainCategories from "./MainCategories.js";
 import { ModalContext } from "../contexts/ModalContext.js";
+
+const fetchDishData = (type) => {
+  return fetch(`https://api.codesquad.kr/onban/${type}`)
+    .then((res) => res.json())
+    .then((data) => data);
+};
+
+const fetchAllDishData = async () => {
+  const data = {};
+
+  data.main = await fetchDishData("main");
+  data.soup = await fetchDishData("soup");
+  data.side = await fetchDishData("side");
+
+  return data;
+};
 
 function App() {
   const [dishData, setDishData] = useState([]);
@@ -16,7 +28,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const result = await setData();
+      const result = await fetchAllDishData();
       setDishData([
         { key: "MAIN", data: result.main.body },
         { key: "SOUP", data: result.soup.body },
@@ -37,24 +49,18 @@ function App() {
 
   return (
     <>
-      <Reset />
-      <ThemeProvider theme={theme}>
-        <Header />
-        <main>
-          <ModalContext.Provider
-            value={{ showModal, setShowModal, setProductHash }}
-          >
-            <MainTab dish={getAllDish()} />
-            {showModal && (
-              <Modal
-                showModalPopup={showModalPopup}
-                productHash={productHash}
-              />
-            )}
-            <MainCategories data={dishData} />
-          </ModalContext.Provider>
-        </main>
-      </ThemeProvider>
+      <Header />
+      <main>
+        <ModalContext.Provider
+          value={{ showModal, setShowModal, setProductHash }}
+        >
+          <MainTab dish={getAllDish()} />
+          {showModal && (
+            <Modal showModalPopup={showModalPopup} productHash={productHash} />
+          )}
+          <MainCategories data={dishData} />
+        </ModalContext.Provider>
+      </main>
     </>
   );
 }

@@ -74,7 +74,7 @@ const MainTab = ({ dish }) => {
     if (dish.length === 0) return;
 
     const shuffle = selectDish();
-    const shuffleCards = setShuffleCards(shuffle);
+    const shuffleCards = ShuffleCards(shuffle);
     setTabCards(shuffleCards);
   }, [dish]);
 
@@ -83,7 +83,7 @@ const MainTab = ({ dish }) => {
     return seletedDish;
   };
 
-  const setShuffleCards = (shuffle) => {
+  const ShuffleCards = (shuffle) => {
     const tabCards = [];
     for (let i = 0, count = 0; i < tabTexts.length; i++) {
       tabCards[i] = shuffle.slice(count, count + 3);
