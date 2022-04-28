@@ -1,7 +1,6 @@
 package kr.codesquad.sidedish.repository;
 
 import kr.codesquad.sidedish.domain.Order;
-import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;

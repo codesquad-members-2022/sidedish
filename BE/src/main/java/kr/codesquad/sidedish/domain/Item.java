@@ -37,6 +37,10 @@ public class Item {
         this.images = images;
     }
 
+    public void changeStock(Integer quantity) {
+        this.stock = this.getStock() - quantity;
+    }
+
     public Long getItemId() {
         return itemId;
     }

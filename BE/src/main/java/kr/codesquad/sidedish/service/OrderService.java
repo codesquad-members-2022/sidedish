@@ -25,12 +25,9 @@ public class OrderService {
         Order saved = orderRepository.save(orderRequest.toEntity());
         Integer quantity = orderRequest.getQuantity();
         Long itemId = orderRequest.getItemId();
-        Optional<Item> orderItem = itemRepository.findById(itemId);
-        Item item = orderItem.orElseThrow();
-        Integer stock = item.getStock();
-        int newStock = stock - quantity;
-
-        orderRepository.updateStock(newStock, itemId);
+        Item item = itemRepository.findById(itemId).orElseThrow(RuntimeException::new);
+        item.changeStock(quantity);
+        orderRepository.updateStock(item.getStock(), itemId);
         return OrderResponse.from(saved);
     }
 }
