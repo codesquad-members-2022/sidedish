@@ -1,3 +1,4 @@
+drop table if exists orders;
 drop table if exists product_image;
 drop table if exists product;
 drop table if exists discount_policy;
@@ -38,5 +39,15 @@ create table product_image
     id         bigint auto_increment primary key,
     product_id bigint        not null,
     image_url  varchar(1000) not null,
+    foreign key (product_id) references product (id)
+);
+
+create table orders
+(
+    id              bigint          auto_increment primary key,
+    product_id      bigint          not null,
+    total_price     bigint          not null,
+    count           bigint          not null,
+    delivery_price  bigint          not null,
     foreign key (product_id) references product (id)
 );

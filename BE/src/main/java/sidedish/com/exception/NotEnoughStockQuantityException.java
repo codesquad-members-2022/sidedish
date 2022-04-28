@@ -1,12 +1,12 @@
 package sidedish.com.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import lombok.Getter;
 
-@ResponseStatus(HttpStatus.BAD_REQUEST)
+@Getter
 public class NotEnoughStockQuantityException extends RuntimeException {
+    private long stockQuantity;
 
-    public NotEnoughStockQuantityException(String message) {
-        super(message);
+    public NotEnoughStockQuantityException(long stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 }

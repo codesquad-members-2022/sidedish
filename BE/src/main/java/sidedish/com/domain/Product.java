@@ -27,7 +27,7 @@ public class Product {
 		String description, long originalPrice, long stockQuantity, String mealCategory,
 		String bestCategory) {
 		if (stockQuantity < 0) {
-			throw new NotEnoughStockQuantityException("재고가 충분하지 않습니다");
+			throw new NotEnoughStockQuantityException(stockQuantity);
 		}
 		this.id = id;
 		this.discountPolicy = discountPolicy;
@@ -53,7 +53,7 @@ public class Product {
 
 	public void minusStockQuantity(long count) {
 		if (count > stockQuantity) {
-			throw new NotEnoughStockQuantityException("재고가 충분하지 않습니다");
+			throw new NotEnoughStockQuantityException(stockQuantity);
 		}
 		stockQuantity -= count;
 	}

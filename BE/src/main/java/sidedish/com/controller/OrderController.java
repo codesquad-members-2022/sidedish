@@ -20,7 +20,9 @@ public class OrderController {
 
     @PostMapping("/api/products/{id}/order")
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderSaveResponse order(@PathVariable Long id, @RequestBody @Valid OrderSaveRequest orderSaveRequest) {
+    public OrderSaveResponse order(@PathVariable Long id,
+        @RequestBody @Valid OrderSaveRequest orderSaveRequest) {
         return orderService.save(id, orderSaveRequest.getCount());
     }
+
 }
