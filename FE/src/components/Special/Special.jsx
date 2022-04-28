@@ -12,11 +12,11 @@ import {
   CardContainer,
 } from './Special.style';
 import tabData from 'data/specialTab.js';
-import { TEST_URL } from 'constants/api';
+import { MOCK_URL } from 'constants/api';
 
 const Special = () => {
   const [data, setData] = useState([]);
-  const [tabNum, setTabNum] = useState(0);
+  const [tabNum, setTabNum] = useState(1);
 
   useEffect(() => {
     fetchTabData(tabNum);
@@ -24,13 +24,11 @@ const Special = () => {
 
   const handleTabClick = tabNum => {
     setTabNum(tabNum);
-    // fetchTabData(tabNum);
   };
 
   const fetchTabData = async tabNum => {
-    // const TEST_URL = `http://3.39.42.204/api/dishes/${tabNum}`;
-    const data = await fetchData(TEST_URL);
-    setData(data.slice(0, 3));
+    const data = await fetchData(`${MOCK_URL}/special/${tabNum}`);
+    setData(data[tabNum]);
   };
 
   return (
