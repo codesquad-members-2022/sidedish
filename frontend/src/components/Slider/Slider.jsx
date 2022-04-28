@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useCallback} from "react";
 import {fetchData} from "utils/utils";
 import {serverURL} from "constants/urlPath";
 import {prevButtonIcon, nextButtonIcon} from "constants";
@@ -14,10 +14,10 @@ function Slider({sideDishTitle, openModal}) {
   const sliderPrevButton = useRef();
   const sliderNextButton = useRef();
 
-  const fetchAPI = async () => {
+  const fetchAPI = useCallback(async () => {
     const data = await fetchData(`${serverURL}/${sideDishTitle}`);
     setGoodsData(data);
-  };
+  }, [sideDishTitle]);
 
   const handleClickedButton = ({target}) => {
     const hasClass = (element, className) => {
@@ -38,7 +38,7 @@ function Slider({sideDishTitle, openModal}) {
 
   useEffect(() => {
     fetchAPI();
-  }, []);
+  }, [fetchAPI]);
 
   useEffect(() => {
     if (sliderState.clickedButton === "") return;

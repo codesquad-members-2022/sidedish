@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import {fetchData, postData} from "utils/utils";
 import {serverURL} from "constants/urlPath";
 import {
@@ -21,32 +21,32 @@ function Modal({visible, onClose, productId}) {
   const [orderState, setOrderState] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
-  const fetchAPI = async () => {
+  const fetchAPI = useCallback(async () => {
     if (!productId) return;
     const data = await fetchData(`${serverURL}/${productId}`);
     console.log(data);
     //setGoodsData(data)
-  };
+  }, [productId]);
 
   const handleOrder = () => {
     setOrderState(true);
     setOrderInfo({...orderInfo, id: productId, quantity: 1, price: 100});
   };
 
-  const postAPI = async () => {
+  const postAPI = useCallback(async () => {
     if (!orderState) return;
     const response = await postData(`${serverURL}/order`, orderInfo);
     setOrderSuccess(response);
     if (!response) setOrderState(false);
-  };
+  }, [orderInfo, orderState]);
 
   useEffect(() => {
     fetchAPI();
-  }, [productId]);
+  }, [fetchAPI]);
 
   useEffect(() => {
     postAPI();
-  }, [orderState]);
+  }, [postAPI]);
 
   if (!visible) return;
   return (
