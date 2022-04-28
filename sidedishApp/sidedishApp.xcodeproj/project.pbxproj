@@ -29,6 +29,7 @@
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
 		74F3831637597EF14C26372B /* Pods_sidedishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */; };
 		D24CF2282812484300677D3D /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24CF2272812484300677D3D /* DetailCard.swift */; };
+		D267E823281A36C600499F15 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E822281A36C600499F15 /* ImageManager.swift */; };
 		D2ADF61F280E7A0100507878 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF61E280E7A0100507878 /* DetailViewController.swift */; };
 		D2ADF623280E888000507878 /* MainDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF622280E887F00507878 /* MainDescriptionViewController.swift */; };
 		D2ADF625280E9D7900507878 /* SubDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADF624280E9D7900507878 /* SubDescriptionViewController.swift */; };
@@ -63,6 +64,7 @@
 		0F03F9AB6A4D6B63D7B2849C /* Pods_sidedishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidedishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6F14DB76CC9A4392E9B75F /* Pods-sidedishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidedishApp.debug.xcconfig"; path = "Target Support Files/Pods-sidedishApp/Pods-sidedishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D24CF2272812484300677D3D /* DetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCard.swift; sourceTree = "<group>"; };
+		D267E822281A36C600499F15 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		D2ADF61E280E7A0100507878 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D2ADF622280E887F00507878 /* MainDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDescriptionViewController.swift; sourceTree = "<group>"; };
 		D2ADF624280E9D7900507878 /* SubDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				0037166D28164B2C0052F690 /* HTTPManager.swift */,
+				D267E822281A36C600499F15 /* ImageManager.swift */,
 				0037166F281682C30052F690 /* JSONConverter.swift */,
 			);
 			path = network;
@@ -349,6 +352,7 @@
 				00371670281682C30052F690 /* JSONConverter.swift in Sources */,
 				0048484D2818214800D91E78 /* BadgeStackView.swift in Sources */,
 				009361E5280EE47400D0FF1A /* MainCard.swift in Sources */,
+				D267E823281A36C600499F15 /* ImageManager.swift in Sources */,
 				0045439528168D57005DA649 /* SideDishManager.swift in Sources */,
 				009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */,
 				009361E0280E637C00D0FF1A /* MainViewCardCell.swift in Sources */,
