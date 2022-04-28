@@ -12,7 +12,7 @@ export function ProductCard({ product, size }) {
     setHover(false);
   }
   return (
-    <CardWrapper onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <CardWrapper data-id={product.sideDishId} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <StyledImg src={product.imageUrl} size={size} />
       <StyledH2 size={size}>{product.name}</StyledH2>
       {size !== 'small' ? <StyledP size={size}>{product.description}</StyledP> : ``}

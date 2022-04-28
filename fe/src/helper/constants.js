@@ -44,6 +44,7 @@ export const buttonIcons = {
 export const API = {
   exhibitions: `http://54.180.92.20:8080/api/exhibitions`,
   categoryDishes: `http://54.180.92.20:8080/api/sidedishes/category`,
+  sideDish: `http://54.180.92.20:8080/api/sidedishes`,
 };
 
 export const EXHIBITION_ID = {

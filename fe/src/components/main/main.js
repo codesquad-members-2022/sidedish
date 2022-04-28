@@ -9,6 +9,7 @@ export function Main() {
     <>
       <BestProduct setModal={setModal} />
       <CategoryArea setModal={setModal} />
+      <ProductDetailModal data={modal}></ProductDetailModal>
     </>
   );
 }
