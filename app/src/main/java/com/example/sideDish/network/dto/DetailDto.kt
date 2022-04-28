@@ -27,13 +27,14 @@ data class DetailDto(
 )
 
 fun DetailDto.toFoodDetail(): FoodDetail {
+
     return FoodDetail(
         detail.deliveryFee,
         detail.deliveryInfo,
         detail.detailSection,
         detail.point,
+        if (detail.prices.size > 1) detail.prices[1] else "",
         detail.prices[0],
-        detail.prices[1],
         detail.productDescription,
         detail.thumbImages,
         detail.topImage,
