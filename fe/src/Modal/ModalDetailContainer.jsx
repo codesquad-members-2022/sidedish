@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as MinusIcon } from 'image/minus.svg';
 import { ReactComponent as PlusIcon } from 'image/plus.svg';
 import { FlexDiv } from 'common/FlexDiv';
+import { setPrice } from 'util';
 
 const DetailContainer = styled.div`
   min-width: 440px;
@@ -125,7 +126,6 @@ const ModalOrderButton = styled.button`
 `;
 
 const ModalDetailContainer = ({ item }) => {
-  const setPrice = (price) => Number(price).toLocaleString();
   return (
     <DetailContainer>
       <ModalProductInfo>

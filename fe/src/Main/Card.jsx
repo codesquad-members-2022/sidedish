@@ -8,6 +8,7 @@ import DishTogatherContainer from 'Main/Dish/DishTogatherContainer';
 import Modal from 'Modal';
 import ModalDetailContainer from 'Modal/ModalDetailContainer';
 import ModalImgWrapper from 'Modal/ModalImgWrapper';
+import { setPrice } from 'util';
 
 const CardItem = styled.div`
   ${({ imageSize }) => {
@@ -112,7 +113,6 @@ const ModalTogetherContainer = styled.article`
 const Card = ({ item, imageSize }) => {
   const [hover, setHover] = useState(false);
   const [dishes, setDishes] = useState([]);
-  const setPrice = (price) => Number(price).toLocaleString();
 
   const onMouseOver = () => setHover(true);
 

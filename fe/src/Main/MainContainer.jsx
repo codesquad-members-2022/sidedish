@@ -21,7 +21,8 @@ const MainContainer = () => {
         setDishes(data);
       }
     } catch (error) {
-      throw new Error(error);
+      console.error(error);
+      setDishes([]);
     }
   }, []);
 

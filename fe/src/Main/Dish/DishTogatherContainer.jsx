@@ -4,6 +4,7 @@ import { ReactComponent as LeftArrowIcon } from 'image/leftArrow.svg';
 import { ReactComponent as RightArrowIcon } from 'image/rightArrow.svg';
 import { FlexDiv } from 'common/FlexDiv';
 import Card from 'Main/Card';
+import { DISH_TOGATHER_MAX_COUNT } from 'constant';
 
 const Header = styled.div`
   margin-bottom: 28px;
@@ -40,7 +41,7 @@ const DishTogatherContainer = () => {
     .map((item) => {
       return <Card key={item.id} item={item} imageSize={'small'}></Card>;
     })
-    .slice(0, 5);
+    .slice(0, DISH_TOGATHER_MAX_COUNT);
 
   return (
     <>
