@@ -66,9 +66,11 @@ const App = () => {
       )}
       <MainCard mainCardData={mainCardData} handleModal={handleModal} />
       <SubCard dishData={mainDishData} title={title.first} />
-      {isButtonVisible && <SubCard dishData={soupData} title={title.second} />}
       {isButtonVisible && (
-        <SubCard dishData={sideDishData} title={title.third} />
+        <>
+          <SubCard dishData={soupData} title={title.second} />
+          <SubCard dishData={sideDishData} title={title.third} />
+        </>
       )}
       <StyledButton onClick={handleClickMoreCard}>
         {isButtonVisible ? btn.close : btn.open}
@@ -80,7 +82,6 @@ const App = () => {
 const StyledApp = styled.div`
   width: ${maxWidthBody.width}px;
   margin: 0 auto;
-  position: relative;
 `;
 
 const StyledButton = styled.button`

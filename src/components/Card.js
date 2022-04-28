@@ -4,20 +4,22 @@ import styled from 'styled-components';
 import Infos from './Infos';
 import { maxWidthBody } from '../css/variables';
 
-const Card = ({ cardInfo, cardNum, isFlex }) => {
+const Card = ({ cardInfo, showingSlideCardNum, isFlex }) => {
   const { title, image } = cardInfo;
 
   return (
     <StyledDiv isFlex={isFlex}>
-      <Img src={image} alt={title} cardNum={cardNum} />
+      <Img src={image} alt={title} showingSlideCardNum={showingSlideCardNum} />
       <Infos cardInfo={cardInfo} />
     </StyledDiv>
   );
 };
 
 const Img = styled.img`
-  width: ${({ cardNum }) => Math.floor(maxWidthBody.width / cardNum) - 43}px;
-  height: ${({ cardNum }) => Math.floor(maxWidthBody.width / cardNum) - 43}px;
+  width: ${({ showingSlideCardNum }) =>
+    Math.floor(maxWidthBody.width / showingSlideCardNum) - 43}px;
+  height: ${({ showingSlideCardNum }) =>
+    Math.floor(maxWidthBody.width / showingSlideCardNum) - 43}px;
 `;
 
 const StyledDiv = styled.div`

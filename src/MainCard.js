@@ -8,10 +8,8 @@ import CategoryTitle from './components/CategoryTitle';
 const MainCard = ({ mainCardData, handleModal }) => {
   const [tabId, setTabId] = useState(0);
 
-  const handleClickTab = ({ target }) => {
-    if (!target.id) return;
-
-    setTabId(target.id);
+  const handleClickTab = (id) => {
+    setTabId(id);
   };
 
   const startId = tabId === 0 ? 0 : tabId * 3;
@@ -20,13 +18,13 @@ const MainCard = ({ mainCardData, handleModal }) => {
 
   const banner = '기획전';
   const title = '한 번 주문하면 두 번 반하는 반찬';
-  const cardNum = 3;
+  const showingSlideCardNum = 3;
 
   return (
     <CardContainer
       cardInfos={mainDatas}
-      cardNum={cardNum}
       handleModal={handleModal}
+      showingSlideCardNum={showingSlideCardNum}
     >
       <StyledTap>
         <CategoryTitle title={title} banner={banner} />

@@ -17,7 +17,7 @@ const CardOrderPage = ({ selectedCardInfo }) => {
   );
   return (
     <>
-      <Card cardInfo={cardInfo} cardNum={3} isFlex={true} />;
+      <Card cardInfo={cardInfo} showingSlideCardNum={3} isFlex={true} />;
       <ShoppingInfo price={str2NumPrice} />
       <Order price={str2NumPrice} />
     </>

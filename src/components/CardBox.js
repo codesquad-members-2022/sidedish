@@ -5,7 +5,7 @@ import Card from './Card';
 
 const CardBox = ({
   hasButton,
-  cardNum,
+  showingSlideCardNum,
   slidingSize,
   cardInfos,
   handleModal,
@@ -13,12 +13,12 @@ const CardBox = ({
   return (
     <StyledCardContainer
       hasBtn={hasButton}
-      cardNum={cardNum}
+      showingSlideCardNum={showingSlideCardNum}
       slidingSize={slidingSize}
     >
       {cardInfos.map((cardInfo, idx) => (
         <StyledCard key={idx} onClick={() => handleModal(cardInfo)}>
-          <Card cardInfo={cardInfo} cardNum={cardNum} />
+          <Card cardInfo={cardInfo} showingSlideCardNum={showingSlideCardNum} />
         </StyledCard>
       ))}
     </StyledCardContainer>
