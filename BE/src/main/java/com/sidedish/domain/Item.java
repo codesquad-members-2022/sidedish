@@ -46,6 +46,14 @@ public class Item {
         this.orders.add(new OrderRef(order.getId()));
     }
 
+    public void decreasedQuantity(int quantity) {
+        this.quantity -= quantity;
+    }
+
+    public boolean isValidQuantity(int quantity) {
+        return this.quantity - quantity > 0;
+    }
+
     Set<Long> getOderIds() {
         return this.orders.stream()
                 .map(OrderRef::getOrder)
@@ -123,9 +131,5 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public void decreasedQuantity(int quantity) {
-        this.quantity -= quantity;
     }
 }

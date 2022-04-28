@@ -9,7 +9,7 @@
 - [ ] findItemByDetailType에 인자로 enum 전달히기
 - [ ] ResponseAdditionalDto 생성자 고민해보기
 - [ ] OrderRequest에서 id를 null로 보낸경우에도 QuantityException가 발생하지 않을까요??
-- [ ] item 내부에서 자체적으로 남은 수량 계산하기
+- [x] item 내부에서 자체적으로 남은 수량 계산하기
 
 # 1차 PR 리뷰 수정사항
 - [x] categoryService 에서 pageId 받는 부분 수정하기
