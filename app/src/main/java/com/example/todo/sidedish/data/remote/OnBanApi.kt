@@ -17,5 +17,9 @@ interface OnBanApi {
     suspend fun getSide(): MenuDto
 
     @GET("detail/{detail_hash}")
-    suspend fun getDetail(@Path("detail_hash") hash:String) : MenuDetailDto
+    suspend fun getDetail(@Path("detail_hash") hash: String): MenuDetailDto
+
+    companion object {
+        const val ERROR_MESSAGE = "서버에 접속을 실패했습니다"
+    }
 }

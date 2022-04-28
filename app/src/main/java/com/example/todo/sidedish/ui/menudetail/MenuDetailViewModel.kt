@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.todo.sidedish.common.Constants
+import com.example.todo.sidedish.data.remote.OnBanApi
 import com.example.todo.sidedish.domain.OrderRepository
 import com.example.todo.sidedish.domain.Repository
 import com.example.todo.sidedish.domain.model.MenuDetail
@@ -18,6 +20,7 @@ const val CHANNEL = "#2022-android"
 const val ICON_EMOJI = ":ghost:"
 const val USER_NAME = "webhookbot"
 const val ORDER_SUCCESS = "ok"
+
 
 @HiltViewModel
 class MenuDetailViewModel @Inject constructor(
@@ -36,14 +39,15 @@ class MenuDetailViewModel @Inject constructor(
 
     private val coroutineExceptionHandler: CoroutineExceptionHandler =
         CoroutineExceptionHandler { _, throwable ->
-            Log.e("CoroutineException", ": ${throwable.message}")
-            _errorMessage.value = "잘못된 접근입니다."
+            Log.e(Constants.COROUTINE_EXCEPTION_TAG, ": ${throwable.message}")
+            _errorMessage.value =  Constants.COROUTINE_ERROR
         }
 
     fun getDetail(hash: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
-            val detailMenu = menuRepository.getDetail(hash)
-            _detailInfo.value = detailMenu
+            menuRepository.getDetail(hash)
+                .onSuccess { _detailInfo.value = it }
+                .onFailure { _errorMessage.value = OnBanApi.ERROR_MESSAGE}
         }
     }
 

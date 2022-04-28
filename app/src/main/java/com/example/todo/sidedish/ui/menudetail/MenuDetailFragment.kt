@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.example.todo.sidedish.R
+import com.example.todo.sidedish.common.Constants
 import com.example.todo.sidedish.databinding.FragmentMenuDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,9 +23,9 @@ class MenuDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuDetailBinding
     private lateinit var navigator: NavController
-    private val detailHash: String by lazy { requireArguments().getString("KEY_HASH", "") }
-    private val title: String by lazy { requireArguments().getString("KEY_TITLE", "") }
-    private val badges: List<String>? by lazy { requireArguments().get("KEY_BADGE") as List<String>? }
+    private val detailHash: String by lazy { requireArguments().getString(Constants.HASH_KEY, Constants.EMPTY_DEFAULT) }
+    private val title: String by lazy { requireArguments().getString(Constants.TITLE_KEY, Constants.EMPTY_DEFAULT) }
+    private val badges: List<String>? by lazy { requireArguments().get(Constants.BADGE_KEY) as List<String>? }
     private val viewModel: MenuDetailViewModel by viewModels()
 
     override fun onCreateView(
