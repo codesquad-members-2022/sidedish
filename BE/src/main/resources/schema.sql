@@ -1,10 +1,10 @@
-
+drop table if exists CATEGORY;
 CREATE TABLE CATEGORY(
                          id          BIGINT PRIMARY KEY AUTO_INCREMENT,
                          name        VARCHAR(30) not null,
                          description VARCHAR(500)
 );
-
+drop table if exists EVENT;
 CREATE TABLE EVENT(
                       id          BIGINT PRIMARY KEY AUTO_INCREMENT,
                       name        VARCHAR(30) not null,
@@ -31,7 +31,7 @@ CREATE TABLE DISH(
 drop table if exists IMAGE;
 CREATE TABLE IMAGE(
                       id      BIGINT PRIMARY KEY AUTO_INCREMENT,
-                      name    VARCHAR(500) not null,
+                      name    VARCHAR(1000) not null,
                       dish_id BIGINT,
                       foreign key (dish_id) references DISH(id)
 );

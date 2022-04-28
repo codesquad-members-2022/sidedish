@@ -1,11 +1,12 @@
 package kr.codesquad.sidedish.domain;
 
 import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 public class Event {
- 
+
     @Id
     private Long id;
     private String name;

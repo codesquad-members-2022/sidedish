@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Dish {
 
-
     @Id
     private final Long id;
     private final Long categoryId;
@@ -82,8 +81,8 @@ public class Dish {
         return this.discountPolicy.calculate(this.price);
     }
 
-    public String getImageName(int imageIndex) {
-        return this.images.get(imageIndex).getName();
+    public String getImagePath(int imageIndex) {
+        return this.images.get(imageIndex).getPath();
     }
 
     public double getPointPercent() {
@@ -97,17 +96,17 @@ public class Dish {
     @Override
     public String toString() {
         return "Dish{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", eventId=" + eventId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", stock=" + stock +
-                ", price=" + price +
-                ", deliveryType=" + deliveryType +
-                ", discountPolicy=" + discountPolicy +
-                ", images=" + images +
-                ", pointPercent=" + pointPercent +
-                '}';
+            "id=" + id +
+            ", categoryId=" + categoryId +
+            ", eventId=" + eventId +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", stock=" + stock +
+            ", price=" + price +
+            ", deliveryType=" + deliveryType +
+            ", discountPolicy=" + discountPolicy +
+            ", images=" + images +
+            ", pointPercent=" + pointPercent +
+            '}';
     }
 }
