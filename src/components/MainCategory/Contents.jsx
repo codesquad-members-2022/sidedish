@@ -6,7 +6,7 @@ import Card from 'components/common/Card/Card';
 export default function Contents({ sideDishes }) {
   return (
     <Wrap>
-      {sideDishes.map(({ image, title, description, s_price, n_price, badge }) => (
+      {sideDishes.map(({ image, title, description, s_price, n_price, badge, alt }) => (
         <Card
           key={title}
           size="LARGE"
@@ -16,6 +16,7 @@ export default function Contents({ sideDishes }) {
           sellingPrice={s_price}
           normalPrice={n_price}
           tags={badge}
+          alt={alt}
         />
       ))}
     </Wrap>

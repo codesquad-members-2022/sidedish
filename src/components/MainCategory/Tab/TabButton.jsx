@@ -15,6 +15,7 @@ TabButton.defaultProps = {
 };
 
 const Wrap = styled.button({
+  boxSizing: 'content-box',
   width: 'fit-content',
   height: '48px',
   borderBottom: ({ isSelected, theme }) => (isSelected ? `2px solid ${theme.COLOR.BLACK[100]}` : '0'),
