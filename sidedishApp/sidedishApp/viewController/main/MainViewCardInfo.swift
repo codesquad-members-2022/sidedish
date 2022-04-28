@@ -31,19 +31,14 @@ class MainViewCardInfo: UIStackView {
         return label
     }()
     
-    let badgesView: BadgesView = {
-        var view = BadgesView()
-        return view
+    let badgeStackView: BadgeStackView = {
+        var stackView = BadgeStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        //stackView.spacing = 1
+        stackView.distribution = .fillProportionally
+        return stackView
     }()
-    
-//    let badgeStackView: BadgeStackView = {
-//        var stackView = BadgeStackView()
-//        stackView.axis = .horizontal
-//        stackView.spacing = 4
-//        stackView.alignment = .center
-//        stackView.distribution = .fillProportionally
-//        return stackView
-//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,8 +59,16 @@ class MainViewCardInfo: UIStackView {
         
         setPriceLabelAttributedString(salePrice: dish.salePrice, normalPrice: dish.normalPrice ?? "")
         
-        guard let badgeList = dish.badgeList else { return }
-        badgeList.forEach { badgesView.setBadge($0) }
+        if badgeStackView.subviews.count != .zero {
+            badgeStackView.clearSubviews()
+        }
+        guard let badgeTypeList = dish.badgeList else { return }
+        for badgeType in badgeTypeList {
+            print("\(badgeTypeList)의 \(badgeType)")
+            if let badgeLabel = BadgeLabel().makeBadge(type: badgeType) {
+                badgeStackView.addArrangedSubview(badgeLabel)
+            }
+        }
         // badgeStackView.setBadges(dish.badgeList)
     }
     
@@ -87,31 +90,22 @@ class MainViewCardInfo: UIStackView {
         self.addArrangedSubview(cardTitleLabel)
         self.addArrangedSubview(cardBodyLabel)
         self.addArrangedSubview(priceLabel)
-        self.addArrangedSubview(badgesView)
+        self.addArrangedSubview(badgeStackView)
     }
     
     private func setUIConstraints() {
         configureCardTitleLabelConstraint()
         configureCardBodyLabelConstraint()
         configurePriceLabelConstraint()
-        configureBadgesViewConstraint()
+        configureBadgeStackViewConstraint()
     }
     
-//    private func configureBadgeStackViewConstraint() {
-//        badgeStackView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            badgeStackView.widthAnchor.constraint(equalTo: self.widthAnchor),
-//            badgeStackView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),
-//            badgeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
-//        ])
-//    }
-    
-    private func configureBadgesViewConstraint() {
-        badgesView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureBadgeStackViewConstraint() {
+        badgeStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            badgesView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            badgesView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),
-            badgesView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+            badgeStackView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            badgeStackView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),
+            badgeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
         ])
     }
     
@@ -141,6 +135,5 @@ class MainViewCardInfo: UIStackView {
             priceLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
         ])
     }
-
 }
 

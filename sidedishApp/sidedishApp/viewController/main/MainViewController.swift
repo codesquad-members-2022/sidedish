@@ -55,7 +55,7 @@ extension MainViewController: UICollectionViewDataSource {
             guard let mainDishes = sideDishManager.mainDishes else { return cell }
             let dish = mainDishes.body[indexPath.item]
             cell.setPropertiesValue(dish: dish)
-            
+            print("\(dish.title)의 정보 셋팅")
             guard let image = self.sideDishManager.dataDictionary[dish.detailHash] else { return cell }
             cell.setImage(imageData: image)
         case 1:
