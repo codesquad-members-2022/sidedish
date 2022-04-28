@@ -61,11 +61,17 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
   return (
     <>
       <LeftArrow
-        img={`${process.env.PUBLIC_URL}/images/Arrow.svg`}
+        img={`${process.env.PUBLIC_URL}/images/${
+          currentPage === 1 ? "Arrow_grey.svg" : "Arrow_black.svg"
+        }`}
         onClick={handleLArrowClick}
       />
       <RightArrow
-        img={`${process.env.PUBLIC_URL}/images/Arrow.svg`}
+        img={`${process.env.PUBLIC_URL}/images/${
+          currentPage === SLIDER_INFO.NUM_OF_PAGE
+            ? "Arrow_grey.svg"
+            : "Arrow_black.svg"
+        }`}
         onClick={handleRArrowClick}
       />
       <Wrapper>
@@ -93,6 +99,7 @@ const Arrow = styled.button`
   width: 1.1rem;
   height: 2rem;
   top: 50%;
+  background-color: transparent;
   background-image: url(${({ img }) => img});
   background-size: 1.1rem 2rem;
   background-repeat: no-repeat;
