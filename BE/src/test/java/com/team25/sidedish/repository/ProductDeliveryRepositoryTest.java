@@ -31,15 +31,15 @@ class ProductDeliveryRepositoryTest {
     @DisplayName("프로덕트 ID를 통해 해당하는 딜리버리 목록을 조회할 수 있다")
     void 프로덕트ID로_딜리버리_조회_테스트() {
 
-        Optional<List<Delivery>> result = productDeliveryRepository.findDeliveriesByProductId(PRODUCT_ID);
+        List<Delivery> result = productDeliveryRepository.findDeliveriesByProductId(
+                PRODUCT_ID);
 
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(DELIVERY_COUNT);
-        assertThat(result.get().get(0).getId()).isEqualTo(DELIVERY_1_ID);
-        assertThat(result.get().get(0).getRegion()).isEqualTo(DELIVERY_1_REGION);
-        assertThat(result.get().get(0).getType()).isEqualTo(DELIVERY_1_TYPE);
-        assertThat(result.get().get(1).getId()).isEqualTo(DELIVERY_2_ID);
-        assertThat(result.get().get(1).getRegion()).isEqualTo(DELIVERY_2_REGION);
-        assertThat(result.get().get(1).getType()).isEqualTo(DELIVERY_2_TYPE);
+        assertThat(result).hasSize(DELIVERY_COUNT);
+        assertThat(result.get(0).getId()).isEqualTo(DELIVERY_1_ID);
+        assertThat(result.get(0).getRegion()).isEqualTo(DELIVERY_1_REGION);
+        assertThat(result.get(0).getType()).isEqualTo(DELIVERY_1_TYPE);
+        assertThat(result.get(1).getId()).isEqualTo(DELIVERY_2_ID);
+        assertThat(result.get(1).getRegion()).isEqualTo(DELIVERY_2_REGION);
+        assertThat(result.get(1).getType()).isEqualTo(DELIVERY_2_TYPE);
     }
 }

@@ -35,16 +35,15 @@ class ProductRepositoryTest {
     void 카테고리ID로_프로덕트_조회_테스트() {
 
         // when
-        Optional<List<Product>> result = productRepository.findProductsByCategoryId(
-            CATEGORY_ID);
+        List<Product> result = productRepository.findProductsByCategoryId(
+                CATEGORY_ID);
 
         // then
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(CATEGORY_PRODUCT_COUNT);
-        assertThat(result.get().get(0).getName()).isEqualTo(PRODUCT_NAME);
-        assertThat(result.get().get(0).getPrice()).isEqualTo(PRODUCT_PRICE);
-        assertThat(result.get().get(0).getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
-        assertThat(result.get().get(0).getStock()).isEqualTo(PRODUCT_STOCK);
+        assertThat(result).hasSize(CATEGORY_PRODUCT_COUNT);
+        assertThat(result.get(0).getName()).isEqualTo(PRODUCT_NAME);
+        assertThat(result.get(0).getPrice()).isEqualTo(PRODUCT_PRICE);
+        assertThat(result.get(0).getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
+        assertThat(result.get(0).getStock()).isEqualTo(PRODUCT_STOCK);
     }
 
     @Nested

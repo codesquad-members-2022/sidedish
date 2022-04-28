@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import com.team25.sidedish.domain.Image;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,9 @@ public class ImageRepositoryTest {
 
         List<Image> result = imageRepository.findImagesByProductId(PRODUCT_ID);
 
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(IMAGE_COUNT);
-        assertThat(result.get().get(0).getUrl()).isEqualTo(URL);
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(IMAGE_COUNT);
+        assertThat(result.get(0).getUrl()).isEqualTo(URL);
 
     }
 }
