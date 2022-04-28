@@ -77,7 +77,7 @@ public class Item {
 
     public List<String> getMainImageUrls() {
         return itemImages.stream()
-                .filter(itemImage -> itemImage.getItemImageType() == ItemImageType.MAIN)
+                .filter(ItemImage::isMainImage)
                 .sorted(Comparator.comparing(ItemImage::getItemImageSequence))
                 .map(ItemImage::getItemImageUrl)
                 .collect(Collectors.toList());
@@ -85,7 +85,7 @@ public class Item {
 
     public List<String> getSubImageUrls() {
         return itemImages.stream()
-                .filter(itemImage -> itemImage.getItemImageType() == ItemImageType.SUB)
+                .filter(ItemImage::isSubImage)
                 .sorted(Comparator.comparing(ItemImage::getItemImageSequence))
                 .map(ItemImage::getItemImageUrl)
                 .collect(Collectors.toList());

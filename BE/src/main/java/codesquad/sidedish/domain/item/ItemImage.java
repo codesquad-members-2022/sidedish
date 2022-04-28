@@ -31,4 +31,12 @@ public class ItemImage {
     public void initItemImageId(Long itemImageId) {
         this.itemImageId = itemImageId;
     }
+
+    public boolean isMainImage() {
+        return itemImageType == ItemImageType.MAIN;
+    }
+
+    public boolean isSubImage() {
+        return itemImageType == ItemImageType.SUB;
+    }
 }
