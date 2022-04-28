@@ -29,7 +29,7 @@ CardImageAndFlag.propTypes = {
   props: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.bool])
   ).isRequired,
-  isHover: PropTypes.func.isRequired,
+  isHover: PropTypes.bool.isRequired,
 };
 
 export default CardImageAndFlag;
