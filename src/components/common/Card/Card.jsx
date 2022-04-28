@@ -5,7 +5,7 @@ import Tag from 'components/common/Card/Tag';
 import Text from 'components/utils/Text';
 import HoverInfo from 'images/HoverInfo.png';
 
-export default function Card({ size, imageURL, title, desc, sellingPrice, normalPrice, tags, alt }) {
+export default function Card({ size, image, title, desc, sellingPrice, normalPrice, tags, alt }) {
   const [isHoverImg, setHoverImg] = useState(false);
   const isSizeSmall = size === 'SMALL';
   return (
@@ -13,7 +13,7 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
           {isSizeSmall ? null : <HoverImg />}
-          <img width={getWidthBySize(size)} height={getWidthBySize(size)} src={imageURL} alt={alt} />
+          <img width={getWidthBySize(size)} height={getWidthBySize(size)} src={image} alt={alt} />
         </ImgWrap>
         {isSizeSmall ? null : <Space />}
         {isSizeSmall ? <SmallTitle /> : <Title />}

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+/* eslint-disable camelcase */
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import IconButton from 'components/common/IconButton';
 import Card from 'components/common/Card/Card';
 import THEME from 'variable/theme';
-import slideData from 'components/MenuSection/slideMockData';
 
 // TODO: Ref로 받아와서 저장할 것.
 const sliderInfo = {
@@ -14,12 +14,19 @@ const sliderInfo = {
   visibleLength: 4
 };
 
-export default function MenuSlider() {
+const END_POINT = 'https://api.codesquad.kr/onban/';
+
+export default function MenuSlider({ menuName }) {
+  const [menuData, setMenuData] = useState([]);
   const [curSlideIdx, setCurSlideIdx] = useState(0);
   const [isMoving, setMoving] = useState(false);
 
   const isFirstSlide = slideIdx => slideIdx <= 0;
   const isLastSlide = slideIdx => slideIdx >= menuData.length - sliderInfo.visibleLength;
+
+  useEffect(() => {
+    fetchMenuData();
+  }, []);
 
   return (
     <Wrap>
@@ -45,16 +52,17 @@ export default function MenuSlider() {
           />
         </ButtonWrap>
         <Slides onTransitionEnd={() => setMoving(false)} curSlideIdx={curSlideIdx}>
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
+          {menuData.map(({ image, title, description, s_price, n_price, badge, alt }) => (
             <li key={title}>
               <Card
-                size={size}
-                imageURL={imageURL}
+                size="MEDIUM"
+                image={image}
                 title={title}
-                desc={desc}
-                curPrice={curPrice}
-                prevPrice={prevPrice}
-                tags={tags}
+                desc={description}
+                sellingPrice={s_price}
+                normalPrice={n_price}
+                tags={badge}
+                alt={alt}
               />
             </li>
           ))}
@@ -62,6 +70,18 @@ export default function MenuSlider() {
       </Slider>
     </Wrap>
   );
+
+  function fetchMenuData() {
+    const URL = `${END_POINT}${menuName}`;
+    fetch(URL)
+      .then(res => res.json())
+      .then(res => setMenuData(res.body), handleError);
+
+    function handleError(error) {
+      setMenuData([]);
+      throw new Error(`${error}: 데이터를 성공적으로 불러오지 못했습니다.`);
+    }
+  }
 
   function handleMovementToPrev() {
     const newCurSlideIdx = decreaseCurSlideIndex();
@@ -95,6 +115,10 @@ export default function MenuSlider() {
     setMoving(true);
   }
 }
+
+MenuSlider.defaultProps = {
+  menuName: 'main'
+};
 
 const Wrap = styled.div({
   position: 'relative'
