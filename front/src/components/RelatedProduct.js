@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import nextBlackBtnSrc from '../images/nextBlackBtn.svg';
 import prevBlackBtnSrc from '../images/prevBlackBtn.svg';
 import Card from './Card';
+import CardSlider from './CardSlider';
 
 const RelatedProductWrap = styled.div`
   width: 100%;
@@ -56,17 +57,24 @@ const RelatedProductSlide = styled.div`
 `;
 function RelatedProduct({ relatedDishes, showModal }) {
   const [curPage, setCurPage] = useState(1);
-  const showCardLength = 5;
+  const [startCardIndex, setStartCardIndex] = useState(0);
+  const NUMBER_OF_CARDS = 5;
   const allPage = Math.floor(
-    relatedDishes.length % showCardLength === 0
-      ? relatedDishes.length / showCardLength
-      : relatedDishes.length / showCardLength + 1,
+    relatedDishes.length % NUMBER_OF_CARDS === 0
+      ? relatedDishes.length / NUMBER_OF_CARDS
+      : relatedDishes.length / NUMBER_OF_CARDS + 1,
   );
   function moveSlideLeft() {
-    if (curPage > 1) setCurPage(curPage - 1);
+    if (curPage > 1) {
+      setCurPage(curPage - 1);
+      setStartCardIndex(startCardIndex - NUMBER_OF_CARDS);
+    }
   }
   function moveSlideRight() {
-    if (curPage < allPage) setCurPage(curPage + 1);
+    if (curPage < allPage) {
+      setCurPage(curPage + 1);
+      setStartCardIndex(startCardIndex + NUMBER_OF_CARDS);
+    }
   }
   return (
     <RelatedProductWrap>
@@ -82,16 +90,24 @@ function RelatedProduct({ relatedDishes, showModal }) {
           <NextButton src={nextBlackBtnSrc} onClick={moveSlideRight}></NextButton>
         </NavButtons>
       </TitleAndNavButtons>
-      <RelatedProductSlide>
+      <CardSlider
+        cardSize={'small'}
+        NUMBER_OF_CARDS={NUMBER_OF_CARDS}
+        showModal={showModal}
+        items={relatedDishes}
+        startCardIndex={startCardIndex}
+        width={860}
+      ></CardSlider>
+      {/* <RelatedProductSlide>
         {relatedDishes
           .filter(
             (_, index) =>
-              index >= (curPage - 1) * showCardLength && index <= (curPage - 1) * showCardLength + showCardLength - 1,
+              index >= (curPage - 1) * NUMBER_OF-CARDS && index <= (curPage - 1) * NUMBER_OF-CARDS + NUMBER_OF-CARDS - 1,
           )
           .map(dish => (
             <Card key={dish.id} size={'small'} item={dish} showModal={showModal}></Card>
           ))}
-      </RelatedProductSlide>
+      </RelatedProductSlide> */}
     </RelatedProductWrap>
   );
 }

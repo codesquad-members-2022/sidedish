@@ -346,6 +346,30 @@ async function fetchDishItem(dishId) {
         badge_title: ['이벤트특가', '런칭특가'],
         categories: ['메인 요리'],
       },
+      {
+        id: 6,
+        image:
+          'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
+        title: '스테이크',
+        contents: '스테이크 먹고싶다',
+        origin_price: 50000,
+        discount_price: 39800,
+        early_delivery: true,
+        badge_title: ['이벤트특가', '런칭특가'],
+        categories: ['메인 요리'],
+      },
+      {
+        id: 7,
+        image:
+          'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
+        title: '스테이크',
+        contents: '스테이크 먹고싶다',
+        origin_price: 50000,
+        discount_price: 39800,
+        early_delivery: true,
+        badge_title: ['이벤트특가', '런칭특가'],
+        categories: ['메인 요리'],
+      },
     ],
   };
   return dishItem;

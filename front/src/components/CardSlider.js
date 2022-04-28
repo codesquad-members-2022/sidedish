@@ -14,7 +14,7 @@ function CardSlider({ items, showModal, startCardIndex, NUMBER_OF_CARDS, width, 
   return (
     <CardSliderWrap>
       <CardListWrap>
-        <CardList startCardIndex={startCardIndex} gap={gap}>
+        <CardList startCardIndex={startCardIndex} gap={gap} cardWidth={cardSizes[cardSize].width}>
           {items.map((item, index) => (
             <CardListItem>
               <Card key={index} size={cardSize} item={item} showModal={showModal}></Card>
@@ -29,7 +29,7 @@ function CardSlider({ items, showModal, startCardIndex, NUMBER_OF_CARDS, width, 
 const CardSliderWrap = styled.div``;
 const CardList = styled.ul`
   display: flex;
-  transform: translateX(-${({ startCardIndex, gap }) => startCardIndex * (302 + gap)}px);
+  transform: translateX(-${({ startCardIndex, gap, cardWidth }) => startCardIndex * (cardWidth + gap)}px);
   transition: 1s;
   gap: ${props => props.gap}px;
 `;
