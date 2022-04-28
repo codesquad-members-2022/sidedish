@@ -4,5 +4,5 @@ import com.example.sideDish.data.model.FoodDetail
 
 interface DetailRepository {
 
-    suspend fun getDetail(detailHash: String): FoodDetail?
+    suspend fun getDetail(detailHash: String): FoodDetail
 }

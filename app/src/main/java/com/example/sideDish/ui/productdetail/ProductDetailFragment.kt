@@ -18,8 +18,6 @@ import com.example.sideDish.ui.foodlist.TITLE_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
-
-/*const val PRODUCT_TITLE = */
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding

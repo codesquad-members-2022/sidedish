@@ -2,8 +2,13 @@ package com.example.sideDish.ui.productdetail
 
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.sideDish.common.Event
 import com.example.sideDish.data.model.FoodDetail
+import com.example.sideDish.data.model.isEmpty
 import com.example.sideDish.data.source.DetailRepository
 import com.example.sideDish.data.source.OrderRepository
 import com.example.sideDish.network.dto.OrderDto
@@ -38,8 +43,10 @@ class FoodDetailViewModel @Inject constructor(
 
     fun getDetail(hash: String) {
         viewModelScope.launch(ceh) {
-            // throw Exception()
-            _detail.value = repository.getDetail(hash)
+            val foodDetail = repository.getDetail(hash)
+            if (!foodDetail.isEmpty()) {
+                _detail.value = foodDetail
+            }
         }
     }
 

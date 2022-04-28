@@ -4,6 +4,6 @@ import com.example.sideDish.data.model.FoodCategory
 import com.example.sideDish.data.model.Item
 
 interface FoodRepository {
-    suspend fun getMenu(foodCategory: FoodCategory): List<Item>?
+    suspend fun getMenu(foodCategory: FoodCategory): List<Item>
 
 }
