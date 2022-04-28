@@ -16,12 +16,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.data.model.FoodCategory
-import com.example.sideDish.ui.productdetail.DETAIL_HASH_KEY
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import java.lang.Exception
+
+const val DETAIL_HASH_KEY = "hash"
+const val TITLE_KEY = "title"
+
 
 @AndroidEntryPoint
 class FoodListFragment : Fragment() {
@@ -78,16 +81,14 @@ class FoodListFragment : Fragment() {
     }
 
     private fun openDetail(foodInfo: Item.FoodInfo) {
-        Log.d("openDetail", foodInfo.detailHash)
-        Log.d("openDetail", foodInfo.title)
         parentFragmentManager.commit {
             addToBackStack(null)
             replace(
                 R.id.container,
                 ProductDetailFragment::class.java,
                 bundleOf(
-                    "DETAILHASH_KEY" to foodInfo.detailHash,
-                    "TITLE_KEY" to foodInfo.title
+                    DETAIL_HASH_KEY to foodInfo.detailHash,
+                    TITLE_KEY to foodInfo.title
                 )
             )
         }

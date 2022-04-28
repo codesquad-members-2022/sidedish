@@ -15,10 +15,11 @@ import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.FragmentProductDetailBinding
+import com.example.sideDish.ui.foodlist.DETAIL_HASH_KEY
+import com.example.sideDish.ui.foodlist.TITLE_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
-const val DETAIL_HASH_KEY = "DETAIL_HASH_KEY"
 
 /*const val PRODUCT_TITLE = */
 @AndroidEntryPoint
@@ -35,7 +36,7 @@ class ProductDetailFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false)
 
         val hash = arguments?.getString(DETAIL_HASH_KEY)
-        val title = arguments?.getString("title")
+        val title = arguments?.getString(TITLE_KEY)
         hash?.let { viewModel.getDetail(it) }
         binding.textViewDetailTitle.text = title
 
