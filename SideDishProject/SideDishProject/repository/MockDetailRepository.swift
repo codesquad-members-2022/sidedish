@@ -12,13 +12,13 @@ enum DetailRespositoryError: Error{
 }
 
 protocol ProductDetailRepository {
-    func fetchOne(id: UniqueID, completion: @escaping (Result<Product, DetailRespositoryError>) -> Void)
+    func fetchOne(id: Int, completion: @escaping (Result<Product, DetailRespositoryError>) -> Void)
 }
 
 final class MockDetailRepository: ProductDetailRepository {
     init() {
     }
     
-    func fetchOne(id: UniqueID, completion: @escaping (Result<Product, DetailRespositoryError>) -> Void) {
+    func fetchOne(id: Int, completion: @escaping (Result<Product, DetailRespositoryError>) -> Void) {
     }
 }
