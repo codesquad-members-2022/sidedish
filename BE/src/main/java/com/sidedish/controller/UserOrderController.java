@@ -22,22 +22,23 @@ public class UserOrderController {
 
     @PostMapping("sidedish-order")
     public ResponseEntity<ResponseMessage> orderSideDishDetails(@RequestBody SideDishOrderDto sideDishOrderDto, HttpSession httpSession) {
-
         String email = (String) httpSession.getAttribute("email");
-
         if (email == null) {
             ResponseMessage message = new ResponseMessage(HttpStatus.UNAUTHORIZED, "로그인이 되어있지 않습니다.");
             return new ResponseEntity<>(message, HttpStatus.UNAUTHORIZED);
         }
 
         Integer stock = sideDishService.getStockOfSideDish(sideDishOrderDto.getSidedishId());
-        if (sideDishOrderDto.getQuantity() > stock) {
+        Integer quantity = sideDishOrderDto.getQuantity();
+        if (quantity > stock) {
             ResponseMessage message = new ResponseMessage(HttpStatus.NOT_FOUND, "재고가 부족합니다.", email);
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
 
-        userOrderService.saveUserOrder(sideDishOrderDto, email);
+        int changedStock = stock - quantity;
+        userOrderService.saveUserOrder(sideDishOrderDto, email, changedStock);
         ResponseMessage message = new ResponseMessage(HttpStatus.OK, "주문이 처리되었습니다.", email);
+
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }
