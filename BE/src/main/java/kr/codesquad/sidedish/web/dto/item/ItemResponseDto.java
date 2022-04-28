@@ -1,7 +1,9 @@
 package kr.codesquad.sidedish.web.dto.item;
 
 import kr.codesquad.sidedish.domain.Item;
+import lombok.Getter;
 
+@Getter
 public class ItemResponseDto {
 
     private final Long itemId;
@@ -43,43 +45,4 @@ public class ItemResponseDto {
                 item.getBestId());
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Long getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public Long getDiscountPrice() {
-        return discountPrice;
-    }
-
-    public Integer getLabelId() {
-        return labelId;
-    }
-
-    public String getMainImage() {
-        return mainImage;
-    }
-
-    public Integer getDeliveryId() {
-        return deliveryId;
-    }
-
-    public Long getBestId() {
-        return bestId;
-    }
 }

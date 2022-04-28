@@ -1,8 +1,10 @@
 package kr.codesquad.sidedish.domain;
 
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+@Getter
 @Table("orders")
 public class Order {
 
@@ -25,23 +27,4 @@ public class Order {
         return new Order(null, itemId, userId, quantity, totalPrice);
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public Long getTotalPrice() {
-        return totalPrice;
-    }
 }
