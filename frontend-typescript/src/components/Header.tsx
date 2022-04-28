@@ -8,6 +8,7 @@ import { Logo } from "../icons/Logo";
 import { HorizontalLine } from "./HorizontalLine";
 import { headerIcons } from "../icons/headerIcons";
 import { Gnb } from "./Gnb";
+import { Categories } from "../types";
 
 const HeaderWrapper = styled.header`
   position: relative;
@@ -40,7 +41,7 @@ const Icon = styled.div`
   ${width_height_bypx(32, 32)}
 `;
 
-export const Header = ({ categories }) => {
+export const Header = ({ categories }: Categories) => {
   return (
     <HeaderWrapper>
       <HeaderLogo />

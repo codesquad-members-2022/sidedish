@@ -1,4 +1,10 @@
-export const tagConvetion = {
+import { optionalNum, SIZES } from "./types";
+import { themeColors } from "./styles/styled";
+
+type tagType = {
+  [key: number]: { color: keyof themeColors; order: number };
+};
+export const tagConvetion: tagType = {
   1: {
     color: "Green",
     order: 1,
@@ -10,36 +16,31 @@ export const tagConvetion = {
 };
 
 export const cardGapLength = {
-  large: 24,
-  medium: 24,
-  small: 16,
+  [SIZES.large]: 24,
+  [SIZES.medium]: 24,
+  [SIZES.small]: 16,
 };
 
 export const thumbnailSize = {
-  large: 411,
-  medium: 302,
-  small: 160,
+  [SIZES.large]: 411,
+  [SIZES.medium]: 302,
+  [SIZES.small]: 160,
 };
 
 export const cardNumPerPage = {
-  large: 3,
-  medium: 4,
-  small: 5,
+  [SIZES.large]: 3,
+  [SIZES.medium]: 4,
+  [SIZES.small]: 5,
 };
 
-export enum SIZES {
-  large = "large",
-  medium = "medium",
-  small = "small",
-}
 export const queries = {
   category: (id: number) => `category_id=${id}`,
   specialCategory: (id: number) => `special_category_id=${id}`,
 };
 export const cardListArea = {
-  large: [1281, 565],
-  medium: [1280, 479],
-  small: [864, 226],
+  [SIZES.large]: [1281, 565],
+  [SIZES.medium]: [1280, 479],
+  [SIZES.small]: [864, 226],
 };
 
 export enum Queries {
@@ -49,14 +50,17 @@ export enum Queries {
   product = "product",
 }
 
+const baseUrl = `http://52.78.14.127:8080/api/categories`;
+
 export const requestQuery = {
   queries: {
-    categories: (id = undefined) => "/mocks/categories.json",
-    specialCategories: (id = undefined) => "/mocks/specialCategories.json",
-    product: (id = undefined) => "/mocks/product.json",
-    products: (id = undefined) => "/mocks/categoryProducts.json",
+    categories: (id: optionalNum = undefined) => `/mocks/categories.json`,
+    specialCategories: (id: optionalNum = undefined) =>
+      `/mocks/specialCategories.json`,
+    product: (id: optionalNum = undefined) => "/mocks/product.json",
+    products: (id: optionalNum = undefined) => "/mocks/categoryProducts.json",
   },
-  makeQuery: (target: keyof typeof Queries, id = undefined) => {
+  makeQuery: (target: keyof typeof Queries, id: optionalNum = undefined) => {
     return requestQuery.queries[target](id);
   },
 };
