@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { applyFlex } from '../../../helper/utils';
+import { eventsNumber } from '../../../helper/constants';
 
 export const StyledWrapper = styled.div`
   ${({ flex }) => applyFlex({ flex })}
@@ -17,14 +18,14 @@ export const Event = styled.div`
 `;
 
 function applyEventStyleByEventId(eventId) {
-  if (eventId === 2) {
+  if (eventsNumber[eventId] === '런칭특가') {
     return `
       width: 76px;
       height: 30px;
       background: #ff8e14;
     `;
   }
-  if (eventId === 1) {
+  if (eventsNumber[eventId] === '이벤트특가') {
     return `
       width: 87px;
       height: 30px;

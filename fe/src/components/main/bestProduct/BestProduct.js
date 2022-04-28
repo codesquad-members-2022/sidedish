@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { TabMenu } from './tabMenu/tabMenu.js';
 import { TabList } from './tabList/tabList.js';
 import { BestProductHeader, CategoryBadge, StyledBestProduct, TabBar, TitleWrapper } from './BestProduct.styled';
-import { fetchData } from '../../../helper/utils';
-import { API } from '../../../helper/constants.js';
+import { fetchData, getRandomNumberAsCount, getUrlWithIdPage } from '../../../helper/utils';
+import { API, EXHIBITION_ID } from '../../../helper/constants.js';
 import { ExhibitionTitle } from './title/exhibitionTitle';
 
 export function BestProduct() {
@@ -14,7 +14,9 @@ export function BestProduct() {
 
   useEffect(() => {
     async function getExhibitionData() {
-      const exhibitionData = await fetchData(API.exhibitions);
+      const exhibitionData = await fetchData(
+        getUrlWithIdPage({ url: API.exhibitions, id: EXHIBITION_ID.exhibitions, page: 0 })
+      );
       const { exhibitionTitle, categoryResponses } = exhibitionData;
       setExhibitionTitle(exhibitionTitle);
       setTabMenu(categoryResponses);
@@ -30,8 +32,12 @@ export function BestProduct() {
       return;
     }
     async function getSideDishDataByTabMenu() {
-      const { sideDishCardResponses } = await fetchData(API.categoryDishes(curTab));
-      setTabList(sideDishCardResponses);
+      const { sideDishCardResponses } = await fetchData(
+        getUrlWithIdPage({ url: API.categoryDishes, id: curTab, page: 0 })
+      );
+      const randomIndex = getRandomNumberAsCount({ min: 0, max: sideDishCardResponses.length, count: 3 });
+      const sideDishCardResponsesForRender = randomIndex.map(idx => sideDishCardResponses[idx]);
+      setTabList(sideDishCardResponsesForRender);
     }
     getSideDishDataByTabMenu();
   }, [curTab]);

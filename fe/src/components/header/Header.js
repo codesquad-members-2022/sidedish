@@ -7,20 +7,23 @@ import { StyledDiv, StyledH1, StyledHeader, StyledInnerDiv, StyledUl } from './H
 function Header() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
+  function handleMouseEnter() {
+    setIsSubMenuOpen(true);
+  }
+
+  function handleMouseLeave() {
+    setIsSubMenuOpen(false);
+  }
+
   return (
-    <StyledHeader
-      flex
-      onMouseLeave={() => {
-        setIsSubMenuOpen(false);
-      }}
-    >
+    <StyledHeader flex onMouseLeave={handleMouseLeave}>
       <StyledH1>Ordering</StyledH1>
       <StyledUl flex>
         <GnbLists
           gnbMenus={gnbMenus}
           gnbSubMenus={gnbSubMenus}
           isSubMenuOpen={isSubMenuOpen}
-          onMouseEnter={() => setIsSubMenuOpen(true)}
+          onMouseEnter={handleMouseEnter}
         />
       </StyledUl>
       <StyledDiv>
