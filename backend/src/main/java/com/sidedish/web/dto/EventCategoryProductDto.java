@@ -15,4 +15,5 @@ public class EventCategoryProductDto {
     private EventBadge eventBadge;
     private int discountRate;
     private EventCategory eventCategory;
+    private String imageThumbnail;
 }
