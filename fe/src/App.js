@@ -1,7 +1,7 @@
 import { Reset } from 'styled-reset';
-import Header from './views/header/Header.js';
-import { BestProduct } from './views/main/bestProduct/BestProduct.js';
-import { CategoryArea } from './views/main/categoryArea/CategoryArea.js';
+import Header from './components/header/Header.js';
+import { BestProduct } from './components/main/bestProduct/BestProduct.js';
+import { CategoryArea } from './components/main/categoryArea/CategoryArea.js';
 
 function App() {
   return (

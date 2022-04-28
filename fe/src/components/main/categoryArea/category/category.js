@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProductCard } from '../../../../components/productCard/ProductCard';
+import { ProductCard } from '../../../../common/productCard/ProductCard';
 import { buttonIcons } from '../../../../helper/constants';
 import {
   CategoryWrapper,
