@@ -1,15 +1,10 @@
 import PropTypes from "prop-types";
+import getPriceType from "Util/util";
 import { CardPriceDiv } from "./Card.styled";
-
-const getPriceType = (price) => {
-  return [String(price).slice(0, -3), ",", String(price).slice(-3), "원"].join(
-    ""
-  );
-};
 
 const CardPrice = ({ price, discountRate }) => {
   const originPrice = getPriceType(price);
-  const discountPrice = getPriceType(price * (1 - discountRate / 100));
+  const discountPrice = getPriceType(price, discountRate);
 
   return (
     <CardPriceDiv discountRate={discountRate}>

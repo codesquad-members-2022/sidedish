@@ -104,10 +104,11 @@ const Category = ({ name, sideDishes }) => {
   };
 
   useEffect(() => {
-    if (TOTAL_DATA_COUNT <= MAX_CARDS_COUNT_PER_SLIDE) {
-      setIsRightButtonClickable(false);
+    if (TOTAL_DATA_COUNT > MAX_CARDS_COUNT_PER_SLIDE) {
+      return;
     }
-  }, []);
+    setIsRightButtonClickable(false);
+  }, [TOTAL_DATA_COUNT]);
 
   return (
     <Wrapper>

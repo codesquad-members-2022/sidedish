@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const Normalize = createGlobalStyle`
-  .App {
+  .App, #modal {
     font-family: "Noto Sans KR", sans-serif;
   }
   

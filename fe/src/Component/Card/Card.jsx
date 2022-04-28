@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
-import { CardLi } from "./Card.styled";
-import CardImageAndFlag from "./CardImageAndFlag";
-import CardPrice from "./CardPrice";
+import { useState } from "react";
+import ModalPortal from "Component/DetailPage/Portal/Portal";
+import DetailPage from "Component/DetailPage/DetailPage";
 import CardDiscountType from "./CardDiscountType";
+import CardPrice from "./CardPrice";
+import CardImageAndFlag from "./CardImageAndFlag";
+import { CardLi } from "./Card.styled";
 
 const Card = ({
   type,
@@ -18,21 +21,44 @@ const Card = ({
     wholeNationDeliveryFlag,
   },
 }) => {
+  const [isHover, setIsHover] = useState(false);
+  const [isModalOn, setIsModalOn] = useState(false);
+
+  const handleMouseEvent = () => {
+    setIsHover(!isHover);
+  };
+
+  const handleModal = () => {
+    setIsModalOn(!isModalOn);
+  };
+
   return (
-    <CardLi key={id} type={type}>
-      <CardImageAndFlag
-        props={{
-          saveFileName,
-          name,
-          dawnDeliveryFlag,
-          wholeNationDeliveryFlag,
-        }}
-      />
-      <div className="name">{name}</div>
-      <div className="desc">{description}</div>
-      <CardPrice price={price} discountRate={discountRate} />
-      <CardDiscountType discountType={discountType} />
-    </CardLi>
+    <>
+      <CardLi
+        key={id}
+        type={type}
+        onClick={handleModal}
+        onMouseEnter={handleMouseEvent}
+        onMouseLeave={handleMouseEvent}
+      >
+        <CardImageAndFlag
+          props={{
+            saveFileName,
+            name,
+            dawnDeliveryFlag,
+            wholeNationDeliveryFlag,
+          }}
+          isHover={isHover}
+        />
+        <div className="name">{name}</div>
+        <div className="desc">{description}</div>
+        <CardPrice price={price} discountRate={discountRate} />
+        <CardDiscountType discountType={discountType} />
+      </CardLi>
+      <ModalPortal>
+        {isModalOn && <DetailPage onClose={handleModal} id={id} />}
+      </ModalPortal>
+    </>
   );
 };
 

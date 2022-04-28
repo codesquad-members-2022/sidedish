@@ -20,6 +20,7 @@ const EventTabUl = styled.ul`
 
   > li {
     padding-bottom: 16px;
+    cursor: pointer;
 
     &:not(:last-child) {
       margin-right: 32px;
