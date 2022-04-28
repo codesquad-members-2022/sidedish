@@ -1,10 +1,20 @@
-import {Header} from './js/components/Header.jsx';
-import {SpecialPromotion} from './js/components/SpecialPromotion.jsx';
-import {SideDishContents} from './js/components/SideDishContents.jsx';
+import {createGlobalStyle} from 'styled-components';
+import reset from 'styled-reset';
+import {Header, SpecialPromotion, SideDishContents} from 'containers';
+
+const GlobalStyles = createGlobalStyle`
+  ${reset}
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  button:hover{
+    cursor:pointer;
+  }
+`;
 
 function App() {
   return (
     <div className="App">
+      <GlobalStyles />
       <Header />
       <SpecialPromotion />
       <SideDishContents />
