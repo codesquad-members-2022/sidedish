@@ -5,7 +5,7 @@ import "./GoodsBlock.css";
 function GoodsBlock({thumb, name, description, price, discountedRate, delivery, eventBadge}) {
   const [isHover, setIsHover] = useState(false);
   const percentage = 0.01;
-  const discountedPrice = price - discountedRate * percentage * price;
+  const discountedPrice = discountedRate ? price - discountedRate * percentage * price : price;
 
   return (
     <div className="goodsBlock">
@@ -21,10 +21,10 @@ function GoodsBlock({thumb, name, description, price, discountedRate, delivery, 
         <h4 className="name"> {name}</h4>
         <p className="description">{description}</p>
         <div className="price">
+          <p className="discountedPrice">{Number(discountedPrice).toLocaleString("en") + "원"}</p>
           {discountedRate !== 0 && (
-            <p className="discountedPrice">{Number(discountedPrice).toLocaleString("en") + "원"}</p>
+            <p className="regularPrice">{Number(price).toLocaleString("en") + "원"}</p>
           )}
-          <p className="regularPrice">{Number(price).toLocaleString("en") + "원"}</p>
         </div>
       </section>
       <div className="eventBadge">
