@@ -67,28 +67,13 @@ class MenuPageAdapter(private val listener: MenuItemClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(menu: Menu) {
-            val decimal = DecimalFormat("#,###")
             with(binding) {
                 bindData = menu
-                Glide.with(itemView).load(menu.mainImageLink).into(imMenuImage)
-                tvMenuLabel.text = menu.name
-                tvMenuInfo.text = menu.description
-                tvAfterCost.text = decimal.format(menu.price)
-
                 menu.discountPolicy?.let { setBadge(it) }
             }
 
             itemView.setOnClickListener {
                 menu.id?.let { key -> listener.itemClickCallback(key) }
-            }
-        }
-
-        private fun setSale(menu: Menu) {
-            with(binding) {
-                tvBeforeCost.visibility = View.VISIBLE
-                tvBeforeCost.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                tvBeforeCost.text = setSalePrice(menu.discountRate, menu.price).toString()
-                setBadge(menu.discountPolicy ?: "none")
             }
         }
 

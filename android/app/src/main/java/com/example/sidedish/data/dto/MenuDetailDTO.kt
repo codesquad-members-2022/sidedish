@@ -1,7 +1,7 @@
 package com.example.sidedish.data.dto
 
+import com.example.sidedish.data.DetailImageLinks
 import com.example.sidedish.data.Menu
-
 
 data class MenuDetailDTO(
     val id: Int?,
@@ -19,8 +19,21 @@ data class DetailImageLinkDTO(
     val imageLinks: String?
 )
 
-fun MenuDetailDTO.inputDTOToMenu(): Menu {
-    val newMenu = Menu(description, discountPolicy, discountRate, id, mainImageLink, name, price, null)
-    newMenu.makeDetailImageLinkList(detailImageLink)
-    return newMenu
+fun MenuDetailDTO.inputDTOToMenu(): Menu = Menu(
+    description,
+    discountPolicy,
+    discountRate,
+    id,
+    mainImageLink,
+    name,
+    price,
+    detailImageLink = makeDetailImageLinkList(detailImageLink)
+)
+
+fun makeDetailImageLinkList(list: List<DetailImageLinkDTO>?): List<DetailImageLinks> {
+    val newList = mutableListOf<DetailImageLinks>()
+    list?.forEach { detailImageLink ->
+        newList.add(DetailImageLinks(detailImageLink.id, detailImageLink.imageLinks))
+    }
+    return newList
 }

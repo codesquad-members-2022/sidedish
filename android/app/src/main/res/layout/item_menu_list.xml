@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="bindData"
             type="com.example.sidedish.data.Menu" />
@@ -16,86 +17,90 @@
 
         <ImageView
             android:id="@+id/im_menu_image"
+            imageUrl="@{bindData.mainImageLink}"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/menu_image"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/menu_image" />
-        
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_menu_label"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/im_menu_image"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@color/black"
             android:layout_marginStart="20dp"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:text="@{bindData.name}"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/im_menu_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_menu_info"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_menu_label"
-            app:layout_constraintStart_toEndOf="@id/im_menu_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:maxLines="1"
-            android:ellipsize="end"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/cardview_shadow_start_color"
             android:layout_marginStart="20dp"
-            />
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{bindData.description}"
+            android:textColor="@color/cardview_shadow_start_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/im_menu_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_menu_label" />
 
         <TextView
             android:id="@+id/tv_after_cost"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            discountRate="@{bindData.discountRate}"
+            discountedPrice="@{bindData.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_menu_info"
-            app:layout_constraintStart_toEndOf="@id/im_menu_image"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_marginStart="20dp"
-            tools:text="1299"
-            />
+            app:layout_constraintStart_toEndOf="@id/im_menu_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_menu_info"
+            tools:text="1299" />
 
         <TextView
             android:id="@+id/tv_before_cost"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            discountRate="@{bindData.discountRate}"
+            originalPrice="@{bindData.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/cardview_shadow_start_color"
             app:layout_constraintStart_toEndOf="@id/tv_after_cost"
             app:layout_constraintTop_toBottomOf="@id/tv_menu_info"
-            android:layout_marginStart="10dp"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/cardview_shadow_start_color"
-            tools:text="14,500"/>
+            tools:text="14,500" />
 
         <TextView
             android:id="@+id/tv_launching_cost_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_after_cost"
-            app:layout_constraintStart_toEndOf="@id/im_menu_image"
+            android:layout_marginStart="20dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:visibility="gone"
-            android:layout_marginStart="20dp"
-            />
+            app:layout_constraintStart_toEndOf="@id/im_menu_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_after_cost" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_limited_cost_badge"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv_after_cost"-->
-<!--            app:layout_constraintStart_toEndOf="@id/tv_launching_cost_badge"-->
-<!--            android:background="@drawable/background_badge_limited"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:paddingStart="15dp"-->
-<!--            android:paddingEnd="15dp"-->
-<!--            android:visibility="gone"-->
-<!--            android:text="@string/limited_label"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_limited_cost_badge"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_after_cost"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/tv_launching_cost_badge"-->
+        <!--            android:background="@drawable/background_badge_limited"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:paddingStart="15dp"-->
+        <!--            android:paddingEnd="15dp"-->
+        <!--            android:visibility="gone"-->
+        <!--            android:text="@string/limited_label"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
