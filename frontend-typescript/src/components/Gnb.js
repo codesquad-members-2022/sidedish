@@ -37,7 +37,8 @@ export const Gnb = ({ categories }) => {
       {categories.map((cat) => (
         <MenuWrapper key={cat.id}>
           <Title>{cat.name}</Title>
-          {extended && cat.subcategories.map((sub) => <Sub key={sub.id}>{sub.name}</Sub>)}
+          {extended &&
+            cat.subcategories.map((sub) => <Sub key={sub.id}>{sub}</Sub>)}
         </MenuWrapper>
       ))}
     </GnbMenu>
