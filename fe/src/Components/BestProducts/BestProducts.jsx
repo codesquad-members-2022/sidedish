@@ -80,7 +80,7 @@ export const BestProducts = () => {
         />
       )}
 
-      <Contents bestProductsTabId={selectedTabId} />
+      {selectedTabId && <Contents bestProductsTabId={selectedTabId} />}
     </BestProductsWrapper>
   );
 };
