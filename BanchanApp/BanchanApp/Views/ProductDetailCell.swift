@@ -26,7 +26,7 @@ class ProductDetailCell: UICollectionViewCell {
 
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		self.imageView.image = nil
+		self.imageView.image = UIImage(systemName: "cart.circle")
 	}
 
     private func setup() {

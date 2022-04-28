@@ -18,11 +18,11 @@ class BanchanListViewController: UICollectionViewController {
         super.viewDidLoad()
 		self.configureUI()
 		self.bind()
-		self.viewModel?.fetchProducts()
+		self.viewModel?.getProducts()
     }
 
 	private func bind() {
-        self.viewModel?.banchans.bind(listener: { _ in
+        self.viewModel?.banchans.bind(subscriber: { _ in
 			DispatchQueue.main.async {
 				self.collectionView.reloadData()
 			}
@@ -91,10 +91,14 @@ extension BanchanListViewController {
 			badges: badges
 		)
 
-		self.viewModel?.getBanchanImage(at: indexPath) { data in
-			guard let image = UIImage(data: data) else { return }
-			cell.setImage(image)
-		}
+        self.viewModel?.bindImage(at: indexPath , subscriber: { data in
+            guard let data = data else { return }
+            guard let image = UIImage(data: data) else { return }
+
+            cell.setImage(image)
+        })
+
+		self.viewModel?.getBanchanImage(at: indexPath)
 
 		return cell
 	}

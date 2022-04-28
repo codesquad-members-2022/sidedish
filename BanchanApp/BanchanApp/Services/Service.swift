@@ -33,6 +33,8 @@ class Service: ServiceProtocol {
 
 	func getImage(with url: String, completion: @escaping (Data) -> Void) {
 		guard let url = NSURL(string: url) else { return }
-		self.imageManager.fetchImage(with: url, completion: completion)
+        self.imageManager.fetchImage(with: url) { data in
+            completion(data)
+        }
 	}
 }
