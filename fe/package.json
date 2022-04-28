@@ -45,8 +45,7 @@
       "implicit-arrow-linebreak": 0,
       "import/no-unresolved": "off",
       "object-curly-newline": 0,
-      "react/jsx-boolean-value": 0,
-      "no-confusing-arrow": 0
+      "react/jsx-boolean-value": 0
     }
   },
   "browserslist": {

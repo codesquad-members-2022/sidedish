@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import ModalPortal from "Component/DetailPage/Portal/Portal";
+import { ModalPortal } from "Portal/Portal";
 import DetailPage from "Component/DetailPage/DetailPage";
 import CardDiscountType from "./CardDiscountType";
 import CardPrice from "./CardPrice";

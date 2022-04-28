@@ -1,3 +1,4 @@
+import constants from "common/constants";
 import PropTypes from "prop-types";
 import { CardImage, CardFlag } from "./Card.styled";
 
@@ -8,7 +9,7 @@ const CardImageAndFlag = ({
   return (
     <div>
       <CardImage
-        src={`http://3.36.89.161/${saveFileName}`}
+        src={`${constants.API}/${saveFileName}`}
         alt={name}
         isHover={isHover}
       />

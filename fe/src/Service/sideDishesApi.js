@@ -1,6 +1,7 @@
 import axios from "axios";
+import constants from "common/constants";
 
-const baseURL = `http://3.36.89.161/api/sidedishes/`;
+const baseURL = `${constants.API}/api/sidedishes/`;
 const client = axios.create({ baseURL });
 
 const sideDishesApi = {

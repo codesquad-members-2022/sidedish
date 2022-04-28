@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import DetailInfoContext from "Component/DetailPage/DetailInfoContext";
+import constants from "common/constants";
 import { ImagesDiv, MainImage, SubImagesArea, SubImage } from "./Images.styled";
 
 const Images = () => {
   const [imageNumber, setImageNumber] = useState(0);
   const { imageFiles, name } = useContext(DetailInfoContext);
   const imageFilesSrc = imageFiles.map((imageFile, idx) => {
-    return { src: `http://3.36.89.161/${imageFile}`, idx };
+    return { src: `${constants.API}/${imageFile}`, idx };
   });
 
   const handleSubImageClick = ({ target: { id } }) => {
