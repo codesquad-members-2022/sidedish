@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommonURLManager {
+final class CommonURLManager {
     static let host = "https://api.codesquad.kr/onban"
    
     enum Endpoint: String {
