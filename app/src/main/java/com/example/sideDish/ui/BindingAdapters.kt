@@ -2,7 +2,6 @@ package com.example.sideDish.ui
 
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.sideDish.R
