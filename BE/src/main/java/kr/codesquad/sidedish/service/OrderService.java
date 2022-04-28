@@ -20,7 +20,7 @@ public class OrderService {
     public void checkOrderPlaceable(Long dishId, OrderRequest orderRequest) {
         Dish dish = jdbcDishRepository.findById(dishId)
             .orElseThrow(() -> new BusinessException(ErrorCode.NoDishError));
-        if (dish.getStock() < orderRequest.getQuantity()) {
+        if (!dish.isOrderable(orderRequest.getQuantity())) {
             throw new BusinessException(ErrorCode.NotEnoughDishStockError);
         }
     }

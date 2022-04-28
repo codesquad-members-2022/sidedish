@@ -1,8 +1,13 @@
 package kr.codesquad.sidedish.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+
 public class OrderRequest {
 
+    @Email
     private String userEmail;
+    @Min(1)
     private int quantity;
 
     public OrderRequest() {

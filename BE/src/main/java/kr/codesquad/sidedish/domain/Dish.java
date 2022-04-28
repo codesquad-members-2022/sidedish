@@ -93,6 +93,10 @@ public class Dish {
         return (int) (getDiscountPrice() * this.pointPercent);
     }
 
+    public boolean isOrderable(int quantity) {
+        return this.stock >= quantity;
+    }
+
     @Override
     public String toString() {
         return "Dish{" +

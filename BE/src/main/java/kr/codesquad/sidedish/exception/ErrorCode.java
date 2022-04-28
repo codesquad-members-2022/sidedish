@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorCode {
 
-    NoDishError(HttpStatus.NOT_FOUND, "찾으시는디시없음"),
-    NoCategoryError(HttpStatus.NOT_FOUND, "찾으시는카테고리없음"),
+    NoDishError(HttpStatus.NOT_FOUND, "찾으시는 디시 없음"),
+    NoCategoryError(HttpStatus.NOT_FOUND, "찾으시는 카테고리 없음"),
     NotEnoughDishStockError(HttpStatus.NOT_FOUND, "수량 부족");
 
     private HttpStatus code;

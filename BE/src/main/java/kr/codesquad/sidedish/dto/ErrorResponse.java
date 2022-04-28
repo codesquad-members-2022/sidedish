@@ -1,14 +1,14 @@
 package kr.codesquad.sidedish.dto;
 
-public class ErrorResponse {
+public class ErrorResponse<T> {
 
-    private final String message;
+    private final T message;
 
-    public String getMessage() {
+    public T getMessage() {
         return message;
     }
 
-    public ErrorResponse(String message) {
+    public ErrorResponse(T message) {
         this.message = message;
     }
 }

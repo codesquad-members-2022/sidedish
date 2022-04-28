@@ -17,8 +17,6 @@ public interface JdbcDishRepository extends CrudRepository<Dish, Long> {
     @Query("update dish set is_deleted = true where id = :id")
     boolean delete(@Param("id") Long id);
 
-    List<Dish> findDishesByCategoryId(Long categoryId);
-
     List<Dish> findDishesByCategoryId(Long categoryId, PageRequest pageRequest);
 
     @Modifying
