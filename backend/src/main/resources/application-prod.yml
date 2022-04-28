@@ -8,4 +8,6 @@ spring:
 oauth2:
   user:
     github:
+      client-id: 11c78664d145c3664830
+      client-secret: ${GITHUB_CLIENT_SECRET}
       redirect-uri: http://13.209.145.70:8080/login/oauth
