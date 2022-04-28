@@ -5,6 +5,7 @@ final class Dishes {
     private(set) var type: String
     
     subscript(index: Int) -> Dish? {
+        guard index >= 0 && index <= dishes.count-1 else { return nil }
         return dishes[index]
     }
     
