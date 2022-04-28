@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.sideDish.common.Event
 import com.example.sideDish.data.model.FoodDetail
+import com.example.sideDish.data.model.isEmpty
 import com.example.sideDish.data.source.DetailRepository
 import com.example.sideDish.ui.foodlist.FoodListFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,8 +34,10 @@ class FoodDetailViewModel @Inject constructor(
 
     fun getDetail(hash: String) {
         viewModelScope.launch(ceh) {
-           // throw Exception()
-            _detail.value = repository.getDetail(hash)
+            val foodDetail = repository.getDetail(hash)
+            if (!foodDetail.isEmpty()) {
+                _detail.value = foodDetail
+            }
         }
     }
 }

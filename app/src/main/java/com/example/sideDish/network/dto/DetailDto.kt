@@ -26,17 +26,34 @@ data class DetailDto(
     val detail: DetailData
 )
 
-fun DetailDto.toFoodDetail(): FoodDetail {
+fun DetailDto?.toFoodDetail(): FoodDetail {
+    return if (this == null || hash.isEmpty()) {
+        emptyFoodDetail()
+    } else {
+        FoodDetail(
+            detail.deliveryFee,
+            detail.deliveryInfo,
+            detail.detailSection,
+            detail.point,
+            if (detail.prices.size > 1) detail.prices[1] else "",
+            detail.prices[0],
+            detail.productDescription,
+            detail.thumbImages,
+            detail.topImage,
+        )
+    }
+}
 
+private fun emptyFoodDetail(): FoodDetail {
     return FoodDetail(
-        detail.deliveryFee,
-        detail.deliveryInfo,
-        detail.detailSection,
-        detail.point,
-        if (detail.prices.size > 1) detail.prices[1] else "",
-        detail.prices[0],
-        detail.productDescription,
-        detail.thumbImages,
-        detail.topImage,
+        "",
+        "",
+        listOf(),
+        "",
+        "",
+        "",
+        "",
+        listOf(),
+        ""
     )
 }
