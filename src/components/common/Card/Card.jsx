@@ -48,7 +48,7 @@ export default function Card({ size, imageURL, title, desc, sellingPrice, normal
   }
 
   function Tags() {
-    return tags.map(tag => <Tag key={tag} type={tag} />);
+    return tags && tags.map(tag => <Tag key={tag} type={tag} />);
   }
 }
 

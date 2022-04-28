@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Text from 'components/utils/Text';
 import TabBar from 'components/MainCategory/Tab/TabBar';
 import Contents from 'components/MainCategory/Contents';
+import sideDishDummyData from './sideDishDummyData';
 
 const MAIN_CATEGORY_TITLE = '한 번 주문하면 두 번 반하는 반찬';
 const TAB_NAMES = ['풍성한 고기반찬', '편리한 반찬 세트', '맛있는 제철 요리', '우리 아이 영양 반찬'];
@@ -16,7 +17,7 @@ export default function MainCategory() {
         <Text size="40px" weight="BOLD" value={MAIN_CATEGORY_TITLE} />
       </Title>
       <TabBar tabNames={TAB_NAMES} selectedTabNum={selectedTabNum} setSelectedTabNum={setSelectedTabNum} />
-      <Contents />
+      <Contents sideDishes={sideDishDummyData[selectedTabNum]} />
     </Wrap>
   );
 }
