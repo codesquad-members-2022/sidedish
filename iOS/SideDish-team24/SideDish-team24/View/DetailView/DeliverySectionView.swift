@@ -2,31 +2,15 @@ import UIKit
 
 class DeliverySectionView: UIView {
     
-    private let reserveTitle = UILabel.customLabel("적립금", UIColor.dishLightGrey)
-    private let reserve = UILabel.customLabel("126원", UIColor.dishGrey)
-    private let deliveryTitle = UILabel.customLabel("배송정보", UIColor.dishLightGrey)
-    private let deliveryInformation = UILabel.customLabel("서울 경기 새벽 배송, 전국 택배 배송", UIColor.dishGrey)
-    private let deliveryFeeTitle = UILabel.customLabel("배송비", UIColor.dishLightGrey)
-    private let deliveryFee = UILabel.customLabel("2,500원 (40,000원 이상 구매 시 무료)", UIColor.dishGrey)
+    private let reserveTitle = CustomLabel(title: "적립금", font: .smallRegular, color: .dishGrey1)
+    private let reserve = CustomLabel(title: "126원", font: .smallRegular, color: .dishGrey2)
+    private let deliveryTitle = CustomLabel(title: "배송정보", font: .smallRegular, color: .dishGrey1)
+    private let deliveryInformation = CustomLabel(title: "새벽배송, 택배배송", font: .smallRegular, color: .dishGrey2)
+    private let deliveryFeeTitle = CustomLabel(title: "배송비", font: .smallRegular, color: .dishGrey1)
+    private let deliveryFee = CustomLabel(title: "2,500원 (40,000원 이상 구매 시 무료)", font: .smallRegular, color: .dishGrey2)
     
-    private let titleSection : UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = CGFloat.defaultInset
-        
-        return stackView
-    }()
-    private let informationSection : UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = CGFloat.defaultInset
-        
-        return stackView
-    }()
+    private let titleSection: UIStackView = UIStackView.customStackView(.vertical, .fillEqually, spacing: CGFloat.defaultInset)
+    private let informationSection: UIStackView = UIStackView.customStackView(.vertical, .fillEqually, spacing: CGFloat.defaultInset)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +38,7 @@ private extension DeliverySectionView {
             self.titleSection.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.titleSection.topAnchor.constraint(equalTo: self.topAnchor),
             self.titleSection.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.titleSection.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+            self.titleSection.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2)
         ])
     }
     
@@ -69,7 +53,7 @@ private extension DeliverySectionView {
             self.informationSection.leadingAnchor.constraint(equalTo: self.titleSection.trailingAnchor, constant: CGFloat.defaultInset),
             self.informationSection.topAnchor.constraint(equalTo: self.topAnchor),
             self.informationSection.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.informationSection.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.informationSection.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
     

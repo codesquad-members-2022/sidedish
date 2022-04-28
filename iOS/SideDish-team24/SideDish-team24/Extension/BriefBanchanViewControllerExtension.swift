@@ -3,7 +3,7 @@ import UIKit
 extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return allDishes[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -14,6 +14,21 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BriefBanchanViewCell.cellId, for: indexPath) as? BriefBanchanViewCell else {
             return UICollectionViewCell()
+        }
+        if let targetDish: Dish = allDishes[indexPath.section][indexPath.row] {
+            let dishViewModel = BanchanViewModel(dish: targetDish)
+            guard let special = dishViewModel.discountPolicy else { return UICollectionViewCell() }
+            
+            cell.configure(title: dishViewModel.title, description: dishViewModel.description)
+            cell.configure(specialBadge: special)
+            cell.configure(price: dishViewModel.price, listPrice: dishViewModel.listPrice)
+            DispatchQueue.global().async {
+                if let image = dishViewModel.image {
+                    DispatchQueue.main.sync {
+                        cell.configure(image: image)
+                    }
+                }
+            }
         }
         return cell
     }
@@ -29,8 +44,9 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BriefBanchanReusableView.identifier, for: indexPath) as? BriefBanchanReusableView else {return UICollectionReusableView()}
+            headerView.setTitle(to: allDishes[indexPath.section].type)
             return headerView
-        }else {
+        } else {
             return UICollectionReusableView()
         }
     }
@@ -40,7 +56,7 @@ extension BriefBanchanViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return allDishes.count
     }
-
+    
 }

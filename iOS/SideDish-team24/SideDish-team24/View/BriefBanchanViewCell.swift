@@ -7,93 +7,45 @@ class BriefBanchanViewCell: UICollectionViewCell {
     private var dishImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     
-    private var dishTitle: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.dishBlack
-        label.text = "요리 제목"
-        return label
-    }()
-    
-    private var dishDescription: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
-        label.text = "감질맛 나는 요리 설명"
-        return label
-    }()
-    
-    private var discountPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(600))
-        label.textColor = UIColor.dishBlack
-        label.text = "12,640원"
-        return label
-    }()
-    
-    private var normalPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishLightGrey
-        label.text = "15,800원"
-        return label
-    }()
-    
-    private var specialPrice: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(600))
-        label.textColor = UIColor.dishWhite
-        label.backgroundColor = UIColor.dishBlue
-        label.text = "특가 정보"
-        label.layer.cornerRadius = 10
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    private var prices: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
-    private var breifStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private var blank: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private var banchanBreif: BanchanBriefView = BanchanBriefView(type: .brief)
     
     override init(frame: CGRect) {
-        super.init(frame:  frame)
+        super.init(frame: frame)
         self.layoutDishImage()
-        self.layoutBreifStackView()
-        self.layoutPriceStackView()
+        self.layoutBanchanBrief()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.layoutDishImage()
-        self.layoutBreifStackView()
-        self.layoutPriceStackView()
+        self.layoutBanchanBrief()
     }
+    
+    override func prepareForReuse() {
+        self.banchanBreif.removeBadges()
+    }
+    
+    func configure(image: UIImage) {
+        self.dishImage.image = image
+    }
+    
+    func configure(title: String, description: String) {
+        self.banchanBreif.configure(title: title, description: description)
+    }
+
+    func configure(price: String, listPrice: String?) {
+        self.banchanBreif.configure(price: price, listPrice: listPrice)
+    }
+
+    func configure(specialBadge: String) {
+        self.banchanBreif.configure(specialBadge: specialBadge)
+    }
+    
 }
 
 private extension BriefBanchanViewCell {
@@ -104,39 +56,19 @@ private extension BriefBanchanViewCell {
             self.dishImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.dishImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.dishImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
+            
+            self.dishImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1)
         ])
     }
     
-    func layoutBreifStackView() {
-        self.addSubview(self.breifStackView)
-        
-        self.breifStackView.addArrangedSubview(self.dishTitle)
-        self.breifStackView.addArrangedSubview(self.dishDescription)
-        self.breifStackView.addArrangedSubview(self.prices)
+    func layoutBanchanBrief() {
+        self.addSubview(self.banchanBreif)
         
         NSLayoutConstraint.activate([
-            self.breifStackView.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
-            self.breifStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -CGFloat.defaultInset),
-            self.breifStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset),
+            self.banchanBreif.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
+            self.banchanBreif.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.defaultInset),
+            self.banchanBreif.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -CGFloat.defaultInset)
         ])
-    }
-    
-    func layoutPriceStackView() {
-        self.addSubview(self.specialPrice)
-        
-        self.prices.addArrangedSubview(self.discountPrice)
-        self.prices.addArrangedSubview(self.normalPrice)
-        
-        NSLayoutConstraint.activate([
-            self.specialPrice.topAnchor.constraint(equalTo: self.breifStackView.bottomAnchor, constant: CGFloat.defaultInset),
-            self.specialPrice.leadingAnchor.constraint(equalTo: self.dishImage.trailingAnchor, constant: CGFloat.defaultInset),
-            self.specialPrice.widthAnchor.constraint(equalTo: self.breifStackView.widthAnchor, multiplier: 0.3),
-            self.specialPrice.heightAnchor.constraint(equalTo: self.breifStackView.heightAnchor, multiplier: 0.3),
-            self.specialPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
-        ])
-        
-        self.normalPrice.attributedText = self.normalPrice.text?.strikeThrough()
     }
     
 }

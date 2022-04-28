@@ -2,13 +2,14 @@ import UIKit
 
 extension UIColor {
     static let dishBlack = UIColor(rgb: 0x010101)
-    static let dishLightGrey = UIColor(rgb: 0x828282)
-    static let dishGrey = UIColor(rgb: 0x4F4F4F)
     static let dishWhite = UIColor(rgb: 0xFFFFFF)
-    static let dishBlue = UIColor(rgb: 0x0066D6)
-    static let dishSkyBlue = UIColor(rgb: 0x80BCFF)
-    static let dishGrey4 = UIColor(rgb: 0xF5F5F7)
+    static let dishGrey1 = UIColor(rgb: 0x4F4F4F)
+    static let dishGrey2 = UIColor(rgb: 0x828282)
     static let dishGrey3 = UIColor(rgb: 0xE0E0E0)
+    static let dishGrey4 = UIColor(rgb: 0xF5F5F7)
+    static let dishPrimary = UIColor(rgb: 0x007AFF)
+    static let dishPrimaryDark = UIColor(rgb: 0x0066D6)
+    static let dishPrimaryLight = UIColor(rgb: 0x80BCFF)
     
     convenience init(red: Int, green: Int, blue: Int, alpha: CGFloat = 1.0) {
         assert(red >= 0 && red <= 255, "Invalid red component")

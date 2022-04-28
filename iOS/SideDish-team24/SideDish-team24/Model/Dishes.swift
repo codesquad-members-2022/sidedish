@@ -2,7 +2,12 @@ import Foundation
 
 final class Dishes {
     private var dishes: [Dish] = []
-    private let type: String
+    private(set) var type: String
+    
+    subscript(index: Int) -> Dish? {
+        assert(index >= 0 && index <= dishes.count-1)
+        return dishes[index]
+    }
     
     var count: Int {
         return dishes.count

@@ -4,59 +4,66 @@ class DetailBanchanViewController: UIViewController {
     
     static let identifier = "detailBanchanViewController"
     
-    private let scrollView = UIScrollView()
+    private var banchanViewModel: BanchanViewModel?
     
-    private let innerView : UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        return stackView
+    private let detailBanchanView: DetailBanchanView = {
+        let scrollView = DetailBanchanView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
     }()
-    
-    private let banchanBrief = DetailBanchanBriefView()
-    private let deliverySection = DeliverySectionView()
-    private let counterSection = OrderCountSectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.layoutScollView()
-        self.layoutInnerView()
+        self.configure()
+        self.publish()
+    }
+    
+    func publish() {
+        NotificationCenter.default.addObserver(forName: .stepperTouched,
+                                               object: nil,
+                                               queue: .main,
+                                               using: stepperTouched(noti:))
+    }
+    
+    func setTarget(with viewModel: BanchanViewModel) {
+        self.banchanViewModel = viewModel
     }
     
 }
 
 private extension DetailBanchanViewController {
+    func stepperTouched(noti: Notification) {
+        guard let newValue = noti.userInfo?[NotificationKeyValue.stepperValue] as? Double else { return }
+        self.banchanViewModel?.count = Int(newValue)
+    }
+    
     func layoutScollView() {
         let safeArea = self.view.safeAreaLayoutGuide
-        self.view.addSubview(scrollView)
-        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(detailBanchanView)
         
         NSLayoutConstraint.activate([
-            self.scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            self.scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            self.scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+            self.detailBanchanView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.detailBanchanView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            self.detailBanchanView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            self.detailBanchanView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
-        
         
     }
     
-    func layoutInnerView() {
-        self.scrollView.addSubview(innerView)
-        self.innerView.translatesAutoresizingMaskIntoConstraints = false
+    func configure() {
+        guard let banchanViewModel = banchanViewModel else { return }
+        self.title = banchanViewModel.title
+        self.detailBanchanView.configure(title: banchanViewModel.title,
+                                         description: banchanViewModel.description,
+                                         price: banchanViewModel.price,
+                                         listPrice: banchanViewModel.listPrice)
+        self.detailBanchanView.configure(specialBadge: banchanViewModel.discountPolicy)
         
-        self.innerView.addArrangedSubview(banchanBrief)
-        self.innerView.addArrangedSubview(deliverySection)
-        self.innerView.addArrangedSubview(counterSection)
-        NSLayoutConstraint.activate([
-            self.innerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            self.innerView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            self.innerView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: CGFloat.defaultInset),
-            self.innerView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -CGFloat.defaultInset),
-            self.innerView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -CGFloat.defaultInset*2),
-            self.innerView.heightAnchor.constraint(greaterThanOrEqualToConstant: self.view.frame.height),
-        ])
+        DispatchQueue.main.async {
+            let image = banchanViewModel.image
+            self.detailBanchanView.configure(image: image)
+        }
     }
     
 }

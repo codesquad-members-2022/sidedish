@@ -5,13 +5,9 @@ class BriefBanchanReusableView: UICollectionReusableView {
     static let identifier = "reusableHeader"
     
     private var title: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 32, weight: UIFont.Weight(400))
-        label.textColor = UIColor.dishGrey
+        let label = CustomLabel(title: "모두가 좋아하는 \n든든한 요리 타이틀", font: .largeRegular, color: .dishGrey1)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2
-        label.text = "모두가 좋아하는 \n든든한 요리 타이틀"
         return label
     }()
     
@@ -34,5 +30,9 @@ class BriefBanchanReusableView: UICollectionReusableView {
             self.title.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.title.heightAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.defaultInset*12)
         ])
+    }
+    
+    func setTitle(to string: String) {
+        self.title.text = string
     }
 }

@@ -12,9 +12,22 @@
 		6C105839280E7FD500C0B462 /* BriefBanchanReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */; };
 		6C10583B280E893100C0B462 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C10583A280E893100C0B462 /* CGFloatExtension.swift */; };
 		6C162B7B280ED461003399BC /* DeliverySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C162B7A280ED461003399BC /* DeliverySectionView.swift */; };
-		6C162B7D280ED8F9003399BC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C162B7C280ED8F9003399BC /* UILabelExtension.swift */; };
+		6C162B7D280ED8F9003399BC /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C162B7C280ED8F9003399BC /* PaddingLabel.swift */; };
 		6C4CEF4728110DD000AFB684 /* BriefBanchanViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */; };
 		6C4CEF4B28111FA000AFB684 /* OrderCountSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */; };
+		6C4CEF502815400500AFB684 /* OrderCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF4F2815400500AFB684 /* OrderCount.swift */; };
+		6C4CEF522815597900AFB684 /* OrderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF512815597900AFB684 /* OrderSectionView.swift */; };
+		6C4CEF542815648800AFB684 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF532815648800AFB684 /* UIButtonExtension.swift */; };
+		6C4CEF5728156F0900AFB684 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6C4CEF5628156F0900AFB684 /* .swiftlint.yml */; };
+		6C4CEF59281656FB00AFB684 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */; };
+		6C4CEF5D2816975700AFB684 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF5C2816975700AFB684 /* IntExtension.swift */; };
+		6C4CEF612817BB0D00AFB684 /* BanchanBriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */; };
+		6C4CEF632817E2FB00AFB684 /* DetailBanchanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF622817E2FB00AFB684 /* DetailBanchanView.swift */; };
+		6C4CEF652817E76100AFB684 /* DetailViewBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */; };
+		6C4CEF812817F17200AFB684 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */; };
+		6C4CEF852817F3AD00AFB684 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */; };
+		6C4CEF892817FE2300AFB684 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF882817FE2300AFB684 /* CustomLabel.swift */; };
+		6C4CEF8D2818F08E00AFB684 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CEF8C2818F08E00AFB684 /* NotificationExtension.swift */; };
 		6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0801280D080000D2D401 /* AppDelegate.swift */; };
 		6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0803280D080000D2D401 /* SceneDelegate.swift */; };
 		6CEE0806280D080000D2D401 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0805280D080000D2D401 /* MainViewController.swift */; };
@@ -22,12 +35,15 @@
 		6CEE080B280D080300D2D401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080A280D080300D2D401 /* Assets.xcassets */; };
 		6CEE080E280D080300D2D401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE080C280D080300D2D401 /* LaunchScreen.storyboard */; };
 		6CEE0818280D616E00D2D401 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE0817280D616E00D2D401 /* Dish.swift */; };
+		6CEF72C0281A642A000BCB4E /* NotificationKeyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF72BF281A642A000BCB4E /* NotificationKeyValue.swift */; };
+		6CEF72C3281A65F1000BCB4E /* SideDishable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF72C2281A65F1000BCB4E /* SideDishable.swift */; };
 		C6593D15DB8049FB6831B879 /* Pods_SideDish_team24.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */; };
 		F56668C1280D86B0007ECAD0 /* Dishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56668C0280D86B0007ECAD0 /* Dishes.swift */; };
 		F57135BB280E49930040C5A4 /* BriefBanchanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57135BA280E49930040C5A4 /* BriefBanchanViewController.swift */; };
 		F57135BE280E4ABB0040C5A4 /* BriefBanchanViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */; };
-		F57135C2280E98500040C5A4 /* DetailBanchanBriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57135C1280E98500040C5A4 /* DetailBanchanBriefView.swift */; };
+		F5D88C972816EEBA00EE9D91 /* BanchanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D88C962816EEBA00EE9D91 /* BanchanViewModel.swift */; };
 		F5F1A1AA280E4736006EFDE2 /* DetailBanchanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F1A1A9280E4736006EFDE2 /* DetailBanchanViewController.swift */; };
+		F5F2088F28163805004F50A3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2088E28163805004F50A3 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +53,22 @@
 		6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanReusableView.swift; sourceTree = "<group>"; };
 		6C10583A280E893100C0B462 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		6C162B7A280ED461003399BC /* DeliverySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySectionView.swift; sourceTree = "<group>"; };
-		6C162B7C280ED8F9003399BC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		6C162B7C280ED8F9003399BC /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanViewControllerExtension.swift; sourceTree = "<group>"; };
 		6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCountSectionView.swift; sourceTree = "<group>"; };
+		6C4CEF4F2815400500AFB684 /* OrderCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCount.swift; sourceTree = "<group>"; };
+		6C4CEF512815597900AFB684 /* OrderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSectionView.swift; sourceTree = "<group>"; };
+		6C4CEF532815648800AFB684 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		6C4CEF5628156F0900AFB684 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
+		6C4CEF5C2816975700AFB684 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanBriefView.swift; sourceTree = "<group>"; };
+		6C4CEF622817E2FB00AFB684 /* DetailBanchanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBanchanView.swift; sourceTree = "<group>"; };
+		6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewBorder.swift; sourceTree = "<group>"; };
+		6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		6C4CEF882817FE2300AFB684 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		6C4CEF8C2818F08E00AFB684 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		6CEE07FE280D080000D2D401 /* SideDish-team24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideDish-team24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEE0801280D080000D2D401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEE0803280D080000D2D401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,13 +78,16 @@
 		6CEE080D280D080300D2D401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CEE080F280D080300D2D401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CEE0817280D616E00D2D401 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		6CEF72BF281A642A000BCB4E /* NotificationKeyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeyValue.swift; sourceTree = "<group>"; };
+		6CEF72C2281A65F1000BCB4E /* SideDishable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishable.swift; sourceTree = "<group>"; };
 		E5F547B859D2A20736FC1BCD /* Pods-SideDish-team24.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish-team24.debug.xcconfig"; path = "Target Support Files/Pods-SideDish-team24/Pods-SideDish-team24.debug.xcconfig"; sourceTree = "<group>"; };
 		E7233DD1620B28E72B0AFE8F /* Pods_SideDish_team24.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish_team24.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56668C0280D86B0007ECAD0 /* Dishes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dishes.swift; sourceTree = "<group>"; };
 		F57135BA280E49930040C5A4 /* BriefBanchanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanViewController.swift; sourceTree = "<group>"; };
 		F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefBanchanViewCell.swift; sourceTree = "<group>"; };
-		F57135C1280E98500040C5A4 /* DetailBanchanBriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBanchanBriefView.swift; sourceTree = "<group>"; };
+		F5D88C962816EEBA00EE9D91 /* BanchanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanchanViewModel.swift; sourceTree = "<group>"; };
 		F5F1A1A9280E4736006EFDE2 /* DetailBanchanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBanchanViewController.swift; sourceTree = "<group>"; };
+		F5F2088E28163805004F50A3 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +117,12 @@
 				6C105831280E6A0E00C0B462 /* UIColorExtension.swift */,
 				6C105833280E6B9D00C0B462 /* StringExtension.swift */,
 				6C10583A280E893100C0B462 /* CGFloatExtension.swift */,
-				6C162B7C280ED8F9003399BC /* UILabelExtension.swift */,
 				6C4CEF4628110DD000AFB684 /* BriefBanchanViewControllerExtension.swift */,
+				6C4CEF532815648800AFB684 /* UIButtonExtension.swift */,
+				6C4CEF58281656FB00AFB684 /* StackViewExtension.swift */,
+				6C4CEF5C2816975700AFB684 /* IntExtension.swift */,
+				6C4CEF842817F3AD00AFB684 /* UIFontExtension.swift */,
+				6C4CEF8C2818F08E00AFB684 /* NotificationExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -100,9 +136,56 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
+		6C4CEF4E28153FCF00AFB684 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				6C4CEF4F2815400500AFB684 /* OrderCount.swift */,
+				6CEF72BF281A642A000BCB4E /* NotificationKeyValue.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		6C4CEF682817EC2500AFB684 /* BriefView */ = {
+			isa = PBXGroup;
+			children = (
+				6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */,
+			);
+			path = BriefView;
+			sourceTree = "<group>";
+		};
+		6C4CEF692817EC4D00AFB684 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				6C4CEF642817E76100AFB684 /* DetailViewBorder.swift */,
+				6C162B7A280ED461003399BC /* DeliverySectionView.swift */,
+				6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */,
+				6C4CEF512815597900AFB684 /* OrderSectionView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		6C4CEF6A2817ECA400AFB684 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				6C162B7C280ED8F9003399BC /* PaddingLabel.swift */,
+				6C4CEF602817BB0D00AFB684 /* BanchanBriefView.swift */,
+				6C4CEF882817FE2300AFB684 /* CustomLabel.swift */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		6C4CEF6B2817EFED00AFB684 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6C4CEF802817F17200AFB684 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		6CEE07F5280D080000D2D401 = {
 			isa = PBXGroup;
 			children = (
+				6C4CEF5628156F0900AFB684 /* .swiftlint.yml */,
 				6CEE0800280D080000D2D401 /* SideDish-team24 */,
 				6CEE07FF280D080000D2D401 /* Products */,
 				0C6587959E1A7871680FA73E /* Pods */,
@@ -121,11 +204,14 @@
 		6CEE0800280D080000D2D401 /* SideDish-team24 */ = {
 			isa = PBXGroup;
 			children = (
+				6C4CEF6B2817EFED00AFB684 /* Font */,
+				F5D123B92817883200B9E6AF /* ViewModel */,
 				F56668C2280D95B4007ECAD0 /* ViewController */,
 				6CEE0819280D617300D2D401 /* Model */,
 				F57135BC280E4A8D0040C5A4 /* View */,
 				6C105830280E6A0300C0B462 /* Extension */,
 				6C105835280E745700C0B462 /* Delegate */,
+				6C4CEF4E28153FCF00AFB684 /* Util */,
 				6CEE0807280D080000D2D401 /* Main.storyboard */,
 				6CEE080A280D080300D2D401 /* Assets.xcassets */,
 				6CEE080C280D080300D2D401 /* LaunchScreen.storyboard */,
@@ -137,10 +223,20 @@
 		6CEE0819280D617300D2D401 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6CEF72C1281A65E7000BCB4E /* Protocol */,
 				6CEE0817280D616E00D2D401 /* Dish.swift */,
 				F56668C0280D86B0007ECAD0 /* Dishes.swift */,
+				F5F2088E28163805004F50A3 /* MockData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6CEF72C1281A65E7000BCB4E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6CEF72C2281A65F1000BCB4E /* SideDishable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		78A24B8C1BA5531D53170259 /* Frameworks */ = {
@@ -164,13 +260,21 @@
 		F57135BC280E4A8D0040C5A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6C4CEF622817E2FB00AFB684 /* DetailBanchanView.swift */,
+				6C4CEF692817EC4D00AFB684 /* DetailView */,
 				F57135BD280E4ABB0040C5A4 /* BriefBanchanViewCell.swift */,
-				6C105838280E7FD500C0B462 /* BriefBanchanReusableView.swift */,
-				F57135C1280E98500040C5A4 /* DetailBanchanBriefView.swift */,
-				6C162B7A280ED461003399BC /* DeliverySectionView.swift */,
-				6C4CEF4A28111FA000AFB684 /* OrderCountSectionView.swift */,
+				6C4CEF682817EC2500AFB684 /* BriefView */,
+				6C4CEF6A2817ECA400AFB684 /* CommonView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F5D123B92817883200B9E6AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F5D88C962816EEBA00EE9D91 /* BanchanViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +289,7 @@
 				6CEE07FB280D080000D2D401 /* Frameworks */,
 				6CEE07FC280D080000D2D401 /* Resources */,
 				05310DFB430324EBB97C20F4 /* [CP] Embed Pods Frameworks */,
+				6C4CEF5528156E6D00AFB684 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -233,8 +338,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4CEF5728156F0900AFB684 /* .swiftlint.yml in Resources */,
 				6CEE080E280D080300D2D401 /* LaunchScreen.storyboard in Resources */,
 				6CEE080B280D080300D2D401 /* Assets.xcassets in Resources */,
+				6C4CEF812817F17200AFB684 /* SF-Pro-Display-Regular.otf in Resources */,
 				6CEE0809280D080000D2D401 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +388,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6C4CEF5528156E6D00AFB684 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -289,21 +413,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CEE0806280D080000D2D401 /* MainViewController.swift in Sources */,
+				6C4CEF652817E76100AFB684 /* DetailViewBorder.swift in Sources */,
+				6C4CEF5D2816975700AFB684 /* IntExtension.swift in Sources */,
+				6C4CEF542815648800AFB684 /* UIButtonExtension.swift in Sources */,
 				F56668C1280D86B0007ECAD0 /* Dishes.swift in Sources */,
+				6C4CEF502815400500AFB684 /* OrderCount.swift in Sources */,
 				6C105834280E6B9D00C0B462 /* StringExtension.swift in Sources */,
+				6C4CEF8D2818F08E00AFB684 /* NotificationExtension.swift in Sources */,
+				6C4CEF632817E2FB00AFB684 /* DetailBanchanView.swift in Sources */,
 				6C4CEF4728110DD000AFB684 /* BriefBanchanViewControllerExtension.swift in Sources */,
+				6C4CEF612817BB0D00AFB684 /* BanchanBriefView.swift in Sources */,
 				F57135BB280E49930040C5A4 /* BriefBanchanViewController.swift in Sources */,
 				F57135BE280E4ABB0040C5A4 /* BriefBanchanViewCell.swift in Sources */,
 				6CEE0818280D616E00D2D401 /* Dish.swift in Sources */,
 				6C105839280E7FD500C0B462 /* BriefBanchanReusableView.swift in Sources */,
-				6C162B7D280ED8F9003399BC /* UILabelExtension.swift in Sources */,
+				6C4CEF892817FE2300AFB684 /* CustomLabel.swift in Sources */,
+				6C4CEF522815597900AFB684 /* OrderSectionView.swift in Sources */,
+				6C4CEF59281656FB00AFB684 /* StackViewExtension.swift in Sources */,
+				6C162B7D280ED8F9003399BC /* PaddingLabel.swift in Sources */,
 				6C105832280E6A0E00C0B462 /* UIColorExtension.swift in Sources */,
 				F5F1A1AA280E4736006EFDE2 /* DetailBanchanViewController.swift in Sources */,
+				6C4CEF852817F3AD00AFB684 /* UIFontExtension.swift in Sources */,
+				6CEF72C0281A642A000BCB4E /* NotificationKeyValue.swift in Sources */,
 				6CEE0802280D080000D2D401 /* AppDelegate.swift in Sources */,
+				6CEF72C3281A65F1000BCB4E /* SideDishable.swift in Sources */,
 				6C4CEF4B28111FA000AFB684 /* OrderCountSectionView.swift in Sources */,
+				F5D88C972816EEBA00EE9D91 /* BanchanViewModel.swift in Sources */,
 				6C162B7B280ED461003399BC /* DeliverySectionView.swift in Sources */,
 				6C10583B280E893100C0B462 /* CGFloatExtension.swift in Sources */,
-				F57135C2280E98500040C5A4 /* DetailBanchanBriefView.swift in Sources */,
+				F5F2088F28163805004F50A3 /* MockData.swift in Sources */,
 				6CEE0804280D080000D2D401 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +590,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				DEVELOPMENT_TEAM = J3CMN6PKN2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SideDish-team24/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -465,7 +603,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.codesquad.SideDish-team24";
+				PRODUCT_BUNDLE_IDENTIFIER = "codesquad.SideDish-team24";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -481,7 +619,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				DEVELOPMENT_TEAM = J3CMN6PKN2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SideDish-team24/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -494,7 +632,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.codesquad.SideDish-team24";
+				PRODUCT_BUNDLE_IDENTIFIER = "codesquad.SideDish-team24";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
