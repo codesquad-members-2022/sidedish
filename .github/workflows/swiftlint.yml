@@ -5,7 +5,10 @@ on:
     paths:
       - '.swiftlint.yml'
       - '**/*.swift'
-
+  push:
+     paths:
+      - '.swiftlint.yml'
+      - '**/*.swift'
 jobs:
   SwiftLint:
     runs-on: macos-latest
