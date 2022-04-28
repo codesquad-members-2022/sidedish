@@ -27,7 +27,7 @@ public class OrderSheetService {
         int orderQuantity = orderSheetRequest.getQuantity();
 
         SideDish sideDish = sideDishRepository.findById(sideDishId)
-            .orElse(null);
+            .orElseThrow(() -> new OrderException(ErrorCode.NO_SUCH_SIDE_DISH_ERROR));
 
         int remainStock = sideDish.getStock();
         if (remainStock < orderQuantity) {
