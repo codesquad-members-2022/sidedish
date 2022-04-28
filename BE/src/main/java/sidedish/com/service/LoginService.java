@@ -1,12 +1,16 @@
 package sidedish.com.service;
 
+import java.util.List;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import sidedish.com.controller.model.GitHubAccessToken;
+import sidedish.com.domain.User;
 
 @Service
 public class LoginService {
@@ -16,6 +20,17 @@ public class LoginService {
 
 	public void login(String code) {
 		GitHubAccessToken accessToken = requestAccessToken(code);
+		User user = requestUser(accessToken);
+	}
+
+	private User requestUser(GitHubAccessToken accessToken) {
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+		httpHeaders.setBearerAuth(accessToken.getAccessToken());
+
+		return new RestTemplate()
+			.exchange("https://api.github.com/user", HttpMethod.GET,
+				new HttpEntity<>(httpHeaders), User.class).getBody();
 	}
 
 	public GitHubAccessToken requestAccessToken(String code) {
