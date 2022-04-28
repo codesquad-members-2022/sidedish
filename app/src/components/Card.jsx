@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { useContext } from "react";
 import styled from "styled-components";
 import { Badge, Wrapper } from "../styled-components/utils.js";
@@ -6,7 +5,16 @@ import { ModalContext } from "../contexts/ModalContext.js";
 import Thumbnail from "./Thumbnail.jsx";
 
 const Card = ({ card, cardSize }) => {
-  const { image, alt, delivery_type, title, description, s_price, n_price, badge } = card;
+  const {
+    image,
+    alt,
+    delivery_type,
+    title,
+    description,
+    s_price,
+    n_price,
+    badge,
+  } = card;
   const modal = useContext(ModalContext);
 
   const handleClickCard = () => {
@@ -31,20 +39,20 @@ const Card = ({ card, cardSize }) => {
             <NPrice>{n_price}</NPrice>
           </div>
           <Badges>
-            {badge && badge
-              .filter(badge => badge !== '메인특가')
-              .map(badge =>
-                badge === '런칭특가' ? (
-                  <Badge key={'lauching'} bgColor={'orange'}>
-                    {badge}
-                  </Badge>
-                ) : (
-                  <Badge key={'event'} bgColor={'green'}>
-                    {badge}
-                  </Badge>
-                ),
-              )
-            }
+            {badge &&
+              badge
+                .filter((badge) => badge !== "메인특가")
+                .map((badge) =>
+                  badge === "런칭특가" ? (
+                    <Badge key={"lauching"} bgColor={"orange"}>
+                      {badge}
+                    </Badge>
+                  ) : (
+                    <Badge key={"event"} bgColor={"green"}>
+                      {badge}
+                    </Badge>
+                  )
+                )}
           </Badges>
         </Info>
       </Wrapper>

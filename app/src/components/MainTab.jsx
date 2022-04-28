@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import theme from "../styled-components/theme.js";
-import CardList from "./CardList.js";
-import { FlexMarginCenter } from "../styled-components/utils.js";
-import { Horizon } from "../styled-components/utils.js";
+import CardList from "./CardList.jsx";
+import { FlexMarginCenter, Horizon } from "../styled-components/utils.js";
 
 const TAB_TEXTS = [
   "풍성한 고기 반찬",

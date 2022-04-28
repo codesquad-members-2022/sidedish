@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Carousel from "./Carousel.js";
-import ProductDetailModal from "./ProductDetailModal.js";
-import Alert from "./Alert.js";
+import Carousel from "./Carousel.jsx";
+import ProductDetailModal from "./ProductDetailModal.jsx";
+import Alert from "./Alert.jsx";
 import { Background } from "../../styled-components/utils.js";
 import styled from "styled-components";
 

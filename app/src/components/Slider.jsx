@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import CardList from "./CardList.js";
+import CardList from "./CardList.jsx";
 
 const useFirstRender = () => {
   const firstRender = useRef(true);

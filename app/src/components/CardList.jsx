@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "./Card.js";
+import Card from "./Card.jsx";
 import { FlexMarginCenter } from "../styled-components/utils.js";
 
 const CardList = ({

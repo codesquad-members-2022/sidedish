@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useCallback } from "react";
-import Category from "./Category.js";
+import Category from "./Category.jsx";
 import { Horizon } from "../styled-components/utils.js";
 
 const MainCategories = ({ data }) => {
