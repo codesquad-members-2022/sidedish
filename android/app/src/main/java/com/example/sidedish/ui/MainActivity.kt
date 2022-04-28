@@ -8,11 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sidedish.R
 import com.example.sidedish.databinding.ActivityMainBinding
-import com.example.sidedish.ui.common.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: MainViewModel by viewModels()
 
 
     @SuppressLint("SetTextI18n")

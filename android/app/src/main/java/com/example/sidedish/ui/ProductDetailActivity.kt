@@ -2,22 +2,22 @@ package com.example.sidedish.ui
 
 import android.graphics.Paint
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sidedish.R
-import com.example.sidedish.ui.common.ViewModelFactory
 import com.example.sidedish.databinding.ActivityProductDetailBinding
 import com.example.sidedish.model.PostRequest
 import com.example.sidedish.model.Products
 import com.example.sidedish.ui.common.ButtonState
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailActivity : AppCompatActivity() {
 
-    private val viewModel: ProductDetailViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: ProductDetailViewModel by viewModels()
     private lateinit var binding: ActivityProductDetailBinding
     lateinit var products: Products
 

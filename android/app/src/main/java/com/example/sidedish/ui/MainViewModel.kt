@@ -6,11 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sidedish.model.Products
 import com.example.sidedish.repository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val mainRepository: MainRepository) : ViewModel() {
 
     private val _mainMenu = MutableLiveData<List<Products>>()
     val mainMenu: LiveData<List<Products>> = _mainMenu

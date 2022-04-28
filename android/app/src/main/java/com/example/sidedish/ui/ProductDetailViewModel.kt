@@ -10,9 +10,12 @@ import com.example.sidedish.model.ProductDetail
 import com.example.sidedish.repository.ProductDetailRepository
 import com.example.sidedish.model.RepresentImages
 import com.example.sidedish.ui.common.ButtonState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductDetailViewModel(
+@HiltViewModel
+class ProductDetailViewModel @Inject constructor(
     private val productDetailRepository: ProductDetailRepository
 ) :
     ViewModel() {
