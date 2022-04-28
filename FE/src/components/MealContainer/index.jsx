@@ -1,36 +1,30 @@
 import React from "react";
-import styled from "styled-components";
-import Loader from "components/Loader";
+import Carousel from "components/Carousel";
+import { Container, Header } from "./style";
 import MealCard from "components/MealCard";
+import Loader from "components/Loader";
 
-// TODO: style.js로 분리하기
-const MealContainerStyled = styled.div``;
+// 캐러셀
+const IMAGE_COUNT = 4;
+const MEAL_IMAGE_SIZE = 300;
+const parentWidth = 1280;
 
-const MealCarouselStyled = styled.div`
-  display: flex;
-`;
-
-// TODO: component로 분리하기
-function Carousel({ cards }) {
+const MealContainer = ({ containerInfo }) => {
+  const { mealHeader, mealCards } = containerInfo;
   return (
-    <MealCarouselStyled>
-      <button>⬅️</button>
-      {cards.map(({ id, ...mealInfo }) => (
-        <MealCard key={id} mealInfo={mealInfo} />
-      ))}
-      <button>➡️</button>
-    </MealCarouselStyled>
+    <Container>
+      <Header>{mealHeader}</Header>
+      {mealCards.length ? (
+        <Carousel cards={mealCards} parentWidth={parentWidth} imageCount={IMAGE_COUNT} imageSize={MEAL_IMAGE_SIZE}>
+          {mealCards.map(({ id, ...mealInfo }) => (
+            <MealCard key={id} mealInfo={mealInfo} size={MEAL_IMAGE_SIZE} />
+          ))}
+        </Carousel>
+      ) : (
+        <Loader />
+      )}
+    </Container>
   );
-}
-
-function MealContainer({ meals }) {
-  const { mealHeader, mealCards } = meals;
-  return (
-    <MealContainerStyled>
-      <h2>{mealHeader}</h2>
-      {mealCards.length ? <Carousel cards={mealCards} /> : <Loader />}
-    </MealContainerStyled>
-  );
-}
+};
 
 export default MealContainer;

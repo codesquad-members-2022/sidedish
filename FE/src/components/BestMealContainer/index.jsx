@@ -1,57 +1,62 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import BestMealCard from "components/BestMealCard";
+import React, { useCallback, useState } from "react";
 import Loader from "components/Loader";
+import MealCard from "components/MealCard";
+import { CardContainer, Container, Divider, Header, Nav, Tab } from "./style";
+import { useAxios } from "hooks/useAxios";
 
-import { MOCK_SERVER_URL } from "constant";
+const BEST_MEAL_IMAGE_SIZE = 411;
 
+const BEST_TITLE_BADGE = "기획전";
 const BEST_TITLE = "한 번 주문하면 두 번 반하는 반찬";
-const BEST_SUBTITLE = ["풍성한 고기 반찬", "편리한 반찬 세트", "맛있는 제철 요리", "우리 아이 영양 반찬"];
+const BEST_TAB_TYPE = [
+  { id: 100, title: "풍성한 고기 반찬", apiParams: "meat" },
+  { id: 123, title: "편리한 반찬 세트", apiParams: "easy" },
+  { id: 313, title: "맛있는 제철 요리", apiParams: "season" },
+  { id: 153, title: "우리 아이 영양 반찬", apiParams: "kids" },
+];
 
-const BestMealContainerStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+const BestMealContainer = () => {
+  const [activeTab, setActiveTab] = useState(BEST_TAB_TYPE[0]);
 
-const BestMealCardContainer = styled.div`
-  display: flex;
-`;
+  const { response: meals } = useAxios({
+    method: "get",
+    url: `/products/best`,
+    params: { category: activeTab.apiParams },
+  });
 
-function BestMealContainer() {
-  const [meals, setMeals] = useState([]);
+  const Tabs = () =>
+    BEST_TAB_TYPE.map(({ id, title, apiParams }) => (
+      <Tab
+        key={id}
+        onClick={() =>
+          setActiveTab({
+            id,
+            title,
+            apiParams,
+          })
+        }
+        isSelected={activeTab.id === id}
+      >
+        {title}
+      </Tab>
+    ));
 
-  async function fetchData() {
-    try {
-      const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=meat`, {
-        validateStatus: function (status) {
-          return status >= 200 && status < 300;
-        },
-      });
-      setMeals(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const BestMealCards = () =>
+    meals.map(({ id, ...mealInfo }) => <MealCard key={id} mealInfo={mealInfo} size={BEST_MEAL_IMAGE_SIZE} />);
 
   return (
-    <BestMealContainerStyled>
-      <div className="BestMealHeader">{BEST_TITLE}</div>
-      <div className="BestMealNavigation">
-        {BEST_SUBTITLE.map((val, index) => (
-          <h3 key={index}>{val}</h3>
-        ))}
-      </div>
-      <BestMealCardContainer>
-        {meals.length ? meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />) : <Loader />}
-      </BestMealCardContainer>
-    </BestMealContainerStyled>
+    <Container>
+      <Header>
+        <div>{BEST_TITLE_BADGE}</div>
+        <h2>{BEST_TITLE}</h2>
+      </Header>
+      <Nav>
+        <Tabs />
+      </Nav>
+      <Divider />
+      <CardContainer>{meals.length ? <BestMealCards /> : <Loader />}</CardContainer>
+    </Container>
   );
-}
+};
 
 export default BestMealContainer;
