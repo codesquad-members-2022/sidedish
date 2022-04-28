@@ -8,9 +8,9 @@ const ProductDetailModal = ({
   count,
   showModalPopup,
   handleMouseOverDetailImg,
-  handleMinusBtnClick,
-  handlePlusBtnClick,
-  handleOrderBtnClick,
+  handleClickMinusBtn,
+  handleClickPlusBtn,
+  handleClickOrderBtn,
 }) => {
   const productDeliveryInfo = [
     { id: "point", title: "적립금", desc: product.point },
@@ -66,14 +66,14 @@ const ProductDetailModal = ({
               <CountMinusBtn>
                 <CountBtnImg
                   src={`${process.env.PUBLIC_URL}/images/Minus.svg`}
-                  onClick={handleMinusBtnClick}
+                  onClick={handleClickMinusBtn}
                 ></CountBtnImg>
               </CountMinusBtn>
               <ProductCount>{count}</ProductCount>
               <CountPlusBtn>
                 <CountBtnImg
                   src={`${process.env.PUBLIC_URL}/images/Plus.svg`}
-                  onClick={handlePlusBtnClick}
+                  onClick={handleClickPlusBtn}
                 ></CountBtnImg>
               </CountPlusBtn>
             </ProductCounter>
@@ -81,7 +81,7 @@ const ProductDetailModal = ({
               총 주문금액 <PriceNumber>{totalPriceText}원</PriceNumber>
             </ProductTotalPrice>
           </PriceCalculator>
-          <OrderBtn onClick={handleOrderBtnClick}>주문하기</OrderBtn>
+          <OrderBtn onClick={handleClickOrderBtn}>주문하기</OrderBtn>
         </ProductDesc>
       </Content>
     </Container>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Background, FlexCenter } from "../../styled-components/utils.js";
 
-const Alert = ({ handleOrderClickBtn }) => {
+const Alert = ({ handleClickOrderBtn }) => {
   return (
     <>
       <Background zIndex={3}></Background>
@@ -11,7 +11,7 @@ const Alert = ({ handleOrderClickBtn }) => {
           <br />
           주문했습니다.
         </OrderTitle>
-        <ConfirmBtn as="button" onClick={handleOrderClickBtn}>
+        <ConfirmBtn as="button" onClick={handleClickOrderBtn}>
           확인
         </ConfirmBtn>
       </OrderComplete>
@@ -20,7 +20,7 @@ const Alert = ({ handleOrderClickBtn }) => {
 };
 
 const OrderComplete = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
