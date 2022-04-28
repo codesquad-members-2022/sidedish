@@ -1,6 +1,6 @@
 package com.terria.sidedish.api;
 
-import com.terria.sidedish.dto.response.ExhibitionResponse;
+import com.terria.sidedish.dto.response.exhibition.ExhibitionResponse;
 import com.terria.sidedish.service.ExhibitionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -22,8 +22,8 @@ public class ExhibitionController {
     private final ExhibitionService exhibitionService;
 
     @ApiOperation(
-            value = "특정 기획전에 속한 데이터(카테고리, 반찬 카드) 조회",
-            notes = "특정 기획전에 속한 데이터(카테고리, 반찬 카드)를 조회한다.",
+            value = "특정 기획전에 속한 카테고리 목록 조회",
+            notes = "특정 기획전속한 카테고리 목록을 조회한다.",
             produces = "application/json",
             response = ExhibitionResponse.class
     )

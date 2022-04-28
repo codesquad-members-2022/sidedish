@@ -1,9 +1,10 @@
-package com.terria.sidedish.dto.response;
+package com.terria.sidedish.dto.response.sidedish;
 
+import com.terria.sidedish.domain.entity.aggregate.SideDish;
 import com.terria.sidedish.domain.entity.reference.DiscountEvent;
-import com.terria.sidedish.domain.entity.reference.SideDish;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +15,8 @@ import java.util.stream.Collectors;
 @ApiModel
 @Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SideDishCardResponse {
-
 
     @ApiModelProperty(required = true, value = "반찬 아이디")
     private long sideDishId;
@@ -44,21 +44,25 @@ public class SideDishCardResponse {
 
     public static SideDishCardResponse from(SideDish sideDish, List<DiscountEvent> discountEvents) {
 
-        double totalDiscountRate = discountEvents.stream()
-                .mapToDouble(DiscountEvent::getDiscountRate)
-                .sum();
-
         return new SideDishCardResponse(
                 sideDish.getId(),
                 sideDish.getSideDishImages().get(0).getImageUrl(),
                 sideDish.getName(),
                 sideDish.getDescription(),
-                (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 10 * 10,
+                getDiscountPrice(sideDish, discountEvents),
                 sideDish.getPrice(),
                 sideDish.getShippingInfo(),
                 discountEvents.stream()
                         .map(DiscountEventResponse::from)
                         .collect(Collectors.toList())
         );
+    }
+
+    private static int getDiscountPrice(SideDish sideDish, List<DiscountEvent> discountEvents) {
+        double totalDiscountRate = discountEvents.stream()
+                .mapToDouble(DiscountEvent::getDiscountRate)
+                .sum();
+
+        return (int) (sideDish.getPrice() * (1.0 - totalDiscountRate)) / 10 * 10;
     }
 }

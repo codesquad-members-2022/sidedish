@@ -14,12 +14,14 @@ public class OrderSheet {
     @Id
     private long id;
     private int quantity;
-    private double totalAmount;
+    private int totalAmount;
 
     @CreatedDate
     private LocalDateTime createdAt;
-
-    // FK
     private long sideDishId;
     private long memberId;
+
+    public static OrderSheet of(int quantity, int totalAmount, long sideDishId, long memberId) {
+        return new OrderSheet(0, quantity, totalAmount, null, sideDishId, memberId);
+    }
 }
