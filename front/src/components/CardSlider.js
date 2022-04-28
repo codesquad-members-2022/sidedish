@@ -11,8 +11,8 @@ function CardSlider({ items, showModal, startCardIndex, NUMBER_OF_CARDS, width, 
       <CardListWrap width={width}>
         <CardList startCardIndex={startCardIndex} gap={gap} cardSize={cardSize}>
           {items.map((item, index) => (
-            <CardListItem>
-              <Card key={index} size={cardSize} item={item} showModal={showModal}></Card>
+            <CardListItem key={index}>
+              <Card size={cardSize} item={item} showModal={showModal}></Card>
             </CardListItem>
           ))}
         </CardList>
