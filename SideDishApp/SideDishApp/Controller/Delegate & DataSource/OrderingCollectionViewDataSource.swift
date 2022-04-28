@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import OSLog
 
 final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+    
+    private var imageNetworkManager: NetworkManager = NetworkManager(session: .shared)
     
     private var headers: [Category] = [Category.main,
                                        Category.soup,
@@ -22,7 +25,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-
+        
         guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: Constant.Identifier.sectionHeaderView,
@@ -33,7 +36,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
         supplementaryView.setSectionNumber(number: indexPath.section)
         return supplementaryView
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch self.headers[section] {
         case .main:
@@ -61,7 +64,7 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
     
     private func configure(cell: OrderingCollectionViewCell, menu: Menu?) -> OrderingCollectionViewCell {
         guard let menu = menu else { return OrderingCollectionViewCell() }
-        cell.setDishImage(by: menu.image)
+        setImage(cell: cell, by: menu.image)
         cell.menuStackView.setTitle(by: menu.title)
         cell.menuStackView.setDescription(by: menu.description)
         cell.menuStackView.setPrice(originPrice: menu.n_price, discountedPrice: menu.s_price)
@@ -81,6 +84,26 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
             return menus[Category.soup]?[index.row]
         case .side:
             return menus[Category.side]?[index.row]
+        }
+    }
+}
+
+// MARK: - Fecth & Set Image From URL
+
+extension OrderingCollectionViewDataSource {
+    private func setImage(cell: OrderingCollectionViewCell, by imageURL: String) {
+        guard let imageURL = URL(string: imageURL) else { return }
+        imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { (result: Result<Data?, NetworkError>) in
+            switch result {
+            case .success(let data):
+                guard let data = data,
+                      let image = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    cell.setMenu(image: image)
+                }
+            case .failure(let failure):
+                os_log(.error, "\(failure.localizedDescription)")
+            }
         }
     }
 }

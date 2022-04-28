@@ -93,8 +93,8 @@
 		1ED9D3FD280FEC2000AEC888 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8DB608D4280FCEC4009B585E /* DetailViewController.swift */,
 				1EE49018280D870E00B6CE60 /* OrderingViewController.swift */,
+				8DB608D4280FCEC4009B585E /* DetailViewController.swift */,
 				1ED9D53D2811394B00AEC888 /* Delegate & DataSource */,
 			);
 			path = Controller;
