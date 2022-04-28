@@ -14,7 +14,7 @@ INSERT INTO best_type (best_name) VALUES ('seasonal');
 INSERT INTO best_type (best_name) VALUES ('nutrition');
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
                   delivery_id, best_id)
-VALUES (3,'오리주물럭','맛있는 오리고기와 오징어의 조합',15800, 12640,10,1,
+VALUES (3,'오리주물럭','맛있는 오리고기와 오징어의 조합',15800, 12640,9,1,
         'https://user-images.githubusercontent.com/92678171/164159697-1c8ef07a-141e-464b-b4e5-bb73e2119535.png',
         3,1);
 INSERT INTO item (category_id, item_name, description, original_price, discount_price, stock, label_id, main_image,
