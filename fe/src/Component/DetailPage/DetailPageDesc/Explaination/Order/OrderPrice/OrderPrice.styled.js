@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
 const OrderPriceDiv = styled.div`
+  height: 70px;
+`;
+
+const OriginPriceDiv = styled.div`
   margin-top: 16px;
 
   ${({ discountType, theme: { boldFonts, colors } }) => {
@@ -49,4 +53,4 @@ const DiscountTypeDiv = styled.div`
   margin-top: 8px;
 `;
 
-export { OrderPriceDiv, DiscountTypeDiv };
+export { OrderPriceDiv, OriginPriceDiv, DiscountTypeDiv };

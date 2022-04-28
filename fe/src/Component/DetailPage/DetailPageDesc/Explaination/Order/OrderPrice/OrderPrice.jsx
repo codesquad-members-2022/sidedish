@@ -1,16 +1,20 @@
 import { useContext } from "react";
 import getPriceType from "Util/util";
 import DetailInfoContext from "Component/DetailPage/DetailInfoContext";
-import { OrderPriceDiv, DiscountTypeDiv } from "./OrderPrice.styled";
+import {
+  OrderPriceDiv,
+  OriginPriceDiv,
+  DiscountTypeDiv,
+} from "./OrderPrice.styled";
 
 const OrderPrice = () => {
   const { price, discountType, discountRate } = useContext(DetailInfoContext);
 
   return (
-    <>
-      <OrderPriceDiv discountType={discountType} className="price">
+    <OrderPriceDiv>
+      <OriginPriceDiv discountType={discountType} className="price">
         {getPriceType(price)}
-      </OrderPriceDiv>
+      </OriginPriceDiv>
       {discountType && (
         <>
           <DiscountTypeDiv discountType={discountType}>
@@ -19,7 +23,7 @@ const OrderPrice = () => {
           <span>{getPriceType(price, discountRate)}</span>
         </>
       )}
-    </>
+    </OrderPriceDiv>
   );
 };
 
