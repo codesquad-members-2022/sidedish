@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import categoriesApi from '../../apis/categoriesApi';
 import { FONT } from '../../constants/fonts';
-import foods from '../../mocks/foods';
-import tabs from '../../mocks/tabs';
+import mainTabs from '../../mocks/mainTabs';
 import Text from '../Text';
 import FoodCards from './FoodCards';
 import MainTabs from './MainTabs';
@@ -18,23 +18,24 @@ const MainText = styled.div`
   padding: 0px 80px;
 `;
 
+const firstTabId = mainTabs.data[0].id;
+
 const MainContent = () => {
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+  const [selectedTabId, setSelectedTabId] = useState(firstTabId);
   const [randomFoods, setRandomFoods] = useState([]);
-  const updateSelectedTab = (index) => {
-    setSelectedTabIndex(index);
+  const updateSelectedTab = (id) => {
+    setSelectedTabId(id);
   };
 
   useEffect(() => {
-    const randomFoodIndex = Math.floor(
-      Math.random() * (foods.length - FOOD_PER_PAGE),
-    );
-    const getRandomFoods = foods.slice(
-      randomFoodIndex,
-      randomFoodIndex + FOOD_PER_PAGE,
-    );
-    setRandomFoods(getRandomFoods);
-  }, [selectedTabIndex]);
+    const fetchMainContent = async () => {
+      const seletedTab = mainTabs.data.find((tab) => tab.id === selectedTabId);
+      const { data: newRandomFoods } =
+        await categoriesApi.getRandFoodsByMainTab(seletedTab.title);
+      setRandomFoods(newRandomFoods);
+    };
+    fetchMainContent();
+  }, [selectedTabId]);
 
   return (
     <MainContentWrap>
@@ -42,8 +43,8 @@ const MainContent = () => {
         <Text font={FONT.TITLE}>한 번 주문하면 두 번 반하는 반찬</Text>
       </MainText>
       <MainTabs
-        tabs={tabs}
-        selectedTabIndex={selectedTabIndex}
+        tabs={mainTabs.data}
+        selectedTabId={selectedTabId}
         onTabClick={updateSelectedTab}
       />
       <FoodCards foods={randomFoods} size={FOOD_PER_PAGE} />

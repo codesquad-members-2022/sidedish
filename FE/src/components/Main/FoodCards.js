@@ -15,8 +15,8 @@ const CardsWrap = styled.ul`
 
 const FoodCards = ({ foods, size, type = '' }) => (
   <CardsWrap size={size} type={type}>
-    {foods.map((food, idx) => (
-      <FoodCard key={food.detail_hash + idx} food={food} type={type} />
+    {foods?.map((food) => (
+      <FoodCard key={food.title + food.id} food={food} type={type} />
     ))}
   </CardsWrap>
 );

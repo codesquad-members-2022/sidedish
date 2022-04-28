@@ -2,8 +2,8 @@ import SubContent from './SubContent';
 
 const SubContents = ({ subContents }) => (
   <>
-    {subContents.map((content) => (
-      <SubContent key={content.title} content={content} />
+    {subContents?.map((content, idx) => (
+      <SubContent key={`${content.detailTitle}-${idx}`} content={content} />
     ))}
   </>
 );

@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
+import { moneyToWon } from '../../common/utils';
+import BADGE from '../../constants/badge';
 import colors from '../../constants/colors';
 import { FONT } from '../../constants/fonts';
 import modalFoods from '../../mocks/modalFoods';
@@ -47,9 +49,13 @@ const FoodCard = ({ food, type = '' }) => {
       ModalInfo.setModalDisplay('block');
     }
   };
+
+  const displayPrice = food.discountPrice ? food.discountPrice : food.price;
+  const originPrice = food.price ? food.price : '';
+
   return (
     <CardWrap onClick={onCardClick}>
-      <CardImg src={food.image} alt={food.alt} />
+      <CardImg src={food?.images?.mainUrl} alt={food.title} />
       <CardText>
         <Text font={type === 'modal' ? FONT.XSMALL : FONT.MEDIUM_BOLD}>
           {food.title}
@@ -62,16 +68,14 @@ const FoodCard = ({ food, type = '' }) => {
       </CardDescription>
       <CardText>
         <Text font={type === 'modal' ? FONT.SMALL_BOLD : FONT.MEDIUM_BOLD}>
-          {food.s_price}
+          {moneyToWon(displayPrice)}
         </Text>
         <OriginPrice font={type === 'modal' ? FONT.XSMALL : FONT.SMALL}>
-          {food.n_price}
+          {moneyToWon(originPrice)}
         </OriginPrice>
       </CardText>
       <BadgeWrap type={type}>
-        {food?.badge?.map((badgeName, idx) => (
-          <Tag key={badgeName + idx} badge={badgeName} />
-        ))}
+        <Tag badge={BADGE[food.badge]} />
       </BadgeWrap>
     </CardWrap>
   );
