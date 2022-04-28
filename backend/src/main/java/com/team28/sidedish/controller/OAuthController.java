@@ -2,13 +2,10 @@ package com.team28.sidedish.controller;
 
 import com.team28.sidedish.controller.dto.OAuthLoginResponse;
 import com.team28.sidedish.controller.oauth.OAuthAccessTokenRequest;
-import com.team28.sidedish.controller.oauth.OAuthAccessTokenResponse;
+import com.team28.sidedish.controller.oauth.OAuthUrl;
 import com.team28.sidedish.exception.LoginFailedException;
-import com.team28.sidedish.service.GithubApiService;
 import com.team28.sidedish.service.OAuthService;
-import com.team28.sidedish.service.dto.UserProfile;
 import com.team28.sidedish.utils.EnvUtils;
-import com.team28.sidedish.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.net.URI;
-import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -27,21 +23,24 @@ import java.util.Objects;
 @Slf4j
 public class OAuthController {
 
-    private static final String GITHUB_OAUTH_LOGIN_URL = "https://github.com/login/oauth/authorize?" +
-            "response_type=code&" +
-            "scope=read:user&" +
-            "redirect_uri=%s&" +
-            "client_id=%s";
-
+    private static final String GITHUB_OAUTH_LOGIN_URL = "https://github.com/login/oauth/authorize";
+    private static final String GITHUB_OAUTH_SCOPE = "read:user";
+    private static final String GITHUB_OAUTH_RESPONSE_TYPE = "code";
 
     private final OAuthService oAuthService;
 
     @GetMapping("/auth/github")
     public ResponseEntity<Void> githubAuthorization() {
-        String authUrl = String.format(GITHUB_OAUTH_LOGIN_URL, EnvUtils.getRedirectUri(), EnvUtils.getClientId());
+        String url = OAuthUrl.builder()
+                .baseUrl(GITHUB_OAUTH_LOGIN_URL)
+                .client_id(EnvUtils.getClientId())
+                .redirect_uri(EnvUtils.getRedirectUri())
+                .scope(GITHUB_OAUTH_SCOPE)
+                .response_type(GITHUB_OAUTH_RESPONSE_TYPE)
+                .build();
 
         return ResponseEntity.status(HttpStatus.SEE_OTHER)
-                .location(URI.create(authUrl))
+                .location(URI.create(url))
                 .build();
     }
 
