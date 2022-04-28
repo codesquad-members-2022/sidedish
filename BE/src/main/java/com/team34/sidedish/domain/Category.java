@@ -1,6 +1,5 @@
 package com.team34.sidedish.domain;
 
-import com.team34.sidedish.dto.CategoryResponse;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
@@ -34,17 +33,6 @@ public class Category {
 
     public void clearCategory() {
         children.clear();
-    }
-
-    public CategoryResponse toCategoryResponse() {
-        if (children.isEmpty()) {
-            return new CategoryResponse(id, name, new ArrayList<CategoryResponse>());
-        }
-        ArrayList<CategoryResponse> childrenCategories = new ArrayList<>();
-        for (Category category : children) {
-            childrenCategories.add(category.toCategoryResponse());
-        }
-        return new CategoryResponse(id, name, childrenCategories);
     }
 
     public Long getId() {

@@ -1,5 +1,7 @@
 package com.team34.sidedish.dto;
 
+import com.team34.sidedish.domain.Category;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryResponse {
@@ -13,6 +15,16 @@ public class CategoryResponse {
         this.name = name;
         this.children = children;
     }
+
+    public CategoryResponse(Category category) {
+        this.id = category.getId();
+        this.name = category.getName();
+        this.children = new ArrayList<>();
+        for (Category c : category.getChildren()) {
+            this.children.add(new CategoryResponse(c));
+        }
+    }
+
 
     public Long getId() {
         return id;

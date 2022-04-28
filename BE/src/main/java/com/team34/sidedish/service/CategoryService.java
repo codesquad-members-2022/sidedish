@@ -22,7 +22,7 @@ public class CategoryService {
 
         List<CategoryResponse> categoryResponses = new ArrayList<>();
         for (Category category:categories) {
-            categoryResponses.add(category.toCategoryResponse());
+            categoryResponses.add(new CategoryResponse(category));
         }
         return new CategoriesResponse(categoryResponses);
     }
