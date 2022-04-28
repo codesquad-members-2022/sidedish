@@ -10,6 +10,14 @@ const AmountButtonWrapper = styled.button`
   i {
     font-size: 20px;
   }
+  
+  &:hover {
+    opacity: 0.7;
+  }
+  
+  &:active {
+    opacity: 0.4;
+  }
 `;
 
 const Icon = styled.i`

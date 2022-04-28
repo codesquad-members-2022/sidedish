@@ -13,7 +13,7 @@ const ModalBackGround = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: ${Colors.BLACK}90;
   width: 100%;
   height: 100%;
   left: 0;
@@ -41,7 +41,7 @@ const SelectedProduct = styled.section`
   display: flex;
   position: relative;
 
-  padding: 48px;
+  padding: 48px 48px 0;
 
   .order-button {
     display: block;
@@ -56,6 +56,10 @@ const CloseButton = styled.button`
   right: 48px;
   width: 30px;
   height: 26px;
+  
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 export const OrderModal = () => {
