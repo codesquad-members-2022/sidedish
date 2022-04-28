@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @RequiredArgsConstructor
-@PropertySource("classpath:application-oauth.properties")
+@PropertySource("classpath:oauth.properties")
 @EnableConfigurationProperties(OAuthProperties.class)
 public class OAuthConfig {
 
