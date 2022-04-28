@@ -65,7 +65,7 @@
                     android:id="@+id/tv_event_amount"
                     style="@style/title_style.price"
                     discountRate="@{foodDetail.discountRate}"
-                    price="@{foodDetail.price}"
+                    discountedPrice="@{foodDetail.price}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:ellipsize="end" />

@@ -80,7 +80,7 @@ class MenuListViewModel @Inject constructor(
             }.onSuccess {
                 _selectedFoodDetail.value = it
                 _detailPrice.value =
-                    it.let { it?.price!!.times((100 - it.discountRate!!)).div(100) }
+                    it.let { if(it?.discountRate == null) it?.price else it.price!!.times((100 - it.discountRate)).div(100) }
             }.onFailure {
                 throw NetworkErrorException("network error")
             }
@@ -97,7 +97,7 @@ class MenuListViewModel @Inject constructor(
 
     fun orderMenu() {
         viewModelScope.launch() {
-            if(_count.value == 0) {
+            if (_count.value == 0) {
                 return@launch
             }
             val menu = OrderMenu(_selectedFoodDetail.value!!.id!!, _count.value!!)

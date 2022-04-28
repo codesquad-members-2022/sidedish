@@ -25,9 +25,9 @@ class MenuListRepository @Inject constructor(private val dataSource: DataSource)
     }
 
     suspend fun getJWT(code: String) =
-        dataSource.getJWT(code).body()?.changeJWT() ?: throw NullPointerException("JWT is null")
+        dataSource.getJWT(code).getBodyOrThrow()?.changeJWT() ?: throw NullPointerException("JWT is null")
 
-    suspend fun orderMenu(token: String, menu: OrderMenu): Boolean? {
+    suspend fun orderMenu(token: String, menu: OrderMenu): Boolean {
         return dataSource.orderMenu(token, menu).isSuccessful
     }
 
