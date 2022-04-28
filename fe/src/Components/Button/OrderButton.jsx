@@ -7,24 +7,22 @@ const OrderButtonWrapper = styled.button`
   padding: 16px;
   background-color: black;
   color: white;
-
-  position: absolute;
   width: 440px;
   height: 58px;
-  right: 0px;
-  bottom: 20px;
 
-  &: hover {
+  &:hover {
     opacity: 0.8;
   }
 
-  &: active {
+  &:active {
     opacity: 0.4;
   }
 `;
 
 export const OrderButton = ({ ContentsText, onClick }) => {
   return (
-    <OrderButtonWrapper onClick={onClick}>{ContentsText}</OrderButtonWrapper>
+    <OrderButtonWrapper className={'order-button'} onClick={onClick}>
+      {ContentsText}
+    </OrderButtonWrapper>
   );
 };

@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 import { HoverInfo } from './HoverInfo';
 
+import { ProductCardSize } from '@/Constants/ProductCardSize';
+
 const ProductThumbnailWrapper = styled.div`
   position: relative;
-  width: 411px;
-  height: 411px;
+  width: 410px;
+  height: 410px;
 
   .product-img {
     display: block;
@@ -39,6 +41,7 @@ const Mask = styled.div`
 `;
 
 export const ProductThumbnail = ({
+  size,
   imgUrl,
   morningDelivery,
   onclickThumbnail,
@@ -48,7 +51,7 @@ export const ProductThumbnail = ({
       className={'product-thumbnail'}
       onClick={onclickThumbnail}
     >
-      {morningDelivery && <HoverInfo />}
+      {size !== ProductCardSize.SM && morningDelivery && <HoverInfo />}
       <Mask className={'mask'} />
       <img className={'product-img'} src={imgUrl} alt={'제품사진'} />
     </ProductThumbnailWrapper>

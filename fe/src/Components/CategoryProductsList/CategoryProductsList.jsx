@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Colors, Fonts } from '@/Constants';
+import { Colors, Fonts, ProductCardSize } from '@/Constants';
 
 import { CategoryProducts } from './CategoryProducts';
 
@@ -57,7 +57,7 @@ export const CategoryProductsList = ({ categoryList }) => {
   return (
     <CategoryProductsListWrapper>
       {loadedCategoryProductsIdList.map(categoryId => (
-        <CategoryProducts key={categoryId} categoryId={categoryId} />
+        <CategoryProducts key={categoryId} categoryId={categoryId} productCardSize={ProductCardSize.MD} />
       ))}
       {!moreButtonClicked && (
         <MoreButton onClick={handleClickMoreButton} className={Fonts.LG}>

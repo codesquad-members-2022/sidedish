@@ -1,20 +1,19 @@
 import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Colors, Fonts } from '@/Constants';
+import { Colors } from '@/Constants';
 
 import { ModalContext } from './ModalContext';
 import { ProductInfo } from './ProductInfo';
 import { ProductThumbnail } from './ProductThumbnail';
-
-import { OrderButton } from '@/Components/Button';
+import { RelatedProducts } from './RelatedProducts';
 
 const ModalBackGround = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: ${Colors.BLACK}90;
   width: 100%;
   height: 100%;
   left: 0;
@@ -42,27 +41,34 @@ const SelectedProduct = styled.section`
   display: flex;
   position: relative;
 
-  margin: 48px;
-  margin-top: 76px;
-`;
+  padding: 48px;
 
-const RelatedProduct = styled.div``;
+  .order-button {
+    display: block;
+  }
+`;
 
 const CloseButton = styled.button`
   position: absolute;
+  z-index: 1000;
   color: ${Colors.GREY};
   top: 32px;
   right: 48px;
   width: 30px;
   height: 26px;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
-export const OrderModal = () => {
+export const OrderModal = ({ categoryId }) => {
   const { ModalDisplay, productDetail, reset } = useContext(ModalContext);
 
   function onClickCloseBtn() {
     reset();
   }
+
   function OrderButtonEvent() {}
 
   if (!productDetail) {
@@ -79,11 +85,9 @@ export const OrderModal = () => {
           )}
 
           {productDetail && <ProductInfo productData={productDetail} />}
-
-          <OrderButton ContentsText={'주문하기'} onClick={OrderButtonEvent} />
         </SelectedProduct>
 
-        <RelatedProduct></RelatedProduct>
+        <RelatedProducts categoryId={categoryId} />
       </OrderModalWrapper>
     </ModalBackGround>
   );

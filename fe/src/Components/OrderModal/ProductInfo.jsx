@@ -7,11 +7,18 @@ import { ModalContext } from './ModalContext';
 import { ProductAmount } from './ProductAmount';
 
 import { DiscountBadge } from '@/Components/Badge';
+import { OrderButton } from '@/Components/Button';
 
 const ProductInfoWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 32px;
+
+  .order-button {
+    position: absolute;
+    bottom: 1px;
+  }
 `;
 
 const Title = styled.span`
@@ -84,7 +91,7 @@ export const ProductInfo = ({
   },
 }) => {
   return (
-    <ProductInfoWrapper>
+    <ProductInfoWrapper className={'ddd'}>
       <Title className={Fonts.LG}>{title}</Title>
       {discountPolicy ? (
         <>
@@ -118,6 +125,7 @@ export const ProductInfo = ({
       <ProductAmount
         priceData={discountPolicy ? price - discountRate * price : price}
       />
+      <OrderButton ContentsText={'주문하기'} />
     </ProductInfoWrapper>
   );
 };
