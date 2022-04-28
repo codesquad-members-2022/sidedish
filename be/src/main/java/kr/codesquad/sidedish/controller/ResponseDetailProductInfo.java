@@ -18,12 +18,15 @@ public class ResponseDetailProductInfo {
 	private String sideDishType;
 	private String applyEvent;
 	private String[] imgUrl;
+	private Integer deliveryType;
+	private ResponseShippingInfo shippingInfo;
 
-	public static ResponseDetailProductInfo from(ProductDTO productDTO) {
+	public static ResponseDetailProductInfo from(ProductDTO productDTO,
+		ResponseShippingInfo shippingInfo) {
 		return new ResponseDetailProductInfo(productDTO.getId(), productDTO.getName(),
 			productDTO.getContent(), productDTO.getPrice(), productDTO.getDiscountPrice(),
 			productDTO.getQuantity(),
 			productDTO.getDishType(), productDTO.getSideDishType(), productDTO.getApplyEvent(),
-			productDTO.getImgUrl());
+			productDTO.getImgUrl(), productDTO.getDeliveryType(), shippingInfo);
 	}
 }

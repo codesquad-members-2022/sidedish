@@ -8,9 +8,6 @@ import lombok.Getter;
 @Getter
 public class ResponseSimpleProductInfo {
 
-	/**
-	 * 음식이름 음식설명 가격 할인가격 이벤트 이미지URL 하나
-	 */
 	private Integer id;
 	private String name;
 	private String content;
