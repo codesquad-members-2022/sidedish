@@ -382,11 +382,11 @@
 			buildConfigurationList = BCFE485C280D5AE200F23DCE /* Build configuration list for PBXNativeTarget "SideDishApp" */;
 			buildPhases = (
 				F55AC386C89A24E0862525ED /* [CP] Check Pods Manifest.lock */,
+				B7F90B96281126570067E4FE /* ShellScript */,
 				BCFE482E280D5AE100F23DCE /* Sources */,
 				BCFE482F280D5AE100F23DCE /* Frameworks */,
 				BCFE4830280D5AE100F23DCE /* Resources */,
 				8376A3028B5B4DA864DB8BE9 /* [CP] Embed Pods Frameworks */,
-				B7F90B96281126570067E4FE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -406,7 +406,6 @@
 				BCFE4845280D5AE200F23DCE /* Frameworks */,
 				BCFE4846280D5AE200F23DCE /* Resources */,
 				BE96EBAE2FF18ACBAF180DF6 /* [CP] Embed Pods Frameworks */,
-				B7549BFE281634DA0024F206 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -596,24 +595,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideDishApp/Pods-SideDishApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B7549BFE281634DA0024F206 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
-		};
 		B7F90B96281126570067E4FE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -629,7 +610,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		BE96EBAE2FF18ACBAF180DF6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
