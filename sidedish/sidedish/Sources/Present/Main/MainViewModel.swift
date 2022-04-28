@@ -25,8 +25,8 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty, MainViewModelA
     @Inject(\.sidedishRepository) private var sidedishRepository: SidedishRepository
     @Inject(\.resourceRepository) private var resourceRepository: ResourceRepository
     @Inject(\.loginRepository) private var loginRepository: LoginRepository
-    private var cancellables = Set<AnyCancellable>()
     
+    private var cancellables = Set<AnyCancellable>()
     private var menus = [Menu.Category: Menus]()
     private var thumbnailImages = [IndexPath: URL]()
     

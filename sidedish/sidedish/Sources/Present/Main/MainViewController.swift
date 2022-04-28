@@ -5,6 +5,7 @@
 //  Created by seongha shin on 2022/04/18.
 //
 import Combine
+import SnapKit
 import UIKit
 
 class MainViewController: UIViewController {
@@ -104,17 +105,15 @@ class MainViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(underLineView)
         
-        NSLayoutConstraint.activate([
-            underLineView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            underLineView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            underLineView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            underLineView.heightAnchor.constraint(equalToConstant: 1),
-            
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        underLineView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1)
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     private func makeNavigationButtons() {

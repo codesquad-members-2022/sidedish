@@ -10,4 +10,5 @@ target 'sidedish' do
  pod 'SwiftLint'
  pod 'FirebaseAuth'
  pod 'GoogleSignIn'
+ pod 'SnapKit', '~> 5.6.0'
 end

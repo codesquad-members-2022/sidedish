@@ -26,10 +26,11 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModel
     let loadedThumbnail = PassthroughSubject<(Int, URL), Never>()
     let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
     
-    private var cancellables = Set<AnyCancellable>()
     @Inject(\.userStore) private var userStore: UserStore
     @Inject(\.sidedishRepository) private var sidedishRepository: SidedishRepository
     @Inject(\.resourceRepository) private var resourceRepository: ResourceRepository
+    
+    private var cancellables = Set<AnyCancellable>()
     
     deinit {
         Log.debug("DeInit MenuDetailViewModel")
