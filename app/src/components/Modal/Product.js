@@ -51,7 +51,7 @@ const Product = ({
       </Header>
       <Content>
         <ProductImgs>
-          <ProductImg src={productImg} alt=""></ProductImg>
+          <ProductImg src={productImg} alt="상품이미지"></ProductImg>
           <DetailImgs>
             {product.thumb_images.map((e, i) => (
               <img src={e} onMouseOver={handleDetailImgMouseOver} key={i} />
