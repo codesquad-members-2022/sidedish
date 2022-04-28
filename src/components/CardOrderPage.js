@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Card from './Card';
 import Order from './Order';
 import ShoppingInfo from './ShoppingInfo';
+import Button from './Button';
 
-const CardOrderPage = ({ selectedCardInfo }) => {
+const CardOrderPage = ({ selectedCardInfo, onClick }) => {
   const { image, title, price, discountedPrice, badge } = selectedCardInfo;
   const cardInfo = { image, title, price, discountedPrice, badge };
+  const [orderNum, setOrderNum] = useState(1);
+
+  const handleClickDecreaseQuantity = () => {
+    setOrderNum(orderNum === 1 ? 1 : orderNum - 1);
+  };
+
+  const handleClickIncreaseQuantity = () => {
+    setOrderNum(orderNum + 1);
+  };
 
   const curPrice = discountedPrice ? discountedPrice : price;
   const str2NumPrice = Number(
@@ -15,11 +25,20 @@ const CardOrderPage = ({ selectedCardInfo }) => {
       .split(',')
       .join('')
   );
+
   return (
     <>
-      <Card cardInfo={cardInfo} showingSlideCardNum={3} isFlex={true} />;
-      <ShoppingInfo price={str2NumPrice} />
-      <Order price={str2NumPrice} />
+      <Button icon={'닫기'} onClick={onClick}></Button>
+      <Card cardInfo={cardInfo} showingSlideCardNum={3} isFlex={true} />
+      <ShoppingInfo price={str2NumPrice} orderNum={orderNum} />
+      <Order
+        price={str2NumPrice}
+        orderNum={orderNum}
+        title={title}
+        handleClickDecreaseQuantity={handleClickDecreaseQuantity}
+        handleClickIncreaseQuantity={handleClickIncreaseQuantity}
+        closeModal={onClick}
+      />
     </>
   );
 };

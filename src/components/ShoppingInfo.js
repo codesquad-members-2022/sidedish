@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ShoppingInfo = ({ price }) => {
+const ShoppingInfo = ({ price, orderNum }) => {
   return (
     <p>
-      적립금 : {Math.floor(price * 0.01)}
+      적립금 : {Math.floor(price * 0.01) * orderNum}원
       <br />
       배송정보 : 서울 경기 새벽 배송, 전국 택배 배송
       <br />

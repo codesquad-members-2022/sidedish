@@ -61,7 +61,10 @@ const App = () => {
       <Header />
       {isModalVisible && (
         <Modal>
-          <CardOrderPage selectedCardInfo={selectedCardInfo} />
+          <CardOrderPage
+            selectedCardInfo={selectedCardInfo}
+            onClick={() => setIsModalVisible(false)}
+          />
         </Modal>
       )}
       <MainCard mainCardData={mainCardData} handleModal={handleModal} />
