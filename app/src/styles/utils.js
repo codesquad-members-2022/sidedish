@@ -27,6 +27,7 @@ export const Badge = styled.strong`
 `;
 
 export const Horizon = styled.hr`
+  display: ${({ display }) => display};
   background-color: ${({ theme }) => theme.color.grey4};
   height: 1px;
   border: 0;

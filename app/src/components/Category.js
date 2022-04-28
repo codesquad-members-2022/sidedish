@@ -26,6 +26,7 @@ const Category = ({ dish, category, display }) => {
 };
 
 const Wrapper = styled.div`
+  display: ${({ display }) => display};
   position: relative;
   margin: 0 auto;
   max-width: 144rem;
