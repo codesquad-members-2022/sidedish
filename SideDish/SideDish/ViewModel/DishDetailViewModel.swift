@@ -7,16 +7,10 @@ final class DishDetailViewModel {
 
     private(set) var topImages = [Data]()
     private(set) var title = ""
-    private(set) var description = ""
-    private(set) var finalPrice = ""
-    private(set) var normalPrice: String?
     private(set) var discountType: [DiscountType]?
-    private(set) var point = ""
-    private(set) var deliveryInfo = ""
-    private(set) var deliveryFee = ""
     private(set) var detailImages = [Data]()
 
-    var onUpdate: () -> Void = {}
+    var onUpdate: (DetailStringData) -> Void = {_ in}
     var onUpdateWithTopImages: () -> Void = {}
     var onUpdateWithDetailImages: () -> Void = {}
 
@@ -50,16 +44,9 @@ final class DishDetailViewModel {
                     }
                     self.onUpdateWithDetailImages()
                 }
-                self.description = dishDetail.productDescription
-                self.finalPrice = dishDetail.prices[0]
-                if dishDetail.prices.count > 1 {
-                    self.normalPrice = dishDetail.prices[1]
-                }
 
-                self.point = dishDetail.point
-                self.deliveryInfo = dishDetail.deliveryInfo
-                self.deliveryFee = dishDetail.deliveryFee
-                self.onUpdate()
+                let detailStringData = DetailStringData(entity: dishDetail)
+                self.onUpdate(detailStringData)
             }
         }
     }

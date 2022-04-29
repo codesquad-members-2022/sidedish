@@ -162,12 +162,12 @@ class DetailDishSectionView: UIView {
         bottomAnchor.constraint(equalTo: badgeStackView.bottomAnchor).isActive = true
     }
 
-    func setComponents(with viewModel: DishDetailViewModel?) {
-        titleLabel.text = viewModel?.title
-        descriptionLabel.text = viewModel?.description
-        finalPriceLabel.text = viewModel?.finalPrice
+    func setComponents(with detailStringData: DetailStringData, title: String, discountType: [DiscountType]?) {
+        titleLabel.text = title
+        descriptionLabel.text = detailStringData.description
+        finalPriceLabel.text = detailStringData.finalPrice
 
-        if let normalPrice = viewModel?.normalPrice {
+        if let normalPrice = detailStringData.normalPrice {
             let attributedStyle = NSUnderlineStyle.single
             let attributedString = NSMutableAttributedString(string: normalPrice)
             attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle,

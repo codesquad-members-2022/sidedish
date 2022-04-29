@@ -134,9 +134,9 @@ class DeliverySectionView: UIView {
         bottomAnchor.constraint(equalTo: dividingLine.bottomAnchor).isActive = true
     }
 
-    func setComponents(with viewModel: DishDetailViewModel?) {
-        pointLabel.text = viewModel?.point
-        deliveryInfoLabel.text = viewModel?.deliveryInfo
-        deliveryFeeLabel.text = viewModel?.deliveryFee
+    func setComponents(with detailStringData: DetailStringData) {
+        pointLabel.text = detailStringData.point
+        deliveryInfoLabel.text = detailStringData.deliveryInfo
+        deliveryFeeLabel.text = detailStringData.deliveryFee
     }
 }

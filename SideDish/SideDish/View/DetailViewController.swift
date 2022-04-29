@@ -73,11 +73,15 @@ class DetailViewController: UIViewController {
 
     private func setOnUpdate() {
         guard let viewModel = viewModel else { return }
-        viewModel.onUpdate = {
+        viewModel.onUpdate = { detailStringData in
             DispatchQueue.main.async {[weak self] in
-                self?.navigationItem.title = self?.viewModel?.title
-                self?.detailDishSectionView.setComponents(with: self?.viewModel)
-                self?.deliverySectionView.setComponents(with: self?.viewModel)
+                let title = viewModel.title
+                let discountType = viewModel.discountType
+                self?.navigationItem.title = title
+                self?.detailDishSectionView.setComponents(with: detailStringData,
+                                                          title: title,
+                                                          discountType: discountType)
+                self?.deliverySectionView.setComponents(with: detailStringData)
             }
         }
     }
@@ -87,7 +91,7 @@ class DetailViewController: UIViewController {
 
         viewModel.onUpdateWithTopImages = {
             DispatchQueue.main.async {[weak self] in
-                self?.viewModel?.topImages.forEach { image in
+                viewModel.topImages.forEach { image in
                     self?.detailDishSectionView.addTopImage(with: UIImage(data: image) ?? UIImage())
                 }
             }
@@ -99,7 +103,7 @@ class DetailViewController: UIViewController {
 
         viewModel.onUpdateWithDetailImages = {
             DispatchQueue.main.async {[weak self] in
-                self?.viewModel?.detailImages.forEach { data in
+                viewModel.detailImages.forEach { data in
                     guard let image = UIImage(data: data) else {return}
                     let ratio = image.size.height / image.size.width
                     let detailImageView = UIImageView(image: image)
