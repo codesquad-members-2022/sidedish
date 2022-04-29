@@ -12,11 +12,11 @@ export function ProductDetailModal({ sideDishData, setModal }) {
     <DimLayer>
       <ModalArea flex direction="column">
         <ProductArea flex>
-          <ImgArea urls={sideDishData.imageUrls}></ImgArea>
-          <DetailArea props={sideDishData}></DetailArea>
+          <ImgArea urls={sideDishData.imageUrls} />
+          <DetailArea props={sideDishData} setModal={setModal} />
         </ProductArea>
-        <RecommendArea></RecommendArea>
-        <CloseBtn onClick={setModal}></CloseBtn>
+        <RecommendArea />
+        <CloseBtn onClick={setModal} />
       </ModalArea>
     </DimLayer>
   );

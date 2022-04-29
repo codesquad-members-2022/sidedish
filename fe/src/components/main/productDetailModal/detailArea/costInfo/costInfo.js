@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Btn,
   Content,
@@ -9,24 +8,18 @@ import {
   StyledStockOverFlow,
   TotalCost,
 } from './costInfo.styled';
+import { getWonTemplate } from '../../../../../helper/utils';
 
-export function CostInfo({ props }) {
-  const [count, setState] = useState(1);
+export function CostInfo({ props, count, setCount, calculateTotalCost }) {
   function handleMinusClick() {
-    setState(count - 1 || 1);
+    setCount(count - 1 || 1);
   }
 
   function handlePlusClick() {
     if (props.stock === count) {
       return;
     }
-    setState(count + 1);
-  }
-
-  function calculateTotalCost() {
-    const price = props.disCountPrice || props.price;
-    const totalPrice = price * count >= props.exemptionCondition ? price * count : price * count + props.shippingFee;
-    return totalPrice;
+    setCount(count + 1);
   }
 
   return (
@@ -39,7 +32,7 @@ export function CostInfo({ props }) {
         </CountArea>
         <TotalCost flex align="center">
           <Label>총 주문 금액</Label>
-          <Content> {`${calculateTotalCost().toLocaleString()}원`}</Content>
+          <Content> {`${getWonTemplate(calculateTotalCost())}`}</Content>
         </TotalCost>
       </StyledCostInfo>
       <StockOverFlow count={count} stock={props.stock}></StockOverFlow>
@@ -52,7 +45,9 @@ function StockOverFlow({ count, stock }) {
     return <StyledStockOverFlow>재고가 없는 상품입니다.</StyledStockOverFlow>;
   }
   if (count === stock) {
-    return <StyledStockOverFlow> {`재고가 ${stock}개 있는 상품입니다. 추가 주문은 불가능합니다.`}</StyledStockOverFlow>;
+    return (
+      <StyledStockOverFlow> {`재고가 ${stock}개 있는 상품입니다. 더이상 수량을 늘릴 수 없어요 ^^`}</StyledStockOverFlow>
+    );
   }
   return '';
 }
