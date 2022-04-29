@@ -46,4 +46,12 @@ public class LoginController {
 			.location(URI.create("http://localhost:8080"))
 			.build();
 	}
+
+	@GetMapping("/logout")
+	public ResponseEntity<Object> logout(HttpSession session) {
+		session.invalidate();
+		return ResponseEntity.status(HttpStatus.SEE_OTHER)
+			.location(URI.create("http://localhost:8080"))
+			.build();
+	}
 }
