@@ -36,6 +36,14 @@ class DetailViewController: UIViewController {
         SideDishManager.shared.getDetailDishImages(dish: dish)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            SideDishManager.shared.clearDetailImageThumbnail()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "firstSection" {
             guard let containerVC = segue.destination as? MainDescriptionViewController else { return }

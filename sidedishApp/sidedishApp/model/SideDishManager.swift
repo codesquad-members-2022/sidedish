@@ -145,4 +145,8 @@ final class SideDishManager {
             }
         }
     }
+    
+    func clearDetailImageThumbnail() {
+        detailImageThumbnail = [Data]()
+    }
 }

@@ -106,7 +106,8 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // 셀 아이템 선택 시
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
-        guard let dish = self.sideDishManager.getDishFromSection(indexPath: indexPath), let detail = self.sideDishManager.getDetailDishFromHash(hash: dish.detailHash) else { return }
+        guard let dish = self.sideDishManager.getDishFromSection(indexPath: indexPath),
+            let detail = self.sideDishManager.getDetailDishFromHash(hash: dish.detailHash) else { return }
         detailVC.selectedDish = dish
         detailVC.detailDish = detail
         self.navigationController?.pushViewController(detailVC, animated: true)
@@ -121,21 +122,18 @@ extension MainViewController: UICollectionViewDelegateFlowLayout { // 컬렉션�
 
 private extension MainViewController {
     func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setDishAndGetImage), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager) // dish 데이터 다운로드 후 이미지 셋팅 메서드 호출
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadImage), name: NSNotification.Name(rawValue: SideDishManager.downloadIdentifier), object: sideDishManager) // 이미지 1개가 다운로드될 때마다 호출
+        NotificationCenter.default.addObserver(self, selector: #selector(setDishAndGetImage), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadImage), name: NSNotification.Name(rawValue: SideDishManager.downloadIdentifier), object: sideDishManager)
     }
     
     @objc
     private func setDishAndGetImage() {
-        DispatchQueue.main.async {
-            self.dishCollectionView.reloadData() // 받아온 dish 데이터 보여주고
-        }
-        self.sideDishManager.getMainDishImages() // 이미지 다운로드 시작
+        self.sideDishManager.getMainDishImages()
     }
     
     @objc func reloadImage() {
         DispatchQueue.main.async {
-            self.dishCollectionView.reloadData() // 받아온 dish 이미지 보여주기
+            self.dishCollectionView.reloadData()
         }
     }
 }
