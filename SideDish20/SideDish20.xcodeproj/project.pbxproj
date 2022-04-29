@@ -47,7 +47,6 @@
 		D0E56E4028192EC600C10419 /* HomeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E3F28192EC600C10419 /* HomeResponseData.swift */; };
 		D0E56E4428192F7400C10419 /* DataFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E4328192F7400C10419 /* DataFetchService.swift */; };
 		D0E56E482819302200C10419 /* CommonURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E472819302200C10419 /* CommonURLManager.swift */; };
-		D0E56E4A2819364200C10419 /* HomeDataFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E492819364200C10419 /* HomeDataFetchModel.swift */; };
 		D0E56E4C2819373500C10419 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E4B2819373500C10419 /* HomeViewModel.swift */; };
 		ECFFCFBC3266EC0FD7154F03 /* Pods_SideDish20Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAB2134DB39689073D8101F /* Pods_SideDish20Tests.framework */; };
 /* End PBXBuildFile section */
@@ -120,7 +119,6 @@
 		D0E56E3F28192EC600C10419 /* HomeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponseData.swift; sourceTree = "<group>"; };
 		D0E56E4328192F7400C10419 /* DataFetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchService.swift; sourceTree = "<group>"; };
 		D0E56E472819302200C10419 /* CommonURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonURLManager.swift; sourceTree = "<group>"; };
-		D0E56E492819364200C10419 /* HomeDataFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataFetchModel.swift; sourceTree = "<group>"; };
 		D0E56E4B2819373500C10419 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20_SideDish20UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,7 +170,6 @@
 				1B56E668280E823E0074E79F /* CacheImageRequestModel.swift */,
 				1B56E66A280E82480074E79F /* CacheImageModel.swift */,
 				D0E56E3F28192EC600C10419 /* HomeResponseData.swift */,
-				D0E56E492819364200C10419 /* HomeDataFetchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -609,7 +606,6 @@
 				1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				D0E56E4028192EC600C10419 /* HomeResponseData.swift in Sources */,
-				D0E56E4A2819364200C10419 /* HomeDataFetchModel.swift in Sources */,
 				1BF2901728179BDF00493D2F /* DetailViewController.swift in Sources */,
 				1BF290192817AF2500493D2F /* HomeNavigationController.swift in Sources */,
 				1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */,

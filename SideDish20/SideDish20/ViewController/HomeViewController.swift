@@ -9,7 +9,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var products = [HomeModel]()
-
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
@@ -17,6 +16,16 @@ class HomeViewController: UIViewController {
 
         registerXib()
         addSampleData()
+        
+        let homeViewModel = HomeViewModel()
+        print(homeViewModel)
+        
+        homeViewModel.onUpdated = { [weak self] in
+            guard let self = self else { return }
+            self.collectionView.reloadData()
+        }
+
+        homeViewModel.reload()
     }
 
     private func registerXib() {

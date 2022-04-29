@@ -7,29 +7,34 @@
 
 import Foundation
 
-final class DataFetchService: CommonURLManager {
+class DataFetchService: CommonURLManager {
     
-    func fetchAll(onComplete: @escaping (Data?) -> Void) {
-        guard let url = URL(string: Endpoint.main.endpoint) else { return onComplete(nil) }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "content-type")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                onComplete(nil)
+    let repository = RepositoryCommons()
+    
+    func fetch(onCompleted: @escaping ([HomeModel]) -> Void) {
+        // fetchNow는 Repository를 통해서 함. 그래서 얘는 Repository를 알아야함.
+        // repository로부터 fetchNow를 하면, entity를 받는다.
+        // 여기서 entity를 모델로 변경해주는 역할..
+        repository.fetch { entity in // entity: HomeResponseData
+            var homeModelList = [HomeModel]()
+            for data in entity.body {
+                let discountedPrice = data.nPrice
+                let specialMessage = data.badge ?? [String]()
+                
+                var message = ""
+                for msg in specialMessage {
+                    message.append(msg)
+                }
+                
+                homeModelList.append(HomeModel(image: data.image,
+                                               name: data.title,
+                                               description: data.description,
+                                               discountedPrice: discountedPrice,
+                                               originalPrice: data.sPrice,
+                                               specialMessage: message))
             }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                return onComplete(nil)
-            }
-                        
-            guard let data = data else {
-                return onComplete(nil)
-            }
-            
-            onComplete(data)
-        }.resume()
+            print("ModelList", homeModelList)
+            onCompleted(homeModelList) // model로 전달.
+        }
     }
 }

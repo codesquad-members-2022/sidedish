@@ -13,7 +13,6 @@ class RepositoryCommons {
     
     private let getFileService = GetFileURLService()
     private let saveFileService = SaveFileService()
-    private let dataFetchService = DataFetchService()
     
     func cachingFile(as name: String, contentsOf data: Data) {
         self.saveFileService.saveFile(as: name, contentsOf: data)
@@ -33,9 +32,15 @@ class RepositoryCommons {
         return self.getFileService.fetchFile(as: name)
     }
     
-    func fetchAll(onComplete: @escaping (Data?) -> Void) {
-        dataFetchService.fetchAll { data in
-            onComplete(data)
-        }
+    // Repository는 JSON을 받아서, Entity로 만들어서 전달.
+    func fetch(onCompleted: @escaping (HomeResponseData) -> Void) {
+        let urlString = CommonURLManager.Endpoint.main.endpoint
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            guard let data = data else { return }
+            guard let model = try? JSONDecoder().decode(HomeResponseData.self, from: data) else { return }
+            onCompleted(model)
+        }.resume()
     }
 }
