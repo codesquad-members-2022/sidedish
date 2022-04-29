@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/sidedish/app/build/static/js/main.9cb023df.js",
-    "index.html": "/sidedish/app/build/index.html",
-    "main.9cb023df.js.map": "/sidedish/app/build/static/js/main.9cb023df.js.map"
+    "main.js": "/sidedish/static/js/main.14dfbd1b.js",
+    "index.html": "/sidedish/index.html",
+    "main.14dfbd1b.js.map": "/sidedish/static/js/main.14dfbd1b.js.map"
   },
   "entrypoints": [
-    "static/js/main.9cb023df.js"
+    "static/js/main.14dfbd1b.js"
   ]
 }

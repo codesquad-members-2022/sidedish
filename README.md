@@ -16,4 +16,4 @@
 - [회의록](https://github.com/uBeom/sidedish/wiki/%ED%9A%8C%EC%9D%98%EB%A1%9D)
 
 ## Pages
-- https://ubeom.github.io/sidedish/app/build/
+- https://ubeom.github.io/sidedish/
