@@ -16,17 +16,19 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestControllerAdvice
 public class GlobalControllerAdvice {
-
+	public static final String ERROR_OF_SERVER_MESSAGE = "죄송합니다. 잠시후에 다시 이용해주세요.";
 	public static final String ERROR_MESSAGE = "correct";
+	public static final String EXCEPTION_SEPARATOR = ":";
 
 	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity exception(Exception exception) {
-		System.out.println("에러 클래스 확인하기 ! ");
-		System.out.println(exception.getClass().getName());
-		System.out.println(exception.getMessage());
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		log.error(exception.getMessage());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERROR_OF_SERVER_MESSAGE);
 	}
 
 	/**
@@ -36,6 +38,7 @@ public class GlobalControllerAdvice {
 	 */
 	@ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
 	public ResponseEntity methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception, HttpServletRequest httpServletRequest) {
+		log.error(exception.getMessage());
 		String filed = exception.getName();
 		MethodParameter message = exception.getParameter();
 		String reject = exception.getCause().getMessage();
@@ -53,6 +56,7 @@ public class GlobalControllerAdvice {
 	 */
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> methodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest httpServletRequest) {
+		log.error(exception.getMessage());
 		BindingResult bindingResult = exception.getBindingResult();
 		Set<Error> errors = bindingResult.getAllErrors().stream()
 			.map(error -> {
@@ -72,7 +76,8 @@ public class GlobalControllerAdvice {
 	 */
 	@ExceptionHandler(value = HttpMessageNotReadableException.class)
 	public ResponseEntity httpMessageNotReadableException(HttpMessageNotReadableException exception, HttpServletRequest httpServletRequest) {
-		String errorCause = exception.getMessage().split(":")[0];
+		log.error(exception.getMessage());
+		String errorCause = exception.getMessage().split(EXCEPTION_SEPARATOR)[0];
 		ErrorResponse errorResponse = ErrorResponse.oneErrorOfFail(
 			httpServletRequest.getRequestURI(),
 			new Error(errorCause, ERROR_MESSAGE, exception.getCause().getMessage()));

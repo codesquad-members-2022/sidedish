@@ -1,5 +1,7 @@
 package team14.sidedish.menu;
 
+import static team14.sidedish.common.error.ErrorResponse.ERROR_LOG;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import team14.sidedish.common.Exception.InvalidOrderException;
 import team14.sidedish.common.error.Error;
 import team14.sidedish.common.error.ErrorResponse;
 import team14.sidedish.order.OrderDto;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/sidedish")
@@ -82,6 +86,7 @@ public class MenuApiController {
 		HttpServletRequest httpServletRequest) {
 		Error error = new Error(exception.getValue(), exception.getMessage(), exception.getInvalidValue());
 		ErrorResponse errorResponse = ErrorResponse.oneErrorOfFail(httpServletRequest.getRequestURI(), error);
+		log.error(ERROR_LOG.apply(httpServletRequest.getRequestURI(), error.toString()));
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 	}
 }
