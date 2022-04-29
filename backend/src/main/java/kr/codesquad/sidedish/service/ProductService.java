@@ -30,6 +30,12 @@ public class ProductService {
 
     }
 
+    public ProductResponse readFrom(Long productId) {
+        return productRepository.findById(productId)
+                .map(this::entityToDTO)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
+    }
+
     private ProductResponse entityToDTO(Product product) {
         List<Discount> discounts = discountRepository.findAllById(product.getDiscountIds());
 

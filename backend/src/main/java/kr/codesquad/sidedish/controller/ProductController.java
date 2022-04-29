@@ -7,6 +7,7 @@ import kr.codesquad.sidedish.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,11 +25,16 @@ public class ProductController {
     public ProductListResponse listProducts(ProductListRequest productListRequest) {
         List<ProductResponse> productResponses = productService.readAllBy(
                 productListRequest.getCategoryId(),
-                productListRequest.getThemeId(),
+                productListRequest.getSpecialCategoryId(),
                 productListRequest.getSortRule(),
                 productListRequest.getOffset(),
                 productListRequest.getPageSize());
 
         return new ProductListResponse(productListRequest, productResponses);
+    }
+
+    @GetMapping("/{id}")
+    public ProductResponse getProduct(@PathVariable("id") Long productId) {
+        return productService.readFrom(productId);
     }
 }

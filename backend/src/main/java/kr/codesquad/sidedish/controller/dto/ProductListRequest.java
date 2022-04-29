@@ -14,7 +14,7 @@ public class ProductListRequest {
     );
 
     private Long categoryId;
-    private Long themeId;
+    private Long specialCategoryId;
     private Long page = 1L;
     private Integer pageSize = 30;
     private String sort = "";
