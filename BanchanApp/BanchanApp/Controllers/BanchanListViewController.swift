@@ -104,7 +104,16 @@ extension BanchanListViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let model = self.viewModel?.getBanchan(at: indexPath) else { return }
+
         let viewController = BanchanDetailViewController()
+        let networkManager = NetworkManager()
+        let repository = RemoteRepository(networkManager: networkManager)
+        let useCase = BanchanUseCase(repository: repository)
+        let viewModel = BanchanDetailViewModel(model: model, service: useCase)
+
+        viewController.viewModel = viewModel
+
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 

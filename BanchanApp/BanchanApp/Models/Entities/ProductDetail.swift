@@ -10,9 +10,12 @@ import Foundation
 struct ProductDetail: Codable {
     let topImage: String
     let thumbImages: [String]
-    let productDescription, point, deliveryInfo, deliveryFee: String
-    let prices: [String]
+    let productDescription: String
+    let point: String
+    let deliveryInfo: String
+    let deliveryFee: String
     let detailSection: [String]
+    let prices: [String]
 
     enum CodingKeys: String, CodingKey {
         case topImage = "top_image"

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductResponse: Codable {
+struct ProductListResponse: Codable {
     let statusCode: Int
     let body: [Product]
 }

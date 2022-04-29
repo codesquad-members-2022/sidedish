@@ -122,6 +122,7 @@ class BanchanDetailViewController: UIViewController {
 
     // MARK: - Properties
     weak var delegate: BanchanViewControllerDelegate?
+    var viewModel: BanchanDetailViewModel?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -131,6 +132,50 @@ class BanchanDetailViewController: UIViewController {
         self.configureUI()
         self.productImageCarouselView.delegate = self
         self.quantityView.delegate = self
+        self.viewModel?.getBanchanDetail()
+        self.bind()
+    }
+
+    private func bind() {
+        self.viewModel?.descriptor.bind(subscriber: { detail in
+            guard let viewModel = self.viewModel, let detail = detail else { return }
+            let banchanInfo  = viewModel.getBanchanInfo()
+            self.productDetailView.setTitleText(banchanInfo.title, font: .textLargeBold)
+            self.productDetailView.setDescriptionText(banchanInfo.description, font: .textMediumRegular)
+            self.productDetailView.setBadgeList(banchanInfo.badges)
+            self.productDetailView.setSalePrice(banchanInfo.salePrice)
+
+            if let normalPrice = banchanInfo.normalPrice {
+                self.productDetailView.setNormalPrice(normalPrice)
+            }
+
+            self.pointLabel.text = detail.point
+            self.deliveryFeeLabel.text = detail.deliveryFee
+            self.deliveryInformationLabel.text = detail.deliveryInfo
+
+            viewModel.getThumbnails()
+            viewModel.getSectionImages()
+        })
+
+        self.viewModel?.thumbnailImages.bind(subscriber: { images in
+            guard !images.isEmpty else { return }
+            self.productImageCarouselView.reloadData()
+        })
+
+        self.viewModel?.sectionImages.bind(subscriber: { images in
+            for data in images {
+                guard let image = UIImage(data: data), let ratio = image.getAspectRatio() else { return }
+
+                let imageView = UIImageView(image: image)
+
+                imageView.contentMode = .scaleAspectFit
+
+                self.productDescriptionImageStack.addArrangedSubview(imageView)
+
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: ratio).isActive = true
+            }
+        })
     }
 
     private func configureUI() {
@@ -280,48 +325,6 @@ class BanchanDetailViewController: UIViewController {
             paddingLeft: 16,
             paddingRight: 16
         )
-
-        let urls = [
-            "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D1.jpg",
-            "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_D2.jpg",
-            "http://public.codesquad.kr/jk/storeapp/data/pakage_regular.jpg"
-        ]
-
-        let group = DispatchGroup()
-
-        // TODO: 순서대로 담아야함
-        var images = [Data]()
-
-        for urlString in urls {
-            guard let url = URL(string: urlString) else { continue }
-
-            group.enter()
-
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                guard let data = data, error == nil else {
-                    group.leave()
-                    return
-                }
-
-                group.leave()
-                images.append(data)
-            }.resume()
-        }
-
-        group.notify(queue: .main) { [weak self] in
-            for data in images {
-                guard let image = UIImage(data: data), let ratio = image.getAspectRatio() else { return }
-
-                let imageView = UIImageView(image: image)
-
-                imageView.contentMode = .scaleAspectFit
-
-                self?.productDescriptionImageStack.addArrangedSubview(imageView)
-
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: ratio).isActive = true
-            }
-        }
     }
 
     // MARK: - Action Method
@@ -332,27 +335,29 @@ class BanchanDetailViewController: UIViewController {
 
 extension BanchanDetailViewController: CarouselViewDataSource {
     func carouselView(_ carouselView: CarouselView, index: Int) -> UIView {
-        let image = UIImageView()
-        // TODO: get image url from ViewModel
-        image.image = UIImage(systemName: "suitcase.cart")
-        image.contentMode = .scaleAspectFit
-        return image
+        let imageView = UIImageView()
+
+        guard let data = self.viewModel?.thumbnailImages.value[index], let image = UIImage(data: data) else {
+            return imageView
+        }
+
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFit
+
+        return imageView
     }
 
     func carouselView(_ carouselView: CarouselView, numberOfItems: Int) -> Int {
-        // TODO: get total image count from ViewModel
-        return 4
+        return self.viewModel?.thumbnailCount ?? 0
     }
-
 }
 
 extension BanchanDetailViewController: QuantityViewDelegate {
 
     func quantityViewDidChangeValue(value: Double) {
         // TODO: Update ViewModel
-        // 1. Update quantity to ViewModel
-        // 2. Get point from ViewModel
-        // 3. Update point Label
-    }
+        self.viewModel?.updateQuantity(value)
+        self.totalPriceLabel.text = self.viewModel?.totalPrice ?? "0원"
 
+    }
 }

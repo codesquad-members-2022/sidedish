@@ -51,6 +51,12 @@ class ImageManager {
         return imageData
     }
 
+    private func cacheData(key: NSURL, value: Data) -> ImageData {
+        let imageData = ImageData(data: value)
+        self.cachedImages.setObject(imageData, forKey: key)
+        return imageData
+    }
+
     func fetchImage(with url: NSURL, completion: @escaping CompletionHandler) {
         if let cachedImage = getCachedImageFromMemory(url: url) {
             completion(cachedImage.data)
@@ -90,11 +96,5 @@ class ImageManager {
                 print("ERROR: ", error)
             }
         }.resume()
-    }
-
-    private func cacheData(key: NSURL, value: Data) -> ImageData {
-        let imageData = ImageData(data: value)
-        self.cachedImages.setObject(imageData, forKey: key)
-        return imageData
     }
 }

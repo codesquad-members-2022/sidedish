@@ -18,7 +18,7 @@ struct BanchanInfo {
 class BanchanListViewModel {
     typealias ImageSubscriber = (Data?) -> Void
 
-    private let service: ServiceProtocol
+    private let service: BanchanListUseCaseProtocol
 
     let banchans: Observable<[[Banchan]]> = Observable(Array(repeating: [], count: BanchanType.allCases.count))
     var images: [[Observable<Data?>]] = Array(repeating: [], count: BanchanType.allCases.count)
@@ -27,7 +27,7 @@ class BanchanListViewModel {
         return BanchanType.allCases.count
     }
 
-    init(service: Service) {
+    init(service: BanchanListUseCase) {
         self.service = service
     }
 
