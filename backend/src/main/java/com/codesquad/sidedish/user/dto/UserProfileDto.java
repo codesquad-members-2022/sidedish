@@ -1,5 +1,8 @@
 package com.codesquad.sidedish.user.dto;
 
+import com.codesquad.sidedish.user.domain.GithubToken;
+import com.codesquad.sidedish.user.domain.User;
+
 public class UserProfileDto {
 
     private String oauthId;
@@ -22,5 +25,9 @@ public class UserProfileDto {
 
     public String getName() {
         return name;
+    }
+
+    public User toEntity(GithubToken token) {
+        return new User(oauthId, name, email, token);
     }
 }
