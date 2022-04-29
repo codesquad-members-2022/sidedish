@@ -3,20 +3,34 @@ import { ReactComponent as ArrowLeft } from 'assets/arrow_left.svg';
 import { ReactComponent as ArrowRight } from 'assets/arrow_right.svg';
 
 const SliderWrapper = styled.div`
-  padding: 60px 80px;
+  padding: ${({ type }) => (type === 'small' ? '48px' : '60px 80px')};
   position: relative;
   display: ${({ display }) => display};
 `;
 
+const SliderHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const SliderTitle = styled.h2`
-  font-size: ${({ theme: { fontSize } }) => fontSize.xLarge};
+  font-size: ${({ theme: { fontSize }, type }) => (type === 'small' ? fontSize.large : fontSize.xLarge)};
+  font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
+  color: ${({ theme: { colors } }) => colors.gray1};
+`;
+
+const SliderPageIndex = styled.div`
+  font-size: ${({ theme: { fontSize } }) => fontSize.small};
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
   color: ${({ theme: { colors } }) => colors.black};
+  margin-right: 30px;
+  align-items: center;
+  line-height: 30px;
 `;
 
 const SliderContainer = styled.div`
-  margin-top: 40px;
-  width: 1280px;
+  margin-top: ${({ type }) => (type === 'small' ? '28px' : '40px')};
+  width: ${({ width }) => width + 'px'};
   overflow: hidden;
 `;
 
@@ -30,13 +44,15 @@ const SliderList = styled.ul`
 
 const ArrowIconStyle = {
   position: 'absolute',
-  top: '50%',
   cursor: 'pointer',
 };
 
 const ArrowLeftIcon = styled(ArrowLeft)`
   ${ArrowIconStyle};
-  left: 36px;
+  width: ${({ type }) => (type === 'small' ? '6px' : '11px')};
+  height: ${({ type }) => (type === 'small' ? '12px' : '20px')};
+  left: ${({ type }) => (type === 'small' ? '818px' : '36px')};
+  top: ${({ type }) => (type === 'small' ? '59px' : '50%')};
   path {
     stroke: ${({ theme: { colors }, active }) => (active === 'true' ? colors.black : colors.gray3)};
   }
@@ -44,10 +60,22 @@ const ArrowLeftIcon = styled(ArrowLeft)`
 
 const ArrowRightIcon = styled(ArrowRight)`
   ${ArrowIconStyle};
-  right: 36px;
+  width: ${({ type }) => (type === 'small' ? '6px' : '11px')};
+  height: ${({ type }) => (type === 'small' ? '12px' : '20px')};
+  right: ${({ type }) => (type === 'small' ? '48px' : '36px')};
+  top: ${({ type }) => (type === 'small' ? '59px' : '50%')};
   path {
     stroke: ${({ theme: { colors }, active }) => (active === 'true' ? colors.black : colors.gray3)};
   }
 `;
 
-export { SliderWrapper, SliderTitle, SliderContainer, SliderList, ArrowLeftIcon, ArrowRightIcon };
+export {
+  SliderWrapper,
+  SliderHeader,
+  SliderTitle,
+  SliderPageIndex,
+  SliderContainer,
+  SliderList,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+};
