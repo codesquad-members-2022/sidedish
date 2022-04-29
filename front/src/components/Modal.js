@@ -28,7 +28,7 @@ function Modal({ dishId, hideModal, showModal, showAlert }) {
               <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
             </PopupCloseButtonWrap>
             <ProductDetail dishes={dish} showAlert={showAlert}></ProductDetail>
-            <RelatedProduct relatedDishes={dish.related_dishes} showModal={showModal}></RelatedProduct>
+            <RelatedProduct relatedDishes={dish.recommendedItems} showModal={showModal}></RelatedProduct>
           </PopupBox>
         </ModalWrap>
       )}

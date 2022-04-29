@@ -3,6 +3,19 @@ import styled from 'styled-components';
 import Badges from './Badges';
 
 function ProductDetail({ dishes, showAlert }) {
+  const {
+    title,
+    content,
+    discountPrice,
+    originPrice,
+    deliveryFee,
+    earlyDeliverable,
+    freeShippingAmount,
+    mileageRate,
+    images,
+    badge,
+    recommendedItems,
+  } = dishes;
   const [amount, setAmount] = useState(1);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   function addAmount() {
@@ -30,19 +43,19 @@ function ProductDetail({ dishes, showAlert }) {
   return (
     <DishDetail>
       <ProductImages>
-        <MainImage src={dishes.images[mainImageIndex]}></MainImage>
+        <MainImage src={images[mainImageIndex]}></MainImage>
         <SubImages>
-          {dishes.images.map((src, index) => (
+          {images.map((src, index) => (
             <SubImage key={index} src={src} onMouseEnter={() => changeMainImage(index)}></SubImage>
           ))}
         </SubImages>
       </ProductImages>
       <ProductInfo>
-        <ProductName>{dishes.name}</ProductName>
-        <PrimeCost>{dishes.price.toLocaleString()}원</PrimeCost>
+        <ProductName>{title}</ProductName>
+        <PrimeCost>{Number(originPrice).toLocaleString()}원</PrimeCost>
         <BadgeAndPrice>
-          <Badges badge_title={dishes.badge_title}></Badges>
-          <Price>{dishes.discount_price.toLocaleString()}원</Price>
+          <Badges badge_title={[badge]}></Badges>
+          <Price>{Number(discountPrice).toLocaleString()}원</Price>
         </BadgeAndPrice>
         <Info>
           <InfoTitles>
@@ -51,9 +64,9 @@ function ProductDetail({ dishes, showAlert }) {
             <DeliveryPriceTitle>배송비</DeliveryPriceTitle>
           </InfoTitles>
           <InfoDetails>
-            <Point>{(dishes.discount_price * dishes.mileage_ratio).toLocaleString()}원</Point>
-            <Delivery>{dishes.early_delivery ? '서울 경기 새벽배송, ' : ''}전국 택배 배송</Delivery>
-            <DeliveryPrice>{dishes.delivery_price.toLocaleString()}원</DeliveryPrice>
+            <Point>{Math.floor(Number(discountPrice) * Number(mileageRate)).toLocaleString()}원</Point>
+            <Delivery>{earlyDeliverable ? '서울 경기 새벽배송, ' : ''}전국 택배 배송</Delivery>
+            <DeliveryPrice>{Number(deliveryFee).toLocaleString()}원</DeliveryPrice>
           </InfoDetails>
         </Info>
         <AmountAndCost>
@@ -64,7 +77,7 @@ function ProductDetail({ dishes, showAlert }) {
           </AmountButtons>
           <CostInfo>
             <TotalCostTitle>총 주문금액</TotalCostTitle>
-            <TotalCost>{(dishes.discount_price * amount).toLocaleString()}원</TotalCost>
+            <TotalCost>{(Number(discountPrice) * amount).toLocaleString()}원</TotalCost>
           </CostInfo>
         </AmountAndCost>
         <OrderButton onClick={checkOrder}>주문하기</OrderButton>
