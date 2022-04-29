@@ -20,6 +20,7 @@ function SidedishCards({ dishes, isBigCards }) {
                 fixedPrice={dish.fixedPrice}
                 discountPrice={dish.discountPrice}
                 eventBadges={dish.discounts}
+                deliveries={dish.deliveries}
             />
         );
     });

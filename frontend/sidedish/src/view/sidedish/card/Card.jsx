@@ -1,4 +1,6 @@
+import { useState } from "react";
 import {
+    DishCard,
     ImgWrapper,
     Img,
     TextContainer,
@@ -8,7 +10,25 @@ import {
     ClientPrice,
     OriginPrice,
     EventBadge,
+    DeliveryBadge,
 } from "./Card.style";
+import { getRandomKey } from "../../../utils";
+
+function Deliveries({ deliveries, isDeliveryBadgeVisible }) {
+    if (!deliveries || !deliveries.length) {
+        return;
+    }
+
+    const deliveryItems = deliveries.map((delivery) => (
+        <li key={getRandomKey()}>{delivery}</li>
+    ));
+
+    return (
+        <DeliveryBadge isVisible={isDeliveryBadgeVisible}>
+            {deliveryItems}
+        </DeliveryBadge>
+    );
+}
 
 function EventBadges({ eventBadges }) {
     if (!eventBadges.length) {
@@ -31,7 +51,10 @@ function Card({
     fixedPrice,
     discountPrice,
     eventBadges,
+    deliveries,
 }) {
+    const [isDeliveryBadgeVisible, setDeliveryBadgeVisibility] =
+        useState(false);
     const originPrice = (
         <OriginPrice>{fixedPrice.toLocaleString()}원</OriginPrice>
     );
@@ -40,8 +63,18 @@ function Card({
     );
     const isDiscounted = fixedPrice !== discountPrice;
 
+    const showDeliveryBadge = () => setDeliveryBadgeVisibility(true);
+    const hideDeliveryBadge = () => setDeliveryBadgeVisibility(false);
+
     return (
-        <li>
+        <DishCard
+            onMouseOver={showDeliveryBadge}
+            onMouseOut={hideDeliveryBadge}
+        >
+            <Deliveries
+                deliveries={deliveries}
+                isDeliveryBadgeVisible={isDeliveryBadgeVisible}
+            />
             <ImgWrapper>
                 <Img alt={title} src={image} />
             </ImgWrapper>
@@ -58,7 +91,7 @@ function Card({
                 </TextContainer>
                 <EventBadges eventBadges={eventBadges} />
             </div>
-        </li>
+        </DishCard>
     );
 }
 
