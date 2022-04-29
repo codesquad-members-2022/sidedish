@@ -3,6 +3,7 @@ package team14.sidedish.common.error;
 import org.springframework.http.HttpStatus;
 
 import java.util.Set;
+import java.util.function.BiFunction;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 public class ErrorResponse {
+	public static final BiFunction<String, String, String> ERROR_LOG = (cause, errorOfdata) ->
+		String.format("%s : %s", cause, errorOfdata);
 	private final String statusCode;
 	private final ResultCode result;
 	private final String requestUrl;
