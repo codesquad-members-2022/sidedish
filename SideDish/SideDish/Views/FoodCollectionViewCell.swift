@@ -2,7 +2,8 @@ import Foundation
 import UIKit
 
 final class FoodCollectionViewCell: UICollectionViewCell{
-
+    static let identifier = "FoodCollectionViewCell"
+    
     private lazy var foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -12,6 +13,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
     private lazy var foodInformationStackView: UIStackView = {
         let informationStackView = UIStackView()
         informationStackView.axis = .vertical
+        informationStackView.spacing = 5
         informationStackView.alignment = .leading
         informationStackView.distribution = .fillEqually
         informationStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +42,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
     private lazy var foodNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -48,7 +50,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
     private lazy var foodDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "푸드 설명 라벨"
-        label.textColor = .black
+        label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 17)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -57,7 +59,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
     private lazy var foodNormalPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "푸드 정가 라벨"
-        label.textColor = .black
+        label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 17)
         if let text = label.text {
             let attributeString = NSMutableAttributedString(string: label.text ?? "해당없음")
@@ -72,7 +74,7 @@ final class FoodCollectionViewCell: UICollectionViewCell{
         let label = UILabel()
         label.text = "푸드 특가 라벨"
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -136,25 +138,26 @@ final class FoodCollectionViewCell: UICollectionViewCell{
     
     private func setLayout(){
         NSLayoutConstraint.activate([
+            
             foodImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             foodImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             foodImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45),
             
             foodInformationStackView.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
-            foodInformationStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            foodInformationStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            foodInformationStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
+            foodInformationStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            foodInformationStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            foodInformationStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.30),
             
             foodPriceStackView.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
             foodPriceStackView.topAnchor.constraint(equalTo: foodInformationStackView.bottomAnchor, constant: 5),
-            foodPriceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            foodPriceStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
+            foodPriceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
+            foodPriceStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.15),
             
             foodBadgeStackView.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
             foodBadgeStackView.topAnchor.constraint(equalTo: foodPriceStackView.bottomAnchor, constant: 5),
             foodBadgeStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
-            foodBadgeStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
+            foodBadgeStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.15),
         ])
     }
     
