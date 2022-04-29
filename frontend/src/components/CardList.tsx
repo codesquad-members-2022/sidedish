@@ -18,12 +18,7 @@ type ListProp = SizeProp & {
   products: Product[];
   curIndex?: number;
 };
-export const CardList = ({
-  products,
-  size: cardSize,
-  curIndex = 0,
-}: ListProp) => {
-  console.log(products);
+export const CardList = ({ products, size: cardSize, curIndex = 0 }: ListProp) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (sliderRef.current) {
@@ -37,11 +32,7 @@ export const CardList = ({
     <ShowingArea size={cardSize}>
       <ProductCardsWrapper ref={sliderRef}>
         {products?.map((product) => (
-          <ProductCard
-            key={product.id}
-            size={cardSize}
-            {...product}
-          ></ProductCard>
+          <ProductCard key={product.id} size={cardSize} {...product}></ProductCard>
         ))}
       </ProductCardsWrapper>
     </ShowingArea>

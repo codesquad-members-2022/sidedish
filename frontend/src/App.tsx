@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { Queries } from "./convention";
 
 const AppWrapper = styled.div`
+  position: relative;
   width: 100vw;
   display: flex;
   flex-direction: column;

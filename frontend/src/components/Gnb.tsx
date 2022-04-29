@@ -17,8 +17,6 @@ const Sub = styled.span`
   ${custom_font("Noto Sans KR", 16, 400, 24)}
   color: ${({ theme }) => theme.colors.Black};
   margin-top: 8px;
-  ${custom_font("Noto Sans KR", 14, 400, 24)}
-  color: ${({ theme }) => theme.colors.Black}
 `;
 const GnbMenu = styled.div<{ extended: boolean }>`
   margin: 28px;

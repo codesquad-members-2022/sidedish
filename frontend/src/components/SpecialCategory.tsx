@@ -51,8 +51,7 @@ export const SpecialCategory = ({
   themes: specialCategories,
 }: SpecialCategories) => {
   const [selected, setSelected] = useState<number>(specialCategories[0].id);
-  const { products } = useFetch(Queries.products, selected, selected);
-  console.log(products);
+  const { products } = useFetch(Queries.specialProducts, selected, selected);
   return (
     <>
       {products && (
