@@ -21,5 +21,5 @@ public interface MenuRepository extends CrudRepository<Menu, Integer> {
 
 	@Modifying
 	@Query("update menu set stock = :stock where id = :id")
-	boolean updateStock(@Param("id") Integer id, @Param("stock") int stock);
+	boolean updateStock(@Param("stock") int stock, @Param("id") Integer id);
 }

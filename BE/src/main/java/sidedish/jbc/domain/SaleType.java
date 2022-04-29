@@ -16,5 +16,13 @@ public enum SaleType {
 		return salePercentage;
 	}
 
+	public int calculateSalePrice(int price) {
+		return (int) (price * (100 - this.getSalePercentage()) / 100f);
+	}
 
+	public int calculatePoint(int price, MenuOrder menuOrder) {
+
+		return (int) (calculateSalePrice(price) * 0.01 * menuOrder.getQuantity());
+
+	}
 }

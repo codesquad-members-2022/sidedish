@@ -24,6 +24,6 @@ public class MenuService {
 
 	public DetailMenuResponse findDetailMenu(int menuId) {
 		Optional<Menu> menu = menuRepository.findAllById(menuId);
-		return new DetailMenuResponse(menu.orElseThrow());
+		return new DetailMenuResponse(menu.orElseThrow(IllegalArgumentException::new));
 	}
 }

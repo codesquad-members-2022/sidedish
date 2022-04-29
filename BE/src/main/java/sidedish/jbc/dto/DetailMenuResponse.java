@@ -26,7 +26,7 @@ public class DetailMenuResponse {
 		this.description = menu.getDescription();
 		this.price = menu.getPrice();
 		this.saleType = menu.getSaleType();
-		this.salePrice = price - price * saleType.getSalePercentage() / 100;
+		this.salePrice = saleType.calculateSalePrice(price);
 		this.deliveryInfo = menu.getDeliveryInfo();
 		this.fee = menu.getFee();
 		this.freeShippingStartingPrice = menu.getFreeShippingStartingPrice();

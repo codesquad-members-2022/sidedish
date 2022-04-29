@@ -20,9 +20,9 @@ public class MenuResponse {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.salePrice = price - price * saleType.getSalePercentage() / 100;
-		this.menuType = menuType;
 		this.saleType = saleType;
+		this.salePrice = saleType.calculateSalePrice(price);
+		this.menuType = menuType;
 		this.imagePath = imagePath;
 	}
 

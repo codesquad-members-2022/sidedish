@@ -1,10 +1,9 @@
 package sidedish.jbc.service;
 
-import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sidedish.jbc.domain.Menu;
 import sidedish.jbc.domain.MenuOrder;
-import sidedish.jbc.domain.User;
 import sidedish.jbc.dto.MenuOrderResponse;
 import sidedish.jbc.dto.OrderRequest;
 import sidedish.jbc.repository.MenuRepository;
@@ -25,6 +24,7 @@ public class OrderService {
 		this.userRepository = userRepository;
 	}
 
+	@Transactional
 	public MenuOrderResponse save(OrderRequest request, int menuId) {
 		Menu menu = menuRepository.findAllById(menuId).orElseThrow();
 		MenuOrder menuOrder = new MenuOrder(menu, request);
@@ -34,17 +34,14 @@ public class OrderService {
 		if (remainStock < 0) {
 			throw new IllegalStateException("재고가 부족합니다.");
 		}
-		MenuOrderResponse menuOrderResponse = new MenuOrderResponse(orderRepository.save(menuOrder), menu);
-		menuRepository.updateStock(menuId, remainStock);
-		userRepository.updatePoint(request.getUserId(), getPoint(menu, menuOrder));
-		Optional<User> user = userRepository.findById(request.getUserId());
-		System.out.println(user.get());
+		MenuOrderResponse menuOrderResponse = new MenuOrderResponse(orderRepository.save(menuOrder),
+			menu);
+		menuRepository.updateStock(remainStock, menuId);
+		userRepository.updatePoint(request.getUserId(),
+			menu.getSaleType().calculatePoint(menu.getPrice(), menuOrder));
 
 		return menuOrderResponse;
 	}
 
-	private int getPoint(Menu menu, MenuOrder menuOrder) {
-		return (int) ((menu.getPrice() * ((100 - menu.getSaleType().getSalePercentage()) / 100f))
-			* 0.01 * menuOrder.getQuantity());
-	}
+
 }

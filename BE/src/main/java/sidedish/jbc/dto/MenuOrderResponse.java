@@ -17,7 +17,7 @@ public class MenuOrderResponse {
 		this.userId = menuOrder.getUserId();
 		this.menuName = menuOrder.getMenuName();
 		this.price = menuOrder.getMenuPrice();
-		this.salePrice = price - price * menuOrder.getSaleType().getSalePercentage() / 100;
+		this.salePrice = menuOrder.getSaleType().calculateSalePrice(price);
 		this.fee = menuOrder.getFee();
 		this.quantity = menu.getStock() - menuOrder.getQuantity();
 	}
