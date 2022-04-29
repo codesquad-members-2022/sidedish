@@ -183,7 +183,7 @@ class DetailDishSectionView: UIView {
             normalPriceLabel.attributedText = attributedString
         }
 
-        if let discountType = viewModel?.discountType {
+        if let discountType = discountType {
             badgeStackView.isHidden = false
             discountType.forEach {
                 switch $0 {

@@ -29,12 +29,12 @@ class HomeViewController: UIViewController {
             }
         }
         viewModel.onUpdateWithImageData = { hash, data in
-            guard var targetCell = self.viewModel[hash] else { return }
-            DispatchQueue.main.async {
+            guard let targetCell = self.viewModel[hash] else { return }
+            DispatchQueue.main.async { [weak self] in
                 if let image = UIImage(data: data) {
                     targetCell.injectImage(image: image)
                 }
-                self.collectionView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
         viewModel.fetchData()
