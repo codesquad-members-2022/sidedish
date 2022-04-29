@@ -4,7 +4,7 @@ import com.codesquad.sidedish.dish.DishRepository;
 import com.codesquad.sidedish.dish.domain.Dish;
 import com.codesquad.sidedish.dish.domain.DishDelivery;
 import com.codesquad.sidedish.exception.ErrorCode;
-import com.codesquad.sidedish.exception.NotFoundException;
+import com.codesquad.sidedish.exception.unchecked.NotFoundException;
 import com.codesquad.sidedish.order.domain.Order;
 import com.codesquad.sidedish.order.domain.OrderDelivery;
 import com.codesquad.sidedish.order.domain.User;
