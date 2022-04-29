@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Badges from './Badges';
 
 function Card({ size, item, showModal }) {
-  const { id, image, title, contents, origin_price, discount_price, early_delivery, badge_title } = item;
+  const { id, mainImagePath, title, content, originPrice, discountPrice, earlyDeliverable, badge } = item;
   const [isHover, setIsHover] = useState(false);
 
   function showDelevery() {
@@ -15,7 +15,7 @@ function Card({ size, item, showModal }) {
   return (
     <StyledCard key={id} cardSize={size} onClick={() => showModal(id)}>
       <Thumbnail cardSize={size} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
-        <Image src={image}></Image>
+        <Image src={mainImagePath}></Image>
         {size !== 'small' && isHover && (
           <HoverThumbnail>
             <HoverInfo>
@@ -30,20 +30,20 @@ function Card({ size, item, showModal }) {
         <>
           <CardBody>
             <Title>{title}</Title>
-            <Descript>{contents}</Descript>
+            <Descript>{content}</Descript>
             <Price>
-              <DiscountPrice>{discount_price.toLocaleString()}</DiscountPrice>
-              {discount_price !== origin_price && <OriginPrice>{origin_price.toLocaleString()}</OriginPrice>}
+              <DiscountPrice>{Number(discountPrice).toLocaleString()}</DiscountPrice>
+              {discountPrice !== originPrice && <OriginPrice>{originPrice.toLocaleString()}</OriginPrice>}
             </Price>
           </CardBody>
-          <Badges badge_title={badge_title} />
+          <Badges badge_title={[badge]} />
         </>
       ) : (
         <>
           <SmallTitle>{title}</SmallTitle>
           <Price>
-            <DiscountPrice>{discount_price.toLocaleString()}</DiscountPrice>
-            <OriginPrice>{origin_price.toLocaleString()}</OriginPrice>
+            <DiscountPrice>{Number(discountPrice).toLocaleString()}</DiscountPrice>
+            <OriginPrice>{Number(originPrice).toLocaleString()}</OriginPrice>
           </Price>
         </>
       )}

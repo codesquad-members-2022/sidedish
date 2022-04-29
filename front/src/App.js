@@ -13,6 +13,7 @@ function App() {
   const [alert, setAlert] = useState({ show: false, message: '' });
   const [modal, setModal] = useState({ show: false, dishId: null });
   const [categories, setCategories] = useState(null);
+  const [promotionName, setPromorionName] = useState(null);
   const [promotions, setPromotions] = useState(null);
   const [categoryItems, setCategoryItems] = useState(null);
 
@@ -35,7 +36,7 @@ function App() {
       const eventCategories = await fetchEventCategories();
       const dishes = await fetchDishes();
 
-      const promotions = eventCategories.map(({ id, name }) => ({ id, title: name, items: [] }));
+      const promotions = eventCategories.children.map(({ id, name }) => ({ id, title: name, items: [] }));
       dishes.eventItems.forEach(dish => {
         promotions.forEach(promotion => {
           if (dish.categories.includes(promotion.id)) {
@@ -52,6 +53,7 @@ function App() {
         });
       });
       setCategories(categories);
+      setPromorionName(eventCategories.name);
       setPromotions(promotions);
       setCategoryItems(categoryItems);
     }
@@ -67,11 +69,7 @@ function App() {
         {categories && promotions && (
           <>
             <Header categories={categories}></Header>
-            <Promotion
-              title={'둘이 먹다 하나가 죽어도 모르는 반찬'}
-              promotions={promotions}
-              showModal={showModal}
-            ></Promotion>
+            <Promotion title={promotionName} promotions={promotions} showModal={showModal}></Promotion>
             <Main categories={categoryItems} showModal={showModal}></Main>
           </>
         )}
