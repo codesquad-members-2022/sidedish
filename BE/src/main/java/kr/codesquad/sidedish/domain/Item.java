@@ -43,4 +43,7 @@ public class Item {
         this.stock = this.getStock() - quantity;
     }
 
+    public boolean checkStock(int quantity) {
+        return this.stock < quantity;
+    }
 }
