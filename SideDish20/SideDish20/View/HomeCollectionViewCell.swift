@@ -23,7 +23,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
                 discountedPriceLabel.text = discountedPrice
             }
             originalPriceLabel.text = data.originalPrice
-            specialMessagelabel.text = data.specialMessage
+            
+            if data.specialMessage.count != 0 {
+                specialMessagelabel.text = data.specialMessage
+            } else {
+                specialMessageContainerView.isHidden = true
+            }
         }
     }
     

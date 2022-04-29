@@ -24,6 +24,7 @@ class DataFetchService: CommonURLManager {
                 var message = ""
                 for msg in specialMessage {
                     message.append(msg)
+                    message.append(" ")
                 }
                 
                 homeModelList.append(HomeModel(sideDishKey: data.detailHash,
