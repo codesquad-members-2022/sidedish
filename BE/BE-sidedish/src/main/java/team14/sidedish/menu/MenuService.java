@@ -86,10 +86,8 @@ public class MenuService {
 
 	public List<MenuDto.CategoryResponse> readMoreCategories() {
 		List<MenuDto.CategoryResponse> categories = new ArrayList<>();
-
-		getMenu(categories, Menu.Category.MAIN_DISH);
-		getMenu(categories, Menu.Category.SOUP);
-
+		getMenuOf(categories, Menu.Category.MAIN_DISH);
+		getMenuOf(categories, Menu.Category.SOUP);
 		return categories;
 	}
 
@@ -98,12 +96,7 @@ public class MenuService {
 		ExhibitionDto exhibitionInfo = exhibitionService.readOngoing();
 
 		List<MenuDto.SubCategory> specialMenus = specialMenuService.read(exhibitionInfo.getExhibitionId(), specialMenuTitle.getTitle());
-
-		Set<Long> specialMenuIds = getMenuIds(specialMenus);
-		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(specialMenuIds));
-		List<Long> eventIds = ids.getEventIds();
-		EventAndSalesDto eventAndSales = eventService.read(eventIds);
-		insertSalesAndEventBadge(specialMenus, ids, eventAndSales);
+		filledEvent(specialMenus);
 
 		return new MenuDto.CategoryResponse(specialMenuTitle.getId(), specialMenuTitle.getTitle(), specialMenus);
 	}
@@ -113,6 +106,7 @@ public class MenuService {
 		Menu menuInfo = getMenu(menuId);
 		Menu.Category subjectOfCategory = menuInfo.getCategory();
 		// 함께하면 더욱 맛있는 상품은 조회요청한 메뉴의 Category와 동일
+
 		List<Menu> category = menuRepository.findByCategory(subjectOfCategory, pageable);
 		List<MenuDto.SubCategory> menus = getSubCategoryOf(category);
 		filledEvent(menus);
@@ -127,14 +121,6 @@ public class MenuService {
 		Integer charge = savedCharge.apply(detailMenu.hasDiscounted(), detailMenu);
 		response.setSavedCharge(charge);
 		return response;
-	}
-
-	private void filledEvent(List<MenuDto.SubCategory> subCategories) {
-		Set<Long> menuIds = getMenuIds(subCategories);
-		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
-		List<Long> eventIds = ids.getEventIds();
-		EventAndSalesDto eventAndSales = eventService.read(eventIds);
-		insertSalesAndEventBadge(subCategories, ids, eventAndSales);
 	}
 
 	/**
@@ -182,6 +168,28 @@ public class MenuService {
 		filledEvent(menus);
 
 		return new MenuDto.CategoryResponse(menuCategory.getId(), menuCategory.getKoType(), menus);
+	}
+
+	private void filledEvent(List<MenuDto.SubCategory> subCategories) {
+		Set<Long> menuIds = getMenuIds(subCategories);
+		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
+		List<Long> eventIds = ids.getEventIds();
+		EventAndSalesDto eventAndSales = eventService.read(eventIds);
+		insertSalesAndEventBadge(subCategories, ids, eventAndSales);
+	}
+
+	private void getMenuOf(List<MenuDto.CategoryResponse> categories, Menu.Category menuCategory) {
+		PageRequest pageable = PageRequest.of(0, 10);
+		List<Menu> mainMenuInfo = menuRepository.findByCategory(menuCategory, pageable);
+		List<MenuDto.SubCategory> menus = getSubCategoryOf(mainMenuInfo);
+
+		filledEvent(menus);
+
+		categories.add(new MenuDto.CategoryResponse(
+			menuCategory.getId(),
+			menuCategory.getKoType(),
+			menus
+		));
 	}
 
 	private Menu getMenu(Long menuId) {
@@ -256,24 +264,6 @@ public class MenuService {
 			.parallel()
 			.map(menu -> menu.getMenuId())
 			.collect(Collectors.toSet());
-	}
-
-	private void getMenu(List<MenuDto.CategoryResponse> categories, Menu.Category menuCategory) {
-		PageRequest pageable = PageRequest.of(0, 10);
-		List<Menu> mainMenuInfo = menuRepository.findByCategory(menuCategory, pageable);
-		List<MenuDto.SubCategory> mainMenus = getSubCategoryOf(mainMenuInfo);
-
-		Set<Long> mainMenuIds = getMenuIds(mainMenus);
-		EventPlannerDto.Ids mainIds = eventPlannerService.readOngoingEventOf(List.copyOf(mainMenuIds));
-		List<Long> mainMenuEventIds = mainIds.getEventIds();
-		EventAndSalesDto mainMenuEventAndSales = eventService.read(mainMenuEventIds);
-		insertSalesAndEventBadge(mainMenus, mainIds, mainMenuEventAndSales);
-
-		categories.add(new MenuDto.CategoryResponse(
-				menuCategory.getId(),
-				menuCategory.getKoType(),
-				mainMenus
-		));
 	}
 
 	private void isValidOrderValue(OrderDto.Request request, int totalPrice, int deliveryCharge, int savedCharge) {
