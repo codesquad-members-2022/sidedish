@@ -13,7 +13,7 @@ export default function Contents({ sideDishes, setClickedCard, setCardHash }) {
           setCardHash={setCardHash}
           setClickedCard={setClickedCard}
           size="LARGE"
-          imageURL={image}
+          image={image}
           title={title}
           desc={description}
           sellingPrice={s_price}

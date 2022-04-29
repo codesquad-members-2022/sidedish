@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Text from 'components/utils/Text';
 import TabBar from 'components/MainCategory/Tab/TabBar';
 import Contents from 'components/MainCategory/Contents';
-import sideDishDummyData from './sideDishDummyData';
 
 const MAIN_CATEGORY_TITLE = '한 번 주문하면 두 번 반하는 반찬';
 const TAB_NAMES = ['정갈한 밑반찬', '뜨끈뜨끈 국물 요리', '든든한 메인 요리'];
@@ -11,7 +10,7 @@ const END_POINT = 'https://api.codesquad.kr/onban/';
 const PATHs = ['main', 'soup', 'side'];
 
 export default function MainCategory({ selectedTabNum, setSelectedTabNum, setClickedCard, setCardHash }) {
-  const [sideDishes, setSideDishes] = useState(sideDishDummyData);
+  const [sideDishes, setSideDishes] = useState([]);
 
   useEffect(() => {
     fetchCategoryData();

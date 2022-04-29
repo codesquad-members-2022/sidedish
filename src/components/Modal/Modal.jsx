@@ -11,7 +11,7 @@ import Picture from 'components/Modal/Picture';
 import DeliveryInfo from 'components/Modal/DeliveryInfo';
 
 const END_POINT = 'https://api.codesquad.kr/onban/';
-const CATEGORIES = ['main', 'soup', 'side'];
+const CATEGORIES = ['side', 'soup', 'main'];
 
 export default function Modal({ setClickedCard, cardHash, selectedTabNum }) {
   const [sideDish, setSideDish] = useState(false);

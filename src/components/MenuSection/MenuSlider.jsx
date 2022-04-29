@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+/* eslint-disable camelcase */
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import IconButton from 'components/common/IconButton';
 import Card from 'components/common/Card/Card';
 import THEME from 'variable/theme';
-import slideData from 'components/MenuSection/slideMockData';
 
 // TODO: Ref로 받아와서 저장할 것.
 const sliderInfo = {
@@ -14,11 +14,19 @@ const sliderInfo = {
   visibleLength: 4
 };
 
-export default function MenuSlider({ setClickedCard, setCardHash }) {
+const END_POINT = 'https://api.codesquad.kr/onban/';
+
+export default function MenuSlider({ menuName, setClickedCard, setCardHash }) {
+  const [menuData, setMenuData] = useState([]);
   const [curSlideIdx, setCurSlideIdx] = useState(0);
   const [isMoving, setMoving] = useState(false);
-  const isFirstSlide = curSlideIdx <= 0;
-  const isLastSlide = curSlideIdx >= slideData.length - sliderInfo.visibleLength;
+
+  const isFirstSlide = slideIdx => slideIdx <= 0;
+  const isLastSlide = slideIdx => slideIdx >= menuData.length - sliderInfo.visibleLength;
+
+  useEffect(() => {
+    fetchMenuData();
+  }, []);
 
   return (
     <Wrap>
@@ -30,7 +38,7 @@ export default function MenuSlider({ setClickedCard, setCardHash }) {
             icon="prev"
             width="11px"
             height="20px"
-            stroke={isFirstSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            stroke={isFirstSlide(curSlideIdx) ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
             disabled={isMoving}
           />
           <IconButton
@@ -39,27 +47,24 @@ export default function MenuSlider({ setClickedCard, setCardHash }) {
             icon="next"
             width="11px"
             height="20px"
-            stroke={isLastSlide ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            stroke={isLastSlide(curSlideIdx) ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
             disabled={isMoving}
           />
         </ButtonWrap>
-        <Slides
-          // onTransitionstart={() => setMoving(true)} // 왜 안되지?
-          onTransitionEnd={() => setMoving(false)}
-          curSlideIdx={curSlideIdx}
-        >
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }) => (
+        <Slides onTransitionEnd={() => setMoving(false)} curSlideIdx={curSlideIdx}>
+          {menuData.map(({ image, title, description, s_price, n_price, badge, alt }) => (
             <li key={title}>
               <Card
                 setCardHash={setCardHash}
                 setClickedCard={setClickedCard}
-                size={size}
-                imageURL={imageURL}
+                size="MEDIUM"
+                image={image}
                 title={title}
-                desc={desc}
-                curPrice={curPrice}
-                prevPrice={prevPrice}
-                tags={tags}
+                desc={description}
+                sellingPrice={s_price}
+                normalPrice={n_price}
+                tags={badge}
+                alt={alt}
               />
             </li>
           ))}
@@ -68,38 +73,54 @@ export default function MenuSlider({ setClickedCard, setCardHash }) {
     </Wrap>
   );
 
+  function fetchMenuData() {
+    const URL = `${END_POINT}${menuName}`;
+    fetch(URL)
+      .then(res => res.json())
+      .then(res => setMenuData(res.body), handleError);
+
+    function handleError(error) {
+      setMenuData([]);
+      throw new Error(`${error}: 데이터를 성공적으로 불러오지 못했습니다.`);
+    }
+  }
+
   function handleMovementToPrev() {
     const newCurSlideIdx = decreaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
-    disableButton();
+    disableButton(newCurSlideIdx);
   }
 
   function handleMovementToNext() {
     const newCurSlideIdx = increaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
-    disableButton();
+    disableButton(newCurSlideIdx);
   }
 
   function decreaseCurSlideIndex() {
-    if (isFirstSlide) {
+    if (isFirstSlide(curSlideIdx)) {
       return 0;
     }
     return curSlideIdx - sliderInfo.visibleLength;
   }
 
   function increaseCurSlideIndex() {
-    if (isLastSlide) {
+    if (isLastSlide(curSlideIdx)) {
       return curSlideIdx;
     }
     setMoving(true);
     return curSlideIdx + sliderInfo.visibleLength;
   }
 
-  function disableButton() {
-    if (isFirstSlide || isLastSlide) return;
+  function disableButton(newCurSlideIdx) {
+    if (isFirstSlide(newCurSlideIdx) || isLastSlide(newCurSlideIdx)) return;
     setMoving(true);
   }
 }
+
+MenuSlider.defaultProps = {
+  menuName: 'main'
+};
 
 const Wrap = styled.div({
   position: 'relative'

@@ -8,7 +8,7 @@ import HoverInfo from 'images/HoverInfo.png';
 export default function Card({
   id,
   size,
-  imageURL,
+  image,
   title,
   desc,
   sellingPrice,
@@ -32,7 +32,7 @@ export default function Card({
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
           {isSizeSmall ? null : <HoverImg />}
-          <img width={getWidthBySize(size)} height={getWidthBySize(size)} src={imageURL} alt={alt} />
+          <img width={getWidthBySize(size)} height={getWidthBySize(size)} src={image} alt={alt} />
         </ImgWrap>
         {isSizeSmall ? null : <Space />}
         {isSizeSmall ? <SmallTitle /> : <Title />}

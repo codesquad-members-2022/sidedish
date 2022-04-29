@@ -6,6 +6,13 @@ import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
 import Modal from 'components/Modal/Modal';
 
+const sectionTitles = [
+  '식탁을 풍성하게 하는 정갈한 밑반찬',
+  '정성이 담긴 뜨끈뜨끈 국물 요리',
+  '모두가 좋아하는 든든한 메인 요리'
+];
+const PATHs = ['main', 'soup', 'side'];
+
 export default function Sidedish() {
   const [isClickedMoreBtn, setClikedMoreBtn] = useState(false);
   const [isClickedCard, setClickedCard] = useState(false);
@@ -25,8 +32,17 @@ export default function Sidedish() {
             setClickedCard={setClickedCard}
             setCardHash={setCardHash}
           />
-          <MenuSection setClickedCard={setClickedCard} setCardHash={setCardHash} />
-          {isClickedMoreBtn ? <OthersMenuSlider /> : null}
+          {isClickedMoreBtn ? (
+            <MenuSections setClickedCard={setClickedCard} setCardHash={setCardHash} />
+          ) : (
+            <MenuSection
+              key={PATHs[0]}
+              title={sectionTitles[0]}
+              menuName={PATHs[0]}
+              setClickedCard={setClickedCard}
+              setCardHash={setCardHash}
+            />
+          )}
           {isClickedMoreBtn ? null : <MoreButton setClikedMoreBtn={setClikedMoreBtn} value="모든 카테고리 보기" />}
         </Main>
       </Wrap>
@@ -34,13 +50,11 @@ export default function Sidedish() {
   );
 }
 
-function OthersMenuSlider() {
-  const dummyData = ['국물 요리', '메인 요리'];
-  // TODO: 데이터 fetch 해오면 교체
+function MenuSections() {
   return (
     <>
-      {dummyData.map((_, idx) => (
-        <MenuSection key={idx} />
+      {PATHs.map((PATH, idx) => (
+        <MenuSection key={PATH} title={sectionTitles[idx]} menuName={PATH} />
       ))}
     </>
   );
