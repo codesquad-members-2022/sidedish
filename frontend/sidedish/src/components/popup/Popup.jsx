@@ -2,19 +2,13 @@ import styled from "styled-components";
 import PopupDetail from "./PopupDetail";
 import RelatedList from "./RelatedLists";
 
-const Popup = ({
-  cardClickState,
-  setCardClickState,
-  cardInfoState,
-  relatedListState,
-  setRelatedListState,
-}) => {
+const Popup = ({ cardClickState, setCardClickState, cardInfoState }) => {
   return (
     <>
       <PopupBackground cardClickState={cardClickState}>
         <PopupContainer>
           <PopupDetail {...{ cardClickState, setCardClickState, cardInfoState }}></PopupDetail>
-          <RelatedList {...{ relatedListState, setRelatedListState }}></RelatedList>
+          <RelatedList />
         </PopupContainer>
       </PopupBackground>
     </>
