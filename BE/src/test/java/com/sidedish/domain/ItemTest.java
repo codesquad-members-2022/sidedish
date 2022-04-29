@@ -29,7 +29,7 @@ class ItemTest {
         // given
         Category mainCategory = new Category(CategoryType.MAIN);
         Item newItem = new Item("고기", "맛있는 고기", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+                10.0, Badge.EVENT, "풍성한 고기 반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"), new ShipInfo("서울 경기 새벽 배송, 전국 택배 배송", BigDecimal.valueOf(2500)));
 
         // when
         mainCategory.saveItem(newItem);

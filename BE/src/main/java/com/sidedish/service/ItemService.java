@@ -5,6 +5,7 @@ import com.sidedish.domain.Item;
 import com.sidedish.repository.CategoryRepository;
 import com.sidedish.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,6 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
 
-    public List<Item> findUnitPageById(CategoryType type, Long pageId, int pageCount) {
-        Long categoryId = categoryRepository.findCategoeyId(type);
-        int startPage = pageId.intValue() - 1;
-        if (startPage < 0) {
-            throw new NoSuchElementException(NOT_FOUND_PAGE_EXCEPTION);
-        }
-        PageRequest pageable = PageRequest.of(startPage, pageCount);
-        return itemRepository.findByCategory(categoryId, pageable);
-    }
-
     public List<Item> findItemByDetailType(String type) {
         return itemRepository.findByDetailType(type);
     }
@@ -41,5 +32,28 @@ public class ItemService {
 
     public void updateItem(Item orderItem) {
         itemRepository.save(orderItem);
+    }
+
+    public Page<Item> findUnitPageById(CategoryType type, Long pageId, int pageCount) {
+        Long categoryId = categoryRepository.findCategoryType(type);
+        PageRequest pageable = createPageRequest(pageId, pageCount);
+        return itemRepository.findByCategory(categoryId, pageable);
+    }
+
+    public List<Item> suggestAnotherTypeItems(Long itemId, Long pageId, int pageCount) {
+        Item findItem = itemRepository.findById(itemId)
+                .orElseThrow(() -> new NoSuchElementException(NOT_FOUND_ITEM_EXCEPTION));
+        Long categoryFk = findItem.getCategory();
+        PageRequest pageable = createPageRequest(pageId, pageCount);
+        return itemRepository.findByCategoryNot(categoryFk, pageable);
+    }
+
+    private PageRequest createPageRequest(Long pageId, int pageCount) {
+        int startPage = pageId.intValue() - 1;
+        if (startPage < 0) {
+            throw new NoSuchElementException(NOT_FOUND_PAGE_EXCEPTION);
+        }
+        PageRequest pageable = PageRequest.of(startPage, pageCount);
+        return pageable;
     }
 }

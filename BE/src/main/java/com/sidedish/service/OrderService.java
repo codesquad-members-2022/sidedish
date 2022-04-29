@@ -15,16 +15,12 @@ public class OrderService {
     public ResultDto order(Long id, int quantity) {
         Item orderItem = itemService.findItemById(id);
 
-        if(!isValidQuantity(quantity, orderItem)) {
+        if(!orderItem.isValidQuantity(quantity)) {
             throw new QuantityException();
         }
 
         orderItem.decreasedQuantity(quantity);
         itemService.updateItem(orderItem);
         return ResultDto.ok();
-    }
-
-    private boolean isValidQuantity(int quantity, Item orderItem) {
-        return orderItem.getQuantity() - quantity > 0;
     }
 }

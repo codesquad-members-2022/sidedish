@@ -78,7 +78,7 @@ class CategoryIntegrationTest {
 
     private static void createItem(Category mainCategory, String name, String detailtype) {
         Item newItem = new Item(name, "반찬 설명", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"), new ShipInfo("서울 경기 새벽 배송, 전국 택배 배송", BigDecimal.valueOf(2500)));
         mainCategory.saveItem(newItem);
     }
 
@@ -95,11 +95,11 @@ class CategoryIntegrationTest {
         requestThenResult.andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
-                .andExpect(jsonPath("_embedded.responseItemDtoList[0]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList[1]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList[2]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList[3]").exists())
-                .andExpect(jsonPath("_embedded.responseItemDtoList.length()").value(4))
+                .andExpect(jsonPath("itemResource[0]").exists())
+                .andExpect(jsonPath("itemResource[1]").exists())
+                .andExpect(jsonPath("itemResource[2]").exists())
+                .andExpect(jsonPath("itemResource[3]").exists())
+                .andExpect(jsonPath("itemResource.length()").value(4))
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.prev-page").exists())
                 .andExpect(jsonPath("_links.next-page").exists())
@@ -119,14 +119,14 @@ class CategoryIntegrationTest {
                         ),
                         relaxedResponseFields(
                                 fieldWithPath("_links.self").description("link of main type item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].id").description("id of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].title").description("title of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].description").description("description of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].price").description("price of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].badge").description("Event name of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].discountPrice").description("discountPrice of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].rewardPoint").description("rewardPoint of item"),
-                                fieldWithPath("_embedded.responseItemDtoList[0].images").description("images of item")
+                                fieldWithPath("itemResource[0].id").description("id of item"),
+                                fieldWithPath("itemResource[0].title").description("title of item"),
+                                fieldWithPath("itemResource[0].description").description("description of item"),
+                                fieldWithPath("itemResource[0].price").description("price of item"),
+                                fieldWithPath("itemResource[0].badge").description("Event name of item"),
+                                fieldWithPath("itemResource[0].discountPrice").description("discountPrice of item"),
+                                fieldWithPath("itemResource[0].rewardPoint").description("rewardPoint of item"),
+                                fieldWithPath("itemResource[0].images").description("images of item")
                         )
                 ));
     }
@@ -137,7 +137,7 @@ class CategoryIntegrationTest {
         //given
         Category mainCategory = new Category(CategoryType.MAIN);
         Item newItem = new Item("소불고기", "반찬 설명", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한고기반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+                10.0, Badge.EVENT, "풍성한고기반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"), new ShipInfo("서울 경기 새벽 배송, 전국 택배 배송", BigDecimal.valueOf(2500)));
         mainCategory.saveItem(newItem);
         categoryRepository.save(mainCategory);
         Long itemId = newItem.getId();
@@ -149,26 +149,22 @@ class CategoryIntegrationTest {
         requestThenResult.andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
-                .andExpect(jsonPath("_links.self").exists())
+                .andExpect(jsonPath("item.links[0].rel").value("self"))
                 .andDo(document("search-single",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
-                        links(
-                                linkWithRel("self").description("link to self")
-                        ),
                         responseHeaders(
                                 headerWithName(HttpHeaders.CONTENT_TYPE).description("Content type")
                         ),
                         relaxedResponseFields(
-                                fieldWithPath("_links.self").description("link of main type item"),
-                                fieldWithPath("id").description("id of item"),
-                                fieldWithPath("title").description("title of item"),
-                                fieldWithPath("description").description("description of item"),
-                                fieldWithPath("price").description("price of item"),
-                                fieldWithPath("badge").description("badge of item"),
-                                fieldWithPath("discountPrice").description("discountPrice of item"),
-                                fieldWithPath("rewardPoint").description("rewardPoint of item"),
-                                fieldWithPath("images").description("images of item")
+                                fieldWithPath("item.id").description("id of item"),
+                                fieldWithPath("item.title").description("title of item"),
+                                fieldWithPath("item.description").description("description of item"),
+                                fieldWithPath("item.price").description("price of item"),
+                                fieldWithPath("item.badge").description("badge of item"),
+                                fieldWithPath("item.discountPrice").description("discountPrice of item"),
+                                fieldWithPath("item.rewardPoint").description("rewardPoint of item"),
+                                fieldWithPath("item.images").description("images of item")
                         )
                 ));
     }

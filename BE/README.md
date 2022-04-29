@@ -1,3 +1,21 @@
+# TODO
+- [x] 단건 조회 시 배달비, 배달비 정보 내려주기
+- [ ] 현재 페이지, 페이지의 최대 수 내려주기
+- [ ] 이미지 추가
+- [ ] CORS 터지면 그때 생각하자
+
+# 3차 PR 리뷰 수정사항
+- [x] ExceptionAdvice 중복제거
+- [x] getItemByDetailType 메서드로 전달되는 parameter의 애매한 이름 변경하기
+- [ ] itemController
+- [x] 하드코딩보다는 HttpStatus를 사용 (ResultDto)
+- [ ] categoryController 중복제거 생각해보기
+- [x] buildItems 메서드 매직넘버는 지양하기
+- [ ] findItemByDetailType에 인자로 enum 전달히기
+- [x] ResponseAdditionalDto 생성자 고민해보기
+- [ ] OrderRequest에서 id를 null로 보낸경우에도 QuantityException가 발생하지 않을까요??
+- [x] item 내부에서 자체적으로 남은 수량 계산하기
+
 # 1차 PR 리뷰 수정사항
 - [x] categoryService 에서 pageId 받는 부분 수정하기
 - [x] schema 처음과 끝 f.k check 설정 제거

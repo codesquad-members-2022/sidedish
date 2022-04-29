@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class ResponseAdditionalDto {
     private CollectionModel<ItemResource> soupResources;

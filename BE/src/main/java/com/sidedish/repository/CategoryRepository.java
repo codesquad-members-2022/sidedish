@@ -10,5 +10,5 @@ import org.springframework.data.repository.query.Param;
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
     @Query("SELECT id FROM category WHERE type=:type")
-    Long findCategoeyId(@Param("type") CategoryType type);
+    Long findCategoryType(@Param("type") CategoryType type);
 }

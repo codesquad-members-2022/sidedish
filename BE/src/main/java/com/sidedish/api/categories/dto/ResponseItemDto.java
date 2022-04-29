@@ -3,6 +3,7 @@ package com.sidedish.api.categories.dto;
 import com.sidedish.domain.Badge;
 import com.sidedish.domain.Images;
 import com.sidedish.domain.Item;
+import com.sidedish.domain.ShipInfo;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,6 +21,7 @@ public class ResponseItemDto {
     private BigDecimal discountPrice;
     private BigDecimal rewardPoint;
     private Images images;
+    private ShipInfo shipInfo;
 
     public ResponseItemDto(Item item) {
         this.id = item.getId();
@@ -30,5 +32,6 @@ public class ResponseItemDto {
         this.discountPrice = price.subtract(price.multiply(BigDecimal.valueOf(item.getDiscountRate() / 100)).setScale(0, RoundingMode.FLOOR));
         this.rewardPoint = item.getRewardPoint();
         this.images = item.getImage();
+        this.shipInfo = item.getShipInfo();
     }
 }
