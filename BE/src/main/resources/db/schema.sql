@@ -60,6 +60,6 @@ create table user
     avatar_image_url text         not null,
     email            varchar(1000),
     access_token     text         not null,
-    token_type       varchar      not null,
-    scope            varchar      not null
+    token_type       varchar(100)      not null,
+    scope            varchar(100)      not null
 );
