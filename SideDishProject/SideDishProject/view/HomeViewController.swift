@@ -31,7 +31,7 @@ final class HomeViewController: UIViewController {
         return viewController
     }
     
-    private func presentDetailViewController(uniqueId: Int){
+    private func presentDetailViewController(uniqueId: UniqueID){
 //        let detailViewController = ProductSceneContainer.makeViewController(sceneType: .detail(uniqueId: uniqueId))
 //        self.navigationController?.pushViewController(detailViewController, animated: true)
 //
@@ -46,7 +46,7 @@ extension HomeViewController: ProductModelDelegate{
         homeView.collectionViewReloadData()
     }
     
-    func selected(id: Int) {
+    func selected(id: UniqueID) {
         presentDetailViewController(uniqueId: id)
     }
     

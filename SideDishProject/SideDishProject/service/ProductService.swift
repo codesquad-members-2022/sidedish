@@ -8,8 +8,8 @@
 import Foundation
 
 protocol ProductAPIUseable{
-    func getCategories(completion: @escaping(Result<[DishCategory], ProductRepositoryError>) -> Void)
-    func getProducts(categoryId: Int, completion: @escaping(Result<[Product], ProductRepositoryError>) -> Void)
+    func getCategories(completion: @escaping(Result<[CategoryDTO], ProductRepositoryError>) -> Void)
+    func getProducts(categoryId: Int, completion: @escaping(Result<[ProductDTO], ProductRepositoryError>) -> Void)
 }
 
 struct ProductService{
@@ -36,7 +36,9 @@ struct ProductService{
                 return completion(.failure(.fetchError))
             }
             
-            guard let decodedData = try? jsonDecode(data: data, decodeType: T.self) else { return }
+            guard let decodedData = try? jsonDecode(data: data, decodeType: T.self) else {
+                return completion(.failure(.notConvertdecode))
+            }
 
             completion(.success(decodedData))
         }
@@ -55,9 +57,10 @@ struct ProductService{
         
     }
 }
-extension ProductService: ProductAPIUseable{
-    func getCategories(completion: @escaping (Result<[DishCategory], ProductRepositoryError>) -> Void) {
-        requestAPI(api: .categories, decodeType: [DishCategory].self) { result in
+
+extension ProductService: ProductAPIUseable {
+    func getCategories(completion: @escaping (Result<[CategoryDTO], ProductRepositoryError>) -> Void) {
+        requestAPI(api: .categories, decodeType: [CategoryDTO].self) { result in
             switch result{
             case .success(let categories):
                 print("categories: \(categories)")
@@ -68,7 +71,7 @@ extension ProductService: ProductAPIUseable{
         }
     }
     
-    func getProducts(categoryId: Int, completion: @escaping (Result<[Product], ProductRepositoryError>) -> Void) {
+    func getProducts(categoryId: Int, completion: @escaping (Result<[ProductDTO], ProductRepositoryError>) -> Void) {
         requestAPI(api: .products, decodeType: [ProductDTO].self) { result in
             switch result{
             case .success(let products):
