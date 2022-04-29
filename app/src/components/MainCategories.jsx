@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useCallback } from "react";
+import { useState, useCallback, Fragment } from "react";
 import Category from "./Category.jsx";
 import { Horizon } from "../styled-components/utils.js";
 
@@ -17,7 +17,7 @@ const MainCategories = ({ data }) => {
   return (
     <>
       {data.map((category, index) => (
-        <CategoryWrapper key={category.key}>
+        <Fragment key={category.key}>
           <Category
             dish={category.data}
             category={category.key}
@@ -28,7 +28,7 @@ const MainCategories = ({ data }) => {
               index === data.length - 1 ? "none" : isFold ? "none" : "block"
             }
           />
-        </CategoryWrapper>
+        </Fragment>
       ))}
       <Wrapper>
         <MoreBtn onClick={handleClickMoreBtn}>모든 카테고리 보기</MoreBtn>
@@ -36,8 +36,6 @@ const MainCategories = ({ data }) => {
     </>
   );
 };
-
-const CategoryWrapper = styled.div``;
 
 const Wrapper = styled.div`
   text-align: center;
