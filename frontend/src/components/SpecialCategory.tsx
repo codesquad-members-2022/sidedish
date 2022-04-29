@@ -63,6 +63,7 @@ export const SpecialCategory = ({
           <TabBar>
             {specialCategories.map((specialCategory) => (
               <TabItem
+                data-cy="tabItem"
                 key={specialCategory.id}
                 selected={selected === specialCategory.id}
                 onClick={() => setSelected(specialCategory.id)}

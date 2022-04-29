@@ -1,13 +1,16 @@
 /// <reference types="cypress" />
 function getDataset(name) {
-  return cy.get(`[data-cy=${name}`);
+  return cy.get(`[data-cy=${name}]`);
 }
 
+const findDataset = (name) => cy.find(`[data-cy=${name}]`);
+
 describe("메인화면테스트", () => {
-  beforeEach(() => {
+  before(() => {
     cy.exec("yarn start");
     cy.visit("/");
   });
+
   it("초기화면 테스트", () => {
     getDataset("headerMenu").should("be.visible");
     getDataset("carouselWrapper").should("be.visible");
@@ -18,6 +21,19 @@ describe("메인화면테스트", () => {
       .trigger("mouseover")
       .then(() => {
         getDataset("subMenu").should("be.visible");
+      });
+  });
+
+  it("메뉴 탭할 시 카드 변경", () => {
+    getDataset("tabItem").each(($el, index, $list) => {
+      $el.trigger("click");
+    });
+  });
+  it("캐러셀 오른쪽 방향키 클릭", () => {
+    getDataset("rightArrow")
+      .click()
+      .then(() => {
+        getDataset("cardList").should("have.css", "translateX");
       });
   });
 });

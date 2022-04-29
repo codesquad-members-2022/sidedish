@@ -73,12 +73,14 @@ export const Carousel = ({
           <CarouselTitle size={size}>{title}</CarouselTitle>
           <CardList products={products} size={size} curIndex={curIndex} />
           <CarouselButton
+            data-cy="leftArrow"
             size={size}
             onBtnClick={() => clickPrev()}
             dir={"left"}
             isEndPage={curIndex === 0}
           />
           <CarouselButton
+            data-cy="rightArrow"
             size={size}
             onBtnClick={() => clickNext()}
             dir={"right"}

@@ -123,7 +123,7 @@ export const ProductCard = ({
   const { openedId, setOpenedId } = useContext(ModalContext);
 
   return (
-    <CardWrapper size={cardSize}>
+    <CardWrapper data-cy="productCard" size={cardSize}>
       <ThumbnailWrapper
         size={cardSize}
         onMouseEnter={() => setHover(true)}
