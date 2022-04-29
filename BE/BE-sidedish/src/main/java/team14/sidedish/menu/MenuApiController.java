@@ -56,6 +56,14 @@ public class MenuApiController {
 		return ResponseEntity.ok().body(detailResponse);
 	}
 
+	@CrossOrigin("localhost:3000")
+	@GetMapping("/exhibition/{special-menu-id}")
+	public ResponseEntity<MenuDto.CategoryResponse> readSpecialMenu(@PathVariable("special-menu-id") int specialMenuId) {
+		MenuDto.CategoryResponse response = menuService.readSpecialMenu(specialMenuId);
+
+		return ResponseEntity.ok().body(response);
+	}
+
 	/**
 	 * 메뉴 상세조회 하단의 함께보면 좋은 메뉴목록에서 슬라이드 다음 요청시
 	 * - (사용자 입장에서 URL 을 맞춰야 하지 않을까 싶어서)
