@@ -1,5 +1,6 @@
 import { createGlobalStyle, css } from "styled-components";
 import styled from "styled-components";
+import reset from "styled-reset";
 
 export const Search = styled.svg`
   position: absolute;
@@ -67,57 +68,8 @@ export const Plusvertical = styled.svg`
   border: 2px solid ${(props) => props.color};
 `;
 export const GlobalStyle = createGlobalStyle`
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  }
+  ${reset}
 
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-
-  body {
-    line-height: 1;
-    position: relative;
-    background: #FFFFFF;
-  }
-
-  ol, ul {
-    list-style: none;
-  }
-
-  blockquote, q {
-    quotes: none;
-  }
-
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-    content: '';
-    content: none;
-  }
-
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
 `;
 export const Ordering = css`
   font-family: "Outfit";
@@ -147,10 +99,10 @@ export const Typography = css`
 `;
 const custom_font = (
   family = "Noto Sans KR",
-  size,
-  weight,
-  height,
-  spacing
+  size: number,
+  weight: number,
+  height: number,
+  spacing: number | null = null
 ) => `
   font-family: ${family};
   font-size: ${size}px;
@@ -158,13 +110,13 @@ const custom_font = (
   font-weight: ${weight};
   font-size: ${size}px;
   line-height: ${height}px;
-  letter-spacing: ${spacing}em;
+  ${spacing ? `letter-spacing: ${spacing}em;` : ""}
 `;
 const custom_absolute = (
-  top = null,
-  right = null,
-  bottom = null,
-  left = null
+  top: number | null = null,
+  right: number | null = null,
+  bottom: number | null = null,
+  left: number | null = null
 ) => css`
   position: absolute;
   ${top ? `top:${top}px;` : ""}
@@ -192,17 +144,24 @@ const custom_relative = (
   ${custom_absolute(top, right, bottom, left)};
   position: relative;
 `;
-const flex_none = (order, mx, my) => css`
+const flex_none = (order: number, mx: number, my: number) => css`
   flex: none;
   flex-grow: 0;
   order: ${order};
   margin: ${mx}px ${my}px;
 `;
-const width_height_bypx = (width = null, height = null) => `
+const width_height_bypx = (
+  width: number | undefined = undefined,
+  height: number | undefined = undefined
+) => `
         ${width ? `width: ${width}px;` : ""}     
         ${height ? `height: ${height}px;` : ""}
     `;
-const custom_flex = (dir = "column", align = null, justify = null) => `
+const custom_flex = (
+  dir = "column",
+  align: string | null = null,
+  justify: string | null = null
+) => `
         display: flex;
         ${dir ? `flex-direction: ${dir};` : ""}
         ${align ? `align-items: ${align};` : ""}

@@ -1,9 +1,4 @@
-import {
-  useCategories,
-  useFetch,
-  useFetch1,
-  useSpecialCategories,
-} from "./fetcher";
+import { useFetch } from "./fetcher";
 import { Header } from "./components/Header";
 import { SpecialCategory } from "./components/SpecialCategory";
 import { Category } from "./components/Category";
@@ -14,6 +9,7 @@ import { useContext } from "react";
 import { Queries } from "./convention";
 
 const AppWrapper = styled.div`
+  position: relative;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -21,10 +17,9 @@ const AppWrapper = styled.div`
 `;
 
 const App = () => {
-  const categories = useFetch(Queries.categories);
-  const specialCategories = useFetch(Queries.specialCategories);
-
-  const { openedId, setOpenedId } = useContext(ModalContext);
+  const { categories } = useFetch(Queries.categories);
+  const { specialCategories } = useFetch(Queries.specialCategories);
+  const { openedId } = useContext(ModalContext);
 
   return (
     <>

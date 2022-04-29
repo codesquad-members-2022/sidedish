@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { tagConvetion } from "../convention";
 import { custom_flex, custom_font } from "../styles/global";
+import { IDName } from "../types";
 
-export const TagItem = styled.li`
+export const TagItem = styled.li<{ Id: number }>`
   margin-right: 8px;
   padding: 6px 16px;
   border-radius: 999px;
   ${custom_flex("row", "flex-start")}
-  background-color: ${({ id, theme }) => theme.colors[tagConvetion[id].color]};
+  background-color: ${({ Id, theme }) => theme.colors[tagConvetion[Id].color]};
 
   span {
     text-align: center;
@@ -20,11 +21,11 @@ export const TagWrapper = styled.ul`
   ${custom_flex("row", "flex-start")}
 `;
 
-export const DiscountTag = ({ discount }) => {
+export const DiscountTag = ({ discounts }: { discounts: IDName[] }) => {
   return (
     <TagWrapper>
-      {discount.map(({ id, name }, key) => (
-        <TagItem key={key} id={id}>
+      {discounts?.map(({ id, name }, key) => (
+        <TagItem key={key} Id={id}>
           <span>{name}</span>
         </TagItem>
       ))}

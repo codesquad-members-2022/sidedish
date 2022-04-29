@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { DiscountTag } from "./DiscountTag";
 import { useContext, useState } from "react";
-import { SIZES, thumbnailSize, cardGapLength } from "../convention";
+import { thumbnailSize, cardGapLength } from "../convention";
 import { ModalContext } from "../ModalReducer";
 import {
   custom_absolute,
@@ -10,12 +10,13 @@ import {
   width_height_bypx,
 } from "../styles/global";
 import { HorizontalLine } from "./HorizontalLine";
+import { Product, SizeProp, SIZES } from "../types";
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.div<SizeProp>`
   margin-right: ${({ size }) => `${cardGapLength[size]}px`};
 `;
 
-const ProductImage = styled.div`
+const ProductImage = styled.div<{ src: string; hover: boolean }>`
   width: 100%;
   height: 100%;
   ${({ src, hover }) => css`
@@ -29,11 +30,11 @@ const ProductImage = styled.div`
   `}
 `;
 
-const ProductInfo = styled.div`
+const ProductInfo = styled.div<SizeProp>`
   margin: ${({ size }) => (size === SIZES.small ? "8px" : "16px")} 0px;
 `;
 
-const ProductName = styled.div`
+const ProductName = styled.div<SizeProp>`
   ${({ size }) =>
     size === SIZES.small
       ? `${custom_font("Noto Sans KR", 14, 400, 24, -0.008)}`
@@ -65,13 +66,14 @@ const ProductPrice = styled.span`
   color: #bcbcbc;
 `;
 
-const ThumbnailWrapper = styled.div`
+const ThumbnailWrapper = styled.div<SizeProp>`
   position: relative;
   ${(props) => css`
     width: ${thumbnailSize[props.size]}px;
     height: ${thumbnailSize[props.size]}px;
   `}
 `;
+
 const HoverInfoWrapper = styled.div`
   ${custom_absolute(20, 20)}
   ${width_height_bypx(142, 149)}
@@ -81,6 +83,7 @@ const HoverInfoWrapper = styled.div`
   border-radius: 999px;
   opacity: 0.8;
 `;
+
 const HoverInfoTextWrapper = styled.div`
   position: relative;
 
@@ -91,46 +94,51 @@ const HoverInfoTextWrapper = styled.div`
   }
 `;
 
-const HoverInfo = ({ hover, early_morning_delivery, nationwide_delivery }) => (
-  <HoverInfoWrapper hover={hover}>
+type infoProp = {
+  earlyMorningDelivery: boolean;
+  nationwideDelivery: boolean;
+};
+
+const HoverInfo = ({ earlyMorningDelivery, nationwideDelivery }: infoProp) => (
+  <HoverInfoWrapper>
     <HoverInfoTextWrapper>
-      {early_morning_delivery && <span>새벽 배송</span>}
-      {early_morning_delivery && nationwide_delivery && (
+      {earlyMorningDelivery && <span>새벽 배송</span>}
+      {earlyMorningDelivery && nationwideDelivery && (
         <HorizontalLine position={50} color={"Black"} />
       )}
-      {nationwide_delivery && <span>전국 택배</span>}
+      {nationwideDelivery && <span>전국 택배</span>}
     </HoverInfoTextWrapper>
   </HoverInfoWrapper>
 );
 
 export const ProductCard = ({
-  cardSize,
+  size: cardSize,
   id,
-  primary_image,
+  primaryImage,
   name,
   description,
-  discount,
-  final_price,
-  price,
-  early_morning_delivery,
-  nationwide_delivery,
-}) => {
+  discounts,
+  finalPrice,
+  basePrice,
+  earlyMorningDelivery,
+  nationwideDelivery,
+}: Product & SizeProp) => {
   const [hover, setHover] = useState(false);
   const { openedId, setOpenedId } = useContext(ModalContext);
 
   return (
-    <CardWrapper size={cardSize}>
+    <CardWrapper data-cy="productCard" size={cardSize}>
       <ThumbnailWrapper
         size={cardSize}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={(e) => setOpenedId(id)}
       >
-        <ProductImage hover={hover} src={primary_image} />
+        <ProductImage hover={hover} src={primaryImage} />
         {hover && cardSize !== SIZES.small && (
           <HoverInfo
-            early_morning_delivery={early_morning_delivery}
-            nationwide_delivery={nationwide_delivery}
+            earlyMorningDelivery={earlyMorningDelivery}
+            nationwideDelivery={nationwideDelivery}
           />
         )}
       </ThumbnailWrapper>
@@ -150,12 +158,14 @@ export const ProductCard = ({
         )}
         <ProductPriceWrapper>
           <ProductFinalPrice>
-            {final_price.toLocaleString() + "원"}
+            {finalPrice?.toLocaleString() + "원"}
           </ProductFinalPrice>
-          <ProductPrice>{price.toLocaleString() + "원" || ""}</ProductPrice>
+          <ProductPrice>
+            {basePrice?.toLocaleString() + "원" || ""}
+          </ProductPrice>
         </ProductPriceWrapper>
       </ProductInfo>
-      <DiscountTag discount={discount} />
+      <DiscountTag discounts={discounts} />
     </CardWrapper>
   );
 };

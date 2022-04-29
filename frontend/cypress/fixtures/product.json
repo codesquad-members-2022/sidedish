@@ -2,9 +2,9 @@
   "id": 3,
   "name": "오리 주물럭_반조리3",
   "description": "감칠맛 나는 매콤한 양념",
-  "basePrice": 15800,
-  "finalPrice": 12640,
-  "discounts": [
+  "price": 15800,
+  "final_price": 12640,
+  "discount": [
     {
       "id": 1,
       "name": "런칭특가"
@@ -15,12 +15,12 @@
     }
   ],
   "mileage": 126,
-  "earlyMorningDelivery": true,
-  "nationwideDelivery": true,
-  "deliveryRate": 2500,
-  "freeDeliveryThreshold": 40000,
-  "primaryImage": "https://zipbanchan.godohosting.com/800X800px/3_main/1351_ZIP_P_0108_T.jpg",
-  "variantImages": [
+  "early_morning_delivery": true,
+  "nationwide_delivery": true,
+  "delivery_rate": 2500,
+  "free_delivery_threshold": 40000,
+  "primary_image": "https://zipbanchan.godohosting.com/800X800px/3_main/1351_ZIP_P_0108_T.jpg",
+  "variant_image": [
     "https://zipbanchan.godohosting.com/detail_page/3_main/1351/1351_ZIP_P_0108_S.jpg",
     "https://zipbanchan.godohosting.com/detail_page/3_main/1351/1351_ZIP_P_0108_damumsae.jpg"
   ]

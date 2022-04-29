@@ -1,4 +1,6 @@
-const calcPx = (size) => `${size}px`;
+import { DefaultTheme } from "styled-components";
+
+const calcPx = (size: number) => `${size}px`;
 const fontSizes = {
   XLarge: calcPx(24),
   Large: calcPx(20),
@@ -34,7 +36,7 @@ const fontFamily = {
   NotoSans: "Noto Sans KR",
 };
 
-export const theme = {
+export const theme: DefaultTheme = {
   fontSizes,
   colors,
   fontWeights,

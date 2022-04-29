@@ -9,25 +9,25 @@ import {
 import { Plus, Minus } from "../icons/PlusMinus";
 import { DiscountTag } from "./DiscountTag";
 import { Carousel } from "./Carousel";
-import { Queries, SIZES } from "../convention";
+import { Queries } from "../convention";
 import { ModalContext } from "../ModalReducer";
 import { Line } from "./HorizontalLine";
 import { useFetch } from "../fetcher";
+import { Product, SIZES } from "../types";
 
-export const Modal = ({ openId }) => {
-  const [info, setInfo] = useState();
+export const Modal = ({ openId }: { openId: number }) => {
   const [count, setCount] = useState(1);
-  const [primaryImage, setPrimaryImage] = useState();
-  const [variantImages, setVariantImages] = useState();
-  const res = useFetch(Queries.product, openId);
-  useEffect(() => {
-    setInfo(res);
-    setPrimaryImage(res?.primary_image);
-    setVariantImages(res?.variant_image);
-  }, [res]);
-  const { openedId, setOpenedId } = useContext(ModalContext);
+  const [primaryImage, setPrimaryImage] = useState<string>("");
+  const [variantImages, setVariantImages] = useState<string[]>([]);
 
-  const changePrimary = (key, img) => {
+  const info = useFetch(Queries.product, openId, openId);
+  useEffect(() => {
+    setPrimaryImage(info.primaryImage);
+    setVariantImages(info.variantImages);
+  }, [info]);
+  const { setOpenedId } = useContext(ModalContext);
+
+  const changePrimary = (key: number, img: string) => {
     const newVariants = [...variantImages, primaryImage];
     const newPrimary = img;
     newVariants.splice(key, 1);
@@ -43,7 +43,7 @@ export const Modal = ({ openId }) => {
               <ProductImageWrapper>
                 <PrimaryImage bgImg={primaryImage}></PrimaryImage>
                 <VariantWrapper>
-                  {variantImages.map((img, key) => (
+                  {variantImages?.map((img, key) => (
                     <VariantImage
                       key={key}
                       bgImg={img}
@@ -55,25 +55,25 @@ export const Modal = ({ openId }) => {
               <ProductOrderWrapper>
                 <ProductMainInfo>
                   <Name>{info.name}</Name>
-                  <PrimeCost>{info.price.toLocaleString()}원</PrimeCost>
+                  <PrimeCost>{info.basePrice?.toLocaleString()}원</PrimeCost>
                   <BadgePrice>
-                    <DiscountTag discount={info.discount} />
-                    {info.final_price.toLocaleString()}원
+                    <DiscountTag discounts={info.discounts} />
+                    {info.finalPrice?.toLocaleString()}원
                   </BadgePrice>
                 </ProductMainInfo>
                 <Line />
                 <ProductSubInfo>
                   <div>적립금</div>
-                  <div>{info.mileage.toLocaleString()}원</div>
+                  <div>{info.mileage?.toLocaleString()}원</div>
                   <div>배송정보</div>
                   <div>
-                    {info.eary_morning_delivery && "서울 경기 새벽배송"}{" "}
-                    {info.nationwide_delivery && "전국 택배배송"}
+                    {info.earlyMorningDelivery && "서울 경기 새벽배송"}{" "}
+                    {info.nationwideDelivery && "전국 택배배송"}
                   </div>
                   <div>배송비</div>
                   <div>
-                    {`${info.delivery_rate.toLocaleString()}원
-                        (${info.free_delivery_threshold.toLocaleString()}원 이상 주문시 무료)`}
+                    {`${info.deliveryRate?.toLocaleString()}원
+                        (${info.freeDeliveryThreshold?.toLocaleString()}원 이상 주문시 무료)`}
                   </div>
                 </ProductSubInfo>
                 <Line />
@@ -91,7 +91,7 @@ export const Modal = ({ openId }) => {
                   </TotalAmount>
                   <TotalCost>
                     <span className="total">총 주문금액</span>
-                    <span>{(info.final_price * count).toLocaleString()}원</span>
+                    <span>{(info.finalPrice * count).toLocaleString()}원</span>
                   </TotalCost>
                 </TotalWrapper>
                 <Button>
@@ -101,7 +101,11 @@ export const Modal = ({ openId }) => {
             </MainProduct>
             <Line color={"Black"} />
             <RelatedProduct>
-              <Carousel categoryID={1} size={SIZES.small}></Carousel>
+              <Carousel
+                id={1}
+                title={"함께하면 좋은 요리"}
+                size={SIZES.small}
+              ></Carousel>
             </RelatedProduct>
           </ModalWrapper>
         </ModalBackground>
@@ -116,6 +120,7 @@ const ModalBackground = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 `;
+
 const ModalWrapper = styled.div`
   border: 2px solid #000000;
   position: fixed;
@@ -133,7 +138,7 @@ const MainProduct = styled.div`
 
 const ProductImageWrapper = styled.div``;
 
-const PrimaryImage = styled.img`
+const PrimaryImage = styled.img<{ bgImg: string }>`
   ${width_height_bypx(392, 392)}
   background: url(${({ bgImg }) => bgImg});
   background-size: cover;
@@ -223,6 +228,7 @@ const IconWrapper = styled.div`
   ${width_height_bypx(24, 24)};
   ${custom_flex("row", "center", "center")}
 `;
+
 const Button = styled.div`
   ${custom_flex("row", "center", "center")}
   ${custom_absolute(490, null, null, 472)}
