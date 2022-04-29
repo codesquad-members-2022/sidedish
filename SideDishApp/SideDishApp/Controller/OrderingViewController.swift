@@ -83,9 +83,16 @@ final class OrderingViewController: UIViewController {
                     self.setHeaderViewDelegate()
                     
                     DispatchQueue.main.async {
-                        self.orderingCollectionView.reloadData()
+                        guard let sectionIndex = Category.allCases.firstIndex(of: category) else { return }
+                        switch category {
+                        case .main:
+                            self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
+                        case .soup:
+                            self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
+                        case .side:
+                            self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
+                        }
                     }
-                    
                 case .failure(let failure):
                     os_log(.error, "\(failure.localizedDescription)")
                 }
