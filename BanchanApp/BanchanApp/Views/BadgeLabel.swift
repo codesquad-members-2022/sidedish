@@ -39,5 +39,4 @@ class BadgeLabel: UILabel {
         contentSize.width += padding.left + padding.right
         return contentSize
     }
-
 }

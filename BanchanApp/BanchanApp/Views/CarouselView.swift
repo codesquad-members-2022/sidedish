@@ -8,15 +8,11 @@
 import UIKit
 
 protocol CarouselViewDataSource: AnyObject {
-    // Item View
     func carouselView(_ carouselView: CarouselView, index: Int) -> UIView
-
-    // Item 개수
     func carouselView(_ carouselView: CarouselView, numberOfItems: Int) -> Int
 }
 
 class CarouselView: UIView {
-
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 
@@ -110,7 +106,6 @@ class CarouselView: UIView {
     func register(item: UIView.Type) {
         self.itemView = item
     }
-
 }
 
 extension CarouselView: UIScrollViewDelegate {

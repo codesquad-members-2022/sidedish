@@ -12,7 +12,6 @@ protocol ProductSectionHeaderDelegate: AnyObject {
 }
 
 class ProductSectionHeader: UICollectionReusableView {
-
     static let identifier = "ProductSectionHeader"
 
     weak var delegate: ProductSectionHeaderDelegate?
@@ -52,5 +51,4 @@ class ProductSectionHeader: UICollectionReusableView {
     func setTitleText(_ text: String) {
         self.titleButton.setTitle(text, for: .normal)
     }
-
 }
