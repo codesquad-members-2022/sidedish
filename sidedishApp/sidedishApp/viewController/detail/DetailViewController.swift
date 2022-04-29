@@ -26,6 +26,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         addNotification()
+        self.imageHorizontalCollectionView.delegate = self
+        self.imageHorizontalCollectionView.dataSource = self
+        self.imageHorizontalCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +85,7 @@ private extension DetailViewController {
     
     func configureImageScrollView() {
         imageHorizontalCollectionView.isPagingEnabled = true
+        
         imageHorizontalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageHorizontalCollectionView.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor),
@@ -128,15 +132,40 @@ private extension DetailViewController {
     
     @objc
     func reloadCollectionView() {
-        for data in SideDishManager.shared.detailImageThumbnail {
-            let image = UIImage(data: data)
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 375, height: 376))
-            imageView.image = image
-            self.imageHorizontalCollectionView.addSubview(imageView)
-        }
+//        for data in SideDishManager.shared.detailImageThumbnail {
+//            let image = UIImage(data: data)
+//            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 375, height: 376))
+//            imageView.image = image
+//            self.imageHorizontalCollectionView.addSubview(imageView)
+//        }
         
         DispatchQueue.main.async {
             self.imageHorizontalCollectionView.reloadData()
         }
+    }
+}
+
+extension DetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return SideDishManager.shared.detailImageThumbnail.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        
+        for data in SideDishManager.shared.detailImageThumbnail {
+            let image = UIImage(data: data)
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.stackView.frame.width, height: 376))
+            imageView.image = image
+            cell.contentView.addSubview(imageView)
+        }
+        
+        return cell
+    }
+}
+
+extension DetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 376)
     }
 }
