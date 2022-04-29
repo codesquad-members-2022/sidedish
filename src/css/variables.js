@@ -24,13 +24,13 @@ const slideBtn = {
 };
 
 const body = {
-  width: 1400,
+  width: 1090,
   margin: 43,
 };
 
 const modal = {
-  width: 1066,
-  margin: 38,
+  width: 1070,
+  margin: 36,
 };
 
 export { color, fontSize, slideBtn, body, modal };

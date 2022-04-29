@@ -3,8 +3,7 @@ import React from 'react';
 import CardContainer from './container/CardContainer';
 import CategoryTitle from './components/CategoryTitle';
 
-const SubCard = ({ dishData, title }) => {
-  const mainDatas = dishData.slice(0, 9);
+const SubCard = ({ dishData, title, handleModal, isModalVisible }) => {
   const cardDataLen = dishData.length;
   const originalShowingCardNum = 4;
   const specialShowingCardNum = 3;
@@ -15,13 +14,15 @@ const SubCard = ({ dishData, title }) => {
 
   return (
     <CardContainer
-      cardInfos={mainDatas}
+      cardInfos={dishData}
       hasButton={true}
       showingSlideCardNum={showingSlideCardNum}
+      handleModal={handleModal}
+      isModalVisible={isModalVisible}
     >
       <CategoryTitle title={title} />
     </CardContainer>
   );
 };
 
-export default SubCard;
+export default React.memo(SubCard);

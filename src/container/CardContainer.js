@@ -52,4 +52,4 @@ const StyledSection = styled.section`
   position: relative;
 `;
 
-export default CardContainer;
+export default React.memo(CardContainer);

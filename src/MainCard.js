@@ -39,4 +39,4 @@ const StyledTap = styled.div`
   display: flex;
 `;
 
-export default MainCard;
+export default React.memo(MainCard);

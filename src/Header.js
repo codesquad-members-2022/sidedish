@@ -48,4 +48,4 @@ const Title = styled.h2`
   font-weight: 900;
 `;
 
-export default Header;
+export default React.memo(Header);
