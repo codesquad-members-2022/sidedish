@@ -38,7 +38,7 @@ struct MockProductFactory{
         let name = randomName(cateogory: category)
         let productEvents = randomEvents()
         let imageUrl = randomImageUrl()
-        return Product(id: 0, name: name, price: price, description: discription, stock: stock, category: category, imageUrl: imageUrl, event: productEvents)
+        return Product(name: name, price: price, description: discription, stock: stock, category: category, imageUrl: imageUrl, event: productEvents)
     }
     
     private func randomImageUrl() -> String{

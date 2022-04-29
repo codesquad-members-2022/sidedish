@@ -62,5 +62,5 @@ protocol ProductModelDelegate: AnyObject{
     func updateAllDishes(dishes: [DishCategory : [Product]])
     func updateFail(error: Error)
     func updateImageData(imageData: [DishCategory : [Data?]])
-    func selected(id: Int)
+    func selected(id: UniqueID)
 }
