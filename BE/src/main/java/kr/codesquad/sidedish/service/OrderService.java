@@ -20,10 +20,13 @@ public class OrderService {
     }
 
     public OrderResponse create(OrderRequest orderRequest) {
-        Order saved = orderRepository.save(orderRequest.toEntity());
         Integer quantity = orderRequest.getQuantity();
         Long itemId = orderRequest.getItemId();
         Item item = itemRepository.findById(itemId).orElseThrow(RuntimeException::new);
+        if (item.checkStock(quantity)) {
+          throw new IllegalStateException("재고 수량이 부족합니다");
+        }
+        Order saved = orderRepository.save(orderRequest.toEntity());
         item.changeStock(quantity);
         orderRepository.updateStock(item.getStock(), itemId);
         return OrderResponse.from(saved);
