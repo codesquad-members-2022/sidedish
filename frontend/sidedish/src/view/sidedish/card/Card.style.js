@@ -79,7 +79,7 @@ const EventBadge = styled.span`
             : ""};
 `;
 
-const DeliveryBadge = styled.div`
+const DeliveryBadge = styled.ul`
     position: absolute;
     top: 5%;
     right: 5%;
