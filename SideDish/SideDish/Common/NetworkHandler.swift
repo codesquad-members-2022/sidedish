@@ -61,11 +61,12 @@ struct NetworkHandler: NetworkHandlable{
     }
     
     func request(url: EndPoint, method: HttpMethod, contentType: ContentType, completionHandler: @escaping (Result<Data,Error>)->Void){
-        AF.request(url.urlString,
-                          method: HTTPMethod(rawValue: "\(method)"),
-                          parameters: nil,
-                          encoding: URLEncoding.default,
-                          headers: ["Content-Type":contentType.value])
+        
+        AF.request(convertToHttps(url: url),
+                   method: HTTPMethod(rawValue: "\(method)"),
+                   parameters: nil,
+                   encoding: URLEncoding.default,
+                   headers: ["Content-Type":contentType.value])
         .validate(statusCode: 200..<300)
         .responseData{response in
             switch response.result {
@@ -79,4 +80,13 @@ struct NetworkHandler: NetworkHandlable{
             }
         }
     }
+    
+    private func convertToHttps(url: EndPoint) -> String {
+        guard var urlComponents = URLComponents(string: url.urlString) else { return url.urlString }
+    
+        urlComponents.scheme = "https"
+        guard let urlString = urlComponents.string else { return url.urlString }
+        return urlString
+    }
+    
 }
