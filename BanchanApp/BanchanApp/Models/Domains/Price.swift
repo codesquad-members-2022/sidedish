@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Price {
+struct Price {
 	private let unit = "원"
 	private var value: Int
 
