@@ -30,14 +30,14 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         Exception {
 
         Optional<String> token = resolveToken(request);
-        if (token.isPresent()) {
-            int userId = Integer.parseInt(tokenProvider.getPayload(token.get()));
-            log.debug("token is : {}", token);
-            log.debug("userId is : {}", userId);
-            request.setAttribute("userId", userId);
-            return true;
+        if (token.isEmpty()) {
+            throw new NoTokenException("토큰이 없습니다. 로그인 먼저 해주세요.", HttpStatus.UNAUTHORIZED);
         }
-        throw new NoTokenException("토큰이 없습니다. 로그인 먼저 해주세요.", HttpStatus.UNAUTHORIZED);
+        int userId = Integer.parseInt(tokenProvider.getPayload(token.get()));
+        log.debug("token is : {}", token);
+        log.debug("userId is : {}", userId);
+        request.setAttribute("userId", userId);
+        return true;
     }
 
     private Optional<String> resolveToken(HttpServletRequest request) {
