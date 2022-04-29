@@ -310,8 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */,
-				D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */,
 				D08FCDF0280D09AD00176BF9 /* Assets.xcassets */,
+				D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
