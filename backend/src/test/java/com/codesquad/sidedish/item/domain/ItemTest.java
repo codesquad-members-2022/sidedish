@@ -16,7 +16,7 @@ class ItemTest {
         Item item = createItem();
         int orderAmount = 10;
         // when
-        item.removeStock(orderAmount);
+        item.sold(orderAmount);
         // then
         assertThat(item.getStock()).isZero();
     }
@@ -28,7 +28,7 @@ class ItemTest {
         Item item = createItem();
         int orderAmount = 11;
         // then
-        assertThatThrownBy(() -> item.removeStock(orderAmount))
+        assertThatThrownBy(() -> item.sold(orderAmount))
                 .isInstanceOf(OutOfStockException.class);
     }
 

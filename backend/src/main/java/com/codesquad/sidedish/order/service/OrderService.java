@@ -32,7 +32,7 @@ public class OrderService {
         Item orderedItem = itemRepository.findById(itemId)
                 .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다.", HttpStatus.NOT_FOUND));
 
-        orderedItem.removeStock(orderItemDto.getAmount());
+        orderedItem.sold(orderItemDto.getAmount());
 
         itemRepository.save(orderedItem);
         Order savedOrder = orderRepository.save(orderItemDto.toEntity());
