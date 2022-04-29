@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 
 function Promotion({ title, promotions, showModal }) {
   const [selectedTabIndex, setSelectedTapIndex] = useState(0);
+  const [shownItems, setShownItems] = useState([]);
   function selectTab(index) {
+    const shownItems = getRandomItems(promotions[selectedTabIndex].items, 3);
     setSelectedTapIndex(index);
+    setShownItems(shownItems);
   }
   function getRandomItems(array, num) {
     const randomIndexes = [];
@@ -17,6 +20,9 @@ function Promotion({ title, promotions, showModal }) {
     }
     return randomIndexes.map(index => array[index]);
   }
+  useEffect(() => {
+    selectTab(0);
+  }, []);
   return (
     <StyledPromotion>
       <PromotionHeader>
@@ -40,7 +46,7 @@ function Promotion({ title, promotions, showModal }) {
         <Line></Line>
       </nav>
       <CardList>
-        {getRandomItems(promotions[selectedTabIndex].items, 3).map((item, index) => (
+        {shownItems.map((item, index) => (
           <Card key={index} size={'large'} item={item} showModal={showModal}></Card>
         ))}
       </CardList>
