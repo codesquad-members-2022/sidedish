@@ -25,7 +25,6 @@ public class GithubApiService {
         headers.set("Authorization", AuthorizationValue);
         HttpEntity<Void> httpEntity = new HttpEntity<>(null, headers);
 
-
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserProfile> responseEntity = restTemplate.exchange(GITHUB_USER_API, HttpMethod.GET, httpEntity, UserProfile.class);
 
