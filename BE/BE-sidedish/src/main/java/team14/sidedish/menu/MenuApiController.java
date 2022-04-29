@@ -40,7 +40,6 @@ public class MenuApiController {
 	 * @param page
 	 * @return
 	 */
-
 	@CrossOrigin("localhost:3000")
 	@GetMapping("/category/{category-id}")
 	public ResponseEntity<MenuDto.CategoryResponse> readListFrom(@PathVariable("category-id") int categoryId, @RequestParam("page") final int page) {
@@ -51,17 +50,16 @@ public class MenuApiController {
 
 	@CrossOrigin("localhost:3000")
 	@GetMapping("/menu/{menu-id}")
-	public ResponseEntity<MenuDto.DetailResponse> readOne(@PathVariable("menu-id") Long menuId) {
+	public ResponseEntity<MenuDto.DetailResponse> readDetail(@PathVariable("menu-id") Long menuId) {
 		MenuDto.DetailResponse detailResponse = menuService.readFrom(menuId);
 		return ResponseEntity.ok().body(detailResponse);
 	}
 
 	@CrossOrigin("localhost:3000")
-	@GetMapping("/exhibition/{special-menu-id}")
-	public ResponseEntity<MenuDto.CategoryResponse> readSpecialMenu(@PathVariable("special-menu-id") int specialMenuId) {
-		MenuDto.CategoryResponse response = menuService.readSpecialMenu(specialMenuId);
-
-		return ResponseEntity.ok().body(response);
+	@PostMapping("/menu/order")
+	public ResponseEntity<OrderDto.Response> create(@Valid @RequestBody OrderDto.Request request) {
+		OrderDto.Response response = menuService.createOrder(request);
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
 	/**
@@ -71,7 +69,6 @@ public class MenuApiController {
 	 * @param page
 	 * @return
 	 */
-
 	@CrossOrigin("localhost:3000")
 	@GetMapping("menu/category/{category-id}")
 	public ResponseEntity<MenuDto.CategoryResponse> readOneSubNext(
@@ -83,10 +80,10 @@ public class MenuApiController {
 	}
 
 	@CrossOrigin("localhost:3000")
-	@PostMapping("/menu/order")
-	public ResponseEntity<OrderDto.Response> create(@Valid @RequestBody OrderDto.Request request) {
-		OrderDto.Response response = menuService.createOrder(request);
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	@GetMapping("/exhibition/{special-menu-id}")
+	public ResponseEntity<MenuDto.CategoryResponse> readSpecialMenu(@PathVariable("special-menu-id") int specialMenuId) {
+		MenuDto.CategoryResponse response = menuService.readSpecialMenu(specialMenuId);
+		return ResponseEntity.ok().body(response);
 	}
 
 	@CrossOrigin("localhost:3000")
@@ -96,7 +93,6 @@ public class MenuApiController {
 
 		return ResponseEntity.ok().body(responses);
 	}
-
 
 	@ExceptionHandler(InvalidOrderException.class)
 	public ResponseEntity<ErrorResponse> invalidOrderException(
