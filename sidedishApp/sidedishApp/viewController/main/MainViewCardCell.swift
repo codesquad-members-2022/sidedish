@@ -23,7 +23,6 @@ class MainViewCardCell: UICollectionViewCell {
         var stackView = MainViewCardInfo()
         stackView.axis = .vertical
         stackView.alignment = .leading
-        //stackView.distribution = .fillProportionally
         stackView.spacing = 5
         return stackView
     }()

@@ -140,13 +140,6 @@ private extension DetailViewController {
     
     @objc
     func reloadCollectionView() {
-//        for data in SideDishManager.shared.detailImageThumbnail {
-//            let image = UIImage(data: data)
-//            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 375, height: 376))
-//            imageView.image = image
-//            self.imageHorizontalCollectionView.addSubview(imageView)
-//        }
-        
         DispatchQueue.main.async {
             self.imageHorizontalCollectionView.reloadData()
         }

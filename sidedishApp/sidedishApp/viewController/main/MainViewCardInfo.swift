@@ -20,9 +20,7 @@ class MainViewCardInfo: UIStackView {
     let badgeHorizontalStackView: BadgeStackView = {
         var stackView = BadgeStackView()
         stackView.axis = .horizontal
-        //stackView.spacing = 1
         stackView.alignment = .leading
-        //stackView.distribution = .fillProportionally
         return stackView
     }()
     
