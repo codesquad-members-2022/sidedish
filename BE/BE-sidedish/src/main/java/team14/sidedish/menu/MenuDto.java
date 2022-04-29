@@ -11,6 +11,8 @@ import team14.sidedish.order.OrderInfo;
 import team14.sidedish.specialmenu.enums.SpecialMenuValue;
 
 public class MenuDto {
+	public static Function<Boolean, String> availableOrder = (status) -> status ? "sale" :"sold out";
+
 	@Data
 	static class Response {
 		private final ExhibitionResponse exhibition;
@@ -58,6 +60,10 @@ public class MenuDto {
 			this.image = image;
 		}
 
+		public boolean hasDiscounted() {
+			return this.discountedPrice > 0;
+		}
+
 		@Override
 		public void setDiscountedPrice(BigDecimal discountedPrice) {
 			this.discountedPrice = discountedPrice.intValue();
@@ -100,7 +106,6 @@ public class MenuDto {
 		private final String orderStatus;
 
 		public DeliveryInfo(boolean orderStatus) {
-			Function<Boolean, String> availableOrder = (status) -> status ? "sale" :"sold out";
 			DeliveryCharge deliveryCharge = new DeliveryCharge(
 				OrderInfo.getDeliveryCharge(),
 				OrderInfo.getDeliveryFreeCondition(),

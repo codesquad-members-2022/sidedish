@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import team14.sidedish.common.Exception.InvalidOrderException;
 import team14.sidedish.image.Image;
 
 @ToString
@@ -31,7 +32,7 @@ public class Menu {
 	@Column("MENU_CATEGORY")
 	private final Category category;
 	@Column("INVENTORY_QUANTITY")
-	private final int inventoryQuantity;
+	private int inventoryQuantity;
 
 	@MappedCollection(idColumn = "IMAGE_MENU_ID", keyColumn = "IMAGE_MENU_ID")
 	private List<Image> images = new ArrayList<>();
@@ -57,6 +58,13 @@ public class Menu {
 				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException("no category name"));
 		}
+
+		public static Category from(int id) {
+			return Arrays.stream(Category.values())
+				.filter(it -> it.getId() == id)
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException("no category id"));
+		}
 	}
 
 	protected static Menu of(String name, String description, BigDecimal price, String category, int inventoryQuantity) {
@@ -70,6 +78,32 @@ public class Menu {
 		this.price = price;
 		this.category = Category.from(category);
 		this.inventoryQuantity = inventoryQuantity;
+	}
+
+	public int sold(int countOfOrder) {
+		if (!compareQuantity(countOfOrder)) {
+			throw new InvalidOrderException("품절되어 주문이 불가합니다.");
+		}
+		this.inventoryQuantity -= countOfOrder;
+		return this.inventoryQuantity;
+	}
+
+	protected List<String> getImages() {
+		return images.stream()
+			.map(image -> image.getUrl())
+			.collect(Collectors.toList());
+	}
+
+	protected boolean availableForSale() {
+		return this.inventoryQuantity > 0;
+	}
+
+	private boolean compareQuantity(int countOfOrder) {
+		return (this.inventoryQuantity - countOfOrder) >= 0;
+	}
+
+	public boolean availableForOrder(int countOfOrder) {
+		return this.availableForSale() || this.compareQuantity(countOfOrder);
 	}
 
 	protected Long getMenuId() {
@@ -86,16 +120,6 @@ public class Menu {
 
 	protected String getDescription() {
 		return description;
-	}
-
-	protected List<String> getImages() {
-		return images.stream()
-			.map(image -> image.getUrl())
-			.collect(Collectors.toList());
-	}
-
-	protected boolean availableForSale() {
-		return this.inventoryQuantity > 0;
 	}
 
 	public Category getCategory() {
