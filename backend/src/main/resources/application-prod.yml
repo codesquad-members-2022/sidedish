@@ -1,0 +1,12 @@
+# application-production.yml
+spring:
+  datasource:
+    url: ${MYSQL_DATABASE_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_DATABASE_USERNAME}
+    password: ${MYSQL_DATABASE_PASSWORD}
+  sql:
+    init:
+      mode: never
+      schema-locations: classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql

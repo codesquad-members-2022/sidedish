@@ -17,6 +17,7 @@ const LabelBox = styled.div`
   border: 2px solid ${(props) => props.borderColor};
   box-sizing: border-box;
   border-radius: 999px;
+  margin-right: 8px;
 `;
 
 const LabelText = styled.div`

@@ -1,7 +1,5 @@
-const constants = {
-  BIG_CARD_LENGHTH: "441px",
-  SMALL_CARD_LENGTH: "320px",
-  LAUNCH_LABEL_ATTRIBUTES: {
+export const LABEL_ATTRIBUTES = {
+  LAUNCH: {
     string: "런칭특가",
     color: "white",
     fontSize: "12px",
@@ -9,7 +7,7 @@ const constants = {
     borderColor: "#FF8E14",
     padding: "6px 16px",
   },
-  EVENT_LABEL_ATTRIBUTES: {
+  EVENT: {
     string: "이벤트특가",
     color: "white",
     fontSize: "12px",
@@ -17,7 +15,7 @@ const constants = {
     borderColor: "#6DD028",
     padding: "6px 16px",
   },
-  EXHIBITION_LABEL_ATTRIBUTES: {
+  EXHIBITION: {
     string: "기획전",
     color: "black",
     fontSize: "16px",
@@ -25,10 +23,17 @@ const constants = {
     borderColor: "black",
     padding: "12px 12px",
   },
-  CAROUSEL_CARD: {
-    WIDTH: "302",
-    HEIGHT: "302",
-  },
 };
 
-export default constants;
+export const CARD_LENGHTHS = {
+  BIG: "441",
+  SMALL: "320",
+};
+
+export const CARD_MARGIN = 24;
+
+export const CARD_CONTAINER_PADDING = 56;
+
+export const NUM_OF_CARD_ON_DISPLAY = 4;
+
+export const URL = "http://52.78.175.50/api/dish";
