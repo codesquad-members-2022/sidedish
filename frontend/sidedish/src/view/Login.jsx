@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 function Login() {
     return (
         <Center>
-            <Link to="/api/auth/github">
+            <a href="http://3.35.134.169/api/auth/github">
                 <LoginButton>Login with GitHub</LoginButton>
-            </Link>
+            </a>
         </Center>
     );
 }

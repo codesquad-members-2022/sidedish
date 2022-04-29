@@ -73,7 +73,6 @@ function SmallSidedish({ isVisible, category }) {
 
     const currSmallSidedishes = getCurrSmallSidedishes(page, smallSidedishes);
 
-    console.log(currSmallSidedishes);
     return (
         <Container>
             <SmallDishTitle>{title}</SmallDishTitle>
