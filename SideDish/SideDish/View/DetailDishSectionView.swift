@@ -99,14 +99,16 @@ class DetailDishSectionView: UIView {
         productImageScrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(productImageScrollView)
 
+        let contentLayoutGuide = productImageScrollView.contentLayoutGuide
+
         NSLayoutConstraint.activate([
             productImageScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             productImageScrollView.topAnchor.constraint(equalTo: topAnchor),
             productImageScrollView.widthAnchor.constraint(equalTo: widthAnchor),
             productImageScrollView.heightAnchor.constraint(equalTo: productImageScrollView.widthAnchor),
-            productImageScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: productImageScrollView.topAnchor),
-            productImageScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: productImageScrollView.leadingAnchor),
-            productImageScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: productImageScrollView.heightAnchor)
+            contentLayoutGuide.topAnchor.constraint(equalTo: productImageScrollView.topAnchor),
+            contentLayoutGuide.leadingAnchor.constraint(equalTo: productImageScrollView.leadingAnchor),
+            contentLayoutGuide.heightAnchor.constraint(equalTo: productImageScrollView.heightAnchor)
         ])
 
         productImageScrollView.addSubview(productImageContentView)

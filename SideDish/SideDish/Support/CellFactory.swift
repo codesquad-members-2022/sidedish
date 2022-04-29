@@ -15,11 +15,11 @@ final class CellFactory: CellFactoryProtocol {
             }
         }
     }
-    
+
     init(repository: DishCellRepositoryProtocol) {
         self.repository = repository
     }
-    
+
     func fetchData() {
         let allCases: [ProductSort] = ProductSort.allCases
         for sort in allCases {
@@ -34,7 +34,7 @@ final class CellFactory: CellFactoryProtocol {
             }
         }
     }
-    
+
     private func downLoadImage(products: [DishCellInfo]) {
         products.forEach { cell in
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
