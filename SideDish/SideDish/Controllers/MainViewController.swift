@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HeaderCollectionReusableView.identifier
         )
-               
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -109,10 +109,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.logger?.error("\(error.localizedDescription)")
             }
         }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath)
         guard let headerValue = reusableView as? HeaderCollectionReusableView else { return reusableView}
-        
         guard let ordering = ordering else { return headerValue }
         
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
@@ -120,5 +121,5 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return headerValue
     }
-}
 
+}
