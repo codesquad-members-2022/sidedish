@@ -11,22 +11,22 @@ struct Food: Codable{
     private(set) var detailHash: String
     private(set) var title: String
     private(set) var description: String
-    private(set) var image: String
+    private(set) var imageURL: URL
     private(set) var alt: String
-    private(set) var badge: [Badge]
+    private(set) var badge: [String]?
     private(set) var deliveryType: [String]
-    private(set) var originPrice: Int
-    private(set) var salePrice: Int?
+    private(set) var beforeSalePrice: String?
+    private(set) var salePrice: String?
     
-    enum CodingKyes: String, CodingKey{
+    enum CodingKeys: String, CodingKey{
         case detailHash = "detail_hash"
         case title
         case description
-        case image
+        case imageURL = "image"
         case alt
         case badge
         case deliveryType = "delivery_type"
-        case originPrice = "n_price"
+        case beforeSalePrice = "n_price"
         case salePrice = "s_price"
     }
 }
@@ -34,4 +34,9 @@ struct Food: Codable{
 enum Badge: String, Codable{
     case 이벤트특가
     case 점심특가
+}
+
+struct Response: Codable {
+    let statusCode: Int
+    let body: [Food]
 }

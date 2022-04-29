@@ -11,10 +11,58 @@ import UIKit
 class FoodCell: UICollectionViewCell {
     private(set) var storageLabel = [UILabel]()
     
-    //MARK: Initiallize
+    private var titleLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
+    private var bodyLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = .GreyTextColor
+        return label
+    }()
+    
+    private var salePriceLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
+    private var beforeSalePriceLabel: UILabel = {
+        var label = UILabel()
+        
+        if let text = label.text {
+            let attributeString = NSMutableAttributedString(string: label.text ?? "")
+
+          attributeString.addAttribute(.strikethroughStyle,
+                                        value: NSUnderlineStyle.single.rawValue,
+                                        range: NSRange(location: 0, length: attributeString.length))
+
+            label.attributedText = attributeString
+        }
+        
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .GreyTextColor
+        return label
+    }()
+    
+    private var eventBadgeLable: UILabel?
+    private var launcingBadgeLabel: UILabel?
+    
+    private var stackView: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.distribution = .fillProportionally
+        return stack
+    }()
+    
+    // MARK: Initiallize
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
         configureLayout()
     }
     
@@ -22,27 +70,44 @@ class FoodCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    //MARK: Image Attribute
+    // MARK: Image Attribute
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "tempFood")
         imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
     
-    //MARK: Label configure
-    func configure() {
-        let dumyContentArr = ["오리 주물럭_반조리","감질맛 나는 매콤한 양념","12,640원","15,800원","런칭특가"]
+    func setDomainFood(data: Food){
+        titleLabel.text = data.title
+        bodyLabel.text = data.description
+        salePriceLabel.text = data.salePrice
+        beforeSalePriceLabel.text = data.beforeSalePrice
+        guard let badge = data.badge else { return }
+        setBadgeLabel(badge)
+        myImageView.loadImage(url: data.image)
         
-        for index in 0...4 {
-            let repeatLabel = UILabel()
-            repeatLabel.text = dumyContentArr[index]
-            repeatLabel.backgroundColor = .white
-            repeatLabel.textAlignment = .center
-            storageLabel.append(repeatLabel)
-            self.contentView.addSubview(repeatLabel)
+    }
+    
+    func setBadgeLabel(_ badge: [String]){
+        for str in badge{
+            let label = makeEventLabel(text: str)
+            stackView.addArrangedSubview(label)
         }
+    }
+    
+    // MARK: Label configure
+    func makeEventLabel(text: String) -> UILabel{
+        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.clipsToBounds = true
+        label.backgroundColor = .launcingBadgeColor
+        label.textColor = .white
+        label.layer.cornerRadius = 13
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
+        label.text = text
+        return label
     }
     
     func configureLayout(){
@@ -54,36 +119,37 @@ class FoodCell: UICollectionViewCell {
         myImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         myImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
         
-        storageLabel[0].translatesAutoresizingMaskIntoConstraints = false
-        storageLabel[0].topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 13).isActive = true
-        storageLabel[0].leadingAnchor.constraint(equalTo: myImageView.trailingAnchor, constant: 8).isActive = true
-        storageLabel[0].heightAnchor.constraint(equalToConstant: 24).isActive = true
+        self.contentView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 13).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: myImageView.trailingAnchor, constant: 8).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
-        storageLabel[1].translatesAutoresizingMaskIntoConstraints = false
-        storageLabel[1].topAnchor.constraint(equalTo: storageLabel[0].bottomAnchor).isActive = true
-        storageLabel[1].leadingAnchor.constraint(equalTo: storageLabel[0].leadingAnchor).isActive = true
-        storageLabel[1].heightAnchor.constraint(equalToConstant: 24).isActive = true
+        self.contentView.addSubview(bodyLabel)
+        bodyLabel.translatesAutoresizingMaskIntoConstraints = false
+        bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        bodyLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        bodyLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        bodyLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
-        storageLabel[2].translatesAutoresizingMaskIntoConstraints = false
-        storageLabel[2].topAnchor.constraint(equalTo: storageLabel[1].bottomAnchor).isActive = true
-        storageLabel[2].leadingAnchor.constraint(equalTo: storageLabel[1].leadingAnchor).isActive = true
-        storageLabel[2].heightAnchor.constraint(equalToConstant: 24).isActive = true
+        self.contentView.addSubview(salePriceLabel)
+        salePriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        salePriceLabel.topAnchor.constraint(equalTo: bodyLabel.bottomAnchor).isActive = true
+        salePriceLabel.leadingAnchor.constraint(equalTo: bodyLabel.leadingAnchor).isActive = true
+        salePriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
-        storageLabel[3].translatesAutoresizingMaskIntoConstraints = false
-        storageLabel[3].topAnchor.constraint(equalTo: storageLabel[2].topAnchor).isActive = true
-        storageLabel[3].leadingAnchor.constraint(equalTo: storageLabel[2].trailingAnchor).isActive = true
-        storageLabel[3].heightAnchor.constraint(equalToConstant: 24).isActive = true
-
-        storageLabel[4].translatesAutoresizingMaskIntoConstraints = false
-        storageLabel[4].topAnchor.constraint(equalTo: storageLabel[3].bottomAnchor, constant: 8).isActive = true
-        storageLabel[4].leadingAnchor.constraint(equalTo: storageLabel[2].leadingAnchor).isActive = true
-        storageLabel[4].heightAnchor.constraint(equalToConstant: 24).isActive = true
-        storageLabel[4].bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 13).isActive = true
+        self.contentView.addSubview(beforeSalePriceLabel)
+        beforeSalePriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        beforeSalePriceLabel.topAnchor.constraint(equalTo: salePriceLabel.topAnchor).isActive = true
+        beforeSalePriceLabel.leadingAnchor.constraint(equalTo: salePriceLabel.trailingAnchor, constant: 4).isActive = true
+        beforeSalePriceLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        
-        
-        
+        self.contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        stackView.topAnchor.constraint(equalTo: salePriceLabel.bottomAnchor, constant: 8).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: salePriceLabel.leadingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13).isActive = true
     }
-
     
 }

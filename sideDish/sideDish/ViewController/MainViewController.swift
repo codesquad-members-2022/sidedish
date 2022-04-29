@@ -10,10 +10,15 @@ import Toaster
 
 class MainViewController: UIViewController {
     
-    let dummyData = [["오리주물럭, 잡채, 소갈비찜, 간장 코다리조림"],
-                     ["한돈 돼지 김치찌개","된장찌개","미역 오이냉국"],
-                     ["새콤달콤 오징어무침","호두 멸치볶음","한돈 매콤 안심장조림"]]
-    let dummyHeaderData = ["모두가 좋아하는 든든한 메인 요리","정성이 담긴 뜨끈뜨끈 국물 요리","식탁을 풍성하게 하는 정갈한 밑반찬"]
+    enum Section: Int{
+        case main = 0
+        case soup
+        case side
+    }
+    
+    let headerData = ["모두가 좋아하는 든든한 메인 요리", "정성이 담긴 뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는 정갈한 밑반찬"]
+    
+    var foodManager: FoodManager = FoodManager()
     
     private var collectionView: UICollectionView = {
         let tempCollcetion = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 32, height: 500), collectionViewLayout: UICollectionViewFlowLayout())
@@ -32,7 +37,6 @@ class MainViewController: UIViewController {
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.delegate = self
         collectionView.dataSource = self
-
     }
     
     func configureCollectionViewLayout() {
@@ -47,32 +51,54 @@ class MainViewController: UIViewController {
         collectionView.widthAnchor.constraint(greaterThanOrEqualToConstant: 343).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
-        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 24).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        switch section{
+        
+        case Section.main.rawValue: return foodManager.mainFood?.count ?? 0
+        case Section.soup.rawValue: return foodManager.soupFood?.count ?? 0
+        case Section.side.rawValue: return foodManager.sideFood?.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return headerData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as? FoodCell else { return UICollectionViewCell() }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
-        headerView.setTitle(text: dummyHeaderData[indexPath.section])
-        return headerView
+        if indexPath.section == Section.main.rawValue{
+            guard let main = foodManager.mainFood else { return UICollectionViewCell()}
+            cell.setDomainFood(data: main[indexPath.item])
+        } else if indexPath.section == Section.soup.rawValue {
+            guard let soup = foodManager.soupFood else { return UICollectionViewCell()}
+            cell.setDomainFood(data: soup[indexPath.item])
+        } else {
+            guard let side = foodManager.sideFood else { return UICollectionViewCell()}
+            cell.setDomainFood(data: side[indexPath.item])
+        }
+        
+        return cell
     }
     
 }
 
+extension MainViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+        headerView.setTitle(text: headerData[indexPath.section])
+        return headerView
+    }
+
+}
