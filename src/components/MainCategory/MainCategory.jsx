@@ -10,8 +10,7 @@ const TAB_NAMES = ['정갈한 밑반찬', '뜨끈뜨끈 국물 요리', '든든�
 const END_POINT = 'https://api.codesquad.kr/onban/';
 const PATHs = ['main', 'soup', 'side'];
 
-export default function MainCategory({ setClickedCard, setCardHash }) {
-  const [selectedTabNum, setSelectedTabNum] = useState(0);
+export default function MainCategory({ selectedTabNum, setSelectedTabNum, setClickedCard, setCardHash }) {
   const [sideDishes, setSideDishes] = useState(sideDishDummyData);
 
   useEffect(() => {

@@ -10,9 +10,10 @@ import Text from 'components/utils/Text';
 import Picture from 'components/Modal/Picture';
 import DeliveryInfo from 'components/Modal/DeliveryInfo';
 
-const END_POINT = 'https://api.codesquad.kr/onban/main/';
+const END_POINT = 'https://api.codesquad.kr/onban/';
+const CATEGORIES = ['main', 'soup', 'side'];
 
-export default function Modal({ setClickedCard, cardHash }) {
+export default function Modal({ setClickedCard, cardHash, selectedTabNum }) {
   const [sideDish, setSideDish] = useState(false);
   const [curPrice, setCurPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -78,7 +79,7 @@ export default function Modal({ setClickedCard, cardHash }) {
   );
 
   function fetchModalData() {
-    const URL = END_POINT + cardHash;
+    const URL = `${END_POINT}${CATEGORIES[selectedTabNum]}/${cardHash}`;
 
     fetch(URL)
       .then(res => res.json())

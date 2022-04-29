@@ -1,6 +1,6 @@
 import Header from 'components/Header/Header';
 import MainCategory from 'components/MainCategory/MainCategory';
-import MenuSlider from 'components/MenuSection/MenuSection';
+import MenuSection from 'components/MenuSection/MenuSection';
 import MoreButton from 'components/MoreButton';
 import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
@@ -10,14 +10,22 @@ export default function Sidedish() {
   const [isClickedMoreBtn, setClikedMoreBtn] = useState(false);
   const [isClickedCard, setClickedCard] = useState(false);
   const [cardHash, setCardHash] = useState('');
+  const [selectedTabNum, setSelectedTabNum] = useState(0);
   return (
     <>
-      {isClickedCard ? <Modal setClickedCard={setClickedCard} cardHash={cardHash} /> : null}
+      {isClickedCard ? (
+        <Modal selectedTabNum={selectedTabNum} setClickedCard={setClickedCard} cardHash={cardHash} />
+      ) : null}
       <Wrap>
         <Header />
         <Main>
-          <MainCategory setClickedCard={setClickedCard} setCardHash={setCardHash} />
-          <MenuSlider setClickedCard={setClickedCard} />
+          <MainCategory
+            selectedTabNum={selectedTabNum}
+            setSelectedTabNum={setSelectedTabNum}
+            setClickedCard={setClickedCard}
+            setCardHash={setCardHash}
+          />
+          <MenuSection setClickedCard={setClickedCard} setCardHash={setCardHash} />
           {isClickedMoreBtn ? <OthersMenuSlider /> : null}
           {isClickedMoreBtn ? null : <MoreButton setClikedMoreBtn={setClikedMoreBtn} value="모든 카테고리 보기" />}
         </Main>
@@ -32,7 +40,7 @@ function OthersMenuSlider() {
   return (
     <>
       {dummyData.map((_, idx) => (
-        <MenuSlider key={idx} />
+        <MenuSection key={idx} />
       ))}
     </>
   );
