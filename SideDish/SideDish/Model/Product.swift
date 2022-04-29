@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct Product {
+class Product {
     let hash: String
     private(set) var image: UIImage?
     let title: String
@@ -19,7 +19,7 @@ struct Product {
         self.discountType = origin.badge?.filter { DiscountType($0) != nil}.map { DiscountType($0)! }
     }
 
-    mutating func injectImage(image: UIImage) {
+    func injectImage(image: UIImage) {
         self.image = image
     }
 }

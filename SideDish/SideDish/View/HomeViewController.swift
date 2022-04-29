@@ -15,8 +15,17 @@ class HomeViewController: UIViewController {
 
     private func fetchAndDrawCell() {
         viewModel.onUpdate = {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+        viewModel.onUpdateWithImageData = { hash, data in
+            guard let targetCell = self.viewModel[hash] else { return }
+            DispatchQueue.main.async { [weak self] in
+                if let image = UIImage(data: data) {
+                    targetCell.injectImage(image: image)
+                }
+                self?.collectionView.reloadData()
             }
         }
         viewModel.onUpdateWithImageData = { hash, data in
