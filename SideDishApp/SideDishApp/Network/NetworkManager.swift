@@ -6,8 +6,8 @@
 //
 import Foundation
 
-final class NetworkManager {
-    private var session: URLSession
+final class NetworkManager: NetworkManagable {
+    var session: URLSession
 
     init(session: URLSession) {
         self.session = session
@@ -15,8 +15,8 @@ final class NetworkManager {
     
     func request<T: Decodable>(endpoint: Endpointable, completion: @escaping((Result<T?, NetworkError>) -> Void)) {
         // handling urlError
-        let endpointURL = endpoint.getURL()
-        guard let url = URL(string: endpointURL) else {
+        
+        guard let url = endpoint.getURL() else {
             return completion(.failure(.invalidURL))
         }
         var urlRequest = URLRequest(url: url)
@@ -81,14 +81,5 @@ final class NetworkManager {
             }
         }
         dataTask.resume()
-    }
-    
-    func session(_ urlSession: URLSession) {
-        self.session = urlSession
-    }
-    
-    private func getStatusCode(response: URLResponse?) -> Int? {
-        guard let httpResponse = response as? HTTPURLResponse else { return nil }
-        return httpResponse.statusCode
     }
 }

@@ -19,6 +19,8 @@
 		1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */; };
 		1EE4901F280D8A0600B6CE60 /* OrderingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */; };
 		1EE49025280D8D9A00B6CE60 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE49024280D8D9A00B6CE60 /* Constant.swift */; };
+		8D375818281B780F00B32E41 /* NetworkManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D375817281B780F00B32E41 /* NetworkManagable.swift */; };
+		8D37581A281B787D00B32E41 /* ImageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D375819281B787D00B32E41 /* ImageNetworkManager.swift */; };
 		8D49F633280D533500613CE4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F632280D533500613CE4 /* EndPoint.swift */; };
 		8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F634280D534700613CE4 /* NetworkManager.swift */; };
 		8D49F637280D535800613CE4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F636280D535800613CE4 /* NetworkError.swift */; };
@@ -46,6 +48,8 @@
 		1EE4901A280D892800B6CE60 /* OrderingCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		1EE4901E280D8A0600B6CE60 /* OrderingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EE49024280D8D9A00B6CE60 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		8D375817281B780F00B32E41 /* NetworkManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagable.swift; sourceTree = "<group>"; };
+		8D375819281B787D00B32E41 /* ImageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkManager.swift; sourceTree = "<group>"; };
 		8D49F632280D533500613CE4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		8D49F634280D534700613CE4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8D49F636280D535800613CE4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -103,10 +107,12 @@
 		1ED9D53B2811390300AEC888 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				8D49F632280D533500613CE4 /* EndPoint.swift */,
 				8D49F634280D534700613CE4 /* NetworkManager.swift */,
+				8D375819281B787D00B32E41 /* ImageNetworkManager.swift */,
+				8D49F632280D533500613CE4 /* EndPoint.swift */,
 				8D49F636280D535800613CE4 /* NetworkError.swift */,
 				8D49F638280D536800613CE4 /* HTTPMethod.swift */,
+				8D375817281B780F00B32E41 /* NetworkManagable.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				8D49F639280D536800613CE4 /* HTTPMethod.swift in Sources */,
 				1EE4901F280D8A0600B6CE60 /* OrderingCollectionViewCell.swift in Sources */,
 				8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */,
+				8D37581A281B787D00B32E41 /* ImageNetworkManager.swift in Sources */,
 				8DABA0FE28113FDE00ED949A /* UIColor+Extension.swift in Sources */,
 				1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */,
 				1E478F102816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift in Sources */,
@@ -353,6 +360,7 @@
 				8D50297B280CF9430068CCAC /* SceneDelegate.swift in Sources */,
 				8DF7E1B9280E7FBA00C4A5AC /* SectionHeaderView.swift in Sources */,
 				1E7871862818C2FB00F83A27 /* SectionHeaderDelegate.swift in Sources */,
+				8D375818281B780F00B32E41 /* NetworkManagable.swift in Sources */,
 				8DF7E1BF280FCD8600C4A5AC /* OrderingCollectionViewDelegate.swift in Sources */,
 				8DB608D5280FCEC4009B585E /* DetailViewController.swift in Sources */,
 			);

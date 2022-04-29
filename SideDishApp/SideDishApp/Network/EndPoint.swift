@@ -16,7 +16,9 @@ protocol Endpointable {
 }
 
 extension Endpointable {
-    func getURL() -> String { return getBaseURL().urlString + getPath().pathString }
+    func getURL() -> URL? {
+        return URL(string: getBaseURL().urlString + getPath().pathString)
+    }
 }
 
 struct Endpoint: Endpointable {

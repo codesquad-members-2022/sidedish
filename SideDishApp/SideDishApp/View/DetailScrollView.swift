@@ -269,7 +269,7 @@ extension DetailScrollView {
         overViewImageScrollView.contentSize = CGSize(width: overViewImageScrollView.frame.width * CGFloat(imageCount), height: 375)
     }
     
-    func insertThumbNail(image: UIImage, at index: Int) {
+    func insertThumbNail(image: UIImage?, at index: Int) {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleToFill
         imageView.frame = self.overViewImageScrollView.frame
@@ -283,7 +283,7 @@ extension DetailScrollView {
         }
     }
     
-    func setRecipe(image: UIImage, at index: Int) {
+    func setRecipe(image: UIImage?, at index: Int) {
         let imageView = UIImageView(image: image)
         
         let baseWidth = self.detailContainerStackView.frame.size.width

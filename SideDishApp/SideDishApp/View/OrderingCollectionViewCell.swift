@@ -77,7 +77,7 @@ extension OrderingCollectionViewCell {
 // MARK: - Providing Function
 
 extension OrderingCollectionViewCell {
-    func setMenu(image: UIImage) {
+    func setMenu(image: UIImage?) {
         self.dishImageView.image = image
     }
 }
