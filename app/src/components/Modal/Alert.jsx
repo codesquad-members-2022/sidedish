@@ -47,6 +47,8 @@ const ConfirmBtn = styled(FlexCenter)`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.white};
+  border: none;
+  cursor: pointer;
 `;
 
 export default Alert;
