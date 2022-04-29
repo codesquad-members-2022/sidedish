@@ -1,12 +1,11 @@
 import Foundation
-import UIKit
 import OSLog
 
 final class DishDetailViewModel {
     private let repository: DishDetailRepository
     private let detailHash: String
 
-    private(set) var topImages = [UIImage]()
+    private(set) var topImages = [Data]()
     private(set) var title = ""
     private(set) var description = ""
     private(set) var finalPrice = ""
@@ -15,7 +14,7 @@ final class DishDetailViewModel {
     private(set) var point = ""
     private(set) var deliveryInfo = ""
     private(set) var deliveryFee = ""
-    private(set) var detailImages = [UIImage]()
+    private(set) var detailImages = [Data]()
 
     var onUpdate: () -> Void = {}
     var onUpdateWithTopImages: () -> Void = {}
@@ -37,22 +36,16 @@ final class DishDetailViewModel {
                 DispatchQueue.global().async {
                     dishDetail.thumbImages.forEach { imageURL in
                         guard let url = URL(string: imageURL) else {return}
-                        if let data = try? Data(contentsOf: url),
-                           let downloadedImage = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.topImages.append(downloadedImage)
-                            }
+                        if let data = try? Data(contentsOf: url) {
+                            self.topImages.append(data)
                         }
                     }
                     self.onUpdateWithTopImages()
 
                     dishDetail.detailSection.forEach { imageURL in
                         guard let url = URL(string: imageURL) else {return}
-                        if let data = try? Data(contentsOf: url),
-                           let downloadedImage = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.detailImages.append(downloadedImage)
-                            }
+                        if let data = try? Data(contentsOf: url) {
+                            self.detailImages.append(data)
                         }
                     }
                     self.onUpdateWithDetailImages()

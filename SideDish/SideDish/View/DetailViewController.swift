@@ -88,7 +88,7 @@ class DetailViewController: UIViewController {
         viewModel.onUpdateWithTopImages = {
             DispatchQueue.main.async {[weak self] in
                 self?.viewModel?.topImages.forEach { image in
-                    self?.detailDishSectionView.addTopImage(with: image)
+                    self?.detailDishSectionView.addTopImage(with: UIImage(data: image) ?? UIImage())
                 }
             }
         }
@@ -99,7 +99,8 @@ class DetailViewController: UIViewController {
 
         viewModel.onUpdateWithDetailImages = {
             DispatchQueue.main.async {[weak self] in
-                self?.viewModel?.detailImages.forEach { image in
+                self?.viewModel?.detailImages.forEach { data in
+                    guard let image = UIImage(data: data) else {return}
                     let ratio = image.size.height / image.size.width
                     let detailImageView = UIImageView(image: image)
                     let newWidth = self?.detailImageStackView.frame.width ?? 0
