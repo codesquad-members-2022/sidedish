@@ -57,7 +57,7 @@ export const requestQuery = {
   queries: {
     categories: (id: optionalNum) => `/api/categories`,
     products: (id: optionalNum) => `/api/products?categoryId=${id}`,
-    specialCategories: (id: optionalNum) => "/api/themes",
+    specialCategories: (id: optionalNum) => "/api/specialCategories",
     specialProducts: (id: optionalNum) => `/api/products?themeId=${id}`,
     product: (id: optionalNum) => "/mocks/product.json",
   },
