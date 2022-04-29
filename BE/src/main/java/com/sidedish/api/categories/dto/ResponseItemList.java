@@ -10,10 +10,12 @@ import lombok.Getter;
 public class ResponseItemList {
 
     private final String detailTitle;
+    private final int maxPage;
     private final List<ItemResource> itemResource;
 
-    public ResponseItemList(CategoryType type, List<ItemResource> itemResource) {
+    public ResponseItemList(CategoryType type, List<ItemResource> itemResource, int totalPage) {
         this.detailTitle = type.getTitle();
+        this.maxPage = totalPage;
         this.itemResource = itemResource;
     }
 }

@@ -9,6 +9,7 @@ import com.sidedish.domain.DetailCategoryType;
 import com.sidedish.domain.Item;
 import com.sidedish.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class HomeController {
     }
 
     private CollectionModel<ItemResource> buildItems(CategoryType type, Long pageId, int pageCount) {
-        List<Item> items = itemService.findUnitPageById(type, pageId, pageCount);
+        Page<Item> items = itemService.findUnitPageById(type, pageId, pageCount);
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
         CollectionModel<ItemResource> responseMainType = CollectionModel.of(itemResources);
         responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId, pageCount)).withSelfRel());

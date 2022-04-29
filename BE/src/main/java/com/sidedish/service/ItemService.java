@@ -5,6 +5,7 @@ import com.sidedish.domain.Item;
 import com.sidedish.repository.CategoryRepository;
 import com.sidedish.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class ItemService {
         itemRepository.save(orderItem);
     }
 
-    public List<Item> findUnitPageById(CategoryType type, Long pageId, int pageCount) {
+    public Page<Item> findUnitPageById(CategoryType type, Long pageId, int pageCount) {
         Long categoryId = categoryRepository.findCategoryType(type);
         PageRequest pageable = createPageRequest(pageId, pageCount);
         return itemRepository.findByCategory(categoryId, pageable);

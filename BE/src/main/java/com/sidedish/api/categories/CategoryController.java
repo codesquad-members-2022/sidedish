@@ -9,6 +9,7 @@ import com.sidedish.domain.Item;
 import com.sidedish.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.web.bind.WebDataBinder;
@@ -50,9 +51,10 @@ public class CategoryController {
 
     @GetMapping("/{type}")
     public RepresentationModel<?> getItemsByCategory(@PathVariable CategoryType type, @RequestParam(defaultValue = "1") Long pageId, @RequestParam(defaultValue = "4") int pageCount) {
-        List<Item> items = itemService.findUnitPageById(type, pageId, pageCount);
+        Page<Item> items = itemService.findUnitPageById(type, pageId, pageCount);
+        int totalPages = items.getTotalPages();
         List<ItemResource> itemResources = items.stream().map(ItemResource::new).collect(Collectors.toList());
-        ResponseItemList responseItemList = new ResponseItemList(type, itemResources);
+        ResponseItemList responseItemList = new ResponseItemList(type, itemResources, totalPages);
         RepresentationModel<?> responseMainType = RepresentationModel.of(responseItemList);
         responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId, pageCount)).withSelfRel());
         responseMainType.add(linkTo(methodOn(CategoryController.class).getItemsByCategory(type, pageId -1, pageCount)).withRel("prev-page"));
