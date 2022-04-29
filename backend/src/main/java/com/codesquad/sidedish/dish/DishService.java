@@ -5,7 +5,7 @@ import com.codesquad.sidedish.dish.domain.RecommendRef;
 import com.codesquad.sidedish.dish.dto.DishListResponse;
 import com.codesquad.sidedish.dish.dto.DishUnitResponse;
 import com.codesquad.sidedish.exception.ErrorCode;
-import com.codesquad.sidedish.exception.NotFoundException;
+import com.codesquad.sidedish.exception.unchecked.NotFoundException;
 import com.codesquad.sidedish.other.page.Criteria;
 import com.codesquad.sidedish.other.page.Slice;
 import java.util.List;

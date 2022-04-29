@@ -1,5 +1,6 @@
-package com.codesquad.sidedish.exception;
+package com.codesquad.sidedish.exception.unchecked;
 
+import com.codesquad.sidedish.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
