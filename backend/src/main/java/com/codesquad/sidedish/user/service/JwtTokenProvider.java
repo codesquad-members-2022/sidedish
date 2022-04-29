@@ -17,11 +17,15 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtTokenProvider {
 
-    @Value("${jwt.access-token.expire-length}")
-    private long accessTokenValidityTime;
+    private final long accessTokenValidityTime;
+    private final String secretKey;
 
-    @Value("${jwt.token.secret-key}")
-    private String secretKey;
+    public JwtTokenProvider(
+        @Value("${jwt.access-token.expire-length}") long accessTokenValidityTime,
+        @Value("{jwt.token.secret-key}") String secretKey) {
+        this.accessTokenValidityTime = accessTokenValidityTime;
+        this.secretKey = secretKey;
+    }
 
     public String createAccessToken(String payload) {
         Claims claims = Jwts.claims().setSubject(payload);
