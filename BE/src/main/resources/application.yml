@@ -1,6 +1,8 @@
 spring:
   datasource:
-    url:
-    driver-class-name:
+    url: ${URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${USERNAME}
     password: ${PASSWORD}
+server:
+  port: 8083
