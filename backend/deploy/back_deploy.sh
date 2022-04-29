@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export MYSQL_DATABASE_URL=""
-export MYSQL_DATABASE_USERNAME=""
-export MYSQL_DATABASE_PASSWORD=""
+export MYSQL_DATABASE_URL="URL"
+export MYSQL_DATABASE_USERNAME="USERNAME"
+export MYSQL_DATABASE_PASSWORD="PASSWORD"
 
 cd back_sidedish/backend
 
@@ -22,8 +22,7 @@ sidedish= jps | grep sidedish | cut -d' ' -f1
 echo "[BE] Try to kill sidedish"
 kill -9 $sidedish
 
-rm -rf build
 git merge origin/backend
-./gradlew bootJar
+./gradlew clean bootJar
 
 nohup java -jar build/libs/sidedish-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &
