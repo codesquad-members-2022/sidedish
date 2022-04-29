@@ -21,7 +21,7 @@ class CustomCollectionCell: UICollectionViewCell {
     
     private let menuInfoView: MenuInfoView = {
         let attribute = MenuInfoAttribute()
-        attribute.stackViewSpacing = 4
+        attribute.lineSpacing = 4
         attribute.titleFont = .systemFont(ofSize: 15, weight: .bold)
         attribute.titleTextColor = .black
         attribute.discriptionFont = .systemFont(ofSize: 14, weight: .regular)
