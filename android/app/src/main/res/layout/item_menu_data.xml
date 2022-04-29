@@ -61,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="72dp"
             android:gravity="center_vertical"
-            android:text="@{String.valueOf(products.discountPrice)}"
+            priceAmount="@{products.discountPrice}"
             android:textColor="#010101"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
@@ -70,6 +70,7 @@
         <TextView
             android:id="@+id/tv_home_price"
             android:layout_width="wrap_content"
+            priceAmount="@{products.price}"
             android:layout_height="24dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="72dp"
@@ -77,8 +78,7 @@
             android:textColor="#828282"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/tv_home_discountPrice"
-            app:layout_constraintTop_toTopOf="parent"
-            bind:updateTextWithStroke="@{products.price}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_home_event"
@@ -96,7 +96,7 @@
             android:paddingEnd="12dp"
             android:textColor="#F2E7FE"
             android:textSize="12sp"
-            bind:updateVisible="@{products.discountName}"
+            bind:updateVisible="@{products.discountName != null}"
             app:layout_constraintLeft_toRightOf="@+id/iv_home_image"
             app:layout_constraintTop_toTopOf="parent" />
 

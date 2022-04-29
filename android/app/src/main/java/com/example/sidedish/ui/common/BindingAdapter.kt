@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.sidedish.R
+import java.text.DecimalFormat
 
 @BindingAdapter("updateImage")
 fun updateImage(view: ImageView, imageUrl: String?) {
@@ -17,18 +18,19 @@ fun updateImage(view: ImageView, imageUrl: String?) {
     }
 }
 
-@BindingAdapter("showBadgeBackground")
-fun showBadgeBackground(view: TextView, text: String?) {
-    if (text == null) {
-        view.visibility = View.GONE
-    } else {
-        view.visibility = View.VISIBLE
-    }
+@BindingAdapter("priceAmount")
+fun applyPriceFormat(view: TextView, price: Int) {
+    val decimalFormat = DecimalFormat("#,###")
+    view.text = view.context.getString(R.string.unit_currency, decimalFormat.format(price))
 }
 
-@BindingAdapter("makeStroke")
-fun makeStroke(view: TextView, text: String) {
-    view.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+@BindingAdapter("showBadgeBackground")
+fun showBadgeBackground(view: TextView, isVisible: Boolean) {
+    if (isVisible) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
+    }
 }
 
 @BindingAdapter("updateTextWithStroke")
@@ -41,8 +43,10 @@ fun updateTextWithStroke(view: TextView, body: Int?) {
 }
 
 @BindingAdapter("updateVisible")
-fun updateVisible(view: TextView, event: String?) {
-    if (event == null) {
+fun updateVisible(view: TextView, isVisible: Boolean) {
+    if (isVisible) {
+        view.visibility = View.VISIBLE
+    } else {
         view.visibility = View.GONE
     }
 }

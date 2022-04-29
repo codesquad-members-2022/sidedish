@@ -64,6 +64,7 @@
                     android:id="@+id/tab_layout_product_detail_indicator"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
+                    android:background="@android:color/transparent"
                     app:layout_constraintBottom_toBottomOf="@+id/viewpager_product_detail"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -73,8 +74,8 @@
 
                 <TextView
                     android:id="@+id/tv_product_detail_contents_title"
-                    android:layout_width="wrap_content"
                     style="@style/Subtitle1.black.20.bold"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
@@ -85,9 +86,9 @@
 
                 <TextView
                     android:id="@+id/tv_product_detail_contents_contents"
+                    style="@style/Subtitle1.black.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Subtitle1.black.16"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@{viewModel.productDetail.description}"
@@ -97,12 +98,12 @@
 
                 <TextView
                     android:id="@+id/tv_product_detail_contents_sale_price"
+                    style="@style/Subtitle1.black.18.bold"
+                    priceAmount="@{viewModel.productDetail.discountPrice}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    style="@style/Subtitle1.black.18.bold"
-                    android:text="@{String.valueOf(viewModel.productDetail.discountPrice) + '원'}"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -111,12 +112,11 @@
 
                 <TextView
                     android:id="@+id/tv_product_detail_contents_original_price"
-                    makeStroke="@{String.valueOf(viewModel.productDetail.price) + '원'}"
+                    priceAmount="@{viewModel.productDetail.price}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{String.valueOf(viewModel.productDetail.price) + '원'}"
                     app:layout_constraintStart_toEndOf="@id/tv_product_detail_contents_sale_price"
                     app:layout_constraintTop_toBottomOf="@+id/tv_product_detail_contents_contents"
                     tools:text="15,800원" />
@@ -124,7 +124,7 @@
                 <TextView
                     android:id="@+id/tv_product_detail_contents_badge"
                     style="@style/Subtitle2.white.12.bold"
-                    showBadgeBackground="@{viewModel.productDetail.eventInfo}"
+                    showBadgeBackground="@{viewModel.productDetail.eventInfo != null}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -284,11 +284,11 @@
                 <TextView
                     android:id="@+id/tv_total_price"
                     style="@style/Headline.black.500"
+                    priceAmount="@{viewModel.productDetail.discountPrice * viewModel.quantity}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{String.valueOf(viewModel.productDetail.discountPrice * viewModel.quantity)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -327,10 +327,13 @@
                 <ImageView
                     android:id="@+id/iv_product_detail_contents_image"
                     updateImage="@{viewModel.detailImage.get(0).imageURL}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginEnd="16dp"
                     android:contentDescription="@string/label_iv_product_detail_image"
+                    android:scaleType="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_order" />

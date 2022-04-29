@@ -12,7 +12,13 @@ object RetrofitAPI {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
-            })
+            }).addInterceptor { chain ->
+                val request = chain.request()
+                    .newBuilder()
+                    .addHeader("Content-Type", "application/json")
+                    .build()
+                chain.proceed(request)
+            }
             .build()
     }
 

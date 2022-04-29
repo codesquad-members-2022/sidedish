@@ -1,22 +1,23 @@
 package com.example.sidedish.ui
 
+import android.graphics.Paint
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sidedish.R
-import com.example.sidedish.ui.common.ViewModelFactory
 import com.example.sidedish.databinding.ActivityProductDetailBinding
 import com.example.sidedish.model.PostRequest
 import com.example.sidedish.model.Products
 import com.example.sidedish.ui.common.ButtonState
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailActivity : AppCompatActivity() {
 
-    private val viewModel: ProductDetailViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: ProductDetailViewModel by viewModels()
     private lateinit var binding: ActivityProductDetailBinding
     lateinit var products: Products
 
@@ -39,6 +40,8 @@ class ProductDetailActivity : AppCompatActivity() {
             }.attach()
         }
 
+        binding.tvProductDetailContentsOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+
         binding.ibCountPlus.setOnClickListener {
             viewModel.setQuantity(ButtonState.PLUS)
         }
@@ -55,7 +58,7 @@ class ProductDetailActivity : AppCompatActivity() {
             viewModel.postProductCount(makePostRequest())
         }
 
-        viewModel.error.observe(this) { errorMessage ->
+        viewModel.errorMessage.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
@@ -68,9 +71,13 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun makePostRequest(): PostRequest {
         return PostRequest(
             loadProductId(),
-            "abc",
-            binding.tvCount.text.toString().toInt(),
-            binding.tvTotalPrice.text.toString().toInt()
+            1234,
+            replaceString(binding.tvCount.text.toString()).toInt(),
+            replaceString(binding.tvTotalPrice.text.toString()).toInt()
         )
+    }
+    private fun replaceString(text: String): String {
+        val strWithoutWon =  text.replace("원", "")
+        return strWithoutWon.replace(",", "")
     }
 }
