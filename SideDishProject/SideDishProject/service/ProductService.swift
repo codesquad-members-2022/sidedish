@@ -15,31 +15,33 @@ protocol ProductAPIUseable{
 struct ProductService{
     let session = URLSession.shared
     func requestAPI<T: Decodable>(api: ProductAPI, decodeType: T.Type,completion: @escaping(Result<T ,ProductRepositoryError>) -> Void){
-        guard let url = api.url else { return }
+        guard let url = api.url else {
+            return completion(.failure(.invalidURL))
+        }
         var urlRequest = URLRequest(url: url)
+        
         urlRequest.httpMethod = api.method
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
-                return completion(.failure(.fetchError))
+                return completion(.failure(.notConnect))
             }
             
             guard let httpURLResponse = response as? HTTPURLResponse else {
-                return completion(.failure(.fetchError))
+                return completion(.failure(.httpResponse))
             }
             
             guard (200...299) ~= httpURLResponse.statusCode else {
-                return //completion(.failure(.fetchError(code: httpURLResponse.statusCode)))
+                return completion(.failure(.httpURLResponse))
             }
             
             guard let data = data else {
-                return completion(.failure(.fetchError))
+                return completion(.failure(.nilDataInSession))
             }
             
             guard let decodedData = try? jsonDecode(data: data, decodeType: T.self) else {
                 return completion(.failure(.notConvertdecode))
             }
-
             completion(.success(decodedData))
         }
         task.resume()
@@ -52,10 +54,6 @@ struct ProductService{
         }
         return decodeEntity
     }
-    
-    private func dtoToEntity(){
-        
-    }
 }
 
 extension ProductService: ProductAPIUseable {
@@ -63,7 +61,6 @@ extension ProductService: ProductAPIUseable {
         requestAPI(api: .categories, decodeType: [CategoryDTO].self) { result in
             switch result{
             case .success(let categories):
-                print("categories: \(categories)")
                 completion(.success(categories))
             case .failure(let error):
                 completion(.failure(error))
@@ -72,13 +69,12 @@ extension ProductService: ProductAPIUseable {
     }
     
     func getProducts(categoryId: Int, completion: @escaping (Result<[ProductDTO], ProductRepositoryError>) -> Void) {
-        requestAPI(api: .products, decodeType: [ProductDTO].self) { result in
+        requestAPI(api: .products(categoryId: categoryId), decodeType: [ProductDTO].self) { result in
             switch result{
             case .success(let products):
-                print("pruducts: \(products)")
-                print(products)
+                completion(.success(products))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Toaster
 
 final class HomeViewController: UIViewController {
     
@@ -56,10 +55,10 @@ extension HomeViewController: ProductModelDelegate{
     
     func updateAllDishes(dishes: [DishCategory : [Product]]) {
         dishCollectionDataSource.setDishes(dishes: dishes)
+        homeView.collectionViewReloadData()
     }
     
     func updateFail(error: Error) {
-        Toast(text: "error \(error)").show()
     }
 }
 

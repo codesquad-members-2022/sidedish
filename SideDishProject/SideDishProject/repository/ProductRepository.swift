@@ -5,6 +5,9 @@ enum ProductRepositoryError: Error {
     case notConnect
     case invalidURL
     case notConvertdecode
+    case httpResponse
+    case httpURLResponse
+    case nilDataInSession
 }
 
 protocol ProductRepository {
