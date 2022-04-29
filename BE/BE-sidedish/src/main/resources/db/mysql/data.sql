@@ -108,7 +108,11 @@ values
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%82%99%EC%A7%80%EC%A0%93/%E1%84%82%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%B5%E1%84%8C%E1%85%A5%E1%86%BA.jpeg", 9, "jpeg", 1),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%82%99%EC%A7%80%EC%A0%93/%E1%84%82%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%B5%E1%84%8C%E1%85%A5%E1%86%BA_2.jpeg", 9, "jpeg", 0),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EA%B3%84%EB%9E%80%EB%A7%90%EC%9D%B4/%E1%84%80%E1%85%A8%E1%84%85%E1%85%A1%E1%86%AB%E1%84%86%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%B5.jpeg", 10, "jpeg", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EA%B3%84%EB%9E%80%EB%A7%90%EC%9D%B4/%E1%84%80%E1%85%A8%E1%84%85%E1%85%A1%E1%86%AB%E1%84%86%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%B5_2.jpeg", 10, "jpeg", 0),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EA%B3%84%EB%9E%80%EB%A7%90%EC%9D%B4/%E1%84%80%E1%85%A8%E1%84%85%E1%85%A1%E1%86%AB%E1%84%86%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%B5_2.jpeg", 10, "jpeg", 0);
+
+insert into SIDEDISH_IMAGE
+( MENU_IMAGE_URL, IMAGE_MENU_ID, IMAGE_FILE_TYPE, IMAGE_DEFAULT)
+values
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4+%EC%B0%B8%EA%B9%A8%EB%AC%B4%EC%B9%A8/%E1%84%83%E1%85%A1%E1%86%B0%E1%84%80%E1%85%A1%E1%84%89%E1%85%B3%E1%86%B7%E1%84%89%E1%85%A1%E1%86%AF_%E1%84%8E%E1%85%A1%E1%86%B7%E1%84%81%E1%85%A2%E1%84%86%E1%85%AE%E1%84%8E%E1%85%B5%E1%86%B7.jpeg", 11, "jpeg", 1),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4+%EC%B0%B8%EA%B9%A8%EB%AC%B4%EC%B9%A8/%E1%84%83%E1%85%A1%E1%86%B0%E1%84%80%E1%85%A1%E1%84%89%E1%85%B3%E1%86%B7%E1%84%89%E1%85%A1%E1%86%AF_%E1%84%8E%E1%85%A1%E1%86%B7%E1%84%81%E1%85%A2%E1%84%86%E1%85%AE%E1%84%8E%E1%85%B5%E1%86%B7_2.jpeg", 11, "jpeg", 0),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%A9%94%EC%B6%94%EB%A6%AC%EC%95%8C+%EA%B0%84%EC%9E%A5%EC%A1%B0%EB%A6%BC/%E1%84%86%E1%85%A6%E1%84%8E%E1%85%AE%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A1%E1%86%AF_%E1%84%80%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8C%E1%85%A9%E1%84%85%E1%85%B5%E1%86%B7.jpeg", 12, "jpeg", 1),
@@ -128,7 +132,11 @@ values
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C/%E1%84%83%E1%85%AC%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC+%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png", 19, "jpeg", 1),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C/%E1%84%83%E1%85%AC%E1%86%AB%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2_2.jpeg", 19, "jpeg", 0),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%AF%B8%EC%97%AD+%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD/%E1%84%86%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%A8%E1%84%8B%E1%85%A9%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A2%E1%86%BC%E1%84%80%E1%85%AE%E1%86%A8.png", 20, "jpeg", 1),
-    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%AF%B8%EC%97%AD+%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD/%E1%84%86%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%A8%E1%84%82%E1%85%A2%E1%86%BC%E1%84%80%E1%85%AE%E1%86%A82.jpeg", 20, "jpeg", 0),
+    ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%AF%B8%EC%97%AD+%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD/%E1%84%86%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%A8%E1%84%82%E1%85%A2%E1%86%BC%E1%84%80%E1%85%AE%E1%86%A82.jpeg", 20, "jpeg", 0);
+
+insert into SIDEDISH_IMAGE
+( MENU_IMAGE_URL, IMAGE_MENU_ID, IMAGE_FILE_TYPE, IMAGE_DEFAULT)
+values
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C/%E1%84%83%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A2%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2.png", 21, "jpeg", 1),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C/%E1%84%83%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A2%E1%84%8D%E1%85%B5%E1%84%80%E1%85%A2_2.jpeg", 21, "jpeg", 0),
     ("https://sidedish.s3.ap-northeast-2.amazonaws.com/%EA%B0%90%EC%9E%90%EA%B5%AD/%E1%84%80%E1%85%A1%E1%86%B7%E1%84%8C%E1%85%A1%E1%84%80%E1%85%AE%E1%86%A8.jpeg", 22, "jpeg", 1),
