@@ -8,26 +8,30 @@
 import Foundation
 
 protocol ServiceProtocol {
-    func fetchData(type: BanchanType, completion: @escaping ([Banchan]) -> Void)
+    func fetchData(type: BanchanType, completion: @escaping ([Banchan]?, NetworkError?) -> Void)
     func getImage(with url: String, completion: @escaping (Data) -> Void)
 }
 
 class Service: ServiceProtocol {
     private var repository: RepositoryProtocol
-    private var banchans: [Banchan] = []
     private let imageManager = ImageManager()
 
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
 
-    func fetchData(type: BanchanType, completion: @escaping ([Banchan]) -> Void) {
-        self.repository.getProductList(by: type) { result in
-            self.banchans = result.map({ entity in
+    func fetchData(type: BanchanType, completion: @escaping ([Banchan]?, NetworkError?) -> Void) {
+        self.repository.getProductList(by: type) { result, error in
+            guard let data = result, error == nil else {
+                completion(nil, error)
+                return
+            }
+
+            let banchans = data.map({ entity in
                 return entity.toDomain(type: type)
             })
 
-            completion(self.banchans)
+            completion(banchans, nil)
         }
     }
 

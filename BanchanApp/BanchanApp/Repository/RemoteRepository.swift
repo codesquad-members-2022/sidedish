@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RepositoryProtocol {
-    func getProductList(by type: BanchanType, completion: @escaping ([Product]) -> Void)
+    func getProductList(by type: BanchanType, completion: @escaping ([Product]?, NetworkError?) -> Void)
 }
 
 class RemoteRepository: RepositoryProtocol {
@@ -22,7 +22,7 @@ class RemoteRepository: RepositoryProtocol {
         return try? URL(string: "https://" + Configuration.value(for: "ServerURL"))
     }
 
-    func getProductList(by type: BanchanType, completion: @escaping ([Product]) -> Void) {
+    func getProductList(by type: BanchanType, completion: @escaping ([Product]?, NetworkError?) -> Void) {
         guard var url = self.baseURL else {
             return
         }
@@ -34,9 +34,9 @@ class RemoteRepository: RepositoryProtocol {
         self.networkManager.fetchData(request: request, type: ProductResponse.self) { result in
             switch result {
             case .success(let products):
-                completion(products.body)
-            default:
-                print(result)
+                completion(products.body, nil)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
     }

@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct BanchanInfo {
+    let title: String
+    let description: String
+    let salePrice: String
+    let normalPrice: String?
+    let badges: [String]
+}
+
 class BanchanListViewModel {
     typealias ImageSubscriber = (Data?) -> Void
 
@@ -44,10 +52,10 @@ class BanchanListViewModel {
         return self.images[indexPath.section][indexPath.item]
     }
 
-    func getBanchanInfo(withIndexPath indexPath: IndexPath) -> (title: String, description: String, salePrice: String, normalPrice: String?, badges: [String]) {
+    func getBanchanInfo(withIndexPath indexPath: IndexPath) -> BanchanInfo {
         let model = self.getBanchan(at: indexPath)
 
-        return (
+        return BanchanInfo(
             title: model.title,
             description: model.menuDescription,
             salePrice: model.salePrice.toString(),
@@ -59,8 +67,16 @@ class BanchanListViewModel {
     // MARK: - Fetch
     func getProducts() {
         for (sectionIndex, type) in BanchanType.allCases.enumerated() {
-            self.service.fetchData(type: type) { models in
-                self.images[sectionIndex] = Array(repeating: Observable<Data?>(nil), count: models.count)
+            self.service.fetchData(type: type) { models, error in
+                guard let models = models, error == nil else {
+                    // TODO: ERROR HANDLING
+                    return
+                }
+
+                models.forEach { _ in
+                    self.images[sectionIndex].append(Observable<Data?>(nil))
+                }
+
                 self.banchans.value[sectionIndex] = models.map({ banchan in
                     return banchan
                 })
@@ -71,8 +87,10 @@ class BanchanListViewModel {
     func getBanchanImage(at indexPath: IndexPath) {
         let model = self.getBanchan(at: indexPath)
         self.service.getImage(with: model.imageUrl) { data in
-            let image = self.getImage(at: indexPath)
-            image.value = data
+            DispatchQueue.main.async {
+                let image = self.getImage(at: indexPath)
+                image.value = data
+            }
         }
     }
 }

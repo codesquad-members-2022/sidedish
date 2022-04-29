@@ -79,22 +79,22 @@ extension BanchanListViewController {
             return UICollectionViewCell()
         }
 
-        guard let (title, description, salePrice, normalPrice, badges) = self.viewModel?.getBanchanInfo(withIndexPath: indexPath) else {
+        guard let banchanInfo = self.viewModel?.getBanchanInfo(withIndexPath: indexPath) else {
             return cell
         }
 
+        // TODO: PR 질문 - 구조체 전달?
         cell.setInfoText(
-            title: title,
-            description: description,
-            salePrice: salePrice,
-            normalPrice: normalPrice,
-            badges: badges
+            title: banchanInfo.title,
+            description: banchanInfo.description,
+            salePrice: banchanInfo.salePrice,
+            normalPrice: banchanInfo.normalPrice,
+            badges: banchanInfo.badges
         )
 
-        self.viewModel?.bindImage(at: indexPath , subscriber: { data in
+        self.viewModel?.bindImage(at: indexPath, subscriber: { data in
             guard let data = data else { return }
-            let image = UIImage(data: data) ?? .placeholder
-
+            guard let image = UIImage(data: data) else { return }
             cell.setImage(image)
         })
 

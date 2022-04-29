@@ -40,9 +40,6 @@ class ImageManager {
         }
 
         let filePath = self.joinPath(base: directoryURL.path, path: (url as URL).lastPathComponent)
-
-        FileManager.default.fileExists(atPath: filePath)
-
         let fileURL = URL(fileURLWithPath: filePath)
 
         guard let imageBinaryData = try? Data(contentsOf: fileURL) else {
@@ -54,7 +51,7 @@ class ImageManager {
         return imageData
     }
 
-    func fetchImage(with url: NSURL, completion: @escaping (Data) -> Void) {
+    func fetchImage(with url: NSURL, completion: @escaping CompletionHandler) {
         if let cachedImage = getCachedImageFromMemory(url: url) {
             completion(cachedImage.data)
             return
@@ -87,12 +84,10 @@ class ImageManager {
                 let imageData = self.cacheData(key: url, value: imageBinaryData)
 
                 completions.forEach { completion in
-                    DispatchQueue.main.async {
-                        completion(imageData.data)
-                    }
+                    completion(imageData.data)
                 }
             } catch {
-                print(error)
+                print("ERROR: ", error)
             }
         }.resume()
     }
