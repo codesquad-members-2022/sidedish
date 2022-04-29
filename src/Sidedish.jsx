@@ -79,7 +79,6 @@ function TheOthersSections({ setCardHash, setClickedCard, setSelectedCardCategor
 const Wrap = styled.div({
   zIndex: '0'
 });
-
 const Main = styled.main({
   maxWidth: '1440px',
   margin: '0 auto',

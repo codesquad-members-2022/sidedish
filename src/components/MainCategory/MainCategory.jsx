@@ -16,7 +16,7 @@ export default function MainCategory({ setClickedCard, setCardHash, setSelectedC
   useEffect(() => {
     fetchCategoryData();
   }, []);
-
+  
   return (
     <Wrap>
       <Title>
