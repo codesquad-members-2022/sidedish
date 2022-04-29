@@ -12,8 +12,8 @@ function Alert({ message, hideAlert }) {
 
 const StyledAlert = styled.div`
   width: 270px;
-  background: #ffffff;
-  border: 1px solid #000000;
+  background: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.black};
   backdrop-filter: blur(81.55px);
 
   position: fixed;
@@ -28,16 +28,16 @@ const Message = styled.div`
   font-size: 16px;
   line-height: 26px;
   text-align: center;
-  color: #010101;
+  color: ${({ theme }) => theme.colors.black};
 `;
 const Button = styled.button`
   width: 100%;
   height: 44px;
-  background: #1b1b1b;
+  background: ${({ theme }) => theme.colors.black};
 
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 export default Alert;

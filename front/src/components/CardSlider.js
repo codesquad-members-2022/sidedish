@@ -1,23 +1,16 @@
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import Card from './Card';
-import { useState } from 'react';
 
 function CardSlider({ items, showModal, startCardIndex, NUMBER_OF_CARDS, width, cardSize }) {
-  const cardSizes = {
-    // 테마에서 가져오도록 변경 예정
-    large: { width: 411, height: 565 },
-    medium: { width: 302, height: 456 },
-    small: { width: 160, height: 226 },
-  };
-  const [gap, setGap] = useState((width - NUMBER_OF_CARDS * cardSizes[cardSize].width) / (NUMBER_OF_CARDS - 1));
-  // gap을 변수로 선언했을때 적용이 안되서 상태로 변경함 물어보기!
+  const theme = useTheme();
+  const gap = (width - NUMBER_OF_CARDS * theme.cardSizes[cardSize].width) / (NUMBER_OF_CARDS - 1);
   return (
     <CardSliderWrap>
-      <CardListWrap>
-        <CardList startCardIndex={startCardIndex} gap={gap} cardWidth={cardSizes[cardSize].width}>
+      <CardListWrap width={width}>
+        <CardList startCardIndex={startCardIndex} gap={gap} cardSize={cardSize}>
           {items.map((item, index) => (
-            <CardListItem>
-              <Card key={index} size={cardSize} item={item} showModal={showModal}></Card>
+            <CardListItem key={index}>
+              <Card size={cardSize} item={item} showModal={showModal}></Card>
             </CardListItem>
           ))}
         </CardList>
@@ -29,7 +22,9 @@ function CardSlider({ items, showModal, startCardIndex, NUMBER_OF_CARDS, width, 
 const CardSliderWrap = styled.div``;
 const CardList = styled.ul`
   display: flex;
-  transform: translateX(-${({ startCardIndex, gap, cardWidth }) => startCardIndex * (cardWidth + gap)}px);
+  transform: translateX(
+    -${({ theme, startCardIndex, gap, cardSize }) => startCardIndex * (theme.cardSizes[cardSize].width + gap)}px
+  );
   transition: 1s;
   gap: ${props => props.gap}px;
 `;

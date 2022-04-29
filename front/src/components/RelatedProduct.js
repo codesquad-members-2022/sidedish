@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import nextBlackBtnSrc from '../images/nextBlackBtn.svg';
 import prevBlackBtnSrc from '../images/prevBlackBtn.svg';
-import Card from './Card';
 import CardSlider from './CardSlider';
 
 const RelatedProductWrap = styled.div`

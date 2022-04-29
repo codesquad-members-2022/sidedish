@@ -12,6 +12,8 @@ const theme = {
     gray4: '#ebebeb',
     offWhite: '#f8f7f7',
     white: '#ffffff',
+    green: '#6dd028',
+    orange: '#ff8e14',
   },
 };
 
