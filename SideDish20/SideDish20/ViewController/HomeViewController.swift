@@ -15,14 +15,16 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         registerXib()
-        addSampleData()
         
         let homeViewModel = HomeViewModel()
-        print(homeViewModel)
         
         homeViewModel.onUpdated = { [weak self] in
             guard let self = self else { return }
-            self.collectionView.reloadData()
+            self.products = homeViewModel.homeSubViewModel ?? [HomeModel]()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
 
         homeViewModel.reload()
@@ -31,19 +33,6 @@ class HomeViewController: UIViewController {
     private func registerXib() {
         let nibName = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: String(describing: HomeCollectionViewCell.self))
-    }
-    
-    private func addSampleData() {
-        for _ in 1...25 {
-            let model = HomeModel(image: "img01",
-                                  name: "뜨끈한 국밥",
-                                  description: "아주 따뜻해유",
-                                  discountedPrice: "12,370원",
-                                  originalPrice: "18,380원",
-                                  specialMessage: "이벤트특가")
-            products.append(model)
-        }
-        collectionView.reloadData()
     }
 }
 

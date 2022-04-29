@@ -33,7 +33,6 @@ class DataFetchService: CommonURLManager {
                                                originalPrice: data.sPrice,
                                                specialMessage: message))
             }
-            print("ModelList", homeModelList)
             onCompleted(homeModelList) // model로 전달.
         }
     }
