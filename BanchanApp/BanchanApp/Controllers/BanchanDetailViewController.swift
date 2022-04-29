@@ -353,11 +353,9 @@ extension BanchanDetailViewController: CarouselViewDataSource {
 }
 
 extension BanchanDetailViewController: QuantityViewDelegate {
-
     func quantityViewDidChangeValue(value: Double) {
-        // TODO: Update ViewModel
         self.viewModel?.updateQuantity(value)
-        self.totalPriceLabel.text = self.viewModel?.totalPrice ?? "0원"
+        self.totalPriceLabel.price = self.viewModel?.totalPrice ?? "0원"
 
     }
 }
