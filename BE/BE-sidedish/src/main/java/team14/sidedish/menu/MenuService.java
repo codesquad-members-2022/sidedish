@@ -259,7 +259,8 @@ public class MenuService {
 	}
 
 	private void getMenu(List<MenuDto.CategoryResponse> categories, Menu.Category menuCategory) {
-		List<Menu> mainMenuInfo = menuRepository.findByCategory(menuCategory);
+		PageRequest pageable = PageRequest.of(0, 10);
+		List<Menu> mainMenuInfo = menuRepository.findByCategory(menuCategory, pageable);
 		List<MenuDto.SubCategory> mainMenus = getSubCategoryOf(mainMenuInfo);
 
 		Set<Long> mainMenuIds = getMenuIds(mainMenus);
@@ -274,7 +275,6 @@ public class MenuService {
 				mainMenus
 		));
 	}
-}
 
 	private void isValidOrderValue(OrderDto.Request request, int totalPrice, int deliveryCharge, int savedCharge) {
 		String className = this.getClass().getSimpleName();

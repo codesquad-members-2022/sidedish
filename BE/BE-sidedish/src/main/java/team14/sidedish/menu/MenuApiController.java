@@ -17,6 +17,8 @@ import team14.sidedish.common.error.Error;
 import team14.sidedish.common.error.ErrorResponse;
 import team14.sidedish.order.OrderDto;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -80,6 +82,14 @@ public class MenuApiController {
 	}
 
 	@CrossOrigin("localhost:3000")
+	@GetMapping("/more")
+	public ResponseEntity<List<MenuDto.CategoryResponse>> readCategories() {
+		List<MenuDto.CategoryResponse> responses = menuService.readMoreCategories();
+
+		return ResponseEntity.ok().body(responses);
+	}
+
+
 	@ExceptionHandler(InvalidOrderException.class)
 	public ResponseEntity<ErrorResponse> invalidOrderException(
 		InvalidOrderException exception,
@@ -88,10 +98,6 @@ public class MenuApiController {
 		ErrorResponse errorResponse = ErrorResponse.oneErrorOfFail(httpServletRequest.getRequestURI(), error);
 		log.error(ERROR_LOG.apply(httpServletRequest.getRequestURI(), error.toString()));
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-	@GetMapping("/more")
-	public ResponseEntity<List<MenuDto.CategoryResponse>> readCategories() {
-		List<MenuDto.CategoryResponse> responses = menuService.readMoreCategories();
 
-		return ResponseEntity.ok().body(responses);
 	}
 }
