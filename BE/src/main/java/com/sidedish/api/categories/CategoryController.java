@@ -40,7 +40,7 @@ public class CategoryController {
         });
     }
 
-    @GetMapping("/{type}/detail")
+    @GetMapping("/{detailType}/detail")
     public List<ResponseItemDto> getItemByDetailType(@PathVariable String detailType) {
         List<Item> findItems = itemService.findItemByDetailType(detailType);
         return findItems.stream()
