@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.NavHostFragment
 import com.example.todo.sidedish.databinding.FragmentOrderCompleteDialogBinding
 
 class OrderCompleteDialogFragment : DialogFragment() {
@@ -25,6 +26,9 @@ class OrderCompleteDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btnOrder.setOnClickListener {
             dismiss()
+            NavHostFragment.findNavController(this).navigateUp()
         }
     }
+
+
 }

@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
+import com.example.todo.sidedish.common.LruMemoryCache
 import com.example.todo.sidedish.databinding.ItemHeaderBinding
 import com.example.todo.sidedish.databinding.ItemMenuBinding
 import com.example.todo.sidedish.domain.model.DishType
@@ -98,10 +99,7 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
     inner class ItemViewHolder(private val binding: ItemMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
           
-        fun bind(
-            item: Menu,
-            itemClick: (hash: String, title: String, badges: List<String>?) -> Unit
-        ) {
+        fun bind(item: Menu, itemClick: (hash: String, title: String, badges: List<String>?) -> Unit) {
             binding.item = item
             binding.root.setOnClickListener {
                 itemClick.invoke(item.detailHash, item.title, item.badge)
@@ -111,16 +109,14 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
         }
 
         private fun getImage(imageUri: String) {
-            var bmp = memoryCache.getImageFromWarehouse(imageUri)
+            var bmp = LruMemoryCache.getImageFromWarehouse(imageUri)
             if (bmp != null) {
-                println("memoryCache hit")
                 binding.ivMenu.setImageBitmap(bmp)
             } else {
                 val loadBitmapFromDisk = getBitmapFromCache(imageUri)
                 if (loadBitmapFromDisk != null) {
-                    println("diskCache hit")
                     binding.ivMenu.setImageBitmap(loadBitmapFromDisk)
-                    memoryCache.addImageToWareHouse(imageUri, loadBitmapFromDisk)
+                    LruMemoryCache.addImageToWareHouse(imageUri, loadBitmapFromDisk)
                 } else {
                     Glide.with(binding.ivMenu)
                         .asBitmap()
@@ -129,10 +125,7 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
                         .skipMemoryCache(true)
                         .into(object :
                             CustomTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                            override fun onResourceReady(
-                                resource: Bitmap,
-                                transition: Transition<in Bitmap>?
-                            ) {
+                            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                                 binding.ivMenu.setImageBitmap(resource)
                                 saveBitmapToCache(resource, imageUri)
                             }

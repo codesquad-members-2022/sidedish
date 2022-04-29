@@ -4,14 +4,12 @@ import android.graphics.Bitmap
 import android.util.Log
 import android.util.LruCache
 
-class LruMemoryCache {
+object LruMemoryCache {
    lateinit var imageWarehouse: LruCache<String,Bitmap>
 
     fun initializeCache(){
         val maxMemory= (Runtime.getRuntime().maxMemory()/1024)
         val cacheSize = (maxMemory/8).toInt()
-        Log.d("Cache", "$cacheSize")
-
         imageWarehouse = object : LruCache<String, Bitmap>(cacheSize) {
             override fun sizeOf(key: String?, value: Bitmap): Int {
                 val bitmapByteCount = value.rowBytes * value.height

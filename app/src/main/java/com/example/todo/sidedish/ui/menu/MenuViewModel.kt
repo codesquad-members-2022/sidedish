@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todo.sidedish.common.Constants
+import com.example.todo.sidedish.common.LruMemoryCache
 import com.example.todo.sidedish.data.remote.OnBanApi
 import com.example.todo.sidedish.domain.Repository
 import com.example.todo.sidedish.domain.model.DishType
@@ -36,6 +37,7 @@ class MenuViewModel @Inject constructor(
         }
 
     init {
+        LruMemoryCache.initializeCache()
         getMenus()
     }
 
