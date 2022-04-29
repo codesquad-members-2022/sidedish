@@ -85,7 +85,7 @@ class CarouselView: UIView {
 
         guard count > 1 else { return }
 
-        self.resetItems()
+		self.stackView.clearSubviews()
 
         for index in 0..<count {
             let item = self.delegate?.carouselView(self, index: index) ?? itemView.init()
@@ -95,13 +95,6 @@ class CarouselView: UIView {
         }
 
         self.pageControl.numberOfPages = count
-    }
-
-    private func resetItems() {
-        self.stackView.arrangedSubviews.forEach { view in
-            self.stackView.removeArrangedSubview(view)
-            view.removeFromSuperview()
-        }
     }
 
     private func handleOnChangePageIndex(_ action: UIAction) {

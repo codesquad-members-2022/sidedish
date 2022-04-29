@@ -11,7 +11,7 @@ class ProductDetailCell: UICollectionViewCell {
 
 	static let identifier = "ProductDetailCell"
 
-    private let image: UIImageView = UIImageView()
+    private let imageView: UIImageView = UIImageView()
     private let info: ProductDetailView = ProductDetailView()
 
     override init(frame: CGRect) {
@@ -24,28 +24,45 @@ class ProductDetailCell: UICollectionViewCell {
         setup()
     }
 
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		self.imageView.image = UIImage(systemName: "cart.circle")
+	}
+
     private func setup() {
-        image.layer.masksToBounds = true
-        image.layer.cornerRadius = 10
-        image.image = UIImage(systemName: "cart.circle")
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.image = UIImage(systemName: "cart.circle")
 
-        let stackView: UIStackView = UIStackView(arrangedSubviews: [image, info])
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        self.addSubview(stackView)
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+		info.translatesAutoresizingMaskIntoConstraints = false
 
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        image.translatesAutoresizingMaskIntoConstraints = false
-        info.translatesAutoresizingMaskIntoConstraints = false
+		self.contentView.addSubview(imageView)
+		self.contentView.addSubview(info)
 
-        NSLayoutConstraint.activate([
-            image.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
-            image.widthAnchor.constraint(equalTo: image.heightAnchor),
-            info.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 13),
-            info.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -13)
-        ])
+		imageView.anchor(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, leading: self.contentView.leadingAnchor)
+
+		imageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+		imageView.setWidth(toAnchor: imageView.heightAnchor)
+
+		info.anchor(leading: imageView.trailingAnchor, paddingLeft: 8)
+		info.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.trailingAnchor, constant: -16).isActive = true
+		info.centerY(inView: self.contentView)
     }
 
+	func setInfoText(title: String, description: String, salePrice: String, normalPrice: String?, badges: [String]) {
+		self.info.setTitleText(title)
+		self.info.setDescriptionText(description)
+		self.info.setSalePrice(salePrice)
+
+		if let normalPrice = normalPrice {
+			self.info.setNormalPrice(normalPrice)
+		}
+
+		self.info.setBadgeList(badges)
+	}
+
+	func setImage(_ image: UIImage) {
+		self.imageView.image = image
+	}
 }

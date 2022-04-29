@@ -11,36 +11,33 @@ class PriceTag: UILabel {
 
     var tagName: String = "총 주문금액" {
         didSet {
-            self.configureUI()
+            self.configureLabel()
         }
     }
 
     var price: String = "0원" {
         didSet {
-            self.configureUI()
+            self.configureLabel()
         }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configureUI()
+        self.configureLabel()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.configureUI()
+        self.configureLabel()
     }
 
-    private func configureUI() {
+    private func configureLabel() {
         self.textAlignment = .right
 
         let padding = NSTextAttachment()
         padding.bounds.size = CGSize(width: 24, height: 0)
 
-		let titleFontSize: CGFloat = 18
-		let priceFontSize: CGFloat = 32
-
-		let titleFont = UIFont.systemFont(ofSize: titleFontSize, weight: .semibold)
+		let titleFont: UIFont = .textMediumBold
 
         let titleAttribute: [NSAttributedString.Key: Any] = [
 			.foregroundColor: .gray2 ?? UIColor.black,
@@ -50,7 +47,7 @@ class PriceTag: UILabel {
 
         let priceAttribute: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black,
-            .font: UIFont.systemFont(ofSize: priceFontSize, weight: .semibold)
+			.font: UIFont.textLargeBold
         ]
 
         let attributedText = NSMutableAttributedString(string: self.tagName, attributes: titleAttribute)

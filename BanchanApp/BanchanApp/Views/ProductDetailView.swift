@@ -14,7 +14,11 @@ class ProductDetailView: UIView {
     private let normalPrice: UILabel? = UILabel()
     private let salePrice: UILabel = UILabel()
     private let badges: UIStackView = UIStackView()
-    private let badgeList: [String] = ["런칭특가", "이벤트특가"]
+	private var badgeList: [String] = [] {
+		didSet {
+			self.configureBadges()
+		}
+	}
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,26 +30,25 @@ class ProductDetailView: UIView {
         setup()
     }
 
-    private func setup() {
-        title.applySemiBold()
-        menuDescription.applyColorGray()
-        salePrice.applySemiBold()
-        normalPrice?.applyColorGray()
-        normalPrice?.applyStrikethoroughStyle()
+	private func configureBadges() {
+		if badges.subviews.count != .zero {
+			badges.clearSubviews()
+		}
 
-        title.text = "오리 주물럭_반조리"
-        menuDescription.text = "감칠맛 나는 매콤한 양념"
-        normalPrice?.text = "12,640원"
-        salePrice.text = "15,800원"
-        badgeList.forEach {
+		badgeList.forEach {
 			let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
-            badge.text = $0
-            badges.addArrangedSubview(badge)
-        }
+			badge.text = $0
+			badges.addArrangedSubview(badge)
+		}
+	}
 
-        badges.addArrangedSubview(BadgeLabel(color: .systemBackground))
+    private func setup() {
+		menuDescription.textColor = .gray2
+		normalPrice?.textColor = .gray2
+
         badges.axis = .horizontal
         badges.spacing = 5
+		badges.alignment = .center
         badges.distribution = .fillProportionally
 
         let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
@@ -60,7 +63,9 @@ class ProductDetailView: UIView {
 
         let stackView: UIStackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+		stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = 5
 
         self.addSubview(stackView)
 
@@ -74,4 +79,28 @@ class ProductDetailView: UIView {
         ])
     }
 
+	func setTitleText(_ text: String, font: UIFont = .textSmallBold) {
+		self.title.text = text
+		self.title.font = font
+	}
+
+	func setDescriptionText(_ text: String, font: UIFont = .textSmallRegular) {
+		self.menuDescription.text = text
+		self.menuDescription.font = font
+	}
+
+	func setSalePrice(_ text: String, font: UIFont = .textSmallBold) {
+		self.salePrice.text = text
+		self.salePrice.font = font
+	}
+
+	func setNormalPrice(_ text: String, font: UIFont = .textSmallRegular) {
+		self.normalPrice?.text = text
+		self.normalPrice?.font = font
+		self.normalPrice?.applyStrikethoroughStyle()
+	}
+
+	func setBadgeList(_ list: [String]) {
+		self.badgeList = list
+	}
 }

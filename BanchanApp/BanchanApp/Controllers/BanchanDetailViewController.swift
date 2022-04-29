@@ -16,14 +16,18 @@ class BanchanDetailViewController: UIViewController {
     // MARK: - Container View(Vertical Scroll View)
     private lazy var containerScrollView: UIScrollView = {
         let scroll = UIScrollView()
+
         scroll.showsHorizontalScrollIndicator = false
+
         return scroll
     }()
 
 	private lazy var productDescriptionImageStack: UIStackView = {
 		let stack = UIStackView()
+
 		stack.axis = .vertical
 		stack.distribution = .fillProportionally
+
 		return stack
 	}()
 
@@ -34,16 +38,11 @@ class BanchanDetailViewController: UIViewController {
     // MARK: - Order View
     private lazy var orderView = UIView()
 
-    private lazy var productDetailStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 8
-        stack.distribution = .fillEqually
-        return stack
-    }()
+	private lazy var productDetailView = ProductDetailView()
 
     private lazy var deliveryInformationContainerStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .horizontal
         stack.spacing = 16
         stack.distribution = .fillProportionally
@@ -53,6 +52,7 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var deliveryInformationCategoryStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .vertical
         stack.spacing = 16
         stack.distribution = .fillEqually
@@ -62,6 +62,7 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var deliveryInformationCategoryValueStack: UIStackView = {
         let stack = UIStackView()
+
         stack.axis = .vertical
         stack.spacing = 16
         stack.distribution = .fillEqually
@@ -71,22 +72,36 @@ class BanchanDetailViewController: UIViewController {
 
     private lazy var pointLabel: UILabel = {
         let label = UILabel()
+
+		label.font = .textSmallRegular
+		label.textColor = .gray1
+
         return label
     }()
 
     private lazy var deliveryInformationLabel: UILabel = {
         let label = UILabel()
+
+		label.font = .textSmallRegular
+		label.textColor = .gray1
+
         return label
     }()
 
     private lazy var deliveryFeeLabel: UILabel = {
         let label = UILabel()
+
+		label.font = .textSmallRegular
+		label.textColor = .gray1
+
         return label
     }()
 
     private lazy var totalPriceLabel: PriceTag = {
         let label = PriceTag()
+
         label.price = "15,000원"
+
         return label
     }()
 
@@ -99,6 +114,7 @@ class BanchanDetailViewController: UIViewController {
             primaryAction: UIAction(handler: self.handleOnTapOrderButton)
         )
 
+		button.titleLabel?.font = .textMediumBold
         button.setTitle("주문하기", for: .normal)
 
         return button
@@ -155,7 +171,7 @@ class BanchanDetailViewController: UIViewController {
             paddingRight: 16
         )
 
-        self.configureProductDescription()
+        self.configureProductDetailView()
         self.configureDeliveryInformationView()
         self.configureQuantityView()
         self.configureTotalPriceLabel()
@@ -163,31 +179,24 @@ class BanchanDetailViewController: UIViewController {
     }
 
     // MARK: - OrderView Configuration
-    private func configureProductDescription() {
-        self.orderView.addSubview(self.productDetailStack)
-        self.productDetailStack.anchor(
-            top: self.orderView.topAnchor,
-            leading: self.orderView.leadingAnchor,
-            trailing: self.orderView.trailingAnchor
-        )
+    private func configureProductDetailView() {
+		self.orderView.addSubview(self.productDetailView)
+		self.productDetailView.anchor(
+			top: self.orderView.topAnchor,
+			leading: self.orderView.leadingAnchor,
+			trailing: self.orderView.trailingAnchor
+		)
 
-        let productTitleLabel = UILabel()
-        let productSubtitleLabel = UILabel()
-        let productPriceLabel = UILabel()
-
-        productTitleLabel.text = "오리 주물럭 반조리"
-        productSubtitleLabel.text = "감칠맛 나는 매콤한 양념"
-        productPriceLabel.text = "12,640원 15,800원"
-
-        self.productDetailStack.addArrangedSubview(productTitleLabel)
-        self.productDetailStack.addArrangedSubview(productSubtitleLabel)
-        self.productDetailStack.addArrangedSubview(productPriceLabel)
+		self.productDetailView.setTitleText("오리 주물럭_반조리", font: .textLargeBold)
+		self.productDetailView.setDescriptionText("감칠맛 나는 매콤한 양념", font: .textMediumRegular)
+		self.productDetailView.setNormalPrice("15,800원", font: .textMediumRegular)
+		self.productDetailView.setSalePrice("12,640원", font: .textMediumBold)
     }
 
     private func configureDeliveryInformationView() {
         self.orderView.addSubview(self.deliveryInformationContainerStack)
         self.deliveryInformationContainerStack.anchor(
-            top: self.productDetailStack.bottomAnchor,
+            top: self.productDetailView.bottomAnchor,
             leading: self.orderView.leadingAnchor,
             trailing: self.orderView.trailingAnchor,
             paddingTop: 24
@@ -201,8 +210,16 @@ class BanchanDetailViewController: UIViewController {
         let deliveryFeeCategory = UILabel()
 
         pointCategory.text = "적립금"
+		pointCategory.font = .textSmallRegular
+		pointCategory.textColor = .gray2
+
         deliveryInformationCategory.text = "배송정보"
+		deliveryInformationCategory.font = .textSmallRegular
+		deliveryInformationCategory.textColor = .gray2
+
         deliveryFeeCategory.text = "배송비"
+		deliveryFeeCategory.font = .textSmallRegular
+		deliveryFeeCategory.textColor = .gray2
 
         self.deliveryInformationCategoryStack.addArrangedSubview(pointCategory)
         self.deliveryInformationCategoryStack.addArrangedSubview(deliveryInformationCategory)

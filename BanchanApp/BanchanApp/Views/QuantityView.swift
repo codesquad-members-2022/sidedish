@@ -23,12 +23,16 @@ class QuantityView: UIView {
     private  lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "수량"
+		label.font = .textSmallRegular
+		label.textColor = .gray2
         return label
     }()
 
     private  lazy var quantityLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
+		label.font = .textMediumBold
+		label.textColor = .gray1
         return label
     }()
 

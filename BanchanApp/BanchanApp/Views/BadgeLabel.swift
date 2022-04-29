@@ -8,6 +8,7 @@
 import UIKit
 
 class BadgeLabel: UILabel {
+	static let minimumScale = 0.5
 
 	private var padding = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
 
@@ -17,13 +18,15 @@ class BadgeLabel: UILabel {
 	}
 
 	private func setupStyle(with color: UIColor) {
-		self.font = .systemFont(ofSize: 12, weight: .semibold)
+		self.font = .badgeFont
 		self.textColor = .systemBackground
 		self.backgroundColor = color
 		self.textAlignment = .center
 		self.layer.masksToBounds = true
 		self.layer.cornerCurve = .continuous
-		self.setCornerRadius(ratio: 1.7)
+		self.adjustsFontSizeToFitWidth = true
+		self.minimumScaleFactor = Self.minimumScale
+		self.setCornerRadius(ratio: 1.5)
 	}
 
 	override func drawText(in rect: CGRect) {

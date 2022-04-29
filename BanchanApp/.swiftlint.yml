@@ -3,6 +3,7 @@ disabled_rules: # 실행에서 제외할 룰 식별자들
   - comma
   - control_statement
   - line_length
+  - large_tuple
 opt_in_rules: # 일부 룰은 옵트 인 형태로 제공
   - empty_count
   - missing_docs
@@ -33,7 +34,7 @@ file_length:
 # 네이밍 룰은 경고/에러에 min_length와 max_length를 각각 설정 가능
 # 제외할 이름을 설정할 수 있음
 type_name:
-  min_length: 4 # 경고에만 적용됨
+  min_length: 3 # 경고에만 적용됨
   max_length: # 경고와 에러 둘 다 적용
     warning: 40
     error: 50
