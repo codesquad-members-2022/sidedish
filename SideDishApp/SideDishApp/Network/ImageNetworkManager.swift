@@ -8,7 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
-//TODO: - NetworkManagerable 프로토콜 채택할 예정
+// TODO: - NetworkManagerable 프로토콜 채택할 예정
 final class ImageNetworkManager {
     private let cache = NSCache<NSString, UIImage>()
     
@@ -20,68 +20,51 @@ final class ImageNetworkManager {
         self.session = session
     }
     
-    
     private func findImageInMemoryCache(from url: URL) -> UIImage? {
-        
         let cacheKey = NSString(string: url.lastPathComponent)
-        
         let cachedImage = self.cache.object(forKey: cacheKey)
-        print("key", cacheKey)
-        print("image", cachedImage)
-        
         return cachedImage
     }
     
     private func findImageInDiskCache(from url: URL) -> UIImage? {
-            //2. Memory Cache에 없다 -> diskCache를 찾아봄
-            let fileManager = FileManager()
-            
-            
-            //Cache가 저장되는 path(Disk Caching)
-            guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return nil }
-//            print("캐쉬가 저장되는 폴더 path(String): \(path)")
-            
-            var filePath = URL(fileURLWithPath: path)
-//            print("폴더 Path에서 file을 찾을 수 있는 Path(URL): \(filePath)")
+        let fileManager = FileManager()
+        guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return nil }
+        var filePath = URL(fileURLWithPath: path)
+        filePath.appendPathComponent(url.lastPathComponent)
         
-            filePath.appendPathComponent(url.lastPathComponent)
-//            print("폴더 Path에서 특정 file을 찾기 위한 PathComponent을 붙임.\(filePath)")
-//            print("다시 파일을 찾을때 fileManger에서 쓸 Path: \(filePath.path)")
-        
-            //disk에서 cache된 파일이 있다.
-            //3. Cache된 데이터를 이용해서 이미지를 띄운다.
-            //4. 다음을 위해서 memoryCache에 넣는다.
-        
-            if fileManager.fileExists(atPath: filePath.path) {
-                guard let imageData = try? Data(contentsOf: filePath) else { return nil } //원격 서버 X , 내부파일
-//                print("1", filePath)
-                return UIImage(data: imageData)
+        if fileManager.fileExists(atPath: filePath.path) {
+            guard let imageData = try? Data(contentsOf: filePath) else { return nil }
+            return UIImage(data: imageData)
         }
         return nil
     }
     
     func request(endpoint: Endpointable, completion: @escaping((Result<UIImage?, NetworkError>) -> Void)) {
         
+        // TODO: - 데모를 위해 콘솔에 print함. 제거할 예정
+        guard let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
+        print(cacheDirectoryPath)
+        
         guard let url = endpoint.getURL() else {
             return completion(.failure(.invalidURL))
         }
+        
         // CheckMemory
         if let image = findImageInMemoryCache(from: url) {
+            print("Memory Cache HIT! image: \(image)")
             return completion(.success(image))
         }
         
         // CheckDisk
         if let image = findImageInDiskCache(from: url) {
-//            print("cachKey", url.lastPathComponent as NSString)
-//            print()
-//            print("cachedVale", image)
-            
+            print("Disk Cache HIT! image: \(image)")
             self.cache.setObject(image, forKey: url.lastPathComponent as NSString)
             return completion(.success(image))
         }
         
         // Request to Server
         var urlRequest = URLRequest(url: url)
+        
         // HTTP Method
         let httpMethod = endpoint.getHttpMethod().description
         urlRequest.httpMethod = httpMethod
@@ -89,7 +72,7 @@ final class ImageNetworkManager {
         // HTTP header
         let headers = endpoint.getHeaders()
         headers?.forEach { urlRequest.setValue($1 as? String, forHTTPHeaderField: $0) }
-
+        
         dataTask(urlRequest: urlRequest, completion: completion)
     }
     
@@ -115,27 +98,26 @@ final class ImageNetworkManager {
             guard 200..<300 ~= statusCode else {
                 return completion(.failure(.invalidResponse(statusCode: statusCode)))
             }
-            //DownLoadImage and move to FinalDestination
+            
+            // DownLoad Image and move to FinalDestination
             let fileManager = FileManager.default
             let tempPath = location?.path ?? ""
             
             guard let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
-//            print("2", cacheDirectoryPath)
             
             let imageName = urlRequest.url?.lastPathComponent ?? ""
             
-            let finalPath = cacheDirectoryPath + "/" + imageName // 단순경로 path             ==  filepath.path
+            let finalPath = cacheDirectoryPath + "/" + imageName
             
             try? fileManager.moveItem(atPath: tempPath, toPath: finalPath)
             
-            var filePath = URL(fileURLWithPath: cacheDirectoryPath) //file + dePath
+            var filePath = URL(fileURLWithPath: cacheDirectoryPath)
             
-            filePath.appendPathComponent(imageName) //file + dePath + imageName
+            filePath.appendPathComponent(imageName)
             
-//            print("3" , filePath)
             if fileManager.fileExists(atPath: finalPath) {
                 guard let imageData = try? Data(contentsOf: filePath),
-                      let image = UIImage(data: imageData) else { return } //원격 서버 X , 내부파일
+                      let image = UIImage(data: imageData) else { return }
                 self.cache.setObject(image, forKey: imageName as NSString)
                 return completion(.success(image))
             }
@@ -143,12 +125,10 @@ final class ImageNetworkManager {
         }
         dataTask.resume()
     }
-
-    //TODO: - 프로토콜 extension으로 뺄 예정
+    
+    // TODO: - 프로토콜 extension으로 뺄 예정
     private func getStatusCode(response: URLResponse?) -> Int? {
         guard let httpResponse = response as? HTTPURLResponse else { return nil }
         return httpResponse.statusCode
     }
-    
 }
-
