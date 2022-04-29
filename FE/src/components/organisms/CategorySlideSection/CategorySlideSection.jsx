@@ -15,18 +15,17 @@ export function CategorySlideSection({
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/items/event?${dataName}Id=${dataID}`;
-    // fetchData(DATA_URL).then((data) => setCards(data));
-    const totalData = require(`../../../${dataName}.json`);
-    const categoryData = totalData[dataID];
-    setData(categoryData);
+    const DATA_URL = `http://3.39.7.35:8080/api/items?${dataName}Id=${dataID}`;
+    fetchData(DATA_URL).then((data) => {
+      setData(data);
+    });
     setPageIndex(0);
-    setMaxIndex((categoryData.length / 4) >> 0);
   }, [dataID]);
-
   useEffect(() => {
+    setMaxIndex((data.length / 4) >> 0);
     const startIndex = 0 + pageIndex * 4;
     const selectedData = data.slice(startIndex, startIndex + 4);
+    console.log(selectedData);
     setCards(selectedData);
   }, [pageIndex]);
 

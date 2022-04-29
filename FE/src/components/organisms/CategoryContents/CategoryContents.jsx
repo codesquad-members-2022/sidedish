@@ -1,6 +1,5 @@
 import { imageSize } from "@/constant/constant";
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CategoryButtonLeft } from "@/components/atoms/Button/CategoryButtonLeft";
 import { CategoryButtonRight } from "@/components/atoms/Button/CategoryButtonRight";
 import { CategorySlideSection } from "../CategorySlideSection/CategorySlideSection";

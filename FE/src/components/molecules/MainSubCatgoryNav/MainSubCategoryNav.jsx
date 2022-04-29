@@ -1,6 +1,6 @@
 import { navCategory } from "@/constant/constant.js";
-import { StyledHeaderMainCategory } from "../../atoms/List/HeaderMainCategory.styled";
-import { StyledHeaderSubCategory } from "../../atoms/List/HeaderSubCategory.styled";
+import { StyledHeaderMainCategory } from "@/components/atoms/List/HeaderMainCategory.styled";
+import { StyledHeaderSubCategory } from "@/components/atoms/List/HeaderSubCategory.styled";
 
 export function MainSubCategoryNav({ className, setIsShown }) {
   const mainSubNav = navCategory.map(

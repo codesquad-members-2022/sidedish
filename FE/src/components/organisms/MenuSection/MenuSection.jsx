@@ -7,14 +7,9 @@ export function MenuSection({ dataName, dataID, size }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // const DATA_URL = `https://1913e3dd-462b-48a9-899e-03457e73c38c.mock.pstmn.io/api/items/event?${dataName}Id=${dataID}`;
-    // const totalData = fetch(URL);
-    const totalData = require(`../../../${dataName}.json`);
-    const data = totalData[dataID];
-    setCards(data);
-    // fetchData(DATA_URL).then((data) => setCards(data));
+    const DATA_URL = `http://3.39.7.35:8080/api/items/event?${dataName}Id=${dataID}`;
+    fetchData(DATA_URL).then((data) => setCards(data));
   }, [dataID]);
-
   return (
     <section className="menu-section">
       {cards.map((card, index) => (

@@ -6,17 +6,6 @@
   display: flex;
 }
 
-.side-category {
-  width: 900px;
-  height: 300px;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-}
-
-.menu-detail__image-box {
-}
-
 .menu-detail__description {
   width: 400px;
   height: 210px;
@@ -47,9 +36,6 @@
 .menu-detail__menu-prices > .menu-article__price-now {
   font-size: 20px;
   margin-right: 10px;
-}
-
-.menu-detail__menu-prices {
 }
 
 .menu-detail__additional-info {

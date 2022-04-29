@@ -1,7 +1,6 @@
 import "./MenuDetailSection.scss";
 import FigureWithSize from "@/components/atoms/Figure/FigureWithSize.jsx";
 import { MenuLabel } from "@/components/atoms/Label/MenuLabel.jsx";
-import { Figure } from "@/components/atoms/Figure/Figure.jsx";
 import minus from "@/assets/image/minus.svg";
 import plus from "@/assets/image/plus.svg";
 import order from "@/assets/image/order.svg";
@@ -16,22 +15,21 @@ export default function MenuDetailSection({ card }) {
       <section className="menu-detail">
         <div className="menu-detail__image-box">
           <FigureWithSize
-            src={card.main_image}
-            alt={card.item_name}
+            src={card.mainImage}
+            alt={card.itemName}
             size="392px"
             className="menu-detail__main-image"
           />
           <div className="menu-detail__sub-images">
             <FigureWithSize
-              //   TODO: main_image를 detail_images로 변경
-              src={card.main_image}
-              alt={card.item_name}
+              src={card.mainImage}
+              alt={card.itemName}
               size="72px"
               className="menu-detail__sub-image"
             />
             <FigureWithSize
-              src={card.main_image}
-              alt={card.item_name}
+              src={card.mainImage}
+              alt={card.itemName}
               size="72px"
               className="menu-detail__sub-image"
             />
@@ -39,19 +37,19 @@ export default function MenuDetailSection({ card }) {
         </div>
         <div className="menu-detail__description">
           <div className="menu-detail__menu-info">
-            <div className="menu-detail__menu-title">{card.item_name}</div>
-            <MenuLabel labelID={card.label_id} />
+            <div className="menu-detail__menu-title">{card.itemName}</div>
+            <MenuLabel labelID={card.labelId} />
             <MenuPrices
               className="menu-detail__menu-prices"
-              discountPrice={card.dc_price}
-              originalPrice={card.or_price}
+              discountPrice={card.discountPrice}
+              originalPrice={card.originalPrice}
             />
           </div>
           <div className="menu-detail__additional-info">
             <div className="menu-detail__additional-content">
               <label className="menu-detail__additional-label">적립금</label>
               <span className="menu-detail__additional-text">
-                {calculateMileage(card.dc_price, card.or_price)}
+                {calculateMileage(card.discountPrice, card.originalPrice)}
               </span>
             </div>
             <div className="menu-detail__additional-content">
@@ -82,8 +80,8 @@ export default function MenuDetailSection({ card }) {
                 </span>
                 <figure
                   onClick={() => {
-                    //   TODO: API card.stock으로 변경
-                    if (orderQuantity < 10) setOrderQuantity(orderQuantity + 1);
+                    if (orderQuantity < card.stock)
+                      setOrderQuantity(orderQuantity + 1);
                   }}
                 >
                   <img src={plus} alt="plus" />
@@ -93,8 +91,8 @@ export default function MenuDetailSection({ card }) {
                 <span className="menu-detail__order-text">총 주문금액</span>
                 <span className="menu-detail__order-total">
                   {calculateTotalPrice(
-                    card.dc_price,
-                    card.or_price,
+                    card.discountPrice,
+                    card.originalPrice,
                     orderQuantity
                   )}
                 </span>
@@ -106,17 +104,16 @@ export default function MenuDetailSection({ card }) {
           </div>
         </div>
       </section>
-      <section className="side-category"></section>
     </>
   );
 }
 
-function calculateMileage(dc_price, or_price) {
-  if (dc_price) return (dc_price * 0.01) >> 0;
-  return (or_price * 0.01) >> 0;
+function calculateMileage(discountprice, originalPrice) {
+  if (discountprice) return (discountprice * 0.01) >> 0;
+  return (originalPrice * 0.01) >> 0;
 }
 
-function calculateTotalPrice(dc_price, or_price, quantity) {
-  if (dc_price) return dc_price * quantity;
-  return or_price * quantity;
+function calculateTotalPrice(discountprice, originalPrice, quantity) {
+  if (discountprice) return discountprice * quantity;
+  return originalPrice * quantity;
 }
