@@ -15,7 +15,6 @@ const Category = ({ dish, category, display }) => {
         <Header>{TITLE[category]}</Header>
         <Slider
           data={dish}
-          key={category}
           cardSize={theme.cardSize.medium}
           numOfCards={4}
           gap={theme.cardSize.gap}

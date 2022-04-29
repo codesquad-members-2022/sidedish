@@ -4,6 +4,7 @@ import { FlexMarginCenter } from "../styled-components/utils.js";
 
 const CardList = ({
   innerRef,
+  tabKey,
   cards,
   tabNumber = 0,
   index = 0,

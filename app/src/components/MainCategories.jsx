@@ -17,11 +17,10 @@ const MainCategories = ({ data }) => {
   return (
     <>
       {data.map((category, index) => (
-        <>
+        <CategoryWrapper key={category.key}>
           <Category
             dish={category.data}
             category={category.key}
-            key={category.key}
             display={index === 0 ? "block" : isFold ? "none" : "block"}
           />
           <Horizon
@@ -29,7 +28,7 @@ const MainCategories = ({ data }) => {
               index === data.length - 1 ? "none" : isFold ? "none" : "block"
             }
           />
-        </>
+        </CategoryWrapper>
       ))}
       <Wrapper>
         <MoreBtn onClick={handleClickMoreBtn}>모든 카테고리 보기</MoreBtn>
@@ -37,6 +36,8 @@ const MainCategories = ({ data }) => {
     </>
   );
 };
+
+const CategoryWrapper = styled.div``;
 
 const Wrapper = styled.div`
   text-align: center;

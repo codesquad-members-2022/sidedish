@@ -12,7 +12,7 @@ const useFirstRender = () => {
   return firstRender.current;
 };
 
-const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
+const Slider = ({ data, cardSize, numOfCards, gap }) => {
   const CARD_SIZE = cardSize.replace(/[a-zA-Z]/g, "") * 10;
   const GAP = gap.replace(/[a-zA-Z]/g, "") * 10;
 
@@ -77,10 +77,8 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
       <Wrapper>
         <CardList
           innerRef={cardList}
-          key={key}
           cards={data}
           cardSize={cardSize}
-          numOfCards={4}
           gap={gap}
         />
       </Wrapper>

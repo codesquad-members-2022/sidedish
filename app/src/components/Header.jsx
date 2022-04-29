@@ -31,22 +31,18 @@ const GNB = () => {
     <Gnb>
       <ul className="gnb">
         {GNBTEXTS.map((e) => (
-          <>
-            <li className="gnb-item">
-              <span>
-                <a href="#">{e.gnb}</a>
-                <ul className="lnb">
-                  {e.lnb.map((el) => (
-                    <>
-                      <li className="lnb-item">
-                        <a href="#">{el}</a>
-                      </li>
-                    </>
-                  ))}
-                </ul>
-              </span>
-            </li>
-          </>
+          <li className="gnb-item" key={e.gnb}>
+            <span>
+              <a href="#">{e.gnb}</a>
+              <ul className="lnb">
+                {e.lnb.map((el) => (
+                  <li className="lnb-item" key={el}>
+                    <a href="#">{el}</a>
+                  </li>
+                ))}
+              </ul>
+            </span>
+          </li>
         ))}
       </ul>
     </Gnb>
@@ -57,13 +53,11 @@ const IconMenu = () => {
   return (
     <Icons>
       {ICONTEXTS.map((e) => (
-        <>
-          <li className={e.name}>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}${e.src}`} alt={e.alt} />
-            </a>
-          </li>
-        </>
+        <li className={e.name} key={e.name}>
+          <a href="#">
+            <img src={`${process.env.PUBLIC_URL}${e.src}`} alt={e.alt} />
+          </a>
+        </li>
       ))}
     </Icons>
   );
