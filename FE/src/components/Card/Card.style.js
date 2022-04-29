@@ -1,17 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as Delivery } from 'assets/delivery.svg';
-
-const DeliveryIcon = styled(Delivery)`
-  position: absolute;
-  right: 20px;
-  top: 20px;
-`;
-
-const thumbnailSize = {
-  large: '411px',
-  medium: '302px',
-  small: '160px',
-};
 
 const CardWrapper = styled.div`
   display: flex;
@@ -19,24 +6,16 @@ const CardWrapper = styled.div`
   cursor: pointer;
 `;
 
-const Thumbnail = styled.div`
-  width: ${({ size }) => (size ? thumbnailSize[size] : thumbnailSize.large)};
-  height: ${({ size }) => (size ? thumbnailSize[size] : thumbnailSize.large)};
-  background-image: url(${({ src }) => src});
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-
-  :hover {
-    filter: brightness(90%);
-  }
-`;
-
 const Title = styled.h3`
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${({ theme, size }) => theme.fontSize[size]};
   font-weight: ${({ theme, size }) => (size === 'small' ? theme.fontWeight.regular : theme.fontWeight.bold)};
   color: ${props => props.theme.colors.grey1};
   margin-right: 8px;
+  margin-bottom: ${({ size }) => (size === 'small' ? '8px' : 0)};
+  width: ${({ size }) => (size === 'small' ? '160px' : '320px')};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const SubTitle = styled.p`
@@ -49,6 +28,11 @@ const PriceBox = styled.div`
   display: flex;
 `;
 
+const NormalPrice = styled(Title)`
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  width: auto;
+`;
+
 const SalePrice = styled.p`
   font-size: ${props => props.theme.fontSize.small};
   color: ${props => props.theme.colors.grey3};
@@ -59,4 +43,4 @@ const DescriptionWrapper = styled.div`
   margin: 16px 0;
 `;
 
-export { CardWrapper, Thumbnail, Title, SubTitle, PriceBox, SalePrice, DescriptionWrapper, DeliveryIcon };
+export { CardWrapper, Title, SubTitle, PriceBox, NormalPrice, SalePrice, DescriptionWrapper };
