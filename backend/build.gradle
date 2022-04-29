@@ -4,6 +4,10 @@ plugins {
 	id 'java'
 }
 
+jar {
+	enabled = false
+}
+
 group = 'com.codesquad'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -25,9 +29,6 @@ dependencies {
 
 	// jwt 의존성
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
-
-	// java 11 이슈 해결을 위한 의존성 추가
-	implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
 
 	runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'com.h2database:h2'

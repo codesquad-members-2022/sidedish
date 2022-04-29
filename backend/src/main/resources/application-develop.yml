@@ -10,6 +10,13 @@ spring:
       data-locations: classpath:data.sql
       mode: always
 
+oauth2:
+  user:
+    github:
+      client-id: 36485b4534e3567c8022
+      client-secret: ${GITHUB_CLIENT_SECRET}
+      redirect-uri: http://localhost:8080/login/oauth
+
 logging:
   level.com.codesquad.sidedish: debug
   level.sql: debug

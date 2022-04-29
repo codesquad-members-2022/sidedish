@@ -85,7 +85,7 @@ public class Item {
                 '}';
     }
 
-    public void removeStock(Integer amount) {
+    public void sold(Integer amount) {
         if (stock < amount) {
             throw new OutOfStockException("재고가 부족합니다.", HttpStatus.FORBIDDEN);
         }

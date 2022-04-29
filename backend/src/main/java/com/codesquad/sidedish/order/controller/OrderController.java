@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Tag(name = "order", description = "반찬 주문 API")
 @RestController
 public class OrderController {
@@ -25,7 +27,9 @@ public class OrderController {
     })
     @Operation(summary = "반찬 주문하기", description = "반찬을 원하는 수량만큼 구매합니다.")
     @PostMapping("/order")
-    public void order(@RequestBody OrderItemDto orderItemDto) {
+    public void order(@RequestBody OrderItemDto orderItemDto, HttpServletRequest request) {
+        int userId = (Integer) request.getAttribute("userId");
+        orderItemDto.setUserId(userId);
         orderService.order(orderItemDto);
     }
 }

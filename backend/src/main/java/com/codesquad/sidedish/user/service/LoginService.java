@@ -1,5 +1,7 @@
 package com.codesquad.sidedish.user.service;
 
+import static com.codesquad.sidedish.user.controller.interceptor.AuthenticationInterceptor.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -32,47 +34,43 @@ public class LoginService {
 
     private static final Logger log = LoggerFactory.getLogger(LoginService.class);
 
+    private final RestTemplate restTemplate = new RestTemplate();
     private final UserRepository userRepository;
     private final JwtTokenProvider tokenProvider;
+    private final String clientId;
+    private final String clientSecret;
+    private final String accessTokenUri;
+    private final String userInfoUri;
 
-    public LoginService(UserRepository userRepository, JwtTokenProvider tokenProvider) {
+    public LoginService(UserRepository userRepository, JwtTokenProvider tokenProvider,
+        @Value("${oauth2.user.github.client-id}") String clientId,
+        @Value("${oauth2.user.github.client-secret}") String clientSecret,
+        @Value("${oauth2.provider.github}") String accessTokenUri,
+        @Value("${oauth2.provider.user-info-uri}") String userInfoUri) {
         this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.accessTokenUri = accessTokenUri;
+        this.userInfoUri = userInfoUri;
     }
-
-    @Value("${oauth2.user.github.client-id}")
-    private String clientId;
-
-    @Value("${oauth2.user.github.client-secret}")
-    private String clientSecret;
-
-    @Value("${oauth2.provider.github}")
-    private String accessTokenUri;
-
-    @Value("${oauth2.provider.user-info-uri}")
-    private String userInfoUri;
 
     public LoginResponse login(String code) {
         GithubToken token = getAccessToken(code);
 
-        // 유저 정보 가져오기
         UserProfileDto userProfileDto = getUserProfile(token);
 
-        // 정보 기반으로 User 만들기
-        User user = new User(userProfileDto.getOauthId(), userProfileDto.getName(), userProfileDto.getEmail(), token);
+        User user = userProfileDto.toEntity(token);
 
-        // 저장하기
-        Optional<User> foundUser = userRepository.findByOAuthId(user.getOauthId());
+        Optional<User> foundUser = userRepository.findByOauthId(user.getOauthId());
 
         if (foundUser.isEmpty()) {
             user = userRepository.save(user);
         }
-
         if (foundUser.isPresent()) {
             user = foundUser.get();
         }
 
-        // JWT token 반환하기
         String accessToken = tokenProvider.createAccessToken(String.valueOf(user.getId()));
         return new LoginResponse("Bearer", accessToken);
     }
@@ -93,7 +91,7 @@ public class LoginService {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(requestPayloads, headers);
 
-        ResponseEntity<GithubToken> response = new RestTemplate().postForEntity(accessTokenUri, request,
+        ResponseEntity<GithubToken> response = restTemplate.postForEntity(accessTokenUri, request,
             GithubToken.class);
         return response.getBody();
     }
@@ -104,8 +102,8 @@ public class LoginService {
 
         return new UserProfileDto(
             String.valueOf(userProfileMap.get("id")),
-            (String)userProfileMap.get("email"),
-            (String)userProfileMap.get("login"));
+            String.valueOf(userProfileMap.get("email")),
+            String.valueOf(userProfileMap.get("login")));
     }
 
     private Optional<Map<String, Object>> getUserProfileFromOAuthServer(GithubToken token) {
@@ -116,7 +114,7 @@ public class LoginService {
 
         ParameterizedTypeReference<HashMap<String, Object>> responseType = new ParameterizedTypeReference<>() {};
 
-        Map<String, Object> userProfileMap = new RestTemplate().exchange(request, responseType).getBody();
+        Map<String, Object> userProfileMap = restTemplate.exchange(request, responseType).getBody();
 
         return Optional.ofNullable(userProfileMap);
     }

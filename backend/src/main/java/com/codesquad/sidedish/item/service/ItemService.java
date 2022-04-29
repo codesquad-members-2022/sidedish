@@ -3,6 +3,7 @@ package com.codesquad.sidedish.item.service;
 import com.codesquad.sidedish.item.domain.Category;
 import com.codesquad.sidedish.item.domain.CategoryRepository;
 import com.codesquad.sidedish.item.domain.Item;
+import com.codesquad.sidedish.item.domain.ItemRepository;
 import com.codesquad.sidedish.item.dto.CategoryItemDto;
 import com.codesquad.sidedish.item.dto.CategoryItemsDto;
 import com.codesquad.sidedish.item.dto.DetailItemDto;
@@ -22,9 +23,11 @@ import java.util.stream.Collectors;
 @Service
 public class ItemService {
     private final CategoryRepository categoryRepository;
+    private final ItemRepository itemRepository;
 
-    public ItemService(CategoryRepository categoryRepository) {
+    public ItemService(CategoryRepository categoryRepository, ItemRepository itemRepository) {
         this.categoryRepository = categoryRepository;
+        this.itemRepository = itemRepository;
     }
 
     public CategoryItemsDto findAll() {
@@ -42,13 +45,7 @@ public class ItemService {
     }
 
     public DetailItemDto findById(int id) {
-        Category category = categoryRepository.findByItemId(id)
-                .orElseThrow(() -> new CategoryIdNotFoundException("존재하지 않는 카테고리입니다.", HttpStatus.NOT_FOUND));
-
-        return category.getItems()
-                .stream()
-                .filter(item -> item.getId() == id)
-                .findAny()
+        return itemRepository.findById(id)
                 .map(item -> new DetailItemDto(item.getId(), item.getDiscountPolicy(), item.getDiscountRate(), item.getDescription(), item.getName(), item.getPrice(), item.calculatePoint(), item.getMainImageLink(), item.getItemImages()))
                 .orElseThrow(() -> new ItemIdNotFoundException("존재하지 않는 아이템입니다.", HttpStatus.NOT_FOUND));
     }
