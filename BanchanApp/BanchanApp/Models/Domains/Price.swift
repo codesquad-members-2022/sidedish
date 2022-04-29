@@ -16,6 +16,10 @@ struct Price {
 		self.value = Int(numberString) ?? 0
 	}
 
+    init(_ value: Int) {
+        self.value = value
+    }
+
 	func toString() -> String {
 		let numberFormatter = NumberFormatter()
 		numberFormatter.numberStyle = .decimal
@@ -23,4 +27,8 @@ struct Price {
 
 		return "\(String(describing: numberString))\(self.unit)"
 	}
+
+    func toNumber() -> Int {
+        return self.value
+    }
 }

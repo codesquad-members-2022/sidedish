@@ -79,7 +79,7 @@ class CarouselView: UIView {
         self.pageControl.centerX(inLayoutGuide: self.scrollView.frameLayoutGuide)
     }
 
-    private func reloadData() {
+    func reloadData() {
         let currentCount = self.stackView.arrangedSubviews.count
         let count = self.delegate?.carouselView(self, numberOfItems: currentCount) ?? 0
 
@@ -114,7 +114,6 @@ class CarouselView: UIView {
 }
 
 extension CarouselView: UIScrollViewDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetX = self.scrollView.contentOffset.x
         let width = self.scrollView.frameLayoutGuide.layoutFrame.width
@@ -122,5 +121,4 @@ extension CarouselView: UIScrollViewDelegate {
 
         self.pageControl.currentPage = Int(pageIndex)
     }
-
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol ServiceProtocol {
+protocol BanchanListUseCaseProtocol {
     func fetchData(type: BanchanType, completion: @escaping ([Banchan]?, NetworkError?) -> Void)
     func getImage(with url: String, completion: @escaping (Data) -> Void)
 }
 
-class Service: ServiceProtocol {
+class BanchanListUseCase: BanchanListUseCaseProtocol {
     private var repository: RepositoryProtocol
     private let imageManager = ImageManager()
 

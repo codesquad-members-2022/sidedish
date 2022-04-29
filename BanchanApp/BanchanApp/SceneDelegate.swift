@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = BanchanListViewController(collectionViewLayout: UICollectionViewLayout())
         let networkManager = NetworkManager()
         let repository = RemoteRepository(networkManager: networkManager)
-        let service = Service(repository: repository)
+        let service = BanchanListUseCase(repository: repository)
         let viewModel = BanchanListViewModel(service: service)
 
         viewController.viewModel = viewModel
