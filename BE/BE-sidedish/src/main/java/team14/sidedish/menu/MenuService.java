@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -81,6 +82,30 @@ public class MenuService {
 			Menu.Category.SIDE_DISH.getKoType(),
 			menus);
 		return new MenuDto.Response(exhibitionResponse, categoryResponse);
+	}
+
+	public List<MenuDto.CategoryResponse> readMoreCategories() {
+		List<MenuDto.CategoryResponse> categories = new ArrayList<>();
+
+		getMenu(categories, Menu.Category.MAIN_DISH);
+		getMenu(categories, Menu.Category.SOUP);
+
+		return categories;
+	}
+
+	public MenuDto.CategoryResponse readSpecialMenu(int specialMenuId) {
+		SpecialMenuModel specialMenuTitle = SpecialMenuModel.from(specialMenuId);
+		ExhibitionDto exhibitionInfo = exhibitionService.readOngoing();
+
+		List<MenuDto.SubCategory> specialMenus = specialMenuService.read(exhibitionInfo.getExhibitionId(), specialMenuTitle.getTitle());
+
+		Set<Long> specialMenuIds = getMenuIds(specialMenus);
+		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(specialMenuIds));
+		List<Long> eventIds = ids.getEventIds();
+		EventAndSalesDto eventAndSales = eventService.read(eventIds);
+		insertSalesAndEventBadge(specialMenus, ids, eventAndSales);
+
+		return new MenuDto.CategoryResponse(specialMenuTitle.getId(), specialMenuTitle.getTitle(), specialMenus);
 	}
 
 	public MenuDto.DetailResponse readFrom(Long menuId) {
@@ -232,6 +257,24 @@ public class MenuService {
 			.map(menu -> menu.getMenuId())
 			.collect(Collectors.toSet());
 	}
+
+	private void getMenu(List<MenuDto.CategoryResponse> categories, Menu.Category menuCategory) {
+		List<Menu> mainMenuInfo = menuRepository.findByCategory(menuCategory);
+		List<MenuDto.SubCategory> mainMenus = getSubCategoryOf(mainMenuInfo);
+
+		Set<Long> mainMenuIds = getMenuIds(mainMenus);
+		EventPlannerDto.Ids mainIds = eventPlannerService.readOngoingEventOf(List.copyOf(mainMenuIds));
+		List<Long> mainMenuEventIds = mainIds.getEventIds();
+		EventAndSalesDto mainMenuEventAndSales = eventService.read(mainMenuEventIds);
+		insertSalesAndEventBadge(mainMenus, mainIds, mainMenuEventAndSales);
+
+		categories.add(new MenuDto.CategoryResponse(
+				menuCategory.getId(),
+				menuCategory.getKoType(),
+				mainMenus
+		));
+	}
+}
 
 	private void isValidOrderValue(OrderDto.Request request, int totalPrice, int deliveryCharge, int savedCharge) {
 		String className = this.getClass().getSimpleName();

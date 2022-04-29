@@ -88,5 +88,10 @@ public class MenuApiController {
 		ErrorResponse errorResponse = ErrorResponse.oneErrorOfFail(httpServletRequest.getRequestURI(), error);
 		log.error(ERROR_LOG.apply(httpServletRequest.getRequestURI(), error.toString()));
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+	@GetMapping("/more")
+	public ResponseEntity<List<MenuDto.CategoryResponse>> readCategories() {
+		List<MenuDto.CategoryResponse> responses = menuService.readMoreCategories();
+
+		return ResponseEntity.ok().body(responses);
 	}
 }
