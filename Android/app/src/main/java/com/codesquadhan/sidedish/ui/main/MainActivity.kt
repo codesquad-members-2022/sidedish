@@ -9,7 +9,6 @@ import android.webkit.*
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityMainBinding
 import com.codesquadhan.sidedish.ui.common.Common
@@ -36,9 +35,38 @@ class MainActivity : AppCompatActivity() {
         setMainRv()
         setBtnGitHub()
         setRefreshLayout()
+        setRefreshMenDataByPull()
+        setRefreshMenuDataByClickingBtn()
+        setNetworkFailScreen()
+
     }
 
-    private fun setRefreshLayout(){
+    private fun setRefreshMenDataByPull() {
+        binding.splMain.setOnRefreshListener {
+            viewModel.getMainUIMenu()
+            binding.splMain.isRefreshing = false
+        }
+    }
+
+    private fun setRefreshMenuDataByClickingBtn() {
+        binding.btnMainFail.setOnClickListener {
+            viewModel.getMainUIMenu()
+        }
+    }
+
+    private fun setNetworkFailScreen() {
+        viewModel.isError.observe(this) {
+            if (it) {
+                binding.clMainFail.isVisible = true
+                binding.splMain.isVisible = false
+            } else {
+                binding.clMainFail.isVisible = false
+                binding.splMain.isVisible = true
+            }
+        }
+    }
+
+    private fun setRefreshLayout() {
         binding.splLoginWebView.setOnRefreshListener {
             binding.webView.loadUrl("http://3.34.207.233:8080/login")
             binding.splLoginWebView.isRefreshing = false
@@ -99,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             super.onPageFinished(view, url)
             Log.d("AppTest", "onPageFinished/ url : ${url}")
 
-            if(!isWebviewError) {
+            if (!isWebviewError) {
                 val cookies = CookieManager.getInstance().getCookie(url)
                 Log.d("AppTest", "onPageFinished/ cookie : ${cookies}")
 
@@ -110,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d("AppTest", "login success, JSESSIONID : ${JSESSIONID}")
 
                         binding.splLoginWebView.isVisible = false
-                        binding.clMain.isVisible = true
+//                        binding.splMain.isVisible = true
                         viewModel.getMainUIMenu()
                     }
                 }

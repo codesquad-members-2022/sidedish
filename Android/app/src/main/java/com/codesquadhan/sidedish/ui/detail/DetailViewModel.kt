@@ -1,6 +1,5 @@
 package com.codesquadhan.sidedish.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,17 +33,17 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
     private val _orderSuccessLiveData = MutableLiveData<Boolean>()
     val orderSuccessLiveData = _orderSuccessLiveData
 
-    // CEH
-    val ceh = CoroutineExceptionHandler { _, exception ->
-        Log.d("AppTest", "Something happend: $exception")
+    private val _isNetworkError = MutableLiveData<Boolean>()
+    val isNetworkError: LiveData<Boolean> = _isNetworkError
 
+    // CEH
+    private val ceh = CoroutineExceptionHandler { _, exception ->
         // 네트워크 통신 실패 시 화면 보여주기 처리하기
+        _isNetworkError.value = true
 
     }
 
-    val cehOrder = CoroutineExceptionHandler { _, exception ->
-        Log.d("AppTest", "Something happend: $exception")
-
+    private val cehOrder = CoroutineExceptionHandler { _, exception ->
         // 수량 초과 시 or 네트워크 오류 시
         _orderSuccessLiveData.value = false
     }
@@ -62,6 +61,7 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
                 detailImageList.add(TopImageData(index + 1, url))
             }
 
+            _isNetworkError.value = false
             _vpImageListLiveData.value = vpImageList
             _detailImageListLiveData.value = detailImageList
         }

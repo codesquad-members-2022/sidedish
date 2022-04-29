@@ -1,6 +1,5 @@
 package com.codesquadhan.sidedish.ui.main
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -8,16 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 import com.codesquadhan.sidedish.databinding.ItemMainFoodBinding
 import com.codesquadhan.sidedish.databinding.ItemMainHeaderBinding
-import com.codesquadhan.sidedish.ui.common.LoadedImageFailListener
+import com.codesquadhan.sidedish.ui.common.ImageLoadingFailListener
 import com.codesquadhan.sidedish.ui.common.ViewType.FOOD_VIEW_TYPE
 import com.codesquadhan.sidedish.ui.common.ViewType.HEADER_VIEW_TYPE
 
@@ -89,7 +84,7 @@ class MainAdapter(private val itemClick: (id: Int) -> Unit) :
             Glide.with(binding.root)
                 .load(mainResponseItem.imagePath)
                 .thumbnail(Glide.with(binding.root).load(R.drawable.loading_icon))
-                .listener(LoadedImageFailListener(binding.ivFoodFail))
+                .listener(ImageLoadingFailListener(binding.ivFoodFail))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivFood)
 

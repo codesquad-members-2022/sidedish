@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.codesquadhan.sidedish.R
-import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 import com.codesquadhan.sidedish.data.model.detail.TopImageData
 import com.codesquadhan.sidedish.databinding.ItemViewpagerImageBinding
-import com.codesquadhan.sidedish.ui.common.LoadedImageFailListener
+import com.codesquadhan.sidedish.ui.common.ImageLoadingFailListener
 
 class ViewPagerAdapter() :
     ListAdapter<TopImageData, ViewPagerAdapter.PagerViewHolder>(diffUtil) {
@@ -41,7 +40,7 @@ class ViewPagerAdapter() :
             Glide.with(binding.root)
                 .load(imageUrl)
                 .thumbnail(Glide.with(binding.root.context).load(R.drawable.loading_icon))
-                .listener(LoadedImageFailListener(binding.ivDetailFail))
+                .listener(ImageLoadingFailListener(binding.ivDetailFail))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivDetail)
         }

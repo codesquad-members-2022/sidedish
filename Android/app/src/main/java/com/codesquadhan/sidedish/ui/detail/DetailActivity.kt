@@ -43,6 +43,13 @@ class DetailActivity : AppCompatActivity() {
         orderFood(menuId)
         setOrderResultDialog()
         detailViewModel.getMenuDetail(menuId)
+        setNetworkFailureScreen()
+    }
+
+    private fun setNetworkFailureScreen() {
+        binding.btnDetailFail.setOnClickListener {
+            detailViewModel.getMenuDetail(menuId)
+        }
     }
 
     private fun setViewPagerListener() {

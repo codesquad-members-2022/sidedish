@@ -8,7 +8,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class LoadedImageFailListener(private val loadFailedImage: ImageView) : RequestListener<Drawable> {
+class ImageLoadingFailListener(private val loadFailedImage: ImageView) : RequestListener<Drawable> {
     override fun onLoadFailed(
         e: GlideException?,
         model: Any?,
