@@ -26,7 +26,16 @@ const Main = () => {
   const [allCategoryVisible, setAllCategoryVisible] = useState(false);
   const [cardClickState, setCardClickState] = useState(false);
   const [cardInfoState, setCardInfoState] = useState({
-    /* ... */
+    dishId: "",
+    title: "",
+    price: "",
+    point: "",
+    deliveryArea: "",
+    deliveryMorning: "",
+    deliveryPrice: "",
+    stockQuantity: "",
+    images: [],
+    eventBadge: [],
   });
   const [loading, setLoading] = useState(true);
 
@@ -92,8 +101,7 @@ const Main = () => {
           <ItemCards
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            // cardInfoState={cardInfoState}
-            // setCardInfoState={setCardInfoState}
+            setCardInfoState={setCardInfoState}
             dataState={dataState}
             cardLength={CARD_LENGHTHS.BIG}
             cardMargin={CARD_MARGIN}
@@ -102,11 +110,11 @@ const Main = () => {
           <DivisionLine height="1px" color="#EBEBEB" />
 
           <CarouselContainer allCategoryVisible={true}>
-            <CarouselTitle>{carouselData?.categories[0]?.categoryName}</CarouselTitle>
+            <CarouselTitle>{carouselData.categories[0].categoryName}</CarouselTitle>
             <Carousel
               cardClickState={cardClickState}
               setCardClickState={setCardClickState}
-              carouselCards={carouselData?.categories[0]?.dishes}
+              carouselCards={carouselData.categories[0].dishes}
               cardLength={CARD_LENGHTHS.SMALL}
               cardCount={NUM_OF_CARD_ON_DISPLAY}
               cardMargin={CARD_MARGIN}
@@ -114,22 +122,22 @@ const Main = () => {
           </CarouselContainer>
 
           <CarouselContainer allCategoryVisible={allCategoryVisible}>
-            <CarouselTitle>{carouselData?.categories[1]?.categoryName}</CarouselTitle>
+            <CarouselTitle>{carouselData.categories[1].categoryName}</CarouselTitle>
             <Carousel
               cardClickState={cardClickState}
               setCardClickState={setCardClickState}
-              carouselCards={carouselData?.categories[1]?.dishes}
+              carouselCards={carouselData.categories[1].dishes}
               cardLength={CARD_LENGHTHS.SMALL}
               cardCount={NUM_OF_CARD_ON_DISPLAY}
               cardMargin={CARD_MARGIN}
             />
           </CarouselContainer>
           <CarouselContainer allCategoryVisible={allCategoryVisible}>
-            <CarouselTitle>{carouselData?.categories[2].categoryName}</CarouselTitle>
+            <CarouselTitle>{carouselData.categories[2].categoryName}</CarouselTitle>
             <Carousel
               cardClickState={cardClickState}
               setCardClickState={setCardClickState}
-              carouselCards={carouselData?.categories[2]?.dishes}
+              carouselCards={carouselData.categories[2].dishes}
               cardLength={CARD_LENGHTHS.SMALL}
               cardCount={NUM_OF_CARD_ON_DISPLAY}
               cardMargin={CARD_MARGIN}
@@ -156,8 +164,6 @@ const Main = () => {
 };
 
 const MainContainer = styled.main`
-  // display: flex;
-  // flex-direction: column;
   white-space: nowrap;
 `;
 
