@@ -8,6 +8,6 @@
 import Foundation
 
 struct ProductResponse: Codable {
-	let statusCode: Int
-	let body: [Product]
+    let statusCode: Int
+    let body: [Product]
 }

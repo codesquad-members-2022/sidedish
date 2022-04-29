@@ -37,21 +37,21 @@ class PriceTag: UILabel {
         let padding = NSTextAttachment()
         padding.bounds.size = CGSize(width: 24, height: 0)
 
-		let titleFont: UIFont = .textMediumBold
+        let titleFont: UIFont = .textMediumBold
 
         let titleAttribute: [NSAttributedString.Key: Any] = [
-			.foregroundColor: .gray2 ?? UIColor.black,
+            .foregroundColor: .gray2 ?? UIColor.black,
             .font: titleFont,
-			.baselineOffset: titleFont.xHeight / 2
+            .baselineOffset: titleFont.xHeight / 2
         ]
 
         let priceAttribute: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black,
-			.font: UIFont.textLargeBold
+            .font: UIFont.textLargeBold
         ]
 
         let attributedText = NSMutableAttributedString(string: self.tagName, attributes: titleAttribute)
-		let priceText = NSMutableAttributedString(string: "\(self.price)", attributes: priceAttribute)
+        let priceText = NSMutableAttributedString(string: "\(self.price)", attributes: priceAttribute)
 
         attributedText.insert(NSAttributedString(attachment: padding), at: attributedText.length)
         attributedText.append(priceText)

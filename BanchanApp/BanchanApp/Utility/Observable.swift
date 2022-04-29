@@ -8,22 +8,22 @@
 import Foundation
 
 final class Observable<T> {
-	typealias Subscriber = (T) -> Void
+    typealias Subscriber = (T) -> Void
 
-	private var subscriber: Subscriber?
+    private var subscriber: Subscriber?
 
-	var value: T {
-		didSet {
-			self.subscriber?(value)
-		}
-	}
+    var value: T {
+        didSet {
+            self.subscriber?(value)
+        }
+    }
 
-	init(_ value: T) {
-		self.value = value
-	}
+    init(_ value: T) {
+        self.value = value
+    }
 
-	func bind(subscriber: @escaping Subscriber) {
-		self.subscriber = subscriber
+    func bind(subscriber: @escaping Subscriber) {
+        self.subscriber = subscriber
         subscriber(self.value)
-	}
+    }
 }

@@ -24,7 +24,7 @@ class NetworkManager: NetworkManagerProtocol {
                 completion(.failure(NetworkError.unknownError))
                 return
             }
-
+            
             guard (200...399).contains(response.statusCode) else {
                 completion(.failure(NetworkError(rawValue: response.statusCode) ?? .unknownError))
                 return

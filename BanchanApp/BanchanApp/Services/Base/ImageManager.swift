@@ -8,18 +8,18 @@
 import Foundation
 
 class ImageData {
-	var data: Data
+    var data: Data
 
-	init(data: Data) {
-		self.data = data
-	}
+    init(data: Data) {
+        self.data = data
+    }
 }
 
 class ImageManager {
     typealias CompletionHandler = (Data) -> Void
 
-	private let cachedImages = NSCache<NSURL, ImageData>()
-	private var pendingResponses = [NSURL: [CompletionHandler]]()
+    private let cachedImages = NSCache<NSURL, ImageData>()
+    private var pendingResponses = [NSURL: [CompletionHandler]]()
 
     private var directoryURL: URL? {
         let url = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -30,9 +30,9 @@ class ImageManager {
         return "\(base)/\(path)"
     }
 
-	private func getCachedImageFromMemory(url: NSURL) -> ImageData? {
-		return cachedImages.object(forKey: url)
-	}
+    private func getCachedImageFromMemory(url: NSURL) -> ImageData? {
+        return cachedImages.object(forKey: url)
+    }
 
     private func getCachedImageFromDisk(url: NSURL) -> ImageData? {
         guard let directoryURL = self.directoryURL else {
@@ -54,27 +54,27 @@ class ImageManager {
         return imageData
     }
 
-	func fetchImage(with url: NSURL, completion: @escaping (Data) -> Void) {
+    func fetchImage(with url: NSURL, completion: @escaping (Data) -> Void) {
         if let cachedImage = getCachedImageFromMemory(url: url) {
             completion(cachedImage.data)
             return
-		}
+        }
 
         if let cachedImage = self.getCachedImageFromDisk(url: url) {
             completion(cachedImage.data)
             return
         }
 
-		guard pendingResponses[url] == nil else {
-			pendingResponses[url]?.append(completion)
-			return
-		}
+        guard pendingResponses[url] == nil else {
+            pendingResponses[url]?.append(completion)
+            return
+        }
 
-		pendingResponses[url] = [completion]
+        pendingResponses[url] = [completion]
 
-		URLSession.shared.downloadTask(with: url as URL) { data, _, error in
-			guard
-				let fileURL = data, error == nil, let completions = self.pendingResponses[url] else { return }
+        URLSession.shared.downloadTask(with: url as URL) { data, _, error in
+            guard
+                let fileURL = data, error == nil, let completions = self.pendingResponses[url] else { return }
 
             do {
                 guard let directoryURL = self.directoryURL else { return }
@@ -94,8 +94,8 @@ class ImageManager {
             } catch {
                 print(error)
             }
-		}.resume()
-	}
+        }.resume()
+    }
 
     private func cacheData(key: NSURL, value: Data) -> ImageData {
         let imageData = ImageData(data: value)

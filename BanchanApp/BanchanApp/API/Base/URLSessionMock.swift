@@ -9,7 +9,7 @@ import Foundation
 
 class URLSessionMock: URLSessionProtocol {
     typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-
+    
     var data: Data?
     var error: Error?
     var response: HTTPURLResponse?
