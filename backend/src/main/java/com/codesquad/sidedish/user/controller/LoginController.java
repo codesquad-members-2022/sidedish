@@ -30,7 +30,7 @@ public class LoginController {
             @ApiResponse(responseCode = "200",
                     description = "JWT 토큰 정상 반환",
                     content = @Content(schema = @Schema(implementation = LoginResponse.class))),
-            @ApiResponse(responseCode = "4xx",
+            @ApiResponse(responseCode = "5xx",
                     description = "발급 중 오류 발생",
                     content = @Content)
     })
