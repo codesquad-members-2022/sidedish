@@ -45,13 +45,13 @@ const Header = () => {
   // 서버 테스트용
   const requestOAuthLogin = () => {
     axios
-      .get(API_SERVER_URL + "/login")
+      .get(API_SERVER_URL + "/api/login")
       .then(console.log)
       .catch(console.log);
   };
   const requestLogout = () => {
     axios
-      .get(API_SERVER_URL + "/logout")
+      .get(API_SERVER_URL + "/api/logout")
       .then(console.log)
       .catch(console.log);
   };

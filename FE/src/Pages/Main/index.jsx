@@ -16,7 +16,7 @@ const Main = () => {
   const [mealsArr, setMealsArr] = useState([]);
   const { response: meals } = useAxios({
     method: "get",
-    url: `/products`,
+    url: `/api/products`,
     params: { meal: CATEGORY_TYPE[currIndex].apiParams },
   });
 

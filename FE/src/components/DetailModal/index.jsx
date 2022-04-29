@@ -8,7 +8,7 @@ import { DetailImg } from "./style";
 const DetailModal = ({ detailId }) => {
   const { response: detailData } = useAxios({
     method: "get",
-    url: `/products/${detailId}`,
+    url: `/api/products/${detailId}`,
   });
 
   if (!detailData) {

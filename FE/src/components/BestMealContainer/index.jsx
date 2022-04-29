@@ -20,7 +20,7 @@ const BestMealContainer = () => {
 
   const { response: meals } = useAxios({
     method: "get",
-    url: `/products/best`,
+    url: `/api/products/best`,
     params: { category: activeTab.apiParams },
   });
 
