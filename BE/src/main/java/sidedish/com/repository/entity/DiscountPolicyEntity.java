@@ -12,10 +12,10 @@ public class DiscountPolicyEntity {
 	@Id
 	private final Long id;
 	private final String policyName;
-	private final float discountRate;
+	private final long discountRate;
 
 	@PersistenceConstructor
-	public DiscountPolicyEntity(Long id, String policyName, float discountRate) {
+	public DiscountPolicyEntity(Long id, String policyName, long discountRate) {
 		this.id = id;
 		this.policyName = policyName;
 		this.discountRate = discountRate;

@@ -8,9 +8,9 @@ import lombok.Getter;
 public class DiscountPolicy {
 
 	private String policyName;
-	private float discountRate;
+	private long discountRate;
 
 	public long calculateFixedPrice(long originalPrice) {
-		return (long) (originalPrice * ((100 - discountRate) / 100));
+		return (long) (originalPrice * ((100 - discountRate) / (double) 100));
 	}
 }
