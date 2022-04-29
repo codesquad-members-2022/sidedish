@@ -29,7 +29,6 @@ const DetailModal = ({ detailId }) => {
     mileage,
   } = detailData;
 
-  console.log(detailData);
   return (
     <div>
       {/* FIXME index: 0 매직넘버 */}
