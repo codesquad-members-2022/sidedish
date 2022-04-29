@@ -11,8 +11,7 @@ struct CollectionViewLayoutFactory {
 
     static func createMainLayout() -> UICollectionViewCompositionalLayout {
 
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
-               _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
 
             // item
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))

@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import UIKit
 
 protocol APIRequestable {
     associatedtype Response

@@ -11,7 +11,7 @@ import Toast_Swift
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    private let viewModel = MainCollectionViewModel()
+    private var viewModel = MainCollectionViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
         configureCollectionView()
         registerViews()
         bindViewModel()
+        bindHeaderViewModel()
     }
 
     private func configureNavigationBar() {
@@ -42,20 +43,30 @@ class MainViewController: UIViewController {
         mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
         mainCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
     }
-
     private func bindViewModel() {
         CategoryType.allCases.forEach({ type in
             guard let categoryVM = viewModel.categoryVMs[type] else {return}
-            categoryVM.bind { _ in
+                categoryVM.bind { _ in
+                    DispatchQueue.main.async {
+                        // TODO: Reload Section 에서 invalid update 경고가 나서 reloadData() 로 일단 구현함.
+                        self.mainCollectionView.reloadData()
+                    }
+            }
+        })
+        viewModel.fetchAllCategories()
+    }
+
+    private func bindHeaderViewModel() {
+        CategoryType.allCases.forEach({ type in
+            guard let headerVMs = viewModel.headerVMs[type] else {return}
+            headerVMs.bind { _ in
                 DispatchQueue.main.async {
-                    let targetIndex = IndexSet(0..<self.viewModel.categoryVMs.count)
-                    self.mainCollectionView.reloadSections(targetIndex)
+                    self.mainCollectionView.reloadInputViews()
                 }
             }
         })
-
-     viewModel.fetchAllCategories()
     }
+
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -90,8 +101,23 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
 
         let productType = CategoryType.allCases[indexPath.section]
+        header.setCounterView(viewModel.countProduct(section: indexPath.section))
         header.setTitle(text: productType.title)
+        header.setType(type: productType)
+
+        header.counterView.isHidden = viewModel.headerVMs[productType]?.value?.isHidden ?? true
+        header.delegate = self
         return header
+    }
+
+}
+
+// MARK: Header View delegate
+extension MainViewController: HeaderViewDelegate {
+    func didTapHeader(sender: UICollectionReusableView) {
+        guard let tappedHeader = sender as? HeaderView, let type = tappedHeader.type else {return}
+        tappedHeader.counterView.isHidden = !tappedHeader.counterView.isHidden
+        viewModel.updateHeaderStatus(tappedHeader.counterView.isHidden, at: type)
     }
 
 }
