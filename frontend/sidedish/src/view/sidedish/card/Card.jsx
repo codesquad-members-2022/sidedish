@@ -68,10 +68,7 @@ function Card({
 
     return (
         <DishCard
-            onMouseOver={() => {
-                showDeliveryBadge();
-                // console.log('show delivery!');
-            }}
+            onMouseOver={showDeliveryBadge}
             onMouseOut={hideDeliveryBadge}
         >
             <Deliveries

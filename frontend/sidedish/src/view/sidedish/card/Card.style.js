@@ -3,9 +3,11 @@ import styled from "styled-components";
 const CardContainer = styled.li`
     cursor: pointer;
 `;
-const DishCard = styled.li`
+
+const DishCard = styled.div`
     position: relative;
 `;
+
 const ImgWrapper = styled.div`
     width: 100%
     height: 100%;

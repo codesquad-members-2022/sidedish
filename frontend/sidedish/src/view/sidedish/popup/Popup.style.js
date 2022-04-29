@@ -5,6 +5,8 @@ const Popup = styled.div`
     justify-content: center;
     width: 0%;
     height: 0%;
+    top: 50%;
+    left: 50%;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
 `;
