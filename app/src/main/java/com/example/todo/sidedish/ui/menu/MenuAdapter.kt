@@ -75,14 +75,9 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
         this.contentResolver = contentResolver
         this.context = context
         items.entries.forEach { entry ->
-            entry.value?.let {
-                val header = Header(entry.key, dishCount = it.size)
-                menuItems.add(header)
-                menuItems.addAll(it)
-            } ?: kotlin.run {
-                val header = Header(entry.key)
-                menuItems.add(header)
-            }
+            val header = Header(entry.key, dishCount = entry.value?.size ?: 0)
+            menuItems.add(header)
+            if (!entry.value.isNullOrEmpty()) menuItems.addAll(entry.value!!)
         }
         this.menuItems = menuItems
         notifyDataSetChanged()
@@ -102,6 +97,7 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
 
     inner class ItemViewHolder(private val binding: ItemMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
+          
         fun bind(
             item: Menu,
             itemClick: (hash: String, title: String, badges: List<String>?) -> Unit

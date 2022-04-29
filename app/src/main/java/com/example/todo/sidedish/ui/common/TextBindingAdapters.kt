@@ -15,13 +15,13 @@ fun loadOriginalPrice(view: TextView, price: String?) {
 }
 
 @BindingAdapter("nowPageNum", "totalPageNum")
-fun displayPageInfo(view:TextView, nowPageNum:Int, totalPageNum:Int){
-    view.text= "$nowPageNum / $totalPageNum"
+fun displayPageInfo(view: TextView, nowPageNum: Int, totalPageNum: Int) {
+    view.text = view.context.getString(R.string.page_format, nowPageNum, totalPageNum)
 }
 
 @BindingAdapter("getCount")
-fun getMenuItemCount(view: TextView, itemCount:Int){
-    view.text="${itemCount}개의 상품이 등록되어있습니다"
+fun getMenuItemCount(view: TextView, itemCount: Int) {
+    view.text = view.context.getString(R.string.order_count_format, itemCount)
 }
 
 @BindingAdapter("formatText")
