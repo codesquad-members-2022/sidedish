@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const CardContainer = styled.li`
+    cursor: pointer;
+`;
+
 const ImgWrapper = styled.div`
     width: 100%
     height: 100%;
@@ -76,6 +80,7 @@ const EventBadge = styled.span`
 `;
 
 export {
+    CardContainer,
     ImgWrapper,
     Img,
     TextContainer,

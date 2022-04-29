@@ -1,8 +1,19 @@
+import {useState} from 'react';
 import { BigCardsContainer, SmallCardsContainer } from "./Sidedish.style";
 import Card from "./card/Card";
+import ProductDetailPopup from "./popup/Popup";
+import { CardContainer } from "./card/Card.style";
 import { getRandomKey } from "../../utils";
 
 function SidedishCards({ dishes, isBigCards }) {
+    const [open, setOpen] = useState(false);
+    const openPopup = () => {setOpen(true)};
+    const closePopup = () => {setOpen(false)};
+    const [modaldata, setModaldata] = useState([]);
+    const putModaldata = (data) => {
+        setModaldata(data);
+    }
+
     if (!dishes) {
         return <p>데이터가 아직 완성되지 않았어요</p>;
     }
@@ -12,22 +23,53 @@ function SidedishCards({ dishes, isBigCards }) {
             return <div key={getRandomKey()}></div>;
         }
         return (
-            <Card
-                key={dish.dishId}
-                title={dish.title}
-                image={dish.imagePath}
-                description={dish.description}
-                fixedPrice={dish.fixedPrice}
-                discountPrice={dish.discountPrice}
-                eventBadges={dish.discounts}
-            />
+            <CardContainer onClick={() => {
+                openPopup();
+                putModaldata(dish);
+                console.log(dish);
+                }}>
+                <Card
+                    key={dish.dishId}
+                    title={dish.title}
+                    image={dish.imagePath}
+                    description={dish.description}
+                    fixedPrice={dish.fixedPrice}
+                    discountPrice={dish.discountPrice}
+                    eventBadges={dish.discounts}
+                />
+            </CardContainer>
+            
         );
     });
 
+    
+
     if (isBigCards) {
-        return <BigCardsContainer>{sidedishCards}</BigCardsContainer>;
+        return <BigCardsContainer>
+            {sidedishCards}
+            <ProductDetailPopup
+            title={modaldata.title}
+            image={modaldata.imagePath}
+            fixedPrice={modaldata.fixedPrice}
+            discountPrice={modaldata.discountPrice}
+            eventBadges={modaldata.discounts} 
+            show={open}
+            handleClose={closePopup}
+            />
+            </BigCardsContainer>;
     }
-    return <SmallCardsContainer>{sidedishCards}</SmallCardsContainer>;
+    return <SmallCardsContainer>
+        {sidedishCards}
+        <ProductDetailPopup
+            title={modaldata.title}
+            image={modaldata.imagePath}
+            fixedPrice={modaldata.fixedPrice}
+            discountPrice={modaldata.discountPrice}
+            eventBadges={modaldata.discounts} 
+            show={open}
+            handleClose={closePopup}
+        />
+        </SmallCardsContainer>;
 }
 
 export default SidedishCards;

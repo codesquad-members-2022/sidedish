@@ -1,4 +1,5 @@
 import {
+    CardContainer,
     ImgWrapper,
     Img,
     TextContainer,
@@ -41,7 +42,7 @@ function Card({
     const isDiscounted = fixedPrice !== discountPrice;
 
     return (
-        <li>
+        <>
             <ImgWrapper>
                 <Img alt={title} src={image} />
             </ImgWrapper>
@@ -58,7 +59,7 @@ function Card({
                 </TextContainer>
                 <EventBadges eventBadges={eventBadges} />
             </div>
-        </li>
+        </>
     );
 }
 
