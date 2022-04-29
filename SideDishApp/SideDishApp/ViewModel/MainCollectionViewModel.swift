@@ -12,6 +12,13 @@ import Foundation
 struct CategorySectionViewModel {
     var type: CategoryType
     var productVMs: [ProductCellViewModel]
+    var headerHiddenStatus: Bool = true
+}
+
+struct HeaderInfoViewModel {
+    var type: CategoryType
+    var headerHiddenStatus: Bool = true
+
 }
 
 struct MainCollectionViewModel {
@@ -19,7 +26,8 @@ struct MainCollectionViewModel {
     private let networkManager = NetworkManager()
     private var imageCache = NSCache<NSURL, NSData>()
     var categoryVMs: [CategoryType: Observable<CategorySectionViewModel>]
-    var headerHiddenStatus: [CategoryType: Bool]
+    var headerVMs: [CategoryType: Observable<HeaderInfoViewModel>]
+
     init () {
         let placeHolders = (0..<5).map({ _ in
             ProductCellViewModel.makePlaceHolder()
@@ -30,9 +38,10 @@ struct MainCollectionViewModel {
                          .side: Observable<CategorySectionViewModel>(),
                         .soup: Observable<CategorySectionViewModel>()]
 
-        headerHiddenStatus = [.main: true ,
-                                .soup: true,
-                               .side: true]
+        headerVMs = [.main: Observable<HeaderInfoViewModel>(),
+                         .side: Observable<HeaderInfoViewModel>(),
+                        .soup: Observable<HeaderInfoViewModel>()]
+
     }
 
     func countProduct(section: Int) -> Int {
@@ -89,5 +98,10 @@ struct MainCollectionViewModel {
             imageCache.setObject(data, forKey: url as NSURL)
             completion(data)
         }
+    }
+
+    func updateHeaderStatus(_ status: Bool, at type: CategoryType) {
+        let targetVM = headerVMs[type]
+        targetVM?.value?.headerHiddenStatus = status
     }
 }

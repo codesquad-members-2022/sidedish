@@ -55,6 +55,18 @@ class MainViewController: UIViewController {
         })
         viewModel.fetchAllCategories()
     }
+
+    private func bindHeaderViewModel() {
+        CategoryType.allCases.forEach({ type in
+            guard let headerVMs = viewModel.headerVMs[type] else {return}
+            headerVMs.bind { _ in
+                DispatchQueue.main.async {
+                    self.mainCollectionView.reloadInputViews()
+                }
+            }
+        })
+    }
+
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -92,7 +104,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.setCounterView(viewModel.countProduct(section: indexPath.section))
         header.setTitle(text: productType.title)
         header.setType(type: productType)
-        header.counterView.isHidden = viewModel.headerHiddenStatus[productType] ?? true
+
+//        header.counterView.isHidden = viewModel.headerHiddenStatus[productType] ?? true
+
+        header.counterView.isHidden = viewModel.categoryVMs[productType]?.value?.headerHiddenStatus ?? true
         header.delegate = self
         return header
     }
@@ -104,7 +119,9 @@ extension MainViewController: HeaderViewDelegate {
     func didTapHeader(sender: UICollectionReusableView) {
         guard let tappedHeader = sender as? HeaderView, let type = tappedHeader.type else {return}
         tappedHeader.counterView.isHidden = !tappedHeader.counterView.isHidden
-        viewModel.headerHiddenStatus[type] = tappedHeader.counterView.isHidden
+        viewModel.updateHeaderStatus(tappedHeader.counterView.isHidden, at: type)
+
+//        viewModel.headerHiddenStatus[type] = tappedHeader.counterView.isHidden
 
     }
 
