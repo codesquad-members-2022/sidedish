@@ -10,7 +10,7 @@ import OSLog
 
 final class DetailViewController: UIViewController {
     
-    private let networkManager = NetworkManager(session: .shared)
+    private let imageNetworkManager = ImageNetworkManager.shared
     private let menu: Menu
     private let detailScrollView = DetailScrollView()
     
@@ -122,13 +122,11 @@ extension DetailViewController {
         
         for (index, image) in images.enumerated() {
             guard let imageURL = URL(string: image) else { return }
-            networkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
+            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<UIImage?, NetworkError>) in
                 guard let self = self else { return }
                 
                 switch result {
-                case .success(let data):
-                    guard let data = data,
-                          let image = UIImage(data: data) else { return }
+                case .success(let image):
                     DispatchQueue.main.async {
                         self.detailScrollView.insertThumbNail(image: image, at: index)
                     }
@@ -145,13 +143,11 @@ extension DetailViewController {
         for (index, imagePath) in images.enumerated() {
             guard let imageURL = URL(string: imagePath) else { return }
             
-            networkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
+            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<UIImage?, NetworkError>) in
                 guard let self = self else { return }
                 
                 switch result {
-                case .success(let data):
-                    guard let data = data,
-                          let image = UIImage(data: data) else { return }
+                case .success(let image):
                     DispatchQueue.main.async {
                         self.detailScrollView.setRecipe(image: image, at: index)
                     }
