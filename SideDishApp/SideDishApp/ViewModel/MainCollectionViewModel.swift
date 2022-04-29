@@ -14,13 +14,12 @@ struct CategorySectionViewModel {
     var productVMs: [ProductCellViewModel]
 }
 
-struct ProductCollectionViewModel {
+struct MainCollectionViewModel {
 
-    private let categoryManager = CategoryManager()
+    private let networkManager = NetworkManager()
     private var imageCache = NSCache<NSURL, NSData>()
     var categoryVMs: [CategoryType: Observable<CategorySectionViewModel>]
     var headerHiddenStatus: [CategoryType: Bool]
-
     init () {
         let placeHolders = (0..<5).map({ _ in
             ProductCellViewModel.makePlaceHolder()
@@ -32,9 +31,8 @@ struct ProductCollectionViewModel {
                         .soup: Observable<CategorySectionViewModel>()]
 
         headerHiddenStatus = [.main: true ,
-                             .soup: true,
-                            .side: true]
-
+                                .soup: true,
+                               .side: true]
     }
 
     func countProduct(section: Int) -> Int {
@@ -60,14 +58,16 @@ struct ProductCollectionViewModel {
     }
 
     private func fetchCategories(of type: CategoryType) {
-        categoryManager.fetchCategory(of: type) { category in
-            guard let category = category else {
-                return
-            }
 
-            let productCellVMs = category.product.compactMap { product in
-                ProductCellViewModel(product: product)
-            }
+        guard let categoryRequest = CategoryRequest(from: type) else {
+            return
+        }
+
+        categoryRequest.execute { categoryResponse in
+            guard let productCellVMs = categoryResponse?.body.compactMap({ productSummary in
+                ProductCellViewModel(product: productSummary)
+            }) else { return }
+
             let categoryVM = CategorySectionViewModel(type: type, productVMs: productCellVMs)
             categoryVMs[type]?.value = categoryVM
         }
@@ -78,7 +78,11 @@ struct ProductCollectionViewModel {
             return completion(image)
         }
 
-        categoryManager.fetchImageData(of: url) { data in
+        guard let imageRequest = ImageRequest(url: url) else {
+            return
+        }
+
+        imageRequest.execute { data in
             guard let data = data as? NSData else {
                 return completion(nil)
             }
