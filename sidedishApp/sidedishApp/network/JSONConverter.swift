@@ -9,11 +9,11 @@ import Foundation
 
 final class JSONConverter {
     
-    static func decodeJsonObject<T: Codable>(data: Data) -> T? { // JSON -> object
+    static func decodeJsonObject<T: Codable>(data: Data) -> T? {
         do {
             let result = try JSONDecoder().decode(T.self, from: data)
             return result
-        } catch { // 디코딩 실패시 에러를 던져줌 - error
+        } catch {
             guard let error = error as? DecodingError else { return nil }
             
             switch error {
@@ -26,7 +26,7 @@ final class JSONConverter {
         }
     }
     
-    static func encodeJson<T: Codable>(param: T) -> Data? { // object -> JSON
+    static func encodeJson<T: Codable>(param: T) -> Data? {
         do {
             let result = try JSONEncoder().encode(param)
             return result

@@ -24,8 +24,8 @@
 		009361E2280EA2FA00D0FF1A /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */; };
 		009361E5280EE47400D0FF1A /* MainCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E4280EE47400D0FF1A /* MainCard.swift */; };
 		009361E7280EE4FB00D0FF1A /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E6280EE4FB00D0FF1A /* Badge.swift */; };
-		009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009361E8280EEDC900D0FF1A /* CardFactory.swift */; };
 		00A903B8281785AA00E1402E /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A903B7281785AA00E1402E /* Dish.swift */; };
+		00CA57A4281B768E004A1694 /* MainCardInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA57A3281B768E004A1694 /* MainCardInfoStackView.swift */; };
 		00EA56FE280D564800EA3366 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00EA56FD280D564800EA3366 /* .swiftlint.yml */; };
 		00F6F882281A66E600ABC694 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F6F881281A66E600ABC694 /* HTTPMethod.swift */; };
 		00F6F886281A7AA100ABC694 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F6F885281A7AA100ABC694 /* BadgeLabel.swift */; };
@@ -61,8 +61,8 @@
 		009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		009361E4280EE47400D0FF1A /* MainCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCard.swift; sourceTree = "<group>"; };
 		009361E6280EE4FB00D0FF1A /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		009361E8280EEDC900D0FF1A /* CardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
 		00A903B7281785AA00E1402E /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		00CA57A3281B768E004A1694 /* MainCardInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardInfoStackView.swift; sourceTree = "<group>"; };
 		00EA56FD280D564800EA3366 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		00F6F881281A66E600ABC694 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		00F6F885281A7AA100ABC694 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 				00EAA567281243EA00CC013C /* viewController */,
 				00680794280D5195003C2808 /* Main.storyboard */,
 				009361E3280EE40F00D0FF1A /* model */,
-				009361E8280EEDC900D0FF1A /* CardFactory.swift */,
 				00680797280D5195003C2808 /* Assets.xcassets */,
 				00680799280D5195003C2808 /* LaunchScreen.storyboard */,
 				0068079C280D5195003C2808 /* Info.plist */,
@@ -181,6 +180,7 @@
 				009361E1280EA2FA00D0FF1A /* MainViewHeader.swift */,
 				009361DF280E637C00D0FF1A /* MainViewCardCell.swift */,
 				007035FD2817E5430069DA0C /* MainViewCardInfo.swift */,
+				00CA57A3281B768E004A1694 /* MainCardInfoStackView.swift */,
 				0048484C2818214800D91E78 /* BadgeStackView.swift */,
 				00F6F885281A7AA100ABC694 /* BadgeLabel.swift */,
 			);
@@ -342,6 +342,7 @@
 			files = (
 				00371669281634CC0052F690 /* UIColorExtension.swift in Sources */,
 				D2ADF625280E9D7900507878 /* SubDescriptionViewController.swift in Sources */,
+				00CA57A4281B768E004A1694 /* MainCardInfoStackView.swift in Sources */,
 				00680793280D5195003C2808 /* MainViewController.swift in Sources */,
 				0068078F280D5195003C2808 /* AppDelegate.swift in Sources */,
 				D2ADF623280E888000507878 /* MainDescriptionViewController.swift in Sources */,
@@ -366,7 +367,6 @@
 				D267E823281A36C600499F15 /* ImageManager.swift in Sources */,
 				0045439528168D57005DA649 /* SideDishManager.swift in Sources */,
 				00F6F888281A883600ABC694 /* UIStackViewExtension.swift in Sources */,
-				009361E9280EEDC900D0FF1A /* CardFactory.swift in Sources */,
 				009361E0280E637C00D0FF1A /* MainViewCardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

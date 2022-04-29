@@ -36,6 +36,14 @@ class DetailViewController: UIViewController {
         SideDishManager.shared.getDetailDishImages(dish: dish)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            SideDishManager.shared.clearDetailImageThumbnail()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "firstSection" {
             guard let containerVC = segue.destination as? MainDescriptionViewController else { return }
@@ -132,13 +140,6 @@ private extension DetailViewController {
     
     @objc
     func reloadCollectionView() {
-//        for data in SideDishManager.shared.detailImageThumbnail {
-//            let image = UIImage(data: data)
-//            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 375, height: 376))
-//            imageView.image = image
-//            self.imageHorizontalCollectionView.addSubview(imageView)
-//        }
-        
         DispatchQueue.main.async {
             self.imageHorizontalCollectionView.reloadData()
         }

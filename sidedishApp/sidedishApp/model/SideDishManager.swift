@@ -96,11 +96,10 @@ final class SideDishManager {
     
     func getMainDishImages() {
         
-        getMainDishImageURLFromHash() // imageUrlList에 이미지 url 셋팅
+        getMainDishImageURLFromHash()
         
         for (hash, url) in imageUrlList {
             ImageManager.loadData(url: url) { (data, error) in
-                // 이미지 url로부터 이미지 다운로드
                 if let data = data {
                     self.dataDictionary[hash] = data
                 }
@@ -144,5 +143,9 @@ final class SideDishManager {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "detail"), object: self)
             }
         }
+    }
+    
+    func clearDetailImageThumbnail() {
+        detailImageThumbnail = [Data]()
     }
 }
