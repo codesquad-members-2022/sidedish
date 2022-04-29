@@ -6,16 +6,24 @@
 //
 
 import Combine
-import SnapKit
 import GoogleSignIn
+import SnapKit
 import UIKit
 
 class LoginViewController: UIViewController {
     let googleLoginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("구글 로그인", for: .normal)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 30
+        var config = UIButton.Configuration.bordered()
+        config.baseBackgroundColor = .white
+        config.cornerStyle = .capsule
+        config.background.cornerRadius = 20
+        config.background.strokeColor = .grey3
+        config.title = "구글 로그인"
+        config.baseForegroundColor = .black
+        config.image = UIImage(named: "Google_Logo")
+        config.imagePadding = 10
+        config.imagePlacement = .leading
+       
+        let button = UIButton(configuration: config)
         return button
     }()
     
