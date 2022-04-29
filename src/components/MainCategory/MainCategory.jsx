@@ -7,7 +7,6 @@ import Contents from 'components/MainCategory/Contents';
 
 const MAIN_CATEGORY_TITLE = '한 번 주문하면 두 번 반하는 반찬';
 const TAB_NAMES = ['정갈한 밑반찬', '뜨끈뜨끈 국물 요리', '든든한 메인 요리'];
-const END_POINT = 'https://api.codesquad.kr/onban/';
 const PATHs = ['side', 'soup', 'main'];
 
 export default function MainCategory({ setClickedCard, setCardHash, setSelectedCardCategory }) {
@@ -35,7 +34,7 @@ export default function MainCategory({ setClickedCard, setCardHash, setSelectedC
   );
 
   function fetchCategoryData() {
-    const URLs = PATHs.map(path => `${END_POINT}${path}`);
+    const URLs = PATHs.map(path => `${process.env.REACT_APP_API_ENDPOINT}${path}`);
     const sideDishData = [];
 
     Promise.all(URLs.map(fetchRandomSideDish));

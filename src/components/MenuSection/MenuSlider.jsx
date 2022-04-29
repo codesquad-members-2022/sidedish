@@ -15,8 +15,6 @@ const sliderInfo = {
   visibleLength: 4
 };
 
-const END_POINT = 'https://api.codesquad.kr/onban/';
-
 export default function MenuSlider({ menuName, setClickedCard, setCardHash, setSelectedCardCategory }) {
   const [menuData, setMenuData] = useState([]);
   const [curSlideIdx, setCurSlideIdx] = useState(0);
@@ -78,7 +76,7 @@ export default function MenuSlider({ menuName, setClickedCard, setCardHash, setS
   );
 
   function fetchMenuData() {
-    const URL = `${END_POINT}${menuName}`;
+    const URL = `${process.env.REACT_APP_API_ENDPOINT}${menuName}`;
     fetch(URL)
       .then(res => res.json())
       .then(addCategory)

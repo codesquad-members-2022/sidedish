@@ -7,6 +7,7 @@ import Template from 'template/Template';
 import theme from 'variable/theme';
 
 export default function App() {
+  console.log(process.env.REACT_APP_API_ENDPOINT);
   const [isTemplateMode, setTemplateMode] = useState(false);
   function handleKeyDown(e) {
     if (e.key === '`') {
