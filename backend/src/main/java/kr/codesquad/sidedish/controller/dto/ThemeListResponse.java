@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ThemeListResponse {
 
-    private final List<Element> themes;
+    private final List<Element> specialCategories;
 
     @Getter
     @AllArgsConstructor

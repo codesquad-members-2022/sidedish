@@ -24,7 +24,7 @@ public class ProductController {
     public ProductListResponse listProducts(ProductListRequest productListRequest) {
         List<ProductResponse> productResponses = productService.readAllBy(
                 productListRequest.getCategoryId(),
-                productListRequest.getThemeId(),
+                productListRequest.getSpecialCategoryId(),
                 productListRequest.getSortRule(),
                 productListRequest.getOffset(),
                 productListRequest.getPageSize());
