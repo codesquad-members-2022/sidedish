@@ -91,11 +91,9 @@ class DetailViewController: UIViewController {
     private func setOnUpdateWithTopImages() {
         guard let viewModel = viewModel else { return }
 
-        viewModel.onUpdateWithTopImages = {
+        viewModel.onUpdateWithTopImages = {imageData in
             DispatchQueue.main.async {[weak self] in
-                viewModel.topImages.forEach { image in
-                    self?.detailDishSectionView.addTopImage(with: UIImage(data: image) ?? UIImage())
-                }
+                self?.detailDishSectionView.addTopImage(with: UIImage(data: imageData) ?? UIImage())
             }
         }
     }
@@ -103,10 +101,9 @@ class DetailViewController: UIViewController {
     private func setOnUpdateWithDetailImages() {
         guard let viewModel = viewModel else { return }
 
-        viewModel.onUpdateWithDetailImages = {
+        viewModel.onUpdateWithDetailImages = {imageData in
             DispatchQueue.main.async {[weak self] in
-                viewModel.detailImages.forEach { data in
-                    guard let image = UIImage(data: data) else {return}
+                    guard let image = UIImage(data: imageData) else {return}
                     let ratio = image.size.height / image.size.width
                     let detailImageView = UIImageView(image: image)
                     let newWidth = self?.detailImageStackView.frame.width ?? 0
@@ -117,7 +114,6 @@ class DetailViewController: UIViewController {
                     detailImageView.heightAnchor.constraint(equalToConstant: newHeight).isActive = true
 
                     self?.detailImageStackView.addArrangedSubview(detailImageView)
-                }
             }
         }
     }
