@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AllCategoriesResponse {
 
-    private List<CategoryResponse> categories;
+    private final List<CategoryResponse> categories;
 
     public AllCategoriesResponse(List<CategoryResponse> categories) {
         this.categories = categories;

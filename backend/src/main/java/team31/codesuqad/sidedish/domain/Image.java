@@ -1,23 +1,26 @@
 package team31.codesuqad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import team31.codesuqad.sidedish.type.ImageType;
 
 import java.util.Objects;
 
-public class Images {
+@Table("images")
+public class Image {
 
     @Id
     private Long imageId;
-    private String type;
-    private String url;
 
-    public Images(Long imageId, String type, String url) {
-        this.imageId = imageId;
+    private final ImageType type;
+    private final String url;
+
+    public Image(ImageType type, String url) {
         this.type = type;
         this.url = url;
     }
 
-    public boolean isSameType(String type) {
+    public boolean isSameType(ImageType type) {
         return Objects.equals(this.type, type);
     }
 
@@ -25,7 +28,7 @@ public class Images {
         return imageId;
     }
 
-    public String getType() {
+    public ImageType getType() {
         return type;
     }
 

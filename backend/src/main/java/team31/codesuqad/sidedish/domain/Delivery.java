@@ -1,18 +1,19 @@
 package team31.codesuqad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-public class Deliveries {
+@Table("deliveries")
+public class Delivery {
 
     @Id
     private Integer id;
 
-    private Integer deliveryPay;
-    private String deliveryArea;
-    private Boolean deliveryMorning;
+    private final Integer deliveryPay;
+    private final String deliveryArea;
+    private final Boolean deliveryMorning;
 
-    public Deliveries(Integer id, Integer deliveryPay, String deliveryArea, Boolean deliveryMorning) {
-        this.id = id;
+    public Delivery(Integer deliveryPay, String deliveryArea, Boolean deliveryMorning) {
         this.deliveryPay = deliveryPay;
         this.deliveryArea = deliveryArea;
         this.deliveryMorning = deliveryMorning;

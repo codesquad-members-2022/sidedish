@@ -10,7 +10,7 @@ import team31.codesuqad.sidedish.service.CategoryService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
 
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;

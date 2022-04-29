@@ -1,17 +1,17 @@
 package team31.codesuqad.sidedish.controller.dto;
 
-import team31.codesuqad.sidedish.domain.EventTabs;
+import team31.codesuqad.sidedish.domain.Event;
 
 public class EventTabDto {
 
-    private Integer id;
-    private String name;
-    private String type;
+    private final Integer id;
+    private final String name;
+    private final String type;
 
-    public EventTabDto(EventTabs eventTabs) {
-        this.id = eventTabs.getId();
-        this.name = eventTabs.getDescription();
-        this.type = eventTabs.getName().toLowerCase();
+    public EventTabDto(Event event) {
+        this.id = event.getId();
+        this.name = event.getDescription();
+        this.type = event.getName().toLowerCase();
     }
 
     public Integer getId() {
