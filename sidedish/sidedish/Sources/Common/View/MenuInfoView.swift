@@ -5,6 +5,7 @@
 //  Created by Jihee hwang on 2022/04/21.
 //
 
+import SnapKit
 import UIKit
 
 class MenuInfoAttribute {
@@ -24,7 +25,6 @@ class MenuInfoView: UIView {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -32,23 +32,14 @@ class MenuInfoView: UIView {
     private let descriptionLabel = UILabel()
     private let priceView = UIView()
 
-    private let priceLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let priceLabel = UILabel()
     
-    private let salePriceLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let salePriceLabel = UILabel()
     
     private let badgeView = UIView()
     
     private let badgeStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         return stackView
     }()
@@ -84,23 +75,32 @@ class MenuInfoView: UIView {
         priceView.addSubview(salePriceLabel)
         
         badgeView.addSubview(badgeStackView)
-    
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            priceView.heightAnchor.constraint(equalTo: priceLabel.heightAnchor),
-            salePriceLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 8),
-            salePriceLabel.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor),
-            
-            badgeView.heightAnchor.constraint(equalToConstant: 34),
-            
-            badgeStackView.topAnchor.constraint(equalTo: badgeView.topAnchor, constant: 10),
-            badgeStackView.bottomAnchor.constraint(equalTo: badgeView.bottomAnchor),
-            badgeStackView.leadingAnchor.constraint(equalTo: badgeView.leadingAnchor)
-        ])
+        
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        priceView.snp.makeConstraints { make in
+            make.height.equalTo(priceLabel)
+        }
+        
+        priceLabel.snp.makeConstraints { make in
+            make.leading.centerY.equalTo(priceView)
+        }
+        
+        salePriceLabel.snp.makeConstraints { make in
+            make.leading.equalTo(priceLabel.snp.trailing).offset(8)
+            make.bottom.equalTo(priceLabel)
+        }
+        
+        badgeView.snp.makeConstraints { make in
+            make.height.equalTo(34)
+        }
+        
+        badgeStackView.snp.makeConstraints { make in
+            make.top.equalTo(badgeView).offset(10)
+            make.bottom.leading.equalTo(badgeView)
+        }
     }
 }
 
