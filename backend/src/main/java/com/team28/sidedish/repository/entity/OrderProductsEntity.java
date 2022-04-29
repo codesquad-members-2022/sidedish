@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @AllArgsConstructor
-@Table("ORDER_PRODUCTS")
+@Table("ORDERS_PRODUCT")
 public class OrderProductsEntity {
 
     @Id
