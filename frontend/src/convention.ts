@@ -51,17 +51,15 @@ export enum Queries {
   product = "product",
 }
 
-const baseUrl = `http://52.78.14.127:8080/api/categories`;
-
 export const requestQuery = {
   queries: {
     categories: (id: optionalNum) => `/api/categories`,
     products: (id: optionalNum) => `/api/products?categoryId=${id}`,
     specialCategories: (id: optionalNum) => "/api/specialCategories",
-    specialProducts: (id: optionalNum) => `/api/products?themeId=${id}`,
-    product: (id: optionalNum) => "/mocks/product.json",
+    specialProducts: (id: optionalNum) => `/api/products?specialCategoryId=${id}`,
+    product: (id: optionalNum) => `/api/products/${id}`
   },
   makeQuery: (target: keyof typeof Queries, id: optionalNum) => {
     return requestQuery.queries[target](id);
-  },
+  }
 };
