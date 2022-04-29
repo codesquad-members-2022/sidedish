@@ -11,7 +11,7 @@ import Toast_Swift
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    private let viewModel = ProductCollectionViewModel()
+    private let viewModel = MainCollectionViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,20 +91,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         let productType = CategoryType.allCases[indexPath.section]
         header.setTitle(text: productType.title)
-        header.delegate = self
         return header
-    }
-
-}
-
-// MARK: Header View delegate
-extension MainViewController: HeaderViewDelegate {
-    func didTapHeader(sender: UICollectionReusableView) {
-        guard let tappedHeader = sender as? HeaderView else {return}
-
-        print("\(tappedHeader) : Tapped !")
-        tappedHeader.counterView.isHidden = !tappedHeader.counterView.isHidden
-
     }
 
 }

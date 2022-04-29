@@ -11,7 +11,7 @@ protocol HeaderViewDelegate: AnyObject {
 }
 
 class HeaderView: UICollectionReusableView {
-    
+
     static let identifier = "HeaderView"
     weak var delegate: HeaderViewDelegate?
     private let title =  UILabel()
