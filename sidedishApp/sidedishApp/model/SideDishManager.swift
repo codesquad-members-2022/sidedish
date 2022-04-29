@@ -25,7 +25,7 @@ final class SideDishManager {
     
     private init() {}
     
-    func getDishes(type: Dish) { // <- Data
+    func getDishes(type: Dish) {
         let url = "https://api.codesquad.kr/onban/" + type.name
         HTTPManager.requestGet(url: url) { data in
             guard let dishes: MainCard = JSONConverter.decodeJsonObject(data: data) else { return }

@@ -62,14 +62,13 @@ class MainViewCardInfo: UIStackView {
         if badgeStackView.subviews.count != .zero {
             badgeStackView.clearSubviews()
         }
+        
         guard let badgeTypeList = dish.badgeList else { return }
         for badgeType in badgeTypeList {
-            print("\(badgeTypeList)의 \(badgeType)")
             if let badgeLabel = BadgeLabel().makeBadge(type: badgeType) {
                 badgeStackView.addArrangedSubview(badgeLabel)
             }
         }
-        // badgeStackView.setBadges(dish.badgeList)
     }
     
     private func setPriceLabelAttributedString(salePrice: String, normalPrice: String) {
@@ -100,21 +99,13 @@ class MainViewCardInfo: UIStackView {
         configureBadgeStackViewConstraint()
     }
     
-    private func configureBadgeStackViewConstraint() {
-        badgeStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            badgeStackView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            badgeStackView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),
-            badgeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
-        ])
-    }
-    
     private func configureCardTitleLabelConstraint() {
         cardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cardTitleLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
-            cardTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            cardTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            cardTitleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            cardTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            cardTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
     
@@ -123,7 +114,8 @@ class MainViewCardInfo: UIStackView {
         NSLayoutConstraint.activate([
             cardBodyLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
             cardBodyLabel.topAnchor.constraint(equalTo: cardTitleLabel.bottomAnchor),
-            cardBodyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            cardBodyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            cardBodyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
     
@@ -132,7 +124,19 @@ class MainViewCardInfo: UIStackView {
         NSLayoutConstraint.activate([
             priceLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
             priceLabel.topAnchor.constraint(equalTo: cardBodyLabel.bottomAnchor),
-            priceLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            priceLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+    }
+    
+    private func configureBadgeStackViewConstraint() {
+        badgeStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            badgeStackView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            badgeStackView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor),
+            badgeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            badgeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            badgeStackView.heightAnchor.constraint(equalTo: self.heightAnchor)
         ])
     }
 }

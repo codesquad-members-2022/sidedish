@@ -23,6 +23,11 @@ class MainViewController: UIViewController {
         self.dishCollectionView.register(MainViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewHeader.identifier)
         
         addNotification()
+        
+        self.sideDishManager.getDishes(type: .main)
+        self.sideDishManager.getDishes(type: .soup)
+        self.sideDishManager.getDishes(type: .side)
+        self.sideDishManager.getDetailDish()
     }
 }
 
@@ -55,7 +60,7 @@ extension MainViewController: UICollectionViewDataSource {
             guard let mainDishes = sideDishManager.mainDishes else { return cell }
             let dish = mainDishes.body[indexPath.item]
             cell.setPropertiesValue(dish: dish)
-            print("\(dish.title)의 정보 셋팅")
+            
             guard let image = self.sideDishManager.dataDictionary[dish.detailHash] else { return cell }
             cell.setImage(imageData: image)
         case 1:
@@ -118,10 +123,6 @@ private extension MainViewController {
     func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setDishAndGetImage), name: NSNotification.Name(SideDishManager.mainIdentifier), object: sideDishManager) // dish 데이터 다운로드 후 이미지 셋팅 메서드 호출
         NotificationCenter.default.addObserver(self, selector: #selector(reloadImage), name: NSNotification.Name(rawValue: SideDishManager.downloadIdentifier), object: sideDishManager) // 이미지 1개가 다운로드될 때마다 호출
-        self.sideDishManager.getDishes(type: .main)
-        self.sideDishManager.getDishes(type: .soup)
-        self.sideDishManager.getDishes(type: .side)
-        self.sideDishManager.getDetailDish()
     }
     
     @objc
