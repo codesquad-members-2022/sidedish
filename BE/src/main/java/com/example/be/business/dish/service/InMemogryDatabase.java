@@ -15,18 +15,18 @@ public class InMemogryDatabase {
     private static final int LIMIT = 3;
     private List<DishInformationResponse> planningDataResponses = new ArrayList<>();
 
-    public Map<CategoryType, List<DishInformationResponse>> getPlanningDataByCategory() {
-        return planningDataResponses.stream()
-                .collect(groupingBy(DishInformationResponse::getCategoryType));
-    }
+//    public Map<CategoryType, List<DishInformationResponse>> getPlanningDataByCategory() {
+//        return planningDataResponses.stream()
+//                .collect(groupingBy(DishInformationResponse::getCategoryType));
+//    }
 
-    public Map<Long, List<DishInformationResponse>> getPlanningDataBySubCategory(Long id) {
-        Collections.shuffle(planningDataResponses);
-        return planningDataResponses.stream()
-                .filter(x -> x.equalTo(id))
-                .limit(LIMIT)
-                .collect(groupingBy(DishInformationResponse::getCategoryId));
-    }
+//    public Map<Long, List<DishInformationResponse>> getPlanningDataBySubCategory(Long id) {
+//        Collections.shuffle(planningDataResponses);
+//        return planningDataResponses.stream()
+//                .filter(x -> x.equalTo(id))
+//                .limit(LIMIT)
+//                .collect(groupingBy(DishInformationResponse::getCategoryId));
+//    }
 
     public boolean planningDataisEmpty() {
         return planningDataResponses.isEmpty();
