@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { ModalContext } from "../../store/store";
 import styled from "styled-components";
 
 const ImageWrapper = styled.div`
@@ -23,12 +24,28 @@ const SmallImg = styled.img`
 `;
 
 const DetailImage = ({ image }) => {
+  const ctx = useContext(ModalContext);
+  useEffect(() => {
+    ctx.isDisplayed && setCurrentImg(image[0]);
+  }, [ctx.isDisplayed, image]);
+
+  const [currentImg, setCurrentImg] = useState(
+    Array.isArray(image) ? image[0] : image
+  );
+
+  const onChangeImg = (event) => {
+    setCurrentImg(event.target.src);
+  };
+
+  // 모달 absolute vw , vh 로 재설정
   return (
     <ImageWrapper>
-      <TopImg src={image} />
+      <TopImg src={currentImg} />
       <SmallImgWrapper>
-        <SmallImg src="https://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_S.jpg" />
-        <SmallImg src="http://public.codesquad.kr/jk/storeapp/data/main/510_ZIP_P_0047_T.jpg" />
+        {image &&
+          image.map((v) => (
+            <SmallImg src={v} key={v} imgUrl={v} onClick={onChangeImg} />
+          ))}
       </SmallImgWrapper>
     </ImageWrapper>
   );

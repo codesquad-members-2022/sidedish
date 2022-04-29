@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { PlusIcon, MinusIcon } from "../icons/ModalIcon";
 import { priceToString } from "../../utils/utils";
+import { ModalContext } from "../../store/store";
 
 const InforWrapper = styled.div`
   width: 470px;
@@ -121,7 +122,10 @@ const OrderButton = styled.button`
 
 const DetailInfo = ({ infoData }) => {
   const [orderNumber, SetOrderNumber] = useState(1);
-
+  const ctx = useContext(ModalContext);
+  useEffect(() => {
+    !ctx.isDisplayed && SetOrderNumber(1);
+  }, [ctx.isDisplayed]);
   const orderNumberMinus = () => {
     SetOrderNumber((prev) => (prev === 1 ? prev : prev - 1));
   };
@@ -155,8 +159,8 @@ const DetailInfo = ({ infoData }) => {
               {infoData.shippingInfo && infoData.shippingInfo.deliveryInfo}
             </ProductPriceText>
             <ProductPriceText>
-              {infoData.shipInfo &&
-                infoData.shipInfo.deliveryCharge.toString() + " "}
+              {infoData.shippingInfo &&
+                infoData.shippingInfo.deliveryCharge.toString() + " "}
               (40,000원 이상 구매 시 무료)
             </ProductPriceText>
           </ProductPriceTextWrapper>

@@ -10,12 +10,13 @@ const ModalWrapper = styled.div`
   width: 900px;
   height: 794px;
   border: 1px solid #000;
-  position: absolute;
+  position: fixed;
   background: #fff;
-  top: 20%;
-  left: 20%;
+  top: 50%;
+  left: 50%;
   padding: 50px 30px;
   z-index: 99;
+  transform: translate(-50%, -50%);
   &.hidden {
     display: none;
   }
@@ -34,13 +35,14 @@ const Modal = () => {
   const onClickHandler = () => {
     ctx.setModalIsDisplayed(false);
   };
-
   const [modalInfor, setModalInfor] = useState([]);
 
   useEffect(() => {
     myfetch(
       `http://15.165.204.34:8080/api/v1/products/${ctx.clickedId}/detail`
-    ).then((data) => setModalInfor(data.data));
+    ).then((data) => {
+      setModalInfor(data.data);
+    });
   }, [ctx.clickedId]);
 
   return (
