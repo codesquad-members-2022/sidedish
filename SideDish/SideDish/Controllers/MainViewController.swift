@@ -8,12 +8,22 @@ class MainViewController: UIViewController {
     
     private lazy var foodCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = CGSize(width: .zero, height: 100)
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: view.frame.width * 0.85, height: 150)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: "FoodCollectionViewCell")
+        collectionView.register(
+            FoodCollectionViewCell.self,
+            forCellWithReuseIdentifier: FoodCollectionViewCell.identifier
+        )
         
+        collectionView.register(
+            HeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HeaderCollectionReusableView.identifier
+        )
+               
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -68,6 +78,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let ordering = ordering,
               let cell = foodCollectionView .dequeueReusableCell(withReuseIdentifier: "FoodCollectionViewCell", for: indexPath) as? FoodCollectionViewCell else { return UICollectionViewCell() }
+        
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
         let index = indexPath.row
         
@@ -98,5 +109,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.logger?.error("\(error.localizedDescription)")
             }
         }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath)
+        guard let headerValue = reusableView as? HeaderCollectionReusableView else { return reusableView}
+        
+        guard let ordering = ordering else { return headerValue }
+        
+        let category = ordering.getCategoryWithIndex(index: indexPath.section)
+        headerValue.inputHeader(category: category.headerText)
+        
+        return headerValue
     }
 }
+
