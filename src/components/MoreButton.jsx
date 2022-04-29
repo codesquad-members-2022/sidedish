@@ -4,10 +4,13 @@ import Text from 'components/utils/Text';
 
 export default function MoreButton({ value, setClikedMoreBtn }) {
   return (
-    <Wrap onClick={setClikedMoreBtn}>
+    <Wrap onClick={handleClickMoreBtn}>
       <Text size="X_LARGE" weight="REGULAR" value={value} />
     </Wrap>
   );
+  function handleClickMoreBtn() {
+    setClikedMoreBtn(true);
+  }
 }
 
 MoreButton.defaultProps = {

@@ -11,9 +11,8 @@ import Picture from 'components/Modal/Picture';
 import DeliveryInfo from 'components/Modal/DeliveryInfo';
 
 const END_POINT = 'https://api.codesquad.kr/onban/';
-const CATEGORIES = ['side', 'soup', 'main'];
 
-export default function Modal({ setClickedCard, cardHash, selectedTabNum }) {
+export default function Modal({ setClickedCard, cardHash, selectedCardCategory }) {
   const [sideDish, setSideDish] = useState(false);
   const [curPrice, setCurPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -79,7 +78,7 @@ export default function Modal({ setClickedCard, cardHash, selectedTabNum }) {
   );
 
   function fetchModalData() {
-    const URL = `${END_POINT}${CATEGORIES[selectedTabNum]}/${cardHash}`;
+    const URL = `${END_POINT}${selectedCardCategory}/${cardHash}`;
 
     fetch(URL)
       .then(res => res.json())

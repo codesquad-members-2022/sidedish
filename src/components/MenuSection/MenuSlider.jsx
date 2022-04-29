@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
@@ -16,7 +17,7 @@ const sliderInfo = {
 
 const END_POINT = 'https://api.codesquad.kr/onban/';
 
-export default function MenuSlider({ menuName, setClickedCard, setCardHash }) {
+export default function MenuSlider({ menuName, setClickedCard, setCardHash, setSelectedCardCategory }) {
   const [menuData, setMenuData] = useState([]);
   const [curSlideIdx, setCurSlideIdx] = useState(0);
   const [isMoving, setMoving] = useState(false);
@@ -52,9 +53,10 @@ export default function MenuSlider({ menuName, setClickedCard, setCardHash }) {
           />
         </ButtonWrap>
         <Slides onTransitionEnd={() => setMoving(false)} curSlideIdx={curSlideIdx}>
-          {menuData.map(({ image, title, description, s_price, n_price, badge, alt }) => (
+          {menuData.map(({ detail_hash, image, title, description, s_price, n_price, badge, alt, category }) => (
             <li key={title}>
               <Card
+                id={detail_hash}
                 setCardHash={setCardHash}
                 setClickedCard={setClickedCard}
                 size="MEDIUM"
@@ -65,6 +67,8 @@ export default function MenuSlider({ menuName, setClickedCard, setCardHash }) {
                 normalPrice={n_price}
                 tags={badge}
                 alt={alt}
+                setSelectedCardCategory={setSelectedCardCategory}
+                category={category}
               />
             </li>
           ))}
@@ -77,7 +81,19 @@ export default function MenuSlider({ menuName, setClickedCard, setCardHash }) {
     const URL = `${END_POINT}${menuName}`;
     fetch(URL)
       .then(res => res.json())
-      .then(res => setMenuData(res.body), handleError);
+      .then(addCategory)
+      .then(res => setMenuData(res), handleError);
+
+    function addCategory(res) {
+      const splitedURL = menuName.split('/');
+      const path = splitedURL[splitedURL.length - 1];
+      return res.body.map(x => {
+        return {
+          ...x,
+          category: path
+        };
+      });
+    }
 
     function handleError(error) {
       setMenuData([]);

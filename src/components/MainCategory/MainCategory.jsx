@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Text from 'components/utils/Text';
@@ -7,9 +8,10 @@ import Contents from 'components/MainCategory/Contents';
 const MAIN_CATEGORY_TITLE = '한 번 주문하면 두 번 반하는 반찬';
 const TAB_NAMES = ['정갈한 밑반찬', '뜨끈뜨끈 국물 요리', '든든한 메인 요리'];
 const END_POINT = 'https://api.codesquad.kr/onban/';
-const PATHs = ['main', 'soup', 'side'];
+const PATHs = ['side', 'soup', 'main'];
 
-export default function MainCategory({ selectedTabNum, setSelectedTabNum, setClickedCard, setCardHash }) {
+export default function MainCategory({ setClickedCard, setCardHash, setSelectedCardCategory }) {
+  const [selectedTabNum, setSelectedTabNum] = useState(0);
   const [sideDishes, setSideDishes] = useState([]);
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export default function MainCategory({ selectedTabNum, setSelectedTabNum, setCli
         setClickedCard={setClickedCard}
         setCardHash={setCardHash}
         sideDishes={sideDishes[selectedTabNum] || []}
+        setSelectedCardCategory={setSelectedCardCategory}
       />
     </Wrap>
   );
@@ -40,13 +43,25 @@ export default function MainCategory({ selectedTabNum, setSelectedTabNum, setCli
     function fetchRandomSideDish(URL) {
       fetch(URL)
         .then(res => res.json())
+        .then(res => addCategory(res, URL))
         .then(saveRandomSideDish)
         .then(() => setSideDishes(sideDishData), handleError);
     }
 
+    function addCategory(res, URL) {
+      const splitedURL = URL.split('/');
+      const path = splitedURL[splitedURL.length - 1];
+      return res.body.map(x => {
+        return {
+          ...x,
+          category: path
+        };
+      });
+    }
+
     function saveRandomSideDish(res) {
       const MAX_LENGTH = 3;
-      const randomSideDish = extractRandomLenInArr(res.body, MAX_LENGTH);
+      const randomSideDish = extractRandomLenInArr(res, MAX_LENGTH);
       sideDishData.push(randomSideDish);
     }
 

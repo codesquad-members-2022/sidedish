@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import Text from 'components/utils/Text';
 import MenuSlider from 'components/MenuSection/MenuSlider';
 
-export default function MenuSection({ title, menuName, setClickedCard, setCardHash }) {
+export default function MenuSection({ title, menuName, setClickedCard, setCardHash, setSelectedCardCategory }) {
   return (
     <Wrap>
       <Title>
         <Text size="TITLE_3" weight="MEDIUM" value={title} />
       </Title>
-      <MenuSlider menuName={menuName} setClickedCard={setClickedCard} setCardHash={setCardHash} />
+      <MenuSlider
+        menuName={menuName}
+        setClickedCard={setClickedCard}
+        setCardHash={setCardHash}
+        setSelectedCardCategory={setSelectedCardCategory}
+      />
     </Wrap>
   );
 }

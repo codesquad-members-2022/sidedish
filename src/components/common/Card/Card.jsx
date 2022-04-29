@@ -16,19 +16,14 @@ export default function Card({
   tags,
   alt,
   setClickedCard,
-  setCardHash
+  setCardHash,
+  setSelectedCardCategory,
+  category
 }) {
   const [isHoverImg, setHoverImg] = useState(false);
   const isSizeSmall = size === 'SMALL';
   return (
-    <Wrap
-      id={id}
-      onClick={() => {
-        setClickedCard(true);
-        setCardHash(id);
-      }}
-      size={size}
-    >
+    <Wrap id={id} onClick={handleClickCard} size={size}>
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
           {isSizeSmall ? null : <HoverImg />}
@@ -45,6 +40,11 @@ export default function Card({
       <TagWrap>{isSizeSmall ? null : <Tags />}</TagWrap>
     </Wrap>
   );
+  function handleClickCard() {
+    setClickedCard(true);
+    setCardHash(id);
+    setSelectedCardCategory(category);
+  }
 
   function SmallTitle() {
     return <Text value={title} />;
