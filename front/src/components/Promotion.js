@@ -7,6 +7,16 @@ function Promotion({ title, promotions, showModal }) {
   function selectTab(index) {
     setSelectedTapIndex(index);
   }
+  function getRandomItems(array, num) {
+    const randomIndexes = [];
+    while (randomIndexes.length < num) {
+      const randomIndex = Math.floor(Math.random() * num);
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      }
+    }
+    return randomIndexes.map(index => array[index]);
+  }
   return (
     <StyledPromotion>
       <PromotionHeader>
@@ -30,7 +40,7 @@ function Promotion({ title, promotions, showModal }) {
         <Line></Line>
       </nav>
       <CardList>
-        {promotions[selectedTabIndex].items.map((item, index) => (
+        {getRandomItems(promotions[selectedTabIndex].items, 3).map((item, index) => (
           <Card key={index} size={'large'} item={item} showModal={showModal}></Card>
         ))}
       </CardList>
