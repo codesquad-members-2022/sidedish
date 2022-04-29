@@ -31,7 +31,7 @@ class MenuDetailViewController: UIViewController {
     
     private let infoView: MenuInfoView = {
         let attribute = MenuInfoAttribute()
-        attribute.stackViewSpacing = 8
+        attribute.lineSpacing = 8
         attribute.titleFont = .systemFont(ofSize: 32, weight: .regular)
         attribute.titleTextColor = .black
         attribute.discriptionFont = .systemFont(ofSize: 18, weight: .regular)
