@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
         configureCollectionView()
         registerViews()
         bindViewModel()
+        bindHeaderViewModel()
     }
 
     private func configureNavigationBar() {
@@ -45,12 +46,11 @@ class MainViewController: UIViewController {
     private func bindViewModel() {
         CategoryType.allCases.forEach({ type in
             guard let categoryVM = viewModel.categoryVMs[type] else {return}
-            self.mainCollectionView.performBatchUpdates {
                 categoryVM.bind { _ in
                     DispatchQueue.main.async {
+                        // TODO: Reload Section 에서 invalid update 경고가 나서 reloadData() 로 일단 구현함.
                         self.mainCollectionView.reloadData()
                     }
-                }
             }
         })
         viewModel.fetchAllCategories()
@@ -105,9 +105,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         header.setTitle(text: productType.title)
         header.setType(type: productType)
 
-//        header.counterView.isHidden = viewModel.headerHiddenStatus[productType] ?? true
-
-        header.counterView.isHidden = viewModel.categoryVMs[productType]?.value?.headerHiddenStatus ?? true
+        header.counterView.isHidden = viewModel.headerVMs[productType]?.value?.isHidden ?? true
         header.delegate = self
         return header
     }
@@ -120,9 +118,6 @@ extension MainViewController: HeaderViewDelegate {
         guard let tappedHeader = sender as? HeaderView, let type = tappedHeader.type else {return}
         tappedHeader.counterView.isHidden = !tappedHeader.counterView.isHidden
         viewModel.updateHeaderStatus(tappedHeader.counterView.isHidden, at: type)
-
-//        viewModel.headerHiddenStatus[type] = tappedHeader.counterView.isHidden
-
     }
 
 }

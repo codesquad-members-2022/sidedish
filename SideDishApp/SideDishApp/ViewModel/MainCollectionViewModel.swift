@@ -12,13 +12,6 @@ import Foundation
 struct CategorySectionViewModel {
     var type: CategoryType
     var productVMs: [ProductCellViewModel]
-    var headerHiddenStatus: Bool = true
-}
-
-struct HeaderInfoViewModel {
-    var type: CategoryType
-    var headerHiddenStatus: Bool = true
-
 }
 
 struct MainCollectionViewModel {
@@ -38,9 +31,9 @@ struct MainCollectionViewModel {
                          .side: Observable<CategorySectionViewModel>(),
                         .soup: Observable<CategorySectionViewModel>()]
 
-        headerVMs = [.main: Observable<HeaderInfoViewModel>(),
-                         .side: Observable<HeaderInfoViewModel>(),
-                        .soup: Observable<HeaderInfoViewModel>()]
+        headerVMs = [.main: Observable<HeaderInfoViewModel>(HeaderInfoViewModel()),
+                         .side: Observable<HeaderInfoViewModel>(HeaderInfoViewModel()),
+                        .soup: Observable<HeaderInfoViewModel>(HeaderInfoViewModel())]
 
     }
 
@@ -102,6 +95,6 @@ struct MainCollectionViewModel {
 
     func updateHeaderStatus(_ status: Bool, at type: CategoryType) {
         let targetVM = headerVMs[type]
-        targetVM?.value?.headerHiddenStatus = status
+        targetVM?.value?.isHidden = status
     }
 }
