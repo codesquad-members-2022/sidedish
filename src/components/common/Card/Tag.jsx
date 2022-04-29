@@ -17,6 +17,8 @@ Tag.defaultProps = {
 
 const PillShape = styled.div({
   width: 'fit-content',
+  height: '32px',
+  lineHeight: '16px',
   padding: '6px 16px 6px 16px',
   borderRadius: '15px',
   backgroundColor: props => getColorByType(props.type)
@@ -28,6 +30,9 @@ function getColorByType(type) {
   }
   if (type === '런칭특가') {
     return theme.COLOR.ORANGE[100];
+  }
+  if (type === '메인특가') {
+    return theme.COLOR.BLUE[100];
   }
   throw new Error('태그의 타입이 올바르지 않습니다.');
 }

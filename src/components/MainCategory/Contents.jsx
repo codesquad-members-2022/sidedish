@@ -1,37 +1,29 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import Card from 'components/common/Card/Card';
 
-export default function MainCategory() {
+export default function Contents({ sideDishes, setClickedCard, setCardHash, setSelectedCardCategory }) {
   return (
     <Wrap>
-      <Card
-        size="LARGE"
-        imageURL="http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"
-        title="오리 주물럭_반조리"
-        desc="감질맛 나는 매콤한 양념"
-        curPrice="12,640원"
-        prevPrice="15,800원"
-        tags={['이벤트특가', '런칭특가']}
-      />
-      <Card
-        size="LARGE"
-        imageURL="http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"
-        title="오리 주물럭_반조리"
-        desc="감질맛 나는 매콤한 양념"
-        curPrice="12,640원"
-        prevPrice="15,800원"
-        tags={['이벤트특가', '런칭특가']}
-      />
-      <Card
-        size="LARGE"
-        imageURL="http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg"
-        title="오리 주물럭_반조리"
-        desc="감질맛 나는 매콤한 양념"
-        curPrice="12,640원"
-        prevPrice="15,800원"
-        tags={['이벤트특가', '런칭특가']}
-      />
+      {sideDishes.map(({ detail_hash, image, title, description, s_price, n_price, badge, alt, category }) => (
+        <Card
+          key={detail_hash}
+          id={detail_hash}
+          setCardHash={setCardHash}
+          setClickedCard={setClickedCard}
+          size="LARGE"
+          image={image}
+          title={title}
+          desc={description}
+          sellingPrice={s_price}
+          normalPrice={n_price}
+          tags={badge}
+          alt={alt}
+          setSelectedCardCategory={setSelectedCardCategory}
+          category={category}
+        />
+      ))}
     </Wrap>
   );
 }

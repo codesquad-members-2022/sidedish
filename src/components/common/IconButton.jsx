@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Search } from 'images/icon_search.svg';
@@ -9,23 +8,27 @@ import { ReactComponent as Next } from 'images/icon_next.svg';
 import { ReactComponent as Plus } from 'images/icon_plus.svg';
 import { ReactComponent as Minus } from 'images/icon_minus.svg';
 
+const iconsComponents = {
+  search: Search,
+  user: User,
+  cart: Cart,
+  prev: Prev,
+  next: Next,
+  plus: Plus,
+  minus: Minus
+};
+
 function Icon({ icon, width, height, fill, stroke }) {
-  const svgInfo = { icon, width, height, fill, stroke };
-  const Icons = {
-    search: <Search {...svgInfo} />,
-    user: <User {...svgInfo} />,
-    cart: <Cart {...svgInfo} />,
-    prev: <Prev {...svgInfo} />,
-    next: <Next {...svgInfo} />,
-    plus: <Plus {...svgInfo} />,
-    minus: <Minus {...svgInfo} />
-  };
-  return Icons[icon];
+  const IconComponent = iconsComponents[icon];
+  if (!IconComponent) {
+    throw new Error(`${icon} 컴포넌트를 찾을 수 없습니다. `);
+  }
+  return <IconComponent width={width} height={height} fill={fill} stroke={stroke} />;
 }
 
-export default function IconButton({ icon, width, height, fill, stroke, onClick, as }) {
+export default function IconButton({ icon, width, height, fill, stroke, onClick, as, disabled }) {
   return (
-    <Wrap as={as} onClick={onClick}>
+    <Wrap as={as} onClick={onClick} disabled={disabled}>
       <Icon icon={icon} width={width} height={height} fill={fill} stroke={stroke} />
     </Wrap>
   );

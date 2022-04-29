@@ -5,53 +5,69 @@ import Tag from 'components/common/Card/Tag';
 import Text from 'components/utils/Text';
 import HoverInfo from 'images/HoverInfo.png';
 
-export default function Card({ size, imageURL, title, desc, curPrice, prevPrice, tags }) {
+export default function Card({
+  id,
+  size,
+  image,
+  title,
+  desc,
+  sellingPrice,
+  normalPrice,
+  tags,
+  alt,
+  setClickedCard,
+  setCardHash,
+  setSelectedCardCategory,
+  category
+}) {
   const [isHoverImg, setHoverImg] = useState(false);
-  const isSmall = size === 'SMALL';
+  const isSizeSmall = size === 'SMALL';
   return (
-    <Wrap size={size}>
+    <Wrap id={id} onClick={handleClickCard} size={size}>
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
-          {HoverImg()}
-          <img src={imageURL} alt="반찬" />
+          {isSizeSmall ? null : <HoverImg />}
+          <img width={getWidthBySize(size)} height={getWidthBySize(size)} src={image} alt={alt} />
         </ImgWrap>
-        {Space()}
-        <Title />
-        {Description()}
+        {isSizeSmall ? null : <Space />}
+        {isSizeSmall ? <SmallTitle /> : <Title />}
+        {isSizeSmall ? null : <Description />}
         <Prices>
-          <Text size="MEDIUM" weight="MEDIUM" value={curPrice} />
-          <Text size="BASE" weight="REGULAR" color="GREY_300" value={prevPrice} line />
+          <Text size="MEDIUM" weight="MEDIUM" value={sellingPrice} />
+          <Text size="BASE" weight="REGULAR" color="GREY_300" value={normalPrice} line />
         </Prices>
       </A>
-      <TagWrap>{Tags()}</TagWrap>
+      <TagWrap>{isSizeSmall ? null : <Tags />}</TagWrap>
     </Wrap>
   );
+  function handleClickCard() {
+    setClickedCard(true);
+    setCardHash(id);
+    setSelectedCardCategory(category);
+  }
+
+  function SmallTitle() {
+    return <Text value={title} />;
+  }
 
   function Title() {
-    if (isSmall) {
-      return <Text value={title} />;
-    }
     return <Text size="MEDIUM" weight="MEDIUM" value={title} />;
   }
 
   function HoverImg() {
-    if (isSmall) return null;
     return <DeliveryInfo isHoverImg={isHoverImg} />;
   }
 
   function Space() {
-    if (isSmall) return null;
     return <div />;
   }
 
   function Description() {
-    if (isSmall) return null;
     return <Text size="BASE" weight="REGULAR" color="GREY_200" value={desc} />;
   }
 
   function Tags() {
-    if (isSmall) return null;
-    return tags.map((tag, index) => <Tag key={`${tag}_${index}`} type={tag} />);
+    return tags && tags.map(tag => <Tag key={tag} type={tag} />);
   }
 }
 

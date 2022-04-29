@@ -2,18 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import TabButton from 'components/MainCategory/Tab/TabButton';
 
-export default function TabBar({ tabNames }) {
+export default function TabBar({ tabNames, selectedTabNum, setSelectedTabNum }) {
   return <Wrap>{tabNames.map(getTabButton)}</Wrap>;
+
+  function getTabButton(tabName, index) {
+    const isSelected = index === selectedTabNum;
+    return (
+      <TabButton
+        key={tabName}
+        idx={index}
+        value={tabName}
+        isSelected={isSelected}
+        setSelectedTabNum={setSelectedTabNum}
+      />
+    );
+  }
 }
 
 TabBar.defaultProps = {
   tabNames: []
 };
-
-function getTabButton(tabName, index) {
-  const isFirstTabButton = index === 0;
-  return <TabButton key={`${tabName}_${index}`} value={tabName} isSelected={isFirstTabButton} />;
-}
 
 const Wrap = styled.div({
   display: 'flex',

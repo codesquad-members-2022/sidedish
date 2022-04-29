@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+/* eslint-disable arrow-body-style */
+/* eslint-disable camelcase */
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import IconButton from 'components/common/IconButton';
 import Card from 'components/common/Card/Card';
 import THEME from 'variable/theme';
-import slideData from 'components/MenuSection/slideMockData'; // 수정
 
-// TODO
+// TODO: Ref로 받아와서 저장할 것.
 const sliderInfo = {
   size_px: {
     cardWidth: 302,
@@ -14,29 +15,21 @@ const sliderInfo = {
   visibleLength: 4
 };
 
-export default function MenuSlider() {
+export default function MenuSlider({ menuName, setClickedCard, setCardHash, setSelectedCardCategory }) {
+  const [menuData, setMenuData] = useState([]);
   const [curSlideIdx, setCurSlideIdx] = useState(0);
-  const [canMovePrev, setMovePrev] = useState(false);
-  const [canMoveNext, setMoveNext] = useState(true); // TODO: 슬라이드 개수가 4개 이하 일떄는?
+  const [isMoving, setMoving] = useState(false);
+
+  const isFirstSlide = slideIdx => slideIdx <= 0;
+  const isLastSlide = slideIdx => slideIdx >= menuData.length - sliderInfo.visibleLength;
+
+  useEffect(() => {
+    fetchMenuData();
+  }, []);
 
   return (
     <Wrap>
       <Slider>
-        <Slides curSlideIdx={curSlideIdx}>
-          {slideData.map(({ size, imageURL, title, desc, curPrice, prevPrice, tags }, index) => (
-            <li key={`${title}_${index}`}>
-              <Card
-                size={size}
-                imageURL={imageURL}
-                title={title}
-                desc={desc}
-                curPrice={curPrice}
-                prevPrice={prevPrice}
-                tags={tags}
-              />
-            </li>
-          ))}
-        </Slides>
         <ButtonWrap>
           <IconButton
             onClick={handleMovementToPrev}
@@ -44,7 +37,8 @@ export default function MenuSlider() {
             icon="prev"
             width="11px"
             height="20px"
-            stroke={canMovePrev ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
+            stroke={isFirstSlide(curSlideIdx) ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            disabled={isMoving}
           />
           <IconButton
             onClick={handleMovementToNext}
@@ -52,41 +46,95 @@ export default function MenuSlider() {
             icon="next"
             width="11px"
             height="20px"
-            stroke={canMoveNext ? THEME.COLOR.BLACK[100] : THEME.COLOR.GREY[300]}
+            stroke={isLastSlide(curSlideIdx) ? THEME.COLOR.GREY[300] : THEME.COLOR.BLACK[100]}
+            disabled={isMoving}
           />
         </ButtonWrap>
+        <Slides onTransitionEnd={() => setMoving(false)} curSlideIdx={curSlideIdx}>
+          {menuData.map(({ detail_hash, image, title, description, s_price, n_price, badge, alt, category }) => (
+            <li key={title}>
+              <Card
+                id={detail_hash}
+                setCardHash={setCardHash}
+                setClickedCard={setClickedCard}
+                size="MEDIUM"
+                image={image}
+                title={title}
+                desc={description}
+                sellingPrice={s_price}
+                normalPrice={n_price}
+                tags={badge}
+                alt={alt}
+                setSelectedCardCategory={setSelectedCardCategory}
+                category={category}
+              />
+            </li>
+          ))}
+        </Slides>
       </Slider>
     </Wrap>
   );
+
+  function fetchMenuData() {
+    const URL = `${process.env.REACT_APP_API_ENDPOINT}${menuName}`;
+    fetch(URL)
+      .then(res => res.json())
+      .then(addCategory)
+      .then(res => setMenuData(res), handleError);
+
+    function addCategory(res) {
+      const splitedURL = menuName.split('/');
+      const path = splitedURL[splitedURL.length - 1];
+      return res.body.map(x => {
+        return {
+          ...x,
+          category: path
+        };
+      });
+    }
+
+    function handleError(error) {
+      setMenuData([]);
+      throw new Error(`${error}: 데이터를 성공적으로 불러오지 못했습니다.`);
+    }
+  }
+
   function handleMovementToPrev() {
-    const newCurSlideIdx = moveSlideToLeft();
+    const newCurSlideIdx = decreaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
+    disableButton(newCurSlideIdx);
   }
 
   function handleMovementToNext() {
-    const newCurSlideIdx = moveSlideToRight();
+    const newCurSlideIdx = increaseCurSlideIndex();
     setCurSlideIdx(newCurSlideIdx);
+    disableButton(newCurSlideIdx);
   }
-  function moveSlideToLeft() {
-    const isFirstSlide = curSlideIdx === 0;
-    if (isFirstSlide) {
-      setMovePrev(false);
+
+  function decreaseCurSlideIndex() {
+    if (isFirstSlide(curSlideIdx)) {
       return 0;
     }
-    setMovePrev(true);
     return curSlideIdx - sliderInfo.visibleLength;
   }
-  function moveSlideToRight() {
-    const isLastSlide = curSlideIdx === slideData.length - sliderInfo.visibleLength;
-    if (isLastSlide) {
-      setMoveNext(false);
+
+  function increaseCurSlideIndex() {
+    if (isLastSlide(curSlideIdx)) {
       return curSlideIdx;
     }
-    // 디바운스 추가
-    setMoveNext(true);
+    setMoving(true);
     return curSlideIdx + sliderInfo.visibleLength;
   }
+
+  function disableButton(newCurSlideIdx) {
+    if (isFirstSlide(newCurSlideIdx) || isLastSlide(newCurSlideIdx)) return;
+    setMoving(true);
+  }
 }
+
+MenuSlider.defaultProps = {
+  menuName: 'main'
+};
 
 const Wrap = styled.div({
   position: 'relative'

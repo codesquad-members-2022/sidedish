@@ -3,20 +3,24 @@ import styled from 'styled-components';
 import Text from 'components/utils/Text';
 import MenuSlider from 'components/MenuSection/MenuSlider';
 
-export default function MenuSection() {
+export default function MenuSection({ title, menuName, setClickedCard, setCardHash, setSelectedCardCategory }) {
   return (
     <Wrap>
       <Title>
-        <Text size="TITLE_3" weight="MEDIUM" value="식탁을 풍성하게 하는 정갈한 밑반찬" />
+        <Text size="TITLE_3" weight="MEDIUM" value={title} />
       </Title>
-      <MenuSlider />
+      <MenuSlider
+        menuName={menuName}
+        setClickedCard={setClickedCard}
+        setCardHash={setCardHash}
+        setSelectedCardCategory={setSelectedCardCategory}
+      />
     </Wrap>
   );
 }
 
 const Wrap = styled.div({
-  padding: '56px 80px',
-  borderTop: ({ theme }) => `1px solid ${theme.COLOR.GREY[400]}`
+  padding: '56px 80px'
 });
 
 const Title = styled.h3({
