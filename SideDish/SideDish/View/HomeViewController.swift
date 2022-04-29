@@ -96,9 +96,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     // MARK: - Cell 이 클릭되게 만듦
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var targetSort: ProductSort = .main
         guard let model: ProductModel = viewModel.model else { return }
-        guard let targetSection = model[targetSort] else { return }
+        var targetSort: ProductSort?
         switch indexPath.section {
         case 0:
             targetSort = .main
@@ -107,6 +106,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         default:
             targetSort = .side
         }
+        guard let targetSort = targetSort else { return }
+        guard let targetSection = model[targetSort] else { return }
         let targetDish = targetSection[indexPath.item]
         let dishTitle = targetDish.title
         let detailHash = targetDish.hash
