@@ -2,6 +2,9 @@ import Foundation
 
 enum ProductRepositoryError: Error {
     case fetchError
+    case notConnect
+    case invalidURL
+    case notConvertdecode
 }
 
 protocol ProductRepository {

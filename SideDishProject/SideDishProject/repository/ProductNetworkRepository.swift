@@ -17,13 +17,14 @@ struct ProductNetworkRepository: ProductRepository{
         service?.getCategories(completion: { result in
             switch result{
             case .success(let categories):
-                for category in categories{
-                    service?.getProducts(categoryId: category.id, completion: { result in
-                        
-                    })
-                }
-            case .failure(let error): break
-                
+//                for category in categories{
+//                    service?.getProducts(categoryId: category.id, completion: { result in
+//
+//                    })
+//                }
+            break
+            case .failure(let error):
+                print(error.localizedDescription)
             }
             
         })
