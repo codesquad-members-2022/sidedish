@@ -17,18 +17,16 @@ const AppWrapper = styled.div`
 
 const App = () => {
   const { categories } = useFetch(Queries.categories);
-  const { specialCategories } = useFetch(Queries.specialCategories);
+  const { themes } = useFetch(Queries.specialCategories);
 
   const { openedId, setOpenedId } = useContext(ModalContext);
 
   return (
     <>
-      {categories && specialCategories && (
+      {categories && themes && (
         <AppWrapper>
           <Header categories={categories}></Header>
-          <SpecialCategory
-            specialCategories={specialCategories}
-          ></SpecialCategory>
+          <SpecialCategory themes={themes}></SpecialCategory>
           <Category categories={categories}></Category>
           {openedId >= 0 && <Modal openId={openedId} />}
         </AppWrapper>

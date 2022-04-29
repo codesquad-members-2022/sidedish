@@ -19,13 +19,12 @@ export const Modal = ({ openId }: { openId: number }) => {
   const [count, setCount] = useState(1);
   const [primaryImage, setPrimaryImage] = useState<string>("");
   const [variantImages, setVariantImages] = useState<string[]>([]);
-  const [info, setInfo] = useState<Product | undefined>();
-  const res = useFetch(Queries.product, openId);
+
+  const info = useFetch(Queries.product, openId);
   useEffect(() => {
-    setInfo(res);
-    setPrimaryImage(res.primaryImage);
-    setVariantImages(res.variantImages);
-  }, [res]);
+    setPrimaryImage(info.primaryImage);
+    setVariantImages(info.variantImages);
+  }, [info]);
   const { openedId, setOpenedId } = useContext(ModalContext);
 
   const changePrimary = (key: number, img: string) => {

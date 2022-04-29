@@ -7,6 +7,7 @@ export type ResponseType = {
   [Queries.product]: Product;
   [Queries.products]: Products;
   [Queries.specialCategories]: SpecialCategories;
+  [Queries.specialProducts]: Products;
   [Queries.categories]: Categories;
 };
 export const useFetch = <T extends Queries>(

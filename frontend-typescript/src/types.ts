@@ -38,7 +38,7 @@ export type Categories = {
   categories: Category[];
 };
 export type SpecialCategories = {
-  specialCategories: IDName[];
+  themes: IDName[];
 };
 
 export enum SIZES {

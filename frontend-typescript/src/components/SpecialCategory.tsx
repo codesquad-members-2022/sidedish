@@ -47,9 +47,11 @@ const TabItem = styled.li<{ selected: boolean }>`
     `}
 `;
 
-export const SpecialCategory = ({ specialCategories }: SpecialCategories) => {
+export const SpecialCategory = ({
+  themes: specialCategories,
+}: SpecialCategories) => {
   const [selected, setSelected] = useState<number>(specialCategories[0].id);
-  const { products } = useFetch(Queries.products, selected);
+  const { products } = useFetch(Queries.products, selected, selected);
   console.log(products);
   return (
     <>
