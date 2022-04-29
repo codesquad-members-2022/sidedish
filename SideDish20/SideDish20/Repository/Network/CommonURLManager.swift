@@ -14,6 +14,7 @@ class CommonURLManager {
         case main
         case soup
         case side
+        case detail
         
         var endpoint: String {
             return "\(host)/\(rawValue)"

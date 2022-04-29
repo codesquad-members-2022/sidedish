@@ -43,4 +43,19 @@ class RepositoryCommons {
             onCompleted(model)
         }.resume()
     }
+    
+    func fetchDetail(hash: String, onCompleted: @escaping (HomeResponseDetailData) -> Void) {
+        guard var url = URL(string: CommonURLManager.Endpoint.detail.endpoint) else { return }
+        
+        url.appendPathComponent(hash)
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            guard let model = try? JSONDecoder().decode(HomeResponseDetailData.self, from: data) else {
+                return
+            }
+            
+            onCompleted(model)
+        }.resume()
+    }
 }

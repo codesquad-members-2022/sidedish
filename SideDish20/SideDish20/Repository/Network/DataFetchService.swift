@@ -36,4 +36,10 @@ class DataFetchService: CommonURLManager {
             onCompleted(homeModelList) // model로 전달.
         }
     }
+    
+    func fetchDetail(hash: String, onCompleted: @escaping (HomeDetailModel) -> Void) {
+        repository.fetchDetail(hash: "HBDEF") { entity in
+            onCompleted(entity.data)
+        }
+    }
 }
