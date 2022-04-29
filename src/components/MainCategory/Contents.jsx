@@ -3,13 +3,15 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from 'components/common/Card/Card';
 
-export default function Contents({ sideDishes, setClickedCard }) {
+export default function Contents({ sideDishes, setClickedCard, setCardHash }) {
   return (
     <Wrap>
-      {sideDishes.map(({ image, title, description, s_price, n_price, badge, alt }) => (
+      {sideDishes.map(({ detail_hash, image, title, description, s_price, n_price, badge, alt }) => (
         <Card
+          key={detail_hash}
+          id={detail_hash}
+          setCardHash={setCardHash}
           setClickedCard={setClickedCard}
-          key={title}
           size="LARGE"
           imageURL={image}
           title={title}

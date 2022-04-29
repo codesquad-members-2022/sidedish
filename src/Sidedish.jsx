@@ -9,13 +9,14 @@ import Modal from 'components/Modal/Modal';
 export default function Sidedish() {
   const [isClickedMoreBtn, setClikedMoreBtn] = useState(false);
   const [isClickedCard, setClickedCard] = useState(false);
+  const [cardHash, setCardHash] = useState('');
   return (
     <>
-      {isClickedCard ? <Modal setClickedCard={setClickedCard} /> : null}
+      {isClickedCard ? <Modal setClickedCard={setClickedCard} cardHash={cardHash} /> : null}
       <Wrap>
         <Header />
         <Main>
-          <MainCategory setClickedCard={setClickedCard} />
+          <MainCategory setClickedCard={setClickedCard} setCardHash={setCardHash} />
           <MenuSlider setClickedCard={setClickedCard} />
           {isClickedMoreBtn ? <OthersMenuSlider /> : null}
           {isClickedMoreBtn ? null : <MoreButton setClikedMoreBtn={setClikedMoreBtn} value="모든 카테고리 보기" />}

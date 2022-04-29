@@ -12,7 +12,7 @@ import DeliveryInfo from 'components/Modal/DeliveryInfo';
 
 const END_POINT = 'https://api.codesquad.kr/onban/main/';
 
-export default function Modal({ setClickedCard }) {
+export default function Modal({ setClickedCard, cardHash }) {
   const [sideDish, setSideDish] = useState(false);
   const [curPrice, setCurPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -40,7 +40,7 @@ export default function Modal({ setClickedCard }) {
                 <Text weight="MEDIUM" color="GREY_300" value={n_price} />
               </NormalPrice>
               <SellingPrice>
-                {sideDish && badge.map((type, idx) => <Tag key={idx} type={type} />)}
+                {sideDish.badge && badge.map((type, idx) => <Tag key={idx} type={type} />)}
                 <Text weight="X_LARGE" color="MEDIUM" value={s_price} />
               </SellingPrice>
               <DeliveryInfo />
@@ -78,8 +78,7 @@ export default function Modal({ setClickedCard }) {
   );
 
   function fetchModalData() {
-    const HASH = 'HDF73';
-    const URL = END_POINT + HASH;
+    const URL = END_POINT + cardHash;
 
     fetch(URL)
       .then(res => res.json())

@@ -5,11 +5,30 @@ import Tag from 'components/common/Card/Tag';
 import Text from 'components/utils/Text';
 import HoverInfo from 'images/HoverInfo.png';
 
-export default function Card({ size, imageURL, title, desc, sellingPrice, normalPrice, tags, alt, setClickedCard }) {
+export default function Card({
+  id,
+  size,
+  imageURL,
+  title,
+  desc,
+  sellingPrice,
+  normalPrice,
+  tags,
+  alt,
+  setClickedCard,
+  setCardHash
+}) {
   const [isHoverImg, setHoverImg] = useState(false);
   const isSizeSmall = size === 'SMALL';
   return (
-    <Wrap onClick={() => setClickedCard(true)} size={size}>
+    <Wrap
+      id={id}
+      onClick={() => {
+        setClickedCard(true);
+        setCardHash(id);
+      }}
+      size={size}
+    >
       <A>
         <ImgWrap onMouseEnter={() => setHoverImg(true)} onMouseLeave={() => setHoverImg(false)}>
           {isSizeSmall ? null : <HoverImg />}
