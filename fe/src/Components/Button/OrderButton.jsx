@@ -17,12 +17,18 @@ const OrderButtonWrapper = styled.button`
   &:active {
     opacity: 0.4;
   }
+  
+  &:disabled {
+    cursor: default;
+    opacity: 0.3;
+  }
 `;
 
-export const OrderButton = ({ ContentsText, onClick }) => {
+export const OrderButton = ({ ContentsText = '주문하기', onClick, disabled }) => {
+  const outOfStockMessage = 'OUT OF STOCK'
   return (
-    <OrderButtonWrapper className={'order-button'} onClick={onClick}>
-      {ContentsText}
+    <OrderButtonWrapper disabled={disabled} className={'order-button'} onClick={onClick}>
+      { disabled ? outOfStockMessage : ContentsText }
     </OrderButtonWrapper>
   );
 };

@@ -65,11 +65,9 @@ const CloseButton = styled.button`
 export const OrderModal = ({ categoryId }) => {
   const { ModalDisplay, productDetail, reset } = useContext(ModalContext);
 
-  function onClickCloseBtn() {
+  const onClickCloseBtn = () => {
     reset();
   }
-
-  function OrderButtonEvent() {}
 
   if (!productDetail) {
     return;

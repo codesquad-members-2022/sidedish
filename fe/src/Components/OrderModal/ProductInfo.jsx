@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import { Colors, Fonts } from '@/Constants';
+import { API_URL } from '@/Env';
+import { postData } from '@/Utils';
 
 import { ModalContext } from './ModalContext';
 import { ProductAmount } from './ProductAmount';
@@ -87,11 +89,32 @@ export const ProductInfo = ({
     accumulate,
     discountPolicy,
     discountRate,
+    quantity,
     images,
   },
 }) => {
+  const { currentAmount } = useContext(ModalContext)
+
+  const deliveryFee = 3000;
+
+  const handleClickOrderButton = () => {
+    const requestBody = {
+      id,
+      quantity: currentAmount
+    }
+    postData(`${API_URL}/item`, requestBody)
+      .then(() => {
+        alert('주문 성공');
+        window.location.reload();
+      })
+      .catch((err)=> {
+        console.error(err);
+        alert('주문 실패');
+      })
+  }
+
   return (
-    <ProductInfoWrapper className={'ddd'}>
+    <ProductInfoWrapper>
       <Title className={Fonts.LG}>{title}</Title>
       {discountPolicy ? (
         <>
@@ -108,24 +131,24 @@ export const ProductInfo = ({
       ) : (
         <Price className={Fonts.LG}>{price.toLocaleString()} 원</Price>
       )}
-      <DeliveryInfo>
+      <DeliveryInfo className={Fonts.XS}>
         <ProductOrderSpec>
-          <li className={Fonts.XS}>적립금</li>
-          <li className={Fonts.XS}>주소</li>
-          <li className={Fonts.XS}>배달금</li>
+          <li>적립금</li>
+          <li>주소</li>
+          <li>배달금</li>
         </ProductOrderSpec>
 
         <ProductOrderInfo>
-          <li className={Fonts.XS}>{accumulate.toLocaleString()} 원</li>
-          <li className={Fonts.XS}>이곳은 주소입니다</li>
-          <li className={Fonts.XS}>{(3000).toLocaleString()} 원</li>
+          <li>{accumulate.toLocaleString()} 원</li>
+          <li>이곳은 주소입니다</li>
+          <li>{deliveryFee.toLocaleString()} 원</li>
         </ProductOrderInfo>
       </DeliveryInfo>
 
       <ProductAmount
         priceData={discountPolicy ? price - discountRate * price : price}
       />
-      <OrderButton ContentsText={'주문하기'} />
+      <OrderButton onClick={handleClickOrderButton} disabled={quantity === 0 || quantity < currentAmount}/>
     </ProductInfoWrapper>
   );
 };
