@@ -143,10 +143,10 @@ class BanchanDetailViewController: UIViewController {
             self.productDetailView.setTitleText(banchanInfo.title, font: .textLargeBold)
             self.productDetailView.setDescriptionText(banchanInfo.description, font: .textMediumRegular)
             self.productDetailView.setBadgeList(banchanInfo.badges)
-            self.productDetailView.setSalePrice(banchanInfo.salePrice)
+            self.productDetailView.setSalePrice(banchanInfo.salePrice, font: .textMediumRegular)
 
             if let normalPrice = banchanInfo.normalPrice {
-                self.productDetailView.setNormalPrice(normalPrice)
+                self.productDetailView.setNormalPrice(normalPrice, font: .textMediumBold)
             }
 
             self.pointLabel.text = detail.point
@@ -232,10 +232,10 @@ class BanchanDetailViewController: UIViewController {
             trailing: self.orderView.trailingAnchor
         )
 
-        self.productDetailView.setTitleText("오리 주물럭_반조리", font: .textLargeBold)
-        self.productDetailView.setDescriptionText("감칠맛 나는 매콤한 양념", font: .textMediumRegular)
-        self.productDetailView.setNormalPrice("15,800원", font: .textMediumRegular)
-        self.productDetailView.setSalePrice("12,640원", font: .textMediumBold)
+//        self.productDetailView.setTitleText("오리 주물럭_반조리", font: .textLargeBold)
+//        self.productDetailView.setDescriptionText("감칠맛 나는 매콤한 양념", font: .textMediumRegular)
+//        self.productDetailView.setNormalPrice("15,800원", font: .textMediumRegular)
+//        self.productDetailView.setSalePrice("12,640원", font: .textMediumBold)
     }
 
     private func configureDeliveryInformationView() {
