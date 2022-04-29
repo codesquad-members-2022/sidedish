@@ -14,6 +14,17 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageScrollViewPageControl: UIPageControl!
     
+    @IBOutlet weak var productNameLabel: UILabel!
+    @IBOutlet weak var productDetailNameLabel: UILabel!
+    @IBOutlet weak var productPriceLabel: UILabel!
+    @IBOutlet weak var specialMessageContainerLabel: UILabel!
+    
+    @IBOutlet weak var pointLabel: UILabel!
+    @IBOutlet weak var deliveryInfoLabel: UILabel!
+    @IBOutlet weak var deliveryFeeLabel: UILabel!
+    
+    @IBOutlet weak var resultPriceLabel: UILabel!
+    
     @IBOutlet weak var specialMessageContainerView: UIView!
     
     @IBOutlet weak var quantityLabel: UILabel!
@@ -25,6 +36,28 @@ class DetailViewController: UIViewController {
     
     private let imageCellIdentifier = String(describing: HomeDetailCollectionViewCell.self)
     private var safeAreaInset: UILayoutGuide!
+    
+    var sideDishKey: String = ""
+    
+    private lazy var detailVM = DetailViewModel(hash: sideDishKey) { [weak self] model in
+        guard let self = self else { return }
+        
+        self.productNameLabel.text = model.productDescription
+        self.productDetailNameLabel.text = model.productDescription
+        self.productPriceLabel.text = model.prices.first
+        
+        self.pointLabel.text = model.point
+        self.deliveryInfoLabel.text = model.deliveryInfo
+        self.deliveryFeeLabel.text = model.deliveryFee
+        
+        self.resultPriceLabel.text = model.prices.last
+        
+        if let quantity = Int(self.quantityLabel.text ?? ""), let price = Int(model.prices.last ?? "") {
+            self.resultPriceLabel.text = String(quantity * price)
+        }
+    }
+    
+    private let cacheVM = DishViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
