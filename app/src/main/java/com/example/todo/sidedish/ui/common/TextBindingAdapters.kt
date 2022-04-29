@@ -1,10 +1,10 @@
 package com.example.todo.sidedish.ui.common
 
 import android.graphics.Paint
-import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.todo.sidedish.R
+import java.text.DecimalFormat
 
 @BindingAdapter("cancelText")
 fun loadOriginalPrice(view: TextView, price: String?) {
@@ -15,11 +15,17 @@ fun loadOriginalPrice(view: TextView, price: String?) {
 }
 
 @BindingAdapter("nowPageNum", "totalPageNum")
-fun displayPageInfo(view:TextView, nowPageNum:Int, totalPageNum:Int){
-    view.text= "$nowPageNum / $totalPageNum"
+fun displayPageInfo(view: TextView, nowPageNum: Int, totalPageNum: Int) {
+    view.text = view.context.getString(R.string.page_format, nowPageNum, totalPageNum)
 }
 
 @BindingAdapter("getCount")
-fun getMenuItemCount(view: TextView, itemCount:Int){
-    view.text="${itemCount}개의 상품이 등록되어있습니다"
+fun getMenuItemCount(view: TextView, itemCount: Int) {
+    view.text = view.context.getString(R.string.order_count_format, itemCount)
+}
+
+@BindingAdapter("formatText")
+fun formatText(view: TextView, price: Int) {
+    val decimalFormat = DecimalFormat("#,###")
+    view.text = view.context.getString(R.string.price_format, decimalFormat.format(price))
 }

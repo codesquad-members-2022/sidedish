@@ -4,10 +4,9 @@ buildscript {
         google()
         mavenCentral()
     }
-
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
-        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.gms:google-services:4.3.8'
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2"
     }
 }

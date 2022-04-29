@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
-
 
         <variable
             name="item"
@@ -24,14 +22,12 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_menu"
-            imageUrl="@{item.image}"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedBig"
-            tools:src="@drawable/ic_launcher_background" />
+            app:shapeAppearanceOverlay="@style/RoundedBig"/>
 
         <TextView
             android:id="@+id/tv_title"

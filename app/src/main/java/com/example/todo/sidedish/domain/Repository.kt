@@ -5,11 +5,11 @@ import com.example.todo.sidedish.domain.model.MenuDetail
 
 interface Repository {
 
-    suspend fun getMain(): List<Menu>
+    suspend fun getMain(): Result<List<Menu>>
 
-    suspend fun getSoup(): List<Menu>
+    suspend fun getSoup(): Result<List<Menu>>
 
-    suspend fun getSide(): List<Menu>
+    suspend fun getSide(): Result<List<Menu>>
 
-    suspend fun getDetail(hash:String) : MenuDetail
+    suspend fun getDetail(hash:String) : Result<MenuDetail>
 }

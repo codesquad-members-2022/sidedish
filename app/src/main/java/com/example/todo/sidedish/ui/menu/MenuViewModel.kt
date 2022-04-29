@@ -5,14 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todo.sidedish.domain.model.Menu
+import com.example.todo.sidedish.common.Constants
+import com.example.todo.sidedish.common.LruMemoryCache
+import com.example.todo.sidedish.data.remote.OnBanApi
 import com.example.todo.sidedish.domain.Repository
 import com.example.todo.sidedish.domain.model.DishType
 import com.example.todo.sidedish.domain.model.DishType.*
+import com.example.todo.sidedish.domain.model.Menu
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,34 +32,42 @@ class MenuViewModel @Inject constructor(
 
     private val coroutineExceptionHandler: CoroutineExceptionHandler =
         CoroutineExceptionHandler { _, throwable ->
-            Log.e("CoroutineException", ": ${throwable.message}")
-            _errorMessage.value = "잘못된 접근입니다."
+            Log.e(Constants.COROUTINE_EXCEPTION_TAG, ": ${throwable.message}")
+            _errorMessage.value = Constants.COROUTINE_ERROR
         }
 
     init {
+        LruMemoryCache.initializeCache()
         getMenus()
     }
 
     private fun getMenus() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            supervisorScope {
-                launch {
-                    val mainDish = menuRepository.getMain()
-                    items[MAIN_DISH] = mainDish
-                    _menus.value = items
-                }
+            launch {
+                menuRepository.getMain()
+                    .onSuccess {
+                        items[MAIN_DISH] = it
+                        _menus.value = items
+                    }
+                    .onFailure { _errorMessage.value = OnBanApi.ERROR_MESSAGE }
+            }
 
-                launch {
-                    val soupDish = menuRepository.getSoup()
-                    items[SOUP_DISH] = soupDish
-                    _menus.value = items
-                }
+            launch {
+                menuRepository.getSoup()
+                    .onSuccess {
+                        items[SOUP_DISH] = it
+                        _menus.value = items
+                    }
+                    .onFailure { _errorMessage.value = OnBanApi.ERROR_MESSAGE }
+            }
 
-                launch {
-                    val sideDish = menuRepository.getSide()
-                    items[SIDE_DISH] = sideDish
-                    _menus.value = items
-                }
+            launch {
+                menuRepository.getSide()
+                    .onSuccess {
+                        items[SIDE_DISH] = it
+                        _menus.value = items
+                    }
+                    .onFailure { _errorMessage.value = OnBanApi.ERROR_MESSAGE }
             }
         }
     }
