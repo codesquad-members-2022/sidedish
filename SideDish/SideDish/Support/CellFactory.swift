@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 protocol CellFactoryProtocol {
     func fetchData()
@@ -7,7 +6,8 @@ protocol CellFactoryProtocol {
 
 final class CellFactory: CellFactoryProtocol {
     private let repository: DishCellRepositoryProtocol
-    var onUpdate: () -> Void = { }
+    var onUpdate: () -> Void = {}
+    var onUpdateWithImageData: (String, Data) -> Void = { _, _ in}
     private(set) var products: [ProductSort: [DishCellInfo]] = [:] {
         didSet {
             if products.count == 3 {
@@ -27,6 +27,7 @@ final class CellFactory: CellFactoryProtocol {
                 switch result {
                 case .success(let data):
                     self.products[sort] = data
+                    self.downLoadImage(products: data)
                 case .failure:
                     print("\(sort.rawValue) error happend!!!")
                 }
@@ -34,12 +35,16 @@ final class CellFactory: CellFactoryProtocol {
         }
     }
 
-     func convertCell2Product() -> ProductModel {
-        var resultDictionary: ProductModel = [ : ]
-         for (key, value) in self.products {
-            let productArray = value.map { Product(origin: $0, image: UIImage(systemName: "pencil")!)}
-            resultDictionary[key] = productArray
+    private func downLoadImage(products: [DishCellInfo]) {
+        products.forEach { cell in
+            DispatchQueue.global(qos: .userInitiated).async {
+                guard let url = URL(string: cell.image) else { return }
+                if let data = try? Data(contentsOf: url) {
+//                    DispatchQueue.main.async {
+                        self.onUpdateWithImageData(cell.detailHash, data)
+//                    }
+                }
+            }
         }
-        return resultDictionary
     }
 }

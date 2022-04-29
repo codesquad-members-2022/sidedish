@@ -19,6 +19,15 @@ class HomeViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+        viewModel.onUpdateWithImageData = { hash, data in
+            guard var targetCell = self.viewModel[hash] else { return }
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data) {
+                    targetCell.injectImage(image: image)
+                }
+                self.collectionView.reloadData()
+            }
+        }
         viewModel.fetchData()
     }
     private func collectionViewDelegate() {
@@ -33,7 +42,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let model: ProductModel = viewModel.model else { return 0 }
+        let model: ProductModel = viewModel.model
         switch section {
         case 0:
             return model[.main]?.count ?? 0
@@ -48,7 +57,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
     -> UICollectionViewCell {
-        guard let model: ProductModel = viewModel.model else { return UICollectionViewCell() }
+        let model: ProductModel = viewModel.model
         guard let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
                     return UICollectionViewCell()
@@ -73,8 +82,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let model: ProductModel = viewModel.model else { return 0 }
-        return model.count
+        return viewModel.model.count
     }
     // MARK: - Section Header 선언
     func collectionView(_ collectionView: UICollectionView,
@@ -96,7 +104,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     // MARK: - Cell 이 클릭되게 만듦
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let model: ProductModel = viewModel.model else { return }
+        let model: ProductModel = viewModel.model
         var targetSort: ProductSort?
         switch indexPath.section {
         case 0:
