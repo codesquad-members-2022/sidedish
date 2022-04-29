@@ -1,14 +1,18 @@
-package com.example.sidedish
+package com.example.sidedish.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sidedish.R
 import com.example.sidedish.databinding.ItemMenuDataBinding
+import com.example.sidedish.model.Products
 
-class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
+class MainHomeAdapter :
+    ListAdapter<Products, MainHomeAdapter.MainHomeHolder>(MainHomeAdapterDiffCallback) {
 
     override fun onBindViewHolder(holder: MainHomeHolder, position: Int) {
         val item = getItem(position)
@@ -24,16 +28,22 @@ class MainHomeAdapter : ListAdapter<Products, MainHomeHolder>(diffUtil) {
         ).let {
             MainHomeHolder(it)
         }
-}
 
-class MainHomeHolder(private val binding: ItemMenuDataBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(menuList: Products) {
-        binding.menuData = menuList
+    class MainHomeHolder(private val binding: ItemMenuDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(products: Products) {
+            binding.products = products
+            itemView.setOnClickListener {
+                Intent(it.context, ProductDetailActivity::class.java).apply {
+                    putExtra("product", products)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { it.context.startActivity(this) }
+            }
+        }
     }
 }
 
-private val diffUtil = object : DiffUtil.ItemCallback<Products>() {
+object MainHomeAdapterDiffCallback : DiffUtil.ItemCallback<Products>() {
     override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
         return oldItem.productId == newItem.productId
     }

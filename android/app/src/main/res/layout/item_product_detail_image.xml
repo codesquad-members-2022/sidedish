@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="title"
-            type="com.example.sidedish.ProductDetailTitleImageList" />
+            name="representImages"
+            type="com.example.sidedish.model.RepresentImages" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_product_detail_image"
-            imageUrl="@{title.productDetailImageURL}"
+            updateImage="@{representImages.imageURL}"
             android:layout_width="0dp"
             android:layout_height="400dp"
             android:contentDescription="@string/label_iv_product_detail_image"
