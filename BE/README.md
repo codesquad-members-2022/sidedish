@@ -12,7 +12,7 @@
 - [ ] categoryController 중복제거 생각해보기
 - [x] buildItems 메서드 매직넘버는 지양하기
 - [ ] findItemByDetailType에 인자로 enum 전달히기
-- [ ] ResponseAdditionalDto 생성자 고민해보기
+- [x] ResponseAdditionalDto 생성자 고민해보기
 - [ ] OrderRequest에서 id를 null로 보낸경우에도 QuantityException가 발생하지 않을까요??
 - [x] item 내부에서 자체적으로 남은 수량 계산하기
 
