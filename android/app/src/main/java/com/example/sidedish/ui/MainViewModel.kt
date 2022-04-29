@@ -50,17 +50,17 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
     private fun loadMenu() {
         viewModelScope.launch(exceptionHandler) {
-            CoroutineScope(Dispatchers.Main).launch {
+            launch(Dispatchers.Main) {
                 mainRepository.loadMainMenu().let {
                     _mainMenu.value = it?.products
                 }
             }
-            CoroutineScope(Dispatchers.Main).launch {
+            launch(Dispatchers.Main) {
                 mainRepository.loadSoupMenu().let {
                     _soupMenu.value = it?.products
                 }
             }
-            CoroutineScope(Dispatchers.Main).launch {
+            launch(Dispatchers.Main) {
                 mainRepository.loadSideDish().let {
                     _sideDish.value = it?.products
                 }
