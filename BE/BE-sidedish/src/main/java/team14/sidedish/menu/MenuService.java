@@ -77,8 +77,8 @@ public class MenuService {
 			new MenuDto.CategoryResponse(specialMenuTitle.getId(), specialMenuTitle.getTitle(), specialMenus));
 
 		MenuDto.CategoryResponse categoryResponse = new MenuDto.CategoryResponse(
-			Menu.Category.MAIN_DISH.getId(),
-			Menu.Category.MAIN_DISH.getKoType(),
+			Menu.Category.SIDE_DISH.getId(),
+			Menu.Category.SIDE_DISH.getKoType(),
 			menus);
 		return new MenuDto.Response(exhibitionResponse, categoryResponse);
 	}
@@ -90,11 +90,7 @@ public class MenuService {
 		// 함께하면 더욱 맛있는 상품은 조회요청한 메뉴의 Category와 동일
 		List<Menu> category = menuRepository.findByCategory(subjectOfCategory, pageable);
 		List<MenuDto.SubCategory> menus = getSubCategoryOf(category);
-		Set<Long> menuIds = getMenuIds(menus);
-		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
-		List<Long> eventIds = ids.getEventIds();
-		EventAndSalesDto eventAndSales = eventService.read(eventIds);
-		insertSalesAndEventBadge(menus, ids, eventAndSales);
+		filledEvent(menus);
 
 		MenuDto.SubCategory detailMenu = getDetailMenu(menuInfo, menus);
 		menus.remove(detailMenu);
@@ -106,6 +102,14 @@ public class MenuService {
 		Integer charge = savedCharge.apply(detailMenu.hasDiscounted(), detailMenu);
 		response.setSavedCharge(charge);
 		return response;
+	}
+
+	private void filledEvent(List<MenuDto.SubCategory> subCategories) {
+		Set<Long> menuIds = getMenuIds(subCategories);
+		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
+		List<Long> eventIds = ids.getEventIds();
+		EventAndSalesDto eventAndSales = eventService.read(eventIds);
+		insertSalesAndEventBadge(subCategories, ids, eventAndSales);
 	}
 
 	/**
@@ -150,11 +154,7 @@ public class MenuService {
 
 		List<Menu> category = menuRepository.findByCategory(menuCategory, pageable);
 		List<MenuDto.SubCategory> menus = getSubCategoryOf(category);
-		Set<Long> menuIds = getMenuIds(menus);
-		EventPlannerDto.Ids ids = eventPlannerService.readOngoingEventOf(List.copyOf(menuIds));
-		List<Long> eventIds = ids.getEventIds();
-		EventAndSalesDto eventAndSales = eventService.read(eventIds);
-		insertSalesAndEventBadge(menus, ids, eventAndSales);
+		filledEvent(menus);
 
 		return new MenuDto.CategoryResponse(menuCategory.getId(), menuCategory.getKoType(), menus);
 	}
