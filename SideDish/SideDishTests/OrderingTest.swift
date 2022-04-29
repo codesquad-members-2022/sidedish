@@ -7,12 +7,12 @@ class OrderingTests: XCTestCase {
     private var food: Food!
     private var networkHandler: NetworkHandlable!
     private var jsonHandler: JSONHandlable!
-    private var dataCache: DataCacheable!
+    private var dataCache: DataCachingManagable!
     
     override func setUp(){
         networkHandler = MockNetworkHandler()
         jsonHandler = JSONHandler()
-        dataCache = MockDataCache()
+        dataCache = MockDataCachingManager()
         let repository = MockRepository(networkHandler: networkHandler, jsonHandler: jsonHandler, dataCache: dataCache)
         ordering = Ordering(repository: repository)
         food = Food(detailHash: "hash2", alt: "alt", foodDescription: "description", normalPrice: "normalPrice", specialPrice: "specialPrice", deliveryInformation: ["deliveryInformation"], title: "title", imageUrl: "imageUrl", badges: ["badge"])
