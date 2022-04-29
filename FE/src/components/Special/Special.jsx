@@ -12,7 +12,7 @@ import {
   CardContainer,
 } from './Special.style';
 import tabData from 'data/specialTab.js';
-import { MOCK_URL } from 'constants/api';
+import { API_URL } from 'constants/api';
 
 const Special = () => {
   const [data, setData] = useState([]);
@@ -27,7 +27,7 @@ const Special = () => {
   };
 
   const fetchTabData = async tabNum => {
-    const data = await fetchData(`${MOCK_URL}/special/${tabNum}`);
+    const data = await fetchData(`${API_URL}/categories/${tabNum}`);
     setData(data[tabNum]);
   };
 
