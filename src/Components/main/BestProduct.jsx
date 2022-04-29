@@ -16,9 +16,11 @@ const TitleTag = styled.span`
   flex-shrink: 0;
   margin-right: 16px;
   padding: 0 16px;
-  line-height: 42px;
+  line-height: 38px;
   border: 2px solid ${({ theme }) => theme.Color.black};
   border-radius: 21px;
+  font-size: ${({ theme }) => theme.FontSize.Medium};
+  font-weight: ${({ theme }) => theme.FontWeight.Bold};
 `;
 
 const ProductBox = styled.div``;
