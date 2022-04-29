@@ -7,37 +7,38 @@ import java.util.stream.Collectors;
 
 public class DetailedDishDto {
 
-    private Long dishId;
-    private String title;
-    private Integer price;
-    private Integer point;
-    private String deliveryArea;
-    private Boolean deliveryMorning;
-    private Integer deliveryPrice;
-    private Integer stockQuantity;
+    private final Long dishId;
+    private final String title;
+    private final Integer price;
+    private final Integer point;
+    private final String deliveryArea;
+    private final Boolean deliveryMorning;
+    private final Integer deliveryPrice;
+    private final Integer stockQuantity;
     private List<ImageDto> images;
     private List<DiscountDto> eventBadge;
 
-    public DetailedDishDto(Dishes dish, Deliveries delivery) {
+    public DetailedDishDto(Dish dish, Delivery delivery) {
         this.dishId = dish.getId();
         this.title = dish.getTitle();
         this.price = dish.getPrice();
-        this.stockQuantity = dish.getStockQuantity();
+        this.point = dish.getPoint();
         this.deliveryArea = delivery.getDeliveryArea();
         this.deliveryMorning = delivery.getDeliveryMorning();
         this.deliveryPrice = delivery.getDeliveryPay();
-        makeImages(dish.getImages());
-        makeEventBadge(dish.getEventBadge());
+        this.stockQuantity = dish.getStockQuantity();
+        this.images = makeImages(dish.getImages());
+        this.eventBadge = makeEventBadge(dish.getDiscountPolicies());
     }
 
-    private void makeImages(List<Images> images) {
-        this.images = images.stream()
+    private List<ImageDto> makeImages(List<Image> images) {
+        return images.stream()
                 .map(ImageDto::new)
                 .collect(Collectors.toList());
     }
 
-    private void makeEventBadge(List<DiscountPolicies> discounts) {
-        this.eventBadge = discounts.stream()
+    private List<DiscountDto> makeEventBadge(List<DiscountPolicy> discounts) {
+        return discounts.stream()
                 .map(DiscountDto::new)
                 .collect(Collectors.toList());
     }

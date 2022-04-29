@@ -2,28 +2,28 @@ package team31.codesuqad.sidedish.controller;
 
 import org.springframework.web.bind.annotation.*;
 import team31.codesuqad.sidedish.controller.dto.DetailedDishDto;
-import team31.codesuqad.sidedish.controller.dto.RecommandDto;
-import team31.codesuqad.sidedish.service.DishesService;
+import team31.codesuqad.sidedish.controller.dto.RecommendDto;
+import team31.codesuqad.sidedish.service.DishService;
 
 @RestController
 @RequestMapping("/api/dish")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DishController {
 
-    private final DishesService dishesService;
+    private final DishService dishService;
 
-    public DishController(DishesService dishesService) {
-        this.dishesService = dishesService;
+    public DishController(DishService dishService) {
+        this.dishService = dishService;
     }
 
     @GetMapping("/detail/{dish_id}")
-    public DetailedDishDto showDetailedDish(@PathVariable("dish_id") Long dishId) {
-        return dishesService.findById(dishId);
+    public DetailedDishDto showDetailedDish(@PathVariable("dish_id") long dishId) {
+        return dishService.findByDishId(dishId);
     }
 
     @GetMapping("/recommand")
-    public RecommandDto showRecommandDishes(@RequestParam("page") Integer page) {
-        return dishesService.findSideDishes(page);
+    public RecommendDto showRecommendDishes(@RequestParam("page") int page) {
+        return dishService.findRecommendDishes(page);
     }
 
 }
