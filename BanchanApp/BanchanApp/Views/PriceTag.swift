@@ -8,7 +8,6 @@
 import UIKit
 
 class PriceTag: UILabel {
-
     var tagName: String = "총 주문금액" {
         didSet {
             self.configureLabel()
@@ -58,5 +57,4 @@ class PriceTag: UILabel {
 
         self.attributedText = attributedText
     }
-
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 class BanchanListViewController: UICollectionViewController {
-
     private let headerItem = ["모두가 좋아하는\n든든한 메인 요리", "정성이 담긴\n뜨끈뜨끈 국물 요리", "식탁을 풍성하게 하는\n정갈한 밑반찬"]
 
     var viewModel: BanchanListViewModel?
@@ -60,11 +59,9 @@ class BanchanListViewController: UICollectionViewController {
         collectionView.register(ProductDetailCell.self, forCellWithReuseIdentifier: ProductDetailCell.identifier)
         collectionView.register(ProductSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionHeader.identifier)
     }
-
 }
 
 extension BanchanListViewController {
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel?.getNumberOfItems(inSection: section) ?? 0
     }
