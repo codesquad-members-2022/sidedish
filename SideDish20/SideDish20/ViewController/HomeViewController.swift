@@ -96,6 +96,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             return
         }
         
+        detailViewController.sideDishKey = products[indexPath.item].sideDishKey
+        
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

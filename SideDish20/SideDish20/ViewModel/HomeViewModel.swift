@@ -12,7 +12,8 @@ class HomeViewModel {
     
     let service = DataFetchService()
     
-    var homeSubViewModel: [HomeModel]? = [HomeModel(image: "img01",
+    var homeSubViewModel: [HomeModel]? = [HomeModel(sideDishKey: "HBDEF",
+                                                 image: "img01",
                                                  name: "뜨끈한 국밥",
                                                  description: "아주 따뜻해유",
                                                  discountedPrice: "12,370원",

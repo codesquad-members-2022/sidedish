@@ -26,7 +26,8 @@ class DataFetchService: CommonURLManager {
                     message.append(msg)
                 }
                 
-                homeModelList.append(HomeModel(image: data.image,
+                homeModelList.append(HomeModel(sideDishKey: data.detailHash,
+                                               image: data.image,
                                                name: data.title,
                                                description: data.description,
                                                discountedPrice: discountedPrice,
@@ -38,7 +39,7 @@ class DataFetchService: CommonURLManager {
     }
     
     func fetchDetail(hash: String, onCompleted: @escaping (HomeDetailModel) -> Void) {
-        repository.fetchDetail(hash: "HBDEF") { entity in
+        repository.fetchDetail(hash: hash) { entity in
             onCompleted(entity.data)
         }
     }
