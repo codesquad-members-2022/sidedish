@@ -3,26 +3,33 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    private var model: [ProductSort: [Product]] = [:]
+    private var viewModel = DishCellViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUnderbarAtNavigationBar()
         registerDishCell()
         collectionViewDelegate()
+        fetchAndDrawCell()
+    }
 
-        let repository = DishCellRepository()
-        let factory = CellFactory(repository: repository)
-        factory.onUpdate = {
+    private func fetchAndDrawCell() {
+        viewModel.onUpdate = {
             DispatchQueue.main.async {
-                let product = factory.convertCell2Product()
-                self.model = product
                 self.collectionView.reloadData()
             }
         }
-        factory.fetchData()
+        viewModel.onUpdateWithImageData = { hash, data in
+            guard var targetCell = self.viewModel[hash] else { return }
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data) {
+                    targetCell.injectImage(image: image)
+                }
+                self.collectionView.reloadData()
+            }
+        }
+        viewModel.fetchData()
     }
-
     private func collectionViewDelegate() {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -35,6 +42,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let model: ProductModel = viewModel.model
         switch section {
         case 0:
             return model[.main]?.count ?? 0
@@ -49,6 +57,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
     -> UICollectionViewCell {
+        let model: ProductModel = viewModel.model
         guard let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: DishCell.identifier, for: indexPath) as? DishCell else {
                     return UICollectionViewCell()
@@ -58,7 +67,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
               let side = model[.side] else {
                   return UICollectionViewCell()
               }
-        
+
         let sectionNumber = indexPath.section
         switch sectionNumber {
         case 0:
@@ -73,7 +82,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return model.count
+        return viewModel.model.count
     }
     // MARK: - Section Header 선언
     func collectionView(_ collectionView: UICollectionView,
@@ -95,7 +104,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     // MARK: - Cell 이 클릭되게 만듦
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var targetSort: ProductSort = .main
+        let model: ProductModel = viewModel.model
+        var targetSort: ProductSort?
         switch indexPath.section {
         case 0:
             targetSort = .main
@@ -104,6 +114,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         default:
             targetSort = .side
         }
+        guard let targetSort = targetSort else { return }
         guard let targetSection = model[targetSort] else { return }
         let targetDish = targetSection[indexPath.item]
         let dishTitle = targetDish.title
