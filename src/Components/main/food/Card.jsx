@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import {
   F_basic,
@@ -9,17 +9,30 @@ import {
 } from '../../../Assets/CommonStyle';
 import Title from '../../Title';
 
-export default function Card({ cardData }) {
+export default function Card({ cardData, isClick, setClick, setCardHash }) {
+  const CARD = useRef(null);
+
+  const cardHashHandler = () => {
+    setClick(true);
+    setCardHash(CARD.current.dataset.hash);
+  };
+
   const CardImgData = {
     img: cardData.image,
     alt: cardData.alt,
     delivery: cardData.delivery_type,
   };
+
   return (
-    <CardItem data-hash={cardData.detail_hash}>
-      <Img data={CardImgData} />
-      <Text data={cardData} />
-    </CardItem>
+    <>
+      <CardItem
+        data-hash={cardData.detail_hash}
+        onClick={cardHashHandler}
+        ref={CARD}>
+        <Img data={CardImgData} />
+        <Text data={cardData} />
+      </CardItem>
+    </>
   );
 }
 
