@@ -18,7 +18,7 @@ function SpecialPromotion({openModal}) {
   const [goodsData, setGoodsData] = useState([]);
 
   const fetchAPI = async title => {
-    const data = await fetchData(`${serverURL}/${title}`);
+    const data = await fetchData(`${serverURL}/product/event?category=${title}`);
     setGoodsData(data);
   };
 
@@ -43,7 +43,16 @@ function SpecialPromotion({openModal}) {
       <BestSideDishContainer>
         <BestSideDishList>
           {goodsData.map(
-            ({id, image, productName, description, price, eventBadge, early_delivery, discountedRate}) => (
+            ({
+              id,
+              imageThumbnail,
+              productName,
+              description,
+              price,
+              eventBadge,
+              earlyDelivery,
+              discountRate,
+            }) => (
               <li
                 key={id}
                 onClick={() => {
@@ -51,13 +60,13 @@ function SpecialPromotion({openModal}) {
                 }}
               >
                 <GoodsBlock
-                  thumb={image}
+                  thumb={imageThumbnail}
                   name={productName}
                   description={description}
                   price={price}
                   eventBadge={eventBadge}
-                  discountedRate={discountedRate}
-                  delivery={early_delivery}
+                  discountRate={discountRate}
+                  delivery={earlyDelivery}
                 />
               </li>
             ),

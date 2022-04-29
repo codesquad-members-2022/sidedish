@@ -38,4 +38,9 @@ const hasClass = (element, className) => {
   return element.classList.contains(className);
 };
 
-export {fetchData, postData, hasClass};
+const numberToBoolean = number => {
+  if (number === 0) return false;
+  else if (number === 1) return true;
+};
+
+export {fetchData, postData, hasClass, numberToBoolean};

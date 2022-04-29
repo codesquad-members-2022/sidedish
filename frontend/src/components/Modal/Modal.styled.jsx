@@ -41,7 +41,11 @@ const MainThumb = styled.img`
   height: 392px;
 `;
 
-const SubThumb = styled.img`
+const SubThumb = styled.ul`
+  display: flex;
+`;
+
+const SubThumbItem = styled.img`
   width: 72px;
   height: 72px;
 `;
@@ -154,4 +158,5 @@ export {
   TotalPrice,
   OrderCount,
   ProductName,
+  SubThumbItem,
 };

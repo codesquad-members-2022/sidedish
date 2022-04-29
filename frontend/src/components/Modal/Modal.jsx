@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react";
 import {fetchData, postData} from "utils/utils";
-import {minusIcon, plusIcon, eventLabelIcon, launchingLabelIcon} from "constants";
-import {serverURL} from "constants/urlPath";
+import {minusIcon, plusIcon, eventLabelIcon, launchingLabelIcon, percentage} from "constants";
+import {serverURL, localURL} from "constants/urlPath";
 import {
   DarkBackground,
   ModalBlock,
@@ -23,6 +23,7 @@ import {
   TotalPrice,
   OrderCount,
   ProductName,
+  SubThumbItem,
 } from "./Modal.styled";
 
 function Modal({visible, onClose, productId}) {
@@ -36,9 +37,9 @@ function Modal({visible, onClose, productId}) {
 
   const fetchAPI = useCallback(async () => {
     if (!productId) return;
-    const data = await fetchData(`${serverURL}/${productId}`);
+    const data = await fetchData(`${serverURL}/product/${productId}`);
     setGoodsData(data);
-    const price = data.price * (1 - data.discountRate);
+    const price = data.price * (1 - data.discountRate * percentage);
     setPrice(price);
     setTotalPrice(price);
   }, [productId]);
@@ -50,7 +51,7 @@ function Modal({visible, onClose, productId}) {
 
   const postAPI = useCallback(async () => {
     if (!orderState) return;
-    const response = await postData(`${serverURL}/order`, orderInfo);
+    const response = await postData(`${localURL}/order`, orderInfo);
     setOrderSuccess(response);
     if (!response) setOrderState(false);
   }, [orderInfo, orderState]);
@@ -67,7 +68,10 @@ function Modal({visible, onClose, productId}) {
     setTotalPrice(price * quantity);
   }, [quantity]);
 
-  if (!visible) return;
+  if (!visible || !goodsData) return;
+
+  const [mainImage, ...subImage] = goodsData.image;
+
   return (
     <DarkBackground>
       <ModalBlock>
@@ -79,8 +83,14 @@ function Modal({visible, onClose, productId}) {
               <CloseButton onClick={onClose}>닫기</CloseButton>
               <InnerModalBlock>
                 <ProductImages>
-                  <MainThumb src={goodsData.image[0].imagePath}></MainThumb>
-                  <SubThumb></SubThumb>
+                  <MainThumb src={mainImage.imagePath}></MainThumb>
+                  <SubThumb>
+                    {subImage.map(({id, imagePath}) => (
+                      <li key={id}>
+                        <SubThumbItem src={imagePath} alt="subThubImage" />
+                      </li>
+                    ))}
+                  </SubThumb>
                 </ProductImages>
                 <ProductDetails>
                   <ProductInfo>
@@ -97,7 +107,9 @@ function Modal({visible, onClose, productId}) {
                       </div>
                       <ProductPrice>
                         <p className="discountedPrice">
-                          {Number(goodsData.price * (1 - goodsData.discountRate)).toLocaleString("en") + "원"}
+                          {Number(goodsData.price * (1 - goodsData.discountRate * percentage)).toLocaleString(
+                            "en",
+                          ) + "원"}
                         </p>
                         {goodsData.discountRate !== 0 && (
                           <p className="regularPrice">

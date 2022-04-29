@@ -17,7 +17,7 @@ function Slider({sideDishTitle, openModal}) {
   const sliderNextButton = useRef();
 
   const fetchAPI = useCallback(async () => {
-    const data = await fetchData(`${serverURL}/${sideDishTitle}`);
+    const data = await fetchData(`${serverURL}/product/main?category=${sideDishTitle}`);
     setGoodsData(data);
   }, [sideDishTitle]);
 
@@ -83,7 +83,16 @@ function Slider({sideDishTitle, openModal}) {
       <div className="sideDishContainer">
         <ul className="sideDishList" ref={sideDishList}>
           {goodsData.map(
-            ({id, image, productName, description, price, eventBadge, early_delivery, discountedRate}) => (
+            ({
+              id,
+              imageThumbnail,
+              productName,
+              description,
+              price,
+              eventBadge,
+              earlyDelivery,
+              discountRate,
+            }) => (
               <li
                 key={id}
                 onClick={() => {
@@ -91,13 +100,13 @@ function Slider({sideDishTitle, openModal}) {
                 }}
               >
                 <GoodsBlock
-                  thumb={image}
+                  thumb={imageThumbnail}
                   name={productName}
                   description={description}
                   price={price}
                   eventBadge={eventBadge}
-                  discountedRate={discountedRate}
-                  delivery={early_delivery}
+                  discountRate={discountRate}
+                  delivery={earlyDelivery}
                 />
               </li>
             ),
