@@ -23,7 +23,7 @@ export const Category = ({ categories }: Categories) => {
   return (
     <>
       {displayTargetCategories.map((cat) => (
-        <CarouselWrapper key={cat.id}>
+        <CarouselWrapper data-cy="carouselWrapper" key={cat.id}>
           <HorizontalLine position={0} color={"Grey4"} />
           <Carousel id={cat.id} title={cat.description} size={SIZES.medium} />
         </CarouselWrapper>

@@ -39,7 +39,11 @@ export const Gnb = ({ categories }: Categories) => {
         <MenuWrapper key={cat.id}>
           <Title>{cat.name}</Title>
           {extended &&
-            cat.subcategories.map((sub) => <Sub key={sub.id}>{sub.name}</Sub>)}
+            cat.subcategories.map((sub) => (
+              <Sub data-cy="subMenu" key={sub.id}>
+                {sub.name}
+              </Sub>
+            ))}
         </MenuWrapper>
       ))}
     </GnbMenu>

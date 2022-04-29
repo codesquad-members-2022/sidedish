@@ -56,7 +56,7 @@ export const SpecialCategory = ({
   return (
     <>
       {products && (
-        <Wrapper>
+        <Wrapper data-cy="special">
           <TitleWrapper>
             <TitleBadge>기획전</TitleBadge>
             <Title>한 번 주문하면 두 번 반하는 반찬</Title>
