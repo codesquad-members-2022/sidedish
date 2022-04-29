@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const DishCard = styled.li`
+const CardContainer = styled.li`
+    cursor: pointer;
+`;
+
+const DishCard = styled.div`
     position: relative;
 `;
 
@@ -95,6 +99,7 @@ const DeliveryBadge = styled.ul`
 `;
 
 export {
+    CardContainer,
     DishCard,
     ImgWrapper,
     Img,
