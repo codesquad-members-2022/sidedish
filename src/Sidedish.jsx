@@ -32,17 +32,14 @@ export default function Sidedish() {
             setClickedCard={setClickedCard}
             setCardHash={setCardHash}
           />
-          {isClickedMoreBtn ? (
-            <MenuSections setClickedCard={setClickedCard} setCardHash={setCardHash} />
-          ) : (
-            <MenuSection
-              key={PATHs[0]}
-              title={sectionTitles[0]}
-              menuName={PATHs[0]}
-              setClickedCard={setClickedCard}
-              setCardHash={setCardHash}
-            />
-          )}
+          <MenuSection
+            key={PATHs[0]}
+            title={sectionTitles[0]}
+            menuName={PATHs[0]}
+            setClickedCard={setClickedCard}
+            setCardHash={setCardHash}
+          />
+          {isClickedMoreBtn ? <TheOthersSections setClickedCard={setClickedCard} setCardHash={setCardHash} /> : null}
           {isClickedMoreBtn ? null : <MoreButton setClikedMoreBtn={setClikedMoreBtn} value="모든 카테고리 보기" />}
         </Main>
       </Wrap>
@@ -50,12 +47,14 @@ export default function Sidedish() {
   );
 }
 
-function MenuSections() {
+function TheOthersSections() {
   return (
     <>
-      {PATHs.map((PATH, idx) => (
-        <MenuSection key={PATH} title={sectionTitles[idx]} menuName={PATH} />
-      ))}
+      {PATHs.map((PATH, idx) => {
+        const isFirstIndex = idx === 0;
+        if (isFirstIndex) return null;
+        return <MenuSection key={PATH} title={sectionTitles[idx]} menuName={PATH} />;
+      })}
     </>
   );
 }
