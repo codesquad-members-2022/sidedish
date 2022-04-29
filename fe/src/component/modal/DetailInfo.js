@@ -123,15 +123,34 @@ const OrderButton = styled.button`
 const DetailInfo = ({ infoData }) => {
   const [orderNumber, SetOrderNumber] = useState(1);
   const ctx = useContext(ModalContext);
+
   useEffect(() => {
     !ctx.isDisplayed && SetOrderNumber(1);
   }, [ctx.isDisplayed]);
+
   const orderNumberMinus = () => {
     SetOrderNumber((prev) => (prev === 1 ? prev : prev - 1));
   };
 
   const orderNumberPlus = () => {
     SetOrderNumber((prev) => prev + 1);
+  };
+
+  const order = () => {
+    const orderData = {
+      id: `${ctx.clickedId}`,
+      quantity: `${orderNumber}`,
+    };
+    fetch("http://15.165.204.34:8080/api/v1/products/orders", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    alert(`주문 성공했습니다!`);
   };
 
   return (
@@ -179,7 +198,7 @@ const DetailInfo = ({ infoData }) => {
             </ProductAmount>
           </div>
         </ProductAmountWrapper>
-        <OrderButton>주문하기</OrderButton>
+        <OrderButton onClick={order}>주문하기</OrderButton>
       </TextWrapper>
     </InforWrapper>
   );
