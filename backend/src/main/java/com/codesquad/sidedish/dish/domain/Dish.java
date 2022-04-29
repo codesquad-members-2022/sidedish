@@ -1,7 +1,7 @@
 package com.codesquad.sidedish.dish.domain;
 
 import com.codesquad.sidedish.exception.ErrorCode;
-import com.codesquad.sidedish.exception.GoneException;
+import com.codesquad.sidedish.exception.unchecked.OutOfStockException;
 import com.codesquad.sidedish.other.DiscountPolicy;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ public class Dish {
 
     private String title;
     private String description;
-    private Integer price;
+    private int price;
     private Integer stock;
 
     @MappedCollection(idColumn = "dish_id")
@@ -78,7 +78,7 @@ public class Dish {
 
     public void sold(int quantity) {
         if (stock < quantity) {
-            throw new GoneException(ErrorCode.DISH_OUT_OF_STOCK);
+            throw new OutOfStockException(ErrorCode.DISH_OUT_OF_STOCK);
         }
         stock -= quantity;
     }
