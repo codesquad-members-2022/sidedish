@@ -1,4 +1,6 @@
-import {useState} from 'react';
+import react from 'react';
+import { useEffect, useState, useRef } from "react";
+import 'Carousel.css';
 
 function CarouselItem({ children, width }) {
     return (
@@ -13,8 +15,8 @@ function RecommendCarousel({ children }) {
     const updateIndex = (newIndex) => {
         if (newIndex < 0) {
             newIndex = 0;
-        } else if (newIndex >= React.Children.count(children)) {
-            newIndex = React.Children.count(children) - 1;
+        } else if (newIndex >= react.Children.count(children)) {
+            newIndex = react.Children.count(children) - 1;
         }
 
         setActiveIndex(newIndex);
@@ -26,8 +28,8 @@ function RecommendCarousel({ children }) {
                     className="inner"
                     style={{ transform: `translateX(-${activeIndex * 100}%)` }}
                 >
-                    {React.Children.map(children, (child, index) => {
-                        return React.cloneElement(child, { width: "100%" });
+                    {react.Children.map(children, (child, index) => {
+                        return react.cloneElement(child, { width: "100%" });
                     })}
                 </div>
             </div>
@@ -51,4 +53,4 @@ function RecommendCarousel({ children }) {
     );
 }
 
-export default {RecommendCarousel};
+export default {RecommendCarousel, CarouselItem};

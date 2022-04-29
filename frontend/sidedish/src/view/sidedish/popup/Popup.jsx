@@ -46,6 +46,7 @@ import {
     RelatedProductWrapScroll,
     RelatedProductCard
 } from "./Popup.style";
+// import {RecommendCarousel, CarouselItem} from '../recommendCarousel/recommendCarousel'
 
 function PopupProductPart({title, image, fixedPrice, discountPrice, eventBadges}){
     return (
@@ -98,7 +99,7 @@ function PopupProductPart({title, image, fixedPrice, discountPrice, eventBadges}
     );
 }
 
-function RelatedProductPart(){
+function RelatedProductPart({related}){
     return (
         <>
         <RelatedProduct>
@@ -112,7 +113,7 @@ function RelatedProductPart(){
             </RelatedProductNav>
             </RelatedProductHeader>
             <RelatedProductWrapScroll>
-                <RelatedProductCard />
+                {related}
             </RelatedProductWrapScroll>
         </RelatedProduct>
         </>
@@ -129,6 +130,7 @@ function ProductDetailPopup(props) {
         fixedPrice, 
         discountPrice, 
         eventBadges,
+        relatedproduct
     } = {...props};
     const closeProductDetailPopup = () => handleClose(false);
 
@@ -144,7 +146,9 @@ function ProductDetailPopup(props) {
                     discountPrice={discountPrice}
                     eventBadges={eventBadges}
                 />
-                <RelatedProductPart />
+                <RelatedProductPart 
+                    // related={relatedproduct} // 아직 기능 구현중이라 주석처리 해두었습니다.
+                />
             </PopupBox>
         </Popup>
         </>

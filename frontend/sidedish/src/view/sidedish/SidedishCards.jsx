@@ -42,32 +42,52 @@ function SidedishCards({ dishes, isBigCards }) {
         );
     });
 
+    const relatedCards = dishes.map((dish) => {
+        if(!dish){
+            return <div key={getRandomKey()}></div>;
+        }
+        console.log('related!');
+        return (
+            <Card
+                key={dish.dishId}
+                title={dish.title}
+                image={dish.imagePath}
+                description={dish.description}
+                fixedPrice={dish.fixedPrice}
+                discountPrice={dish.discountPrice}
+                eventBadges={dish.discounts}
+            />
+        );
+    });
+
     
 
     if (isBigCards) {
         return <BigCardsContainer>
             {sidedishCards}
             <ProductDetailPopup
+            show={open}
+            handleClose={closePopup}
             title={modaldata.title}
             image={modaldata.imagePath}
             fixedPrice={modaldata.fixedPrice}
             discountPrice={modaldata.discountPrice}
-            eventBadges={modaldata.discounts} 
-            show={open}
-            handleClose={closePopup}
+            eventBadges={modaldata.discounts}
+            related={relatedCards}
             />
             </BigCardsContainer>;
     }
     return <SmallCardsContainer>
         {sidedishCards}
         <ProductDetailPopup
+            show={open}
+            handleClose={closePopup}
             title={modaldata.title}
             image={modaldata.imagePath}
             fixedPrice={modaldata.fixedPrice}
             discountPrice={modaldata.discountPrice}
             eventBadges={modaldata.discounts} 
-            show={open}
-            handleClose={closePopup}
+            relatedproduct={relatedCards}
         />
         </SmallCardsContainer>;
 }
