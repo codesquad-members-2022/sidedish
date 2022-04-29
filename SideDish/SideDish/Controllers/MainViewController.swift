@@ -48,6 +48,7 @@ class MainViewController: UIViewController {
     
     func moveToDetailView(foodDetail: FoodDetail, foodTitle: String) {
         let detailViewController = DetailViewController(foodDetail: foodDetail, foodTitle: foodTitle)
+        detailViewController.ordering = ordering
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
