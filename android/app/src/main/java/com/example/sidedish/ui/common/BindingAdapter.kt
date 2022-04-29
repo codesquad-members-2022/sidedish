@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.sidedish.R
+import java.text.DecimalFormat
 
 @BindingAdapter("updateImage")
 fun updateImage(view: ImageView, imageUrl: String?) {
@@ -14,6 +16,12 @@ fun updateImage(view: ImageView, imageUrl: String?) {
             .error(androidx.appcompat.R.drawable.abc_btn_borderless_material)
             .into(view)
     }
+}
+
+@BindingAdapter("priceAmount")
+fun applyPriceFormat(view: TextView, price: Int) {
+    val decimalFormat = DecimalFormat("#,###")
+    view.text = view.context.getString(R.string.unit_currency, decimalFormat.format(price))
 }
 
 @BindingAdapter("showBadgeBackground")

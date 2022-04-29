@@ -1,6 +1,7 @@
 package com.example.sidedish.ui
 
 import android.content.Intent
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -32,6 +33,7 @@ class MainHomeAdapter :
     class MainHomeHolder(private val binding: ItemMenuDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(products: Products) {
+            binding.tvHomePrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             binding.products = products
             itemView.setOnClickListener {
                 Intent(it.context, ProductDetailActivity::class.java).apply {

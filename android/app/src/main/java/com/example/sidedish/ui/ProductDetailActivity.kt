@@ -71,9 +71,13 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun makePostRequest(): PostRequest {
         return PostRequest(
             loadProductId(),
-            "abc",
-            binding.tvCount.text.toString().toInt(),
-            binding.tvTotalPrice.text.toString().toInt()
+            1234,
+            replaceString(binding.tvCount.text.toString()).toInt(),
+            replaceString(binding.tvTotalPrice.text.toString()).toInt()
         )
+    }
+    private fun replaceString(text: String): String {
+        val strWithoutWon =  text.replace("원", "")
+        return strWithoutWon.replace(",", "")
     }
 }

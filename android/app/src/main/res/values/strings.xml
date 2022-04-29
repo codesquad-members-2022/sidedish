@@ -4,4 +4,5 @@
     <string name="label_minus_button">minusButton</string>
     <string name="label_order">주문하기</string>
     <string name="count_main_menu">%d개 상품이 진열되어 있습니다.</string>
+    <string name="unit_currency">%s원</string>
 </resources>
