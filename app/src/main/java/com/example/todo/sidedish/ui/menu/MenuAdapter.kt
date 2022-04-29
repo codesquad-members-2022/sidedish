@@ -117,11 +117,12 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
         private fun getImage(imageUri: String) {
             var bmp = memoryCache.getImageFromWarehouse(imageUri)
             if (bmp != null) {
-                println(memoryCache.imageWarehouse)
+                println("memoryCache hit")
                 binding.ivMenu.setImageBitmap(bmp)
             } else {
                 val loadBitmapFromDisk = getBitmapFromCache(imageUri)
                 if (loadBitmapFromDisk != null) {
+                    println("diskCache hit")
                     binding.ivMenu.setImageBitmap(loadBitmapFromDisk)
                     memoryCache.addImageToWareHouse(imageUri, loadBitmapFromDisk)
                 } else {
@@ -145,27 +146,25 @@ class MenuAdapter(private val itemClick: (hash: String, title: String, badges: L
             }
         }
 
-        private fun getBitmapFromCache(key: String): Bitmap? {
-            var foundFileName: String? = null
-            var bitmap: Bitmap? = null
-            val file = File(context.cacheDir.toString())
-            val files = file.listFiles()
-            files.map {
-                if (it.name.contains(key)) {
-                    foundFileName = it.name
-                    val path: String = "${context.cacheDir}/${foundFileName}"
-                    bitmap = BitmapFactory.decodeFile(path)
+        private fun getBitmapFromCache(fileName: String): Bitmap? {
+            val cachePath = File(context.cacheDir.toString())
+            val files = cachePath.listFiles()
+            val fileKey = fileName.replace("/", "_")
+            for (file in files) {
+                if (file.name == fileKey) {
+                    return BitmapFactory.decodeFile(file.toString())
                 }
             }
-            return bitmap
+            return null
         }
 
-        private fun saveBitmapToCache(bitmap: Bitmap, name: String) {
-            val cachePath= File(context.externalCacheDir, "images")
-            cachePath.mkdir()
 
+        private fun saveBitmapToCache(bitmap: Bitmap, name: String) {
+            val cachePath = context.cacheDir
+            val fileName = name.replace("/", "_")
+            val tempFile = File(cachePath, fileName)
             try {
-                val tempFile = File.createTempFile(name, null, cachePath)
+                tempFile.createNewFile()
                 val out = FileOutputStream(tempFile)
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
                 out.close()
