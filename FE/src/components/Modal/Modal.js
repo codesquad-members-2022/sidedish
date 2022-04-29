@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import ModalInfoContextStore from '../../stores/ModalInfoStore';
+import FoodModal from './FoodModal';
 
 const ModalWrap = styled.div`
   box-sizing: border-box;
@@ -27,11 +28,13 @@ const ModalLayer = styled.div`
     props.modalDisplay === 'block' ? 'rgba(0, 0, 0, 0.52)' : 'transparent'};
 `;
 
-const Modal = ({ ModalDetail }) => {
+const Modal = () => {
   const ModalInfo = useContext(ModalInfoContextStore);
   return (
     <ModalLayer modalDisplay={ModalInfo.modalDisplay}>
-      <ModalWrap>{ModalDetail}</ModalWrap>
+      <ModalWrap>
+        {ModalInfo.modalDetail === 'food' ? <FoodModal /> : null}
+      </ModalWrap>
     </ModalLayer>
   );
 };

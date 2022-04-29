@@ -5,7 +5,6 @@ import { moneyToWon } from '../../common/utils';
 import BADGE from '../../constants/badge';
 import colors from '../../constants/colors';
 import { FONT } from '../../constants/fonts';
-import modalFoods from '../../mocks/modalFoods';
 import ModalInfoContextStore from '../../stores/ModalInfoStore';
 import Tag from '../Tag';
 import Text from '../Text';
@@ -43,9 +42,10 @@ const FoodCard = ({ food, type = '' }) => {
 
   const onCardClick = () => {
     if (ModalInfo.modalDisplay === 'none') {
-      ModalInfo.setCardInfo({ ...food, ...modalFoods[food.detail_hash] });
-      ModalInfo.setThumbImg(modalFoods[food.detail_hash].thumb_images);
-      ModalInfo.setTopImg(food.image);
+      ModalInfo.setModalDetail('food');
+      ModalInfo.setCardInfo(food);
+      ModalInfo.setThumbImg([food.images.sideOne, food.images.sideTwo]);
+      ModalInfo.setTopImg(food.images.mainUrl);
       ModalInfo.setModalDisplay('block');
     }
   };
@@ -55,7 +55,7 @@ const FoodCard = ({ food, type = '' }) => {
 
   return (
     <CardWrap onClick={onCardClick}>
-      <CardImg src={food?.images?.mainUrl} alt={food.title} />
+      <CardImg src={food.images.mainUrl} alt={food.title} />
       <CardText>
         <Text font={type === 'modal' ? FONT.XSMALL : FONT.MEDIUM_BOLD}>
           {food.title}

@@ -43,6 +43,7 @@ const ProductDetail = () => {
   const onCloseClick = () => {
     if (ModalInfo.modalDisplay === 'block') {
       ModalInfo.setModalDisplay('none');
+      ModalInfo.setModalDetail('');
     }
     ModalInfo.setAmount(1);
   };

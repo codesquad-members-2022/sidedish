@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
+import { moneyToWon } from '../../common/utils';
 import colors from '../../constants/colors';
 import { FONT } from '../../constants/fonts';
 import ModalInfoContextStore from '../../stores/ModalInfoStore';
@@ -26,7 +27,7 @@ const TotalCost = () => {
         </Text>
       </CostWrap>
       <Text font={FONT.LARGE_BOLD}>
-        {(ModalInfo.cardInfo.s_price * ModalInfo.amount).toLocaleString()}원
+        {moneyToWon(ModalInfo.cardInfo.price * ModalInfo.amount)}
       </Text>
     </TotalCostWrap>
   );

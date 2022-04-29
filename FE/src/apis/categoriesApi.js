@@ -19,6 +19,10 @@ const categoriesApi = {
     const response = await client.get(`${PATH}${parsedTitle}/detail`);
     return response.data;
   }),
+  getRelatedFoodsByFood: methodFormat(async (itemId) => {
+    const response = await client.get(`${PATH}items/${itemId}`);
+    return response.data;
+  }),
 };
 
 export default categoriesApi;
