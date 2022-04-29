@@ -11,7 +11,7 @@ import Toast_Swift
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    private let viewModel = MainCollectionViewModel()
+    private var viewModel = ProductCollectionViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +42,18 @@ class MainViewController: UIViewController {
         mainCollectionView.register(MainCollectionViewCell.nib(), forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
         mainCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
     }
-
     private func bindViewModel() {
         CategoryType.allCases.forEach({ type in
             guard let categoryVM = viewModel.categoryVMs[type] else {return}
-            categoryVM.bind { _ in
-                DispatchQueue.main.async {
-                    let targetIndex = IndexSet(0..<self.viewModel.categoryVMs.count)
-                    self.mainCollectionView.reloadSections(targetIndex)
+            self.mainCollectionView.performBatchUpdates {
+                categoryVM.bind { _ in
+                    DispatchQueue.main.async {
+                        self.mainCollectionView.reloadData()
+                    }
                 }
             }
         })
-
-     viewModel.fetchAllCategories()
+        viewModel.fetchAllCategories()
     }
 }
 
@@ -90,8 +89,23 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
 
         let productType = CategoryType.allCases[indexPath.section]
+        header.setCounterView(viewModel.countProduct(section: indexPath.section))
         header.setTitle(text: productType.title)
+        header.setType(type: productType)
+        header.counterView.isHidden = viewModel.headerHiddenStatus[productType] ?? true
+        header.delegate = self
         return header
+    }
+
+}
+
+// MARK: Header View delegate
+extension MainViewController: HeaderViewDelegate {
+    func didTapHeader(sender: UICollectionReusableView) {
+        guard let tappedHeader = sender as? HeaderView, let type = tappedHeader.type else {return}
+        tappedHeader.counterView.isHidden = !tappedHeader.counterView.isHidden
+        viewModel.headerHiddenStatus[type] = tappedHeader.counterView.isHidden
+
     }
 
 }
