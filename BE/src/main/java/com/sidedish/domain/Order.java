@@ -11,15 +11,15 @@ public class Order {
     @Id
     private Long id;
     private BigDecimal shippingFee;
-    private String shippingInfo;
+    private String shippingAddress;
 
     public Long getId() {
         return this.id;
     }
 
-    public Order(BigDecimal shippingFee, String shippingInfo) {
+    public Order(BigDecimal shippingFee, String shippingAddress) {
         this.shippingFee = shippingFee;
-        this.shippingInfo = shippingInfo;
+        this.shippingAddress = shippingAddress;
     }
 
     @Override
@@ -27,11 +27,11 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", shippingFee=" + shippingFee +
-                ", shippingInfo='" + shippingInfo + '\'' +
+                ", shippingInfo='" + shippingAddress + '\'' +
                 '}';
     }
 
     public String getInfo() {
-        return this.shippingInfo;
+        return this.shippingAddress;
     }
 }

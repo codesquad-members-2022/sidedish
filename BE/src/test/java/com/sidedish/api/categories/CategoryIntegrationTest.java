@@ -78,7 +78,7 @@ class CategoryIntegrationTest {
 
     private static void createItem(Category mainCategory, String name, String detailtype) {
         Item newItem = new Item(name, "반찬 설명", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+                10.0, Badge.EVENT, detailtype, 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"), new ShipInfo("서울 경기 새벽 배송, 전국 택배 배송", BigDecimal.valueOf(2500)));
         mainCategory.saveItem(newItem);
     }
 
@@ -137,7 +137,7 @@ class CategoryIntegrationTest {
         //given
         Category mainCategory = new Category(CategoryType.MAIN);
         Item newItem = new Item("소불고기", "반찬 설명", BigDecimal.valueOf(10000),
-                10.0, Badge.EVENT, "풍성한고기반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"));
+                10.0, Badge.EVENT, "풍성한고기반찬", 10, BigDecimal.valueOf(100), new Images("mainUrl", "one", "two"), new ShipInfo("서울 경기 새벽 배송, 전국 택배 배송", BigDecimal.valueOf(2500)));
         mainCategory.saveItem(newItem);
         categoryRepository.save(mainCategory);
         Long itemId = newItem.getId();

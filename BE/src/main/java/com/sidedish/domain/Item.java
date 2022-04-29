@@ -26,11 +26,15 @@ public class Item {
 
     @Embedded.Nullable
     private Images images;
+
+    @Embedded.Nullable
+    private ShipInfo shipInfo;
+
     private Long category;
 
     private Set<OrderRef> orders = new HashSet<>();
 
-    public Item(String title, String description, BigDecimal price, double discountRate, Badge badge, String detailType, int quantity, BigDecimal rewardPoint, Images images) {
+    public Item(String title, String description, BigDecimal price, double discountRate, Badge badge, String detailType, int quantity, BigDecimal rewardPoint, Images images, ShipInfo shipInfo) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -40,6 +44,7 @@ public class Item {
         this.quantity = quantity;
         this.rewardPoint = rewardPoint;
         this.images = images;
+        this.shipInfo = shipInfo;
     }
 
     void addOrders(Order order) {
@@ -102,6 +107,10 @@ public class Item {
 
     public Long getCategory() {
         return category;
+    }
+
+    public ShipInfo getShipInfo() {
+        return this.shipInfo;
     }
 
     @Override
