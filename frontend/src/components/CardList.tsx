@@ -14,10 +14,12 @@ const ShowingArea = styled.div<SizeProp>`
 const ProductCardsWrapper = styled.div`
   display: flex;
 `;
+
 type ListProp = SizeProp & {
   products: Product[];
   curIndex?: number;
 };
+
 export const CardList = ({
   products,
   size: cardSize,

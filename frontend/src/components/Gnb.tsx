@@ -18,6 +18,7 @@ const Sub = styled.span`
   color: ${({ theme }) => theme.colors.Black};
   margin-top: 8px;
 `;
+
 const GnbMenu = styled.div<{ extended: boolean }>`
   margin: 28px;
   ${custom_flex(`row`, `flex-start`, `center`)}

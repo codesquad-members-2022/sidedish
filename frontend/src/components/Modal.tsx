@@ -120,6 +120,7 @@ const ModalBackground = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 `;
+
 const ModalWrapper = styled.div`
   border: 2px solid #000000;
   position: fixed;
@@ -227,6 +228,7 @@ const IconWrapper = styled.div`
   ${width_height_bypx(24, 24)};
   ${custom_flex("row", "center", "center")}
 `;
+
 const Button = styled.div`
   ${custom_flex("row", "center", "center")}
   ${custom_absolute(490, null, null, 472)}

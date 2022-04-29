@@ -19,8 +19,7 @@ const AppWrapper = styled.div`
 const App = () => {
   const { categories } = useFetch(Queries.categories);
   const { specialCategories } = useFetch(Queries.specialCategories);
-
-  const { openedId, setOpenedId } = useContext(ModalContext);
+  const { openedId } = useContext(ModalContext);
 
   return (
     <>

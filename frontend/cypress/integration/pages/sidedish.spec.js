@@ -3,8 +3,6 @@ function getDataset(name) {
   return cy.get(`[data-cy=${name}]`);
 }
 
-const findDataset = (name) => cy.find(`[data-cy=${name}]`);
-
 describe("메인화면테스트", () => {
   before(() => {
     cy.exec("yarn start");
@@ -16,6 +14,7 @@ describe("메인화면테스트", () => {
     getDataset("carouselWrapper").should("be.visible");
     getDataset("special").should("be.visible");
   });
+
   it("헤더 마우스오버 이벤트 테스트", () => {
     getDataset("headerMenu")
       .trigger("mouseover")
@@ -29,6 +28,7 @@ describe("메인화면테스트", () => {
       $el.trigger("click");
     });
   });
+
   it("캐러셀 오른쪽 방향키 클릭", () => {
     getDataset("rightArrow")
       .click()

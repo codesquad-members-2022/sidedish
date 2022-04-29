@@ -5,7 +5,7 @@ import { CardList } from "./CardList";
 import { cardNumPerPage, Queries } from "../convention";
 import { LeftArrowIcon } from "../icons/LeftArrowIcon";
 import { RightArrowIcon } from "../icons/RightArrowIcon";
-import { IDName, SizeProp, SIZES } from "../types";
+import { SizeProp, SIZES } from "../types";
 
 const CarouselTitle = styled.span<SizeProp>`
   ${(props) =>
@@ -28,34 +28,29 @@ const CarouselButtonWrapper = styled.div<SizeProp & { dir: string }>`
   ${({ size, dir }) =>
     size === SIZES.medium
       ? `
-      top: 310px;
-      ${dir === "left" ? "left: 36px;" : "right: 36px;"}`
+        top: 310px;
+        ${dir === "left" ? "left: 36px;" : "right: 36px;"}`
       : `
-      top: 51px;
-      ${dir === "left" ? "right: 135px;" : "right: 57px;"}`}
+        top: 51px;
+        ${dir === "left" ? "right: 135px;" : "right: 57px;"}
+      `}
 `;
+
 type ButtonType = SizeProp & {
   dir: string;
   onBtnClick: () => void;
   isEndPage: boolean;
 };
+
 const CarouselButton = ({ size, dir, onBtnClick, isEndPage }: ButtonType) => (
   <CarouselButtonWrapper size={size} dir={dir} onClick={onBtnClick}>
-    {dir === "left" ? (
-      <LeftArrowIcon isEndPage={isEndPage} />
-    ) : (
-      <RightArrowIcon isEndPage={isEndPage} />
-    )}
+    {dir === "left" ? <LeftArrowIcon isEndPage={isEndPage} /> : <RightArrowIcon isEndPage={isEndPage} />}
   </CarouselButtonWrapper>
 );
 
-export const Carousel = ({
-  id,
-  title,
-  size,
-}: { id: number; title: string } & SizeProp) => {
+export const Carousel = ({ id, title, size }: { id: number; title: string } & SizeProp) => {
   const [curIndex, setCurIndex] = useState(0);
-  const { requestDetail, products } = useFetch(Queries.products, id);
+  const { products } = useFetch(Queries.products, id);
   const lastIndex = products?.length - cardNumPerPage[size];
   const clickNext = () => {
     if (curIndex >= lastIndex) return;

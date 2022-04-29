@@ -73,6 +73,7 @@ const ThumbnailWrapper = styled.div<SizeProp>`
     height: ${thumbnailSize[props.size]}px;
   `}
 `;
+
 const HoverInfoWrapper = styled.div`
   ${custom_absolute(20, 20)}
   ${width_height_bypx(142, 149)}
@@ -82,6 +83,7 @@ const HoverInfoWrapper = styled.div`
   border-radius: 999px;
   opacity: 0.8;
 `;
+
 const HoverInfoTextWrapper = styled.div`
   position: relative;
 
@@ -91,10 +93,12 @@ const HoverInfoTextWrapper = styled.div`
     margin: 8px;
   }
 `;
+
 type infoProp = {
   earlyMorningDelivery: boolean;
   nationwideDelivery: boolean;
 };
+
 const HoverInfo = ({ earlyMorningDelivery, nationwideDelivery }: infoProp) => (
   <HoverInfoWrapper>
     <HoverInfoTextWrapper>
