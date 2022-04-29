@@ -57,6 +57,8 @@ class DetailViewController: UIViewController {
         setDeliverySectionViewLayout()
         setAmountSectionViewLayout()
         setDetailImageStackViewLayout()
+
+        setComponentsAction()
     }
 
     private func setNavigationItems() {
@@ -118,6 +120,17 @@ class DetailViewController: UIViewController {
                 }
             }
         }
+    }
+
+    private func setComponentsAction() {
+        let stepperAction = UIAction { [weak self] _ in
+            self?.amountSectionView.amount = Int(self?.amountSectionView.amountStepper.value ?? 0)
+            let price = self?.detailDishSectionView.finalPrice ?? 0
+            let amount = self?.amountSectionView.amount ?? 0
+            self?.amountSectionView.totalPrice = price * amount
+        }
+
+        amountSectionView.amountStepper.addAction(stepperAction, for: .touchUpInside)
     }
 }
 

@@ -1,6 +1,11 @@
 import UIKit
 
 class DetailDishSectionView: UIView {
+
+    var finalPrice: Int {
+        self.finalPriceLabel.text?.toInt() ?? 0
+    }
+
     private let productImageContentView: UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .horizontal
