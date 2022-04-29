@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import team14.sidedish.common.Exception.InvalidOrderException;
 import team14.sidedish.image.Image;
 
 @ToString
@@ -31,7 +32,7 @@ public class Menu {
 	@Column("MENU_CATEGORY")
 	private final Category category;
 	@Column("INVENTORY_QUANTITY")
-	private final int inventoryQuantity;
+	private int inventoryQuantity;
 
 	@MappedCollection(idColumn = "IMAGE_MENU_ID", keyColumn = "IMAGE_MENU_ID")
 	private List<Image> images = new ArrayList<>();
@@ -77,6 +78,14 @@ public class Menu {
 		this.price = price;
 		this.category = Category.from(category);
 		this.inventoryQuantity = inventoryQuantity;
+	}
+
+	public int sold(int countOfOrder) {
+		if (!compareQuantity(countOfOrder)) {
+			throw new InvalidOrderException("품절되어 주문이 불가합니다.");
+		}
+		this.inventoryQuantity -= countOfOrder;
+		return this.inventoryQuantity;
 	}
 
 	protected List<String> getImages() {

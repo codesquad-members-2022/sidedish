@@ -149,6 +149,7 @@ public class MenuService {
 
 		isValidOrderValue(request, totalPrice, deliveryCharge, savedCharge);
 
+		menuRepository.updateByInventoryQuantity(menuInfo.sold(request.getCountOfOrder()), menuInfo.getMenuId());
 		int totalDiscountedPrice = menuInfo.getPrice().subtract(BigDecimal.valueOf(subCategory.getDiscountedPrice())).intValue();
 		if (deliveryCharge == 0) {
 			totalDiscountedPrice -= OrderInfo.BASE_DELIVERY_CHARGE.calculate(0);
@@ -206,9 +207,8 @@ public class MenuService {
 
 	private List<MenuDto.SubCategory> getSubCategoryOf(List<Menu> menus) {
 		List<MenuDto.SubCategory> categories = menus.stream()
-			.map(menu -> {
-				return subCategoryFrom(menu);
-			}).collect(Collectors.toList());
+			.map(this::subCategoryFrom)
+			.collect(Collectors.toList());
 		return categories;
 	}
 
