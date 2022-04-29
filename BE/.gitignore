@@ -37,3 +37,4 @@ out/
 
 ### 운영/로컬 분리 ###
 src/main/resources/application-dev.yml
+src/test/resources/application-dev.yml
