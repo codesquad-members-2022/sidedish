@@ -50,4 +50,4 @@ const StyledCard = styled.li`
   margin-right: 24px;
 `;
 
-export default CardBox;
+export default React.memo(CardBox);

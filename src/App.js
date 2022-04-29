@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { fetchData } from './utility/util';
 import Header from './Header';
@@ -18,21 +18,6 @@ const App = () => {
   const [selectedCardInfo, setSelectedCardInfo] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleModal = (cardInfo) => {
-    if (isButtonVisible) {
-      return;
-    }
-
-    setSelectedCardInfo(cardInfo);
-    setIsModalVisible(true);
-  };
-
-  const getSideDishData = async (url, setData) => {
-    const response = await fetchData(url);
-
-    setData(response.data);
-  };
-
   useEffect(() => {
     const mainCardUrl = 'data/mainCard.json';
     const mainDishUrl = 'data/mainDish.json';
@@ -45,9 +30,28 @@ const App = () => {
     getSideDishData(soupUrl, setSoupData);
   }, []);
 
-  const handleClickMoreCard = () => {
-    setIsButtonVisible(!isButtonVisible);
+  const getSideDishData = async (url, setData) => {
+    const response = await fetchData(url);
+
+    setData(response.data);
   };
+
+  const handleModal = useCallback(
+    (cardInfo) => {
+      if (isModalVisible) {
+        return;
+      }
+
+      setSelectedCardInfo(cardInfo);
+      setIsModalVisible(true);
+    },
+
+    [isModalVisible]
+  );
+
+  const handleClickMoreCard = useCallback(() => {
+    setIsButtonVisible(!isButtonVisible);
+  }, [isButtonVisible]);
 
   const btn = {
     open: '모든 카테고리 보기',
@@ -64,6 +68,7 @@ const App = () => {
   return (
     <StyledApp>
       <Header />
+
       {isModalVisible && (
         <Modal>
           <CardOrderPage
@@ -75,18 +80,38 @@ const App = () => {
           />
         </Modal>
       )}
+
       <MainCard
         mainCardData={mainCardData}
         handleModal={handleModal}
         isModalVisible={isModalVisible}
       />
-      <SubCard dishData={mainDishData} title={title.first} />
+
+      <SubCard
+        dishData={mainDishData}
+        title={title.first}
+        handleModal={handleModal}
+        isModalVisible={isModalVisible}
+      />
+
       {isButtonVisible && (
         <>
-          <SubCard dishData={soupData} title={title.second} />
-          <SubCard dishData={sideDishData} title={title.third} />
+          <SubCard
+            dishData={soupData}
+            title={title.second}
+            handleModal={handleModal}
+            isModalVisible={isModalVisible}
+          />
+
+          <SubCard
+            dishData={sideDishData}
+            title={title.third}
+            handleModal={handleModal}
+            isModalVisible={isModalVisible}
+          />
         </>
       )}
+
       <StyledButton onClick={handleClickMoreCard}>
         {isButtonVisible ? btn.close : btn.open}
       </StyledButton>

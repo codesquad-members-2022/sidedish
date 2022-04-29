@@ -33,4 +33,4 @@ const StyledH4 = styled.h4`
   font-size: 20px;
 `;
 
-export default CategoryTitle;
+export default React.memo(CategoryTitle);

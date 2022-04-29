@@ -27,4 +27,4 @@ const StyledInfo = styled.span`
   font-size: ${fontSize.l};
 `;
 
-export default Infos;
+export default React.memo(Infos);

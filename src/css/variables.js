@@ -24,12 +24,12 @@ const slideBtn = {
 };
 
 const body = {
-  width: 1400,
+  width: 1090,
   margin: 43,
 };
 
 const modal = {
-  width: 1066,
+  width: 1080,
   margin: 38,
 };
 

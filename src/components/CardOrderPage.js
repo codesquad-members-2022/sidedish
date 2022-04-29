@@ -35,7 +35,7 @@ const CardOrderPage = ({
   const curPrice = discountedPrice ? discountedPrice : price;
   const str2NumPrice = Number(
     curPrice
-      .slice(0, price.length - 1)
+      .slice(0, curPrice.length - 1)
       .split(',')
       .join('')
   );
@@ -55,7 +55,7 @@ const CardOrderPage = ({
           closeModal={onClick}
         />
       </ModalContainer>
-
+      {/* error 발생 */}
       <CardContainer
         cardInfos={advertiseCardInfo}
         hasButton={true}

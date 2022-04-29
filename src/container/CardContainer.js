@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import CardBox from '../components/CardBox';
 import Slider from '../components/Slider';
 
+/* error 발생 */
+
 const CardContainer = ({
   cardInfos,
   children,
@@ -52,4 +54,4 @@ const StyledSection = styled.section`
   position: relative;
 `;
 
-export default CardContainer;
+export default React.memo(CardContainer);

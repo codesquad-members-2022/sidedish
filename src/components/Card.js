@@ -31,4 +31,4 @@ const Img = styled.img`
       : Math.floor(body.width / showingSlideCardNum) - body.margin}px;
 `;
 
-export default Card;
+export default React.memo(Card);
