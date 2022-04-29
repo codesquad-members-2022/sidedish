@@ -52,7 +52,7 @@ class SideDish20FileManagerTest: XCTestCase {
         
         let expectation = XCTestExpectation()
         
-        let viewModel = DishViewModel { result in
+        let viewModel = CacheViewModel { result in
             if result != nil {
                 expectation.fulfill()
             }
@@ -66,7 +66,7 @@ class SideDish20FileManagerTest: XCTestCase {
         
         let expectation = XCTestExpectation()
         
-        let viewModel = DishViewModel { result in
+        let viewModel = CacheViewModel { result in
             if result != nil {
                 expectation.fulfill()
             }
@@ -79,7 +79,7 @@ class SideDish20FileManagerTest: XCTestCase {
     func test_viewModel_cachedData() throws {
         
         let expectation = XCTestExpectation()
-        let viewModel = DishViewModel.init(fetchOnComplete: {_ in })
+        let viewModel = CacheViewModel.init(fetchOnComplete: {_ in })
         
         viewModel.getImage(from: imageName) { image in
             if image != nil {

@@ -39,7 +39,7 @@ class DataFetchService: CommonURLManager {
     }
     
     func fetchDetail(hash: String, onCompleted: @escaping (HomeDetailModel) -> Void) {
-        repository.fetchDetail(hash: hash) { entity in
+        repository.fetchDetail(hash: "HBDEF") { entity in
             onCompleted(entity.data)
         }
     }

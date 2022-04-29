@@ -40,30 +40,54 @@ class DetailViewController: UIViewController {
     var sideDishKey: String = ""
     
     private lazy var detailVM = DetailViewModel(hash: sideDishKey) { [weak self] model in
-        guard let self = self else { return }
-        
-        self.productNameLabel.text = model.productDescription
-        self.productDetailNameLabel.text = model.productDescription
-        self.productPriceLabel.text = model.prices.first
-        
-        self.pointLabel.text = model.point
-        self.deliveryInfoLabel.text = model.deliveryInfo
-        self.deliveryFeeLabel.text = model.deliveryFee
-        
-        self.resultPriceLabel.text = model.prices.last
-        
-        if let quantity = Int(self.quantityLabel.text ?? ""), let price = Int(model.prices.last ?? "") {
-            self.resultPriceLabel.text = String(quantity * price)
+        DispatchQueue.main.async {
+            
+            guard let self = self else { return }
+            
+            self.productNameLabel.text = model.productDescription
+            self.productDetailNameLabel.text = model.productDescription
+            self.productPriceLabel.text = model.prices.first
+            
+            self.pointLabel.text = model.point
+            self.deliveryInfoLabel.text = model.deliveryInfo
+            self.deliveryFeeLabel.text = model.deliveryFee
+            
+            self.resultPriceLabel.text = model.prices.last
+            
+            if let quantity = Int(self.quantityLabel.text ?? ""), let price = Int(model.prices.last ?? "") {
+                self.resultPriceLabel.text = String(quantity * price)
+            }
         }
     }
     
-    private let cacheVM = DishViewModel()
+    private var topImages = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.safeAreaInset = view.safeAreaLayoutGuide
-        setDetailImageView()
         
+        detailVM.topImages.bind { images in
+            DispatchQueue.main.async {
+                self.topImages = images
+                self.imageCollectionView.reloadData()
+            }
+        }
+        
+        detailVM.detailSectionImages.bind { images in
+            DispatchQueue.main.async {
+                self.detailImageStackViewConstraintHeight.constant = 0
+                for image in images {
+                    let imageView = UIImageView(image: image)
+                    imageView.contentMode = .scaleAspectFit
+                    
+                    self.detailImageStackViewConstraintHeight.constant += imageView.frame.height
+                    self.detailImageStackView.addArrangedSubview(imageView)
+                }
+            }
+        }
+        
+        detailVM.reload()
+        
+        safeAreaInset = view.safeAreaLayoutGuide
         specialMessageContainerView.layer.cornerRadius = 10
         orderButton.layer.cornerRadius = 12
         
@@ -77,23 +101,10 @@ class DetailViewController: UIViewController {
         )
     }
     
-    func setDetailImageView() {
-        
-        detailImageStackViewConstraintHeight.constant = 0
-        
-        for sequence in 1...5 {
-            let image = UIImage(named: "img0\(sequence)")
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleAspectFit
-            
-            detailImageStackViewConstraintHeight.constant += imageView.frame.height
-            detailImageStackView.addArrangedSubview(imageView)
-        }
-    }
-    
     @IBAction func quantityStepperValueChanged(_ sender: UIStepper) {
         let value = Int(sender.value)
         quantityLabel.text = "\(value)"
+        resultPriceLabel.text = detailVM.setPrice(quantity: value) + "원"
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -111,9 +122,8 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
-        imageScrollViewPageControl.numberOfPages = 5
-        
-        return 5
+        imageScrollViewPageControl.numberOfPages = topImages.count
+        return topImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -125,7 +135,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
         
-        cell.setImage(image: UIImage(named: "img0\(indexPath.item+1)"))
+        cell.setImage(image: topImages[indexPath.item])
         
         return cell
     }

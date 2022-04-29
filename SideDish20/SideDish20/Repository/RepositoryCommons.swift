@@ -45,7 +45,7 @@ class RepositoryCommons {
     }
     
     func fetchDetail(hash: String, onCompleted: @escaping (HomeResponseDetailData) -> Void) {
-        guard var url = URL(string: CommonURLManager.host) else { return }
+        guard var url = URL(string: CommonURLManager.Endpoint.detail.endpoint) else { return }
         
         url.appendPathComponent(hash)
         
