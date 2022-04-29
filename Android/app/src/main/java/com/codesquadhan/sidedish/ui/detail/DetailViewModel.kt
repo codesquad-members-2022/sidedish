@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.codesquadhan.sidedish.data.model.detail.DetailResponse
 import com.codesquadhan.sidedish.data.model.detail.TopImageData
 import com.codesquadhan.sidedish.data.repository.DetailRepository
+import com.codesquadhan.sidedish.ui.common.Common
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -67,11 +68,11 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
         }
     }
 
-    fun countUpOrDownOrderFoodQuantity(countUpOrDown: Int) {
+    fun countUpOrDownOrderFoodQuantity(countUpOrDown: Common.Count) {
         _orderedFoodQuantityLiveData.value?.let {
             when (countUpOrDown) {
-                1 -> _orderedFoodQuantityLiveData.value = it + 1
-                -1 -> _orderedFoodQuantityLiveData.value = if (it - 1 < 1) 1 else it - 1
+                Common.Count.UP -> _orderedFoodQuantityLiveData.value = it + 1
+                Common.Count.DOWN -> _orderedFoodQuantityLiveData.value = if (it - 1 < 1) 1 else it - 1
             }
         }
     }

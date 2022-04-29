@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.databinding.ActivityDetailBinding
+import com.codesquadhan.sidedish.ui.common.Common
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,10 +21,6 @@ class DetailActivity : AppCompatActivity() {
     private val detailViewModel: DetailViewModel by viewModels()
     private var menuId = 0
 
-    enum class Count(val value: Int) {
-        UP(1),
-        DOWN(-1)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,11 +92,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun countUpOrDownQuantity() {
         binding.ivCountDown.setOnClickListener {
-            detailViewModel.countUpOrDownOrderFoodQuantity(Count.DOWN.value)
+            detailViewModel.countUpOrDownOrderFoodQuantity(Common.Count.DOWN)
         }
 
         binding.ivCountUp.setOnClickListener {
-            detailViewModel.countUpOrDownOrderFoodQuantity(Count.UP.value)
+            detailViewModel.countUpOrDownOrderFoodQuantity(Common.Count.UP)
         }
     }
 
