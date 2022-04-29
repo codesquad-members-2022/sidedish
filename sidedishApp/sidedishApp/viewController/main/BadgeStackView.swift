@@ -17,6 +17,19 @@ class BadgeStackView: UIStackView {
         super.init(coder: coder)
     }
     
+    func setPropertiesValue(_ dish: MainCard.Body) {
+        if self.subviews.count != .zero {
+            self.clearSubviews()
+        }
+        
+        guard let badgeTypeList = dish.badgeList else { return }
+        for badgeType in badgeTypeList {
+            if let badgeLabel = BadgeLabel().makeBadge(type: badgeType) {
+                self.addArrangedSubview(badgeLabel)
+            }
+        }
+    }
+    
     private func makeEventPriceBadge() -> UILabel {
         let badge = BadgeLabel()
         badge.text = Badge.eventPrice.description

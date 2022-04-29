@@ -19,11 +19,11 @@ class MainViewCardCell: UICollectionViewCell {
         return image
     }()
     
-    private let cardInfoVerticalStackView: MainViewCardInfo = {
+    private let mainViewCardInfo: MainViewCardInfo = {
         var stackView = MainViewCardInfo()
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.distribution = .fillProportionally
+        //stackView.distribution = .fillProportionally
         stackView.spacing = 5
         return stackView
     }()
@@ -41,7 +41,7 @@ class MainViewCardCell: UICollectionViewCell {
     }
     
     func setPropertiesValue(dish: MainCard.Body) {
-        self.cardInfoVerticalStackView.setPropertiesValue(dish: dish)
+        self.mainViewCardInfo.setPropertiesValue(dish: dish)
     }
     
     func setImage(imageData: Data) {
@@ -52,7 +52,7 @@ class MainViewCardCell: UICollectionViewCell {
     
     private func setUI() {
         self.addSubview(cardImageView)
-        self.addSubview(cardInfoVerticalStackView)
+        self.addSubview(mainViewCardInfo)
     }
     
     private func setUIConstraints() {
@@ -64,21 +64,21 @@ class MainViewCardCell: UICollectionViewCell {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cardImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            cardImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             cardImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             cardImageView.widthAnchor.constraint(equalToConstant: 120),
             cardImageView.heightAnchor.constraint(equalToConstant: 120),
-            cardImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
     }
     
     private func configureCardInfoVerticalStackViewConstraint() {
-        cardInfoVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainViewCardInfo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardInfoVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            cardInfoVerticalStackView.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
-            cardInfoVerticalStackView.heightAnchor.constraint(equalToConstant: 120),
-            cardInfoVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            cardInfoVerticalStackView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+            mainViewCardInfo.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            mainViewCardInfo.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            mainViewCardInfo.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 5),
+            mainViewCardInfo.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            mainViewCardInfo.heightAnchor.constraint(equalToConstant: 120),
         ])
     }
     
