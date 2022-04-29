@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        
+
         <variable
             name="section"
-            type="com.example.sideDish.data.Item.Section" />
-        
-        <variable
-            name="viewmodel"
-            type="com.example.sideDish.ui.foodlist.FoodListViewModel" />
-        
+            type="com.example.sideDish.data.model.Item.Section" />
+
+        <import type="android.view.View" />
+
     </data>
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextLarge"
+            android:text="@{section.category.sectionTitle}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,10 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextSmall"
-            android:visibility="gone"
+            android:visibility="@{section.expended? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/section_text"
-            tools:text="8개 상품이 등록되어 있습니다." />
+            custom:show_count="@{section}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

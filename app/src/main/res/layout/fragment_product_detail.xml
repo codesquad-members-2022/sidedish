@@ -17,11 +17,11 @@
 
         <variable
             name="detail"
-            type="com.example.sideDish.data.source.FoodDetail" />
+            type="com.example.sideDish.data.model.FoodDetail" />
 
         <variable
             name="foodInfo"
-            type="com.example.sideDish.data.Item.FoodInfo" />
+            type="com.example.sideDish.data.model.Item.FoodInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="@{foodInfo.title}"
+                    android:text="@{detail.productDescription}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/constraint_layout_view_pager" />
 
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{foodInfo.SPrice}"
+                    android:text="@{detail.discountedPrice}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view_detail_body" />
 
@@ -111,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@{Html.fromHtml(String.format(@string/original_price, foodInfo.NPrice))}"
+                    android:text="@{Html.fromHtml(String.format(@string/original_price, detail.originalPrice))}"
                     app:layout_constraintStart_toEndOf="@id/text_view_discounted_price"
                     app:layout_constraintTop_toBottomOf="@id/text_view_detail_body" />
 
@@ -263,8 +263,6 @@
 
                 <com.example.sideDish.ui.Stepper
                     android:id="@+id/stepper"
-                    android:count="@{viewModel.orderCount}"
-                    viewModel="@{viewModel}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

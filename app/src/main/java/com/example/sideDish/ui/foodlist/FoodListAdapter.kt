@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
-import com.example.sideDish.data.FoodCategory
-import com.example.sideDish.data.Item
+import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.databinding.MainSummaryItemBinding
 import com.example.sideDish.databinding.SectionBinding
 
@@ -21,12 +21,11 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
     inner class SectionViewHolder(private val binding: SectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(section: Item.Section) {
-            binding.sectionText.text = section.category.sectionTitle
             binding.sectionText.setOnClickListener {
-                binding.sectionCountText.visibility = View.VISIBLE
-                val count = viewModel.getCategoryItemsCount(section.category)
-                binding.sectionCountText.text = String.format("총 %d개의 상품이 등록되어 있습니다.", count)
+                section.isExpended = !section.isExpended
+                binding.section = section
             }
+            binding.section = section
         }
     }
 
@@ -35,7 +34,6 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
         fun bind(foodInfo: Item.FoodInfo) = with(binding) {
             binding.foodInfo = foodInfo
             binding.viewmodel = viewModel
-//            executePendingBindings()
         }
     }
 
@@ -83,7 +81,7 @@ class FoodListAdapter(private val viewModel: FoodListViewModel) :
         }
     }
 
-    fun updateCategoryItems(category: FoodCategory) {
+    suspend fun updateCategoryItems(category: FoodCategory) {
         viewModel.updateItems(category)
     }
 }

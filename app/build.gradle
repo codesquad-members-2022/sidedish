@@ -4,6 +4,9 @@ plugins {
     id 'org.jetbrains.kotlin.kapt'
 }
 
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdk 32
 
@@ -28,7 +31,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     dataBinding {
@@ -40,6 +43,15 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.4.1"
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // 네트워크
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // DI
+    implementation "com.google.dagger:hilt-android:2.40"
+    kapt "com.google.dagger:hilt-android-compiler:2.40"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

@@ -1,12 +1,12 @@
-package com.example.sideDish.data.source
+package com.example.sideDish.data.model
 
-class FoodDetail(
+data class FoodDetail(
     val deliveryFee: String,
     val deliveryInfo: String,
     val detailImageUrls: List<String>,
     val point: String,
-    val originalPrice: Int,
-    val discountedPrice: Int,
+    val originalPrice: String,
+    val discountedPrice: String,
     val productDescription: String,
     val thumbImageUrls: List<String>,
     val topImageUrl: String
