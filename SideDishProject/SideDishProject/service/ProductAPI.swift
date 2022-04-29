@@ -11,14 +11,14 @@ enum ProductAPI{
     static let baseURL = "http://3.38.240.18:8080/"
     
     case categories
-    case products
+    case products(categoryId: Int)
     
     var url: URL? {
         switch self{
         case .categories:
             return URL(string: Self.baseURL + "categories")
-        case .products:
-            return URL(string: Self.baseURL + "products?categoryId=1")
+        case .products(let categoryId):
+            return URL(string: Self.baseURL + "products?categoryId=\(categoryId)")
         }
     }
     

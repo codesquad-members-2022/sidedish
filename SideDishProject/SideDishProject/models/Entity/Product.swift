@@ -42,7 +42,6 @@ struct DishCategory: Hashable {
     }
 }
 
-
 enum ProductEvent: CustomStringConvertible {
     case eventPrice(disCount: Double)
     case launchingPrice(disCount: Double)
