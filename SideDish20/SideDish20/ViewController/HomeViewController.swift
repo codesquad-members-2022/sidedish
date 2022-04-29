@@ -83,7 +83,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let homeHeaderView = headerView as? HomeHeaderCollectionReusableView else { return headerView }
             return homeHeaderView
         default:
-            assert(false, "Invalid element type")
+            return UICollectionReusableView()
         }
     }
     
