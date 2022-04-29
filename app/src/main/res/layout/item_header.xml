@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
 
         <variable
             name="header"
             type="com.example.todo.sidedish.domain.model.Header" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,11 +28,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{header.type.type}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_count_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="모두가 좋아하는\n든든한 메인 요리" />
 
+        <TextView
+            android:id="@+id/tv_count_text"
+            android:layout_width="match_parent"
+            style="@style/TextMedium.Grey2"
+            android:visibility="@{header.visible ? View.VISIBLE : View.GONE}"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_header"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            getCount="@{header.dishCount}"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

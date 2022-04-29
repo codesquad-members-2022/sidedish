@@ -50,9 +50,14 @@ class MenuAdapter(private val itemClick : (hash: String, title:String, badges:Li
     fun submitHeaderAndItemList(items: Map<DishType, List<Menu>?>) {
         val menuItems = mutableListOf<MenuItem>()
         items.entries.forEach { entry ->
-            val header = Header(entry.key)
-            menuItems.add(header)
-            entry.value?.let { menuItems.addAll(it) }
+            entry.value?.let {
+                val header = Header(entry.key, dishCount = it.size)
+                menuItems.add(header)
+                menuItems.addAll(it)
+            }?: kotlin.run {
+                val header = Header(entry.key)
+                menuItems.add(header)
+            }
         }
         this.menuItems = menuItems
         notifyDataSetChanged()
@@ -63,6 +68,10 @@ class MenuAdapter(private val itemClick : (hash: String, title:String, badges:Li
 
         fun bind(header: Header) {
             binding.header = header
+            binding.root.setOnClickListener {
+                header.visible = !header.visible
+                binding.header = header
+            }
             binding.executePendingBindings()
         }
     }
