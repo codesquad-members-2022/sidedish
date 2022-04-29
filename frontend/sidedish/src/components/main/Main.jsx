@@ -26,7 +26,16 @@ const Main = () => {
   const [allCategoryVisible, setAllCategoryVisible] = useState(false);
   const [cardClickState, setCardClickState] = useState(false);
   const [cardInfoState, setCardInfoState] = useState({
-    /* ... */
+    dishId: "",
+    title: "",
+    price: "",
+    point: "",
+    deliveryArea: "",
+    deliveryMorning: "",
+    deliveryPrice: "",
+    stockQuantity: "",
+    images: [],
+    eventBadge: [],
   });
   const [loading, setLoading] = useState(true);
 
@@ -58,7 +67,7 @@ const Main = () => {
   };
 
   const fetchCarouselData = async () => {
-    const carouselData = await fetchData("carouselMockData.json");
+    const carouselData = await fetchData(`${URL}/categories`);
     setCarouselData(carouselData);
     setLoading(false);
   };
@@ -78,6 +87,28 @@ const Main = () => {
     </MainLnbContainer>
   );
 
+  const carouselLists = carouselData
+    ? carouselData.categories.map((el, ind) => {
+        const isVisible = ind === 0 ? true : allCategoryVisible;
+        return (
+          <CarouselContainer
+            allCategoryVisible={isVisible}
+            key={carouselData.categories[ind].eventTabsId}
+          >
+            <CarouselTitle>{carouselData.categories[ind].eventTabsName}</CarouselTitle>
+            <Carousel
+              cardClickState={cardClickState}
+              setCardClickState={setCardClickState}
+              carouselCards={carouselData.categories[ind].dishes}
+              cardLength={CARD_LENGHTHS.SMALL}
+              cardCount={NUM_OF_CARD_ON_DISPLAY}
+              cardMargin={CARD_MARGIN}
+            />
+          </CarouselContainer>
+        );
+      })
+    : null;
+
   return (
     <>
       {loading ? (
@@ -92,8 +123,7 @@ const Main = () => {
           <ItemCards
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            // cardInfoState={cardInfoState}
-            // setCardInfoState={setCardInfoState}
+            setCardInfoState={setCardInfoState}
             dataState={dataState}
             cardLength={CARD_LENGHTHS.BIG}
             cardMargin={CARD_MARGIN}
@@ -101,40 +131,7 @@ const Main = () => {
           />
           <DivisionLine height="1px" color="#EBEBEB" />
 
-          <CarouselContainer allCategoryVisible={true}>
-            <CarouselTitle>{carouselData?.categories[0]?.categoryName}</CarouselTitle>
-            <Carousel
-              cardClickState={cardClickState}
-              setCardClickState={setCardClickState}
-              carouselCards={carouselData?.categories[0]?.dishes}
-              cardLength={CARD_LENGHTHS.SMALL}
-              cardCount={NUM_OF_CARD_ON_DISPLAY}
-              cardMargin={CARD_MARGIN}
-            />
-          </CarouselContainer>
-
-          <CarouselContainer allCategoryVisible={allCategoryVisible}>
-            <CarouselTitle>{carouselData?.categories[1]?.categoryName}</CarouselTitle>
-            <Carousel
-              cardClickState={cardClickState}
-              setCardClickState={setCardClickState}
-              carouselCards={carouselData?.categories[1]?.dishes}
-              cardLength={CARD_LENGHTHS.SMALL}
-              cardCount={NUM_OF_CARD_ON_DISPLAY}
-              cardMargin={CARD_MARGIN}
-            />
-          </CarouselContainer>
-          <CarouselContainer allCategoryVisible={allCategoryVisible}>
-            <CarouselTitle>{carouselData?.categories[2].categoryName}</CarouselTitle>
-            <Carousel
-              cardClickState={cardClickState}
-              setCardClickState={setCardClickState}
-              carouselCards={carouselData?.categories[2]?.dishes}
-              cardLength={CARD_LENGHTHS.SMALL}
-              cardCount={NUM_OF_CARD_ON_DISPLAY}
-              cardMargin={CARD_MARGIN}
-            />
-          </CarouselContainer>
+          {carouselLists}
 
           <OpenAllCategoryButton
             openAllCategoryButtonVisible={!allCategoryVisible}
