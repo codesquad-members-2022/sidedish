@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
     Wrapper,
     Container,
@@ -107,9 +108,8 @@ const icons = [
         </svg>
     </button>,
     <button>
-        <a href="/">
+        <Link to="/login">
             <svg
-                className="h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -120,7 +120,7 @@ const icons = [
                     clipRule="evenodd"
                 />
             </svg>
-        </a>
+        </Link>
     </button>,
     <button>
         <svg

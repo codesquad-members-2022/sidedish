@@ -146,7 +146,7 @@ function ProductDetailPopup(props) {
                     discountPrice={discountPrice}
                     eventBadges={eventBadges}
                 />
-                <RelatedProductPart 
+                <RelatedProductPart
                     // related={relatedproduct} // 아직 기능 구현중이라 주석처리 해두었습니다.
                 />
             </PopupBox>

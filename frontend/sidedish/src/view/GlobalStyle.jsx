@@ -15,6 +15,15 @@ const GlobalStyle = createGlobalStyle`
         outline: 0;
         background-color: transparent;
     }
+    svg {
+        color: black;
+        &:link,
+        &:visited,
+        &:hover,
+        &:active {
+            color: black;
+        }
+    }
 `;
 
 export default GlobalStyle;

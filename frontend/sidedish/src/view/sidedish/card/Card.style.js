@@ -3,7 +3,9 @@ import styled from "styled-components";
 const CardContainer = styled.li`
     cursor: pointer;
 `;
-
+const DishCard = styled.li`
+    position: relative;
+`;
 const ImgWrapper = styled.div`
     width: 100%
     height: 100%;
@@ -79,8 +81,24 @@ const EventBadge = styled.span`
             : ""};
 `;
 
+const DeliveryBadge = styled.ul`
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    border: 1px solid #1b1b1b;
+    border-radius: 10px;
+    background-color: rgba(248, 247, 247, 0.8);
+    display: ${(props) => (props.isVisible ? "flex" : "none")};
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding: 5px 10px;
+    flex-direction: column;
+    gap: 6px;
+`;
+
 export {
     CardContainer,
+    DishCard,
     ImgWrapper,
     Img,
     TextContainer,
@@ -90,4 +108,5 @@ export {
     ClientPrice,
     OriginPrice,
     EventBadge,
+    DeliveryBadge,
 };
