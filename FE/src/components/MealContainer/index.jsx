@@ -16,8 +16,8 @@ const MealContainer = ({ containerInfo }) => {
       <Header>{mealHeader}</Header>
       {mealCards.length ? (
         <Carousel cards={mealCards} parentWidth={parentWidth} imageCount={IMAGE_COUNT} imageSize={MEAL_IMAGE_SIZE}>
-          {mealCards.map(({ id, ...mealInfo }) => (
-            <MealCard key={id} mealInfo={mealInfo} size={MEAL_IMAGE_SIZE} />
+          {mealCards.map((mealInfo) => (
+            <MealCard key={mealInfo.id} mealInfo={mealInfo} size={MEAL_IMAGE_SIZE} />
           ))}
         </Carousel>
       ) : (

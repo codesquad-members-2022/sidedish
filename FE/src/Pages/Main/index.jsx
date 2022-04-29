@@ -27,6 +27,9 @@ const Main = () => {
   const updateMealsArr = useCallback(() => {
     // FIXME: 아래와 같은 문제가 있지만 일단 동작은 하게 하기 위해 아래와 같은 코드를 짬.
     // 문제: useAxios의 response가 두 번씩 호출되는데(초기 값, 요청 응답값) 새롭게 fetch 요청을 할 때 초기 값으로 이전 요청에 대한 응답값을 가지고 있음.
+    if (!meals) {
+      return;
+    }
     const filterSameKey = (prev) => {
       const temp = [...prev];
       const length = prev.length;

@@ -45,7 +45,11 @@ const Carousel = ({ cards, parentWidth, imageCount, imageSize, children }) => {
     <Container>
       <AngleLeft onClick={moveLeft} gap={gap} />
       <IndexStatusContainer gap={gap} activeIndex={headIndex}>
-        {Array(carouselLegnth).fill(<li></li>)}
+        {Array(carouselLegnth)
+          .fill(0)
+          .map((_, index) => (
+            <li key={index}></li>
+          ))}
       </IndexStatusContainer>
       <CarouselContainer gap={gap} currentDisplay={currentDisplay}>
         <ul>{children}</ul>

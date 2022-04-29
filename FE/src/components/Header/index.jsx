@@ -1,3 +1,5 @@
+import axios from "axios";
+import { API_SERVER_URL } from "constants";
 import {
   Cart,
   CategoryTab,
@@ -39,6 +41,21 @@ const HEADER_DATA = [
 ];
 
 const Header = () => {
+  // OAuth Login Form
+  // 서버 테스트용
+  const requestOAuthLogin = () => {
+    axios
+      .get(API_SERVER_URL + "/login")
+      .then(console.log)
+      .catch(console.log);
+  };
+  const requestLogout = () => {
+    axios
+      .get(API_SERVER_URL + "/logout")
+      .then(console.log)
+      .catch(console.log);
+  };
+
   return (
     <Container>
       <Nav>
@@ -58,6 +75,11 @@ const Header = () => {
           </CategoryTab>
         </NavContent>
         <NavIcons>
+          <div>
+            <span>미접속</span>
+            <button onClick={requestOAuthLogin}>OAuth 로그인</button>
+            <button onClick={requestLogout}>로그아웃</button>
+          </div>
           <Search />
           <Login />
           <Cart />

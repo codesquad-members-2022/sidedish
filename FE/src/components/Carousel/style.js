@@ -8,6 +8,9 @@ export const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const CarouselContainer = styled.div`

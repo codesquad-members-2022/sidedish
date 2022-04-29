@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 axios.defaults.baseURL = API_SERVER_URL;
 
 export const useAxios = ({ method, url, params, config }) => {
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
