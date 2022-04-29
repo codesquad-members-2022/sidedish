@@ -8,16 +8,17 @@
 import UIKit
 
 extension UIImage {
+    static let placeholder = UIImage(systemName: "cart.circle") ?? UIImage()
 
-	func getAspectRatio() -> Double? {
-		let width = Double(self.size.width)
-		let height = Double(self.size.height)
+    func getAspectRatio() -> Double? {
+        let width = Double(self.size.width)
+        let height = Double(self.size.height)
 
-		guard width > 0, height > 0 else {
-			return nil
-		}
+        guard width > 0, height > 0 else {
+            return nil
+        }
 
-		return width / height
-	}
+        return width / height
+    }
 
 }

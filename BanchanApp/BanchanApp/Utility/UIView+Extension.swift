@@ -203,10 +203,10 @@ extension UIView {
         self.addSubview(border)
     }
 
-	func setCornerRadius(ratio: Double) {
-		let width = max(self.intrinsicContentSize.width, self.frame.width)
-		let height = max(self.intrinsicContentSize.height, self.frame.height)
+    func setCornerRadius(ratio: Double) {
+        let width = max(self.intrinsicContentSize.width, self.frame.width)
+        let height = max(self.intrinsicContentSize.height, self.frame.height)
 
-		self.layer.cornerRadius = min(width, height) * ratio
-	}
+        self.layer.cornerRadius = min(width, height) * ratio
+    }
 }

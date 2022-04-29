@@ -23,16 +23,16 @@ class QuantityView: UIView {
     private  lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "수량"
-		label.font = .textSmallRegular
-		label.textColor = .gray2
+        label.font = .textSmallRegular
+        label.textColor = .gray2
         return label
     }()
 
     private  lazy var quantityLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
-		label.font = .textMediumBold
-		label.textColor = .gray1
+        label.font = .textMediumBold
+        label.textColor = .gray1
         return label
     }()
 
@@ -86,7 +86,7 @@ class QuantityView: UIView {
     }
 
     private func configureUI() {
-		let borderColor: UIColor = .gray3 ?? .systemGray3
+        let borderColor: UIColor = .gray3 ?? .systemGray3
 
         self.addTopBorder(with: borderColor, andWidth: 1)
         self.addBottomBorder(with: borderColor, andWidth: 1)

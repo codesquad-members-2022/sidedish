@@ -85,7 +85,7 @@ class CarouselView: UIView {
 
         guard count > 1 else { return }
 
-		self.stackView.clearSubviews()
+        self.stackView.clearSubviews()
 
         for index in 0..<count {
             let item = self.delegate?.carouselView(self, index: index) ?? itemView.init()

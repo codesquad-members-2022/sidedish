@@ -8,17 +8,16 @@
 import UIKit
 
 class ProductDetailView: UIView {
-
-    private let title: UILabel = UILabel()
-    private let menuDescription: UILabel = UILabel()
+    private let title: UILabel = .init()
+    private let menuDescription: UILabel = .init()
     private let normalPrice: UILabel? = UILabel()
-    private let salePrice: UILabel = UILabel()
-    private let badges: UIStackView = UIStackView()
-	private var badgeList: [String] = [] {
-		didSet {
-			self.configureBadges()
-		}
-	}
+    private let salePrice: UILabel = .init()
+    private let badges: UIStackView = .init()
+    private var badgeList: [String] = [] {
+        didSet {
+            self.configureBadges()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,28 +29,28 @@ class ProductDetailView: UIView {
         setup()
     }
 
-	private func configureBadges() {
-		if badges.subviews.count != .zero {
-			badges.clearSubviews()
-		}
+    private func configureBadges() {
+        if badges.subviews.count != .zero {
+            badges.clearSubviews()
+        }
 
-		badgeList.forEach {
-			let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
-			badge.text = $0
-			badges.addArrangedSubview(badge)
-		}
-	}
+        badgeList.forEach {
+            let badge = BadgeLabel(color: UIColor(named: "Primary Dark") ?? .systemBlue)
+            badge.text = $0
+            badges.addArrangedSubview(badge)
+        }
+    }
 
     private func setup() {
-		menuDescription.textColor = .gray2
-		normalPrice?.textColor = .gray2
+        menuDescription.textColor = .gray2
+        normalPrice?.textColor = .gray2
 
         badges.axis = .horizontal
         badges.spacing = 5
-		badges.alignment = .center
+        badges.alignment = .center
         badges.distribution = .fillProportionally
 
-        let priceStackView: UIStackView = UIStackView(arrangedSubviews: [salePrice])
+        let priceStackView = UIStackView(arrangedSubviews: [salePrice])
         if let normalPrice = normalPrice {
             priceStackView.addArrangedSubview(normalPrice)
         }
@@ -61,13 +60,13 @@ class ProductDetailView: UIView {
         priceStackView.spacing = 5
         priceStackView.distribution = .fill
 
-        let stackView: UIStackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
+        let stackView = UIStackView(arrangedSubviews: [title, menuDescription, priceStackView, badges])
         stackView.axis = .vertical
-		stackView.alignment = .leading
+        stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.spacing = 5
 
-        self.addSubview(stackView)
+        addSubview(stackView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -79,28 +78,28 @@ class ProductDetailView: UIView {
         ])
     }
 
-	func setTitleText(_ text: String, font: UIFont = .textSmallBold) {
-		self.title.text = text
-		self.title.font = font
-	}
+    func setTitleText(_ text: String, font: UIFont = .textSmallBold) {
+        title.text = text
+        title.font = font
+    }
 
-	func setDescriptionText(_ text: String, font: UIFont = .textSmallRegular) {
-		self.menuDescription.text = text
-		self.menuDescription.font = font
-	}
+    func setDescriptionText(_ text: String, font: UIFont = .textSmallRegular) {
+        menuDescription.text = text
+        menuDescription.font = font
+    }
 
-	func setSalePrice(_ text: String, font: UIFont = .textSmallBold) {
-		self.salePrice.text = text
-		self.salePrice.font = font
-	}
+    func setSalePrice(_ text: String, font: UIFont = .textSmallBold) {
+        salePrice.text = text
+        salePrice.font = font
+    }
 
-	func setNormalPrice(_ text: String, font: UIFont = .textSmallRegular) {
-		self.normalPrice?.text = text
-		self.normalPrice?.font = font
-		self.normalPrice?.applyStrikethoroughStyle()
-	}
+    func setNormalPrice(_ text: String, font: UIFont = .textSmallRegular) {
+        normalPrice?.text = text
+        normalPrice?.font = font
+        normalPrice?.applyStrikethoroughStyle()
+    }
 
-	func setBadgeList(_ list: [String]) {
-		self.badgeList = list
-	}
+    func setBadgeList(_ list: [String]) {
+        badgeList = list
+    }
 }
