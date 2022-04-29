@@ -1,5 +1,7 @@
 package sidedish.com.service;
 
+import static sidedish.com.config.GitHubOAuthUtils.*;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -22,9 +24,6 @@ public class LoginService {
 
 	private final DomainDtoMapper domainDtoMapper;
 	private final UserRepository userRepository;
-	private String clientId = "9819a665d5d8256d5ad6";
-	private String clientSecret = "684aa9107cd2d757809f7fb642bab01c041a06aa";
-	private String accessTokenApiUrl = "https://github.com/login/oauth/access_token";
 
 	public UserResponse login(String code) {
 		GitHubAccessToken accessToken = requestAccessToken(code);
@@ -39,7 +38,7 @@ public class LoginService {
 		httpHeaders.setBearerAuth(accessToken.getAccessToken());
 
 		User user = new RestTemplate()
-			.exchange("https://api.github.com/user", HttpMethod.GET,
+			.exchange(USER_API_URL, HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), User.class).getBody();
 		user.setAccessToken(accessToken);
 		return user;
@@ -51,11 +50,11 @@ public class LoginService {
 
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("code", code);
-		params.add("client_id", clientId);
-		params.add("client_secret", clientSecret);
+		params.add("client_id", CLIENT_ID);
+		params.add("client_secret", CLIENT_SECRET);
 
 		return new RestTemplate()
-			.postForEntity(accessTokenApiUrl, new HttpEntity<>(params, headers),
+			.postForEntity(ACCESSTOKEN_API_URL, new HttpEntity<>(params, headers),
 				GitHubAccessToken.class).getBody();
 	}
 }
