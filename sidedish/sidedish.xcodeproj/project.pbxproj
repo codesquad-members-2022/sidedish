@@ -176,6 +176,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E01B5215281B7529009918AE /* DecoderBy */ = {
+			isa = PBXGroup;
+			children = (
+				E0E62AF728197139005E350D /* DecodedBy.swift */,
+				E0E62AFA281973B8005E350D /* PriceTransformer.swift */,
+			);
+			path = DecoderBy;
+			sourceTree = "<group>";
+		};
 		E0D380B028129D09009627A1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,8 +215,8 @@
 		E0D380CA2816CFB8009627A1 /* PropertyWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				E01B5215281B7529009918AE /* DecoderBy */,
 				E0D380C72816CDC5009627A1 /* UserDefault.swift */,
-				E0E62AF728197139005E350D /* DecodedBy.swift */,
 				E01B5211281A34BF009918AE /* Inject.swift */,
 			);
 			path = PropertyWrapper;
@@ -221,14 +230,6 @@
 				E0E62B0C281A1E29005E350D /* SplashViewModelProtocol.swift */,
 			);
 			path = Splash;
-			sourceTree = "<group>";
-		};
-		E0E62AF928197384005E350D /* DecoderBy */ = {
-			isa = PBXGroup;
-			children = (
-				E0E62AFA281973B8005E350D /* PriceTransformer.swift */,
-			);
-			path = DecoderBy;
 			sourceTree = "<group>";
 		};
 		E0E62B01281985E5005E350D /* NoCommit */ = {
@@ -365,7 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				E0E62B042819961D005E350D /* Container */,
-				E0E62AF928197384005E350D /* DecoderBy */,
 				E0D380CA2816CFB8009627A1 /* PropertyWrapper */,
 				E0D380C92816CFAF009627A1 /* View */,
 				E0D380CD2816D01E009627A1 /* UserStore.swift */,
