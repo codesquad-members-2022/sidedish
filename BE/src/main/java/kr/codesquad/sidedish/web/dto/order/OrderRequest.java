@@ -1,10 +1,17 @@
 package kr.codesquad.sidedish.web.dto.order;
 
 import kr.codesquad.sidedish.domain.Order;
+import lombok.Getter;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+@Getter
 public class OrderRequest {
     private Long itemId;
     private Long userId;
+    @NotNull
+    @Min(1)
     private Integer quantity;
     private Long totalPrice;
 
@@ -23,19 +30,4 @@ public class OrderRequest {
         return Order.newOrder(this.itemId, this.userId, this.quantity, this.totalPrice);
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public Long getTotalPrice() {
-        return totalPrice;
-    }
 }
