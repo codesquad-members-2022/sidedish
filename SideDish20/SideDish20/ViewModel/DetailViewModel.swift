@@ -32,7 +32,6 @@ class DetailViewModel {
     
     var detailSectionImages: Observable<[UIImage]> = Observable([])
     
-    // 데이터 패치 -> Logic에게 요청. 그러려면 viewModel은 Service를 갖고있어야함.
     func reload() {
         service.fetchDetail(hash: hash) { [weak self] model in
             guard let self = self else { return }
