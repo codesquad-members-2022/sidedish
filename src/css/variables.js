@@ -29,8 +29,8 @@ const body = {
 };
 
 const modal = {
-  width: 1080,
-  margin: 38,
+  width: 1070,
+  margin: 36,
 };
 
 export { color, fontSize, slideBtn, body, modal };

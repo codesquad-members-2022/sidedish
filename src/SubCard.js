@@ -4,7 +4,6 @@ import CardContainer from './container/CardContainer';
 import CategoryTitle from './components/CategoryTitle';
 
 const SubCard = ({ dishData, title, handleModal, isModalVisible }) => {
-  const mainDatas = dishData.slice(0, 9);
   const cardDataLen = dishData.length;
   const originalShowingCardNum = 4;
   const specialShowingCardNum = 3;
@@ -15,7 +14,7 @@ const SubCard = ({ dishData, title, handleModal, isModalVisible }) => {
 
   return (
     <CardContainer
-      cardInfos={mainDatas}
+      cardInfos={dishData}
       hasButton={true}
       showingSlideCardNum={showingSlideCardNum}
       handleModal={handleModal}

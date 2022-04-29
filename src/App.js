@@ -5,7 +5,7 @@ import Header from './Header';
 import MainCard from './MainCard';
 import SubCard from './SubCard';
 import styled from 'styled-components';
-import { body } from './css/variables';
+import { body, color } from './css/variables';
 import Modal from './components/Modal';
 import CardOrderPage from './components/CardOrderPage';
 
@@ -128,7 +128,13 @@ const StyledApp = styled.div`
 const StyledButton = styled.button`
   cursor: pointer;
   display: block;
-  margin: auto;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid ${color.greyThree};
+  border-radius: 10px;
 `;
 
 export default App;
