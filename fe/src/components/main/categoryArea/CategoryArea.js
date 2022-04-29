@@ -11,20 +11,26 @@ export function CategoryArea({ setModal }) {
   const [buttonState, setButtonState] = useState('보기');
 
   useEffect(() => {
+    async function getCategoryData() {
+      const categoryUrl = getUrlWithIdPage({ url: API.exhibitions, id: EXHIBITION_ID.category, page: 0 });
+      const { categoryResponses } = await fetchData(categoryUrl);
+      await addSideDishesToAllCategory(categoryResponses);
+      setCategoryState(categoryResponses);
+      setActiveCategory([0]);
+    }
+
     async function addSideDishesToAllCategory(categoryResponses) {
       await Promise.all(categoryResponses.map(categoryResponse => addSideDishesToCategory(categoryResponse)));
     }
 
     async function addSideDishesToCategory(categoryResponse) {
       const { categoryId } = categoryResponse;
-      const { totalCount, sideDishCardResponses } = await fetchData(
-        getUrlWithIdPage({ url: API.categoryDishes, id: categoryId, page: 0 })
-      );
+      const firstPageUrl = getUrlWithIdPage({ url: API.categoryDishes, id: categoryId, page: 0 });
+      const { totalCount, sideDishCardResponses } = await fetchData(firstPageUrl);
 
       for (let page = 1; page * 4 < totalCount; page++) {
-        const { sideDishCardResponses: sideDishes } = await fetchData(
-          getUrlWithIdPage({ url: API.categoryDishes, id: categoryId, page: page })
-        );
+        const pageUrl = getUrlWithIdPage({ url: API.categoryDishes, id: categoryId, page: page });
+        const { sideDishCardResponses: sideDishes } = await fetchData(pageUrl);
         sideDishes.forEach(sideDish => {
           sideDishCardResponses.push(sideDish);
         });
@@ -33,14 +39,6 @@ export function CategoryArea({ setModal }) {
       categoryResponse.sideDishCardResponses = sideDishCardResponses;
     }
 
-    async function getCategoryData() {
-      const { categoryResponses } = await fetchData(
-        getUrlWithIdPage({ url: API.exhibitions, id: EXHIBITION_ID.category, page: 0 })
-      );
-      await addSideDishesToAllCategory(categoryResponses);
-      setCategoryState(categoryResponses);
-      setActiveCategory([0]);
-    }
     getCategoryData();
   }, []);
 
