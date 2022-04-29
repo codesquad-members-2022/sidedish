@@ -2,16 +2,14 @@ package com.team35.sidedish.dto.request;
 
 import com.team35.sidedish.domain.entity.aggregate.OrderSheet;
 import io.swagger.annotations.ApiModel;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
 @ApiModel
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OrderSheetRequest {
 
