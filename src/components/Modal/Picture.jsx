@@ -1,28 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Picture() {
+function Picture({ image, alt }) {
   return (
     <Pictures>
-      <img
-        width="392px"
-        height="392px"
-        src="http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__T.jpg"
-        alt=""
-      />
+      <img width="392px" height="392px" src={image} alt={alt} />
       <Thumbnails>
-        <img
-          width="72px"
-          height="72px"
-          src="http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__T.jpg"
-          alt=""
-        />
-        <img
-          width="72px"
-          height="72px"
-          src="http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__T.jpg"
-          alt=""
-        />
+        <img width="72px" height="72px" src={image} alt={alt} />
+        <img width="72px" height="72px" src={image} alt={alt} />
       </Thumbnails>
     </Pictures>
   );

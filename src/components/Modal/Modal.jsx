@@ -1,55 +1,126 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/self-closing-comp */
+/* eslint-disable camelcase */
+/* API에서 받아오는 값중에 _가 포함되어 있어 규칙을 비활성화 합니다. */
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import THEME from 'variable/theme';
 import Button from 'components/common/Button';
 import Tag from 'components/common/Card/Tag';
 import IconButton from 'components/common/IconButton';
 import Text from 'components/utils/Text';
-import React from 'react';
-import styled from 'styled-components';
-import THEME from 'variable/theme';
 import Picture from 'components/Modal/Picture';
-import DeliveryInfo from './DeliveryInfo';
+import DeliveryInfo from 'components/Modal/DeliveryInfo';
+
+const END_POINT = 'https://api.codesquad.kr/onban/main/';
 
 export default function Modal({ setClickedCard }) {
+  const [sideDish, setSideDish] = useState(false);
+  const [curPrice, setCurPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const { title, badge, image, alt, n_price, s_price } = sideDish;
+
+  useEffect(() => {
+    fetchModalData();
+  }, []);
+
+  useEffect(() => {
+    const DEFAULT_MONEY = '0원';
+    const sellingPrice = detachNumberToMoneyStr(sideDish.s_price || DEFAULT_MONEY);
+    setCurPrice(sellingPrice);
+  }, [sideDish]);
+
   return (
-    <Wrap
-      onClick={() => {
-        setClickedCard(false);
-      }}
-    >
+    <Wrap onClick={() => setClickedCard(false)}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ProductDetail>
           <Row>
-            <Picture />
+            <Picture image={image} alt={alt} />
             <Column>
-              <Text size="X_LARGE" weight="MEDIUM" value="오리 주물럭_반조리" />
+              <Text size="X_LARGE" weight="MEDIUM" value={title} />
               <NormalPrice>
-                <Text weight="MEDIUM" color="GREY_300" value="15,800원" />
+                <Text weight="MEDIUM" color="GREY_300" value={n_price} />
               </NormalPrice>
               <SellingPrice>
-                <Tag type="런칭특가" />
-                <Text weight="X_LARGE" color="MEDIUM" value="12,640원" />
+                {sideDish && badge.map((type, idx) => <Tag key={idx} type={type} />)}
+                <Text weight="X_LARGE" color="MEDIUM" value={s_price} />
               </SellingPrice>
               <DeliveryInfo />
               <TotalWrap>
                 <Quantity>
-                  <IconButton width="8.5px" height="15px" stroke={THEME.COLOR.GREY[200]} icon="minus" />
-                  <Number>1</Number>
-                  <IconButton width="15px" height="15px" stroke={THEME.COLOR.GREY[200]} icon="plus" />
+                  <IconButton
+                    onClick={handleQuantitySubtract}
+                    width="8.5px"
+                    height="15px"
+                    stroke={THEME.COLOR.GREY[200]}
+                    icon="minus"
+                  />
+                  <Number>{quantity}</Number>
+                  <IconButton
+                    onClick={handleQuantityAddition}
+                    width="15px"
+                    height="15px"
+                    stroke={THEME.COLOR.GREY[200]}
+                    icon="plus"
+                  />
                 </Quantity>
                 <TotalPrice>
                   <Text size="MEDIUM" color="GREY_200" value="총 주문금액" />
-                  <Text size="X_LARGE" value="12,640원" />
+                  <Text size="X_LARGE" value={attachComaAndUnit(curPrice * quantity, '원')} />
                 </TotalPrice>
               </TotalWrap>
               <Button value="주문하기" />
             </Column>
           </Row>
         </ProductDetail>
-        <Recommend></Recommend>
+        {/* TODO: Recommend 컴포넌트 추가 */}
+        <Recommend />
       </ModalContainer>
     </Wrap>
   );
+
+  function fetchModalData() {
+    const HASH = 'HDF73';
+    const URL = END_POINT + HASH;
+
+    fetch(URL)
+      .then(res => res.json())
+      .then(sideDishJSON => setSideDish(sideDishJSON), handleError);
+
+    function handleError(error) {
+      setSideDish({});
+      throw new Error(`${error}: 데이터를 성공적으로 불러오지 못했습니다.`);
+    }
+  }
+
+  function handleQuantitySubtract() {
+    const isUnderQuantityOne = quantity < 1;
+    if (isUnderQuantityOne) {
+      return;
+    }
+    setQuantity(+quantity - 1);
+  }
+
+  function handleQuantityAddition() {
+    setQuantity(+quantity + 1);
+  }
+
+  function detachNumberToMoneyStr(str) {
+    const regExpComaAndUnit = /(,|원)/g;
+    return str.replaceAll(regExpComaAndUnit, '');
+  }
+
+  function attachComaAndUnit(num, unit) {
+    const res = num.toString().split('');
+    const len = res.length;
+    let cnt = 0;
+    for (let i = len - 1; i > 0; i -= 1) {
+      cnt += 1;
+      if (cnt === 3) {
+        res.splice(i, 0, ',');
+        cnt = 0;
+      }
+    }
+    return `${res.join('')}${unit}`;
+  }
 }
 
 const Wrap = styled.span({
@@ -95,7 +166,7 @@ const NormalPrice = styled.div({
 });
 
 const Quantity = styled(Row)({
-  marginRight: '160px'
+  marginRight: '140px'
 });
 
 const Number = styled.div({
