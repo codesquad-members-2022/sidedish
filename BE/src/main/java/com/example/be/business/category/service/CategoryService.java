@@ -1,7 +1,5 @@
 package com.example.be.business.category.service;
 
-import com.example.be.business.DishInformationResponse;
-import com.example.be.business.category.domain.CategoryType;
 import com.example.be.business.category.repository.CategoryRepository;
 import com.example.be.business.dish.service.CategoryType;
 import com.example.be.business.dish.service.DishInformationResponse;
