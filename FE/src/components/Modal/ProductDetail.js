@@ -5,37 +5,62 @@ import colors from '../../constants/colors';
 import { FONT } from '../../constants/fonts';
 import ModalInfoContextStore from '../../stores/ModalInfoStore';
 import Text from '../Text';
-
-const SIZE_OF_ORIGIN = 596;
-const REDUCTION_RATIO = 1.3;
+import OrderButton from './OrderButton';
+import ProductImg from './ProductImg';
+import ProductInfo from './ProductInfo';
+import TotalAmount from './TotalAmount';
+import TotalCost from './TotalCost';
 
 const ProductDetailWrap = styled.div`
-  position: absolute;
   width: 100%;
-  height: calc(${SIZE_OF_ORIGIN}px / ${REDUCTION_RATIO});
-  background-color: ${colors.offWhite};
+  height: 60%;
+  background-color: ${colors.white};
+  display: flex;
+  padding-top: 2%;
+  padding-right: 3%;
+  padding-left: 3%;
+  justify-content: space-between;
 `;
 
 const Close = styled.div`
-  width: 36px;
-  height: 30px;
-  position: absolute;
-  top: 32px;
-  left: 650px;
   cursor: pointer;
+  text-align: right;
 `;
+const ProductInfoWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 48.5%;
+`;
+
+const AmountAndCost = styled.div`
+  display: flex;
+  margin-top: 6%;
+  justify-content: space-between;
+`;
+
 const ProductDetail = () => {
   const ModalInfo = useContext(ModalInfoContextStore);
   const onCloseClick = () => {
     if (ModalInfo.modalDisplay === 'block') {
       ModalInfo.setModalDisplay('none');
+      ModalInfo.setModalDetail('');
     }
+    ModalInfo.setAmount(1);
   };
   return (
     <ProductDetailWrap>
-      <Close onClick={onCloseClick}>
-        <Text font={FONT.MEDIUM}>닫기</Text>
-      </Close>
+      <ProductImg />
+      <ProductInfoWrap>
+        <Close onClick={onCloseClick}>
+          <Text font={FONT.MEDIUM}>닫기</Text>
+        </Close>
+        <ProductInfo />
+        <AmountAndCost>
+          <TotalAmount />
+          <TotalCost />
+        </AmountAndCost>
+        <OrderButton />
+      </ProductInfoWrap>
     </ProductDetailWrap>
   );
 };

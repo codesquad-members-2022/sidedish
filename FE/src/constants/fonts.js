@@ -4,12 +4,15 @@ export const FONT = {
   LARGE_BOLD: 'LargeB',
   LARGE: 'Large',
   MEDIUM_BOLD: 'MediumB',
+  MEDIUM_XBOLD: 'MediumXB',
   MEDIUM: 'Medium',
   SMALL_BOLD: 'SmallB',
   SMALL: 'Small',
   XSMALL_BOLD: 'XSmallB',
   XSMALL: 'XSmall',
   TITLE: 'Title',
+  SMALL_TITLE: 'SmallTitle',
+  XXSMALL_BOLD: 'XXSmallB',
 };
 
 export const fonts = {
@@ -17,6 +20,12 @@ export const fonts = {
     fontWeight: 700,
     fontSize: '40px',
     lineHeight: '58px',
+    letterSpacing: '-0.004em',
+  },
+  SmallTitle: {
+    fontWeight: 700,
+    fontSize: '18px',
+    lineHeight: '26px',
     letterSpacing: '-0.004em',
   },
   XLarge: {
@@ -55,6 +64,12 @@ export const fonts = {
     lineHeight: '26px',
     letterSpacing: '-0.008em',
   },
+  MediumXB: {
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: '27px',
+    letterSpacing: '-0.008em',
+  },
   Small: {
     fontWeight: 400,
     fontSize: '14px',
@@ -77,6 +92,12 @@ export const fonts = {
     fontWeight: 500,
     fontSize: '12px',
     lineHeight: '18px',
+    letterSpacing: '-0.008em',
+  },
+  XXSmallB: {
+    fontWeight: 500,
+    fontSize: '11px',
+    lineHeight: '16px',
     letterSpacing: '-0.008em',
   },
 };

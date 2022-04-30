@@ -12,14 +12,16 @@ const SubTitle = styled.div`
   margin: 0 80px;
 `;
 
-const SubContent = ({ content }) => {
-  const maxPage = Math.ceil(content.foods.length / FOOD_PER_PAGE);
+const SubContent = ({
+  content: { detailTitle: title, itemResource: foods },
+}) => {
+  const maxPage = (foods && Math.ceil(foods.length / FOOD_PER_PAGE)) || 0;
 
   const getSlideDataByPage = (page) => {
     const startIndex = page * FOOD_PER_PAGE;
     return (
       <FoodCards
-        foods={content.foods.slice(startIndex, startIndex + FOOD_PER_PAGE)}
+        foods={foods?.slice(startIndex, startIndex + FOOD_PER_PAGE)}
         size={FOOD_PER_PAGE}
       />
     );
@@ -41,7 +43,7 @@ const SubContent = ({ content }) => {
   return (
     <>
       <SubTitle>
-        <Text font={FONT.XLARGE_BOLD}>{content.title}</Text>
+        <Text font={FONT.XLARGE_BOLD}>{title}</Text>
       </SubTitle>
       <CarouselProvider {...carousel} />
     </>

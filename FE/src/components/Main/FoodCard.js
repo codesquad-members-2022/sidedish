@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
+import { moneyToWon } from '../../common/utils';
+import BADGE from '../../constants/badge';
 import colors from '../../constants/colors';
 import { FONT } from '../../constants/fonts';
 import ModalInfoContextStore from '../../stores/ModalInfoStore';
@@ -20,6 +22,11 @@ const CardText = styled.div`
   margin: 8px 0px;
 `;
 
+const CardDescription = styled.div`
+  margin: 8px 0px;
+  display: ${(props) => (props.type === 'modal' ? 'none' : 'block')};
+`;
+
 const OriginPrice = styled(Text)`
   margin-left: 8px;
   color: ${colors.greyThree};
@@ -27,37 +34,48 @@ const OriginPrice = styled(Text)`
 `;
 
 const BadgeWrap = styled.div`
-  display: flex;
+  display: ${(props) => (props.type === 'modal' ? 'none' : 'flex')};
 `;
 
-const FoodCard = ({ food }) => {
+const FoodCard = ({ food, type = '' }) => {
   const ModalInfo = useContext(ModalInfoContextStore);
 
   const onCardClick = () => {
     if (ModalInfo.modalDisplay === 'none') {
+      ModalInfo.setModalDetail('food');
       ModalInfo.setCardInfo(food);
+      ModalInfo.setThumbImg([food.images.sideOne, food.images.sideTwo]);
+      ModalInfo.setTopImg(food.images.mainUrl);
       ModalInfo.setModalDisplay('block');
     }
   };
+
+  const displayPrice = food.discountPrice ? food.discountPrice : food.price;
+  const originPrice = food.price ? food.price : '';
+
   return (
     <CardWrap onClick={onCardClick}>
-      <CardImg src={food.image} alt={food.alt} />
+      <CardImg src={food.images.mainUrl} alt={food.title} />
       <CardText>
-        <Text font={FONT.MEDIUM_BOLD}>{food.title}</Text>
+        <Text font={type === 'modal' ? FONT.XSMALL : FONT.MEDIUM_BOLD}>
+          {food.title}
+        </Text>
       </CardText>
-      <CardText>
+      <CardDescription type={type}>
         <Text font={FONT.SMALL} textColor={colors.greyTwo}>
           {food.description}
         </Text>
-      </CardText>
+      </CardDescription>
       <CardText>
-        <Text font={FONT.MEDIUM_BOLD}>{food.s_price}</Text>
-        <OriginPrice font={FONT.SMALL}>{food.n_price}</OriginPrice>
+        <Text font={type === 'modal' ? FONT.SMALL_BOLD : FONT.MEDIUM_BOLD}>
+          {moneyToWon(displayPrice)}
+        </Text>
+        <OriginPrice font={type === 'modal' ? FONT.XSMALL : FONT.SMALL}>
+          {moneyToWon(originPrice)}
+        </OriginPrice>
       </CardText>
-      <BadgeWrap>
-        {food?.badge?.map((badgeName, idx) => (
-          <Tag key={badgeName + idx} badge={badgeName} />
-        ))}
+      <BadgeWrap type={type}>
+        <Tag badge={BADGE[food.badge]} />
       </BadgeWrap>
     </CardWrap>
   );

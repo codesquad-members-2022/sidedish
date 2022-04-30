@@ -19,18 +19,18 @@ const Tab = styled.li`
     props.isSelected ? `2px solid ${colors.black}` : 'none'};
 `;
 
-const MainTabs = ({ tabs, selectedTabIndex, onTabClick }) => (
+const MainTabs = ({ tabs, selectedTabId, onTabClick }) => (
   <TabsWrap>
     <Tabs>
-      {tabs.map((tab, tabIndex) => (
+      {tabs.map((tab) => (
         <Tab
-          key={tab}
-          isSelected={tabIndex === selectedTabIndex}
+          key={tab.id}
+          isSelected={tab.id === selectedTabId}
           onClick={() => {
-            onTabClick(tabIndex);
+            onTabClick(tab.id);
           }}
         >
-          <Text font={FONT.LARGE_BOLD}>{tab}</Text>
+          <Text font={FONT.LARGE_BOLD}>{tab.title}</Text>
         </Tab>
       ))}
     </Tabs>

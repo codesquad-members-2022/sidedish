@@ -2,34 +2,17 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import ModalInfoContextStore from '../../stores/ModalInfoStore';
-import ProductDetail from './ProductDetail';
-
-const HEIGHT_SIZE_OF_ORIGIN = 994;
-const WIDTH_SIZE_OF_ORIGIN = 960;
-const REDUCTION_RATIO = 1.3;
-const HALF_OF_SIZE = 2;
-
-const MainModal = styled.div`
-  position: relative;
-  background-color: white;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-`;
+import FoodModal from './FoodModal';
 
 const ModalWrap = styled.div`
   box-sizing: border-box;
   position: fixed;
-  width: calc(${WIDTH_SIZE_OF_ORIGIN}px / ${REDUCTION_RATIO});
-  height: calc(${HEIGHT_SIZE_OF_ORIGIN}px / ${REDUCTION_RATIO});
+  width: 46.25rem;
+  height: 47.8rem;
   top: 50%;
-  margin-top: calc(
-    ${HEIGHT_SIZE_OF_ORIGIN}px / ${REDUCTION_RATIO} / -${HALF_OF_SIZE}
-  );
+  margin-top: -23.9rem;
   left: 50%;
-  margin-left: calc(
-    ${WIDTH_SIZE_OF_ORIGIN}px / ${REDUCTION_RATIO} / -${HALF_OF_SIZE}
-  );
+  margin-left: -23.125rem;
   border: 2px solid #000000;
 `;
 
@@ -50,10 +33,7 @@ const Modal = () => {
   return (
     <ModalLayer modalDisplay={ModalInfo.modalDisplay}>
       <ModalWrap>
-        <MainModal>
-          <ProductDetail />
-          {/* <relatedProduct /> */}
-        </MainModal>
+        {ModalInfo.modalDetail === 'food' ? <FoodModal /> : null}
       </ModalWrap>
     </ModalLayer>
   );
