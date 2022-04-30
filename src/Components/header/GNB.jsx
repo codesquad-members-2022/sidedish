@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { F_basic, Color } from '../../Assets/CommonStyle';
 import List from '../List';
 
 const GNB_style = styled.nav`
   margin: 0 40px;
-
   > ul {
     ${F_basic}
-
     > li {
       position: relative;
       padding: 0 12px;
-
       ul {
         visibility: hidden;
         opacity: 0;
@@ -21,10 +18,8 @@ const GNB_style = styled.nav`
         left: 0;
         width: 100%;
         padding: 16px 12px;
-
         > li {
           margin-bottom: 8px;
-
           &:hover {
             color: ${Color.orange};
             text-decoration: underline;
@@ -33,7 +28,6 @@ const GNB_style = styled.nav`
       }
     }
   }
-
   &.active {
     > ul ul {
       transition: 0.3s;
@@ -45,7 +39,6 @@ const GNB_style = styled.nav`
       color: ${Color.orange};
     }
   }
-
   a {
     display: block;
   }
@@ -55,10 +48,6 @@ const GNB = ({ list, isHover, setIsHover }) => {
   const mouseHandler = () => {
     setIsHover(!isHover);
   };
-
-  useEffect(() => {
-    setIsHover(false);
-  }, []);
 
   return (
     <GNB_style
