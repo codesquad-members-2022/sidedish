@@ -7,9 +7,7 @@ import RelatedProduct from './RelatedProduct';
 function Modal({ dishId, hideModal, showModal, showAlert }) {
   const [dish, setDish] = useState(null);
   function closeModal(e) {
-    if (e.target !== e.currentTarget) {
-      return;
-    } // 질문해보기!
+    e.stopPropagation();
     hideModal();
   }
   useEffect(() => {
@@ -22,33 +20,38 @@ function Modal({ dishId, hideModal, showModal, showAlert }) {
   return (
     <>
       {dish && (
-        <ModalWrap onClick={closeModal}>
-          <PopupBox>
-            <PopupCloseButtonWrap>
-              <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
-            </PopupCloseButtonWrap>
-            <ProductDetail dishes={dish} showAlert={showAlert}></ProductDetail>
-            <RelatedProduct relatedDishes={dish.recommendedItems} showModal={showModal}></RelatedProduct>
-          </PopupBox>
-        </ModalWrap>
+        <>
+          <Dimmed onClick={closeModal}></Dimmed>
+          <ModalWrap>
+            <PopupBox>
+              <PopupCloseButtonWrap>
+                <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
+              </PopupCloseButtonWrap>
+              <ProductDetail dishes={dish} showAlert={showAlert}></ProductDetail>
+              <RelatedProduct relatedDishes={dish.recommendedItems} showModal={showModal}></RelatedProduct>
+            </PopupBox>
+          </ModalWrap>
+        </>
       )}
     </>
   );
 }
 
 const ModalWrap = styled.div`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(73, 68, 68, 0.5);
-  z-index: 5;
+  position: absolute;
+  width: 960px;
+  height: 994px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const PopupBox = styled.div`
-  width: 960px;
-  height: 994px;
+  width: 100%;
+  height: 100%;
   background-color: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme }) => theme.colors.black};
   display: flex;
@@ -72,5 +75,11 @@ const PopupCloseButton = styled.button`
   line-height: 26px;
   color: ${({ theme }) => theme.colors.gray2};
 `;
-
+const Dimmed = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(73, 68, 68, 0.5);
+  z-index: 5;
+`;
 export default Modal;
