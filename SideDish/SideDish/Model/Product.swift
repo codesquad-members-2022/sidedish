@@ -1,30 +1,25 @@
 import Foundation
 import UIKit
 
-struct Product {
+class Product {
     let hash: String
-    let image: UIImage
+    private(set) var image: UIImage?
     let title: String
     let description: String
     let salePrice: String
     let normalPrice: String?
     let discountType: [DiscountType]?
 
-    init(origin: DishCellInfo, image: UIImage) {
+    init(origin: DishCellInfo) {
         self.hash = origin.detailHash
-        self.image = image
         self.title = origin.title
         self.description = origin.bodyDescription
         self.salePrice = origin.salePrice
         self.normalPrice = origin.normalPrice
-        self.discountType = {
-            var result: [DiscountType] = []
-            origin.badge?.forEach({ string in
-                if let type = DiscountType(string) {
-                    result.append(type)
-                }
-            })
-            return result.isEmpty ? nil : result
-        }()
+        self.discountType = origin.badge?.filter { DiscountType($0) != nil}.map { DiscountType($0)! }
+    }
+
+    func injectImage(image: UIImage) {
+        self.image = image
     }
 }

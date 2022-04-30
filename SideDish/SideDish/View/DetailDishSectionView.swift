@@ -1,6 +1,11 @@
 import UIKit
 
 class DetailDishSectionView: UIView {
+
+    var finalPrice: Int {
+        self.finalPriceLabel.text?.toInt() ?? 0
+    }
+
     private let productImageContentView: UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .horizontal
@@ -55,8 +60,7 @@ class DetailDishSectionView: UIView {
 
     private let eventBadgeLabel: PaddingLabel = {
         var label = PaddingLabel()
-        label.topInset = 4; label.bottomInset = 4
-        label.leftInset = 16; label.rightInset = 16
+        label.setEdgeInset(top: 4, bottom: 4, left: 16, right: 16)
         label.font = UIFont.init(name: Font.sfBold, size: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,8 +74,7 @@ class DetailDishSectionView: UIView {
 
     private let launchingBadgeLabel: PaddingLabel = {
         var label = PaddingLabel()
-        label.topInset = 4; label.bottomInset = 4
-        label.leftInset = 16; label.rightInset = 16
+        label.setEdgeInset(top: 4, bottom: 4, left: 16, right: 16)
         label.font = UIFont.init(name: Font.sfBold, size: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -96,14 +99,16 @@ class DetailDishSectionView: UIView {
         productImageScrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(productImageScrollView)
 
+        let contentLayoutGuide = productImageScrollView.contentLayoutGuide
+
         NSLayoutConstraint.activate([
             productImageScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             productImageScrollView.topAnchor.constraint(equalTo: topAnchor),
             productImageScrollView.widthAnchor.constraint(equalTo: widthAnchor),
             productImageScrollView.heightAnchor.constraint(equalTo: productImageScrollView.widthAnchor),
-            productImageScrollView.contentLayoutGuide.topAnchor.constraint(equalTo: productImageScrollView.topAnchor),
-            productImageScrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: productImageScrollView.leadingAnchor),
-            productImageScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: productImageScrollView.heightAnchor)
+            contentLayoutGuide.topAnchor.constraint(equalTo: productImageScrollView.topAnchor),
+            contentLayoutGuide.leadingAnchor.constraint(equalTo: productImageScrollView.leadingAnchor),
+            contentLayoutGuide.heightAnchor.constraint(equalTo: productImageScrollView.heightAnchor)
         ])
 
         productImageScrollView.addSubview(productImageContentView)
@@ -164,12 +169,12 @@ class DetailDishSectionView: UIView {
         bottomAnchor.constraint(equalTo: badgeStackView.bottomAnchor).isActive = true
     }
 
-    func setComponents(with viewModel: DishDetailViewModel?) {
-        titleLabel.text = viewModel?.title
-        descriptionLabel.text = viewModel?.description
-        finalPriceLabel.text = viewModel?.finalPrice
+    func setComponents(with detailStringData: DetailStringData, title: String, discountType: [DiscountType]?) {
+        titleLabel.text = title
+        descriptionLabel.text = detailStringData.description
+        finalPriceLabel.text = detailStringData.finalPrice
 
-        if let normalPrice = viewModel?.normalPrice {
+        if let normalPrice = detailStringData.normalPrice {
             let attributedStyle = NSUnderlineStyle.single
             let attributedString = NSMutableAttributedString(string: normalPrice)
             attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle,
@@ -178,7 +183,7 @@ class DetailDishSectionView: UIView {
             normalPriceLabel.attributedText = attributedString
         }
 
-        if let discountType = viewModel?.discountType {
+        if let discountType = discountType {
             badgeStackView.isHidden = false
             discountType.forEach {
                 switch $0 {

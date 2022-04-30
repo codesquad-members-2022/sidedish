@@ -1,6 +1,21 @@
 import UIKit
 
 class AmountSectionView: UIView {
+
+    var amount: Int {
+        get {
+            Int(amountLabel.text ?? "") ?? 0
+        } set {
+            self.amountLabel.text = "\(newValue)"
+        }
+    }
+
+    var totalPrice = 0 {
+        didSet {
+            self.totalPriceLabel.text = "\(totalPrice)".toPrice()
+        }
+    }
+
     private let amountLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.init(name: Font.sfSemiBold, size: 18)
@@ -12,7 +27,7 @@ class AmountSectionView: UIView {
         return label
     }()
 
-    private let amountStepper: UIStepper = {
+    let amountStepper: UIStepper = {
         var stepper = UIStepper()
         stepper.minimumValue = 0
         stepper.stepValue = 1.0

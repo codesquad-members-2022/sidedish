@@ -3,7 +3,9 @@ import Foundation
 class DishDetailRepository {
 
     func fetchDishDetail(of hashDetail: String, _ completion: @escaping (Result<DetailData, NetworkError>) -> Void) {
-        guard let url = URL(string: "https://api.codesquad.kr/onban/detail/" + "\(hashDetail)") else { return completion(.failure(.wrongEndPoint))}
+        guard let url = NetworkTarget.loadDishDetail(hash: hashDetail).url else {
+            return completion(.failure(.wrongEndPoint))
+        }
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {

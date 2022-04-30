@@ -1,22 +1,20 @@
 import Foundation
-import UIKit
 
 protocol CellFactoryProtocol {
     func fetchData()
-    var onUpdate: () -> Void { get }
 }
 
 final class CellFactory: CellFactoryProtocol {
     private let repository: DishCellRepositoryProtocol
+    var onUpdate: () -> Void = {}
+    var onUpdateWithImageData: (String, Data) -> Void = { _, _ in}
     private(set) var products: [ProductSort: [DishCellInfo]] = [:] {
         didSet {
-            let requiredSectionCount = 3
-            if products.count == requiredSectionCount {
+            if products.count == 3 {
                 self.onUpdate()
             }
         }
     }
-    var onUpdate: () -> Void = { }
 
     init(repository: DishCellRepositoryProtocol) {
         self.repository = repository
@@ -25,10 +23,11 @@ final class CellFactory: CellFactoryProtocol {
     func fetchData() {
         let allCases: [ProductSort] = ProductSort.allCases
         for sort in allCases {
-            self.repository.fetchInfo(sort: sort) { [weak self] result in
+            self.repository.fetchInfo(sort: sort) { result in
                 switch result {
                 case .success(let data):
-                    self?.products[sort] = data
+                    self.products[sort] = data
+                    self.downLoadImage(products: data)
                 case .failure:
                     print("\(sort.rawValue) error happend!!!")
                 }
@@ -36,12 +35,14 @@ final class CellFactory: CellFactoryProtocol {
         }
     }
 
-    func convertCell2Product() -> [ProductSort: [Product]] {
-        var resultDictionary: [ProductSort: [Product]] = [ : ]
-        for (key, value) in products {
-            let productArray = value.map { Product(origin: $0, image: UIImage(systemName: "pencil")!)}
-            resultDictionary[key] = productArray
+    private func downLoadImage(products: [DishCellInfo]) {
+        products.forEach { cell in
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                guard let url = URL(string: cell.image) else { return }
+                if let data = try? Data(contentsOf: url) {
+                    self?.onUpdateWithImageData(cell.detailHash, data)
+                }
+            }
         }
-        return resultDictionary
     }
 }

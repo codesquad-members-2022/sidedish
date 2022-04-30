@@ -16,6 +16,8 @@
 		00D089332817884F0061D7F2 /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D089322817884F0061D7F2 /* CellFactory.swift */; };
 		00D08935281788AC0061D7F2 /* ProductSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D08934281788AC0061D7F2 /* ProductSort.swift */; };
 		00D0893728178CD50061D7F2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D0893628178CD50061D7F2 /* Product.swift */; };
+		02284F97281B827700F969E7 /* DetailStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02284F96281B827700F969E7 /* DetailStringData.swift */; };
+		02284F9B281BC21200F969E7 /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02284F9A281BC21200F969E7 /* NetworkTarget.swift */; };
 		024D59D22811216B007E2727 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59D12811216B007E2727 /* Font.swift */; };
 		024D59D428112409007E2727 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59D328112409007E2727 /* PaddingLabel.swift */; };
 		024D59D728123C25007E2727 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D59D628123C25007E2727 /* UIColor+.swift */; };
@@ -91,6 +93,8 @@
 		00D089322817884F0061D7F2 /* CellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFactory.swift; sourceTree = "<group>"; };
 		00D08934281788AC0061D7F2 /* ProductSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSort.swift; sourceTree = "<group>"; };
 		00D0893628178CD50061D7F2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		02284F96281B827700F969E7 /* DetailStringData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStringData.swift; sourceTree = "<group>"; };
+		02284F9A281BC21200F969E7 /* NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
 		024D59D12811216B007E2727 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		024D59D328112409007E2727 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		024D59D628123C25007E2727 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				024D59E828169265007E2727 /* NetworkError.swift */,
 				00D089322817884F0061D7F2 /* CellFactory.swift */,
 				00D08934281788AC0061D7F2 /* ProductSort.swift */,
+				02284F9A281BC21200F969E7 /* NetworkTarget.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				024D59E228168A29007E2727 /* DishDetailRepository.swift */,
 				00D0893628178CD50061D7F2 /* Product.swift */,
 				00D08930281787D70061D7F2 /* DishCellRepository.swift */,
+				02284F96281B827700F969E7 /* DetailStringData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 				024D59E928169265007E2727 /* NetworkError.swift in Sources */,
 				024D59E328168A29007E2727 /* DishDetailRepository.swift in Sources */,
 				024D59F328191925007E2727 /* AmountSectionView.swift in Sources */,
+				02284F97281B827700F969E7 /* DetailStringData.swift in Sources */,
 				024D59EF28190BA3007E2727 /* DetailDishSectionView.swift in Sources */,
 				2A50C19A280D55F400AFF2F7 /* AppDelegate.swift in Sources */,
 				2A50C1A4280D55F400AFF2F7 /* SideDish.xcdatamodeld in Sources */,
@@ -659,6 +666,7 @@
 				024D59D22811216B007E2727 /* Font.swift in Sources */,
 				024D59EB28169379007E2727 /* DishDetailViewModel.swift in Sources */,
 				0082808028163A1700825F54 /* DishCellViewModel.swift in Sources */,
+				02284F9B281BC21200F969E7 /* NetworkTarget.swift in Sources */,
 				024D59DD28164188007E2727 /* String+.swift in Sources */,
 				024D59D728123C25007E2727 /* UIColor+.swift in Sources */,
 				00D08931281787D70061D7F2 /* DishCellRepository.swift in Sources */,

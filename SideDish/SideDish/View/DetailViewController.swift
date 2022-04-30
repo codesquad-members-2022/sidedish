@@ -57,6 +57,8 @@ class DetailViewController: UIViewController {
         setDeliverySectionViewLayout()
         setAmountSectionViewLayout()
         setDetailImageStackViewLayout()
+
+        setComponentsAction()
     }
 
     private func setNavigationItems() {
@@ -72,29 +74,36 @@ class DetailViewController: UIViewController {
     }
 
     private func setOnUpdate() {
-        viewModel?.onUpdate = {
+        guard let viewModel = viewModel else { return }
+        viewModel.onUpdate = { detailStringData in
             DispatchQueue.main.async {[weak self] in
-                self?.navigationItem.title = self?.viewModel?.title
-                self?.detailDishSectionView.setComponents(with: self?.viewModel)
-                self?.deliverySectionView.setComponents(with: self?.viewModel)
+                let title = viewModel.title
+                let discountType = viewModel.discountType
+                self?.navigationItem.title = title
+                self?.detailDishSectionView.setComponents(with: detailStringData,
+                                                          title: title,
+                                                          discountType: discountType)
+                self?.deliverySectionView.setComponents(with: detailStringData)
             }
         }
     }
 
     private func setOnUpdateWithTopImages() {
-        viewModel?.onUpdateWithTopImages = {
+        guard let viewModel = viewModel else { return }
+
+        viewModel.onUpdateWithTopImages = {imageData in
             DispatchQueue.main.async {[weak self] in
-                self?.viewModel?.topImages.forEach { image in
-                    self?.detailDishSectionView.addTopImage(with: image)
-                }
+                self?.detailDishSectionView.addTopImage(with: UIImage(data: imageData) ?? UIImage())
             }
         }
     }
 
     private func setOnUpdateWithDetailImages() {
-        viewModel?.onUpdateWithDetailImages = {
+        guard let viewModel = viewModel else { return }
+
+        viewModel.onUpdateWithDetailImages = {imageData in
             DispatchQueue.main.async {[weak self] in
-                self?.viewModel?.detailImages.forEach { image in
+                    guard let image = UIImage(data: imageData) else {return}
                     let ratio = image.size.height / image.size.width
                     let detailImageView = UIImageView(image: image)
                     let newWidth = self?.detailImageStackView.frame.width ?? 0
@@ -105,9 +114,19 @@ class DetailViewController: UIViewController {
                     detailImageView.heightAnchor.constraint(equalToConstant: newHeight).isActive = true
 
                     self?.detailImageStackView.addArrangedSubview(detailImageView)
-                }
             }
         }
+    }
+
+    private func setComponentsAction() {
+        let stepperAction = UIAction { [weak self] _ in
+            self?.amountSectionView.amount = Int(self?.amountSectionView.amountStepper.value ?? 0)
+            let price = self?.detailDishSectionView.finalPrice ?? 0
+            let amount = self?.amountSectionView.amount ?? 0
+            self?.amountSectionView.totalPrice = price * amount
+        }
+
+        amountSectionView.amountStepper.addAction(stepperAction, for: .touchUpInside)
     }
 }
 

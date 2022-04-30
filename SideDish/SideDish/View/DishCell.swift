@@ -44,7 +44,7 @@ class DishCell: UICollectionViewCell {
             }
         }
     }
-    
+
     override func prepareForReuse() {
         self.badgeView.isHidden = true
         self.eventBadgeLabel.isHidden = true
