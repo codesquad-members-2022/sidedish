@@ -28,6 +28,11 @@ values ('한돈 매콤 안심장조림', '부드러운 한돈 안심살의 매�
 insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
 values ('야채 어묵볶음', '첨가물 없는 순수어묵과 야채의 만남', '이벤트특가', 4900, 0, 2500, 40000, 0.01, true);
 
+insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
+values ('맛있는 마늘쫑', '맛있음', '이벤트특가', 3000, 10, 2500, 40000, 0.01, true);
+insert into dish (title, content, tag, price, stock, delivery_fee, free_shipping_amount, mileage_rate, early_deliverable)
+values ('해파리냉채', '시원함', '런칭특가', 2000, 10, 2500, 40000, 0.01, true);
+
 -- category Table
 insert into category (parent_category_id, name, is_event, is_deleted)
 values (null, '든든한 메인요리', false, false);
@@ -154,6 +159,15 @@ values (14, 6);
 insert into category_dish (category_id, dish_id)
 values (14, 7);
 
+insert into category_dish (category_id, dish_id)
+values (3, 13);
+insert into category_dish (category_id, dish_id)
+values (3, 14);
+insert into category_dish (category_id, dish_id)
+values (9, 13);
+insert into category_dish (category_id, dish_id)
+values (9, 14);
+
 -- dish_image Table
 insert into dish_image (dish_id,path)
 values (1, 'https://team34-sidedish.s3.ap-northeast-2.amazonaws.com/images/img1-1.png');
@@ -181,3 +195,8 @@ insert into dish_image (dish_id,path)
 values (11, 'https://team34-sidedish.s3.ap-northeast-2.amazonaws.com/images/img11-1.png');
 insert into dish_image (dish_id,path)
 values (12, 'https://team34-sidedish.s3.ap-northeast-2.amazonaws.com/images/img12-1.png');
+
+insert into dish_image (dish_id,path)
+values (13, 'https://team34-sidedish.s3.ap-northeast-2.amazonaws.com/images/img11-1.png');
+insert into dish_image (dish_id,path)
+values (14, 'https://team34-sidedish.s3.ap-northeast-2.amazonaws.com/images/img12-1.png');

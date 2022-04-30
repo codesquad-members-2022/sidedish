@@ -115,6 +115,14 @@ public class Dish {
             .collect(Collectors.toList());
     }
 
+    public boolean isOrderable(int quantity) {
+        return stock >= quantity;
+    }
+
+    public void order(int quantity) {
+        stock -= quantity;
+    }
+
     @Override
     public String toString() {
         return "Dish{" +
