@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import DishContainer from 'Main/Dish/DishContainer';
 import axios from 'axios';
 import { SERVER_URL } from 'constant.js';
+import Loading from 'common/Loading';
+import ErrorComponent from 'common/Error';
 
 const CategoryButtonWrapper = styled.article`
   text-align: center;
@@ -27,6 +29,8 @@ const DishCategoryAllButton = () => {
 
   const [firstCategory, setFirstCategory] = useState({});
   const [secondCategory, setSecondCategory] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const fetchData = useCallback(async () => {
     try {
@@ -35,13 +39,32 @@ const DishCategoryAllButton = () => {
         axios.get(`${SERVER_URL}categories/3/`),
       ]);
       if (firstData && secondData) {
+        setIsLoading(false);
         setFirstCategory(firstData.data);
         setSecondCategory(secondData.data);
+        setIsLoading(false);
       }
     } catch (error) {
-      throw new Error(error);
+      console.error('에러');
+      setIsLoading(false);
+      setIsError(true);
     }
   }, []);
+
+  const renderAllCategory = () => {
+    return !isError ? (
+      <>
+        {Object.keys(firstCategory).length !== 0 && (
+          <DishContainer items={firstCategory}></DishContainer>
+        )}
+        {Object.keys(secondCategory).length !== 0 && (
+          <DishContainer items={secondCategory}></DishContainer>
+        )}
+      </>
+    ) : (
+      <ErrorComponent />
+    );
+  };
 
   return (
     <>
@@ -50,14 +73,7 @@ const DishCategoryAllButton = () => {
           <CategeoryButton onClick={onClick}>모든 카테고리 보기</CategeoryButton>
         </CategoryButtonWrapper>
       ) : (
-        <>
-          {Object.keys(firstCategory).length !== 0 && (
-            <DishContainer items={firstCategory}></DishContainer>
-          )}
-          {Object.keys(secondCategory).length !== 0 && (
-            <DishContainer items={secondCategory}></DishContainer>
-          )}
-        </>
+        <>{!isLoading ? renderAllCategory() : <Loading />}</>
       )}
     </>
   );

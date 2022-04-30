@@ -3,6 +3,12 @@ import Card from 'Main/Card';
 import { useState, useRef } from 'react';
 import { ReactComponent as LeftArrowIcon } from 'image/leftArrow.svg';
 import { ReactComponent as RightArrowIcon } from 'image/rightArrow.svg';
+import {
+  MAIN_SLIDER_IMG_COUNT,
+  MAIN_SLIDER_INIT_POSITION,
+  MAIN_IMAGE_WIDTH,
+  SLIDER_TRANSITION_TIME,
+} from 'constant';
 
 const DishContainerWrapper = styled.div`
   position: relative;
@@ -65,21 +71,21 @@ const DishContainer = ({ items }) => {
   });
 
   const totalCount = items.dishes.length;
-  const currentPosition = useRef(0);
+  const currentPosition = useRef(MAIN_SLIDER_INIT_POSITION);
   const slider = useRef();
   const [leftFocus, setLeftFocus] = useState(false);
   const [rightFocus, setRightFocus] = useState(true);
 
   const checkFirstAndLastPosition = (arrow) => {
-    if (currentPosition.current < 0 && arrow === 'left') {
-      currentPosition.current = 0;
+    if (currentPosition.current < MAIN_SLIDER_INIT_POSITION && arrow === 'left') {
+      currentPosition.current = MAIN_SLIDER_INIT_POSITION;
       setLeftFocus(false);
       return;
     }
 
-    if (currentPosition.current + 4 > totalCount && arrow === 'right') {
-      const remainder = Math.floor(totalCount % 4);
-      currentPosition.current = currentPosition.current - 4 + remainder;
+    if (currentPosition.current + MAIN_SLIDER_IMG_COUNT > totalCount && arrow === 'right') {
+      const remainder = Math.floor(totalCount % MAIN_SLIDER_IMG_COUNT);
+      currentPosition.current = currentPosition.current - MAIN_SLIDER_IMG_COUNT + remainder;
       setRightFocus(false);
       return;
     }
@@ -87,25 +93,26 @@ const DishContainer = ({ items }) => {
 
   const calculatePosition = (arrow) => {
     if (arrow === 'left') {
-      currentPosition.current -= 4;
+      currentPosition.current -= MAIN_SLIDER_IMG_COUNT;
     } else if (arrow === 'right') {
-      currentPosition.current += 4;
+      currentPosition.current += MAIN_SLIDER_IMG_COUNT;
     }
 
     setRightFocus(true);
     setLeftFocus(true);
     checkFirstAndLastPosition(arrow);
-    slider.current.style.transform = `translateX(${-currentPosition.current * 326}px)`;
-    slider.current.style.transition = 'transform 500ms';
+
+    slider.current.style.transform = `translateX(${-currentPosition.current * MAIN_IMAGE_WIDTH}px)`;
+    slider.current.style.transition = `transform ${SLIDER_TRANSITION_TIME}ms`;
   };
 
   const onClickLeft = () => {
-    if (currentPosition.current === 0) return;
+    if (currentPosition.current === MAIN_SLIDER_INIT_POSITION) return;
     calculatePosition('left');
   };
 
   const onClickRight = () => {
-    if (currentPosition.current + 4 >= totalCount) return;
+    if (currentPosition.current + MAIN_SLIDER_IMG_COUNT >= totalCount) return;
     calculatePosition('right');
   };
 

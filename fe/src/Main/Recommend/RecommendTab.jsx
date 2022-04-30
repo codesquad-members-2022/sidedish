@@ -1,8 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import axios from 'axios';
 import { SERVER_URL } from 'constant.js';
 import RecommendTabList from 'Main/Recommend/RecommendTabList';
+import { useFetch } from 'useFetch';
+import Loading from 'common/Loading';
 import ErrorComponent from 'common/Error';
 
 const RecommendTabCategory = styled.ul`
@@ -24,44 +25,38 @@ const RecommendTabCategoryItem = styled.li`
 
 const RecommendTab = () => {
   const [focus, setFocus] = useState(1);
-  const [dishes, setDishes] = useState([]);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${SERVER_URL}events/special/`);
-      if (data) {
-        setDishes(data.eventDishes);
-      }
-    } catch (error) {
-      throw console.log('에러');
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const [dishes, isLoading, isError] = useFetch(`${SERVER_URL}events/special/`);
 
   const onClick = (e) => {
     const id = e.currentTarget.id;
     setFocus(Number(id));
   };
-  const tabCategoryList = dishes.map((item) => {
-    return (
-      <RecommendTabCategoryItem key={item.id} id={item.id} onClick={onClick} focus={focus}>
-        <p>{item.name}</p>
-      </RecommendTabCategoryItem>
-    );
-  });
+
+  if (isError) {
+    return <ErrorComponent />;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
-    <>
-      <RecommendTabCategory>{tabCategoryList}</RecommendTabCategory>
-      {dishes.length !== 0 ? (
-        <RecommendTabList items={dishes.find((obj) => obj.id === focus)}></RecommendTabList>
-      ) : (
-        <ErrorComponent />
-      )}
-    </>
+    dishes.length !== 0 && (
+      <>
+        <RecommendTabCategory>
+          {dishes.eventDishes.map((item) => {
+            return (
+              <RecommendTabCategoryItem key={item.id} id={item.id} onClick={onClick} focus={focus}>
+                <p>{item.name}</p>
+              </RecommendTabCategoryItem>
+            );
+          })}
+        </RecommendTabCategory>
+        <RecommendTabList
+          items={dishes.eventDishes.find((obj) => obj.id === focus)}
+        ></RecommendTabList>
+      </>
+    )
   );
 };
 

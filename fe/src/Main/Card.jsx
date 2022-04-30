@@ -1,13 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import axios from 'axios';
 import { SERVER_URL } from 'constant.js';
-import { FlexDiv } from 'common/FlexDiv';
 import CardDeliveryInfo from 'Main/CardDeliveryInfo';
-import DishTogatherContainer from 'Main/Dish/DishTogatherContainer';
 import Modal from 'Modal';
-import ModalDetailContainer from 'Modal/ModalDetailContainer';
-import ModalImgWrapper from 'Modal/ModalImgWrapper';
+import { setPrice } from 'util';
+import { useFetch } from 'useFetch';
+import CardModal from './CardModal';
 
 const CardItem = styled.div`
   ${({ imageSize }) => {
@@ -101,18 +99,10 @@ const CardItemTag = styled.p`
   ${({ theme }) => theme.fontStyles.smallBold};
 `;
 
-const ModalTogetherContainer = styled.article`
-  padding: 48px 0;
-
-  h3 {
-    ${({ theme }) => theme.fontStyles.largeBold};
-  }
-`;
-
 const Card = ({ item, imageSize }) => {
   const [hover, setHover] = useState(false);
   const [dishes, setDishes] = useState([]);
-  const setPrice = (price) => Number(price).toLocaleString();
+  const [dish] = useFetch(`${SERVER_URL}dishes/${item.id}`);
 
   const onMouseOver = () => setHover(true);
 
@@ -120,45 +110,29 @@ const Card = ({ item, imageSize }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const openModal = () => {
+  const openModal = (imageSize) => {
+    if (imageSize === 'small') return;
     setModalVisible(true);
-    fetchData();
+    setDishes(dish);
   };
 
   const closeModal = () => {
     setModalVisible(false);
   };
 
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${SERVER_URL}dishes/${item.id}`);
-      if (data) {
-        setDishes(data);
-      }
-    } catch (error) {
-      throw new Error(error);
-    }
-  }, [item.id]);
-
   return (
     item && (
       <CardItem imageSize={imageSize}>
         {modalVisible && (
-          <Modal visible={modalVisible} closable={true} maskClosable={true} onClose={closeModal}>
-            <FlexDiv>
-              {dishes.length !== 0 && (
-                <ModalImgWrapper title={dishes.name} images={dishes.images} />
-              )}
-              {dishes.length !== 0 && <ModalDetailContainer item={dishes} />}
-            </FlexDiv>
-            <ModalTogetherContainer>
-              <DishTogatherContainer></DishTogatherContainer>
-            </ModalTogetherContainer>
-          </Modal>
+          <>
+            <Modal visible={modalVisible} closable={true} maskClosable={true} onClose={closeModal}>
+              <CardModal item={dishes}></CardModal>
+            </Modal>
+          </>
         )}
         <CardImgWrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
           <CardItemImg
-            onClick={openModal}
+            onClick={() => openModal(imageSize)}
             key={item.id}
             src={item.image}
             imageSize={imageSize}

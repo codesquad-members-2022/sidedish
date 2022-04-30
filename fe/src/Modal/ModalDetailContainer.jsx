@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { ReactComponent as MinusIcon } from 'image/minus.svg';
-import { ReactComponent as PlusIcon } from 'image/plus.svg';
 import { FlexDiv } from 'common/FlexDiv';
+import { setPrice } from 'util';
+import ModalOrder from './ModalOrderInfo';
 
 const DetailContainer = styled.div`
   min-width: 440px;
@@ -82,50 +82,7 @@ const DeliveryInnerDiv = styled.div`
   }
 `;
 
-const ModalOrderInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const TotalAmount = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 88px;
-`;
-
-const TotalCost = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 174px;
-  color: ${({ theme }) => theme.colors.gray2};
-
-  .total__cost {
-    ${({ theme }) => theme.fontStyles.largeBold};
-    color: ${({ theme }) => theme.colors.black};
-  }
-`;
-
-const ModalOrderButton = styled.button`
-  position: absolute;
-  bottom: 0;
-  width: 440px;
-  height: 58px;
-  text-align: center;
-  outline: none;
-  border: none;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.black};
-  color: ${({ theme }) => theme.colors.white};
-`;
-
 const ModalDetailContainer = ({ item }) => {
-  const setPrice = (price) => Number(price).toLocaleString();
   return (
     <DetailContainer>
       <ModalProductInfo>
@@ -158,18 +115,7 @@ const ModalDetailContainer = ({ item }) => {
           <span className="delivery__content">2,500원 (40,000원 이상 구매 시 무료)</span>
         </DeliveryInnerDiv>
       </ModalDeliveryInfo>
-      <ModalOrderInfo>
-        <TotalAmount>
-          <MinusIcon />
-          <span>1</span>
-          <PlusIcon />
-        </TotalAmount>
-        <TotalCost>
-          <span>총 주문금액</span>
-          <span className="total__cost">{setPrice(item.discountPrice)}원</span>
-        </TotalCost>
-      </ModalOrderInfo>
-      <ModalOrderButton>주문하기</ModalOrderButton>
+      <ModalOrder item={item} />
     </DetailContainer>
   );
 };

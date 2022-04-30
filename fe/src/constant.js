@@ -1,1 +1,9 @@
 export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+export const DEV_GITHUB_CALLBACK_URL = process.env.REACT_APP_DEV_GITHUB_CALLBACK_URL;
+export const PROD_GITHUB_CALLBACK_URL = process.env.REACT_APP_PROD_GITHUB_CALLBACK_URL;
+export const MAIN_SLIDER_IMG_COUNT = 4;
+export const MAIN_SLIDER_INIT_POSITION = 0;
+export const MAIN_IMAGE_WIDTH = 326;
+export const SLIDER_TRANSITION_TIME = 500;
+export const DISH_TOGATHER_MAX_COUNT = 5;
+export const API_SUCCESS_TEXT = 'Success';
