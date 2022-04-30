@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Badges from './Badges';
 
-function Card({ size, item }) {
-  const { id, image, title, contents, origin_price, discount_price, early_delivery, badge_title } = item;
-  const cardSizes = {
-    large: { width: 411, height: 565 },
-    medium: { width: 302, height: 456 },
-    small: { width: 160, height: 226 },
-  };
-  const badgeColores = {
-    이벤트특가: '#6DD028',
-    런칭특가: '#FF8E14',
-  };
-
+function Card({ size, item, showModal }) {
+  const { id, mainImagePath, title, content, originPrice, discountPrice, earlyDeliverable, badge } = item;
   const [isHover, setIsHover] = useState(false);
 
   function showDelevery() {
@@ -21,11 +12,10 @@ function Card({ size, item }) {
   function hideDelevery() {
     setIsHover(false);
   }
-
   return (
-    <StyledCard key={id} cardSize={cardSizes[size]}>
-      <Thumbnail height={cardSizes[size].width} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
-        <Image src={image}></Image>
+    <StyledCard key={id} cardSize={size} onClick={() => showModal(id)}>
+      <Thumbnail cardSize={size} onMouseEnter={showDelevery} onMouseLeave={hideDelevery}>
+        <Image src={mainImagePath}></Image>
         {size !== 'small' && isHover && (
           <HoverThumbnail>
             <HoverInfo>
@@ -40,26 +30,20 @@ function Card({ size, item }) {
         <>
           <CardBody>
             <Title>{title}</Title>
-            <Descript>{contents}</Descript>
+            <Descript>{content}</Descript>
             <Price>
-              <DiscountPrice>{discount_price.toLocaleString()}</DiscountPrice>
-              {discount_price !== origin_price && <OriginPrice>{origin_price.toLocaleString()}</OriginPrice>}
+              <DiscountPrice>{Number(discountPrice).toLocaleString()}</DiscountPrice>
+              {discountPrice !== originPrice && <OriginPrice>{originPrice.toLocaleString()}</OriginPrice>}
             </Price>
           </CardBody>
-          <Badges>
-            {badge_title.map((badgeTitle, index) => (
-              <Badge key={index} background={badgeColores[badgeTitle]}>
-                {badgeTitle}
-              </Badge>
-            ))}
-          </Badges>
+          <Badges badge_title={[badge]} />
         </>
       ) : (
         <>
           <SmallTitle>{title}</SmallTitle>
           <Price>
-            <DiscountPrice>{discount_price.toLocaleString()}</DiscountPrice>
-            <OriginPrice>{origin_price.toLocaleString()}</OriginPrice>
+            <DiscountPrice>{Number(discountPrice).toLocaleString()}</DiscountPrice>
+            <OriginPrice>{Number(originPrice).toLocaleString()}</OriginPrice>
           </Price>
         </>
       )}
@@ -67,31 +51,16 @@ function Card({ size, item }) {
   );
 }
 
-Card.defaultProps = {
-  size: 'large',
-  item: {
-    id: 0,
-    image: 'https://static.wtable.co.kr/image/production/service/recipe/873/1c52a4fd-68fb-458f-aa6c-cf3537d674df.jpg',
-    title: '스테이크',
-    contents: '스테이크 먹고싶다',
-    origin_price: 50000,
-    discount_price: 39800,
-    early_delivery: true,
-    badge_title: ['이벤트특가', '런칭특가'],
-    categories: ['메인 요리'],
-  },
-};
-
 const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: ${props => props.cardSize.width}px;
-  height: ${props => props.cardSize.height}px;
+  width: ${({ theme, cardSize }) => theme.cardSizes[cardSize].width}px;
+  height: ${({ theme, cardSize }) => theme.cardSizes[cardSize].height}px;
 `;
 const Thumbnail = styled.div`
   position: relative;
-  height: ${props => props.height}px;
+  height: ${({ theme, cardSize }) => theme.cardSizes[cardSize].width}px;
 `;
 const Image = styled.img`
   display: block;
@@ -124,7 +93,7 @@ const HoverInfo = styled.div`
   padding: 40px;
 
   background: rgba(248, 247, 247, 0.8);
-  border: 1px solid #1b1b1b;
+  border: 1px solid ${({ theme }) => theme.colors.black};
   box-sizing: border-box;
   border-radius: 999px;
 
@@ -136,7 +105,7 @@ const Line = styled.div`
   width: 62px;
   height: 1px;
   margin: 8px 0;
-  background: #1b1b1b;
+  background: ${({ theme }) => theme.colors.black};
 `;
 const Title = styled.div`
   font-weight: 500;
@@ -147,13 +116,13 @@ const SmallTitle = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #3f3f3f;
+  color: ${({ theme }) => theme.colors.gray1};
 `;
 const Descript = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #777777;
+  color: ${({ theme }) => theme.colors.gray2};
 `;
 const Price = styled.div`
   display: flex;
@@ -164,28 +133,13 @@ const OriginPrice = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #bcbcbc;
+  color: ${({ theme }) => theme.colors.gray3};
   text-decoration-line: line-through;
 `;
 const DiscountPrice = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
-`;
-const Badges = styled.div`
-  display: flex;
-  height: 30px;
-`;
-const Badge = styled.div`
-  margin-right: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: ${props => props.background};
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 18px;
-  color: #ffffff;
 `;
 
 export default Card;

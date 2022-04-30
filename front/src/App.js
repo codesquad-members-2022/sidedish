@@ -1,89 +1,86 @@
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Modal from './components/Modal';
-import Event from './components/Event';
+import Promotion from './components/Promotion';
 import GlobalStyles from './GlobalStyles';
+import Alert from './components/Alert';
+import Main from './components/Main';
+import styled, { ThemeProvider } from 'styled-components';
+import { fetchCategories, fetchDishes, fetchEventCategories } from './api';
+import theme from './theme';
 
-const categories = [
-  {
-    id: 1,
-    name: '메인요리',
-    children: [
-      { id: 1, name: '육류' },
-      { id: 2, name: '해산물' },
-    ],
-  },
-  { id: 2, name: '국물요리', children: [{ id: 5, name: '국/탕찌개' }] },
-  {
-    id: 3,
-    name: '밑반찬',
-    children: [
-      { id: 3, name: '나물/무침' },
-      { id: 4, name: '조림/볶음' },
-      { id: 6, name: '절임/장아찌' },
-    ],
-  },
-];
-const dishes = {
-  id: 1,
-  main_category_id: 11,
-  sub_category_id: 111,
-  name: '오리 주물럭_반조리',
-  content: '칠맛 나는 매콤한 양념',
-  badge_title: '한정특가',
-  price: 15000,
-  discount_price: 12600,
-  mileage_ratio: 0.01,
-  early_delivery: true,
-  delivery_price: 2500,
-  delevery_free_price: 40000,
-  stock: 100,
-  images: [
-    'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-    'http://public.codesquad.kr/jk/storeapp/data/side/17_ZIP_P_6014_T.jpg',
-    'http://public.codesquad.kr/jk/storeapp/data/side/84_ZIP_P_6006_T.jpg',
-  ],
-  related_dishes: [
-    {
-      related_name: '한돈 매콤 안심장조림',
-      related_image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-      related_price: 6900,
-      related_discount_price: 6210,
-    },
-    {
-      related_name: '한돈 매콤 안심장조림',
-      related_image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-      related_price: 6900,
-      related_discount_price: 6210,
-    },
-    {
-      related_name: '한돈 매콤 안심장조림',
-      related_image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-      related_price: 6900,
-      related_discount_price: 6210,
-    },
-    {
-      related_name: '한돈 매콤 안심장조림',
-      related_image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-      related_price: 6900,
-      related_discount_price: 6210,
-    },
-    {
-      related_name: '한돈 매콤 안심장조림',
-      related_image: 'http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg',
-      related_price: 6900,
-      related_discount_price: 6210,
-    },
-  ],
-};
 function App() {
+  const [alert, setAlert] = useState({ show: false, message: '' });
+  const [modal, setModal] = useState({ show: false, dishId: null });
+  const [categories, setCategories] = useState(null);
+  const [promotionName, setPromorionName] = useState(null);
+  const [promotions, setPromotions] = useState(null);
+  const [categoryItems, setCategoryItems] = useState(null);
+
+  function showAlert(message) {
+    setAlert({ show: true, message });
+  }
+  function hideAlert() {
+    setAlert({ show: false, message: '' });
+    hideModal();
+  }
+  function showModal(dishId) {
+    setModal({ show: true, dishId });
+  }
+  function hideModal() {
+    setModal({ show: false, dishId: null });
+  }
+  useEffect(() => {
+    async function initFetchAndSet() {
+      const categories = await fetchCategories();
+      const eventCategories = await fetchEventCategories();
+      const dishes = await fetchDishes();
+
+      const promotions = eventCategories.children.map(({ id, name }) => ({ id, title: name, items: [] }));
+      dishes.eventItems.forEach(dish => {
+        promotions.forEach(promotion => {
+          if (dish.categories.includes(promotion.id)) {
+            promotion.items.push(dish);
+          }
+        });
+      });
+      const categoryItems = categories.map(({ id, name }) => ({ id, name, items: [] }));
+      dishes.items.forEach(dish => {
+        categoryItems.forEach(category => {
+          if (dish.categories.includes(category.id)) {
+            category.items.push(dish);
+          }
+        });
+      });
+      setCategories(categories);
+      setPromorionName(eventCategories.name);
+      setPromotions(promotions);
+      setCategoryItems(categoryItems);
+    }
+    initFetchAndSet();
+  }, []);
   return (
-    <div className="App">
-      <GlobalStyles></GlobalStyles>
-      <Modal dishes={dishes}></Modal>
-      <Header categories={categories}></Header>
-      <Event></Event>
-    </div>
+    <ThemeProvider theme={theme}>
+      <AppWrap>
+        <GlobalStyles></GlobalStyles>
+        {modal.show && (
+          <Modal dishId={modal.dishId} hideModal={hideModal} showModal={showModal} showAlert={showAlert}></Modal>
+        )}
+        {categories && promotions && (
+          <>
+            <Header categories={categories}></Header>
+            <Promotion title={promotionName} promotions={promotions} showModal={showModal}></Promotion>
+            <Main categories={categoryItems} showModal={showModal}></Main>
+          </>
+        )}
+        {alert.show && <Alert message={alert.message} hideAlert={hideAlert}></Alert>}
+      </AppWrap>
+    </ThemeProvider>
   );
 }
+
+const AppWrap = styled.div`
+  min-width: 1400px;
+`;
 
 export default App;

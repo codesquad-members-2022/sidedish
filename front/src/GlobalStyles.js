@@ -6,10 +6,13 @@ const GlobalStyles = createGlobalStyle`
     button {
         background: none;
         border:none;
-}
-    *{
         font-family: 'Noto Sans KR';
         font-style: normal;
+}
+    div {
+        font-family: 'Noto Sans KR';
+        font-style: normal;
+        font-weight: 500;
 }
 `;
 

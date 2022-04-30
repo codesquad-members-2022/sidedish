@@ -1,23 +1,59 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { fetchDishItem } from '../api';
 import ProductDetail from './ProductDetail';
+import RelatedProduct from './RelatedProduct';
+
+function Modal({ dishId, hideModal, showModal, showAlert }) {
+  const [dish, setDish] = useState(null);
+  function closeModal(e) {
+    e.stopPropagation();
+    hideModal();
+  }
+  useEffect(() => {
+    async function fetchAndSetDish() {
+      const data = await fetchDishItem(dishId);
+      setDish(data);
+    }
+    fetchAndSetDish();
+  }, [dishId]);
+  return (
+    <>
+      {dish && (
+        <>
+          <Dimmed onClick={closeModal}></Dimmed>
+          <ModalWrap>
+            <PopupBox>
+              <PopupCloseButtonWrap>
+                <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
+              </PopupCloseButtonWrap>
+              <ProductDetail dishes={dish} showAlert={showAlert}></ProductDetail>
+              <RelatedProduct relatedDishes={dish.recommendedItems} showModal={showModal}></RelatedProduct>
+            </PopupBox>
+          </ModalWrap>
+        </>
+      )}
+    </>
+  );
+}
 
 const ModalWrap = styled.div`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(73, 68, 68, 0.5);
-  z-index: 5;
-  /* display: none; */
+  position: absolute;
+  width: 960px;
+  height: 994px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const PopupBox = styled.div`
-  width: 960px;
-  height: 994px;
-  background-color: #ffffff;
-  border: 2px solid #000000;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 2px solid ${({ theme }) => theme.colors.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,25 +73,13 @@ const PopupCloseButton = styled.button`
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-  color: #777777;
+  color: ${({ theme }) => theme.colors.gray2};
 `;
-
-function Modal({ dishes }) {
-  // const relatedDishes = dishes.related_dishes;
-  const modal = useRef();
-  function closeModal() {
-    modal.current.style = 'display:none';
-  }
-  return (
-    <ModalWrap ref={modal}>
-      <PopupBox>
-        <PopupCloseButtonWrap>
-          <PopupCloseButton onClick={closeModal}>닫기</PopupCloseButton>
-        </PopupCloseButtonWrap>
-        <ProductDetail dishes={dishes}></ProductDetail>
-      </PopupBox>
-    </ModalWrap>
-  );
-}
-
+const Dimmed = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(73, 68, 68, 0.5);
+  z-index: 5;
+`;
 export default Modal;
