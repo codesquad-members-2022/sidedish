@@ -8,6 +8,7 @@
 import Foundation
 
 struct HomeModel {
+    var sideDishKey: String
     let image: String
     let name: String
     let description: String

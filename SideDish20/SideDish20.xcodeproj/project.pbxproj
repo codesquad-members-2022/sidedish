@@ -20,7 +20,10 @@
 		1B5AA843281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AA841281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift */; };
 		1B5AA844281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5AA842281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib */; };
 		1B90F604280ED0CC0008F53D /* RepositoryCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */; };
-		1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA1E193280EDE720032FF88 /* DishViewModel.swift */; };
+		1BA1E194280EDE720032FF88 /* CacheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA1E193280EDE720032FF88 /* CacheViewModel.swift */; };
+		1BE9F0E9281B774D00C2AA67 /* HomeResponseDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE9F0E8281B774D00C2AA67 /* HomeResponseDetailData.swift */; };
+		1BE9F0EB281B797300C2AA67 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE9F0EA281B797300C2AA67 /* DetailViewModel.swift */; };
+		1BE9F0ED281B80C700C2AA67 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE9F0EC281B80C700C2AA67 /* Observer.swift */; };
 		1BF2901728179BDF00493D2F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2901628179BDF00493D2F /* DetailViewController.swift */; };
 		1BF290192817AF2500493D2F /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF290182817AF2500493D2F /* HomeNavigationController.swift */; };
 		81F02D81F7E6B09E33564B42 /* Pods_SideDish20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E28F75B3AA226E3F81DC7E /* Pods_SideDish20.framework */; };
@@ -47,7 +50,6 @@
 		D0E56E4028192EC600C10419 /* HomeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E3F28192EC600C10419 /* HomeResponseData.swift */; };
 		D0E56E4428192F7400C10419 /* DataFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E4328192F7400C10419 /* DataFetchService.swift */; };
 		D0E56E482819302200C10419 /* CommonURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E472819302200C10419 /* CommonURLManager.swift */; };
-		D0E56E4A2819364200C10419 /* HomeDataFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E492819364200C10419 /* HomeDataFetchModel.swift */; };
 		D0E56E4C2819373500C10419 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E56E4B2819373500C10419 /* HomeViewModel.swift */; };
 		ECFFCFBC3266EC0FD7154F03 /* Pods_SideDish20Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAB2134DB39689073D8101F /* Pods_SideDish20Tests.framework */; };
 /* End PBXBuildFile section */
@@ -84,7 +86,10 @@
 		1B5AA841281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B5AA842281A5B1B00C89D70 /* HomeDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailCollectionViewCell.xib; sourceTree = "<group>"; };
 		1B90F603280ED0CC0008F53D /* RepositoryCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCommons.swift; sourceTree = "<group>"; };
-		1BA1E193280EDE720032FF88 /* DishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewModel.swift; sourceTree = "<group>"; };
+		1BA1E193280EDE720032FF88 /* CacheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheViewModel.swift; sourceTree = "<group>"; };
+		1BE9F0E8281B774D00C2AA67 /* HomeResponseDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponseDetailData.swift; sourceTree = "<group>"; };
+		1BE9F0EA281B797300C2AA67 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewModel.swift; path = SideDish20/ViewModel/DetailViewModel.swift; sourceTree = SOURCE_ROOT; };
+		1BE9F0EC281B80C700C2AA67 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		1BF2901628179BDF00493D2F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1BF290182817AF2500493D2F /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		2736D4DB3581F6AA1E7A0869 /* Pods-SideDish20Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDish20Tests.debug.xcconfig"; path = "Target Support Files/Pods-SideDish20Tests/Pods-SideDish20Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +125,6 @@
 		D0E56E3F28192EC600C10419 /* HomeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponseData.swift; sourceTree = "<group>"; };
 		D0E56E4328192F7400C10419 /* DataFetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchService.swift; sourceTree = "<group>"; };
 		D0E56E472819302200C10419 /* CommonURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonURLManager.swift; sourceTree = "<group>"; };
-		D0E56E492819364200C10419 /* HomeDataFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataFetchModel.swift; sourceTree = "<group>"; };
 		D0E56E4B2819373500C10419 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D898B1CFBDFBDDA534215C8B /* Pods_SideDish20_SideDish20UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideDish20_SideDish20UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,7 +176,7 @@
 				1B56E668280E823E0074E79F /* CacheImageRequestModel.swift */,
 				1B56E66A280E82480074E79F /* CacheImageModel.swift */,
 				D0E56E3F28192EC600C10419 /* HomeResponseData.swift */,
-				D0E56E492819364200C10419 /* HomeDataFetchModel.swift */,
+				1BE9F0E8281B774D00C2AA67 /* HomeResponseDetailData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,8 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				1B5AA83928192E0000C89D70 /* CommonViewModel.swift */,
-				1BA1E193280EDE720032FF88 /* DishViewModel.swift */,
+				1BA1E193280EDE720032FF88 /* CacheViewModel.swift */,
 				D0E56E4B2819373500C10419 /* HomeViewModel.swift */,
+				1BE9F0EA281B797300C2AA67 /* DetailViewModel.swift */,
+				1BE9F0EC281B80C700C2AA67 /* Observer.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -304,8 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				D08FCDE7280D09AB00176BF9 /* AppDelegate.swift */,
-				D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */,
 				D08FCDF0280D09AD00176BF9 /* Assets.xcassets */,
+				D08FCDE9280D09AB00176BF9 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -602,17 +608,19 @@
 				D0007A1F280EA14200997AC5 /* HomeViewController.swift in Sources */,
 				D0E56E4428192F7400C10419 /* DataFetchService.swift in Sources */,
 				D0E56E4C2819373500C10419 /* HomeViewModel.swift in Sources */,
+				1BE9F0EB281B797300C2AA67 /* DetailViewModel.swift in Sources */,
+				1BE9F0ED281B80C700C2AA67 /* Observer.swift in Sources */,
 				D01CBC1B280F6D9100F806C9 /* HomeModel.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				1B5AA843281A5B1B00C89D70 /* HomeDetailCollectionViewCell.swift in Sources */,
 				D01CBD0028111E9200F806C9 /* HomeHeaderCollectionReusableView.swift in Sources */,
+				1BE9F0E9281B774D00C2AA67 /* HomeResponseDetailData.swift in Sources */,
 				1B56E665280E82190074E79F /* GetFileURLService.swift in Sources */,
 				D08FCDEC280D09AB00176BF9 /* ViewController.swift in Sources */,
 				D0E56E4028192EC600C10419 /* HomeResponseData.swift in Sources */,
-				D0E56E4A2819364200C10419 /* HomeDataFetchModel.swift in Sources */,
 				1BF2901728179BDF00493D2F /* DetailViewController.swift in Sources */,
 				1BF290192817AF2500493D2F /* HomeNavigationController.swift in Sources */,
-				1BA1E194280EDE720032FF88 /* DishViewModel.swift in Sources */,
+				1BA1E194280EDE720032FF88 /* CacheViewModel.swift in Sources */,
 				D08FCDE8280D09AB00176BF9 /* AppDelegate.swift in Sources */,
 				1B56E669280E823E0074E79F /* CacheImageRequestModel.swift in Sources */,
 				1B56E667280E82220074E79F /* SaveFileService.swift in Sources */,

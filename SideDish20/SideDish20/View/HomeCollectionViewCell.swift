@@ -12,7 +12,10 @@ class HomeCollectionViewCell: UICollectionViewCell {
     var data: HomeModel? {
         didSet {
             guard let data = data else { return }
-            imageView.image = UIImage(named: data.image)
+
+            if let imgUrlData = try? Data(contentsOf: URL(string: data.image)!) {
+                imageView.image = UIImage(data: imgUrlData)
+            }
             nameLabel.text = data.name
             descriptionLabel.text = data.description
             
@@ -20,7 +23,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
                 discountedPriceLabel.text = discountedPrice
             }
             originalPriceLabel.text = data.originalPrice
-            specialMessagelabel.text = data.specialMessage
+            
+            if data.specialMessage.count != 0 {
+                specialMessagelabel.text = data.specialMessage
+            } else {
+                specialMessageContainerView.isHidden = true
+            }
         }
     }
     

@@ -7,13 +7,14 @@
 
 import Foundation
 
-final class CommonURLManager {
+class CommonURLManager {
     static let host = "https://api.codesquad.kr/onban"
    
     enum Endpoint: String {
         case main
         case soup
         case side
+        case detail
         
         var endpoint: String {
             return "\(host)/\(rawValue)"

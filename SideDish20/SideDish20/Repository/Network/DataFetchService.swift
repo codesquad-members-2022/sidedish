@@ -7,29 +7,38 @@
 
 import Foundation
 
-final class DataFetchService: CommonURLManager {
+class DataFetchService: CommonURLManager {
     
-    func fetchAll(onComplete: @escaping (Data?) -> Void) {
-        guard let url = URL(string: Endpoint.main.endpoint) else { return onComplete(nil) }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "content-type")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                onComplete(nil)
+    let repository = RepositoryCommons()
+    
+    func fetch(onCompleted: @escaping ([HomeModel]) -> Void) {
+        repository.fetch { entity in
+            var homeModelList = [HomeModel]()
+            for data in entity.body {
+                let discountedPrice = data.nPrice
+                let specialMessage = data.badge ?? [String]()
+                
+                var message = ""
+                for msg in specialMessage {
+                    message.append(msg)
+                    message.append(" ")
+                }
+                
+                homeModelList.append(HomeModel(sideDishKey: data.detailHash,
+                                               image: data.image,
+                                               name: data.title,
+                                               description: data.description,
+                                               discountedPrice: discountedPrice,
+                                               originalPrice: data.sPrice,
+                                               specialMessage: message))
             }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                return onComplete(nil)
-            }
-                        
-            guard let data = data else {
-                return onComplete(nil)
-            }
-            
-            onComplete(data)
-        }.resume()
+            onCompleted(homeModelList)
+        }
+    }
+    
+    func fetchDetail(hash: String, onCompleted: @escaping (HomeDetailModel) -> Void) {
+        repository.fetchDetail(hash: hash) { entity in
+            onCompleted(entity.data)
+        }
     }
 }

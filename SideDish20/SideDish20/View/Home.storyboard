@@ -399,13 +399,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="wPd-bM-5DY"/>
                     <connections>
+                        <outlet property="deliveryFeeLabel" destination="cNF-B9-gZj" id="Ugf-gw-NMd"/>
+                        <outlet property="deliveryInfoLabel" destination="OFB-ik-qjo" id="piF-aX-spF"/>
                         <outlet property="detailImageStackView" destination="EhW-8f-C0C" id="rtS-4s-Y1l"/>
                         <outlet property="detailImageStackViewConstraintHeight" destination="hzs-Vo-Wcu" id="qx8-6r-LHV"/>
                         <outlet property="imageCollectionView" destination="uJq-Ga-DPm" id="kJC-H7-uS3"/>
                         <outlet property="imageCollectionViewFlowLayout" destination="91C-5p-tYg" id="QGM-jI-xiW"/>
                         <outlet property="imageScrollViewPageControl" destination="uD6-Wk-5Ad" id="CBl-ht-LAv"/>
                         <outlet property="orderButton" destination="jbG-tr-WGJ" id="Mmz-RP-Jb0"/>
+                        <outlet property="pointLabel" destination="5qc-Y5-IIj" id="bVH-HF-6oH"/>
+                        <outlet property="productDetailNameLabel" destination="uth-oY-M0S" id="PsR-3E-wHw"/>
+                        <outlet property="productNameLabel" destination="8S7-iy-waO" id="6P7-sg-raw"/>
+                        <outlet property="productPriceLabel" destination="0Dx-Is-UnL" id="bWd-l1-i5c"/>
                         <outlet property="quantityLabel" destination="6mh-6R-Q0N" id="3bZ-hO-J9m"/>
+                        <outlet property="resultPriceLabel" destination="Rkz-vD-SOz" id="IhW-Dv-cli"/>
+                        <outlet property="specialMessageContainerLabel" destination="nDt-0W-HSL" id="sXi-Ff-TN0"/>
                         <outlet property="specialMessageContainerView" destination="eCL-d9-iGV" id="bw9-NQ-hjc"/>
                     </connections>
                 </viewController>

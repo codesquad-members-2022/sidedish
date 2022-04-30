@@ -9,32 +9,30 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var products = [HomeModel]()
-
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         registerXib()
-        addSampleData()
+        
+        let homeViewModel = HomeViewModel()
+        
+        homeViewModel.onUpdated = { [weak self] in
+            guard let self = self else { return }
+            self.products = homeViewModel.homeSubViewModel ?? [HomeModel]()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+
+        homeViewModel.reload()
     }
 
     private func registerXib() {
         let nibName = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: String(describing: HomeCollectionViewCell.self))
-    }
-    
-    private func addSampleData() {
-        for _ in 1...25 {
-            let model = HomeModel(image: "img01",
-                                  name: "뜨끈한 국밥",
-                                  description: "아주 따뜻해유",
-                                  discountedPrice: "12,370원",
-                                  originalPrice: "18,380원",
-                                  specialMessage: "이벤트특가")
-            products.append(model)
-        }
-        collectionView.reloadData()
     }
 }
 
@@ -85,7 +83,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let homeHeaderView = headerView as? HomeHeaderCollectionReusableView else { return headerView }
             return homeHeaderView
         default:
-            assert(false, "Invalid element type")
+            return UICollectionReusableView()
         }
     }
     
@@ -97,6 +95,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let detailViewController = dest as? DetailViewController else {
             return
         }
+        
+        detailViewController.sideDishKey = products[indexPath.item].sideDishKey
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
