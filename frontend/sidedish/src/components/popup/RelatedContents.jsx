@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { makePriceFormat } from "../../util/makePriceFormat";
 
-const RelatedContents = ({ relatedListState, setRelatedListState }) => {
-  const list = relatedListState.data.map(({ image, title, s_price, n_price }, ind) => {
+const RelatedContents = ({ relatedListState }) => {
+  const list = relatedListState.dishes.map(({ dishId, mainImage, title, price, n_price }) => {
     return (
-      <Content key={ind}>
-        <ContentImg src={image} />
+      <Content key={dishId}>
+        <ContentImg src={mainImage} />
         <ContentTitle>{title}</ContentTitle>
         <ContentPrice>
-          <SalePrice>{makePriceFormat(s_price)}</SalePrice>
+          <SalePrice>{makePriceFormat(price)}</SalePrice>
           <MenuPrice>{makePriceFormat(n_price)}</MenuPrice>
         </ContentPrice>
       </Content>

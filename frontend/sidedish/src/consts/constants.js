@@ -36,4 +36,4 @@ export const CARD_CONTAINER_PADDING = 56;
 
 export const NUM_OF_CARD_ON_DISPLAY = 4;
 
-export const URL = "https://8f066698-0757-470c-86aa-4df5338cb17d.mock.pstmn.io/api/dish";
+export const URL = "http://52.78.175.50/api/dish";

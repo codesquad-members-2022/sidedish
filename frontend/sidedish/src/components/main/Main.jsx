@@ -15,29 +15,42 @@ import DivisionLine from "../../core/Line";
 import Popup from "../popup/Popup";
 import relatedMockData from "../../relatedListMockData.json";
 import fetchData from "../../util/fetchData.js";
+import Loader from "../loader/Loader";
+
+// .disable-select {
+//   user-select: none; /* supported by Chrome and Opera */
+//  -webkit-user-select: none; /* Safari */
+//  -khtml-user-select: none; /* Konqueror HTML */
+//  -moz-user-select: none; /* Firefox */
+//  -ms-user-select: none; /* Internet Explorer/Edge */
+// }
 
 const Main = () => {
   const [lnbStateArr, setLnbStateArr] = useState([]);
-  const [lnbState, setLnbState] = useState("");
+  const [lnbState, setLnbState] = useState();
   const [dataState, setDataState] = useState([]);
   const [carouselData, setCarouselData] = useState();
   const [relatedListState, setRelatedListState] = useState(relatedMockData);
   const [allCategoryVisible, setAllCategoryVisible] = useState(false);
   const [cardClickState, setCardClickState] = useState(false);
   const [cardInfoState, setCardInfoState] = useState({
-    /* ... */
+    dishId: "",
+    title: "",
+    price: "",
+    point: "",
+    deliveryArea: "",
+    deliveryMorning: "",
+    deliveryPrice: "",
+    stockQuantity: "",
+    images: [],
+    eventBadge: [],
   });
+  const [loading, setLoading] = useState(true);
 
-  const handleLnbState = (event) => {
+  const handleLnbState = (event, ind) => {
     setLnbState((lnbState) => (lnbState = event.target.textContent));
-    if (event.target.textContent === lnbStateArr[0].name) {
-      fetchCardData("meat");
-    } else if (event.target.textContent === lnbStateArr[1].name) {
-      fetchCardData("side");
-    } else if (event.target.textContent === lnbStateArr[2].name) {
-      fetchCardData("season");
-    } else {
-      fetchCardData("kids");
+    if (event.target.textContent === lnbStateArr[ind].name) {
+      fetchCardData(lnbStateArr[ind].type);
     }
   };
 
@@ -45,10 +58,15 @@ const Main = () => {
     setAllCategoryVisible(true);
   };
 
-  const fetchLnb = async () => {
-    const lnbData = await fetchData(`${URL}/categorynames`);
-    setLnbStateArr(lnbData.categorynames);
-    setLnbState(lnbData.categorynames[0].name);
+  const fetchExhibition = async () => {
+    const lnbData = await fetchData(`${URL}/event-tabs`);
+    if (!lnbData) {
+      return;
+    }
+    const firstTab = lnbData.eventTabs[0];
+    setLnbStateArr(lnbData.eventTabs);
+    setLnbState(firstTab.name);
+    fetchCardData(firstTab.type);
   };
 
   const fetchCardData = async (foodType) => {
@@ -57,102 +75,92 @@ const Main = () => {
   };
 
   const fetchCarouselData = async () => {
-    const carouselDataa = await fetchData("carouselMockData.json");
-    setCarouselData(carouselDataa);
+    const carouselData = await fetchData(`${URL}/categories`);
+    setCarouselData(carouselData);
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchLnb();
-    fetchCardData("meat");
+    fetchExhibition();
     fetchCarouselData();
   }, []);
 
   const mainLnb = (
     <MainLnbContainer>
-      {lnbStateArr.map(({ name, id }) => (
-        <MainLnb onClick={handleLnbState} title={name} lnbState={lnbState} key={id}>
+      {lnbStateArr.map(({ name, id }, ind) => (
+        <MainLnb onClick={(e) => handleLnbState(e, ind)} title={name} lnbState={lnbState} key={id}>
           {name}
         </MainLnb>
       ))}
     </MainLnbContainer>
   );
 
+  const carouselLists = carouselData
+    ? carouselData.categories.map((el, ind) => {
+        const isVisible = ind === 0 ? true : allCategoryVisible;
+        return (
+          <CarouselContainer
+            allCategoryVisible={isVisible}
+            key={carouselData.categories[ind].eventTabsId}
+          >
+            <CarouselTitle>{carouselData.categories[ind].eventTabsName}</CarouselTitle>
+            <Carousel
+              cardClickState={cardClickState}
+              setCardClickState={setCardClickState}
+              carouselCards={carouselData.categories[ind].dishes}
+              cardLength={CARD_LENGHTHS.SMALL}
+              cardCount={NUM_OF_CARD_ON_DISPLAY}
+              cardMargin={CARD_MARGIN}
+            />
+          </CarouselContainer>
+        );
+      })
+    : null;
+
   return (
     <>
-      <MainContainer>
-        <MainTitleContainer>
-          <Label {...LABEL_ATTRIBUTES.EXHIBITION} />
-          <Title>한 번 주문하면 두 번 반하는 반찬</Title>
-        </MainTitleContainer>
-        {mainLnb}
-        <ItemCards
-          cardClickState={cardClickState}
-          setCardClickState={setCardClickState}
-          // cardInfoState={cardInfoState}
-          // setCardInfoState={setCardInfoState}
-          dataState={dataState}
-          cardLength={CARD_LENGHTHS.BIG}
-          cardMargin={CARD_MARGIN}
-          cardContainerPadding={CARD_CONTAINER_PADDING}
-        />
-        <DivisionLine height="1px" color="#EBEBEB" />
-
-        <CarouselContainer allCategoryVisible={true}>
-          <CarouselTitle>{carouselData?.categories[0]?.categoryName}</CarouselTitle>
-          <Carousel
+      {loading ? (
+        <Loader />
+      ) : (
+        <MainContainer>
+          <MainTitleContainer>
+            <Label {...LABEL_ATTRIBUTES.EXHIBITION} />
+            <Title>한 번 주문하면 두 번 반하는 반찬</Title>
+          </MainTitleContainer>
+          {mainLnb}
+          <ItemCards
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselData?.categories[0]?.dishes}
-            cardLength={CARD_LENGHTHS.SMALL}
-            cardCount={NUM_OF_CARD_ON_DISPLAY}
+            setCardInfoState={setCardInfoState}
+            dataState={dataState}
+            cardLength={CARD_LENGHTHS.BIG}
             cardMargin={CARD_MARGIN}
+            cardContainerPadding={CARD_CONTAINER_PADDING}
           />
-        </CarouselContainer>
+          <DivisionLine height="1px" color="#EBEBEB" />
 
-        <CarouselContainer allCategoryVisible={allCategoryVisible}>
-          <CarouselTitle>{carouselData?.categories[1]?.categoryName}</CarouselTitle>
-          <Carousel
+          {carouselLists}
+
+          <OpenAllCategoryButton
+            openAllCategoryButtonVisible={!allCategoryVisible}
+            onClick={handleAllCategoryVisible}
+          >
+            모든 카테고리 보기
+          </OpenAllCategoryButton>
+          <Popup
             cardClickState={cardClickState}
             setCardClickState={setCardClickState}
-            carouselCards={carouselData?.categories[1]?.dishes}
-            cardLength={CARD_LENGHTHS.SMALL}
-            cardCount={NUM_OF_CARD_ON_DISPLAY}
-            cardMargin={CARD_MARGIN}
+            cardInfoState={cardInfoState}
+            relatedListState={relatedListState}
+            setRelatedListState={setRelatedListState}
           />
-        </CarouselContainer>
-        <CarouselContainer allCategoryVisible={allCategoryVisible}>
-          <CarouselTitle>{carouselData?.categories[2].categoryName}</CarouselTitle>
-          <Carousel
-            cardClickState={cardClickState}
-            setCardClickState={setCardClickState}
-            carouselCards={carouselData?.categories[2]?.dishes}
-            cardLength={CARD_LENGHTHS.SMALL}
-            cardCount={NUM_OF_CARD_ON_DISPLAY}
-            cardMargin={CARD_MARGIN}
-          />
-        </CarouselContainer>
-
-        <OpenAllCategoryButton
-          openAllCategoryButtonVisible={!allCategoryVisible}
-          onClick={handleAllCategoryVisible}
-        >
-          모든 카테고리 보기
-        </OpenAllCategoryButton>
-        <Popup
-          cardClickState={cardClickState}
-          setCardClickState={setCardClickState}
-          cardInfoState={cardInfoState}
-          relatedListState={relatedListState}
-          setRelatedListState={setRelatedListState}
-        />
-      </MainContainer>
+        </MainContainer>
+      )}
     </>
   );
 };
 
 const MainContainer = styled.main`
-  // display: flex;
-  // flex-direction: column;
   white-space: nowrap;
 `;
 

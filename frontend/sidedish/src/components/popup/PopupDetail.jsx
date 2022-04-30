@@ -1,22 +1,19 @@
+import { useState } from "react";
 import styled from "styled-components";
 import PopupImageContents from "./PopupImageContents";
 import PopupOrderContents from "./PopupOrderContents";
 
-const PopupDetail = ({ cardClickState, setCardClickState }) => {
-  const data = {
-    images: [
-      "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-      "http://public.codesquad.kr/jk/storeapp/data/main/1155_ZIP_P_0081_T.jpg",
-    ],
-    title: "오리 주물럭_반조리",
-    description: "감칠맛 나는 매콤한 양념",
-    n_price: 15800,
-    s_price: 12640,
-    badge: ["런칭특가"],
+const PopupDetail = ({ cardClickState, setCardClickState, cardInfoState }) => {
+  const [wantedNumber, setWantedNumber] = useState(1);
+  const closePopup = () => {
+    setCardClickState(!cardClickState);
+    setWantedNumber(1);
   };
 
-  const closePopup = (event) => {
-    setCardClickState(!cardClickState);
+  const findMaxDiscount = (eventBadgeArr) => {
+    return eventBadgeArr.length
+      ? (100 - Math.max(...eventBadgeArr.map(({ discount }) => discount))) / 100
+      : 1;
   };
 
   return (
@@ -24,8 +21,22 @@ const PopupDetail = ({ cardClickState, setCardClickState }) => {
       <Contents>
         <CloseButton onClick={closePopup}>닫기</CloseButton>
         <ContentsDetailContainer>
-          <PopupImageContents images={data.images}></PopupImageContents>
-          <PopupOrderContents title={data.title} normalPrice={data.n_price} salePrice={data.s_price} badge={data.badge}></PopupOrderContents>
+          <PopupImageContents
+            images={cardInfoState.images.map(({ url }) => url)}
+          ></PopupImageContents>
+          <PopupOrderContents
+            deliveryArea={cardInfoState.deliveryArea}
+            deliveryMorning={cardInfoState.deliveryMorning}
+            deliveryPrice={cardInfoState.deliveryPrice}
+            title={cardInfoState.title}
+            normalPrice={cardInfoState.eventBadge.length ? cardInfoState.price : null}
+            salePrice={cardInfoState.price * findMaxDiscount(cardInfoState.eventBadge)}
+            badge={cardInfoState.eventBadge.map(({ eventName }) => eventName)}
+            point={cardInfoState.point}
+            stockQuantity={cardInfoState.stockQuantity}
+            wantedNumber={wantedNumber}
+            setWantedNumber={setWantedNumber}
+          />
         </ContentsDetailContainer>
       </Contents>
     </>

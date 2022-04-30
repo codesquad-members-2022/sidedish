@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import { LABEL_ATTRIBUTES } from "../../consts/constants";
+import { LABEL_ATTRIBUTES, URL } from "../../consts/constants";
 import Label from "../../core/Label";
+import fetchData from "../../util/fetchData";
 import { makePriceFormat } from "../../util/makePriceFormat";
 
 const ItemCard = ({
   cardClickState,
   setCardClickState,
+  setCardInfoState,
+  dishId,
   image,
   title,
   description,
@@ -23,12 +26,14 @@ const ItemCard = ({
     );
   });
 
-  const handleCardClick = () => {
+  const handleCardClick = async (event, dishId) => {
+    const menuDetail = await fetchData(`${URL}/detail/${dishId}`);
     setCardClickState(!cardClickState);
+    setCardInfoState(menuDetail);
   };
 
   return (
-    <Card onClick={handleCardClick} cardMargin={cardMargin}>
+    <Card onClick={(event) => handleCardClick(event, dishId)} cardMargin={cardMargin}>
       <MenuCardImg src={image} alt={title} cardLength={cardLength} />
       <MenuTitle>{title}</MenuTitle>
       <MenuDescription>{description}</MenuDescription>

@@ -4,6 +4,7 @@ import ItemCard from "./ItemCard";
 const ItemCards = ({
   cardClickState,
   setCardClickState,
+  setCardInfoState,
   dataState,
   cardLength,
   cardMargin,
@@ -19,7 +20,9 @@ const ItemCards = ({
       <ItemCard
         cardClickState={cardClickState}
         setCardClickState={setCardClickState}
+        setCardInfoState={setCardInfoState}
         key={dishId}
+        dishId={dishId}
         image={mainImage}
         title={title}
         description={description}

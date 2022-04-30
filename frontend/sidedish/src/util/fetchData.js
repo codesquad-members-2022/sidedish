@@ -1,9 +1,12 @@
 const fetchData = async (url) => {
   try {
-    const data = await fetch(url);
-    return data.json();
-  } catch (err) {
-    console.log(err);
+    const response = await fetch(url);
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.status);
+  } catch (e) {
+    console.log(e);
   }
 };
 

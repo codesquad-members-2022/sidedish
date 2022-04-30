@@ -1,19 +1,18 @@
-import { useState } from "react";
 import styled from "styled-components";
 import MinusBtn from "../../core/MinusBtn";
 import PlusBtn from "../../core/PlusBtn";
 import { makePriceFormat } from "../../util/makePriceFormat";
 
-const OrderNumber = () => {
-  const price = 12640;
-  const [wantedNumber, setWantedNumber] = useState(1);
-  const handleClickMinusBtn = (e) => {
+const OrderNumber = ({ wantedNumber, setWantedNumber, salePrice, stockQuantity }) => {
+  const handleClickMinusBtn = () => {
     if (wantedNumber > 1) {
       setWantedNumber(wantedNumber - 1);
     }
   };
-  const handleClickPlusBtn = (e) => {
-    setWantedNumber(wantedNumber + 1);
+  const handleClickPlusBtn = () => {
+    if (wantedNumber < stockQuantity) {
+      setWantedNumber(wantedNumber + 1);
+    }
   };
   return (
     <>
@@ -25,7 +24,7 @@ const OrderNumber = () => {
         </NumberChangeContainer>
         <TotalPriceContainer>
           <TotalPriceTitle>총 주문금액</TotalPriceTitle>
-          <TotalPrice>{makePriceFormat(price * wantedNumber)}</TotalPrice>
+          <TotalPrice>{makePriceFormat(salePrice * wantedNumber)}</TotalPrice>
         </TotalPriceContainer>
       </OrderNumberContainer>
     </>

@@ -8,9 +8,25 @@ import OrderBtn from "./OrderBtn";
 import Blank from "../../core/Blank";
 import { makePriceFormat } from "../../util/makePriceFormat";
 
-const PopupOrderContents = ({ title, normalPrice, salePrice, badge }) => {
+const PopupOrderContents = ({
+  deliveryArea,
+  deliveryMorning,
+  deliveryPrice,
+  title,
+  normalPrice,
+  salePrice,
+  badge,
+  point,
+  stockQuantity,
+  wantedNumber,
+  setWantedNumber,
+}) => {
   const labelList = badge.map((string, ind) => {
-    return string === "런칭특가" ? <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} /> : <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />;
+    return string === "런칭특가" ? (
+      <Label key={ind} {...LABEL_ATTRIBUTES.LAUNCH} />
+    ) : (
+      <Label key={ind} {...LABEL_ATTRIBUTES.EVENT} />
+    );
   });
   return (
     <>
@@ -22,9 +38,19 @@ const PopupOrderContents = ({ title, normalPrice, salePrice, badge }) => {
           {makePriceFormat(salePrice)}
         </SalePrice>
         <DivisionLine color="#EBEBEB" height="1px" />
-        <OrderDetail />
+        <OrderDetail
+          deliveryArea={deliveryArea}
+          deliveryMorning={deliveryMorning}
+          deliveryPrice={deliveryPrice}
+          point={point}
+        />
         <DivisionLine color="#EBEBEB" height="1px" />
-        <OrderNumber />
+        <OrderNumber
+          wantedNumber={wantedNumber}
+          setWantedNumber={setWantedNumber}
+          salePrice={salePrice}
+          stockQuantity={stockQuantity}
+        />
         <Blank />
         <OrderBtn />
       </PopupOrderContentsContainer>
