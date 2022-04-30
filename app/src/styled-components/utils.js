@@ -27,6 +27,7 @@ export const Badge = styled.strong`
 `;
 
 export const Horizon = styled.hr`
+  display: ${({ display }) => display};
   background-color: ${({ theme }) => theme.color.grey4};
   height: 1px;
   border: 0;
@@ -34,7 +35,7 @@ export const Horizon = styled.hr`
 `;
 
 export const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -42,4 +43,9 @@ export const Background = styled.div`
   background-color: ${({ theme }) => theme.color.black};
   opacity: 0.5;
   z-index: ${({ zIndex }) => zIndex};
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  cursor: pointer;
 `;

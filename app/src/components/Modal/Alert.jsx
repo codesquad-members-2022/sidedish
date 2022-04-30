@@ -1,8 +1,26 @@
 import styled from "styled-components";
-import { FlexCenter } from "../../styles/utils.js";
+import { Background, FlexCenter } from "../../styled-components/utils.js";
+
+const Alert = ({ handleClickOrderBtn }) => {
+  return (
+    <>
+      <Background zIndex={3}></Background>
+      <OrderComplete>
+        <OrderTitle>
+          해당 상품을
+          <br />
+          주문했습니다.
+        </OrderTitle>
+        <ConfirmBtn as="button" onClick={handleClickOrderBtn}>
+          확인
+        </ConfirmBtn>
+      </OrderComplete>
+    </>
+  );
+};
 
 const OrderComplete = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -29,6 +47,8 @@ const ConfirmBtn = styled(FlexCenter)`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.white};
+  border: none;
+  cursor: pointer;
 `;
 
-export { OrderComplete, OrderTitle, ConfirmBtn };
+export default Alert;

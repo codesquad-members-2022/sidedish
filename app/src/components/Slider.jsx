@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import CardList from "./CardList.js";
+import CardList from "./CardList.jsx";
 
 const useFirstRender = () => {
   const firstRender = useRef(true);
@@ -12,7 +12,7 @@ const useFirstRender = () => {
   return firstRender.current;
 };
 
-const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
+const Slider = ({ data, cardSize, numOfCards, gap }) => {
   const CARD_SIZE = cardSize.replace(/[a-zA-Z]/g, "") * 10;
   const GAP = gap.replace(/[a-zA-Z]/g, "") * 10;
 
@@ -48,12 +48,12 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
     }
   }, [currentPage]);
 
-  const handleRArrowClick = () => {
+  const handleClickRArrow = () => {
     if (currentPage === SLIDER_INFO.NUM_OF_PAGE) return;
     setCurrentPage(currentPage + 1);
   };
 
-  const handleLArrowClick = () => {
+  const handleClickLArrow = () => {
     if (currentPage === 1) return;
     setCurrentPage(currentPage - 1);
   };
@@ -61,20 +61,24 @@ const Slider = ({ data, key, cardSize, numOfCards, gap }) => {
   return (
     <>
       <LeftArrow
-        img={`${process.env.PUBLIC_URL}/images/Arrow.svg`}
-        onClick={handleLArrowClick}
+        img={`${process.env.PUBLIC_URL}/images/${
+          currentPage === 1 ? "Arrow_grey.svg" : "Arrow_black.svg"
+        }`}
+        onClick={handleClickLArrow}
       />
       <RightArrow
-        img={`${process.env.PUBLIC_URL}/images/Arrow.svg`}
-        onClick={handleRArrowClick}
+        img={`${process.env.PUBLIC_URL}/images/${
+          currentPage === SLIDER_INFO.NUM_OF_PAGE
+            ? "Arrow_grey.svg"
+            : "Arrow_black.svg"
+        }`}
+        onClick={handleClickRArrow}
       />
       <Wrapper>
         <CardList
           innerRef={cardList}
-          key={key}
           cards={data}
           cardSize={cardSize}
-          numOfCards={4}
           gap={gap}
         />
       </Wrapper>
@@ -93,6 +97,7 @@ const Arrow = styled.button`
   width: 1.1rem;
   height: 2rem;
   top: 50%;
+  background-color: transparent;
   background-image: url(${({ img }) => img});
   background-size: 1.1rem 2rem;
   background-repeat: no-repeat;

@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import Card from "./Card.js";
-import { FlexMarginCenter } from "../styles/utils.js";
+import Card from "./Card.jsx";
+import { FlexMarginCenter } from "../styled-components/utils.js";
 
 const CardList = ({
   innerRef,
+  tabKey,
   cards,
   tabNumber = 0,
   index = 0,
@@ -16,8 +17,8 @@ const CardList = ({
       display={tabNumber === index ? "flex" : "none"}
       gap={gap}
     >
-      {cards.map((card, index) => (
-        <Card key={index} card={card} size={cardSize} />
+      {cards.map((card) => (
+        <Card key={card.detail_hash} card={card} cardSize={cardSize} />
       ))}
     </CardConatiner>
   );
