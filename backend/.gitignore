@@ -78,9 +78,3 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-
-# application-prod.properties
-application-prod.properties
-
-# OAuth.properties
-oauth.properties

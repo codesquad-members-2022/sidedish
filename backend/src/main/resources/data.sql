@@ -255,231 +255,231 @@ values (28, '미니월남쌈[밀키트]', '다시 돌아온', 9800, 0.01);
 /* side_dish_image */
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%83%88%EC%BD%A4%EB%8B%AC%EC%BD%A4_%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%83%88%EC%BD%A4%EB%8B%AC%EC%BD%A4_%EC%98%A4%EC%A7%95%EC%96%B4%EB%AC%B4%EC%B9%A8_1.png',
         1, 1 /* 새콤달콤 오징어무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%98%B8%EB%91%90_%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%ED%98%B8%EB%91%90_%EB%A9%B8%EC%B9%98%EB%B3%B6%EC%9D%8C_1.png',
         1, 2 /* 호두 멸치볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%A7%A4%EC%BD%A4_%EC%95%88%EC%8B%AC%EC%9E%A5%EC%A1%B0%EB%A6%BC_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%ED%95%9C%EB%8F%88_%EB%A7%A4%EC%BD%A4_%EC%95%88%EC%8B%AC%EC%9E%A5%EC%A1%B0%EB%A6%BC_1.png',
         1, 3 /* 한돈 매콤 안심장조림 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%95%BC%EC%B1%84_%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%95%BC%EC%B1%84_%EC%96%B4%EB%AC%B5%EB%B3%B6%EC%9D%8C_1.png',
         1, 4 /* 야채 어묵볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%9C%EB%8F%88_%EB%8F%BC%EC%A7%80_%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%ED%95%9C%EB%8F%88_%EB%8F%BC%EC%A7%80_%EA%B9%80%EC%B9%98%EC%B0%8C%EA%B0%9C_1.png',
         1, 5 /* 한돈 돼지 김치찌개 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%90%9C%EC%9E%A5%EC%B0%8C%EA%B0%9C_1.png',
         1, 6 /* 된장찌개 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EC%97%AD%EC%98%A4%EC%9D%B4%EB%83%89%EA%B5%AD_1.png',
         1, 7 /* 미역오이냉국 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%8F%99%ED%83%9C%EC%B0%8C%EA%B0%9C_1.png',
         1, 8 /* 동태찌개 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EB%A6%AC_%EC%A3%BC%EB%AC%BC%EB%9F%AD_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%98%A4%EB%A6%AC_%EC%A3%BC%EB%AC%BC%EB%9F%AD_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png',
         1, 9 /* 오리 주물럭_반조리 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%9E%A1%EC%B1%84_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%9E%A1%EC%B1%84_1.png',
         1, 10 /* 잡채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%86%8C%EA%B0%88%EB%B9%84%EC%B0%9C_1.png',
         1, 11 /* 소갈비찜 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B0%84%EC%9E%A5_%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B0%84%EC%9E%A5_%EC%BD%94%EB%8B%A4%EB%A6%AC%EC%A1%B0%EB%A6%BC_1.png',
         1, 12 /* 간장 코다리 조림 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%AD%88%EA%BE%B8%EB%AF%B8+%ED%95%9C%EB%8F%88+%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%AD%88%EA%BE%B8%EB%AF%B8+%ED%95%9C%EB%8F%88+%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_%EB%B0%98%EC%A1%B0%EB%A6%AC_1.png',
         1, 13 /* 쭈꾸미 한돈 제육볶음_반조리 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B0%84%EC%9E%A5%EB%8F%BC%EC%A7%80%EB%B6%88%EA%B3%A0%EA%B8%B0_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B0%84%EC%9E%A5%EB%8F%BC%EC%A7%80%EB%B6%88%EA%B3%A0%EA%B8%B0_1.png',
         1, 14 /* 간장돼지불고기 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B0%84%EC%9E%A5%EB%8F%BC%EC%A7%80%EB%B6%88%EA%B3%A0%EA%B8%B0_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B0%84%EC%9E%A5%EB%8F%BC%EC%A7%80%EB%B6%88%EA%B3%A0%EA%B8%B0_2.png',
         2, 14 /* 간장돼지불고기 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B0%84%EC%9E%A5%EB%8F%BC%EC%A7%80%EB%B6%88%EA%B3%A0%EA%B8%B0_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B0%84%EC%9E%A5%EB%8F%BC%EC%A7%80%EB%B6%88%EA%B3%A0%EA%B8%B0_3.png',
         3, 14 /* 간장돼지불고기 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%A7%80%EB%A6%AC%EC%82%B0%ED%9D%91%EB%8F%BC%EC%A7%80%EA%B0%88%EB%B9%84%EC%B0%9C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%A7%80%EB%A6%AC%EC%82%B0%ED%9D%91%EB%8F%BC%EC%A7%80%EA%B0%88%EB%B9%84%EC%B0%9C_1.png',
         1, 15 /* 지리산흑돼지갈비찜 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%A7%80%EB%A6%AC%EC%82%B0%ED%9D%91%EB%8F%BC%EC%A7%80%EA%B0%88%EB%B9%84%EC%B0%9C_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%A7%80%EB%A6%AC%EC%82%B0%ED%9D%91%EB%8F%BC%EC%A7%80%EA%B0%88%EB%B9%84%EC%B0%9C_2.png',
         2, 15 /* 지리산흑돼지갈비찜 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%A7%80%EB%A6%AC%EC%82%B0%ED%9D%91%EB%8F%BC%EC%A7%80%EA%B0%88%EB%B9%84%EC%B0%9C_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%A7%80%EB%A6%AC%EC%82%B0%ED%9D%91%EB%8F%BC%EC%A7%80%EA%B0%88%EB%B9%84%EC%B0%9C_3.png',
         3, 15 /* 지리산흑돼지갈비찜 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B3%A0%EC%B6%94%EC%9E%A5%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B3%A0%EC%B6%94%EC%9E%A5%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_1.png',
         1, 16 /* 고추장제육볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B3%A0%EC%B6%94%EC%9E%A5%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B3%A0%EC%B6%94%EC%9E%A5%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_2.png',
         2, 16 /* 고추장제육볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EA%B3%A0%EC%B6%94%EC%9E%A5%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EA%B3%A0%EC%B6%94%EC%9E%A5%EC%A0%9C%EC%9C%A1%EB%B3%B6%EC%9D%8C_3.png',
         3, 16 /* 고추장제육볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%A7%8C%EA%B0%80%EB%8B%A5%EB%B2%84%EC%84%AF%EB%B3%B6%EC%9D%8C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%A7%8C%EA%B0%80%EB%8B%A5%EB%B2%84%EC%84%AF%EB%B3%B6%EC%9D%8C_1.png',
         1, 17 /* 만가닥버섯볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%A7%8C%EA%B0%80%EB%8B%A5%EB%B2%84%EC%84%AF%EB%B3%B6%EC%9D%8C_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%A7%8C%EA%B0%80%EB%8B%A5%EB%B2%84%EC%84%AF%EB%B3%B6%EC%9D%8C_2.png',
         2, 17 /* 만가닥버섯볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%B4%ED%8C%8C%EB%A6%AC%EB%83%89%EC%B1%84_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%ED%95%B4%ED%8C%8C%EB%A6%AC%EB%83%89%EC%B1%84_1.png',
         1, 18 /* 해파리냉채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%B4%ED%8C%8C%EB%A6%AC%EB%83%89%EC%B1%84_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%ED%95%B4%ED%8C%8C%EB%A6%AC%EB%83%89%EC%B1%84_2.png',
         2, 18 /* 해파리냉채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%ED%95%B4%ED%8C%8C%EB%A6%AC%EB%83%89%EC%B1%84_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%ED%95%B4%ED%8C%8C%EB%A6%AC%EB%83%89%EC%B1%84_3.png',
         3, 18 /* 해파리냉채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
         1, 19 /* 미역초무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
         2, 19 /* 미역초무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EC%97%AD%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
         3, 19 /* 미역초무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AC%B4%EC%83%9D%EC%B1%84_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AC%B4%EC%83%9D%EC%B1%84_1.png',
         1, 20 /* 무생채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AC%B4%EC%83%9D%EC%B1%84_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AC%B4%EC%83%9D%EC%B1%84_2.png',
         2, 20 /* 무생채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AC%B4%EC%83%9D%EC%B1%84_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AC%B4%EC%83%9D%EC%B1%84_3.png',
         3, 20 /* 무생채 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_1.png',
         1, 21 /* 오징어도라지초무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_2.png',
         2, 21 /* 오징어도라지초무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%98%A4%EC%A7%95%EC%96%B4%EB%8F%84%EB%9D%BC%EC%A7%80%EC%B4%88%EB%AC%B4%EC%B9%A8_3.png',
         3, 21 /* 오징어도라지초무침 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%B7%A8%EB%82%98%EB%AC%BC_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%B7%A8%EB%82%98%EB%AC%BC_1.png',
         1, 22 /* 취나물 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%B7%A8%EB%82%98%EB%AC%BC_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%B7%A8%EB%82%98%EB%AC%BC_2.png',
         2, 22 /* 취나물 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%B7%A8%EB%82%98%EB%AC%BC_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%B7%A8%EB%82%98%EB%AC%BC_3.png',
         3, 22 /* 취나물 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
         1, 23 /* 바지락초무침[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
         2, 23 /* 바지락초무침[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%B4%88%EB%AC%B4%EC%B9%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
         3, 23 /* 바지락초무침[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_1.png',
         1, 24 /* 바지락애호박볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_2.png',
         2, 24 /* 바지락애호박볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B0%94%EC%A7%80%EB%9D%BD%EC%95%A0%ED%98%B8%EB%B0%95%EB%B3%B6%EC%9D%8C_3.png',
         3, 24 /* 바지락애호박볶음 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
         1, 25 /* 버섯불고기[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
         2, 25 /* 버섯불고기[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
         3, 25 /* 버섯불고기[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
         1, 26 /* 버섯불고기전골[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
         2, 26 /* 버섯불고기전골[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%B2%84%EC%84%AF%EB%B6%88%EA%B3%A0%EA%B8%B0%EC%A0%84%EA%B3%A8%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
         3, 26 /* 버섯불고기전골[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_1.png',
         1, 27 /* 양배추찜&우렁쌈장 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_2.png',
         2, 27 /* 양배추찜&우렁쌈장 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EC%96%91%EB%B0%B0%EC%B6%94%EC%B0%9C%26%EC%9A%B0%EB%A0%81%EC%8C%88%EC%9E%A5_3.png',
         3, 27 /* 양배추찜&우렁쌈장 */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_1.png',
         1, 28 /* 미니월남쌈[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_2.png',
         2, 28 /* 미니월남쌈[밀키트] */);
 
 insert into side_dish_image(image_url, image_seq, side_dish_id)
-values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/terria/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
+values ('https://naneun-220320.s3.ap-northeast-2.amazonaws.com/team35-riako/%EB%AF%B8%EB%8B%88%EC%9B%94%EB%82%A8%EC%8C%88%5B%EB%B0%80%ED%82%A4%ED%8A%B8%5D_3.png',
         3, 28 /* 미니월남쌈[밀키트] */);
 
 /* discount_event */
