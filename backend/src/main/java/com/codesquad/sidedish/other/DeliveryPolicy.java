@@ -1,9 +1,11 @@
 package com.codesquad.sidedish.other;
 
-import com.codesquad.sidedish.exception.BusinessException;
 import com.codesquad.sidedish.exception.ErrorCode;
+import com.codesquad.sidedish.exception.unchecked.BusinessException;
 import java.util.Arrays;
+import lombok.Getter;
 
+@Getter
 public enum DeliveryPolicy {
     CAPITAL_DAYBREAK("서울 경기 새벽 배송", "DL001"),
     COUNTRY_PARCEL("전국 택배 배송", "DL002");
@@ -23,11 +25,4 @@ public enum DeliveryPolicy {
             .orElseThrow(() -> new BusinessException(ErrorCode.DELIVERY_NOT_FOUND));
     }
 
-    public String getDetail() {
-        return detail;
-    }
-
-    public String getCode() {
-        return code;
-    }
 }

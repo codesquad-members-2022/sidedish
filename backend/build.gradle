@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+    // 프로젝트 생성 시 기본으로 추가한 디펜던시
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
@@ -26,8 +27,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.7'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.6.7'
+
+    // JWT 생성 및 검증을 위한 디펜던시
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.4'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.4', 'io.jsonwebtoken:jjwt-jackson:0.11.4'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor:2.6.7'
+
 }
 
 tasks.named('test') {

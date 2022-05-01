@@ -1,5 +1,6 @@
 package com.codesquad.sidedish.exception;
 
+import com.codesquad.sidedish.exception.unchecked.BusinessException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.ResponseEntity;

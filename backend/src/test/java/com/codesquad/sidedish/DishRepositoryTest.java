@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 
 @DataJdbcTest
-@ActiveProfiles({"dev"})
+@ActiveProfiles({"local"})
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @DisplayName("DishRepository 조회 테스트")
 public class DishRepositoryTest {

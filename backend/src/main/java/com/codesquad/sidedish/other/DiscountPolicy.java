@@ -1,9 +1,11 @@
 package com.codesquad.sidedish.other;
 
 import com.codesquad.sidedish.exception.ErrorCode;
-import com.codesquad.sidedish.exception.NotFoundException;
+import com.codesquad.sidedish.exception.unchecked.NotFoundException;
 import java.util.Arrays;
+import lombok.Getter;
 
+@Getter
 public enum DiscountPolicy {
     LAUNCHING("런칭특가", "DC001", 0.2),
     EVENT("이벤트특가", "DC002", 0.1);
@@ -25,15 +27,4 @@ public enum DiscountPolicy {
             .orElseThrow(() -> new NotFoundException(ErrorCode.DISCOUNT_NOT_FOUND));
     }
 
-    public String getDetail() {
-        return detail;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public double getRate() {
-        return rate;
-    }
 }

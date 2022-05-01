@@ -89,6 +89,40 @@ INSERT INTO dish_delivery (dish_id, delivery_code)
 VALUES (1, 'DL001');
 INSERT INTO dish_delivery (dish_id, delivery_code)
 VALUES (1, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (2, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (3, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (3, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (5, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (5, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (6, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (7, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (8, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (8, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (9, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (11, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (11, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (12, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (12, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (13, 'DL001');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (15, 'DL002');
+INSERT INTO dish_delivery (dish_id, delivery_code)
+VALUES (16, 'DL001');
 
 -- category : festival
 INSERT INTO category (section_id, category_name, is_festival)

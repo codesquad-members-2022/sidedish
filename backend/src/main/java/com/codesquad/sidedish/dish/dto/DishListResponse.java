@@ -1,8 +1,10 @@
 package com.codesquad.sidedish.dish.dto;
 
 import com.codesquad.sidedish.dish.domain.Dish;
+import com.codesquad.sidedish.dish.domain.DishDelivery;
 import com.codesquad.sidedish.dish.domain.DishDiscount;
 import com.codesquad.sidedish.dish.domain.DishImage;
+import com.codesquad.sidedish.other.DeliveryPolicy;
 import com.codesquad.sidedish.other.DiscountPolicy;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class DishListResponse {
     private final Integer stock;
     private final String imagePath;
 
+    private final List<String> deliveries;
     private final List<String> discounts;
 
     public static DishListResponse from(Dish dish) {
@@ -34,6 +37,7 @@ public class DishListResponse {
             dish.getDiscountPrice(),
             dish.getStock(),
             toImagePath(dish.getImages()),
+            toDeliveryDetails(dish.getDeliveries()),
             toDiscountDetails(dish.getDiscounts())
         );
     }
@@ -44,6 +48,14 @@ public class DishListResponse {
             .map(DishImage::getImagePath)
             .findAny()
             .orElse("");
+    }
+
+    public static List<String> toDeliveryDetails(Set<DishDelivery> dishDeliveries) {
+        return dishDeliveries.stream()
+            .map(DishDelivery::getCode)
+            .map(DeliveryPolicy::from)
+            .map(DeliveryPolicy::getDetail)
+            .collect(Collectors.toList());
     }
 
     public static List<String> toDiscountDetails(Set<DishDiscount> dishDiscounts) {
