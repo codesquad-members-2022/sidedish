@@ -2,6 +2,8 @@ import UIKit
 
 final class FoodDetailView: UIView {
     
+    weak var delegate: FoodDetailViewDelegate?
+    
     private lazy var commonScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -169,7 +171,7 @@ final class FoodDetailView: UIView {
         return label
     }()
     
-    private lazy var foodCountValueLabel: UILabel = {
+    private (set) lazy var foodCountValueLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
         label.font = UIFont.systemFont(ofSize: 17)
@@ -199,7 +201,7 @@ final class FoodDetailView: UIView {
         return label
     }()
     
-    private lazy var foodTotalPriceValueLabel: UILabel = {
+    private (set) lazy var foodTotalPriceValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 27)
@@ -231,6 +233,7 @@ final class FoodDetailView: UIView {
         super.init(frame: frame)
         addViews()
         setLayout()
+        addStepperAction()
     }
     
     required init?(coder: NSCoder) {
@@ -409,6 +412,13 @@ final class FoodDetailView: UIView {
         if(imageCount <= 3) {
             foodDetailImageStackView.heightAnchor.constraint(equalToConstant: 1000).isActive = true
         }
+    }
+    
+    func addStepperAction() {
+        foodCountStepper.addAction(UIAction{ [weak self] _ in
+            guard let stepper = self?.foodCountStepper else { return }
+            self?.delegate?.changingSelectedFoodCountRequested(value: stepper.value)
+        }, for: .valueChanged)
     }
     
 }

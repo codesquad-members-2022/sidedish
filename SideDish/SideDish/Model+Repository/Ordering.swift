@@ -4,11 +4,14 @@ enum UserInfoKey: String{
     case foodDetailRespose = "foodDetailResponse"
     case foodTitleResponse = "foodTitleResponse"
     case dataRequestFailureMessage = "dataRequestFailureMessage"
+    case changedSelectedFoodCount = "changedSelectedFoodCount"
+    case orderingSumPrice = "orderingSumPrice"
 }
 
 struct NotificationName{
     static let foodSelected = Notification.Name("foodSelected")
     static let dataRequestFailed = Notification.Name("dataRequestFailed")
+    static let selectedFoodCountChanged = Notification.Name("selectedFoodCountChanged")
 }
 
 final class Ordering{
@@ -46,19 +49,15 @@ final class Ordering{
     }
     
     var sum: Int {
-        //가격정보가 String으로 응답이 와서, 우선 이를 Int로 형변환 처리하기 전이라 임시로 Int값을 할당해서 처리
-        guard let _ = selectedMenu else { return -1 }
-        let price = 5000
+        guard let foodDetail = selectedFoodDetail else { return -1 }
+        if orderingCount <= 0 { return 0 }
+        let priceStringLiteral = foodDetail.prices[0].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard let price = Int(priceStringLiteral) else { return -1 }
         if orderingCount * price > 40000 {
-            return (orderingCount * price) + deliveryMoney
+            return (orderingCount * price)
         } else {
-            return orderingCount * price
+            return orderingCount * price + deliveryFee
         }
-    }
-    
-    func increaseCount(foodHash: String) {
-        guard let _ = selectedMenu else { return }
-        orderingCount += 1
     }
     
     func addFood(food: Food, category: Category) {
@@ -88,6 +87,13 @@ final class Ordering{
             return deliveryFee
         }
     }
+    
+    func setOrderingCount(value: Double) {
+        orderingCount = Int(value)
+        NotificationCenter.default.post(name: NotificationName.selectedFoodCountChanged,
+                                        object: self,
+                                        userInfo: [UserInfoKey.changedSelectedFoodCount:orderingCount,
+                                                   UserInfoKey.orderingSumPrice:sum])
     }
     
     func getCategoryWithIndex(index: Int) -> Category{
