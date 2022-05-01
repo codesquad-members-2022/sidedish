@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
         navigationItem.title = "Ordering"
         setFoodCollectionView()
         setLayout()
+        addObservers()
     }
     
     private func setFoodCollectionView() {
@@ -55,12 +56,31 @@ class MainViewController: UIViewController {
         ])
     }
     
-    func moveToDetailView(foodDetail: FoodDetail, foodTitle: String) {
-        let detailViewController = DetailViewController(foodDetail: foodDetail, foodTitle: foodTitle)
-        detailViewController.ordering = ordering
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToDetailView(_:)), name: NotificationName.foodSelected, object: ordering)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRequestFailure(_:)), name: NotificationName.dataRequestFailed, object: ordering)
+    }
+    
+    @objc func moveToDetailView(_ notification: Notification) {
+        guard let ordering = ordering,
+              let foodTitle = notification.userInfo?[UserInfoKey.foodTitleResponse] as? String else { return }
+        let detailViewController = DetailViewController(foodTitle: foodTitle, ordering: ordering)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
+    @objc func handleRequestFailure(_ notification: Notification) {
+        guard let errorMessage = notification.userInfo?[UserInfoKey.dataRequestFailureMessage] as? String else { return }
+        presentAlert(title: "데이터 요청 실패", message: errorMessage)
+    }
+    
+    private func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
+        alert.addAction(defaultAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -100,14 +120,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
         guard let food = ordering[indexPath.row,category] else { return }
         
-        ordering.requestFoodDetail(detailHash: food.detailHash){ result in
-            switch result {
-            case .success(let response):
-                self.moveToDetailView(foodDetail: response.data, foodTitle: food.title)
-            case .failure(let error):
-                self.logger?.error("\(error.localizedDescription)")
-            }
-        }
+        ordering.selectFood(foodHash: food.detailHash, category: category)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
