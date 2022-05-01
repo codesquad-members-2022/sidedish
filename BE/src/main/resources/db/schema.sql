@@ -1,3 +1,4 @@
+drop table if exists user;
 drop table if exists orders;
 drop table if exists product_image;
 drop table if exists product;
@@ -36,18 +37,29 @@ create table product
 
 create table product_image
 (
-    id         bigint           auto_increment primary key,
-    product_id bigint           not null,
-    image_url  varchar(1000)    not null,
+    id         bigint auto_increment primary key,
+    product_id bigint        not null,
+    image_url  varchar(1000) not null,
     foreign key (product_id) references product (id)
 );
 
 create table orders
 (
-    id              bigint          auto_increment primary key,
-    product_id      bigint          not null,
-    total_price     bigint          not null,
-    count           bigint          not null,
-    delivery_price  bigint          not null,
+    id             bigint auto_increment primary key,
+    product_id     bigint not null,
+    total_price    bigint not null,
+    count          bigint not null,
+    delivery_price bigint not null,
     foreign key (product_id) references product (id)
+);
+
+create table user
+(
+    id               bigint auto_increment primary key,
+    user_name        varchar(100) not null,
+    avatar_image_url text         not null,
+    email            varchar(1000),
+    access_token     text         not null,
+    token_type       varchar(100)      not null,
+    scope            varchar(100)      not null
 );

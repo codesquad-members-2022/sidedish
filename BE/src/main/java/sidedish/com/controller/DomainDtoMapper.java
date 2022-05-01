@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 import sidedish.com.controller.model.OrderSaveResponse;
 import sidedish.com.controller.model.ProductDetailTypeResponse;
 import sidedish.com.controller.model.ProductBasicTypeResponse;
+import sidedish.com.controller.model.UserResponse;
 import sidedish.com.domain.Product;
+import sidedish.com.domain.User;
 import sidedish.com.repository.entity.OrderEntity;
 
 @Component
@@ -52,4 +54,7 @@ public class DomainDtoMapper {
 		return new OrderSaveResponse(orderEntity.getId());
 	}
 
+	public UserResponse toUserResponseFromUser(User user) {
+		return new UserResponse(user.getId(), user.getUserName(), user.getAvatarImageURL());
+	}
 }
