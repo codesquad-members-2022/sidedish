@@ -3,14 +3,13 @@ import OSLog
 
 final class DetailViewController: UIViewController{
     
-    private var foodDetail: FoodDetail
     private var foodTitle: String = ""
     private let foodDetailView: FoodDetailView
-    weak var ordering: Ordering?
+    private weak var ordering: Ordering?
     private let logger = Logger()
     
-    init(foodDetail: FoodDetail, foodTitle: String){
-        self.foodDetail = foodDetail
+    init(foodTitle: String, ordering: Ordering){
+        self.ordering = ordering
         self.foodTitle = foodTitle
         self.foodDetailView = FoodDetailView()
         super.init(nibName: nil, bundle: nil)
@@ -42,7 +41,13 @@ final class DetailViewController: UIViewController{
     }
     
     private func updateFoodDetailInfo() {
-        foodDetailView.setFoodDetailInfo(foodTitle: foodTitle, foodDescription: foodDetail.productDescription, foodDeliveryInfo: foodDetail.deliveryInfo, foodDeliveryPrice: foodDetail.deliveryFee, foodPoint: foodDetail.point, foodPrices: foodDetail.prices)
+        guard let foodDetail = ordering?.selectedFoodDetail else { return }
+        foodDetailView.setFoodDetailInfo(foodTitle: foodTitle,
+                                         foodDescription: foodDetail.productDescription,
+                                         foodDeliveryInfo: foodDetail.deliveryInfo,
+                                         foodDeliveryPrice: foodDetail.deliveryFee,
+                                         foodPoint: foodDetail.point,
+                                         foodPrices: foodDetail.prices)
     }
     
     //일정 상 썸네일 이미지는 스크롤뷰를 적용하기에는 학습시간이 부족해서 우선 이미지 한장만 적용
