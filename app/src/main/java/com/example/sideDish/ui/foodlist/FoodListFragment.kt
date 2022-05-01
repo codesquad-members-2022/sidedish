@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
@@ -15,13 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sideDish.R
 import com.example.sideDish.common.EventObserver
 import com.example.sideDish.data.model.FoodCategory
+import com.example.sideDish.data.model.Item
 import com.example.sideDish.ui.productdetail.ProductDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
-import java.lang.Exception
+
+const val DETAIL_HASH_KEY = "hash"
+const val TITLE_KEY = "title"
+
 
 @AndroidEntryPoint
 class FoodListFragment : Fragment() {
@@ -53,7 +57,7 @@ class FoodListFragment : Fragment() {
 
         showSideDishList()
         viewModel.openDetail.observe(viewLifecycleOwner, EventObserver {
-            openDetail()
+            openDetail(it)
         })
     }
 
@@ -66,23 +70,28 @@ class FoodListFragment : Fragment() {
             supervisorScope {
                 launch() {
                     adapter.updateCategoryItems(FoodCategory.MAIN)
-                }.join()
+                }
                 launch() {
-                    //throw Exception()
                     adapter.updateCategoryItems(FoodCategory.SOUP)
-                }.join()
+                }
                 launch() {
                     adapter.updateCategoryItems(FoodCategory.SIDE)
-                }.join()
+                }
             }
-
         }
     }
 
-    private fun openDetail() {
+    private fun openDetail(foodInfo: Item.FoodInfo) {
         parentFragmentManager.commit {
             addToBackStack(null)
-            replace(R.id.container, ProductDetailFragment())
+            replace(
+                R.id.container,
+                ProductDetailFragment::class.java,
+                bundleOf(
+                    DETAIL_HASH_KEY to foodInfo.detailHash,
+                    TITLE_KEY to foodInfo.title
+                )
+            )
         }
     }
 

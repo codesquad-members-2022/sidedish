@@ -8,10 +8,9 @@ import javax.inject.Inject
 class DetailRemoteRepository @Inject constructor(
     private val sideDishRetrofitService: SideDishRetrofitService
 ) : DetailRepository {
-    override suspend fun getDetail(detailHash: String): FoodDetail? {
+    override suspend fun getDetail(detailHash: String): FoodDetail {
         val response = sideDishRetrofitService.getDetail(detailHash)
-        return if (response.isSuccessful) {
-            response.body()?.toFoodDetail()
-        } else null
+        val body = response.body()
+        return body.toFoodDetail()
     }
 }

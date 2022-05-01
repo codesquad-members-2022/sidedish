@@ -11,3 +11,7 @@ data class FoodDetail(
     val thumbImageUrls: List<String>,
     val topImageUrl: String
 )
+
+fun FoodDetail.isEmpty(): Boolean {
+    return discountedPrice.isEmpty()
+}
