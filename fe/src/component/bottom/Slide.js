@@ -33,10 +33,10 @@ const SlideCardsList = styled.div`
   transform: translateX(${({ currentTranslateX }) => currentTranslateX});
 `;
 
-const Slide = ({ cardData, alwaysDisplayed, isDisplayed }) => {
+const Slide = ({ title, cardData, alwaysDisplayed, isDisplayed }) => {
   const [cardListTranslateX, setCardListTranslateX] = useState(0);
   const cardSize = constansts.CardSize.small;
-  const maxTranslateX = -(cardData.body.length * cardSize) + 4 * cardSize;
+  const maxTranslateX = -(cardData.length * cardSize) + 4 * cardSize;
   const onClickRightHandler = () => {
     setCardListTranslateX((prev) =>
       prev - cardSize >= maxTranslateX ? prev - cardSize : prev
@@ -49,35 +49,27 @@ const Slide = ({ cardData, alwaysDisplayed, isDisplayed }) => {
     );
   };
 
-  const click = (event, props) => {
-    console.log(event.target.id);
-  };
-
   return (
     <SlideWrapper
       className={isDisplayed ? "active" : ""}
       style={{ display: alwaysDisplayed && "block" }}
     >
-      <SlideTitle>식탁을 풍성하게 하는 정갈한 밑반찬</SlideTitle>
+      <SlideTitle>{title}</SlideTitle>
       <SlideCardWrapper>
-        <SlideCardsList
-          currentTranslateX={cardListTranslateX.toString() + "px"}
-        >
-          {cardData.body.map((v) => {
+        <SlideCardsList currentTranslateX={`${cardListTranslateX}px`}>
+          {cardData.map((v) => {
             return (
               <Card
-                id={v.detail_hash}
                 size="small"
-                key={v.detail_hash}
-                image={v.image}
-                alt={v.alt}
-                title={v.title}
-                description={v.description}
-                s_price={v.s_price}
-                n_price={v.n_price}
-                badge={v.badge}
-                delivery={v.delivery_type}
-                onSaveClickedId={click}
+                id={v.id}
+                key={v.id}
+                image={v.imgUrl}
+                alt={v.name}
+                title={v.name}
+                description={v.content}
+                discountPrice={v.discountPrice}
+                originPrice={v.price}
+                badge={v.applyEvent}
               />
             );
           })}

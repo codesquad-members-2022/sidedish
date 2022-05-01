@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from "react";
 import Slide from "./Slide";
 import More from "./More";
+import constansts from "../../constants/constansts";
+import { myfetch } from "../../utils/utils";
 
 const Slides = () => {
   const [cardsInfor, setCardInfor] = useState([]);
   const [isDisplayed, setIsDisplayed] = useState(false);
-  const myfetch = (url) => {
-    return fetch(url).then((res) => res.json());
-  };
 
   useEffect(() => {
-    const url = [
-      "https://api.codesquad.kr/onban/side",
-      "https://api.codesquad.kr/onban/soup",
-      "https://api.codesquad.kr/onban/main",
-    ];
-
-    const data = Promise.all(
-      url.map(async (v) => {
-        return await myfetch(v);
-      })
+    const url = constansts.SlideINfor.map(
+      (v) => `${constansts.MAIN_API_URL}${v.postfix}`
     );
 
-    data.then((res) => setCardInfor(res));
+    const data = Promise.all(url.map(myfetch));
+    data
+      .then((res) =>
+        constansts.SlideINfor.map((v, i) =>
+          Object.assign(v, {
+            data: res[i].data,
+          })
+        )
+      )
+      .then((data) => setCardInfor(data));
   }, []);
 
   const onChangeSlideDisplay = () => {
-    isDisplayed ? setIsDisplayed(false) : setIsDisplayed(true);
+    setIsDisplayed(!isDisplayed);
   };
+
   return (
     <>
       {cardsInfor.map((v, i) => (
         <Slide
-          cardData={v}
-          key={i}
-          alwaysDisplayed={i === 0 ? true : false}
+          cardData={v.data}
+          key={v.id}
+          alwaysDisplayed={i === 0}
           isDisplayed={isDisplayed}
+          title={v.title}
         />
       ))}
       <More onchange={onChangeSlideDisplay} isDisplayed={isDisplayed} />

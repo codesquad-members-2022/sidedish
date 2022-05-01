@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { PlusIcon, MinusIcon } from "../icons/ModalIcon";
+import { priceToString } from "../../utils/utils";
+import { ModalContext } from "../../store/store";
 
 const InforWrapper = styled.div`
   width: 470px;
@@ -56,8 +58,6 @@ const ProductInfoWrapper = styled.div`
   padding-bottom: 15px;
 `;
 
-// ProductInfoWrapper
-
 const ProductPriceWrapper = styled.div`
   display: flex;
   height: 80px;
@@ -95,7 +95,6 @@ const ProductAmountCountWrapper = styled.div`
   height: 30px;
   justify-content: space-between;
   align-items: center;
-
   display: flex;
 `;
 
@@ -121,15 +120,47 @@ const OrderButton = styled.button`
   color: wheat;
 `;
 
-const DetailInfo = () => {
+const DetailInfo = ({ infoData }) => {
+  const [orderNumber, SetOrderNumber] = useState(1);
+  const ctx = useContext(ModalContext);
+
+  useEffect(() => {
+    !ctx.isDisplayed && SetOrderNumber(1);
+  }, [ctx.isDisplayed]);
+
+  const orderNumberMinus = () => {
+    SetOrderNumber((prev) => (prev === 1 ? prev : prev - 1));
+  };
+
+  const orderNumberPlus = () => {
+    SetOrderNumber((prev) => prev + 1);
+  };
+
+  const order = () => {
+    const orderData = {
+      id: `${ctx.clickedId}`,
+      quantity: `${orderNumber}`,
+    };
+    fetch("http://15.165.204.34:8080/api/v1/products/orders", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    alert(`주문 성공했습니다!`);
+  };
+
   return (
     <InforWrapper>
       <TextWrapper>
         <ProductInfoWrapper>
-          <InforTitle>오리주물럭_반조리</InforTitle>
-          <InforOriginPrice>15,800원</InforOriginPrice>
+          <InforTitle>{infoData.name}</InforTitle>
+          <InforOriginPrice>{priceToString(infoData.price)}</InforOriginPrice>
           <InforBadge>런칭특가</InforBadge>
-          <SaledPrice>12,640원</SaledPrice>
+          <SaledPrice>{priceToString(infoData.discountPrice)}</SaledPrice>
         </ProductInfoWrapper>
 
         <ProductPriceWrapper>
@@ -140,28 +171,34 @@ const DetailInfo = () => {
           </ProductPriceTextWrapper>
 
           <ProductPriceTextWrapper>
-            <ProductPriceText>125원</ProductPriceText>
             <ProductPriceText>
-              서울 경기 새벽 배송 / 전국 택배 배송
+              {Math.floor(infoData.discountPrice * 0.01).toString()}
             </ProductPriceText>
             <ProductPriceText>
-              2,500원 (40,000원 이상 구매 시 무료)
+              {infoData.shippingInfo && infoData.shippingInfo.deliveryInfo}
+            </ProductPriceText>
+            <ProductPriceText>
+              {infoData.shippingInfo &&
+                infoData.shippingInfo.deliveryCharge.toString() + " "}
+              (40,000원 이상 구매 시 무료)
             </ProductPriceText>
           </ProductPriceTextWrapper>
         </ProductPriceWrapper>
 
         <ProductAmountWrapper>
           <ProductAmountCountWrapper>
-            <MinusIcon />
-            <ProductAmountCount>1</ProductAmountCount>
-            <PlusIcon />
+            <MinusIcon onClick={orderNumberMinus} />
+            <ProductAmountCount>{orderNumber}</ProductAmountCount>
+            <PlusIcon onClick={orderNumberPlus} />
           </ProductAmountCountWrapper>
           <div>
             <ProductAmountText>총 주문금액</ProductAmountText>
-            <ProductAmount>12,640원</ProductAmount>
+            <ProductAmount>
+              {priceToString(infoData.discountPrice * orderNumber)}
+            </ProductAmount>
           </div>
         </ProductAmountWrapper>
-        <OrderButton>주문하기</OrderButton>
+        <OrderButton onClick={order}>주문하기</OrderButton>
       </TextWrapper>
     </InforWrapper>
   );
