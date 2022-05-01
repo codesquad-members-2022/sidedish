@@ -10,12 +10,14 @@ const CardBox = ({
   cardInfos,
   handleModal,
   isModalVisible,
+  handleTransitionEnd,
 }) => {
   return (
     <StyledCardContainer
       hasBtn={hasButton}
       showingSlideCardNum={showingSlideCardNum}
       slidingSize={slidingSize}
+      onTransitionEnd={handleTransitionEnd}
     >
       {cardInfos.map((cardInfo, idx) =>
         isModalVisible ? (

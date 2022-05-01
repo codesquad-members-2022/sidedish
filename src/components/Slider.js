@@ -10,6 +10,7 @@ const Slider = ({
   cardInfos,
   hasButton,
   isModalVisible,
+  isMoving,
 }) => {
   const initialHeadCardOrder = 1;
 
@@ -131,13 +132,13 @@ const Slider = ({
         <>
           <StyledLeftButton
             icon={'◀'}
-            disabled={disabledPrevBtn}
+            disabled={disabledPrevBtn || isMoving}
             onClick={handleClickPrev}
             isModalVisible={isModalVisible}
           />
           <StyledRightButton
             icon={'▶'}
-            disabled={disabledNextBtn}
+            disabled={disabledNextBtn || isMoving}
             onClick={handleClickNext}
             isModalVisible={isModalVisible}
           />
