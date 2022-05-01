@@ -1,17 +1,17 @@
 package team31.codesuqad.sidedish.controller.dto;
 
-import team31.codesuqad.sidedish.domain.DiscountPolicies;
+import team31.codesuqad.sidedish.domain.DiscountPolicy;
 
 public class DiscountDto {
 
-    private Integer eventId;
-    private String eventName;
-    private Integer discount;
+    private final Integer eventId;
+    private final String eventName;
+    private final Integer discount;
 
-    public DiscountDto(DiscountPolicies discountPolicies) {
-        eventId = discountPolicies.getId();
-        eventName = discountPolicies.getName();
-        discount = discountPolicies.getDiscountRate();
+    public DiscountDto(DiscountPolicy discountPolicy) {
+        eventId = discountPolicy.getId();
+        eventName = discountPolicy.getName();
+        discount = discountPolicy.getDiscountRate();
     }
 
     public Integer getEventId() {

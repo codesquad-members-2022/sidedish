@@ -1,17 +1,18 @@
 package team31.codesuqad.sidedish.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-public class DiscountPolicies {
+@Table("discount_policies")
+public class DiscountPolicy {
 
     @Id
     private Integer id;
 
-    private String name;
-    private Integer discountRate;
+    private final String name;
+    private final Integer discountRate;
 
-    public DiscountPolicies(Integer id, String name, Integer discountRate) {
-        this.id = id;
+    public DiscountPolicy(String name, Integer discountRate) {
         this.name = name;
         this.discountRate = discountRate;
     }

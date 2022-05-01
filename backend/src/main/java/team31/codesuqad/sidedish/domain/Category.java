@@ -7,10 +7,14 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Category {
 
     @Id
-    private int id;
-    private String name;
+    private Integer id;
+    private final String name;
 
-    public int getId() {
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Integer getId() {
         return id;
     }
 

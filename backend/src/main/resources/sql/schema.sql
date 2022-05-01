@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `sidedish`.`discount_policies`
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `sidedish`.`discount`
+CREATE TABLE IF NOT EXISTS `sidedish`.`discounts`
 (
     `dish_id`            BIGINT NOT NULL,
     `discount_policy_id` INT    NOT NULL,

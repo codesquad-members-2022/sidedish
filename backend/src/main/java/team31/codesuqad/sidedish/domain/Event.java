@@ -1,18 +1,32 @@
 package team31.codesuqad.sidedish.domain;
 
-public enum Event {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-    MEAT,
-    SIDE,
-    SEASON,
-    KIDS;
+@Table("event_tabs")
+public class Event {
 
-    public static Event valueOfOrNull(String eventTab) {
-        try {
-            return valueOf(eventTab.toUpperCase());
-        } catch (NullPointerException e) {
-            return null;
-        }
+    @Id
+    private Integer id;
+
+    private final String name;
+    private final String description;
+
+    public Event(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }

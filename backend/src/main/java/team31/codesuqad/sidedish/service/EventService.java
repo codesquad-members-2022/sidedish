@@ -1,87 +1,40 @@
 package team31.codesuqad.sidedish.service;
 
 import org.springframework.stereotype.Service;
-import team31.codesuqad.sidedish.controller.dto.DiscountDto;
-import team31.codesuqad.sidedish.controller.dto.DishDto;
-import team31.codesuqad.sidedish.controller.dto.EventTabResponse;
+import org.springframework.transaction.annotation.Transactional;
+import team31.codesuqad.sidedish.controller.dto.EventTabListDto;
+import team31.codesuqad.sidedish.controller.dto.CategoryResponse;
 import team31.codesuqad.sidedish.domain.*;
-import team31.codesuqad.sidedish.repository.EventTabsRepository;
+import team31.codesuqad.sidedish.repository.EventTabRepository;
+import team31.codesuqad.sidedish.type.EventType;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.NoSuchElementException;
 
 @Service
+@Transactional(readOnly = true)
 public class EventService {
 
-    private EventTabsRepository eventTabsRepository;
-    private DishesService dishesService;
-    private DiscountPoliciesService discountPoliciesService;
+    private final EventTabRepository eventTabRepository;
+    private final DishService dishService;
 
-    public EventService(EventTabsRepository eventTabsRepository, DishesService dishesService, DiscountPoliciesService discountPoliciesService) {
-        this.eventTabsRepository = eventTabsRepository;
-        this.dishesService = dishesService;
-        this.discountPoliciesService = discountPoliciesService;
+    public EventService(EventTabRepository eventTabRepository, DishService dishService) {
+        this.eventTabRepository = eventTabRepository;
+        this.dishService = dishService;
     }
 
-    public EventTabResponse getEventTab(Event event) {
-        EventTabs eventTab = eventTabsRepository.findByName(event.name());
-        List<Dishes> allDishes = dishesService.findAll();
-
-        List<Dishes> dishes = findSameEventTab(allDishes, eventTab.getId());
-        mappingDiscountPolicies(dishes);
-        Collections.shuffle(dishes);
-        dishes = checkNumber(dishes);
-
-        List<DishDto> dishDtos = makeDishDto(dishes);
-        return new EventTabResponse(eventTab, dishDtos);
+    public EventTabListDto findAll() {
+        List<Event> events = eventTabRepository.findAll();
+        return new EventTabListDto(events);
     }
 
-    private List<Dishes> findSameEventTab(List<Dishes> allDishes, Integer eventId) {
-        return allDishes.stream()
-                .filter(dish -> dish.isSameEvent(eventId))
-                .collect(Collectors.toList());
-    }
+    public CategoryResponse getEventTab(EventType eventType) {
+        Event eventTab = eventTabRepository.findByName(eventType.name())
+                .orElseThrow(() -> new NoSuchElementException("이벤트 탭이 존재하지 않습니다."));
 
-    private void mappingDiscountPolicies(List<Dishes> dishes) {
-        Map<Integer, DiscountPolicies> discountPoliciesMap = discountPoliciesService.findAll().stream()
-                .collect(Collectors.toMap(DiscountPolicies::getId, Function.identity()));
+        List<Dish> dishes = dishService.findThreeByEventTabId(eventTab.getId());
 
-        for (Dishes dish : dishes) {
-            List<DiscountPolicies> discountPolicies = dish.getDiscounts().stream()
-                    .map(Discount::getDiscountPolicyId)
-                    .map(discountPoliciesMap::get)
-                    .collect(Collectors.toList());
-            dish.setEventBadge(discountPolicies);
-        }
-    }
-
-    private List<Dishes> checkNumber(List<Dishes> dishes) {
-        if (dishes.size() > 3) {
-            return dishes.subList(0, 3);
-        }
-        return dishes;
-    }
-
-    private List<DishDto> makeDishDto(List<Dishes> dishes) {
-        List<DishDto> dishDto = new ArrayList<>();
-        for (Dishes dish : dishes) {
-            List<DiscountDto> discountDtos = dish.getEventBadge().stream()
-                    .map(DiscountDto::new)
-                    .collect(Collectors.toList());
-
-            Images main = dish.getImages().stream()
-                    .filter(images -> images.isSameType("main"))
-                    .findAny()
-                    .orElseThrow(() -> new RuntimeException("메인 이미지가 없습니다."));
-
-            dishDto.add(new DishDto(dish, main, discountDtos));
-        }
-
-        return dishDto;
+        return new CategoryResponse(eventTab, dishes);
     }
 
 }

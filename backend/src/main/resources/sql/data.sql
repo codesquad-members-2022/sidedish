@@ -137,55 +137,55 @@ VALUES(10900, '동태찌개', '겨울철 보양식으로 안성맞춤', 100,
 -- discount
 
 -- 오리 주물럭_반조리
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(1, 1);
 
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(1, 2);
 
 -- 소갈비찜
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(2, 1);
 
 -- 잡채
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(4, 1);
 
 -- 새콤달콤 오징어무침
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(6, 2);
 
 -- 호두 멸치볶음
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(7, 1);
 
 -- 한돈 매콤 안심장조림
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(8, 1);
 
 -- 야채 어묵볶음
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(9, 1);
 
 -- 오이소박이
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(10, 1);
 
 -- 한돈 돼지 김치찌개
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(13, 1);
 
 -- 된장찌개
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(14, 1);
 
 -- 미역오이냉국
-INSERT INTO `discount` (dish_id, discount_policy_id)
+INSERT INTO `discounts` (dish_id, discount_policy_id)
 VALUES(15, 1);
 
 
 
--- images
+-- image
 
 -- 오리 주물럭 반조리
 INSERT INTO `images` (type, url, dish_id)

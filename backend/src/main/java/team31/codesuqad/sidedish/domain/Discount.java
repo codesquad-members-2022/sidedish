@@ -1,9 +1,12 @@
 package team31.codesuqad.sidedish.domain;
 
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table("discounts")
 public class Discount {
 
-    private Long dishId;
-    private Integer discountPolicyId;
+    private final Long dishId;
+    private final Integer discountPolicyId;
 
     public Discount(Long dishId, Integer discountPolicyId) {
         this.dishId = dishId;
