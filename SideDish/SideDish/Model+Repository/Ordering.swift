@@ -1,5 +1,16 @@
 import Foundation
 
+enum UserInfoKey: String{
+    case foodDetailRespose = "foodDetailResponse"
+    case foodTitleResponse = "foodTitleResponse"
+    case dataRequestFailureMessage = "dataRequestFailureMessage"
+}
+
+struct NotificationName{
+    static let foodSelected = Notification.Name("foodSelected")
+    static let dataRequestFailed = Notification.Name("dataRequestFailed")
+}
+
 final class Ordering{
     private var foodMap: [Category:[String:Food]] = {
         var map: [Category:[String:Food]] = [:]
@@ -8,7 +19,12 @@ final class Ordering{
         }
         return map
     }()
-    private (set) var selectedMenu: Food?
+    private (set) var selectedFoodDetail: FoodDetail? {
+        didSet {
+            orderingCount = 0
+            deliveryFee = 0
+        }
+    }
     private var orderingCount: Int = 0
     private var repository: RepositoryApplicable
     var foodCount: Int {
@@ -21,7 +37,7 @@ final class Ordering{
     var categoryCount: Int {
         return Category.allCases.count
     }
-    var deliveryMoney: Int = 2500
+    private var deliveryFee: Int = 0
     
     init(repository: RepositoryApplicable) {
         self.repository = repository
@@ -51,7 +67,27 @@ final class Ordering{
     
     func selectFood(foodHash: String, category: Category) {
         guard let food = foodMap[category]?[foodHash] else { return }
-        selectedMenu = food
+        requestFoodDetail(detailHash: foodHash){ result in
+            switch result {
+            case .success(let response):
+                self.selectedFoodDetail = response.data
+                self.deliveryFee = setDeliveryFee(stringLiteral: response.data.deliveryFee)
+                NotificationCenter.default.post(name: NotificationName.foodSelected,
+                                                object: self,
+                                                userInfo: [UserInfoKey.foodTitleResponse:food.title])
+            case .failure(let error):
+                NotificationCenter.default.post(name: NotificationName.dataRequestFailed,
+                                                object: self,
+                                                userInfo: [UserInfoKey.dataRequestFailureMessage:error.localizedDescription])
+            }            
+        }
+        
+        func setDeliveryFee(stringLiteral: String) -> Int {
+            let deliveryFeeStringLiteral = stringLiteral.components(separatedBy: " ")[0].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            guard let deliveryFee = Int(deliveryFeeStringLiteral) else { return 0 }
+            return deliveryFee
+        }
+    }
     }
     
     func getCategoryWithIndex(index: Int) -> Category{
@@ -73,7 +109,7 @@ final class Ordering{
         repository.requestBinaryData(method: .get, contentType: .image, url: url, completionHandler: completionHandler)
     }
     
-    func requestFoodDetail(detailHash: String, completionHandler: @escaping (Result<DetailResponse<FoodDetail>,Error>)->Void) {
+    private func requestFoodDetail(detailHash: String, completionHandler: @escaping (Result<DetailResponse<FoodDetail>,Error>)->Void) {
         let url = EndPoint.detail(detailHash: detailHash)
         repository.requestModelData(method: .get, contentType: .json, url: url, completionHandler: completionHandler)
     }
