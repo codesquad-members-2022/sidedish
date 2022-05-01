@@ -59,27 +59,29 @@ final class DetailViewController: UIViewController{
     
     //일정 상 썸네일 이미지는 스크롤뷰를 적용하기에는 학습시간이 부족해서 우선 이미지 한장만 적용
     private func updateFoodThumbnailImage() {
-        ordering?.requesetFoodImage(imageUrl: foodDetail.thumbImageUrls[0]) { result in
+        guard let foodDetail = ordering?.selectedFoodDetail else { return }
+        ordering?.requesetFoodImage(imageUrl: foodDetail.thumbImageUrls[0]) { [weak self] result in
             switch result {
             case .success(let imageData):
-                self.foodDetailView.addThumbnailImage(imageData: imageData)
+                self?.foodDetailView.addThumbnailImage(imageData: imageData)
             case .failure(let error):
-                self.logger.error("\(error.localizedDescription)")
+                self?.logger.error("\(error.localizedDescription)")
             }
         }
     }
     
     private func updateFoodDetailImages() {
+        guard let foodDetail = ordering?.selectedFoodDetail else { return }
         foodDetailView.adjustFoodDetailImageStackViewLayout(imageCount: foodDetail.detailImageUrls.count)
         for imageUrl in foodDetail.detailImageUrls {
-            ordering?.requesetFoodImage(imageUrl: imageUrl) { result in
+            ordering?.requesetFoodImage(imageUrl: imageUrl) { [weak self] result in
                 switch result {
                 case .success(let imageData):
-                    DispatchQueue.main.async {
-                        self.foodDetailView.addDetailImage(imageData: imageData)
+                    DispatchQueue.main.async { 
+                        self?.foodDetailView.addDetailImage(imageData: imageData)
                     }
                 case .failure(let error):
-                    self.logger.error("\(error.localizedDescription)")
+                    self?.logger.error("\(error.localizedDescription)")
                 }
             }
         }
