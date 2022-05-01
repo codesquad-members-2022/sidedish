@@ -23,10 +23,17 @@ final class DetailViewController: UIViewController{
         navigationItem.title = foodTitle
         view.backgroundColor = .white
         foodDetailView.translatesAutoresizingMaskIntoConstraints = false
+        foodDetailView.delegate = self
+
         setLayout()
         updateFoodDetailInfo()
         updateFoodThumbnailImage()
         updateFoodDetailImages()
+        addObservers()
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(changedSelectedFoodCount(_:)), name: NotificationName.selectedFoodCountChanged, object: ordering)
     }
     
     private func setLayout() {
@@ -76,5 +83,18 @@ final class DetailViewController: UIViewController{
                 }
             }
         }
+    }
+    
+    @objc func changedSelectedFoodCount(_ notification: Notification) {
+        guard let count = notification.userInfo?[UserInfoKey.changedSelectedFoodCount] as? Int else { return }
+        guard let sum = notification.userInfo?[UserInfoKey.orderingSumPrice] as? Int else { return }
+        foodDetailView.foodCountValueLabel.text = "\(count)"
+        foodDetailView.foodTotalPriceValueLabel.text = "\(sum)"
+    }
+}
+
+extension DetailViewController: FoodDetailViewDelegate {
+    func changingSelectedFoodCountRequested(value: Double) {
+        ordering?.setOrderingCount(value: value)
     }
 }
