@@ -13,8 +13,14 @@ const CardContainer = ({
   isModalVisible,
 }) => {
   const [slidingSize, setSlidingSize] = useState(0);
+  const [isMoving, setIsMoving] = useState(false);
+
+  const handleTransitionEnd = () => {
+    setIsMoving(false);
+  };
 
   const handleClickSlide = (movingSlidingSize) => {
+    setIsMoving(true);
     setSlidingSize(slidingSize + movingSlidingSize);
   };
 
@@ -27,6 +33,7 @@ const CardContainer = ({
         cardInfos={cardInfos}
         hasButton={hasButton}
         isModalVisible={isModalVisible}
+        isMoving={isMoving}
       />
       <StyledDiv>
         <CardBox
@@ -36,6 +43,7 @@ const CardContainer = ({
           cardInfos={cardInfos}
           handleModal={handleModal}
           isModalVisible={isModalVisible}
+          handleTransitionEnd={handleTransitionEnd}
         />
       </StyledDiv>
     </StyledSection>
