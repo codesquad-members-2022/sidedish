@@ -21,7 +21,7 @@ class DetailRepository @Inject constructor(private val detailService: DetailServ
     }
 
     private fun <T> Response<T>.getBodyOrThrow(): T? {
-        return if (this.isSuccessful) this.body() else throw java.lang.RuntimeException("Network error, please try again later\n")
+        return if (this.isSuccessful) this.body() else throw java.lang.Exception("${this.message()} Error occurred, please try again later\n")
     }
 
 }

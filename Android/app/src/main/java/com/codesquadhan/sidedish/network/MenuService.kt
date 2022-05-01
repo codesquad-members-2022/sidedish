@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface MenuService {
 
-    @GET(".")
+    @GET("menus")
     suspend fun getMenuList(@Query("type") type: String): Response<List<MainResponseItem>>
 
 }

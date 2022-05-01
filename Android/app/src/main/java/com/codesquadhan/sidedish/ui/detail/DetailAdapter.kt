@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.codesquadhan.sidedish.data.model.DetailImage
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.data.model.detail.TopImageData
 import com.codesquadhan.sidedish.databinding.ItemDetailBinding
+import com.codesquadhan.sidedish.ui.common.ImageLoadingFailListener
 
 class DetailAdapter : ListAdapter<TopImageData, DetailAdapter.DetailViewHolder>(diffUtil) {
 
@@ -28,6 +30,9 @@ class DetailAdapter : ListAdapter<TopImageData, DetailAdapter.DetailViewHolder>(
 
             Glide.with(binding.root)
                 .load(imageUrl)
+                .thumbnail(Glide.with(binding.root.context).load(R.drawable.loading_icon))
+                .listener(ImageLoadingFailListener(binding.ivFoodDetailFail))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivFoodDetail)
         }
 

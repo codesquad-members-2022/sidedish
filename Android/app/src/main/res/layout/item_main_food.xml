@@ -53,8 +53,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E1E1E1"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/iv_food_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E1E1E1"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_food_sample" />
+                android:src="@drawable/load_fail"
+                android:visibility="gone" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -83,9 +91,9 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_tag"
+            badgeVisible="@{mainResponseItem.saleType}"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            badgeVisible="@{mainResponseItem.saleType}"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toTopOf="@id/v_empty_2"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
@@ -94,9 +102,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_tag"
+                badgeBackground="@{mainResponseItem.saleType}"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                badgeBackground="@{mainResponseItem.saleType}"
                 tools:background="@color/Primary1">
 
                 <View
@@ -110,18 +118,18 @@
 
                 <TextView
                     android:id="@+id/tv_tag"
+                    badgeText="@{mainResponseItem.saleType}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:maxLines="1"
                     android:textSize="12sp"
-                    badgeText="@{mainResponseItem.saleType}"
-                    tools:text="@string/text_tag_launching"
                     app:layout_constraintBottom_toTopOf="@id/v_tag1_4"
                     app:layout_constraintEnd_toStartOf="@id/v_tag1_2"
                     app:layout_constraintHeight_percent="0.66"
                     app:layout_constraintStart_toEndOf="@id/v_tag1_1"
-                    app:layout_constraintTop_toBottomOf="@id/v_tag1_3" />
+                    app:layout_constraintTop_toBottomOf="@id/v_tag1_3"
+                    tools:text="@string/text_tag_launching" />
 
                 <View
                     android:id="@+id/v_tag1_2"
@@ -172,10 +180,10 @@
         <TextView
             android:id="@+id/tv_price_after_sale"
             style="@style/Text_Small_Bold"
+            priceAmount="@{mainResponseItem.salePrice}"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            priceAmount="@{mainResponseItem.salePrice}"
             app:layout_constraintBottom_toTopOf="@id/v_empty_3"
             app:layout_constraintStart_toEndOf="@id/v_empty_1"
             app:layout_constraintTop_toTopOf="@id/v_empty_3_1"
@@ -192,17 +200,17 @@
 
         <TextView
             android:id="@+id/tv_price_before_sale"
+            priceAmount="@{mainResponseItem.price}"
+            strikeThrough="@{mainResponseItem.saleType}"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            priceAmount="@{mainResponseItem.price}"
-            strikeThrough="@{mainResponseItem.saleType}"
             android:textColor="@color/Grey2"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_price_after_sale"
             app:layout_constraintStart_toEndOf="@id/v_empty_4"
             app:layout_constraintTop_toTopOf="@id/tv_price_after_sale"
-            tools:text = "20000원"/>
+            tools:text="20000원" />
 
         <View
             android:id="@+id/v_empty_5"

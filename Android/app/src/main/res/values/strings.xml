@@ -11,10 +11,16 @@
     <string name="detail_point">적립금</string>
     <string name="detail_delivery_info">배송정보</string>
     <string name="detail_delivery_info_value">서울 경기 새벽 배송, 전국 택배 배송</string>
-    <string name="delivery_fee">배송비</string>
+    <string name="detail_delivery_fee">배송비</string>
+    <string name="detail_delivery_info_free">%s (%s 이상 구매 시 무료)</string>
 
     <string name="order_success_message">주문에 성공했습니다</string>
     <string name="order_fail_message">주문에 실패했습니다</string>
 
     <string name="dialog_ok">확인</string>
+    <string name="item_count_description">수량</string>
+
+    <string name="header_item_count">%d개 상품이 등록되어 있습니다.</string>
+    <string name="network_fail_text">네트워크 통신이 불안정합니다. 아래의 버튼을 눌러 다시 시도해 주세요</string>
+    <string name="network_fail_retry">다시 시도</string>
 </resources>

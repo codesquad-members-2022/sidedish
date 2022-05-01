@@ -11,10 +11,10 @@ import retrofit2.http.Path
 
 interface DetailService {
 
-    @GET("detail/{id}")
+    @GET("menus/detail/{id}")
     suspend fun getMenuDetail(@Path("id") id: Int): Response<DetailResponse>
 
-    @POST("detail/{id}")
+    @POST("menus/detail/{id}")
     suspend fun orderMenu(
         @Path("id") id: Int,
         @Body orderRequest: OrderRequest

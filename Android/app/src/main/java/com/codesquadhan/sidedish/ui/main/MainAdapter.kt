@@ -1,16 +1,18 @@
 package com.codesquadhan.sidedish.ui.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.codesquadhan.sidedish.R
 import com.codesquadhan.sidedish.data.model.be.MainResponseItem
 import com.codesquadhan.sidedish.databinding.ItemMainFoodBinding
 import com.codesquadhan.sidedish.databinding.ItemMainHeaderBinding
+import com.codesquadhan.sidedish.ui.common.ImageLoadingFailListener
 import com.codesquadhan.sidedish.ui.common.ViewType.FOOD_VIEW_TYPE
 import com.codesquadhan.sidedish.ui.common.ViewType.HEADER_VIEW_TYPE
 
@@ -52,24 +54,38 @@ class MainAdapter(private val itemClick: (id: Int) -> Unit) :
         return getItem(position).viewType
     }
 
-    inner class MainHeaderViewHolder(private val binding: ItemMainHeaderBinding) :
+    class MainHeaderViewHolder(private val binding: ItemMainHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(mainResponseItem: MainResponseItem) {
             binding.mainResponseItem = mainResponseItem
             binding.tvMainHeader.text = mainResponseItem.headerText
+
+            binding.tvItemCount.text = binding.root.context.getString(
+                R.string.header_item_count,
+                mainResponseItem.itemCount
+            )
+            binding.tvItemCount.isVisible = mainResponseItem.isHeaderClicked
+            binding.root.setOnClickListener {
+                binding.tvItemCount.isVisible = true
+//                getItem(position).isHeaderClicked = true
+                mainResponseItem.isHeaderClicked = true
+            }
         }
 
     }
 
-    inner class MainFoodViewHolder(private val binding: ItemMainFoodBinding) :
+    class MainFoodViewHolder(private val binding: ItemMainFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(mainResponseItem: MainResponseItem, itemClick: (id: Int) -> Unit) {
             binding.mainResponseItem = mainResponseItem
 
             Glide.with(binding.root)
-                .load(mainResponseItem.imagePath).error(R.drawable.ic_launcher_foreground)
+                .load(mainResponseItem.imagePath)
+                .thumbnail(Glide.with(binding.root).load(R.drawable.loading_icon))
+                .listener(ImageLoadingFailListener(binding.ivFoodFail))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivFood)
 
             binding.root.setOnClickListener {
