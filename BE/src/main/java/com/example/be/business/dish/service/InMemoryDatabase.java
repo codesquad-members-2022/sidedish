@@ -1,6 +1,7 @@
 package com.example.be.business.dish.service;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +10,8 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;
 
-@Configuration
-public class InMemogryDatabase {
+@Component
+public class InMemoryDatabase {
 
     private static final int LIMIT = 3;
     private List<DishInformationResponse> planningDataResponses = new ArrayList<>();

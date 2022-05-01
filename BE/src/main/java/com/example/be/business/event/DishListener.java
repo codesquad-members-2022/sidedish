@@ -4,22 +4,23 @@ import com.example.be.business.dish.domain.Dish;
 import com.example.be.business.dish.repository.DishRepository;
 import com.example.be.business.event.dish.DishUpdatePublishEvent;
 import com.example.be.common.annotation.EventListenerz;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class DishListener {
 
-    @Autowired
-    private final DishRepository dishRepository;
+    private static final Logger logger = LoggerFactory.getLogger(DishListener.class);
 
-    public DishListener(DishRepository dishRepository) {
-        this.dishRepository = dishRepository;
+    public DishListener() {
     }
 
     @EventListenerz
     public void onApplicationEvent(DishUpdatePublishEvent event) {
         Dish dish = event.getDish();
-        dishRepository.save(dish);
+        logger.info("도메인 이벤트 발생: {}", dish);
     }
 }

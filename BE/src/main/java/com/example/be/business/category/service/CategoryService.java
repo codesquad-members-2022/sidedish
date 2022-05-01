@@ -3,7 +3,7 @@ package com.example.be.business.category.service;
 import com.example.be.business.category.repository.CategoryRepository;
 import com.example.be.business.dish.service.CategoryType;
 import com.example.be.business.dish.service.DishInformationResponse;
-import com.example.be.business.dish.service.InMemogryDatabase;
+import com.example.be.business.dish.service.InMemoryDatabase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,28 +14,28 @@ import java.util.Map;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
-    private final InMemogryDatabase inMemogryDatabase;
+    private final InMemoryDatabase inMemoryDatabase;
 
-    public CategoryService(CategoryRepository categoryRepository, InMemogryDatabase inMemogryDatabase) {
+    public CategoryService(CategoryRepository categoryRepository, InMemoryDatabase inMemoryDatabase) {
         this.categoryRepository = categoryRepository;
-        this.inMemogryDatabase = inMemogryDatabase;
+        this.inMemoryDatabase = inMemoryDatabase;
     }
 
     @Transactional(readOnly = true)
     public Map<CategoryType, List<DishInformationResponse>> getDishesByCategory() {
-        if (inMemogryDatabase.planningDataisEmpty()) {
-            inMemogryDatabase.savePlanningData(categoryRepository.getDishesByCategory());
-            return inMemogryDatabase.getPlanningDataByCategory();
+        if (inMemoryDatabase.planningDataisEmpty()) {
+            inMemoryDatabase.savePlanningData(categoryRepository.getDishesByCategory());
+            return inMemoryDatabase.getPlanningDataByCategory();
         }
-        return inMemogryDatabase.getPlanningDataByCategory();
+        return inMemoryDatabase.getPlanningDataByCategory();
     }
 
     @Transactional(readOnly = true)
     public Map<Long, List<DishInformationResponse>> getDishesBySubCategory(Long id) {
-        if (inMemogryDatabase.planningDataisEmpty()) {
-            inMemogryDatabase.savePlanningData(categoryRepository.getDishesByCategory());
-            return inMemogryDatabase.getPlanningDataBySubCategory(id);
+        if (inMemoryDatabase.planningDataisEmpty()) {
+            inMemoryDatabase.savePlanningData(categoryRepository.getDishesByCategory());
+            return inMemoryDatabase.getPlanningDataBySubCategory(id);
         }
-        return inMemogryDatabase.getPlanningDataBySubCategory(id);
+        return inMemoryDatabase.getPlanningDataBySubCategory(id);
     }
 }

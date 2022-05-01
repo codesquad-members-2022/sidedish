@@ -35,7 +35,6 @@ public class PlanningDataResponse {
         this.description = dish.getDescription();
         this.price = dish.getPrice();
         this.badge = dish.getBadge().name();
-        this.deliveryPriceOption = dish.getDeliveryPriceOption().name();
         this.thumbnail = dish.getThumbnail();
         this.dishStatus = dish.getDishStatus().name();
     }

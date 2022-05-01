@@ -36,9 +36,9 @@ public class DishSaveRequest {
         this.images = images;
     }
 
-    public Dish toEntity() {
-        return new Dish(name, description, normalPrice, badge, deliveryPriceOption, thumbnail, dishStatus, count, categoryId, images);
-    }
+//    public Dish toEntity() {
+//        return new Dish(name, description, normalPrice, badge, deliveryPriceOption, thumbnail, dishStatus, count, categoryId, images);
+//    }
 
     public String getName() {
         return name;

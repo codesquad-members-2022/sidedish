@@ -23,12 +23,12 @@ public class DishService {
     private final Logger logger = LoggerFactory.getLogger(DishService.class);
 
     private final DishJdbcReadRepository dishJdbcReadRepository;
-    private final InMemogryDatabase inMemogryDatabase;
+    private final InMemoryDatabase inMemoryDatabase;
     private final DishRepository dishRepository;
 
-    public DishService(DishJdbcReadRepository dishJdbcReadRepository, InMemogryDatabase inMemogryDatabase, DishRepository dishRepository) {
+    public DishService(DishJdbcReadRepository dishJdbcReadRepository, InMemoryDatabase inMemoryDatabase, DishRepository dishRepository) {
         this.dishJdbcReadRepository = dishJdbcReadRepository;
-        this.inMemogryDatabase = inMemogryDatabase;
+        this.inMemoryDatabase = inMemoryDatabase;
         this.dishRepository = dishRepository;
     }
 
@@ -50,5 +50,6 @@ public class DishService {
         logger.info("상품 수정: 상품번호 {}", id);
         Dish findDish = getDishDetail(id);
         findDish.publishEventUpdateDish(price, badge, deliveryPriceOption, thumbnail, dishStatus, categoryId, count);
+        dishRepository.save(findDish);
     }
 }
