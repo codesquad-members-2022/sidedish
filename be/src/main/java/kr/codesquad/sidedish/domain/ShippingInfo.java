@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Id;
 public class ShippingInfo {
 
 	@Id
-	private final Integer deliveryType;
+	private final Integer deliveryForm;
 	private final Integer deliveryCharge;
 	private final String deliveryInfo;
 }

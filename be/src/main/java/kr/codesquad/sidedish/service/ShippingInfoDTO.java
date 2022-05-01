@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class ShippingInfoDTO {
 
-	private final Integer deliveryType;
+	private final Integer deliveryForm;
 	private final Integer deliveryCharge;
 	private final String deliveryInfo;
 
@@ -17,7 +17,8 @@ public class ShippingInfoDTO {
 
 		DeliveryType deliveryType = DeliveryType.convertInfo(shippingInfo.getDeliveryInfo());
 
-		return new ShippingInfoDTO(shippingInfo.getDeliveryType(), shippingInfo.getDeliveryCharge(),
+		return new ShippingInfoDTO(shippingInfo.getDeliveryForm(),
+			shippingInfo.getDeliveryCharge(),
 			deliveryType.getValue());
 	}
 }

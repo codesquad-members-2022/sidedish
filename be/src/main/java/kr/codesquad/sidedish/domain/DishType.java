@@ -16,11 +16,11 @@ public enum DishType {
     SOUP("국물"),
     ;
 
-    private final String type;
+    private final String name;
 
-    public static DishType stringToEnum(String type) {
+    public static DishType fromName(String text) {
         return Arrays.stream(values())
-                .filter(dishType -> dishType.type.equals(type))
+                .filter(dishType -> dishType.name.equals(text))
                 .findFirst()
                 .orElseThrow(() -> new CustomException(ErrorCode.DISH_TYPE_NOT_ALLOWED));
     }

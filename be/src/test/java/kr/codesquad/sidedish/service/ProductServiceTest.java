@@ -34,15 +34,15 @@ public class ProductServiceTest {
 	void loadDishListByType_test() {
 		// given
 		DishType mainDishType = DishType.MAIN;
-		when(productRepository.loadDishListByType(mainDishType.getType())).thenReturn(
+		when(productRepository.loadDishListByType(mainDishType.getName())).thenReturn(
 			getStubMainDishProducts());
 
 		DishType soupDishType = DishType.SOUP;
-		when(productRepository.loadDishListByType(soupDishType.getType())).thenReturn(
+		when(productRepository.loadDishListByType(soupDishType.getName())).thenReturn(
 			getStubSoupDishProducts());
 
 		DishType sideDishType = DishType.SIDE;
-		when(productRepository.loadDishListByType(sideDishType.getType())).thenReturn(
+		when(productRepository.loadDishListByType(sideDishType.getName())).thenReturn(
 			getStubSideDishProducts());
 
 		// when
@@ -52,13 +52,13 @@ public class ProductServiceTest {
 
 		// then
 		assertThat(mainDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getDishType()).isEqualTo(mainDishType.getType())
+			assertThat(product.getDishType()).isEqualTo(mainDishType.getName())
 		);
 		assertThat(soupDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getDishType()).isEqualTo(soupDishType.getType())
+			assertThat(product.getDishType()).isEqualTo(soupDishType.getName())
 		);
 		assertThat(sideDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getDishType()).isEqualTo(sideDishType.getType())
+			assertThat(product.getDishType()).isEqualTo(sideDishType.getName())
 		);
 	}
 
@@ -85,20 +85,20 @@ public class ProductServiceTest {
 		DishType dishType = DishType.SIDE;
 
 		SideDishType meatSideDishType = SideDishType.MEAT;
-		when(productRepository.loadSideDishListByType(dishType.getType(),
-			meatSideDishType.getType())).thenReturn(getStubMeatSideDishProducts());
+		when(productRepository.loadSideDishListByType(dishType.getName(),
+			meatSideDishType.getName())).thenReturn(getStubMeatSideDishProducts());
 
 		SideDishType convenienceSideDishType = SideDishType.CONVENIENCE;
-		when(productRepository.loadSideDishListByType(dishType.getType(),
-			convenienceSideDishType.getType())).thenReturn(getStubConvenienceSideDishProducts());
+		when(productRepository.loadSideDishListByType(dishType.getName(),
+			convenienceSideDishType.getName())).thenReturn(getStubConvenienceSideDishProducts());
 
 		SideDishType seasonSideDishType = SideDishType.SEASON;
-		when(productRepository.loadSideDishListByType(dishType.getType(),
-			seasonSideDishType.getType())).thenReturn(getStubSeasonSideDishProducts());
+		when(productRepository.loadSideDishListByType(dishType.getName(),
+			seasonSideDishType.getName())).thenReturn(getStubSeasonSideDishProducts());
 
 		SideDishType nutritionSideDishType = SideDishType.NUTRITION;
-		when(productRepository.loadSideDishListByType(dishType.getType(),
-			nutritionSideDishType.getType())).thenReturn(getStubNutritionSideDishProducts());
+		when(productRepository.loadSideDishListByType(dishType.getName(),
+			nutritionSideDishType.getName())).thenReturn(getStubNutritionSideDishProducts());
 
 		// when
 		List<ProductDTO> meatSideDishProductDTOS = productService.loadSideDishListByType(dishType,
@@ -113,16 +113,16 @@ public class ProductServiceTest {
 
 		// then
 		assertThat(meatSideDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getSideDishType()).isEqualTo(meatSideDishType.getType())
+			assertThat(product.getSideDishType()).isEqualTo(meatSideDishType.getName())
 		);
 		assertThat(convenienceSideDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getSideDishType()).isEqualTo(convenienceSideDishType.getType())
+			assertThat(product.getSideDishType()).isEqualTo(convenienceSideDishType.getName())
 		);
 		assertThat(seasonSideDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getSideDishType()).isEqualTo(seasonSideDishType.getType())
+			assertThat(product.getSideDishType()).isEqualTo(seasonSideDishType.getName())
 		);
 		assertThat(nutritionSideDishProductDTOS).allSatisfy(product ->
-			assertThat(product.getSideDishType()).isEqualTo(nutritionSideDishType.getType())
+			assertThat(product.getSideDishType()).isEqualTo(nutritionSideDishType.getName())
 		);
 	}
 
@@ -137,25 +137,25 @@ public class ProductServiceTest {
 		SideDishType nutritionSideDishType = SideDishType.NUTRITION;
 		// when
 		List<Product> meatSideDishProducts = productRepository.loadSideDishListByType(
-			dishType.getType(), meatSideDishType.getType());
+			dishType.getName(), meatSideDishType.getName());
 		List<Product> convenienceSideDishProducts = productRepository.loadSideDishListByType(
-			dishType.getType(), convenienceSideDishType.getType());
+			dishType.getName(), convenienceSideDishType.getName());
 		List<Product> seasonSideDishProducts = productRepository.loadSideDishListByType(
-			dishType.getType(), seasonSideDishType.getType());
+			dishType.getName(), seasonSideDishType.getName());
 		List<Product> nutritionSideDishProducts = productRepository.loadSideDishListByType(
-			dishType.getType(), nutritionSideDishType.getType());
+			dishType.getName(), nutritionSideDishType.getName());
 		// then
 		assertThat(meatSideDishProducts).allSatisfy(product ->
-			assertThat(product.getSidedishType()).isEqualTo(meatSideDishType.getType())
+			assertThat(product.getSidedishType()).isEqualTo(meatSideDishType.getName())
 		);
 		assertThat(convenienceSideDishProducts).allSatisfy(product ->
-			assertThat(product.getSidedishType()).isEqualTo(convenienceSideDishType.getType())
+			assertThat(product.getSidedishType()).isEqualTo(convenienceSideDishType.getName())
 		);
 		assertThat(seasonSideDishProducts).allSatisfy(product ->
-			assertThat(product.getSidedishType()).isEqualTo(seasonSideDishType.getType())
+			assertThat(product.getSidedishType()).isEqualTo(seasonSideDishType.getName())
 		);
 		assertThat(nutritionSideDishProducts).allSatisfy(product ->
-			assertThat(product.getSidedishType()).isEqualTo(nutritionSideDishType.getType())
+			assertThat(product.getSidedishType()).isEqualTo(nutritionSideDishType.getName())
 		);
 	}
 
