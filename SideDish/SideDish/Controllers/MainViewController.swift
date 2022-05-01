@@ -4,7 +4,7 @@ import OSLog
 class MainViewController: UIViewController {
     
     private var ordering: Ordering?
-    private var logger: Logger?
+    private let logger = Logger()
     
     private lazy var foodCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,7 +31,6 @@ class MainViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         ordering = Ordering(repository: Repository())
-        logger = Logger()
     }
     
     override func viewDidLoad() {
