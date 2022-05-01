@@ -1,14 +1,15 @@
-import Header from 'components/Header/Header';
-import Main from 'components/Main/Main';
-import Special from 'components/Special/Special';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Callback from 'pages/Callback';
+import Home from 'pages/Home';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Special />
-      <Main />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/api/oauth/callback" element={<Callback />} />
+      </Routes>
+    </Router>
   );
 }
 

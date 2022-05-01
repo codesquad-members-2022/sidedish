@@ -16,6 +16,7 @@ const Menu = styled.div`
 `;
 
 const Icons = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   width: 100px;
@@ -25,10 +26,11 @@ const Icons = styled.div`
 const MenuBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 16px 24px 0 0;
+  padding: 16px 24px 0 0;
 `;
 
 const MainMenu = styled.div`
+  cursor: pointer;
   margin-bottom: 16px;
   font-size: ${props => props.theme.fontSize.medium};
 `;
