@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+const CardContainer = styled.li`
+    cursor: pointer;
+`;
+
+const DishCard = styled.div`
+    position: relative;
+`;
+
 const ImgWrapper = styled.div`
     width: 100%
     height: 100%;
@@ -40,14 +48,21 @@ const PriceContainer = styled.div`
     gap: 8px;
 `;
 
-const Price = styled.span`
-    font-weight: ${(props) => (props.isClientPrice ? "500" : "400")};
-    font-size: ${(props) => (props.isClientPrice ? "1.6rem" : "1.4rem")};
-    line-height: ${(props) => (props.isClientPrice ? "26px" : "24px")};
+const ClientPrice = styled.span`
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 26px;
+    color: #1b1b1b;
     letter-spacing: -0.008em;
-    text-decoration-line: ${(props) =>
-        props.isClientPrice ? "none" : "line-through"};
-    color: ${(props) => (props.isClientPrice ? "#1b1b1b" : "#bcbcbc")};
+`;
+
+const OriginPrice = styled.span`
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 24px;
+    letter-spacing: -0.008em;
+    text-decoration-line: line-through;
+    color: #bcbcbc;
 `;
 
 const EventBadge = styled.span`
@@ -68,13 +83,32 @@ const EventBadge = styled.span`
             : ""};
 `;
 
+const DeliveryBadge = styled.ul`
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    border: 1px solid #1b1b1b;
+    border-radius: 10px;
+    background-color: rgba(248, 247, 247, 0.8);
+    display: ${(props) => (props.isVisible ? "flex" : "none")};
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding: 5px 10px;
+    flex-direction: column;
+    gap: 6px;
+`;
+
 export {
+    CardContainer,
+    DishCard,
     ImgWrapper,
     Img,
     TextContainer,
     Title,
     Description,
     PriceContainer,
-    Price,
+    ClientPrice,
+    OriginPrice,
     EventBadge,
+    DeliveryBadge,
 };

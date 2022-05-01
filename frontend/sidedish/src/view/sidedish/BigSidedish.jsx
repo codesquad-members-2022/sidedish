@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
-import { Container, Header, Title } from "./Sidedish.style";
+import { BigContainer, Header, BigDishTitle } from "./Sidedish.style";
 import { API } from "../../config";
-import { ThemeProvider } from "styled-components";
 import { getData } from "../../utils";
 import SidedishCards from "./SidedishCards";
 import TabMenu from "./tabMenu/TabMenu";
-
-const theme = {
-    size: "big",
-};
 
 function BigSidedish() {
     const [currTab, setTab] = useState(0);
@@ -19,9 +14,8 @@ function BigSidedish() {
 
     useEffect(() => {
         try {
-            getData(
-                API.FESTIVAL + "한-번-주문하면-두-번-반하는-반찬",
-                setBigSidedishData
+            getData(API.FESTIVAL + "한-번-주문하면-두-번-반하는-반찬").then(
+                (data) => setBigSidedishData(data)
             );
         } catch (error) {
             console.error(error);
@@ -40,19 +34,20 @@ function BigSidedish() {
     });
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container>
-                <Header>
-                    <Title>한 번 주문하면 두 번 반하는 반찬</Title>
-                    <TabMenu
-                        currTab={currTab}
-                        tabMenu={tabMenu}
-                        onChangeTab={changeTab}
-                    />
-                </Header>
-                <SidedishCards dishes={bigSidedishData[currTab].dishes} />
-            </Container>
-        </ThemeProvider>
+        <BigContainer>
+            <Header>
+                <BigDishTitle>한 번 주문하면 두 번 반하는 반찬</BigDishTitle>
+                <TabMenu
+                    currTab={currTab}
+                    tabMenu={tabMenu}
+                    onChangeTab={changeTab}
+                />
+            </Header>
+            <SidedishCards
+                dishes={bigSidedishData[currTab].dishes}
+                isBigCards
+            />
+        </BigContainer>
     );
 }
 

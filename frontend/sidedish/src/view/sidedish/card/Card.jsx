@@ -1,15 +1,39 @@
+import { useState } from "react";
 import {
+    DishCard,
     ImgWrapper,
     Img,
     TextContainer,
     Title,
     Description,
     PriceContainer,
-    Price,
+    ClientPrice,
+    OriginPrice,
     EventBadge,
+    DeliveryBadge,
 } from "./Card.style";
+import { getRandomKey } from "../../../utils";
 
-function EventBadges(eventBadges) {
+function Deliveries({ deliveries, isDeliveryBadgeVisible }) {
+    if (!deliveries || !deliveries.length) {
+        return;
+    }
+
+    const deliveryItems = deliveries.map((delivery) => (
+        <li key={getRandomKey()}>{delivery}</li>
+    ));
+
+    return (
+        <DeliveryBadge isVisible={isDeliveryBadgeVisible}>
+            {deliveryItems}
+        </DeliveryBadge>
+    );
+}
+
+function EventBadges({ eventBadges }) {
+    if (!eventBadges.length) {
+        return;
+    }
     return eventBadges.map((eventBadge, idx) => (
         <EventBadge
             key={idx}
@@ -27,22 +51,30 @@ function Card({
     fixedPrice,
     discountPrice,
     eventBadges,
+    deliveries,
 }) {
+    const [isDeliveryBadgeVisible, setDeliveryBadgeVisibility] =
+        useState(false);
     const originPrice = (
-        <Price isClientPrice={false}>{fixedPrice.toLocaleString()}원</Price>
+        <OriginPrice>{fixedPrice.toLocaleString()}원</OriginPrice>
     );
     const clientPrice = (
-        <Price isClientPrice>
-            {fixedPrice === discountPrice
-                ? fixedPrice.toLocaleString()
-                : discountPrice.toLocaleString()}
-            원
-        </Price>
+        <ClientPrice>{discountPrice.toLocaleString()}원</ClientPrice>
     );
-    const eventTags = eventBadges ? EventBadges(eventBadges) : null;
+    const isDiscounted = fixedPrice !== discountPrice;
+
+    const showDeliveryBadge = () => setDeliveryBadgeVisibility(true);
+    const hideDeliveryBadge = () => setDeliveryBadgeVisibility(false);
 
     return (
-        <li>
+        <DishCard
+            onMouseOver={showDeliveryBadge}
+            onMouseOut={hideDeliveryBadge}
+        >
+            <Deliveries
+                deliveries={deliveries}
+                isDeliveryBadgeVisible={isDeliveryBadgeVisible}
+            />
             <ImgWrapper>
                 <Img alt={title} src={image} />
             </ImgWrapper>
@@ -53,13 +85,13 @@ function Card({
                     <PriceContainer>
                         <>
                             {clientPrice}
-                            {fixedPrice !== discountPrice && originPrice}
+                            {isDiscounted && originPrice}
                         </>
                     </PriceContainer>
                 </TextContainer>
-                {eventTags}
+                <EventBadges eventBadges={eventBadges} />
             </div>
-        </li>
+        </DishCard>
     );
 }
 

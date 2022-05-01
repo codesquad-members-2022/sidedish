@@ -1,36 +1,90 @@
 import { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { Container, Title } from "./Sidedish.style";
+import { Container, SmallDishTitle } from "./Sidedish.style";
 import { API } from "../../config";
 import SidedishCards from "./SidedishCards";
 import { getData } from "../../utils";
+import { Carousel } from "./carousel/Carousel";
 
-const theme = {
-    size: "small",
+const getCurrSmallSidedishes = (page, smallSidedishes) => {
+    const numberOfDishes = smallSidedishes.length;
+    if (4 * page >= numberOfDishes) {
+        const haveBeforeCard = numberOfDishes - 5 >= 0;
+        const beforeCard = haveBeforeCard
+            ? smallSidedishes[numberOfDishes - 5]
+            : null;
+
+        return [beforeCard, ...smallSidedishes.slice(numberOfDishes - 4), null];
+    }
+    const haveBeforeCard = page > 1;
+    const haveAfterCard = 4 * page < numberOfDishes;
+    const beforeCard = haveBeforeCard
+        ? smallSidedishes[4 * (page - 1) - 1]
+        : null;
+    const afterCard = haveAfterCard ? smallSidedishes[4 * page] : null;
+    return [
+        beforeCard,
+        ...smallSidedishes.slice(4 * (page - 1), 4 * page),
+        afterCard,
+    ];
 };
 
-function SmallSidedish({ isVisible, section, title }) {
-    const [items, setItems] = useState(null);
+function SmallSidedish({ isVisible, category }) {
+    const { title, section } = category;
+
+    const [smallSidedishes, setSmallSidedishes] = useState(null);
+    const [page, setPage] = useState(1);
+    const [lastCachedPage, setLastPage] = useState(0);
+    const [hasNext, sethasNextValue] = useState(null);
 
     useEffect(() => {
         try {
-            getData(API.DISH_SECTION + section, setItems);
+            if (lastCachedPage < page && isVisible) {
+                getData(API.DISH_SECTION + section + "&page=" + page).then(
+                    (data) => {
+                        if (page === 1) {
+                            setSmallSidedishes(data.data);
+                        } else {
+                            setSmallSidedishes([
+                                ...smallSidedishes,
+                                ...data.data,
+                            ]);
+                        }
+                        setLastPage(page);
+                        sethasNextValue(data.hasNext);
+                    }
+                );
+            }
         } catch (error) {
             console.error(error);
         }
-    }, [section]);
+    }, [isVisible, section, smallSidedishes, page, lastCachedPage]);
 
-    if (!isVisible || !items) {
+    if (!isVisible) {
         return;
     }
 
+    if (!smallSidedishes) {
+        return;
+    }
+
+    const onUpdatePage = (newPage) => {
+        setPage(newPage);
+    };
+
+    const currSmallSidedishes = getCurrSmallSidedishes(page, smallSidedishes);
+
     return (
-        <ThemeProvider theme={theme}>
-            <Container>
-                <Title>{title}</Title>
-                <SidedishCards dishes={items.data}></SidedishCards>
-            </Container>
-        </ThemeProvider>
+        <Container>
+            <SmallDishTitle>{title}</SmallDishTitle>
+            <Carousel
+                page={page}
+                onUpdatePage={onUpdatePage}
+                currDataSize={smallSidedishes.length}
+                hasNext={hasNext}
+            >
+                <SidedishCards dishes={currSmallSidedishes}></SidedishCards>
+            </Carousel>
+        </Container>
     );
 }
 

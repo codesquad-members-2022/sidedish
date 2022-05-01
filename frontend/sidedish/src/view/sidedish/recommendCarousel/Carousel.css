@@ -1,0 +1,32 @@
+.carousel{
+    overflow: hidden;
+}
+.inner{
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+.carousel-item{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    /* background-color: green; */
+    margin: 15px;
+}
+.indicators{
+    display:flex;
+    justify-content:center;
+    margin: 10px;
+    z-index: 1;
+}
+.indicators>button{
+    margin:5px;
+}
+.sample-sidedish__card{
+    width: auto;
+    height: 150px;
+}
+.sample-sidedish__card-img{
+    width: auto;
+    height: auto;
+}

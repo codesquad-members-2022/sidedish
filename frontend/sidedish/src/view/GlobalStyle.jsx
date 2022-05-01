@@ -10,6 +10,20 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Noto Sans KR";
         font-style: normal;
     }
+    button {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+    }
+    svg {
+        color: black;
+        &:link,
+        &:visited,
+        &:hover,
+        &:active {
+            color: black;
+        }
+    }
 `;
 
 export default GlobalStyle;
