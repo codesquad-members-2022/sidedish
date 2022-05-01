@@ -18,7 +18,6 @@ const MenuDatas = [
     ],
   },
 ];
-
 const icons = [
   {
     id: 0,
@@ -39,17 +38,18 @@ const icons = [
   },
   {
     id: 1,
+    login: true,
     svg: (
       <svg
         width="22"
         height="22"
         viewBox="0 0 22 22"
-        fill="none"
+        fill="#1B1B1B"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M11 11C13.9467 11 16.3334 8.61333 16.3334 5.66667C16.3334 2.72 13.9467 0.333334 11 0.333334C8.05337 0.333334 5.66671 2.72 5.66671 5.66667C5.66671 8.61333 8.05337 11 11 11ZM11 13.6667C7.44004 13.6667 0.333374 15.4533 0.333374 19V21.6667H21.6667V19C21.6667 15.4533 14.56 13.6667 11 13.6667Z"
-          fill="#1B1B1B"
+          fill="null"
         />
       </svg>
     ),
@@ -61,7 +61,7 @@ const icons = [
         width="27"
         height="28"
         viewBox="0 0 27 28"
-        fill="none"
+        fill="null"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -72,7 +72,20 @@ const icons = [
     ),
   },
 ];
-
+const githubIcon = {
+  id: 3,
+  svg: (
+    <svg
+      width="27"
+      height="28"
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+    </svg>
+  ),
+};
 const event = {
   eventName: "한 번 주문하면 두 번 반하는 반찬",
   eventCategories: [
@@ -94,7 +107,6 @@ const event = {
     },
   ],
 };
-
 const categoryMenus = {
   sideDishes: [
     {
@@ -132,7 +144,6 @@ const categoryMenus = {
     },
   ],
 };
-
 const categoryFirstData = {
   menuCategories: [
     {
@@ -208,7 +219,6 @@ const categoryFirstData = {
     },
   ],
 };
-
 const categoryRestData = {
   menuCategories: [
     {
@@ -355,7 +365,6 @@ const categoryRestData = {
     },
   ],
 };
-
 const ImgSliderButtons = {
   left: (
     <svg
@@ -390,7 +399,49 @@ const ImgSliderButtons = {
     </svg>
   ),
 };
-
+const plusMinusButtons = {
+  plus: (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16 9V23"
+        stroke="#1B1B1B"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 16H23"
+        stroke="#1B1B1B"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  minus: (
+    <svg
+      width="16"
+      height="9"
+      viewBox="0 0 16 2"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 1H15"
+        stroke="#1B1B1B"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+};
 export {
   MenuDatas,
   icons,
@@ -399,4 +450,6 @@ export {
   categoryFirstData,
   categoryRestData,
   ImgSliderButtons,
+  plusMinusButtons,
+  githubIcon,
 };

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const Normalize = createGlobalStyle`
-  .App {
+  .App, #modal, #alertPopup {
     font-family: "Noto Sans KR", sans-serif;
   }
   
@@ -17,6 +17,7 @@ const Normalize = createGlobalStyle`
   }
 
   button {
+    font-family: "Noto Sans KR", sans-serif;
     cursor: pointer;
   }
 `;

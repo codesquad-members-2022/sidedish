@@ -1,3 +1,4 @@
+import dataTools from "common/dataTools";
 import { useState, useEffect } from "react";
 import menuCategoriesApi from "Service/menuCategoriesApi";
 import Category from "./Category/Category";
@@ -7,15 +8,7 @@ const SideDishItemsArea = () => {
 
   const fetchFirstMenuCategory = async () => {
     const { menuCategories } = await menuCategoriesApi.getFirstMenuCategory();
-
-    const menuCategoryDatas = menuCategories.map(
-      ({ menuCategoryName, sideDishes }, idx) => {
-        return {
-          category: { name: menuCategoryName, id: idx },
-          sideDishes,
-        };
-      }
-    );
+    const menuCategoryDatas = dataTools.addIdToMenuCategoryData(menuCategories);
 
     setSideDishItemsData(menuCategoryDatas);
   };

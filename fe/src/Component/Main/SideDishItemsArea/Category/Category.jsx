@@ -7,6 +7,7 @@ import ImgSlider from "./ImgSlider/ImgSlider";
 
 const TRANSITION_DURATION = "500ms";
 const MAX_CARDS_COUNT_PER_SLIDE = 4;
+const INITIAL_INDEX_OF_ITEM = 0;
 
 const CARD_SIZE = {
   width: 302,
@@ -34,7 +35,7 @@ const Category = ({ name, sideDishes }) => {
   const TOTAL_DATA_COUNT = sideDishes.length;
 
   const sideDishSlider = useRef();
-  const curPosition = useRef(0);
+  const curPosition = useRef(INITIAL_INDEX_OF_ITEM);
 
   const [isLeftButtonClickable, setIsLeftButtonClickable] = useState(false);
   const [isRightButtonClickable, setIsRightButtonClickable] = useState(true);
@@ -48,16 +49,19 @@ const Category = ({ name, sideDishes }) => {
 
   const checkCurPosition = {
     left: () => {
-      if (curPosition.current <= 0) {
-        curPosition.current = 0;
+      if (curPosition.current <= INITIAL_INDEX_OF_ITEM) {
+        curPosition.current = INITIAL_INDEX_OF_ITEM;
         setIsLeftButtonClickable(false);
       }
     },
     right: () => {
       if (curPosition.current + MAX_CARDS_COUNT_PER_SLIDE >= TOTAL_DATA_COUNT) {
-        const remainder = Math.floor(TOTAL_DATA_COUNT % 4);
+        const remainder = Math.floor(
+          TOTAL_DATA_COUNT % MAX_CARDS_COUNT_PER_SLIDE
+        );
         if (remainder) {
-          curPosition.current = curPosition.current - 4 + remainder;
+          curPosition.current =
+            curPosition.current - MAX_CARDS_COUNT_PER_SLIDE + remainder;
         }
         setIsRightButtonClickable(false);
       }
@@ -69,7 +73,6 @@ const Category = ({ name, sideDishes }) => {
     setIsLeftButtonClickable(true);
 
     checkCurPosition[direction]();
-    moveSlider();
   };
 
   const movePosition = {
@@ -89,20 +92,23 @@ const Category = ({ name, sideDishes }) => {
         return;
       }
       movePosition.left();
+      moveSlider();
     },
     right: () => {
       if (curPosition.current + MAX_CARDS_COUNT_PER_SLIDE >= TOTAL_DATA_COUNT) {
         return;
       }
       movePosition.right();
+      moveSlider();
     },
   };
 
   useEffect(() => {
-    if (TOTAL_DATA_COUNT <= MAX_CARDS_COUNT_PER_SLIDE) {
-      setIsRightButtonClickable(false);
+    if (TOTAL_DATA_COUNT > MAX_CARDS_COUNT_PER_SLIDE) {
+      return;
     }
-  }, []);
+    setIsRightButtonClickable(false);
+  }, [TOTAL_DATA_COUNT]);
 
   return (
     <Wrapper>

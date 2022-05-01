@@ -17,12 +17,12 @@ const BtnShowAndHide = styled.button`
   margin: 20px 0;
 `;
 
-const BtnShowAndHideArea = ({ state: { showing, setShowing } }) => {
+const BtnShowAndHideArea = ({ state: { isShow, setIsShow } }) => {
   const handleBtnClick = () => {
-    setShowing(!showing);
+    setIsShow(!isShow);
   };
 
-  const btnText = showing ? "카테고리 숨기기" : "모든 카테고리 보기";
+  const btnText = isShow ? "카테고리 숨기기" : "모든 카테고리 보기";
   return (
     <BtnShowAndHideWrapper>
       <BtnShowAndHide

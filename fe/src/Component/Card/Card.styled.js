@@ -6,6 +6,7 @@ const CardLi = styled.li`
       position: relative;
       width: ${cardSize[type].width};
       height: ${cardSize[type].height};
+      cursor: pointer;
 
       img {
         display: block;
