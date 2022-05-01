@@ -5,7 +5,7 @@ import CardContainer from './container/CardContainer';
 import Tab from './components/Tab';
 import CategoryTitle from './components/CategoryTitle';
 
-const MainCard = ({ mainCardData }) => {
+const MainCard = ({ mainCardData, handleModal, isModalVisible }) => {
   const [tabId, setTabId] = useState(0);
 
   const handleClickTab = (id) => {
@@ -23,7 +23,9 @@ const MainCard = ({ mainCardData }) => {
   return (
     <CardContainer
       cardInfos={mainDatas}
+      handleModal={handleModal}
       showingSlideCardNum={showingSlideCardNum}
+      isModalVisible={isModalVisible}
     >
       <StyledTap>
         <CategoryTitle title={title} banner={banner} />
@@ -37,4 +39,4 @@ const StyledTap = styled.div`
   display: flex;
 `;
 
-export default MainCard;
+export default React.memo(MainCard);

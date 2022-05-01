@@ -6,7 +6,7 @@
       "title": "꼬막비빔밥",
       "description": "매콤하게 입맛 돋우는",
       "discountedPrice": "10,900원",
-      "badge": ["런칭특가", "이벤트특가", "메인특가"]
+      "badge": ["런칭특가", "이벤트특가"]
     },
     {
       "id": "H4665",
@@ -20,7 +20,8 @@
       "image": "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__T.jpg",
       "title": "초계국수_쿠킹박스",
       "description": "건강한 가정 간편식 여름 국수",
-      "discountedPrice": "11,800원"
+      "discountedPrice": "11,800원",
+      "badge": ["이벤트특가"]
     },
     {
       "id": "HEDFB",
@@ -69,7 +70,7 @@
       "title": "꼬막비빔밥",
       "description": "매콤하게 입맛 돋우는",
       "discountedPrice": "10,900원",
-      "badge": ["런칭특가", "이벤트특가", "메인특가"]
+      "badge": ["런칭특가", "이벤트특가"]
     },
     {
       "id": "HBBCC",

@@ -23,8 +23,14 @@ const slideBtn = {
   margin: 10,
 };
 
-const maxWidthBody = {
-  width: 1400,
+const body = {
+  width: 1090,
+  margin: 43,
 };
 
-export { color, fontSize, slideBtn, maxWidthBody };
+const modal = {
+  width: 1070,
+  margin: 36,
+};
+
+export { color, fontSize, slideBtn, body, modal };

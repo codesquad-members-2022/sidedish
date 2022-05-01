@@ -2,24 +2,38 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Infos from './Infos';
-import { maxWidthBody } from '../css/variables';
+import { body, modal } from '../css/variables';
 
-const Card = ({ cardInfo, showingSlideCardNum }) => {
+const Card = ({ cardInfo, showingSlideCardNum, isOpenModal }) => {
   const { title, image } = cardInfo;
 
   return (
-    <>
-      <Img src={image} alt={title} showingSlideCardNum={showingSlideCardNum} />
+    <Div showingSlideCardNum={showingSlideCardNum}>
+      <Img
+        src={image}
+        alt={title}
+        showingSlideCardNum={showingSlideCardNum}
+        isOpenModal={isOpenModal}
+      />
       <Infos cardInfo={cardInfo} />
-    </>
+    </Div>
   );
 };
 
-const Img = styled.img`
+const Div = styled.div`
   width: ${({ showingSlideCardNum }) =>
-    Math.floor(maxWidthBody.width / showingSlideCardNum) - 43}px;
-  height: ${({ showingSlideCardNum }) =>
-    Math.floor(maxWidthBody.width / showingSlideCardNum) - 43}px;
+    Math.floor(body.width / showingSlideCardNum) - body.margin}px;
 `;
 
-export default Card;
+const Img = styled.img`
+  width: ${({ showingSlideCardNum, isOpenModal }) =>
+    isOpenModal
+      ? Math.floor(modal.width / showingSlideCardNum) - modal.margin
+      : Math.floor(body.width / showingSlideCardNum) - body.margin}px;
+  height: ${({ showingSlideCardNum, isOpenModal }) =>
+    isOpenModal
+      ? Math.floor(modal.width / showingSlideCardNum) - modal.margin
+      : Math.floor(body.width / showingSlideCardNum) - body.margin}px;
+`;
+
+export default React.memo(Card);

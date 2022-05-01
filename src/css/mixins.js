@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { fontSize } from './variables';
 
 const flexCenter = css`
   display: flex;
@@ -12,4 +13,10 @@ const flexBetween = css`
   align-items: flex-start;
 `;
 
-export { flexCenter, flexBetween };
+const basicText = css`
+  display: block;
+  margin-top: 10px;
+  font-size: ${fontSize.l};
+`;
+
+export { flexCenter, flexBetween, basicText };
