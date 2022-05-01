@@ -8,9 +8,7 @@
 import XCTest
 @testable import SideDishApp
 
-class NetworkManagerTests: XCTestCase {
-
-    let networkManager = NetworkManager()
+class APIRequestableTests: XCTestCase {
 
     func testExample() throws {
         let two = 2
@@ -21,14 +19,14 @@ class NetworkManagerTests: XCTestCase {
         let promise = XCTestExpectation(description: "Fetch product detail success")
 
         let testHash = "HBDEF"
-        let request = ProductDetailRequest(from: testHash)
-        XCTAssertNotNil(request)
+        let productDetailRequest = ProductDetailRequest(from: testHash)
+        XCTAssertNotNil(productDetailRequest)
 
-        networkManager.request(request!) { data in
+        productDetailRequest!.execute(completion: { data in
             XCTAssertNotNil(data)
             XCTAssertEqual(data?.hash, testHash)
             promise.fulfill()
-        }
+        })
 
         wait(for: [promise], timeout: 1)
     }
@@ -45,10 +43,10 @@ class NetworkManagerTests: XCTestCase {
             return XCTFail("Could not load test Image from bundle")
         }
 
-        let request = ImageRequest(fileName: fileName, fileExtension: fileExtension)
-        XCTAssertNotNil(request)
+        let imageRequest = ImageRequest(fileName: fileName, fileExtension: fileExtension)
+        XCTAssertNotNil(imageRequest)
 
-        networkManager.request(request!) { data in
+        imageRequest!.execute { data in
             XCTAssertEqual(data, localImageData)
             promise.fulfill()
         }
@@ -60,10 +58,10 @@ class NetworkManagerTests: XCTestCase {
     func testFetchCategory() throws {
         let promise = XCTestExpectation(description: "Fetch Category success")
 
-        let request = CategoryRequest(from: .main)
-        XCTAssertNotNil(request)
+        let categoryRequest = CategoryRequest(from: .main)
+        XCTAssertNotNil(categoryRequest)
 
-        networkManager.request(request!) { data in
+        categoryRequest!.execute { data in
             XCTAssertNotNil(data)
             promise.fulfill()
         }

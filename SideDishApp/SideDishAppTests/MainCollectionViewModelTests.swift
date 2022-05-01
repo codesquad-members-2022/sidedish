@@ -7,19 +7,19 @@
 
 import XCTest
 
-class ProductCollectionViewModelTests: XCTestCase {
+class MainCollectionViewModelTests: XCTestCase {
 
-    let productCollectionViewModel = ProductCollectionViewModel()
+    let mainCollectionViewModel = MainCollectionViewModel()
 
     func testFetch() throws {
         let promise = XCTestExpectation(description: "Section View Model fetched")
 
-        productCollectionViewModel.categoryVMs[.main]?.bind { sectionVM in
+        mainCollectionViewModel.categoryVMs[.main]?.bind { sectionVM in
             XCTAssertTrue(sectionVM?.productVMs.count == 8)
             promise.fulfill()
         }
 
-        productCollectionViewModel.fetchAllCategories()
+        mainCollectionViewModel.fetchAllCategories()
 
         wait(for: [promise], timeout: 1)
     }

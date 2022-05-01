@@ -19,6 +19,7 @@ struct MainCollectionViewModel {
     private let networkManager = NetworkManager()
     private var imageCache = NSCache<NSURL, NSData>()
     var categoryVMs: [CategoryType: Observable<CategorySectionViewModel>]
+    var headerVMs: [CategoryType: Observable<HeaderInfoViewModel>]
 
     init () {
         let placeHolders = (0..<5).map({ _ in
@@ -29,6 +30,11 @@ struct MainCollectionViewModel {
         categoryVMs = [.main: Observable<CategorySectionViewModel>(placeHolderCategory),
                          .side: Observable<CategorySectionViewModel>(),
                         .soup: Observable<CategorySectionViewModel>()]
+
+        headerVMs = [.main: Observable<HeaderInfoViewModel>(HeaderInfoViewModel()),
+                         .side: Observable<HeaderInfoViewModel>(HeaderInfoViewModel()),
+                        .soup: Observable<HeaderInfoViewModel>(HeaderInfoViewModel())]
+
     }
 
     func countProduct(section: Int) -> Int {
@@ -55,11 +61,11 @@ struct MainCollectionViewModel {
 
     private func fetchCategories(of type: CategoryType) {
 
-        guard let request = CategoryRequest(from: type) else {
+        guard let categoryRequest = CategoryRequest(from: type) else {
             return
         }
 
-        networkManager.request(request) { categoryResponse in
+        categoryRequest.execute { categoryResponse in
             guard let productCellVMs = categoryResponse?.body.compactMap({ productSummary in
                 ProductCellViewModel(product: productSummary)
             }) else { return }
@@ -74,16 +80,21 @@ struct MainCollectionViewModel {
             return completion(image)
         }
 
-        guard let request = ImageRequest(url: url) else {
+        guard let imageRequest = ImageRequest(url: url) else {
             return
         }
 
-        networkManager.request(request) { data in
+        imageRequest.execute { data in
             guard let data = data as? NSData else {
                 return completion(nil)
             }
             imageCache.setObject(data, forKey: url as NSURL)
             completion(data)
         }
+    }
+
+    func updateHeaderStatus(_ status: Bool, at type: CategoryType) {
+        let targetVM = headerVMs[type]
+        targetVM?.value?.isHidden = status
     }
 }

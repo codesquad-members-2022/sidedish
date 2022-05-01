@@ -14,7 +14,6 @@ struct ProductDetailViewModel {
     public let point = Observable<Money<KRW>>(Money<KRW>(""))
     public let detailSectionURL = Observable<[URL]>([])
 
-    let networkManager = NetworkManager()
     let hash: String
 
     init(from hash: String) {
@@ -22,10 +21,9 @@ struct ProductDetailViewModel {
     }
 
     func fetchDetail() {
-        guard let request = ProductDetailRequest(from: hash) else { return }
+        guard let productRequest = ProductDetailRequest(from: hash) else { return }
 
-        networkManager.request(request) {
-            productDetailResponse in
+        productRequest.execute { productDetailResponse in
             guard let productDetail = productDetailResponse?.data else { return }
 
             thumbImagesURL.value = productDetail.thumbImagesURL
@@ -34,6 +32,5 @@ struct ProductDetailViewModel {
             point.value = productDetail.point
             detailSectionURL.value = productDetail.detailSectionURL
         }
-
     }
 }

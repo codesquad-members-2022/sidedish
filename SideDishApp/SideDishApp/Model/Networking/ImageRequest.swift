@@ -30,8 +30,4 @@ struct ImageRequest: APIRequestable {
         guard let url = components.url else { return nil }
         self.url = url
     }
-
-    func decode(_ data: Data) -> Response? {
-        return data
-    }
 }
