@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.todo.sidedish.R
+import com.example.todo.sidedish.common.Constants
 import com.example.todo.sidedish.databinding.FragmentMenuBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
@@ -26,6 +28,7 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMenuBinding.inflate(inflater, container, false)
+        requireActivity().contentResolver
         return binding.root
     }
 
@@ -33,25 +36,32 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navigator = Navigation.findNavController(view)
         setMenuAdapter()
-
         viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun setMenuAdapter(){
+    private fun setMenuAdapter() {
         val adapter = MenuAdapter { hash, title, badge ->
-            openMenuDetail(hash,title,badge)
+            openMenuDetail(hash, title, badge)
         }
         binding.lifecycleOwner = viewLifecycleOwner
         binding.rvMenu.adapter = adapter
         viewModel.menus.observe(viewLifecycleOwner) { menus ->
-            adapter.submitHeaderAndItemList(menus)
+            adapter.submitHeaderAndItemList(
+                menus,
+                requireActivity().contentResolver,
+                requireContext()
+            )
         }
     }
 
     private fun openMenuDetail(detailHash: String, title: String, badge: List<String>?) {
-        val bundle = bundleOf("KEY_HASH" to detailHash, "KEY_TITLE" to title, "KEY_BADGE" to badge)
+        val bundle = bundleOf(
+            Constants.HASH_KEY to detailHash,
+            Constants.TITLE_KEY to title,
+            Constants.BADGE_KEY to badge
+        )
         navigator.navigate(R.id.action_menuFragment_to_menuDetailFragment, bundle)
     }
 }
