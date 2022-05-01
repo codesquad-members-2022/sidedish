@@ -19,7 +19,7 @@ public class SideDishMapper {
         return new SideDishDetailsDto(sideDish.getId(), sideDish.getName(),
             sideDish.isDawnDeliveryFlag(), sideDish.isWholeNationDeliveryFlag(),
             sideDish.getPrice(), sideDish.getDiscountType(), sideDish.getDiscountRate(),
-            sideDish.getTotalImages(), recommendedSideDishes);
+            sideDish.getSaveFileNames(), recommendedSideDishes);
     }
 
 }

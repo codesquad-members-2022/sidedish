@@ -42,12 +42,12 @@ public class SideDish {
         return saveFileName;
     }
 
-    public List<String> getTotalImages() {
-        List<String> images = new ArrayList<>();
+    public List<String> getSaveFileNames() {
+        List<String> saveFileNames = new ArrayList<>();
         for (ImageFile imageFile : imageFiles) {
-            images.add(imageFile.getSaveFileName());
+            saveFileNames.add(imageFile.getSaveFileName());
         }
 
-        return images;
+        return saveFileNames;
     }
 }

@@ -2,6 +2,7 @@ package com.sidedish.repository;
 
 import com.sidedish.domain.SideDish;
 import java.util.List;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -25,4 +26,11 @@ public interface SideDishRepository extends CrudRepository<SideDish, Integer> {
         + "FROM sidedish s LEFT JOIN discount_policy d ON s.discount_policy_id = d.id "
         + "WHERE s.id = :id")
     SideDish findBySideDishId(@Param("id") Integer id);
+
+    @Query("SELECT stock FROM sidedish WHERE id = :id")
+    Integer findStockBySideDishId(@Param("id") Integer id);
+
+    @Modifying
+    @Query("UPDATE sidedish SET stock = :changedStock WHERE id = :id")
+    void updateStockOfSideDish(@Param("id") Integer id, @Param("changedStock") Integer changedStock);
 }

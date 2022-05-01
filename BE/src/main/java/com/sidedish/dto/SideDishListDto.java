@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class SideDishListDto {
 
-    private List<SideDishDto> sideDishes;
+    private final List<SideDishDto> sideDishes;
 
     public SideDishListDto(List<SideDishDto> sideDishes) {
         this.sideDishes = sideDishes;

@@ -1,9 +1,11 @@
 DROP TABLE IF EXISTS image_file;
+DROP TABLE IF EXISTS user_order;
 DROP TABLE IF EXISTS sidedish;
 DROP TABLE IF EXISTS discount_policy;
 DROP TABLE IF EXISTS menu_category;
 DROP TABLE IF EXISTS event_category;
 DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE event
 (
@@ -47,7 +49,8 @@ CREATE TABLE sidedish
     description                VARCHAR(64),
     dawn_delivery_flag         TINYINT(1) DEFAULT 0 COMMENT '새벽배송 가능 유무 : 불가 0, 가능 : 1',
     whole_nation_delivery_flag TINYINT(1) DEFAULT 0 COMMENT '전국 택배 가능 유무 : 불가 0, 가능 : 1',
-    price                      INT,
+    price                      INT NOT NULL,
+    stock                      INT NOT NULL,
     created_datetime           TIMESTAMP,
     modified_datetime          TIMESTAMP,
     PRIMARY KEY (id),
@@ -60,8 +63,8 @@ CREATE TABLE image_file
 (
     id                INT         NOT NULL AUTO_INCREMENT,
     sidedish_id       INT         NOT NULL,
-    file_name         VARCHAR(32),
-    save_file_name    VARCHAR(32),
+    file_name         VARCHAR(32) COMMENT 'example.png',
+    save_file_name    VARCHAR(32) COMMENT 'img/example.png',
     content_type      VARCHAR(32) COMMENT 'image/png, image/jpg 등',
     image_type        VARCHAR(32) NOT NULL COMMENT 'ma : 메인 사진, etc : 기타 사진',
     delete_flag       TINYINT(1) DEFAULT 0 COMMENT '삭제 유무 : 존재 0, 삭제 : 1',
@@ -70,3 +73,28 @@ CREATE TABLE image_file
     PRIMARY KEY (id),
     FOREIGN KEY (sidedish_id) REFERENCES sidedish (id)
 );
+
+CREATE TABLE user
+(
+    id            INT         NOT NULL AUTO_INCREMENT,
+    public_email  VARCHAR(64) NOT NULL,
+    private_email VARCHAR(64) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE user_order
+(
+    id                INT NOT NULL AUTO_INCREMENT,
+    user_id           INT NOT NULL,
+    sidedish_id       INT NOT NULL,
+    quantity          INT NOT NULL,
+    total_price       INT NOT NULL,
+    fee               INT NOT NULL,
+    point             INT NOT NULL,
+    created_datetime  TIMESTAMP,
+    modified_datetime TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (sidedish_id) REFERENCES sidedish (id)
+);
+

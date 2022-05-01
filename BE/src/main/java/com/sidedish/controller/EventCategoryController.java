@@ -1,11 +1,9 @@
 package com.sidedish.controller;
 
 import com.sidedish.dto.EventCategoryListDto;
-import com.sidedish.dto.SideDishListDto;
 import com.sidedish.service.EventCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +18,4 @@ public class EventCategoryController {
     public EventCategoryListDto getEventCategories() {
         return eventCategoryService.getEventCategories();
     }
-
-    @GetMapping("event-categories/{eventCategoryId}/sidedishes")
-    public SideDishListDto getSideDishes(@PathVariable Integer eventCategoryId) {
-        return eventCategoryService.getSideDishList(eventCategoryId);
-    }
-
 }
