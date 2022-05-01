@@ -107,7 +107,7 @@ final class Ordering{
     }
     
     func getFoodCountInCertainCategory(category: Category) -> Int {
-       return foodMap[category]?.count ?? 0
+        return foodMap[category]?.count ?? 0
     }
     
     func requesetFoodImage(imageUrl: String, completionHandler: @escaping (Result<Data,Error>)->Void) {

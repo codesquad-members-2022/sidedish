@@ -100,18 +100,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let category = ordering.getCategoryWithIndex(index: indexPath.section)
         let index = indexPath.row
+        guard let food = ordering[index,category] else { return cell }
         
-        if let food = ordering[index, category] {
-            cell.receiveFood(food: food)
-            ordering.requesetFoodImage(imageUrl: food.imageUrl){ result in
-                switch result{
-                case.success(let imageData):
-                    cell.updateFoodImage(imageData: imageData)
-                case .failure(let error):
-                    self.logger?.error("\(error.localizedDescription)")
-                }
+        cell.receiveFood(food: food)
+        ordering.requesetFoodImage(imageUrl: food.imageUrl){ result in
+            switch result{
+            case.success(let imageData):
+                cell.updateFoodImage(imageData: imageData)
+            case .failure(let error):
+                self.logger.error("\(error.localizedDescription)")
             }
         }
+        
         return cell
     }
     
