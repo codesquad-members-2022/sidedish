@@ -1,5 +1,6 @@
 package kr.codesquad.sidedish.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -15,7 +16,7 @@ public class Event {
     private List<Dish> dishes;
 
     public Event(Long id, String name, String description,
-        List<Dish> dishes) {
+                 List<Dish> dishes) {
         this.id = id;
         this.name = name;
         this.description = description;

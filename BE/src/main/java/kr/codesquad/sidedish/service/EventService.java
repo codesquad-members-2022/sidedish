@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EventService {
-
     private final JdbcEventRepository jdbcEventRepository;
 
     public EventService(JdbcEventRepository jdbcEventRepository) {
@@ -30,8 +29,8 @@ public class EventService {
 
     private List<EventResponse> convertEvents(List<Event> events) {
         List<EventResponse> eventResponses = events.stream()
-            .map(EventResponse::from)
-            .collect(Collectors.toList());
+                .map(EventResponse::from)
+                .collect(Collectors.toList());
 
         eventResponses.forEach(EventResponse::shuffleDishes);
         Collections.shuffle(eventResponses);

@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Date;
@@ -35,7 +34,7 @@ class CategoryServiceTest {
     @Test
     void findDishesByCategoryId() {
         //when
-        CategorizedDishes categorizedDishes = categoryService.findDishesByCategoryId(4L,0 ,4);
+        CategorizedDishes categorizedDishes = categoryService.findDishesByCategoryId(4L);
 
         //then
         Category category = categorizedDishes.getCategory();
