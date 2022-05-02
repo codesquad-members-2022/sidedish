@@ -8,14 +8,15 @@ export const DeliveryServiceHoverContainer = styled.div`
   align-items: center;
   position: absolute;
   /* TODO: figma 값을 그대로 복사했는데 매직넘버는 다시 고려해보기 */
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   top: 20px;
   right: 20px;
   background: rgba(248, 247, 247, 0.8);
   border: 1px solid ${({ theme: { color } }) => color.black};
   box-sizing: border-box;
   border-radius: 50%;
+  cursor: pointer;
   span {
     color: ${({ theme: { color } }) => color.black};
     font-size: ${({ theme: { fontSize } }) => fontSize.medium};

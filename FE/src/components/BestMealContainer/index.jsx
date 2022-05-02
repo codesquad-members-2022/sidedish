@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Loader from "components/Loader";
 import MealCard from "components/MealCard";
 import { CardContainer, Container, Divider, Header, Nav, Tab } from "./style";
@@ -20,7 +20,7 @@ const BestMealContainer = () => {
 
   const { response: meals } = useAxios({
     method: "get",
-    url: `/products/best`,
+    url: `/api/products/best`,
     params: { category: activeTab.apiParams },
   });
 
@@ -42,7 +42,7 @@ const BestMealContainer = () => {
     ));
 
   const BestMealCards = () =>
-    meals.map(({ id, ...mealInfo }) => <MealCard key={id} mealInfo={mealInfo} size={BEST_MEAL_IMAGE_SIZE} />);
+    meals.map((mealInfo) => <MealCard key={mealInfo.id} mealInfo={mealInfo} size={BEST_MEAL_IMAGE_SIZE} />);
 
   return (
     <Container>
@@ -54,7 +54,7 @@ const BestMealContainer = () => {
         <Tabs />
       </Nav>
       <Divider />
-      <CardContainer>{meals.length ? <BestMealCards /> : <Loader />}</CardContainer>
+      <CardContainer>{meals ? <BestMealCards /> : <Loader />}</CardContainer>
     </Container>
   );
 };

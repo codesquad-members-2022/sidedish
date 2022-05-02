@@ -14,6 +14,14 @@ body {
 button{
 	cursor:pointer;
 }
+
+img{
+	cursor:pointer;
+
+	&:hover{
+		filter: brightness(105%);
+	}
+}
 `;
 
 export default GlobalStyle;

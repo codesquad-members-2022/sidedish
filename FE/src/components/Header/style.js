@@ -12,7 +12,7 @@ export const Container = styled.header`
   transition: height 0.3s;
   border-bottom: 1px solid black;
   margin-bottom: 30px;
-  z-index: 2;
+  z-index: 100;
 
   &:hover {
     height: 161px;

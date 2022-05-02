@@ -7,7 +7,6 @@ const App = () => {
     <>
       <Header />
       <Main />
-      <div className="Modal"></div>
     </>
   );
 };
