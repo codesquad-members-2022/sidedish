@@ -18,12 +18,51 @@ export function applyFlex({ flex, justify, align, direction }) {
   );
 }
 
-export async function fetchData(url) {
+export async function fetchData(url, { method, bodyData } = {}) {
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+  };
+  const body = JSON.stringify(bodyData);
+  const fetchParams = { method, headers, body };
   try {
-    const data = await fetch(url);
+    const data = await fetch(url, fetchParams);
     return data.json();
   } catch (error) {
     console.error(error);
     return error;
   }
+}
+
+const RANDOM_MIN_DEFAULT = 0;
+const RANDOM_MAX_DEFAULT = 100;
+
+function getRandomNumber({ min, max }) {
+  min = min || RANDOM_MIN_DEFAULT;
+  max = max || RANDOM_MAX_DEFAULT;
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+export function getRandomNumberAsCount({ min, max, count }) {
+  min = min || RANDOM_MIN_DEFAULT;
+  max = max || RANDOM_MAX_DEFAULT;
+  if (!count) {
+    throw Error;
+  }
+  if (max - min < count) {
+    throw Error;
+  }
+  const answerSet = new Set();
+  while (answerSet.size < count) {
+    answerSet.add(getRandomNumber({ min, max }));
+  }
+  return [...answerSet];
+}
+
+export function getUrlWithIdPage({ url, id, page }) {
+  page = page || 0;
+  return `${url}/${id}?page=${page}`;
+}
+
+export function getWonTemplate(number) {
+  return `${number.toLocaleString()}원`;
 }

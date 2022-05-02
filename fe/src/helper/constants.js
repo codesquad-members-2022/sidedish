@@ -42,9 +42,18 @@ export const buttonIcons = {
 };
 
 export const API = {
-  exhibitions: `http://54.180.92.20:8080/api/exhibitions/2`,
-  category: `http://54.180.92.20:8080/api/exhibitions/1`,
-  categoryDishes: (id, page = 0) => {
-    return `http://54.180.92.20:8080/api/sidedishes/category/${id}?page=${page}`;
-  },
+  exhibitions: `http://54.180.92.20:8080/api/exhibitions`,
+  categoryDishes: `http://54.180.92.20:8080/api/sidedishes/category`,
+  sideDish: `http://54.180.92.20:8080/api/sidedishes`,
+  order: `http://54.180.92.20:8080/api/order-sheets`,
+};
+
+export const EXHIBITION_ID = {
+  category: 1,
+  exhibitions: 2,
+};
+
+export const eventsNumber = {
+  1: '이벤트특가',
+  2: '런칭특가',
 };

@@ -1,15 +1,13 @@
 import { Reset } from 'styled-reset';
-import Header from './views/header/Header.js';
-import { BestProduct } from './views/main/bestProduct/BestProduct.js';
-import { CategoryArea } from './views/main/categoryArea/CategoryArea.js';
+import Header from './components/header/Header.js';
+import { Main } from './components/main/main.js';
 
 function App() {
   return (
     <div className="App">
       <Reset />
       <Header />
-      <BestProduct />
-      <CategoryArea />
+      <Main></Main>
     </div>
   );
 }
