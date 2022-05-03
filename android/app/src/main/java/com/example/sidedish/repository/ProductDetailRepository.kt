@@ -1,7 +1,6 @@
 package com.example.sidedish.repository
 
 import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.Error
 import com.example.sidedish.model.ProductDetail
 import javax.inject.Inject
 

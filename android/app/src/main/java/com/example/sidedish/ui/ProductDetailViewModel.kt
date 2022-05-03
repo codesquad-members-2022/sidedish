@@ -4,13 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sidedish.model.DetailImages
-import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.ProductDetail
+import com.example.sidedish.model.*
 import com.example.sidedish.repository.ProductDetailRepository
-import com.example.sidedish.model.RepresentImages
 import com.example.sidedish.ui.common.ButtonState
-import com.example.sidedish.ui.common.ThrowableState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -40,8 +36,8 @@ class ProductDetailViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage : LiveData<String> = _errorMessage
 
-    private val _error = MutableLiveData<Pair<Throwable, ThrowableState>>()
-    val error: LiveData<Pair<Throwable, ThrowableState>> = _error
+    private val _error = MutableLiveData<CEHModel>()
+    val error: LiveData<CEHModel> = _error
 
     init {
         _quantity.value = 1
@@ -51,10 +47,10 @@ class ProductDetailViewModel @Inject constructor(
         throwable.stackTrace
 
         when (throwable) {
-            is SocketException -> _error.value = Pair(throwable, ThrowableState.SOCKET_EXCEPTION)
-            is HttpException -> _error.value = Pair(throwable, ThrowableState.HTTP_EXCEPTION)
-            is UnknownHostException -> _error.value = Pair(throwable, ThrowableState.UNKNOWN_HOST_EXCEPTION)
-            else -> _error.value = Pair(throwable, ThrowableState.EXCEPTION)
+            is SocketException -> _error.value = CEHModel(throwable, "소켓관련 오류입니다.")
+            is HttpException -> _error.value = CEHModel(throwable, "Http 관련 오류입니다")
+            is UnknownHostException -> _error.value = CEHModel(throwable, "UnknownHost 오류입니다.")
+            else -> _error.value = CEHModel(throwable, "알 수 없는 오류입니다.")
         }
     }
 
