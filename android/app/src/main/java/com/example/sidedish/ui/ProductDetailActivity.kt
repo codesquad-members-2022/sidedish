@@ -61,6 +61,10 @@ class ProductDetailActivity : AppCompatActivity() {
         viewModel.errorMessage.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
+
+        viewModel.error.observe(this) {
+            Toast.makeText(this, it.errorMessage, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun loadProductId(): Int {

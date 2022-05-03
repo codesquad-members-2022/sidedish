@@ -4,16 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sidedish.model.CEHModel
 import com.example.sidedish.model.Products
 import com.example.sidedish.repository.MainRepository
-import com.example.sidedish.ui.common.ThrowableState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.lang.ArithmeticException
 import java.net.SocketException
 import java.net.UnknownHostException
 import javax.inject.Inject
@@ -30,17 +28,17 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
     private val _sideDish = MutableLiveData<List<Products>>()
     val sideDish: LiveData<List<Products>> = _sideDish
 
-    private val _error = MutableLiveData<Pair<Throwable, ThrowableState>>()
-    val error: LiveData<Pair<Throwable, ThrowableState>> = _error
+    private val _error = MutableLiveData<CEHModel>()
+    val error: LiveData<CEHModel> = _error
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         throwable.stackTrace
 
         when (throwable) {
-            is SocketException -> _error.value = Pair(throwable, ThrowableState.SOCKET_EXCEPTION)
-            is HttpException -> _error.value = Pair(throwable, ThrowableState.HTTP_EXCEPTION)
-            is UnknownHostException -> _error.value = Pair(throwable, ThrowableState.UNKNOWN_HOST_EXCEPTION)
-            else -> _error.value = Pair(throwable, ThrowableState.EXCEPTION)
+            is SocketException -> _error.value = CEHModel(throwable, "소켓관련 오류입니다.")
+            is HttpException -> _error.value = CEHModel(throwable, "Http 관련 오류입니다")
+            is UnknownHostException -> _error.value = CEHModel(throwable, "UnknownHost 오류입니다.")
+            else -> _error.value = CEHModel(throwable, "알 수 없는 오류입니다.")
         }
     }
 
@@ -50,17 +48,17 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
     private fun loadMenu() {
         viewModelScope.launch(exceptionHandler) {
-            CoroutineScope(Dispatchers.Main).launch {
+            launch(Dispatchers.Main) {
                 mainRepository.loadMainMenu().let {
                     _mainMenu.value = it?.products
                 }
             }
-            CoroutineScope(Dispatchers.Main).launch {
+            launch(Dispatchers.Main) {
                 mainRepository.loadSoupMenu().let {
                     _soupMenu.value = it?.products
                 }
             }
-            CoroutineScope(Dispatchers.Main).launch {
+            launch(Dispatchers.Main) {
                 mainRepository.loadSideDish().let {
                     _sideDish.value = it?.products
                 }
