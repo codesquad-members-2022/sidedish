@@ -32,7 +32,7 @@ public class Dish extends AbstractAggregateRootz<Dish> {
     @MappedCollection(idColumn = "dish_id", keyColumn = "image_id")
     private List<Image> images;
 
-    @PersistenceConstructor
+//    @PersistenceConstructor
     public Dish(String name, String description, BigDecimal price, Badge badge, DeliveryPriceOption deliveryPriceOption, String thumbnail, DishStatus dishStatus, int count, Long categoryId, List<Image> images) {
         this.name = name;
         this.description = description;

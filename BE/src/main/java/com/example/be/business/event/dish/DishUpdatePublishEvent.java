@@ -11,6 +11,7 @@ public class DishUpdatePublishEvent extends ApplicationEventz {
 
     public DishUpdatePublishEvent(Object source) {
         super(source);
+        this.dishListener = new DishListener();
         this.dish = (Dish) source;
         dishListener.onApplicationEvent(this);
     }

@@ -42,6 +42,7 @@ public class OauthClientProperties {
             this.clientId = clientId;
             this.clientSecret = clientSecret;
             this.redirectUri = redirectUri;
+            System.out.println(this);
         }
 
         public String getClientId() {
@@ -68,6 +69,7 @@ public class OauthClientProperties {
             this.userInfoUri = userInfoUri;
             this.userNameAttribute = userNameAttribute;
             this.userAuthrozationUri = userAuthrozationUri;
+            System.out.println(this);
         }
 
         public String getTokenUri() {

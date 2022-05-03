@@ -38,13 +38,13 @@ public class GithubTokenUtils implements TokenUtils {
     public HttpEntity<?> getAccessTokenRequest(ClientRegistration clientRegistration, String code) {
         Assert.notNull(clientRegistration, "Registration must be not null.");
         Assert.notNull(code, "Code must be not null.");
-        MultiValueMap<String, String> headers = getHeadder();
+        MultiValueMap<String, String> headers = getHeader();
         MultiValueMap<String, String> payLoad = getPayLoad(clientRegistration, code);
         return new HttpEntity<>(payLoad, headers);
     }
 
     @Override
-    public MultiValueMap<String, String> getHeadder() {
+    public MultiValueMap<String, String> getHeader() {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.set(ACCEPT, APPLICATION_JSON_VALUE);
         return headers;

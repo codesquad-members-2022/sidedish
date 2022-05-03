@@ -11,7 +11,7 @@ import java.util.Map;
 public interface TokenUtils {
     HttpEntity<?> getAccessTokenRequest(ClientRegistration registration, String code);
 
-    MultiValueMap<String, String> getHeadder();
+    MultiValueMap<String, String> getHeader();
 
     MultiValueMap<String, String> getPayLoad(ClientRegistration registration, String code);
 
