@@ -51,7 +51,8 @@ final class Ordering{
     var sum: Int {
         guard let foodDetail = selectedFoodDetail else { return -1 }
         if orderingCount <= 0 { return 0 }
-        let priceStringLiteral = foodDetail.prices[0].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let priceString = foodDetail.prices.count >= 2 ? foodDetail.prices[1] : foodDetail.prices[0]
+        let priceStringLiteral = priceString.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         guard let price = Int(priceStringLiteral) else { return -1 }
         if orderingCount * price > 40000 {
             return (orderingCount * price)

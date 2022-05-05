@@ -205,7 +205,7 @@ final class FoodDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 27)
-        label.text = "0"
+        label.text = "0원"
         return label
     }()
     
@@ -373,8 +373,8 @@ final class FoodDetailView: UIView {
         foodReserveValueLabel.text = foodPoint
         
         if(foodPrices.count>=2){
-            foodSpecialPriceLabel.text = foodPrices[0]
-            foodNormalPriceLabel.text = foodPrices[1]
+            foodSpecialPriceLabel.text = foodPrices[1]
+            foodNormalPriceLabel.text = foodPrices[0]
             foodNormalPriceLabel.textColor = .gray
         }else{
             foodNormalPriceLabel.text = foodPrices[0]
