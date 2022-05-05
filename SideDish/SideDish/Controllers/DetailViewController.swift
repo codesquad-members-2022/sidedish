@@ -91,7 +91,7 @@ final class DetailViewController: UIViewController{
         guard let count = notification.userInfo?[UserInfoKey.changedSelectedFoodCount] as? Int else { return }
         guard let sum = notification.userInfo?[UserInfoKey.orderingSumPrice] as? Int else { return }
         foodDetailView.foodCountValueLabel.text = "\(count)"
-        foodDetailView.foodTotalPriceValueLabel.text = "\(sum)"
+        foodDetailView.foodTotalPriceValueLabel.text = "\(sum)원"
     }
 }
 
