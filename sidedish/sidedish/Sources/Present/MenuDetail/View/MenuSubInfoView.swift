@@ -11,7 +11,6 @@ class MenuSubInfoView: UIView {
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 16
         return stackView
@@ -19,21 +18,18 @@ class MenuSubInfoView: UIView {
     
     private let pointLabel: KeyValueView = {
         let keyValueView = KeyValueView()
-        keyValueView.translatesAutoresizingMaskIntoConstraints = false
         keyValueView.key = "적립금"
         return keyValueView
     }()
     
     private let deliveryInfoLabel: KeyValueView = {
         let keyValueView = KeyValueView()
-        keyValueView.translatesAutoresizingMaskIntoConstraints = false
         keyValueView.key = "배송정보"
         return keyValueView
     }()
     
     private let deliveryPriceLabel: KeyValueView = {
         let keyValueView = KeyValueView()
-        keyValueView.translatesAutoresizingMaskIntoConstraints = false
         keyValueView.key = "배송비"
         return keyValueView
     }()
@@ -56,13 +52,13 @@ class MenuSubInfoView: UIView {
         
         stackView.setCustomSpacing(24, after: deliveryPriceLabel)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
+        
+        self.snp.makeConstraints { make in
+            make.bottom.equalTo(stackView)
+        }
     }
     
     func setData(_ data: MenuDetail) {
@@ -76,7 +72,6 @@ extension MenuSubInfoView {
     class KeyValueView: UIView {
         private let keyLabel: UILabel = {
             let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
             label.font = .systemFont(ofSize: 14)
             label.textAlignment = .left
             label.textColor = .grey2
@@ -85,7 +80,6 @@ extension MenuSubInfoView {
         
         private let valueLabel: UILabel = {
             let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
             label.font = .systemFont(ofSize: 14)
             label.textAlignment = .left
             label.textColor = .grey1
@@ -118,18 +112,18 @@ extension MenuSubInfoView {
             addSubview(keyLabel)
             addSubview(valueLabel)
             
-            NSLayoutConstraint.activate([
-                keyLabel.topAnchor.constraint(equalTo: topAnchor),
-                keyLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-                keyLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-                
-                valueLabel.topAnchor.constraint(equalTo: topAnchor),
-                valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-                valueLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 76),
-                valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-                
-                bottomAnchor.constraint(equalTo: keyLabel.bottomAnchor)
-            ])
+            keyLabel.snp.makeConstraints { make in
+                make.top.bottom.leading.equalToSuperview()
+            }
+            
+            valueLabel.snp.makeConstraints { make in
+                make.top.bottom.trailing.equalToSuperview()
+                make.leading.equalToSuperview().offset(76)
+            }
+            
+            self.snp.makeConstraints { make in
+                make.bottom.equalTo(keyLabel)
+            }
         }
     }
 }

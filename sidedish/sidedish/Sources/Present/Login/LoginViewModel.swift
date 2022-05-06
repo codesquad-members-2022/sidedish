@@ -11,47 +11,43 @@ import FirebaseCore
 import Foundation
 import GoogleSignIn
 
-struct LoginViewModelAction {
+class LoginViewModel: LoginViewModelProtocol, LoginViewModelAction, LoginViewModelState {
+    func action() -> LoginViewModelAction { self }
+    
     let tappedGoogleLogin = PassthroughSubject<Void, Never>()
     let googleUser = PassthroughSubject<GIDGoogleUser?, Never>()
-}
-
-struct LoginViewModelState {
+    
+    func state() -> LoginViewModelState { self }
+    
     let presentMainView = PassthroughSubject<Void, Never>()
     let presentGoogleLogin = PassthroughSubject<GIDConfiguration, Never>()
-}
-
-protocol LoginViewModelBinding {
-    var action: LoginViewModelAction { get }
-    var state: LoginViewModelState { get }
-}
-
-typealias LoginViewModelProtocol = LoginViewModelBinding
-
-class LoginViewModel: LoginViewModelProtocol {
+    let showLoadingIndicator = PassthroughSubject<Bool, Never>()
+    
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.loginRepository) private var loginRepository: LoginRepository
     
     private var cancellables = Set<AnyCancellable>()
-    private let loginRepository: LoginRepository = LoginRepositoryImpl()
-    
-    let action = LoginViewModelAction()
-    let state = LoginViewModelState()
     
     deinit {
         Log.debug("DeInit LoginViewModel")
     }
     
     init() {
-        action.tappedGoogleLogin
+        action().tappedGoogleLogin
             .compactMap { _ -> GIDConfiguration? in
                 guard let clientId = FirebaseApp.app()?.options.clientID else {
                     return nil
                 }
                 return GIDConfiguration(clientID: clientId)
             }
-            .sink(receiveValue: state.presentGoogleLogin.send(_:))
+            .sink(receiveValue: state().presentGoogleLogin.send(_:))
             .store(in: &cancellables)
         
-        action.googleUser
+        action().googleUser
+            .filter { $0 != nil }
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.state().showLoadingIndicator.send(true)
+            })
             .compactMap { user -> AuthCredential? in
                 guard let authentication = user?.authentication,
                       let idToken = authentication.idToken else {
@@ -61,9 +57,12 @@ class LoginViewModel: LoginViewModelProtocol {
             }
             .compactMap { [weak self] credential in self?.loginRepository.googleLogin(authCredential: credential) }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.shared.userStore.user = $0 })
+            .handleEvents(receiveOutput: { [weak self] user in
+                self?.userStore.user = user
+                self?.state().showLoadingIndicator.send(false)
+            })
             .map { _ in }
-            .sink(receiveValue: state.presentMainView.send(_:))
+            .sink(receiveValue: state().presentMainView.send(_:))
             .store(in: &cancellables)
     }
 }

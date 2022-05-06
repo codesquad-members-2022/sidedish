@@ -9,11 +9,6 @@ import Combine
 import UIKit
 
 class RootWindow: UIWindow {
-    static var shared: RootWindow? {
-        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
-        return window as? RootWindow
-    }
-    
     private var cancellables = Set<AnyCancellable>()
     let switchRootWindowState = PassthroughSubject<State, Never>()
     
@@ -42,11 +37,11 @@ extension RootWindow {
         var viewController: UIViewController {
             switch self {
             case .splash:
-                return SplashViewController()
+                return SplashViewController(viewModel: SplashViewModel())
             case .login:
-                return LoginViewController()
+                return LoginViewController(viewModel: LoginViewModel())
             case .main:
-                return UINavigationController(rootViewController: MainViewController())
+                return UINavigationController(rootViewController: MainViewController(viewModel: MainViewModel()))
             }
         }
     }

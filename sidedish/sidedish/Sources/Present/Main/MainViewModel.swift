@@ -8,44 +8,27 @@
 import Combine
 import Foundation
 
-struct MainViewModelAction {
+class MainViewModel: MainViewModelBinding, MainViewModelProperty, MainViewModelAction, MainViewModelState {
+    func action() -> MainViewModelAction { self }
+    
     let viewDidLoad = PassthroughSubject<Void, Never>()
     let tappedLogoutButton = PassthroughSubject<Void, Never>()
-}
-
-struct MainViewModelState {
+    
+    func state() -> MainViewModelState { self }
+    
     let userData = PassthroughSubject<User, Never>()
     let loadedData = PassthroughSubject<Menu.Category, Never>()
     let loadedImage = PassthroughSubject<IndexPath, Never>()
     let presentLoginPage = PassthroughSubject<Void, Never>()
-}
-
-protocol MainViewModelBinding {
-    var action: MainViewModelAction { get }
-    var state: MainViewModelState { get }
-}
-
-protocol MainViewModelProperty {
-    subscript(_ indexPath: IndexPath) -> Menu? { get }
-    func getThumbnailUrl(indexPath: IndexPath) -> URL?
-    func getMenuCount(_ type: Menu.Category) -> Int
-}
-
-typealias MainViewModelProtocol = MainViewModelBinding & MainViewModelProperty
-typealias Menus = [Menu]
-
-class MainViewModel: MainViewModelBinding, MainViewModelProperty {
+    
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.sidedishRepository) private var sidedishRepository: SidedishRepository
+    @Inject(\.resourceRepository) private var resourceRepository: ResourceRepository
+    @Inject(\.loginRepository) private var loginRepository: LoginRepository
+    
     private var cancellables = Set<AnyCancellable>()
-    
-    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
-    private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
-    private let loginRepository: LoginRepository = LoginRepositoryImpl()
-    
     private var menus = [Menu.Category: Menus]()
     private var thumbnailImages = [IndexPath: URL]()
-    
-    let action = MainViewModelAction()
-    let state = MainViewModelState()
     
     subscript(_ indexPath: IndexPath) -> Menu? {
         guard let type = Menu.Category(rawValue: indexPath.section),
@@ -61,12 +44,12 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
     }
     
     init() {
-        action.viewDidLoad
-            .compactMap { Container.shared.userStore.user }
-            .sink(receiveValue: state.userData.send(_:))
+        action().viewDidLoad
+            .compactMap { [weak self] _ in self?.userStore.user }
+            .sink(receiveValue: state().userData.send(_:))
             .store(in: &cancellables)
         
-        let request = action.viewDidLoad
+        let request = action().viewDidLoad
             .map { [weak self] _ in
                 Menu.Category.allCases.publisher.compactMap { menu in
                     self?.sidedishRepository.loadMenu(menu)
@@ -74,7 +57,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
             }
             .switchToLatest()
             .share()
-
+        
         request
             .sink { [weak self] result in
                 guard let self = self else { return }
@@ -82,7 +65,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
                     .compactMap { $0.value }
                     .sink { type, menus in
                         self.menus[type] = menus
-                        self.state.loadedData.send(type)
+                        self.state().loadedData.send(type)
                         self.loadThumbnailImage(type: type, menus: menus)
                     }.store(in: &self.cancellables)
 
@@ -93,11 +76,11 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
                     }.store(in: &self.cancellables)
             }.store(in: &cancellables)
 
-        action.tappedLogoutButton
+        action().tappedLogoutButton
             .compactMap { [weak self] _ in self?.loginRepository.signOut() }
             .switchToLatest()
-            .handleEvents(receiveOutput: { Container.shared.userStore.user = nil })
-            .sink(receiveValue: state.presentLoginPage.send(_:))
+            .handleEvents(receiveOutput: { [weak self] _ in self?.userStore.user = nil })
+            .sink(receiveValue: state().presentLoginPage.send(_:))
             .store(in: &cancellables)
     }
     
@@ -109,7 +92,7 @@ class MainViewModel: MainViewModelBinding, MainViewModelProperty {
             resourceRepository.loadImage(url)
                 .sink { [weak self] fileUrl in
                     self?.thumbnailImages[indexPath] = fileUrl
-                    self?.state.loadedImage.send(indexPath)
+                    self?.state().loadedImage.send(indexPath)
                 }
                 .store(in: &cancellables)
         }

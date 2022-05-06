@@ -13,17 +13,25 @@ class NetworkApiRepository<Target: EndPoint> {
     
     func request(_ target: Target, session: URLSessionProtocol = URLSession.shared ) -> AnyPublisher<NetworkResult, Never> {
         provider = URLSessionProvider(session: session)
-        guard let url = target.baseURL?.appendingPathComponent(target.path) else {
-            return Future<NetworkResult, Never> { promise in promise(.success(NetworkResult(.pasingError))) }.eraseToAnyPublisher()
-        }
         
+        let url = target.path.isEmpty ? target.baseUrl : target.baseUrl.appendingPathComponent(target.path)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = target.method.value
-        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(target.contentType.value, forHTTPHeaderField: "Content-Type")
+        
+        if target.contentType == .urlencode {
+            if let param = target.parameter {
+                let formDataString = param.reduce(into: "") {
+                    $0 = $0 + "\($1.key)=\($1.value)&"
+                }.dropLast()
 
-        if let param = target.parameter,
-           let body = try? JSONSerialization.data(withJSONObject: param, options: .init()) {
-            urlRequest.httpBody = body
+                urlRequest.httpBody = formDataString.data(using: .utf8, allowLossyConversion: true)
+            }
+        } else {
+            if let param = target.parameter,
+               let body = try? JSONSerialization.data(withJSONObject: param, options: .init()) {
+                urlRequest.httpBody = body
+            }
         }
         
         return Future<NetworkResult, Never> { promise in

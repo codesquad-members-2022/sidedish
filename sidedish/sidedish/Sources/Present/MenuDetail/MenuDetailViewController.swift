@@ -14,27 +14,16 @@ class MenuDetailViewController: UIViewController {
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isPagingEnabled = false
         return scrollView
     }()
 
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let contentView = UIView()
 
-    private let thumbnailImageView: ThumbnailImageView = {
-        let thumbnailView = ThumbnailImageView()
-        thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-
-        return thumbnailView
-    }()
+    private let thumbnailImageView = ThumbnailImageView()
     
     private let infoStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 24
         return stackView
@@ -42,12 +31,12 @@ class MenuDetailViewController: UIViewController {
     
     private let infoView: MenuInfoView = {
         let attribute = MenuInfoAttribute()
-        attribute.stackViewSpacing = 8
+        attribute.lineSpacing = 8
         attribute.titleFont = .systemFont(ofSize: 32, weight: .regular)
         attribute.titleTextColor = .black
-        attribute.discriptionFont = .systemFont(ofSize: 14, weight: .regular)
+        attribute.discriptionFont = .systemFont(ofSize: 18, weight: .regular)
         attribute.discriptionTextColor = .grey2
-        attribute.priceFont = .systemFont(ofSize: 32, weight: .regular)
+        attribute.priceFont = .systemFont(ofSize: 18, weight: .regular)
         attribute.priceTextColor = .grey1
         attribute.salePriceFont = .systemFont(ofSize: 16)
         attribute.salePriceTextColor = .grey2
@@ -92,18 +81,18 @@ class MenuDetailViewController: UIViewController {
         attribute()
         layout()
 
-        model.action.loadMenuDetail.send()
+        model.action().loadMenuDetail.send()
     }
 
     private func bind() {
-        model.state.loadedDetail
+        model.state().loadedDetail
             .receive(on: DispatchQueue.main)
             .sink { [weak self] menu, detail in
                 self?.title = menu.title
                 self?.infoView.changeTitleLabel(text: menu.title)
                 self?.infoView.changeDescriptionLabel(text: menu.description)
-                self?.infoView.changePriceLabel(text: menu.price)
-                self?.infoView.changeSalePriceLabel(text: menu.salePrice ?? "")
+                self?.infoView.changePriceLabel(price: menu.price)
+                self?.infoView.changeSalePriceLabel(price: menu.salePrice)
                 self?.infoView.changeSaleBadge(menu.badge)
                 self?.subInfoView.setData(detail)
                 self?.orderView.setTotalPrice(menu.price)
@@ -111,42 +100,49 @@ class MenuDetailViewController: UIViewController {
                 self?.sectionView.makeImageView(count: detail.detailSection.count)
             }.store(in: &cancellables)
 
-        model.state.showError
+        model.state().showError
             .sink { _ in
                 //TODO: 에러 처리
             }.store(in: &cancellables)
 
         amountView.plusPublisher
-            .sink(receiveValue: model.action.tappedPlusButton.send(_:))
+            .sink(receiveValue: model.action().tappedPlusButton.send(_:))
             .store(in: &cancellables)
 
         amountView.minusPublisher
-            .sink(receiveValue: model.action.tappedMinusButton.send(_:))
+            .sink(receiveValue: model.action().tappedMinusButton.send(_:))
             .store(in: &cancellables)
 
-        model.state.amount
+        model.state().amount
             .sink { [weak self] amount in
                 self?.amountView.amount = amount
             }
             .store(in: &cancellables)
-
-        orderView.orderPublisher
-            .sink(receiveValue: model.action.tappedOrderButton.send(_:))
+        
+        model.state().totalPrice
+            .sink { [weak self] totalPrice in
+                self?.orderView.setTotalPrice(totalPrice)
+            }
             .store(in: &cancellables)
 
-        model.state.ordered
-            .sink {
+        orderView.orderPublisher
+            .sink(receiveValue: model.action().tappedOrderButton.send(_:))
+            .store(in: &cancellables)
+
+        model.state().ordered
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
                 let alert = UIAlertController(title: "주문완료 ✅", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "완료", style: .cancel))
-                self.present(alert, animated: true)
+                self?.present(alert, animated: true)
             }.store(in: &cancellables)
         
-        model.state.loadedThumbnail
+        model.state().loadedThumbnail
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: thumbnailImageView.setImage(_:_:))
             .store(in: &cancellables)
         
-        model.state.loadedDetailSection
+        model.state().loadedDetailSection
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: sectionView.setImage(_:_:))
             .store(in: &cancellables)
@@ -168,36 +164,35 @@ class MenuDetailViewController: UIViewController {
         }
         
         separator.forEach {
-            $0.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            $0.snp.makeConstraints {
+                $0.height.equalTo(1)
+            }
         }
 
-        let safeArea = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-
-            scrollView.contentLayoutGuide.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.contentLayoutGuide.rightAnchor.constraint(equalTo: view.rightAnchor),
-            scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: safeArea.topAnchor),
-
-            contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-
-            thumbnailImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            thumbnailImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            thumbnailImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
-
-            infoStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            infoStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            infoStackView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 24),
-            infoStackView.bottomAnchor.constraint(equalTo: infoViews[infoViews.count - 1].bottomAnchor),
-
-            contentView.bottomAnchor.constraint(equalTo: infoStackView.bottomAnchor),
-            scrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: contentView.heightAnchor)
-        ])
+        scrollView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        scrollView.contentLayoutGuide.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(contentView.snp.bottom)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(scrollView)
+            $0.bottom.equalTo(infoStackView)
+        }
+        
+        thumbnailImageView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(contentView)
+            $0.height.equalTo(contentView.snp.width)
+        }
+        
+        infoStackView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(contentView).inset(16)
+            $0.top.equalTo(thumbnailImageView.snp.bottom).offset(24)
+            $0.bottom.equalTo(infoViews[infoViews.count - 1])
+        }
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 protocol SidedishRepository {
     func loadMenu(_ type: Menu.Category) -> AnyPublisher<ApiResult<(Menu.Category, [Menu]), SessionError>, Never>
     func loadDetail(_ hash: String) -> AnyPublisher<ApiResult<MenuDetail, SessionError>, Never>
+    func order(_ name: String, message: String) -> AnyPublisher<ApiResult<Void, SessionError>, Never>
 }

@@ -8,13 +8,9 @@
 import Foundation
 
 protocol EndPoint {
-    var parameter: [String: Any]? { get }
+    var baseUrl: URL { get }
     var path: String { get }
+    var parameter: [String: Any]? { get }
     var method: HTTPMethod { get }
-}
-
-extension EndPoint {
-    var baseURL: URL? {
-        URL(string: "https://api.codesquad.kr/onban")
-    }
+    var contentType: HttpContentType { get }
 }

@@ -18,7 +18,7 @@ struct Menu: Decodable {
     let title: String
     let deliveryType: [String]
     let description: String
-    let price: String
+    @DecodedBy<PriceTransformer<String>> var price: Int
     let salePrice: String?
     let badge: [String]?
     
@@ -32,6 +32,10 @@ struct Menu: Decodable {
 }
 
 extension Menu {
+    static var categoryCount: Int {
+        Category.allCases.count
+    }
+    
     enum Category: Int, CaseIterable {
         case main, soup, side
         

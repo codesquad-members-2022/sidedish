@@ -11,7 +11,6 @@ import UIKit
 class MenuAmountView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14)
         label.textAlignment = .left
         label.textColor = .grey2
@@ -21,7 +20,6 @@ class MenuAmountView: UIView {
     
     private let amountLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textAlignment = .center
         label.text = "1"
@@ -30,7 +28,6 @@ class MenuAmountView: UIView {
     
     private let stepper: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .grey4
         view.layer.cornerRadius = 8
         return view
@@ -38,7 +35,6 @@ class MenuAmountView: UIView {
     
     private let plusButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("+", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
@@ -47,7 +43,6 @@ class MenuAmountView: UIView {
     
     private let minusButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("-", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
@@ -85,31 +80,37 @@ class MenuAmountView: UIView {
         stepper.addSubview(minusButton)
         addSubview(amountLabel)
         
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            
-            stepper.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            stepper.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stepper.widthAnchor.constraint(equalToConstant: 100),
-            stepper.heightAnchor.constraint(equalToConstant: 28),
-            
-            plusButton.topAnchor.constraint(equalTo: stepper.topAnchor),
-            plusButton.bottomAnchor.constraint(equalTo: stepper.bottomAnchor),
-            plusButton.trailingAnchor.constraint(equalTo: stepper.trailingAnchor),
-            plusButton.leadingAnchor.constraint(equalTo: stepper.centerXAnchor),
-            
-            minusButton.topAnchor.constraint(equalTo: stepper.topAnchor),
-            minusButton.bottomAnchor.constraint(equalTo: stepper.bottomAnchor),
-            minusButton.trailingAnchor.constraint(equalTo: stepper.centerXAnchor),
-            minusButton.leadingAnchor.constraint(equalTo: stepper.leadingAnchor),
-            
-            amountLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            amountLabel.trailingAnchor.constraint(equalTo: stepper.leadingAnchor),
-            amountLabel.widthAnchor.constraint(equalToConstant: 57),
-            amountLabel.heightAnchor.constraint(equalTo: stepper.heightAnchor),
-            
-            bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(2)
+            make.leading.equalToSuperview()
+        }
+        
+        stepper.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel)
+            make.trailing.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(28)
+        }
+        
+        plusButton.snp.makeConstraints { make in
+            make.top.bottom.trailing.equalTo(stepper)
+            make.leading.equalTo(stepper.snp.centerX)
+        }
+        
+        minusButton.snp.makeConstraints { make in
+            make.top.bottom.leading.equalTo(stepper)
+            make.trailing.equalTo(stepper.snp.centerX)
+        }
+        
+        amountLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel)
+            make.trailing.equalTo(stepper.snp.leading)
+            make.width.equalTo(57)
+            make.height.equalTo(stepper)
+        }
+        
+        self.snp.makeConstraints { make in
+            make.bottom.equalTo(titleLabel)
+        }
     }
 }

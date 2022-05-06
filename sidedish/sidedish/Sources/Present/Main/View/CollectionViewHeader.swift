@@ -12,7 +12,6 @@ class CollectionViewHeader: UICollectionReusableView {
     
     private let title: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 32)
         label.textColor = .black
         label.numberOfLines = 2
@@ -32,12 +31,11 @@ class CollectionViewHeader: UICollectionReusableView {
     }
     
     private func layout() {
-        NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: topAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            title.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
+        title.snp.makeConstraints { make in
+            make.top.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
     }
 }
 

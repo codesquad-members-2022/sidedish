@@ -8,45 +8,36 @@
 import Combine
 import Foundation
 
-struct MenuDetailViewModelAction {
+final class MenuDetailViewModel: MenuDetailViewModelProtcol, MenuDetailViewModelAction, MenuDetailViewModelState {
+    func action() -> MenuDetailViewModelAction { self }
+    
     let loadMenuDetail = PassthroughSubject<Void, Never>()
     let tappedPlusButton = PassthroughSubject<Void, Never>()
     let tappedMinusButton = PassthroughSubject<Void, Never>()
     let tappedOrderButton = PassthroughSubject<Void, Never>()
-}
-
-struct MenuDetailViewModelState {
+    
+    func state() -> MenuDetailViewModelState { self }
+    
     let loadedDetail = PassthroughSubject<(Menu, MenuDetail), Never>()
     let showError = PassthroughSubject<SessionError, Never>()
     let ordered = PassthroughSubject<Void, Never>()
     let amount = CurrentValueSubject<Int, Never>(1)
+    let totalPrice = PassthroughSubject<Int, Never>()
     let loadedThumbnail = PassthroughSubject<(Int, URL), Never>()
     let loadedDetailSection = PassthroughSubject<(Int, URL), Never>()
-}
-
-protocol MenuDetailViewModelBinding {
-    var action: MenuDetailViewModelAction { get }
-    var state: MenuDetailViewModelState { get }
-}
-
-typealias MenuDetailViewModelProtcol = MenuDetailViewModelBinding
-
-final class MenuDetailViewModel: MenuDetailViewModelProtcol {
+    
+    @Inject(\.userStore) private var userStore: UserStore
+    @Inject(\.sidedishRepository) private var sidedishRepository: SidedishRepository
+    @Inject(\.resourceRepository) private var resourceRepository: ResourceRepository
     
     private var cancellables = Set<AnyCancellable>()
-    private let sidedishRepository: SidedishRepository = SidedishRepositoryImpl()
-    private let resourceRepository: ResourceRepository = ResourceRepositoryImpl()
-    
-    let action = MenuDetailViewModelAction()
-    let state = MenuDetailViewModelState()
     
     deinit {
         Log.debug("DeInit MenuDetailViewModel")
     }
     
-    init(menu: Menu) {
-        
-        let requestDetail = action.loadMenuDetail
+    init(menu: Menu, sidedishRepository: SidedishRepository, resourceRepository: ResourceRepository) {
+        let requestDetail = action().loadMenuDetail
             .compactMap { [weak self] _ in self?.sidedishRepository.loadDetail(menu.hash) }
             .switchToLatest()
             .share()
@@ -54,31 +45,49 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
         requestDetail
             .compactMap { $0.value }
             .sink { [weak self] detail in
-                self?.state.loadedDetail.send((menu, detail))
+                self?.state().loadedDetail.send((menu, detail))
                 self?.loadImage(detail: detail)
             }
             .store(in: &cancellables)
         
         Publishers
             .Merge(
-                action.tappedPlusButton.map { 1 },
-                action.tappedMinusButton.map { -1 }
+                action().tappedPlusButton.map { 1 },
+                action().tappedMinusButton.map { -1 }
             )
-            .map { [weak self] value in
-                var amount = (self?.state.amount.value ?? 0) + value
-                amount = amount < 0 ? 0 : amount
-                return amount
+            .map { [weak self] value -> Int in
+                let amount = (self?.state().amount.value ?? 0) + value
+                return amount < 1 ? 1 : amount
             }
-            .sink(receiveValue: state.amount.send(_:))
+            .sink { [weak self] amount in
+                self?.state().amount.send(amount)
+                self?.state().totalPrice.send(menu.price * amount)
+            }
             .store(in: &cancellables)
         
-        action.tappedOrderButton
-            .sink(receiveValue: state.ordered.send(_:))
+        let requestOrder = action().tappedOrderButton
+            .compactMap { [weak self] _ -> (String, String)? in
+                guard let userName = self?.userStore.user?.name,
+                      let count = self?.state().amount.value else {
+                    return nil
+                }
+                let totalPrice = (menu.price * count).printCurrency()
+                let message = "코드스쿼드 주문!!\n주문상품: \(menu.title)\n주문갯수: \(count)개\n주문금액: \(totalPrice)"
+                return (userName, message)
+            }
+            .compactMap { [weak self] name, message in self?.sidedishRepository.order(name, message: message) }
+            .switchToLatest()
+            .share()
+
+        requestOrder
+            .compactMap { $0.value }
+            .map { _ in }
+            .sink(receiveValue: state().ordered.send(_:))
             .store(in: &cancellables)
         
         requestDetail
             .compactMap { $0.error }
-            .sink(receiveValue: state.showError.send(_:))
+            .sink(receiveValue: state().showError.send(_:))
             .store(in: &cancellables)
     }
     
@@ -86,14 +95,14 @@ final class MenuDetailViewModel: MenuDetailViewModelProtcol {
         detail.thumbImages.enumerated().forEach { index, url in
             resourceRepository.loadImage(url)
                 .sink { [weak self] fileUrl in
-                    self?.state.loadedThumbnail.send((index, fileUrl))
+                    self?.state().loadedThumbnail.send((index, fileUrl))
                 }.store(in: &self.cancellables)
         }
         
         detail.detailSection.enumerated().forEach { index, url in
             resourceRepository.loadImage(url)
                 .sink { [weak self] fileUrl in
-                    self?.state.loadedDetailSection.send((index, fileUrl))
+                    self?.state().loadedDetailSection.send((index, fileUrl))
                 }.store(in: &self.cancellables)
         }
     }

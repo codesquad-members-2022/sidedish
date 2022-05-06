@@ -15,17 +15,22 @@ class URLSessionProvider {
     }
     
     func dataTask(request: URLRequest, completionHandler: @escaping (NetworkResult) -> Void) {
-        let task = session.dataTask(with: request) { data, response, _ in
+        let task = session.dataTask(with: request) { data, response, error in
             
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200..<300).contains(httpResponse.statusCode) else {
-                      return completionHandler(NetworkResult(.statusCodeError))
-                  }
+            if let error = error {
+                return completionHandler(NetworkResult(.unknownError))
+            }
             
-            if let data = data {
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completionHandler(NetworkResult(.unknownError))
+            }
+            
+            if (200..<300).contains(httpResponse.statusCode),
+               let data = data {
                 return completionHandler(NetworkResult(data))
             }
-            return completionHandler(NetworkResult(.unknownError))
+            
+            return completionHandler(NetworkResult(.statusCodeError))
         }
         
         task.resume()
