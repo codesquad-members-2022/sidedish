@@ -3,16 +3,18 @@ package com.example.sidedish.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sidedish.R
 import com.example.sidedish.databinding.ActivityMainBinding
-import com.example.sidedish.ui.common.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: MainViewModel by viewModels()
 
 
     @SuppressLint("SetTextI18n")
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             viewModel.sideDish.observe(this@MainActivity) {
                 submitList(it)
             }
+        }
+
+        viewModel.error.observe(this) {
+            Toast.makeText(this, it.errorMessage, Toast.LENGTH_SHORT).show()
         }
 
         binding.tvHeaderTitle1.setOnClickListener {

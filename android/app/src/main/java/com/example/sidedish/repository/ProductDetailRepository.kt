@@ -1,10 +1,10 @@
 package com.example.sidedish.repository
 
 import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.Error
 import com.example.sidedish.model.ProductDetail
+import javax.inject.Inject
 
-class ProductDetailRepository(
+class ProductDetailRepository @Inject constructor(
     private val productDetailRemoteDataSource: ProductDetailRemoteDataSource,
     private val productCountRemoteDataSource: ProductCountRemoteDataSource
 ) {

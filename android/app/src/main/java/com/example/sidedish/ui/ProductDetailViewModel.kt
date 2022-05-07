@@ -4,15 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sidedish.model.DetailImages
-import com.example.sidedish.model.PostRequest
-import com.example.sidedish.model.ProductDetail
+import com.example.sidedish.model.*
 import com.example.sidedish.repository.ProductDetailRepository
-import com.example.sidedish.model.RepresentImages
 import com.example.sidedish.ui.common.ButtonState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.net.SocketException
+import java.net.UnknownHostException
+import javax.inject.Inject
 
-class ProductDetailViewModel(
+@HiltViewModel
+class ProductDetailViewModel @Inject constructor(
     private val productDetailRepository: ProductDetailRepository
 ) :
     ViewModel() {
@@ -29,15 +33,29 @@ class ProductDetailViewModel(
     private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    private val _error = MutableLiveData<String>()
-    val error : LiveData<String> = _error
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage : LiveData<String> = _errorMessage
+
+    private val _error = MutableLiveData<CEHModel>()
+    val error: LiveData<CEHModel> = _error
 
     init {
         _quantity.value = 1
     }
 
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        throwable.stackTrace
+
+        when (throwable) {
+            is SocketException -> _error.value = CEHModel(throwable, "소켓관련 오류입니다.")
+            is HttpException -> _error.value = CEHModel(throwable, "Http 관련 오류입니다")
+            is UnknownHostException -> _error.value = CEHModel(throwable, "UnknownHost 오류입니다.")
+            else -> _error.value = CEHModel(throwable, "알 수 없는 오류입니다.")
+        }
+    }
+
     fun loadProductDetail(productId: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             val detail = productDetailRepository.loadProductDetail(productId)
             detail?.let {
                 _productDetail.value = it
@@ -48,10 +66,10 @@ class ProductDetailViewModel(
     }
 
     fun postProductCount(postRequest: PostRequest) {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             val errorMessage = productDetailRepository.orderProduct(postRequest)
             errorMessage?.let {
-                _error.value = it
+                _errorMessage.value = it
             }
         }
     }

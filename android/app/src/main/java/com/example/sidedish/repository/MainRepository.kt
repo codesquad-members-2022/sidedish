@@ -1,18 +1,19 @@
 package com.example.sidedish.repository
 
 import com.example.sidedish.model.MenuData
+import javax.inject.Inject
 
-class MainRepository(private val mainRemoteDataSource: MainRemoteDataSource){
+class MainRepository @Inject constructor(private val mainDataSource: MainDataSource) {
 
     suspend fun loadMainMenu(): MenuData? {
-        return mainRemoteDataSource.loadMainMenu()
+        return mainDataSource.loadMainMenu()
     }
 
     suspend fun loadSoupMenu(): MenuData? {
-        return mainRemoteDataSource.loadSoupMenu()
+        return mainDataSource.loadSoupMenu()
     }
 
     suspend fun loadSideDish(): MenuData? {
-        return mainRemoteDataSource.loadSideDish()
+        return mainDataSource.loadSideDish()
     }
 }

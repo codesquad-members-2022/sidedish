@@ -1,7 +1,7 @@
-package com.example.sidedish.ui.common
+package com.example.sidedish
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class HiltApplication : Application()
+class MainApplication : Application()

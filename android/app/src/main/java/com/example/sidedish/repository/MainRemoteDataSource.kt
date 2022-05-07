@@ -2,8 +2,9 @@ package com.example.sidedish.repository
 
 import com.example.sidedish.model.MenuData
 import com.example.sidedish.network.RetrofitAPI
+import javax.inject.Inject
 
-class MainRemoteDataSource : MainDataSource {
+class MainRemoteDataSource @Inject constructor() : MainDataSource {
 
     override suspend fun loadMainMenu(): MenuData? {
         val response = RetrofitAPI.service.getMainMenu()
