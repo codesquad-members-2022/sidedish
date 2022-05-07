@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         ActivityHomeBinding.inflate(layoutInflater)
     }
 
-    private val viewModel:MenuListViewModel by viewModels()
+    private val viewModel: MenuListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +29,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val code =intent?.data?.getQueryParameter("code")
-        if(code != null) {
+        val code = intent?.data?.getQueryParameter("code")
+        if (code != null) {
             viewModel.getJWT(code) {
                 findNavController(R.id.loginFragment).navigate(R.id.action_loginFragment_to_homeFragment)
             }

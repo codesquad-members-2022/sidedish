@@ -65,7 +65,7 @@
                     android:id="@+id/tv_event_amount"
                     style="@style/title_style.price"
                     discountRate="@{foodDetail.discountRate}"
-                    price="@{foodDetail.price}"
+                    discountedPrice="@{foodDetail.price}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:ellipsize="end" />
@@ -307,7 +307,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/tv_order"
+                android:id="@+id/bt_order"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginStart="16dp"
