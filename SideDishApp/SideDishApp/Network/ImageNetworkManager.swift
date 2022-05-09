@@ -8,7 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
-// TODO: - NetworkManagerable 프로토콜 채택할 예정
+// TODO: NetworkManagerable 프로토콜 채택할 예정
 final class ImageNetworkManager {
     private let cache = NSCache<NSString, UIImage>()
     
@@ -41,7 +41,6 @@ final class ImageNetworkManager {
     
     func request(endpoint: Endpointable, completion: @escaping((Result<UIImage?, NetworkError>) -> Void)) {
         
-        // TODO: - 데모를 위해 콘솔에 print함. 제거할 예정
         guard let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
         print(cacheDirectoryPath)
         
@@ -51,13 +50,11 @@ final class ImageNetworkManager {
         
         // CheckMemory
         if let image = findImageInMemoryCache(from: url) {
-            print("Memory Cache HIT! image: \(image)")
             return completion(.success(image))
         }
         
         // CheckDisk
         if let image = findImageInDiskCache(from: url) {
-            print("Disk Cache HIT! image: \(image)")
             self.cache.setObject(image, forKey: url.lastPathComponent as NSString)
             return completion(.success(image))
         }

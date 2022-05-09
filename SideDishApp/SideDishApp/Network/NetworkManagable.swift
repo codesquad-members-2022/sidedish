@@ -5,7 +5,6 @@
 //  Created by 박진섭 on 2022/04/28.
 //
 
-
 import Foundation
 
 protocol NetworkManagable: AnyObject {
