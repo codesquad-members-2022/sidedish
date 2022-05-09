@@ -26,6 +26,7 @@ final class OrderingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNetworkManger()
         setUpView()
         setUpDelegate()
         setUpNavigaionBar()
@@ -112,6 +113,10 @@ final class OrderingViewController: UIViewController {
                 sectionHeaderView.delegate = self
             }
         }
+    }
+    
+    private func setNetworkManger() {
+        networkManager = NetworkManager(session: .shared)
     }
     
 }
