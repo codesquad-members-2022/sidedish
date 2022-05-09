@@ -65,14 +65,6 @@ extension NetworkManagable {
             
             // handling DecodingError
             do {
-                
-                // handling getImage Case
-                let getImageBaseURL = urlRequest.description.replacingOccurrences(of: urlRequest.url?.path ?? "", with: "")
-                
-                if getImageBaseURL == BaseURL.image.urlString {
-                    return completion(.success(data as? T))
-                }
-                
                 let fetchedData = try JSONDecoder().decode(T.self, from: data) // Data -> T: Decodable
                 return completion(.success(fetchedData))
                 
