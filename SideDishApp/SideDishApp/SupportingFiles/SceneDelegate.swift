@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let orderingViewController = OrderingViewController()
+        orderingViewController.networkManager = NetworkManager(session: .shared)
         let rootViewController = UINavigationController(rootViewController: orderingViewController)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
