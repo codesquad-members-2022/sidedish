@@ -8,8 +8,8 @@
 import Foundation
 import UIKit.UIImage
 
-// TODO: - NetworkManagerable 프로토콜 채택할 예정
-final class ImageNetworkManager {
+final class ImageNetworkManager: NetworkManagable {
+    
     private let cache = NSCache<NSString, UIImage>()
     
     var session: URLSession
@@ -20,28 +20,8 @@ final class ImageNetworkManager {
         self.session = session
     }
     
-    private func findImageInMemoryCache(from url: URL) -> UIImage? {
-        let cacheKey = NSString(string: url.lastPathComponent)
-        let cachedImage = self.cache.object(forKey: cacheKey)
-        return cachedImage
-    }
-    
-    private func findImageInDiskCache(from url: URL) -> UIImage? {
-        let fileManager = FileManager()
-        guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return nil }
-        var filePath = URL(fileURLWithPath: path)
-        filePath.appendPathComponent(url.lastPathComponent)
+    func request<T>(endpoint: Endpointable, completion: @escaping ((Result<T?, NetworkError>) -> Void)) {
         
-        if fileManager.fileExists(atPath: filePath.path) {
-            guard let imageData = try? Data(contentsOf: filePath) else { return nil }
-            return UIImage(data: imageData)
-        }
-        return nil
-    }
-    
-    func request(endpoint: Endpointable, completion: @escaping((Result<UIImage?, NetworkError>) -> Void)) {
-        
-        // TODO: - 데모를 위해 콘솔에 print함. 제거할 예정
         guard let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
         print(cacheDirectoryPath)
         
@@ -51,15 +31,14 @@ final class ImageNetworkManager {
         
         // CheckMemory
         if let image = findImageInMemoryCache(from: url) {
-            print("Memory Cache HIT! image: \(image)")
-            return completion(.success(image))
+            return completion(.success(image as? T))
         }
         
         // CheckDisk
         if let image = findImageInDiskCache(from: url) {
-            print("Disk Cache HIT! image: \(image)")
             self.cache.setObject(image, forKey: url.lastPathComponent as NSString)
-            return completion(.success(image))
+            print(image)
+            return completion(.success(image as? T))
         }
         
         // Request to Server
@@ -76,7 +55,7 @@ final class ImageNetworkManager {
         dataTask(urlRequest: urlRequest, completion: completion)
     }
     
-    func dataTask(urlRequest: URLRequest, completion: @escaping ((Result<UIImage?, NetworkError>) -> Void)) {
+    func dataTask<T>(urlRequest: URLRequest, completion: @escaping ((Result<T?, NetworkError>) -> Void)) {
         
         let dataTask = session.downloadTask(with: urlRequest) { [weak self] location, response, error in
             guard let self = self else {
@@ -119,16 +98,29 @@ final class ImageNetworkManager {
                 guard let imageData = try? Data(contentsOf: filePath),
                       let image = UIImage(data: imageData) else { return }
                 self.cache.setObject(image, forKey: imageName as NSString)
-                return completion(.success(image))
+                return completion(.success(image as? T))
             }
             
         }
         dataTask.resume()
     }
     
-    // TODO: - 프로토콜 extension으로 뺄 예정
-    private func getStatusCode(response: URLResponse?) -> Int? {
-        guard let httpResponse = response as? HTTPURLResponse else { return nil }
-        return httpResponse.statusCode
+    private func findImageInMemoryCache(from url: URL) -> UIImage? {
+        let cacheKey = NSString(string: url.lastPathComponent)
+        let cachedImage = self.cache.object(forKey: cacheKey)
+        return cachedImage
+    }
+    
+    private func findImageInDiskCache(from url: URL) -> UIImage? {
+        let fileManager = FileManager()
+        guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return nil }
+        var filePath = URL(fileURLWithPath: path)
+        filePath.appendPathComponent(url.lastPathComponent)
+        
+        if fileManager.fileExists(atPath: filePath.path) {
+            guard let imageData = try? Data(contentsOf: filePath) else { return nil }
+            return UIImage(data: imageData)
+        }
+        return nil
     }
 }

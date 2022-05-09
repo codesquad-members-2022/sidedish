@@ -22,7 +22,6 @@
 		8D375818281B780F00B32E41 /* NetworkManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D375817281B780F00B32E41 /* NetworkManagable.swift */; };
 		8D37581A281B787D00B32E41 /* ImageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D375819281B787D00B32E41 /* ImageNetworkManager.swift */; };
 		8D49F633280D533500613CE4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F632280D533500613CE4 /* EndPoint.swift */; };
-		8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F634280D534700613CE4 /* NetworkManager.swift */; };
 		8D49F637280D535800613CE4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F636280D535800613CE4 /* NetworkError.swift */; };
 		8D49F639280D536800613CE4 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F638280D536800613CE4 /* HTTPMethod.swift */; };
 		8D49F63C280D594000613CE4 /* SideDishInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F63B280D594000613CE4 /* SideDishInfo.swift */; };
@@ -30,6 +29,7 @@
 		8D50297B280CF9430068CCAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D50297A280CF9430068CCAC /* SceneDelegate.swift */; };
 		8D502982280CF9480068CCAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D502981280CF9480068CCAC /* Assets.xcassets */; };
 		8D502985280CF9480068CCAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D502983280CF9480068CCAC /* LaunchScreen.storyboard */; };
+		8D86D2162829119700D5A1F3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F634280D534700613CE4 /* NetworkManager.swift */; };
 		8DABA0FE28113FDE00ED949A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DABA0FD28113FDE00ED949A /* UIColor+Extension.swift */; };
 		8DB608D5280FCEC4009B585E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB608D4280FCEC4009B585E /* DetailViewController.swift */; };
 		8DF7E1B9280E7FBA00C4A5AC /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */; };
@@ -340,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D86D2162829119700D5A1F3 /* NetworkManager.swift in Sources */,
 				1E478F0E28163321002F22B9 /* MenuStackView.swift in Sources */,
 				8D49F63C280D594000613CE4 /* SideDishInfo.swift in Sources */,
 				8D502979280CF9430068CCAC /* AppDelegate.swift in Sources */,
@@ -347,7 +348,6 @@
 				1ED9D3FB280FDF5100AEC888 /* DetailDishInfo.swift in Sources */,
 				8D49F639280D536800613CE4 /* HTTPMethod.swift in Sources */,
 				1EE4901F280D8A0600B6CE60 /* OrderingCollectionViewCell.swift in Sources */,
-				8D49F635280D534700613CE4 /* NetworkManager.swift in Sources */,
 				8D37581A281B787D00B32E41 /* ImageNetworkManager.swift in Sources */,
 				8DABA0FE28113FDE00ED949A /* UIColor+Extension.swift in Sources */,
 				1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */,

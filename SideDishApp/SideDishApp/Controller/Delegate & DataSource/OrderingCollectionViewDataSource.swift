@@ -10,7 +10,7 @@ import OSLog
 
 final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var imageNetworkManager: ImageNetworkManager = ImageNetworkManager.shared
+    private var imageNetworkManager: NetworkManagable?
     
     private var headers: [Category] = [Category.main,
                                        Category.soup,
@@ -92,7 +92,9 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
 
 extension OrderingCollectionViewDataSource {
     private func setImage(cell: OrderingCollectionViewCell, by imageURL: String) {
-        guard let imageURL = URL(string: imageURL) else { return }
+        imageNetworkManager = ImageNetworkManager.shared
+        guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager,
+              let imageURL = URL(string: imageURL) else { return }
         imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { (result: Result<UIImage?, NetworkError>) in
             switch result {
             case .success(let image):
