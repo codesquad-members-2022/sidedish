@@ -1,4 +1,4 @@
-export function FigureWithSize({ src, alt, size, className = null }) {
+export default function FigureWithSize({ src, alt, size, className = null }) {
   return (
     <>
       {className ? (

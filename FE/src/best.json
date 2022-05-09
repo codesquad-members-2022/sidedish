@@ -12,7 +12,7 @@
       "best_id": 1
     },
     {
-      "id": 1,
+      "id": 2,
       "item_name": "소갈비찜",
       "description": "맛있는 소갈비와 양념의 조합",
       "or_price": 28900,
@@ -23,7 +23,7 @@
       "best_id": 1
     },
     {
-      "id": 1,
+      "id": 3,
       "item_name": "쭈꾸미 한돈 제육볶음",
       "description": "쭈꾸미와 한돈의 조합",
       "or_price": 16900,
@@ -36,7 +36,7 @@
   ],
   "2": [
     {
-      "id": 3,
+      "id": 4,
       "item_name": "호두 멸치볶음",
       "description": "잡멸치와 호두가 만나 짭쪼롬하지만 고소하지",
       "or_price": 5800,

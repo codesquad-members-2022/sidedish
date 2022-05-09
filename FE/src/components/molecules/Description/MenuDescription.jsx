@@ -4,12 +4,12 @@ import { MenuPrices } from "@/components/molecules/MenuPrices/MenuPrices";
 import "./MenuDescription.scss";
 
 export function MenuDescription({ card }) {
-  const { item_name, description, dc_price, or_price } = card;
+  const { itemName, description, discountPrice, originalPrice } = card;
   return (
     <div className="menu-article__description">
-      <MenuTitle menuTitle={item_name} />
+      <MenuTitle menuTitle={itemName} />
       <MenuDetail menuDetail={description} />
-      <MenuPrices discountPrice={dc_price} originalPrice={or_price} />
+      <MenuPrices discountPrice={discountPrice} originalPrice={originalPrice} />
     </div>
   );
 }

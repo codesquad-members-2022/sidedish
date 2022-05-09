@@ -1,5 +1,5 @@
 import { navCategory } from "@/constant/constant.js";
-import { StyledHeaderMainCategory } from "../../atoms/List/HeaderMainCategory.styled";
+import { StyledHeaderMainCategory } from "@/components/atoms/List/HeaderMainCategory.styled";
 export function MainCategoryNav({ className, setIsShown }) {
   const mainNav = navCategory.map(({ id, mainCategory }, index) => {
     return (

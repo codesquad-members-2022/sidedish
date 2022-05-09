@@ -30,3 +30,9 @@ export const imageSize = {
   category: "302px",
   sideCategory: "160px",
 };
+
+export const categoryTitles = {
+  "1": "식탁을 풍성하게 하는 정갈한 밑반찬",
+  "2": "정성이 담긴 뜨끈뜨끈 국물 요리",
+  "3": "모두가 좋아하는 든든한 메인 요리",
+}
