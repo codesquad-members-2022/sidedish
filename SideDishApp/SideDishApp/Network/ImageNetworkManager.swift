@@ -8,7 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
-final class ImageNetworkManager: NetworkManagable {
+struct ImageNetworkManager: NetworkManagable {
     
     private let cache = NSCache<NSString, UIImage>()
     
@@ -57,10 +57,7 @@ final class ImageNetworkManager: NetworkManagable {
     
     func dataTask<T>(urlRequest: URLRequest, completion: @escaping ((Result<T?, NetworkError>) -> Void)) {
         
-        let dataTask = session.downloadTask(with: urlRequest) { [weak self] location, response, error in
-            guard let self = self else {
-                return completion(.failure(.emptySession))
-            }
+        let dataTask = session.downloadTask(with: urlRequest) { location, response, error in
             
             // handling transportError
             if let error = error {

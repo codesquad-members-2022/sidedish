@@ -6,7 +6,7 @@
 //
 import Foundation
 
-final class NetworkManager: NetworkManagable {
+struct NetworkManager: NetworkManagable {
     
     var session: URLSession
 

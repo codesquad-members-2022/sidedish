@@ -12,7 +12,6 @@ enum NetworkError: Error {
     case encodingError
     case decodingError
     case emptyData
-    case emptySession
     case emptyLocation
     case otherError(Error)
 }
