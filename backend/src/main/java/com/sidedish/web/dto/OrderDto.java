@@ -1,18 +1,18 @@
-package com.sidedish.domain.product;
-
-import org.springframework.data.annotation.Id;
+package com.sidedish.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public class ProductOrder {
-	@Id
-	private Long id;
+@NoArgsConstructor
+public class OrderDto {
 
 	private Long productId;
 	private Long userId;
 	private int quantity;
 	private int price;
+
+
 }

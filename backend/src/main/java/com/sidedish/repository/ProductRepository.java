@@ -1,6 +1,8 @@
 package com.sidedish.repository;
 
 import com.sidedish.domain.product.Product;
+
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +17,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Query("select * from product where event_category= :categoryName order by rand() limit 3")
     List<Product> findAllEventCategoryProduct(@Param("categoryName") String category);
+
+    @Modifying
+    @Query("update product set stock= stock - :quantity where id= :productId")
+    void abstractStock(@Param("productId") Long productId, @Param("quantity") int quantity);
 }

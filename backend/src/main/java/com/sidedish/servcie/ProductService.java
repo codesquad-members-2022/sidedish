@@ -1,45 +1,50 @@
 package com.sidedish.servcie;
 
-import com.sidedish.domain.Image;
-import com.sidedish.domain.product.Product;
-import com.sidedish.repository.ProductRepository;
-import com.sidedish.web.dto.EventCategoryProductDto;
-import com.sidedish.web.dto.ImageDto;
-import com.sidedish.web.dto.MainCategoryProductDto;
-import com.sidedish.web.dto.ProductDetailDto;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
+import com.sidedish.domain.Image;
+import com.sidedish.domain.product.EventBadge;
+import com.sidedish.domain.product.Product;
+import com.sidedish.domain.product.ProductOrder;
+import com.sidedish.repository.OrderRepository;
+import com.sidedish.repository.ProductRepository;
+import com.sidedish.web.dto.CategoryProductDto;
+import com.sidedish.web.dto.ImageDto;
+import com.sidedish.web.dto.OrderDto;
+import com.sidedish.web.dto.ProductDetailDto;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class ProductService {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
-    public List<MainCategoryProductDto> findMainCategory(String mainCategory){
+    public List<CategoryProductDto> findMainCategory(String mainCategory){
         List<Product> products = productRepository.findAllMainCategoryProduct(mainCategory);
-        List<MainCategoryProductDto> dtoList = new ArrayList<>();
+        List<CategoryProductDto> dtoList = new ArrayList<>();
         for (Product product : products) {
             String thumbnail = product.getImage().stream().findFirst().get().getImagePath();
-            dtoList.add(new MainCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(),product.getMainCategory(), thumbnail));
+            dtoList.add(new CategoryProductDto(product.getId(), product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(), thumbnail));
         }
         return dtoList;
     }
 
-    public List<EventCategoryProductDto> findEventCategory(String eventCategory) {
+    public List<CategoryProductDto> findEventCategory(String eventCategory) {
         List<Product> products = productRepository.findAllEventCategoryProduct(eventCategory);
-        List<EventCategoryProductDto> dtoList = new ArrayList<>();
+        List<CategoryProductDto> dtoList = new ArrayList<>();
         for (Product product : products) {
             String thumbnail = product.getImage().stream().findFirst().get().getImagePath();
-            dtoList.add(new EventCategoryProductDto(product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(), product.getEventCategory(), thumbnail));
+            dtoList.add(new CategoryProductDto(product.getId(), product.getProductName(), product.getDescription(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(), thumbnail));
         }
         return dtoList;
     }
@@ -51,5 +56,29 @@ public class ProductService {
             imageSet.add(new ImageDto(image.getId(), image.getImagePath()));
         }
         return new ProductDetailDto(product.getProductName(), product.getEarlyDelivery(), product.getPrice(), product.getEventBadge(), product.getEventBadge().getDiscountRate(),imageSet);
+    }
+
+    public void saveOrder(OrderDto dto) {
+        if (!isLessThanStock(dto.getProductId(), dto.getQuantity())) throw new IllegalStateException("재고가 부족합니다");
+        if (!isValidPrice(dto.getProductId(), dto.getPrice(), dto.getQuantity())) throw new IllegalStateException("금액이 올바르지 않습니다.");
+        productRepository.abstractStock(dto.getProductId(), dto.getQuantity());
+        orderRepository.save(new ProductOrder(null, dto.getProductId(), dto.getUserId(), dto.getQuantity(),
+            dto.getPrice()));
+    }
+
+    // 재고량 유무
+    private boolean isLessThanStock(Long productId, int orderQuantity) {
+        int stockQuantity = productRepository.findById(productId).orElseThrow().getStock();
+        return orderQuantity <= stockQuantity;
+    }
+
+    // 총 금액 맞는지 여부
+    private boolean isValidPrice(Long productId, int unverifiedTotalPrice, int orderQuantity) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        int price = product.getPrice();
+        EventBadge eventBadge = product.getEventBadge();
+        int verifiedTotalPrice = orderQuantity * ((price * (100 - eventBadge.getDiscountRate()))/1000 * 10);
+        log.info("verifiedTotalPrice={}", verifiedTotalPrice);
+        return unverifiedTotalPrice == verifiedTotalPrice;
     }
 }

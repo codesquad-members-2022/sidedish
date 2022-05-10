@@ -1,19 +1,19 @@
 package com.sidedish.web.dto;
 
 import com.sidedish.domain.product.EventBadge;
-import com.sidedish.domain.product.EventCategory;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class EventCategoryProductDto {
+public class CategoryProductDto {
+    private Long id;
     private String productName;
     private String description;
     private int earlyDelivery;
     private int price;
     private EventBadge eventBadge;
     private int discountRate;
-    private EventCategory eventCategory;
     private String imageThumbnail;
 }
