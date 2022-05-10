@@ -13,12 +13,12 @@ import {eventCategory} from "data";
 import {specialPromotionIcon} from "constants";
 import {TabList, GoodsBlock} from "components";
 
-function SpecialPromotion() {
+function SpecialPromotion({openModal}) {
   const [tabState, setTabState] = useState({category: eventCategory[0].subTitle});
   const [goodsData, setGoodsData] = useState([]);
 
   const fetchAPI = async title => {
-    const data = await fetchData(`${serverURL}/${title}`);
+    const data = await fetchData(`${serverURL}/product/event?category=${title}`);
     setGoodsData(data);
   };
 
@@ -43,16 +43,30 @@ function SpecialPromotion() {
       <BestSideDishContainer>
         <BestSideDishList>
           {goodsData.map(
-            ({id, image, productName, description, price, eventBadge, early_delivery, discountedRate}) => (
-              <li key={id}>
+            ({
+              id,
+              imageThumbnail,
+              productName,
+              description,
+              price,
+              eventBadge,
+              earlyDelivery,
+              discountRate,
+            }) => (
+              <li
+                key={id}
+                onClick={() => {
+                  openModal(id);
+                }}
+              >
                 <GoodsBlock
-                  thumb={image}
+                  thumb={imageThumbnail}
                   name={productName}
                   description={description}
                   price={price}
                   eventBadge={eventBadge}
-                  discountedRate={discountedRate}
-                  delivery={early_delivery}
+                  discountRate={discountRate}
+                  delivery={earlyDelivery}
                 />
               </li>
             ),

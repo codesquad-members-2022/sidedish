@@ -1,16 +1,17 @@
-import {CategoryContainer, CategoryList, MainCategory, SubCategoryList, SubCategory} from './Category.styled';
-import {category} from 'data';
+import {CategoryContainer, CategoryList, MainCategory, SubCategoryList, SubCategory} from "./Category.styled";
+import {category} from "data";
 
 function Category({isOpen, setIsOpen}) {
-  const handleMouseOver = () => {
+  const handleMouseEnter = () => {
     setIsOpen(true);
   };
-  const handleMouseOut = () => {
+
+  const handleMouseLeave = () => {
     setIsOpen(false);
   };
 
   return (
-    <CategoryContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <CategoryContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <CategoryList>
         {category.map(({id, mainCategory}) => (
           <MainCategory key={id}>
