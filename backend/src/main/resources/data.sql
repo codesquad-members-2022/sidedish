@@ -34,7 +34,7 @@ VALUES
 
 INSERT INTO image (product_id, image_path)
 VALUES
-    (1, 'https://zipbanchan.godohosting.com/800X800px/3_main/832_ZIP_P_4044_T.jp'),
+    (1, 'https://zipbanchan.godohosting.com/800X800px/3_main/832_ZIP_P_4044_T.jpg'),
     (1, 'http://zipbanchan.godohosting.com/detail_page/3_main/832_ZIP_P_4044_S.jpg'),
     (2, 'https://zipbanchan.godohosting.com/800X800px/3_main/1203_ZIP_P_6234_T.jpg'),
     (2, 'http://zipbanchan.godohosting.com/detail_page/3_main/1203_ZIP_P_6234_S.jpg'),

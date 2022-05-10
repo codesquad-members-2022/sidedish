@@ -30,6 +30,7 @@ CREATE TABLE product_order(
                       product_id        BIGINT NOT NULL,
                       user_id           BIGINT NOT NULL,
                       quantity          int,
+                      price             int,
                       FOREIGN KEY (product_id) REFERENCES product(id),
                       FOREIGN KEY (user_id) REFERENCES user(id)
 );
