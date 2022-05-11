@@ -22,8 +22,7 @@ struct ImageNetworkManager: NetworkManagable {
     
     func request<T>(endpoint: Endpointable, completion: @escaping ((Result<T?, NetworkError>) -> Void)) {
         
-        guard let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
-        print(cacheDirectoryPath)
+        guard NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first != nil else { return }
         
         guard let url = endpoint.getURL() else {
             return completion(.failure(.invalidURL))
@@ -37,7 +36,6 @@ struct ImageNetworkManager: NetworkManagable {
         // CheckDisk
         if let image = findImageInDiskCache(from: url) {
             self.cache.setObject(image, forKey: url.lastPathComponent as NSString)
-            print(image)
             return completion(.success(image as? T))
         }
         
