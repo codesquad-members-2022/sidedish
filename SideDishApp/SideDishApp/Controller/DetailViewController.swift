@@ -10,7 +10,7 @@ import OSLog
 
 final class DetailViewController: UIViewController {
     
-    private let imageNetworkManager = ImageNetworkManager.shared
+    private var imageNetworkManager: NetworkManagable?
     private let menu: Menu
     private let detailScrollView = DetailScrollView()
     
@@ -118,9 +118,12 @@ extension DetailViewController {
 
 extension DetailViewController {
     func setThumbNail(images: [String]) {
+        imageNetworkManager = ImageNetworkManager.shared
+        guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager else { return }
         detailScrollView.setOverViewImageScrollContentSize(imageCount: images.count)
         
         for (index, image) in images.enumerated() {
+            
             guard let imageURL = URL(string: image) else { return }
             imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<UIImage?, NetworkError>) in
                 guard let self = self else { return }
@@ -138,6 +141,9 @@ extension DetailViewController {
     }
     
     func setRecipe(images: [String]) {
+        imageNetworkManager = ImageNetworkManager.shared
+        guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager else { return }
+        
         detailScrollView.addPlaceholderView(count: images.count)
         
         for (index, imagePath) in images.enumerated() {

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
-final class ImageNetworkManager: NetworkManagable {
+struct ImageNetworkManager: NetworkManagable {
     
     private let cache = NSCache<NSString, UIImage>()
     
@@ -16,14 +16,13 @@ final class ImageNetworkManager: NetworkManagable {
     
     static let shared = ImageNetworkManager(session: .shared)
     
-    private init(session: URLSession) {
+    init(session: URLSession) {
         self.session = session
     }
     
     func request<T>(endpoint: Endpointable, completion: @escaping ((Result<T?, NetworkError>) -> Void)) {
         
-        guard let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
-        print(cacheDirectoryPath)
+        guard NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first != nil else { return }
         
         guard let url = endpoint.getURL() else {
             return completion(.failure(.invalidURL))
@@ -37,7 +36,6 @@ final class ImageNetworkManager: NetworkManagable {
         // CheckDisk
         if let image = findImageInDiskCache(from: url) {
             self.cache.setObject(image, forKey: url.lastPathComponent as NSString)
-            print(image)
             return completion(.success(image as? T))
         }
         
@@ -57,10 +55,7 @@ final class ImageNetworkManager: NetworkManagable {
     
     func dataTask<T>(urlRequest: URLRequest, completion: @escaping ((Result<T?, NetworkError>) -> Void)) {
         
-        let dataTask = session.downloadTask(with: urlRequest) { [weak self] location, response, error in
-            guard let self = self else {
-                return completion(.failure(.emptySession))
-            }
+        let dataTask = session.downloadTask(with: urlRequest) { location, response, error in
             
             // handling transportError
             if let error = error {

@@ -13,7 +13,7 @@ final class OrderingViewController: UIViewController {
     private var orderingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
     private var collectionViewDelegate = OrderingCollectionViewDelegate()
-    var networkManager: NetworkManagable?
+    private var networkManager: NetworkManagable?
     
     private var collectionViewLayout: UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -31,11 +31,14 @@ final class OrderingViewController: UIViewController {
         setUpDelegate()
         setUpNavigaionBar()
         getSideDishInfo()
+        
+        guard let path = Bundle.main.path(forResource: "739_ZIP_P__T", ofType: "jpg") else { return }
+        let data = try? Data(contentsOf: URL(string: path)!)
+        print(data)
     }
     
     private func setUpView() {
         configureView()
-        view.addSubview(orderingCollectionView)
         configureOrderingCollectionView()
         layoutOrderingCollectionView()
     }
@@ -45,6 +48,7 @@ final class OrderingViewController: UIViewController {
     }
     
     private func configureView() {
+        view.addSubview(orderingCollectionView)
         title = Constant.ViewControllerTitle.ordering
         view.backgroundColor = .systemBackground
     }

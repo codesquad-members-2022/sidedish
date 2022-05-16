@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkManagable: AnyObject {
+protocol NetworkManagable {
     var session: URLSession { get }
 }
 
@@ -23,6 +23,7 @@ extension NetworkManagable {
         // HTTP Method
         let httpMethod = endpoint.getHttpMethod().description
         urlRequest.httpMethod = httpMethod
+        
         // HTTP header
         let headers = endpoint.getHeaders()
         headers?.forEach { urlRequest.setValue($1 as? String, forHTTPHeaderField: $0) }
@@ -42,11 +43,8 @@ extension NetworkManagable {
     
     func dataTask<T: Decodable>(urlRequest: URLRequest, completion: @escaping((Result<T?, NetworkError>) -> Void)) {
         
-        let dataTask = session.dataTask(with: urlRequest) { [weak self] data, response, error in
-            guard let self = self else {
-                return completion(.failure(.emptySession))
-            }
-            
+        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
+
             // handling transportError
             if let error = error {
                 return completion(.failure(.transportError(error)))

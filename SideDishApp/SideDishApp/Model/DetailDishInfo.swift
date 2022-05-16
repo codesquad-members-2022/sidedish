@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct DetailDishInfo: Codable {
+struct DetailDishInfo: Codable,Equatable {
     let data: MenuDetail
 }
 
-struct MenuDetail: Codable {
+struct MenuDetail: Codable,Equatable {
     let top_image: String
     let thumb_images: [String]
     let product_description: String
