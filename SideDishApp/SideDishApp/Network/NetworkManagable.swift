@@ -23,6 +23,7 @@ extension NetworkManagable {
         // HTTP Method
         let httpMethod = endpoint.getHttpMethod().description
         urlRequest.httpMethod = httpMethod
+        
         // HTTP header
         let headers = endpoint.getHeaders()
         headers?.forEach { urlRequest.setValue($1 as? String, forHTTPHeaderField: $0) }

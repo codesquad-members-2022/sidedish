@@ -7,15 +7,18 @@
 
 import Foundation
 
-struct SideDishInfo: Codable {
+struct SideDishInfo: Codable, Equatable {
+    static func == (lhs: SideDishInfo, rhs: SideDishInfo) -> Bool {
+        lhs.body == rhs.body
+    }
+    
     let statusCode: Int
     let body: [Menu]
 }
 
-struct Menu: Codable {
+struct Menu: Codable, Equatable {
     let detail_hash: String
     let image: String
-    let alt: String
     let delivery_type: [String]
     let title: String
     let description: String

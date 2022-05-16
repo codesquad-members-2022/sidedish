@@ -1,0 +1,24 @@
+{
+    "hash": "H1AA9",
+    "data": {
+        "top_image": "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__T.jpg",
+        "thumb_images": [
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__T.jpg",
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__S.jpg"
+        ],
+        "product_description": "건강한 가정 간편식 국수",
+        "point": "118원",
+        "delivery_info": "서울 경기 새벽 배송 / 전국 택배 배송",
+        "delivery_fee": "2,500원 (40,000원 이상 구매 시 무료)",
+        "prices": [
+            "11,800원"
+        ],
+        "detail_section": [
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__D1.jpg",
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__D2.jpg",
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__D3.jpg",
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__D4.jpg",
+            "http://public.codesquad.kr/jk/storeapp/data/main/739_ZIP_P__D5.jpg"
+        ]
+    }
+}

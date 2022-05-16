@@ -77,6 +77,7 @@ enum EndPointCase {
                             path: .getDetail(hash: hash),
                             headers: ["Content-Type": "application/json"],
                             body: nil)
+            
         case .getImage(let imagePath):
             return Endpoint(httpMethod: .get,
                             baseURL: .image,

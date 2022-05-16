@@ -31,6 +31,10 @@ final class OrderingViewController: UIViewController {
         setUpDelegate()
         setUpNavigaionBar()
         getSideDishInfo()
+        
+        guard let path = Bundle.main.path(forResource: "739_ZIP_P__T", ofType: "jpg") else { return }
+        let data = try? Data(contentsOf: URL(string: path)!)
+        print(data)
     }
     
     private func setUpView() {

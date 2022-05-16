@@ -16,7 +16,7 @@ struct ImageNetworkManager: NetworkManagable {
     
     static let shared = ImageNetworkManager(session: .shared)
     
-    private init(session: URLSession) {
+    init(session: URLSession) {
         self.session = session
     }
     
