@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum EventCategory {
-	meat("풍성한 고기 반찬"), simple("편리한 반찬 세트"), season("맛있는 제철 요리"), kids("우리 아이 영양 반찬");
+	MEAT("풍성한 고기 반찬"), SIMPLE("편리한 반찬 세트"), SEASON("맛있는 제철 요리"), KIDS("우리 아이 영양 반찬");
 
 	private final String name;
 }
