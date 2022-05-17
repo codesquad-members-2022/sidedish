@@ -93,12 +93,16 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
 extension OrderingCollectionViewDataSource {
     private func setImage(cell: OrderingCollectionViewCell, by imageURL: String) {
         imageNetworkManager = ImageNetworkManager.shared
+        
         guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager,
               let imageURL = URL(string: imageURL) else { return }
-        imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { (result: Result<UIImage?, NetworkError>) in
+        
+        imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { (result: Result<Data?, NetworkError>) in
             switch result {
-            case .success(let image):
+            case .success(let imageData):
                 DispatchQueue.main.async {
+                    guard let imageData = imageData,
+                          let image = UIImage(data: imageData) else { return }
                     cell.setMenu(image: image)
                 }
             case .failure(let failure):

@@ -125,12 +125,14 @@ extension DetailViewController {
         for (index, image) in images.enumerated() {
             
             guard let imageURL = URL(string: image) else { return }
-            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<UIImage?, NetworkError>) in
+            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
                 guard let self = self else { return }
                 
                 switch result {
-                case .success(let image):
+                case .success(let imageData):
                     DispatchQueue.main.async {
+                        guard let imageData = imageData,
+                              let image = UIImage(data: imageData) else { return }
                         self.detailScrollView.insertThumbNail(image: image, at: index)
                     }
                 case .failure(let failure):
@@ -149,12 +151,14 @@ extension DetailViewController {
         for (index, imagePath) in images.enumerated() {
             guard let imageURL = URL(string: imagePath) else { return }
             
-            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<UIImage?, NetworkError>) in
+            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
                 guard let self = self else { return }
                 
                 switch result {
-                case .success(let image):
+                case .success(let imageData):
                     DispatchQueue.main.async {
+                        guard let imageData = imageData,
+                              let image = UIImage(data: imageData) else { return }
                         self.detailScrollView.setRecipe(image: image, at: index)
                     }
                 case .failure(let failure):
