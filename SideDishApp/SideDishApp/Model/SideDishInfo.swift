@@ -7,13 +7,14 @@
 
 import Foundation
 
-struct SideDishInfo: Codable, Equatable {
+struct SideDishInfo: Codable {
+    let body: [Menu]
+}
+
+extension SideDishInfo: Equatable {
     static func == (lhs: SideDishInfo, rhs: SideDishInfo) -> Bool {
         lhs.body == rhs.body
     }
-    
-    let statusCode: Int
-    let body: [Menu]
 }
 
 struct Menu: Codable, Equatable {

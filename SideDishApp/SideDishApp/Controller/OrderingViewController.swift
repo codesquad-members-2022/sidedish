@@ -13,7 +13,7 @@ final class OrderingViewController: UIViewController {
     private var orderingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var collectionViewDataSource = OrderingCollectionViewDataSource()
     private var collectionViewDelegate = OrderingCollectionViewDelegate()
-    private var networkManager: NetworkManagable?
+    private var networkRepository: NetworkRepository?
     
     private var collectionViewLayout: UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -26,15 +26,10 @@ final class OrderingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNetworkManger()
         setUpView()
         setUpDelegate()
         setUpNavigaionBar()
         getSideDishInfo()
-        
-        guard let path = Bundle.main.path(forResource: "739_ZIP_P__T", ofType: "jpg") else { return }
-        let data = try? Data(contentsOf: URL(string: path)!)
-        print(data)
     }
     
     private func setUpView() {
@@ -79,31 +74,36 @@ final class OrderingViewController: UIViewController {
     
     private func getSideDishInfo() {
         Category.allCases.forEach { category in
-            networkManager?.request(endpoint: EndPointCase.get(category: category).endpoint) { [weak self] (result: Result<SideDishInfo?, NetworkError>) in
-                guard let self = self else { return }
-                switch result {
-                case .success(let success):
-                    guard let menus = success?.body else { return }
-                    self.collectionViewDataSource.fetch(menus: menus, category: category)
-                    self.setHeaderViewDelegate()
-                    
-                    DispatchQueue.main.async {
-                        guard let sectionIndex = Category.allCases.firstIndex(of: category) else { return }
-                        switch category {
-                        case .main:
-                            self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
-                        case .soup:
-                            self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
-                        case .side:
-                            self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
-                        }
+            // 특정 NetworkManager를 Repository에 주입함.
+            networkRepository = NetworkRepository(networkManager: NetworkManager(session: .shared))
+            
+            networkRepository?.fetchData(endpoint: EndPointCase.get(category: category).endpoint,
+                                         decodeType: SideDishInfo.self,
+                                         onCompleted: { [weak self] mainDishInfo in
+                // Repository에 요청한 Data에서 필요한 부분으로 로직을 처리함.
+                guard let self = self,
+                      let menus = mainDishInfo?.body else { return }
+                
+                // View에 model을 넘김
+                self.collectionViewDataSource.fetch(menus: menus, category: category)
+                self.setHeaderViewDelegate()
+                
+                // View 업데이트
+                DispatchQueue.main.async {
+                    guard let sectionIndex = Category.allCases.firstIndex(of: category) else { return }
+                    switch category {
+                    case .main:
+                        self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
+                    case .soup:
+                        self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
+                    case .side:
+                        self.orderingCollectionView.reloadSections(IndexSet(integer: sectionIndex))
                     }
-                case .failure(let failure):
-                    os_log(.error, "\(failure.localizedDescription)")
                 }
             }
-        }
+        )
     }
+}
     
     private func setHeaderViewDelegate() {
         DispatchQueue.main.async { [weak self] in
@@ -118,11 +118,6 @@ final class OrderingViewController: UIViewController {
             }
         }
     }
-    
-    private func setNetworkManger() {
-        networkManager = NetworkManager(session: .shared)
-    }
-    
 }
 
 // MARK: - View Layout
@@ -139,21 +134,21 @@ extension OrderingViewController {
 
 extension OrderingViewController: CollectionViewSelectionDetectable {
     func didSelectItem(index: IndexPath) {
+        networkRepository = NetworkRepository(networkManager: NetworkManager(session: .shared))
+        
         guard let menu = collectionViewDataSource.getSelectedItem(at: index) else { return }
         let detailVC = DetailViewController(menu: menu)
         navigationController?.pushViewController(detailVC, animated: true)
         
-        networkManager?.request(endpoint: EndPointCase.getDetail(hash: menu.detail_hash).endpoint) { (result: Result<DetailDishInfo?, NetworkError>) in
-            switch result {
-            case .success(let data):
-                guard let menuDetail = data?.data else { return }
-                DispatchQueue.main.async {
-                    detailVC.setMenuDetail(menuDetail: menuDetail)
+        networkRepository?.fetchData(endpoint: EndPointCase.getDetail(hash: menu.detail_hash).endpoint,
+                                     decodeType: DetailDishInfo.self,
+                                     onCompleted: { detailDishInfo in
+            guard let detailOfMenu = detailDishInfo?.data else { return }
+            DispatchQueue.main.async {
+                detailVC.setMenuDetail(menuDetail: detailOfMenu)
                 }
-            case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")
             }
-        }
+        )
     }
 }
 
