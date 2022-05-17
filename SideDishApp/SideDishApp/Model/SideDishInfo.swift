@@ -8,7 +8,6 @@
 import Foundation
 
 struct SideDishInfo: Codable {
-    let statusCode: Int
     let body: [Menu]
 }
 

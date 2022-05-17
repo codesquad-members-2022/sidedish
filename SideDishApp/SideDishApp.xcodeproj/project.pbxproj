@@ -43,6 +43,8 @@
 		8D86D2162829119700D5A1F3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F634280D534700613CE4 /* NetworkManager.swift */; };
 		8DABA0FE28113FDE00ED949A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DABA0FD28113FDE00ED949A /* UIColor+Extension.swift */; };
 		8DB608D5280FCEC4009B585E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB608D4280FCEC4009B585E /* DetailViewController.swift */; };
+		8DCB8E4828337928007614D1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB8E4728337928007614D1 /* NetworkRepository.swift */; };
+		8DCB8E4B28339F6B007614D1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB8E4728337928007614D1 /* NetworkRepository.swift */; };
 		8DF7E1B9280E7FBA00C4A5AC /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */; };
 		8DF7E1BF280FCD8600C4A5AC /* OrderingCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E1BE280FCD8600C4A5AC /* OrderingCollectionViewDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +90,7 @@
 		8D502986280CF9480068CCAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DABA0FD28113FDE00ED949A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8DB608D4280FCEC4009B585E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8DCB8E4728337928007614D1 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
 		8DF7E1B8280E7FBA00C4A5AC /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		8DF7E1BE280FCD8600C4A5AC /* OrderingCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		AAF8D359193F5E92064E42DF /* Pods-SideDishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideDishApp.debug.xcconfig"; path = "Target Support Files/Pods-SideDishApp/Pods-SideDishApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		1ED9D53B2811390300AEC888 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8DCB8E4728337928007614D1 /* NetworkRepository.swift */,
 				8D49F634280D534700613CE4 /* NetworkManager.swift */,
 				8D375819281B787D00B32E41 /* ImageNetworkManager.swift */,
 				8D49F632280D533500613CE4 /* EndPoint.swift */,
@@ -421,6 +425,7 @@
 				8D37D7AD282B9A90004CF1E2 /* URLMockProtocol.swift in Sources */,
 				8D37D79F282B7762004CF1E2 /* NetworkManagerTest.swift in Sources */,
 				8D37D7B1282B9B41004CF1E2 /* HTTPMethod.swift in Sources */,
+				8DCB8E4B28339F6B007614D1 /* NetworkRepository.swift in Sources */,
 				8D37D7B2282B9B44004CF1E2 /* NetworkError.swift in Sources */,
 				8D2D048128327D2100AFDB5E /* SideDishInfo.swift in Sources */,
 				8D37D7B0282B9B3D004CF1E2 /* EndPoint.swift in Sources */,
@@ -442,6 +447,7 @@
 				1EE4901F280D8A0600B6CE60 /* OrderingCollectionViewCell.swift in Sources */,
 				8D37581A281B787D00B32E41 /* ImageNetworkManager.swift in Sources */,
 				8DABA0FE28113FDE00ED949A /* UIColor+Extension.swift in Sources */,
+				8DCB8E4828337928007614D1 /* NetworkRepository.swift in Sources */,
 				1EE4901B280D892800B6CE60 /* OrderingCollectionViewDataSource.swift in Sources */,
 				1E478F102816F9BB002F22B9 /* MenuSubInfoContainerStackView.swift in Sources */,
 				1EE49019280D870E00B6CE60 /* OrderingViewController.swift in Sources */,

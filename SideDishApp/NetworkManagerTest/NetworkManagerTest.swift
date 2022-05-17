@@ -55,8 +55,8 @@ class NetworkManagerTest: XCTestCase {
         }
         
         // Make networkManger with session for test
-        let expectedMain = XCTestExpectation(description: "Loading")
-        let expectedDetail = XCTestExpectation(description: "Loading")
+        let expectedMain = XCTestExpectation(description: "MainDish")
+        let expectedDetail = XCTestExpectation(description: "DetailOfDish")
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [URLMockProtocol.self]
         
