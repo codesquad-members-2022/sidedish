@@ -23,68 +23,69 @@ class NetworkManagerTest: XCTestCase {
     }
 
     func testNetworkManager() throws {
-        func testRequest() {
-            //MockData - Main
-            guard let path = Bundle.main.path(forResource: "MainMockData", ofType: "json") else { return }
-            guard let jsonString = try? String(contentsOfFile: path) else { return }
-            guard let mainDishMockdata = jsonString.data(using: .utf8) else { return }
-            
-            //MockData - detail
-            guard let path = Bundle.main.path(forResource: "DetailMockData", ofType: "json") else { return }
-            guard let jsonString = try? String(contentsOfFile: path) else { return }
-            guard let dishDetailMockdata = jsonString.data(using: .utf8) else { return }
-            
-            //MockData - Image
-            guard let path = Bundle.main.path(forResource: "739_ZIP_P__T", ofType: "jpg") else { return }
-            guard let jsonString = try? String(contentsOfFile: path) else { return }
-            guard let imageMockdata = jsonString.data(using: .utf8) else { return }
-
-            
-            //Decoded MockData with specific type
-            guard let expectedMainDish = try? JSONDecoder().decode(SideDishInfo.self, from: mainDishMockdata) else { return }
-            guard let expectedDishDetail = try? JSONDecoder().decode(SideDishInfo.self, from: dishDetailMockdata) else { return }
-            guard let expectedimage = try? JSONDecoder().decode(SideDishInfo.self, from: imageMockdata) else { return }
-            
-            //mockEndpoint
-            let mainDishMockEndPoint = EndPointCase.get(category: .main).endpoint
-            let detailMockEndPoint = EndPointCase.getDetail(hash: "H1AA9").endpoint
-            
-            
-            //loadingHandler 만들기
-            URLMockProtocol.loadingHandler = { request in
-                let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-                switch request.url {
-                case mainDishMockEndPoint.getURL():
-                    return (response,mainDishMockdata,nil)
-                case detailMockEndPoint.getURL():
-                    return (response,dishDetailMockdata,nil)
-                default:
-                    return (response, nil, nil)
-                }
-            }
-            
-            //Make networkManger with session for test
-            let expectation = XCTestExpectation(description: "Loading")
-            let configuration = URLSessionConfiguration.ephemeral
-            configuration.protocolClasses = [URLMockProtocol.self]
-            //Dependency injection
-            let networkmanager = NetworkManager(session: URLSession(configuration: configuration))
-            
-            networkmanager.request(endpoint: mainDishMockEndPoint)  { (result:Result<SideDishInfo?,NetworkError>) in
-                switch result {
-                case .failure(let error):
-                    XCTFail("Request was not successful: \(error.localizedDescription)")
-                case .success(let result):
-                    XCTAssertEqual(result, expectedMainDish)
-                }
-                expectation.fulfill()
-            }
-            wait(for: [expectation], timeout: 1)
-        }
-}
-    
-    func testImageNetworkManager() throws {
+        // MockData - Main
+        guard let path = Bundle.main.path(forResource: "MainMockData", ofType: "json") else { return }
+        guard let jsonString = try? String(contentsOfFile: path) else { return }
+        guard let mainDishMockdata = jsonString.data(using: .utf8) else { return }
         
+        // MockData - detail
+        guard let path = Bundle.main.path(forResource: "DetailMockData", ofType: "json") else { return }
+        guard let jsonString = try? String(contentsOfFile: path) else { return }
+        guard let dishDetailMockdata = jsonString.data(using: .utf8) else { return }
+        
+        // Decoded MockData with specific type
+        guard let expectedDecodedMain = try? JSONDecoder().decode(SideDishInfo.self, from: mainDishMockdata) else { return }
+        guard let expectedDecodedDetail = try? JSONDecoder().decode(DetailDishInfo.self, from: dishDetailMockdata) else { return }
+        
+        // mockEndpoint
+        let mainDishMockEndPoint = EndPointCase.get(category: .main).endpoint
+        let detailMockEndPoint = EndPointCase.getDetail(hash: "H1AA9").endpoint
+        
+        // Create loadingHandler
+        URLMockProtocol.loadingHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            switch request.url {
+            case mainDishMockEndPoint.getURL():
+                return (response, mainDishMockdata, nil)
+            case detailMockEndPoint.getURL():
+                return (response, dishDetailMockdata, nil)
+            default:
+                return (response, nil, nil)
+            }
+        }
+        
+        // Make networkManger with session for test
+        let expectedMain = XCTestExpectation(description: "Loading")
+        let expectedDetail = XCTestExpectation(description: "Loading")
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [URLMockProtocol.self]
+        
+        // Dependency injection
+        let networkmanager = NetworkManager(session: URLSession(configuration: configuration))
+        
+        // Test request - main
+        networkmanager.request(endpoint: mainDishMockEndPoint) {(result: Result<SideDishInfo?, NetworkError>) in
+            switch result {
+            case .failure(let error):
+                XCTFail("Request was not successful: \(error.localizedDescription)")
+            case .success(let result):
+                XCTAssertEqual(result, expectedDecodedMain)
+            }
+            expectedMain.fulfill()
+        }
+        
+        // Test request - main
+        networkmanager.request(endpoint: detailMockEndPoint) {(result: Result<DetailDishInfo?, NetworkError>) in
+            switch result {
+            case .failure(let error):
+                XCTFail("Request was not successful: \(error.localizedDescription)")
+            case .success(let result):
+                XCTAssertEqual(result, expectedDecodedDetail)
+            }
+            expectedDetail.fulfill()
+        }
+        
+        wait(for: [expectedMain], timeout: 1)
+        wait(for: [expectedDetail], timeout: 1)
     }
-    
 }
