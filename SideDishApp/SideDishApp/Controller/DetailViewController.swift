@@ -10,7 +10,7 @@ import OSLog
 
 final class DetailViewController: UIViewController {
     
-    private var imageNetworkManager: NetworkManagable?
+    private var networkRepositroy: NetworkRepository?
     private let menu: Menu
     private let detailScrollView = DetailScrollView()
     
@@ -61,8 +61,8 @@ final class DetailViewController: UIViewController {
     private func setDetailView(by menuDetail: MenuDetail?) {
         guard let menuDetail = menuDetail else { return }
         setSubInfo(by: menuDetail)
-        setThumbNail(images: menuDetail.thumb_images)
-        setRecipe(images: menuDetail.detail_section)
+        setThumbNail(imageURLStrings: menuDetail.thumb_images)
+        setRecipe(imageURLStrings: menuDetail.detail_section)
     }
     
     private func setSubInfo(by menuDetail: MenuDetail) {
@@ -117,54 +117,43 @@ extension DetailViewController {
 }
 
 extension DetailViewController {
-    func setThumbNail(images: [String]) {
-        imageNetworkManager = ImageNetworkManager.shared
-        guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager else { return }
-        detailScrollView.setOverViewImageScrollContentSize(imageCount: images.count)
+    
+    func setThumbNail(imageURLStrings: [String]) {
+        networkRepositroy = NetworkRepository(networkManager: ImageNetworkManager(session: .shared))
+        detailScrollView.setOverViewImageScrollContentSize(imageCount: imageURLStrings.count)
         
-        for (index, image) in images.enumerated() {
-            
-            guard let imageURL = URL(string: image) else { return }
-            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let imageData):
-                    DispatchQueue.main.async {
-                        guard let imageData = imageData,
-                              let image = UIImage(data: imageData) else { return }
-                        self.detailScrollView.insertThumbNail(image: image, at: index)
+        for (index, imageURLString) in imageURLStrings.enumerated() {
+            guard let imageURL = URL(string: imageURLString) else { return }
+            networkRepositroy?.fetchData(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint,
+                                         decodeType: Data.self,
+                                         onCompleted: { [weak self] imageData in
+                guard let self = self,
+                      let imageData = imageData,
+                      let image = UIImage(data: imageData) else { return }
+                DispatchQueue.main.async {
+                    self.detailScrollView.insertThumbNail(image: image, at: index)
                     }
-                case .failure(let failure):
-                    os_log(.error, "\(failure.localizedDescription)")
                 }
-            }
+            )
         }
     }
     
-    func setRecipe(images: [String]) {
-        imageNetworkManager = ImageNetworkManager.shared
-        guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager else { return }
+    func setRecipe(imageURLStrings: [String]) {
+        networkRepositroy = NetworkRepository(networkManager: ImageNetworkManager.shared)
+        detailScrollView.addPlaceholderView(count: imageURLStrings.count)
         
-        detailScrollView.addPlaceholderView(count: images.count)
-        
-        for (index, imagePath) in images.enumerated() {
-            guard let imageURL = URL(string: imagePath) else { return }
+        for (index, imageURLString) in imageURLStrings.enumerated() {
+            guard let imageURL = URL(string: imageURLString) else { return }
             
-            imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { [weak self] (result: Result<Data?, NetworkError>) in
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let imageData):
-                    DispatchQueue.main.async {
-                        guard let imageData = imageData,
-                              let image = UIImage(data: imageData) else { return }
-                        self.detailScrollView.setRecipe(image: image, at: index)
-                    }
-                case .failure(let failure):
-                    os_log(.error, "\(failure.localizedDescription)")
+            networkRepositroy?.fetchData(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint,
+                                         decodeType: Data.self,
+                                         onCompleted: { [weak self] imageData in
+                guard let self = self,
+                      let imageData = imageData,
+                      let image = UIImage(data: imageData) else { return }
+                self.detailScrollView.setRecipe(image: image, at: index)
                 }
-            }
+            )
         }
     }
 }

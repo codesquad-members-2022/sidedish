@@ -10,7 +10,7 @@ import OSLog
 
 final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var imageNetworkManager: NetworkManagable?
+    private var networkRepository: NetworkRepository?
     
     private var headers: [Category] = [Category.main,
                                        Category.soup,
@@ -91,23 +91,17 @@ final class OrderingCollectionViewDataSource: NSObject, UICollectionViewDataSour
 // MARK: - Fecth & Set Image From URL
 
 extension OrderingCollectionViewDataSource {
-    private func setImage(cell: OrderingCollectionViewCell, by imageURL: String) {
-        imageNetworkManager = ImageNetworkManager.shared
+    private func setImage(cell: OrderingCollectionViewCell, by imageURLString: String) {
+        networkRepository = NetworkRepository(networkManager: ImageNetworkManager(session: .shared))
+        guard let imageURL = URL(string: imageURLString) else { return }
         
-        guard let imageNetworkManager = imageNetworkManager as? ImageNetworkManager,
-              let imageURL = URL(string: imageURL) else { return }
-        
-        imageNetworkManager.request(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint) { (result: Result<Data?, NetworkError>) in
-            switch result {
-            case .success(let imageData):
-                DispatchQueue.main.async {
-                    guard let imageData = imageData,
-                          let image = UIImage(data: imageData) else { return }
-                    cell.setMenu(image: image)
-                }
-            case .failure(let failure):
-                os_log(.error, "\(failure.localizedDescription)")
+        networkRepository?.fetchData(endpoint: EndPointCase.getImage(imagePath: imageURL.path).endpoint,
+                                     decodeType: Data.self,
+                                     onCompleted: { imageData in
+            guard let imageData = imageData,
+                  let image = UIImage(data: imageData) else { return }
+            cell.setMenu(image: image)
             }
-        }
+        )
     }
 }

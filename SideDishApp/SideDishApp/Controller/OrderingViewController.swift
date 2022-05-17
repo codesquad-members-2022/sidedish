@@ -79,9 +79,10 @@ final class OrderingViewController: UIViewController {
             
             networkRepository?.fetchData(endpoint: EndPointCase.get(category: category).endpoint,
                                          decodeType: SideDishInfo.self,
-                                         onCompleted: { mainDishInfo in
+                                         onCompleted: { [weak self] mainDishInfo in
                 // Repository에 요청한 Data에서 필요한 부분으로 로직을 처리함.
-                guard let menus = mainDishInfo?.body else { return }
+                guard let self = self,
+                      let menus = mainDishInfo?.body else { return }
                 
                 // View에 model을 넘김
                 self.collectionViewDataSource.fetch(menus: menus, category: category)
