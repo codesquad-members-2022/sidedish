@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.sidedish.domain.Image;
 import com.sidedish.domain.product.EventBadge;
 import com.sidedish.domain.product.Product;
-import com.sidedish.domain.product.ProductOrder;
+import com.sidedish.domain.product.Order;
 import com.sidedish.repository.OrderRepository;
 import com.sidedish.repository.ProductRepository;
 import com.sidedish.web.dto.CategoryProductDto;
@@ -62,7 +62,7 @@ public class ProductService {
         if (!isLessThanStock(dto.getProductId(), dto.getQuantity())) throw new IllegalStateException("재고가 부족합니다");
         if (!isValidPrice(dto.getProductId(), dto.getPrice(), dto.getQuantity())) throw new IllegalStateException("금액이 올바르지 않습니다.");
         productRepository.abstractStock(dto.getProductId(), dto.getQuantity());
-        orderRepository.save(new ProductOrder(null, dto.getProductId(), dto.getUserId(), dto.getQuantity(),
+        orderRepository.save(new Order(null, dto.getProductId(), dto.getUserId(), dto.getQuantity(),
             dto.getPrice()));
     }
 

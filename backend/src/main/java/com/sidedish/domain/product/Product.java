@@ -1,28 +1,37 @@
 package com.sidedish.domain.product;
 
 import com.sidedish.domain.Image;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+@Entity
 @Getter
-@AllArgsConstructor
 public class Product {
-	@Id
+
+	@Id @GeneratedValue
+	@Column(name = "product_id")
 	private Long id;
+
 	private String productName;
 	private String description;
-	private int earlyDelivery;
+
+	@Column(columnDefinition = "boolean default false")
+	private boolean earlyDelivery;
 	private int price;
 	private int stock;
+
+	@Enumerated(EnumType.STRING)
 	private EventBadge eventBadge;
+
+	@Enumerated(EnumType.STRING)
 	private MainCategory mainCategory;
+	@Enumerated(EnumType.STRING)
 	private EventCategory eventCategory;
 
-	@MappedCollection(idColumn = "product_id")
-	private final Set<Image> image;
+	private final List<Image> image = new ArrayList<>();
 
 }
