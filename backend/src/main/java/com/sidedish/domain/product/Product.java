@@ -6,7 +6,6 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -32,6 +31,7 @@ public class Product {
 	@Enumerated(EnumType.STRING)
 	private EventCategory eventCategory;
 
+	@OneToMany(mappedBy = "product")
 	private final List<Image> image = new ArrayList<>();
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Table(name = "orders")
 public class Order {
 
 	@Id @GeneratedValue

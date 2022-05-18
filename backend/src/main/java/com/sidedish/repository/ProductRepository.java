@@ -1,24 +1,31 @@
 package com.sidedish.repository;
 
 import com.sidedish.domain.product.Product;
-
-import org.springframework.data.jdbc.repository.query.Modifying;
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Long> {
-    @Query("select * from product where main_category= :categoryName")
-    List<Product> findAllMainCategoryProduct(@Param("categoryName") String category);
+@RequiredArgsConstructor
+public class ProductRepository {
 
-    @Query("select * from product where event_category= :categoryName order by rand() limit 3")
-    List<Product> findAllEventCategoryProduct(@Param("categoryName") String category);
+    private final EntityManager entityManager;
 
-    @Modifying
-    @Query("update product set stock= stock - :quantity where id= :productId")
-    void abstractStock(@Param("productId") Long productId, @Param("quantity") int quantity);
+    public Product findOne(Long id){
+        return entityManager.find(Product.class, id);
+    }
+
+    public List<Product> findMainCategory(String category){
+        return entityManager.createQuery("select p from Product p where p.mainCategory = :mainCategory", Product.class)
+                .setParameter("mainCategory", category)
+                .getResultList();
+    }
+
+    public List<Product> findEventCategory(String category){
+        return entityManager.createQuery("select p from Product p where p.eventCategory = :category", Product.class)
+                .setParameter("category", category)
+                .getResultList();
+    }
 }
