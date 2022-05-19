@@ -1,3 +1,4 @@
+/*
 package com.sidedish.repository;
 
 import org.springframework.data.relational.core.mapping.Table;
@@ -10,3 +11,4 @@ import com.sidedish.domain.product.Order;
 @Table(value = "product_order")
 public interface OrderRepository extends CrudRepository<Order, Long> {
 }
+*/

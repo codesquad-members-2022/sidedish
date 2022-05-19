@@ -7,7 +7,15 @@ spring:
   sql:
     init:
       mode: always
-      schema-locations: classpath:schema.sql
+  jpa:
+    hibernate:
+      ddl-auto: create
 
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
 logging:
   level.com.sidedish: debug
