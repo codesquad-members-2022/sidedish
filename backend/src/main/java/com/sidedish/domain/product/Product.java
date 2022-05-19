@@ -1,5 +1,6 @@
 package com.sidedish.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sidedish.domain.Image;
 import lombok.Getter;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 public class Product {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private Long id;
 
@@ -31,6 +32,7 @@ public class Product {
 	@Enumerated(EnumType.STRING)
 	private EventCategory eventCategory;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "product")
 	private final List<Image> image = new ArrayList<>();
 

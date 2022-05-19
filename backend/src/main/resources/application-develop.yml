@@ -8,13 +8,14 @@ spring:
     init:
       mode: always
   jpa:
-    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
+
     properties:
       hibernate:
         show_sql: true
         format_sql: true
     generate-ddl: true
+    defer-datasource-initialization: true
 logging:
   level.com.sidedish: debug
