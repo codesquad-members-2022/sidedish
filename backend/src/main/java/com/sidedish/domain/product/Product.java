@@ -1,6 +1,5 @@
 package com.sidedish.domain.product;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sidedish.domain.Image;
 import lombok.Getter;
 
@@ -32,8 +31,19 @@ public class Product {
 	@Enumerated(EnumType.STRING)
 	private EventCategory eventCategory;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "product")
 	private final List<Image> image = new ArrayList<>();
 
+
+	public void addStock(int quantity){
+		this.stock += quantity;
+	}
+
+	public void removeStock(int quantity){
+		int restStock = this.stock - quantity;
+		if (restStock < 0) {
+			throw new IllegalStateException("재고가 부족합니다.");
+		}
+		this.stock = restStock;
+	}
 }

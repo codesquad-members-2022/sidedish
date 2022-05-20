@@ -1,7 +1,10 @@
 package com.sidedish.domain.product;
 
 import com.sidedish.domain.user.Member;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +13,9 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "orders")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
