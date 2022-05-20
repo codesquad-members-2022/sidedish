@@ -1,11 +1,14 @@
 package com.sidedish.domain.product;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderProduct {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

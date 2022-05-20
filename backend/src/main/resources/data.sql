@@ -96,11 +96,12 @@ VALUES
     (30, 'http://zipbanchan.godohosting.com/detail_page/3_main/730_ZIP_P_0073_S.jpg');
 
 
-# INSERT INTO user (address, name)
-# VALUES
-#     ('양재 뱅뱅사거리 코드스쿼드', 'JK'),
-#     ('용인시 수지구 어딘가', '호눅스'),
-#     ('태평양 해저', '내 주식...');
+INSERT INTO member (name, email, city, street, zipcode)
+VALUES
+    ('phil', 'phil@gmail.com', 'seoul', 'anamro', '1234'),
+    ('hanse', 'hanse@gmail.com', 'incheon', 'geongirp', '3333'),
+    ('riako', 'riako@gmail.com', 'gyeongi', 'yongin', '9999'),
+    ('minzino', 'minzino@gmail.com', 'incheon', 'mozi', '6666');
 
 # INSERT INTO product_order (product_id, user_id, quantity)
 # VALUES
