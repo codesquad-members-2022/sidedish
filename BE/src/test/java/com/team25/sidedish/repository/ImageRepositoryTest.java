@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import com.team25.sidedish.domain.Image;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +23,11 @@ public class ImageRepositoryTest {
     @DisplayName("프로덕트 ID를 통해 해당하는 이미지 목록을 조회할 수 있다")
     void 프로덕트ID로_이미지_조회_테스트() {
 
-        Optional<List<Image>> result = imageRepository.findImagesByProductId(PRODUCT_ID);
+        List<Image> result = imageRepository.findImagesByProductId(PRODUCT_ID);
 
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(IMAGE_COUNT);
-        assertThat(result.get().get(0).getUrl()).isEqualTo(URL);
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(IMAGE_COUNT);
+        assertThat(result.get(0).getUrl()).isEqualTo(URL);
 
     }
 }

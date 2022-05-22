@@ -1,5 +1,6 @@
-package com.team25.sidedish.exception;
+package com.team25.sidedish.dto.response;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,5 +9,5 @@ import lombok.Getter;
 public class ErrorResponse {
 
     private final String statusName;
-    private final String message;
+    private final List<String> messages;
 }

@@ -24,6 +24,7 @@ class ProductRepositoryTest {
     private static final String PRODUCT_NAME = "아이템6";
     private static final int PRODUCT_PRICE = 21800;
     private static final String PRODUCT_DESCRIPTION = "설명1";
+    private static final String PRODUCT_THUMBNAIL_IMAGE_URL = "https://recipe1.ezmember.co.kr/cache/data/goods/19/10/43/1000003443/1000003443_detail_08.jpg";
     private static final int PRODUCT_STOCK = 600;
 
     @Autowired
@@ -34,16 +35,15 @@ class ProductRepositoryTest {
     void 카테고리ID로_프로덕트_조회_테스트() {
 
         // when
-        Optional<List<Product>> result = productRepository.findProductsByCategoryId(
-            CATEGORY_ID);
+        List<Product> result = productRepository.findProductsByCategoryId(
+                CATEGORY_ID);
 
         // then
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(CATEGORY_PRODUCT_COUNT);
-        assertThat(result.get().get(0).getName()).isEqualTo(PRODUCT_NAME);
-        assertThat(result.get().get(0).getPrice()).isEqualTo(PRODUCT_PRICE);
-        assertThat(result.get().get(0).getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
-        assertThat(result.get().get(0).getStock()).isEqualTo(PRODUCT_STOCK);
+        assertThat(result).hasSize(CATEGORY_PRODUCT_COUNT);
+        assertThat(result.get(0).getName()).isEqualTo(PRODUCT_NAME);
+        assertThat(result.get(0).getPrice()).isEqualTo(PRODUCT_PRICE);
+        assertThat(result.get(0).getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
+        assertThat(result.get(0).getStock()).isEqualTo(PRODUCT_STOCK);
     }
 
     @Nested
@@ -64,6 +64,7 @@ class ProductRepositoryTest {
             assertThat(result.get().getName()).isEqualTo(PRODUCT_NAME);
             assertThat(result.get().getPrice()).isEqualTo(PRODUCT_PRICE);
             assertThat(result.get().getDescription()).isEqualTo(PRODUCT_DESCRIPTION);
+            assertThat(result.get().getThumbnailImageUrl()).isEqualTo(PRODUCT_THUMBNAIL_IMAGE_URL);
             assertThat(result.get().getStock()).isEqualTo(PRODUCT_STOCK);
         }
 

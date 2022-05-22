@@ -10,13 +10,13 @@ import org.springframework.data.repository.query.Param;
 public interface ProductEventRepository extends CrudRepository<Event, Long> {
 
     @Query("SELECT E.ID, E.NAME, E.DISCOUNT_RATE "
-        + " FROM EVENT AS E"
+        + " FROM event AS E"
         + " JOIN"
         + " ("
         + "     SELECT EVENT_ID"
-        + "     FROM PRODUCT_EVENT"
+        + "     FROM product_event"
         + "     WHERE PRODUCT_ID = :productId"
         + " )"
         + " AS R ON E.ID = R.EVENT_ID")
-    Optional<List<Event>> findEventsByProductId(@Param("productId") Long productId);
+    List<Event> findEventsByProductId(@Param("productId") Long productId);
 }

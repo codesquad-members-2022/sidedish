@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
+  <springProperty name="filePath" source="logging.file.path"/>
+  <property name="fileName"		value="sidedish" />
+  <property name="maxHistory"		value="7" />
+  <property name="maxFileSize"	value="100KB" />
+  <property name="totalSizeCap"	value="1GB" />
   <property name="consolePattern"	value="%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}] - %m%n"/>
+  <property name="filePattern"    value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}] - %m%n"/>
 
   <!-- Log Appender Module -->
   <springProfile name="console-log">
@@ -8,6 +14,21 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
       <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
         <pattern>${consolePattern}</pattern>
+      </encoder>
+    </appender>
+  </springProfile>
+
+  <springProfile name="file-log">
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <file>${filePath}//${fileName}.log</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${filePath}//LOG_%d{yyyy-MM-dd}_${fileName}.log.%i.zip</fileNamePattern>
+        <maxHistory>${maxHistory}</maxHistory>
+        <maxFileSize>${maxFileSize}</maxFileSize>
+        <totalSizeCap>${totalSizeCap}</totalSizeCap>
+      </rollingPolicy>
+      <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <pattern>${filePattern}</pattern>
       </encoder>
     </appender>
   </springProfile>
@@ -28,6 +49,10 @@
   <root level="info">
     <springProfile name="console-log">
       <appender-ref ref="console" />
+    </springProfile>
+
+    <springProfile name="file-log">
+      <appender-ref ref="file" />
     </springProfile>
   </root>
 

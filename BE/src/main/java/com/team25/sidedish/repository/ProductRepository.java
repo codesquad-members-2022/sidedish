@@ -9,14 +9,14 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-    @Query("SELECT ID, NAME, PRICE, DESCRIPTION, STOCK "
-        + " FROM PRODUCT "
+    @Query("SELECT ID, NAME, PRICE, DESCRIPTION, THUMBNAIL_IMAGE_URL, STOCK "
+        + " FROM product "
         + " WHERE CATEGORY_ID = :categoryId")
-    Optional<List<Product>> findProductsByCategoryId(@Param("categoryId") Long categoryId);
+    List<Product> findProductsByCategoryId(@Param("categoryId") Long categoryId);
 
     @Override
     Optional<Product> findById(Long productId);
 
     @Override
-    Product save(Product product);
+    <S extends Product> S save(S product);
 }
