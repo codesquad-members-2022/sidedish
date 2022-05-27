@@ -1,31 +1,111 @@
-INSERT INTO product (product_name, description, price, stock, event_badge, main_category, event_category)
+INSERT INTO product (product_name, description, early_delivery, price, stock, event_badge, main_category, event_category)
 VALUES
-    ('오리 주물럭_반조리', '감칠맛 나는 매콤한 양념', 15800, 100, 'launching', 'main', 'meat'),
-    ('소갈비찜', '촉촉하게 벤 양념이 일품', 28900, 100, 'event', 'main', 'meat'),
-    ('쭈꾸미 한돈 제육볶음_반조리', '쫄깃한 쭈꾸미와 고소한 돼지고기가 일품', 16900, 100, 'none', 'main', 'meat');
+    ('고등어 무조림', '매콤 칼칼한 매력', true, 13800, 100, 'launching', 'main', 'season'),
+    ('불고기 잡채', '아이들 입맛에 딱 맞는', false, 14800, 100, 'event', 'main', 'kids'),
+    ('매운 돼지갈비찜', '촉촉하게 밴 양념이 일품', true, 19800, 100, 'none', 'main', 'meat'),
+    ('서울식 불고기 버섯전골', '달큰한 육수와 부드러운 버섯이 일품', true, 17800, 50, 'launching', 'soup', 'meat'),
+    ('주꾸미 한돈 제육볶음_반조리', '쫄깃한 주꾸미와 고소한 돼지고기가 일품', false, 17800, 200, 'none', 'main', 'meat'),
+    ('한돈 돼지돼지 김치찌개_쿠킹박스', '끓이면 끓일 수록 더 맛있어요', false, 13800, 1000, 'event', 'soup', 'meat'),
+    ('맛보기 반찬 4종', '맛보기로 먼저 드셔보세요!', true, 12800, 180, 'launching', 'side', 'simple'),
+    ('집반찬 베스트 4종', '인기제품으로만 모았어요!', true, 13800, 150, 'launching', 'side', 'simple'),
+    ('아이반찬 3종', '아이들이 좋아하는 반찬 3종!', false, 14800, 150, 'none', 'side', 'kids'),
+    ('취나물무침', '부드럽고 고소해 자꾸만 손이가는 무침', false, 4300, 100, 'none', 'side', 'season'),
+    ('달래장', '알싸하고 향긋한 맛', true, 4600, 100, 'event', 'side', 'season'),
+    ('새콤달콤 유채나물무침', '유채나물의 향긋함을 그대로', true, 4800, 100, 'event', 'side', 'season'),
+    ('달래 된장찌개', '구수하고 감칠맛이 좋은', false, 9800, 100, 'none', 'soup', 'season'),
+    ('멸치 주먹밥', '남녀노소 함께 즐기는', false, 4800, 50, 'none', 'main', 'kids'),
+    ('한우 무볶음', '달달한 무와 짭조름한 한우의 조합', true, 4800, 50, 'launching', 'main', 'kids'),
+    ('출산선물 세트', '마음을 전하는 선물', false, 48800, 50, 'event', 'main', 'simple'),
+    ('생일축하세트(2인)', '소중한 사람의 특별한 하루를 위해', false, 49900, 50, 'event', 'main', 'simple'),
+    ('도시락반찬 4종', '국물 없이 깔끔하게', true, 13800, 10, 'event', 'side', 'simple'),
+    ('뚝배기 불고기_반조리', '야들야들 소고기와 달큰한 양념의 조화', false, 16800, 30, 'none', 'soup', 'meat'),
+    ('한우 소불고기_반조리', '한우로 만든 대한민국 대표요리', false, 25800, 60, 'none', 'main', 'meat'),
+    ('맑은 콩나물국(냉동)', '국내산 콩나물로 더 건강하게', true, 6800, 5, 'none', 'soup', 'kids'),
+    ('동태알탕', '고소한 알이 가득한', false, 13800, 2, 'launching', 'soup', 'season'),
+    ('오븐치킨_반조리(냉동)', '야들야들', true, 10800, 1, 'event', 'main', 'meat'),
+    ('촉촉 간장무조림', '국물 자작한 밥도둑 조림 반찬', true, 3800, 4, 'none', 'side', 'simple'),
+    ('바른 간장참치', '참치가 듬뿍 진짜 간장참치', true, 4600, 40, 'none', 'side', 'kids'),
+    ('깻잎조림', '밥 한 공기 뚝딱', true, 5300, 80, 'none', 'side', 'kids'),
+    ('한우 소고기 미역국(냉동)', '한우와 미역을 푹 끓인 전통 미역국', false, 9800, 33, 'none', 'soup', 'kids'),
+    ('한돈 청국장찌개', '청국장 특유의 구수한 맛', false, 9800, 88, 'event', 'soup', 'meat'),
+    ('황기 닭곰탕(냉동)', '담백하고 깔끔한 맛', true, 9800, 52, 'launching', 'soup', 'kids'),
+    ('감자 짜글이', '칼칼한 맛이 일품인 밥도둑 짜글이', false, 8800, 99, 'none', 'main', 'kids');
 
 
 INSERT INTO image (product_id, image_path)
 VALUES
-    (1, 'https://imageserver.com/example1.jpg'),
-    (1, 'https://imageserver.com/example2.jpg'),
-    (1, 'https://imageserver.com/example3.jpg'),
-    (2, 'https://imageserver.com/example1.jpg'),
-    (2, 'https://imageserver.com/example2.jpg'),
-    (2, 'https://imageserver.com/example3.jpg'),
-    (3, 'https://imageserver.com/example1.jpg'),
-    (3, 'https://imageserver.com/example2.jpg'),
-    (3, 'https://imageserver.com/example3.jpg');
+    (1, 'https://zipbanchan.godohosting.com/800X800px/3_main/832_ZIP_P_4044_T.jpg'),
+    (1, 'http://zipbanchan.godohosting.com/detail_page/3_main/832_ZIP_P_4044_S.jpg'),
+    (2, 'https://zipbanchan.godohosting.com/800X800px/3_main/1203_ZIP_P_6234_T.jpg'),
+    (2, 'http://zipbanchan.godohosting.com/detail_page/3_main/1203_ZIP_P_6234_S.jpg'),
+    (3, 'https://zipbanchan.godohosting.com/800X800px/3_main/350_ZIP_P_0025_T.jpg'),
+    (3, 'http://zipbanchan.godohosting.com/detail_page/3_main/350_ZIP_P_0025_S.jpg'),
+    (4, 'https://zipbanchan.godohosting.com/800X800px/3_main/1346_ZIP_P_0093_T.jpg'),
+    (4, 'http://zipbanchan.godohosting.com/detail_page/3_main/1346/1346_ZIP_P_0093_S.jpg'),
+    (5, 'https://zipbanchan.godohosting.com/800X800px/3_main/1354_ZIP_P_0104_T.jpg'),
+    (5, 'http://zipbanchan.godohosting.com/detail_page/3_main/1354/1354_ZIP_P_0104_S.jpg'),
+    (6, 'https://zipbanchan.godohosting.com/800X800px/cookingbox/800_kimchi_pigpig.jpg'),
+    (6, 'http://zipbanchan.godohosting.com/detail_page/3_main/513/513_ZIP_P_8013_S.jpg'),
+    (7, 'https://zipbanchan.godohosting.com/800X800px/2_set/1238_ZIP_P_9239_T.jpg'),
+    (7, 'http://zipbanchan.godohosting.com/detail_page/2_set/265_ZIP_P_6039_S.jpg'),
+    (8, 'https://zipbanchan.godohosting.com/800X800px/2_set/1240_ZIP_P_9242_T.jpg'),
+    (8, 'http://zipbanchan.godohosting.com/detail_page/2_set/557_ZIP_P_6080_S.jpg'),
+    (9, 'https://zipbanchan.godohosting.com/800X800px/5_kid/1105_ZIP_P_9216_T.jpg'),
+    (9, 'http://zipbanchan.godohosting.com/detail_page/5_kid/1105_ZIP_P_9216_S.jpg'),
+    (10, 'https://zipbanchan.godohosting.com/800X800px/8_muchim/1329_ZIP_P_5116_T.jpg'),
+    (10, 'http://zipbanchan.godohosting.com/detail_page/8_muchim/1329_ZIP_P_5116_S.jpg'),
+    (11, 'https://zipbanchan.godohosting.com/800X800px/8_muchim/707_ZIP_P_5057_T.jpg'),
+    (11, 'http://zipbanchan.godohosting.com/detail_page/8_muchim/707_ZIP_P_5057_S.jpg'),
+    (12, 'https://zipbanchan.godohosting.com/800X800px/8_muchim/1330_ZIP_P_5117_T.jpg'),
+    (12, 'http://zipbanchan.godohosting.com/detail_page/8_muchim/1330_ZIP_P_5117_S.jpg'),
+    (13, 'https://zipbanchan.godohosting.com/800X800px/9_soup/134_ZIP_P_1007_T.jpg'),
+    (13, 'http://zipbanchan.godohosting.com/detail_page/9_soup/134_ZIP_P_1007_S.jpg'),
+    (14, 'https://zipbanchan.godohosting.com/800X800px/5_kid/719_ZIP_P_6113_T.jpg'),
+    (14, 'https://zipbanchan.godohosting.com/detail_page/5_kid/719_ZIP_P_6113_S.jpg'),
+    (15, 'https://zipbanchan.godohosting.com/800X800px/5_kid/1130_ZIP_P_6196_T.jpg'),
+    (15, 'http://zipbanchan.godohosting.com/detail_page/5_kid/1130_ZIP_P_6196_S.jpg'),
+    (16, 'https://zipbanchan.godohosting.com/800X800px/2_set/1257_ZIP_P_9194_T.jpg'),
+    (16, 'http://zipbanchan.godohosting.com/detail_page/2_set/1257_ZIP_P_9194_S.jpg'),
+    (17, 'https://zipbanchan.godohosting.com/800X800px/2_set/808_ZIP_P_9012_T.jpg'),
+    (17, 'http://zipbanchan.godohosting.com/detail_page/2_set/808_ZIP_P_9012_S.jpg'),
+    (18, 'https://zipbanchan.godohosting.com/800X800px/2_set/1235_ZIP_P_9243_T.jpg'),
+    (18, 'http://zipbanchan.godohosting.com/detail_page/2_set/743_ZIP_P_6989_S.jpg'),
+    (19, 'https://zipbanchan.godohosting.com/800X800px/3_main/1406_ZIP_P_0113_T.jpg'),
+    (19, 'http://zipbanchan.godohosting.com/detail_page/3_main/1406/1406_ZIP_P_0113_S.jpg'),
+    (20, 'https://zipbanchan.godohosting.com/800X800px/3_main/1348_ZIP_P_0096_T.jpg'),
+    (20, 'http://zipbanchan.godohosting.com/detail_page/3_main/1348/1348_ZIP_P_0096_S.jpg'),
+    (21, 'https://zipbanchan.godohosting.com/800X800px/9_soup/1391_ZIP_P_2045_T.jpg'),
+    (21, 'http://zipbanchan.godohosting.com/detail_page/9_soup/1391_ZIP_P_2045_S.jpg'),
+    (22, 'https://zipbanchan.godohosting.com/800X800px/9_soup/1360_ZIP_P_1039_T.jpg'),
+    (22, 'http://zipbanchan.godohosting.com/detail_page/9_soup/1360_ZIP_P_1039_S.jpg'),
+    (23, 'https://zipbanchan.godohosting.com/800X800px/4_collaboration/197_ZIP_C_0011_T.jpg'),
+    (23, 'http://zipbanchan.godohosting.com/detail_page/4_collaboration/197/197_ZIP_C_0011_S.jpg'),
+    (24, 'https://zipbanchan.godohosting.com/800X800px/6_jolim/409_ZIP_P_4027_T.jpg'),
+    (24, 'http://zipbanchan.godohosting.com/detail_page/6_jolim/409_ZIP_P_4027_S.jpg'),
+    (25, 'https://zipbanchan.godohosting.com/800X800px/6_jolim/1206_ZIP_P_6221_T.jpg'),
+    (25, 'http://zipbanchan.godohosting.com/detail_page/6_jolim/1206_ZIP_P_6221_S.jpg'),
+    (26, 'https://zipbanchan.godohosting.com/800X800px/6_jolim/692_ZIP_P_4030_T.jpg'),
+    (26, 'http://zipbanchan.godohosting.com/detail_page/6_jolim/692_ZIP_P_4030_S.jpg'),
+    (27, 'https://zipbanchan.godohosting.com/800X800px/9_soup/172_ZIP_P_2008_T.jpg'),
+    (27, 'http://zipbanchan.godohosting.com/detail_page/9_soup/172_ZIP_P_2008_S.jpg'),
+    (28, 'https://zipbanchan.godohosting.com/800X800px/9_soup/1365_ZIP_P_1044_T.jpg'),
+    (28, 'http://zipbanchan.godohosting.com/detail_page/9_soup/1365_ZIP_P_1044_S.jpg'),
+    (29, 'https://zipbanchan.godohosting.com/800X800px/9_soup/218_ZIP_P_2012_T.jpg'),
+    (29, 'http://zipbanchan.godohosting.com/detail_page/9_soup/218_ZIP_P_2012_S.jpg'),
+    (30, 'https://zipbanchan.godohosting.com/800X800px/3_main/730_ZIP_P_0073_T.jpg'),
+    (30, 'http://zipbanchan.godohosting.com/detail_page/3_main/730_ZIP_P_0073_S.jpg');
 
-INSERT INTO user (address, name)
-VALUES
-    ('양재 뱅뱅사거리 코드스쿼드', 'JK'),
-    ('용인시 수지구 어딘가', '호눅스'),
-    ('태평양 해저', '내 주식...');
 
-INSERT INTO product_order (product_id, user_id, quantity)
+INSERT INTO member (name, email, city, street, zipcode)
 VALUES
-    (1, 1, 10),
-    (2, 1, 10),
-    (3, 1, 10);
+    ('phil', 'phil@gmail.com', 'seoul', 'anamro', '1234'),
+    ('hanse', 'hanse@gmail.com', 'incheon', 'geongirp', '3333'),
+    ('riako', 'riako@gmail.com', 'gyeongi', 'yongin', '9999'),
+    ('minzino', 'minzino@gmail.com', 'incheon', 'mozi', '6666');
+
+# INSERT INTO product_order (product_id, user_id, quantity)
+# VALUES
+#     (1, 1, 10),
+#     (2, 1, 10),
+#     (3, 1, 10);
 

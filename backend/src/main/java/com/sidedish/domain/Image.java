@@ -1,38 +1,20 @@
 package com.sidedish.domain;
 
+import com.sidedish.domain.product.Product;
+import lombok.Getter;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
 public class Image {
+
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "image_id")
 	private Long id;
-	private Long productId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_id")
+	private Product product;
 	private String imagePath;
-
-	public Image(Long id, Long productId, String imagePath) {
-		this.id = id;
-		this.productId = productId;
-		this.imagePath = imagePath;
-	}
-
-	public static class Builder {
-		private Long id;
-		private Long productId;
-		private String imagePath;
-
-		public Builder id(Long id) {
-			this.id = id;
-			return this;
-		}
-
-		public Builder productId(Long productId) {
-			this.productId = productId;
-			return this;
-		}
-
-		public Builder imagePath(String imagePath) {
-			this.imagePath = imagePath;
-			return this;
-		}
-
-		public Image build() {
-			return new Image(id, productId, imagePath);
-		}
-	}
 }
