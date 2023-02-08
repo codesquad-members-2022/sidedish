@@ -31,18 +31,17 @@ class ProductEventRepositoryTest {
     void 프로덕트ID로_이벤트_조회_테스트() {
 
         // when
-        Optional<List<Event>> result = productEventRepository.findEventsByProductId(
-            PRODUCT_ID);
+        List<Event> result = productEventRepository.findEventsByProductId(
+                PRODUCT_ID);
 
         // then
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(EVENT_COUNT);
-        assertThat(result.get().get(0).getId()).isEqualTo(EVENT_1_ID);
-        assertThat(result.get().get(0).getName()).isEqualTo(EVENT_1_NAME);
-        assertThat(result.get().get(0).getDiscountRate()).isEqualTo(EVENT_1_DISCOUNT_RATE);
-        assertThat(result.get().get(1).getId()).isEqualTo(EVENT_2_ID);
-        assertThat(result.get().get(1).getName()).isEqualTo(EVENT_2_NAME);
-        assertThat(result.get().get(1).getDiscountRate()).isEqualTo(EVENT_2_DISCOUNT_RATE);
+        assertThat(result).hasSize(EVENT_COUNT);
+        assertThat(result.get(0).getId()).isEqualTo(EVENT_1_ID);
+        assertThat(result.get(0).getName()).isEqualTo(EVENT_1_NAME);
+        assertThat(result.get(0).getDiscountRate()).isEqualTo(EVENT_1_DISCOUNT_RATE);
+        assertThat(result.get(1).getId()).isEqualTo(EVENT_2_ID);
+        assertThat(result.get(1).getName()).isEqualTo(EVENT_2_NAME);
+        assertThat(result.get(1).getDiscountRate()).isEqualTo(EVENT_2_DISCOUNT_RATE);
 
     }
 }

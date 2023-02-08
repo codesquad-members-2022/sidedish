@@ -20,13 +20,9 @@ class ProductDeliveryRepositoryTest {
     private static final Long DELIVERY_1_ID  = 1L;
     private static final String DELIVERY_1_REGION  = "전국";
     private static final DeliveryType DELIVERY_1_TYPE  = DeliveryType.NORMAL;
-    private static final int DELIVERY_1_FREE_PRICE  = 40000;
-    private static final int DELIVERY_1_FEE = 2500;
     private static final Long DELIVERY_2_ID  = 2L;
     private static final String DELIVERY_2_REGION  = "서울";
     private static final DeliveryType DELIVERY_2_TYPE  = DeliveryType.DAWN;
-    private static final int DELIVERY_2_FREE_PRICE  = 20000;
-    private static final int DELIVERY_2_FEE = 3000;
 
     @Autowired
     private ProductDeliveryRepository productDeliveryRepository;
@@ -35,14 +31,15 @@ class ProductDeliveryRepositoryTest {
     @DisplayName("프로덕트 ID를 통해 해당하는 딜리버리 목록을 조회할 수 있다")
     void 프로덕트ID로_딜리버리_조회_테스트() {
 
-        Optional<List<Delivery>> result = productDeliveryRepository.findDeliveriesByProductId(PRODUCT_ID);
+        List<Delivery> result = productDeliveryRepository.findDeliveriesByProductId(
+                PRODUCT_ID);
 
-        assertThat(result).isPresent();
-        assertThat(result.get()).hasSize(DELIVERY_COUNT);
-        assertThat(result.get().get(0).getId()).isEqualTo(DELIVERY_1_ID);
-        assertThat(result.get().get(0).getRegion()).isEqualTo(DELIVERY_1_REGION);
-        assertThat(result.get().get(0).getType()).isEqualTo(DELIVERY_1_TYPE);
-        assertThat(result.get().get(0).getFreePrice()).isEqualTo(DELIVERY_1_FREE_PRICE);
-        assertThat(result.get().get(0).getFee()).isEqualTo(DELIVERY_1_FEE);
+        assertThat(result).hasSize(DELIVERY_COUNT);
+        assertThat(result.get(0).getId()).isEqualTo(DELIVERY_1_ID);
+        assertThat(result.get(0).getRegion()).isEqualTo(DELIVERY_1_REGION);
+        assertThat(result.get(0).getType()).isEqualTo(DELIVERY_1_TYPE);
+        assertThat(result.get(1).getId()).isEqualTo(DELIVERY_2_ID);
+        assertThat(result.get(1).getRegion()).isEqualTo(DELIVERY_2_REGION);
+        assertThat(result.get(1).getType()).isEqualTo(DELIVERY_2_TYPE);
     }
 }
